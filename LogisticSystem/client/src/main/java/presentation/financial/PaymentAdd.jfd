@@ -1,0 +1,48 @@
+JFDML JFormDesigner: "5.2.2.0.199" Java: "1.8.0_45" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:69:p, par t {comp lbInfo:::p:73:p, par l:::p {comp lbPeople::::73:x, comp lbAccount::::73:x}, comp lbExinfo::t:p:73:p}, par l {seq l {space :p:5:p, comp cbInfo:::p::p, space u:::p, comp cbOccupatiom:::p::p}, seq l {space :::p, par l {comp tfPeople:::p:84:p, comp tfAccount:::p:84:p}}, seq l {space :::p, comp tfExinfo:::p:84:p}}, space ::103:x}}"
+			"$verticalGroup": "par l {seq l {space u:::p, par b {comp lbPeople::b:p:21:p, comp tfPeople::b:p::p}, space :::p, par b {comp lbAccount::b:p:21:p, comp tfAccount::b:p::p}, space :p:2:p, par b {comp lbInfo::b:p:21:p, comp cbOccupatiom::b:p::p, comp cbInfo::b:p::p}, space :::p, par b {comp lbExinfo::b:p:21:p, comp tfExinfo::b:p::p}, space ::153:x}}"
+		} ) {
+			name: "this"
+			"title": "新建付款单"
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "tfAccount"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lbPeople"
+				"text": "  付款人："
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lbAccount"
+				"text": "付款账号："
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "tfPeople"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lbInfo"
+				"text": "    条目："
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "cbOccupatiom"
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "cbInfo"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lbExinfo"
+				"text": "    备注："
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "tfExinfo"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 25, 0 )
+			"size": new java.awt.Dimension( 400, 300 )
+		} )
+	}
+}

@@ -1,0 +1,137 @@
+JFDML JFormDesigner: "5.2.2.2.228" Java: "1.8.0_51" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp panel2::l:::x}"
+			"$verticalGroup": "par l {comp panel2::l:::x}"
+		} ) {
+			name: "this"
+			"font": &Font0 new java.awt.Font( "微软雅黑", 0, 12 )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {par l {seq l {space :::p, comp tbActive:::p::p, space :p:24:p, comp tbDeleted:::p::p}, seq l {space :p:37:p, comp label1:::p::p, space :p:80:p, comp label2:::p::p}}, space ::685:x}, comp panel3::t:::x}"
+				"$verticalGroup": "par l {seq l {space :::p, par l {comp tbDeleted:::p:96:p, comp tbActive:::p:96:p}, space :6:6:p, par l {comp label1:::p::p, comp label2:::p::p}, space :::p, comp panel3:::::x}}"
+			} ) {
+				name: "panel2"
+				"font": #Font0
+				add( new FormComponent( "javax.swing.JToggleButton" ) {
+					name: "tbActive"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/account_72x72.png" )
+					"font": #Font0
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btOrderMngMouseClicked", true ) )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "tbActiveMouseReleased", true ) )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "tbActiveMouseReleased", true ) )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "tbActiveMouseReleased", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JToggleButton" ) {
+					name: "tbDeleted"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/account_72x72.png" )
+					"font": #Font0
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "tbDeletedMouseClicked", true ) )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "tbDeletedMouseReleased", true ) )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "tbDeletedMouseReleased", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "已删除"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "活动账户"
+					"font": #Font0
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp scrollPane1::::860:x, space :::p, par l {comp btRe:::p:41:p, par l {comp btDelete::t:p:41:p, comp btAdd::t:p:41:p}}}, seq {comp lbOrderNum:::p::p, space :6:6:p, comp tfOrderInput:::p:361:p, space :::p, comp btSearch:::p:27:p, space :0:447:x}}, space :::p}}"
+					"$verticalGroup": "par l {seq l {space :p:55:p, comp btAdd:::p:38:p, space u:::p, comp btDelete:::p:38:p, space ::286:x, comp btRe:::p:38:p, space :p:15:p}, seq l {par l {seq l {space :4:4:p, comp lbOrderNum:::p::p}, comp tfOrderInput:::p::p, comp btSearch::l:p:25:p}, space u:::p, comp scrollPane1::::439:x, space :::p}}"
+				} ) {
+					name: "panel3"
+					"font": #Font0
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "lbOrderNum"
+						"text": "用户信息："
+						"font": #Font0
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "tfOrderInput"
+						"font": #Font0
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "btSearch"
+						"icon": new com.jformdesigner.model.SwingIcon( 1, "D:\\DATA\\Project\\GUI\\resources\\search_16x16.png" )
+						"font": #Font0
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btSearchMouseReleased", true ) )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btSearchMouseReleased", true ) )
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane1"
+						"font": #Font0
+						addEvent( new FormEvent( "java.awt.event.FocusListener", "focusGained", "scrollPane1FocusGained", true ) )
+						addEvent( new FormEvent( "java.awt.event.FocusListener", "focusLost", "scrollPane1FocusLost", true ) )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "scrollPane1MouseClicked", true ) )
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "tbUserInfo"
+							"font": #Font0
+							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "tbUserInfoMouseClicked", true ) )
+						} )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "btDelete"
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/delete_24x24.png" )
+						"font": #Font0
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btDeleteMouseReleased", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "btAdd"
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/new_24x24.png" )
+						"font": #Font0
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btAddMouseReleased", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "btRe"
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/recover_24x24.png" )
+						"font": #Font0
+					} )
+				} )
+			} )
+			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+				name: "menuBar1"
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "mnFile"
+					"text": "文件(F)"
+					"font": new java.awt.Font( "等线", 0, 14 )
+					add( new FormComponent( "javax.swing.JPopupMenu$Separator" ) {
+						name: "separator1"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "miLogout"
+						"text": "注销"
+						"font": new java.awt.Font( "等线", 0, 14 )
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/logout_16x16.png" )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "miQuit"
+						"text": "退出"
+						"font": new java.awt.Font( "等线", 0, 14 )
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/exit_16x16.png" )
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "mnEdit"
+					"text": "编辑(E)"
+					"font": new java.awt.Font( "等线", 0, 14 )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "miModify"
+						"text": "修改"
+						"font": new java.awt.Font( "等线", 0, 14 )
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/modify_16x16.png" )
+					} )
+				} )
+			}
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 10, 10 )
+			"size": new java.awt.Dimension( 935, 675 )
+		} )
+	}
+}
