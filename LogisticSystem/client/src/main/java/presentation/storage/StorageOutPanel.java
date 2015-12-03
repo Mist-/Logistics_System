@@ -167,7 +167,7 @@ public class StorageOutPanel extends JPanel {
 							.addContainerGap())
 				);
 			}
-			tabbedPane1.addTab("storageOut", storageOutList);
+			tabbedPane1.addTab("\u5df2\u5ba1\u6279\u5165\u5e93\u5355", storageOutList);
 
 			//======== transferList ========
 			{
@@ -222,7 +222,7 @@ public class StorageOutPanel extends JPanel {
 							.addContainerGap())
 				);
 			}
-			tabbedPane1.addTab("transferList", transferList);
+			tabbedPane1.addTab("\u5df2\u5ba1\u6279\u4e2d\u8f6c\u5355", transferList);
 		}
 		add(tabbedPane1, BorderLayout.CENTER);
 
@@ -346,7 +346,7 @@ public class StorageOutPanel extends JPanel {
 							.addContainerGap())
 				);
 			}
-			tabbedPane2.addTab("transfer", transferVO);
+			tabbedPane2.addTab("\u4e2d\u8f6c\u5355", transferVO);
 		}
 
 		//======== tabbedPane3 ========
@@ -423,7 +423,7 @@ public class StorageOutPanel extends JPanel {
 							.addContainerGap())
 				);
 			}
-			tabbedPane3.addTab("storageOut", storageOutVO);
+			tabbedPane3.addTab("\u51fa\u5e93\u5355", storageOutVO);
 		}
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}

@@ -27,6 +27,7 @@ public class ArrivalVO {
 			String[] info = new String[2];
 			info[0] = order[i]+"";
 			info[1] = status.get(i)+"";
+			orderAndStatus[i] = info;
 		}
 		
 		fromName = null;

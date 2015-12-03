@@ -5,9 +5,11 @@
 package presentation.storage;
 
 import java.awt.*;
+import java.awt.event.*;
 
 import javax.swing.*;
 
+import data.message.ResultMessage;
 import businesslogic.service.storage.StorageOperateService;
 
 /**
@@ -19,6 +21,61 @@ public class StorageOperatePanel extends JPanel {
 	public StorageOperatePanel(StorageOperateService storageOperate) {
 		this.storageOperate = storageOperate;
 		initComponents();
+	}
+
+	private void clearInitInput(){
+		numInput.setText("");
+		shelfInput.setText("");
+		planeInput.setText("");
+		trainInput.setText("");
+		truckInput.setText("");
+		flexibleInput.setText("");
+		alarmPercentInput.setText("");
+		this.updateUI();
+		this.repaint();
+	}
+	
+	private boolean setInitInput(){
+		int num = 0 , shelf = 0 , planeRow = 0 , trainRow = 0 , truckRow = 0 , flexibleRow = 0;
+		double alarmPercent = 0.0;
+	try {
+		num = Integer.parseInt(numInput.getText());
+		shelf = Integer.parseInt(shelfInput.getText());
+		planeRow = Integer.parseInt(planeInput.getText());
+		trainRow = Integer.parseInt(trainInput.getText());
+		truckRow = Integer.parseInt(truckInput.getText());
+		flexibleRow = Integer.parseInt(flexibleInput.getText());
+		alarmPercent = Double.parseDouble(alarmPercentInput.getText());
+	} catch (NumberFormatException e) {
+		return false;
+	}
+		ResultMessage result = storageOperate.inputStorageInitInfo(num, shelf, planeRow, trainRow, truckRow, flexibleRow, alarmPercent);
+		if(result == result.SUCCESS) return true;
+		else return false;
+	}
+	
+//==============================监听===================================
+	private void storageInMouseClicked(MouseEvent e) {
+		storageIn.setSelected(true);
+		storageOut.setSelected(false);
+	}
+
+	private void storageOutMouseClicked(MouseEvent e) {
+		storageIn.setSelected(false);
+		storageOut.setSelected(true);
+	}
+
+	private void InitSureButtonMouseClicked(MouseEvent e) {
+		boolean r = setInitInput();
+		if(r){
+			JOptionPane.showMessageDialog(null, "初始化成功", "提示信息", JOptionPane.INFORMATION_MESSAGE);
+		}else{
+			JOptionPane.showMessageDialog(null, "初始化失败","提示信息", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+
+	private void reInputButtonMouseClicked(MouseEvent e) {
+		clearInitInput();
 	}
 
 	private void initComponents() {
@@ -43,6 +100,8 @@ public class StorageOperatePanel extends JPanel {
 		textField12 = new JTextField();
 		button3 = new JButton();
 		button4 = new JButton();
+		storageIn = new JRadioButton();
+		storageOut = new JRadioButton();
 		checkPanel = new JPanel();
 		scrollPane2 = new JScrollPane();
 		table2 = new JTable();
@@ -74,8 +133,10 @@ public class StorageOperatePanel extends JPanel {
 		trainInput = new JTextField();
 		truckInput = new JTextField();
 		flexibleInput = new JTextField();
-		button1 = new JButton();
-		button2 = new JButton();
+		InitSureButton = new JButton();
+		reInputButton = new JButton();
+		label20 = new JLabel();
+		alarmPercentInput = new JTextField();
 
 		//======== this ========
 		setLayout(new BorderLayout());
@@ -121,6 +182,24 @@ public class StorageOperatePanel extends JPanel {
 				//---- button4 ----
 				button4.setText("\u67e5\u770b");
 
+				//---- storageIn ----
+				storageIn.setText("\u5165\u5e93\u5355");
+				storageIn.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						storageInMouseClicked(e);
+					}
+				});
+
+				//---- storageOut ----
+				storageOut.setText("\u51fa\u5e93\u5355");
+				storageOut.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						storageOutMouseClicked(e);
+					}
+				});
+
 				GroupLayout showPanelLayout = new GroupLayout(showPanel);
 				showPanel.setLayout(showPanelLayout);
 				showPanelLayout.setHorizontalGroup(
@@ -157,11 +236,18 @@ public class StorageOperatePanel extends JPanel {
 									.addComponent(label16)
 									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 									.addComponent(textField12)))
-							.addGap(71, 71, 71)
-							.addComponent(button3)
-							.addGap(48, 48, 48)
-							.addComponent(button4, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(134, Short.MAX_VALUE))
+							.addGap(47, 47, 47)
+							.addGroup(showPanelLayout.createParallelGroup()
+								.addGroup(showPanelLayout.createSequentialGroup()
+									.addComponent(storageOut)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
+									.addComponent(button3)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(button4))
+								.addGroup(showPanelLayout.createSequentialGroup()
+									.addComponent(storageIn)
+									.addGap(0, 302, Short.MAX_VALUE)))
+							.addContainerGap())
 				);
 				showPanelLayout.setVerticalGroup(
 					showPanelLayout.createParallelGroup()
@@ -175,7 +261,8 @@ public class StorageOperatePanel extends JPanel {
 									.addComponent(label12)
 									.addComponent(textField8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 									.addComponent(label13)
-									.addComponent(textField9, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+									.addComponent(textField9, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(storageIn)))
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addGroup(showPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 								.addComponent(label10)
@@ -185,9 +272,10 @@ public class StorageOperatePanel extends JPanel {
 								.addComponent(textField11, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(label16)
 								.addComponent(textField12, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(button4)
 								.addComponent(button3)
-								.addComponent(button4))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+								.addComponent(storageOut))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
 							.addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 266, GroupLayout.PREFERRED_SIZE))
 				);
 			}
@@ -326,11 +414,26 @@ public class StorageOperatePanel extends JPanel {
 				//---- label8 ----
 				label8.setText("\u673a\u52a8\u533a");
 
-				//---- button1 ----
-				button1.setText("\u786e\u8ba4");
+				//---- InitSureButton ----
+				InitSureButton.setText("\u786e\u8ba4");
+				InitSureButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						InitSureButtonMouseClicked(e);
+					}
+				});
 
-				//---- button2 ----
-				button2.setText("\u91cd\u65b0\u8f93\u5165");
+				//---- reInputButton ----
+				reInputButton.setText("\u91cd\u65b0\u8f93\u5165");
+				reInputButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						reInputButtonMouseClicked(e);
+					}
+				});
+
+				//---- label20 ----
+				label20.setText("\u62a5\u8b66\u6bd4\u4f8b");
 
 				GroupLayout initPanelLayout = new GroupLayout(initPanel);
 				initPanel.setLayout(initPanelLayout);
@@ -338,37 +441,46 @@ public class StorageOperatePanel extends JPanel {
 					initPanelLayout.createParallelGroup()
 						.addGroup(initPanelLayout.createSequentialGroup()
 							.addGap(231, 231, 231)
-							.addGroup(initPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-								.addComponent(button1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(label8, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(label7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(label6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(label5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addGroup(initPanelLayout.createSequentialGroup()
-									.addGap(30, 30, 30)
-									.addComponent(label3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-								.addComponent(label1, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
-								.addComponent(label2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(label4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 							.addGroup(initPanelLayout.createParallelGroup()
 								.addGroup(initPanelLayout.createSequentialGroup()
-									.addGap(11, 11, 11)
-									.addGroup(initPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-										.addComponent(textField1, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-										.addComponent(numInput, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
+									.addComponent(label20)
 									.addGap(0, 0, Short.MAX_VALUE))
 								.addGroup(initPanelLayout.createSequentialGroup()
-									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+									.addGroup(initPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+										.addComponent(label8, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(label7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(label6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(label5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addGroup(initPanelLayout.createSequentialGroup()
+											.addGap(30, 30, 30)
+											.addComponent(label3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+										.addComponent(label1, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
+										.addComponent(label2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(label4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(InitSureButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 									.addGroup(initPanelLayout.createParallelGroup()
-										.addComponent(shelfInput)
-										.addComponent(planeInput)
-										.addComponent(trainInput)
-										.addComponent(truckInput)
-										.addComponent(flexibleInput)))
-								.addGroup(initPanelLayout.createSequentialGroup()
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(button2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-							.addGap(399, 399, 399))
+										.addGroup(initPanelLayout.createSequentialGroup()
+											.addGroup(initPanelLayout.createParallelGroup()
+												.addGroup(initPanelLayout.createSequentialGroup()
+													.addGap(11, 11, 11)
+													.addGroup(initPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+														.addComponent(textField1, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+														.addComponent(numInput, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
+													.addGap(0, 0, Short.MAX_VALUE))
+												.addGroup(initPanelLayout.createSequentialGroup()
+													.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+													.addGroup(initPanelLayout.createParallelGroup()
+														.addComponent(shelfInput)
+														.addComponent(planeInput)
+														.addComponent(trainInput)
+														.addComponent(truckInput)
+														.addComponent(flexibleInput)
+														.addComponent(alarmPercentInput))))
+											.addGap(399, 399, 399))
+										.addGroup(initPanelLayout.createSequentialGroup()
+											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+											.addComponent(reInputButton, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
+											.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
 				);
 				initPanelLayout.setVerticalGroup(
 					initPanelLayout.createParallelGroup()
@@ -403,11 +515,15 @@ public class StorageOperatePanel extends JPanel {
 							.addGroup(initPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 								.addComponent(label8)
 								.addComponent(flexibleInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(37, 37, 37)
+							.addGap(18, 18, 18)
 							.addGroup(initPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(button1)
-								.addComponent(button2))
-							.addContainerGap(50, Short.MAX_VALUE))
+								.addComponent(label20)
+								.addComponent(alarmPercentInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+							.addGroup(initPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(InitSureButton)
+								.addComponent(reInputButton))
+							.addGap(20, 20, 20))
 				);
 			}
 			operatePane.addTab("\u521d\u59cb\u5316", initPanel);
@@ -437,6 +553,8 @@ public class StorageOperatePanel extends JPanel {
 	private JTextField textField12;
 	private JButton button3;
 	private JButton button4;
+	private JRadioButton storageIn;
+	private JRadioButton storageOut;
 	private JPanel checkPanel;
 	private JScrollPane scrollPane2;
 	private JTable table2;
@@ -468,7 +586,9 @@ public class StorageOperatePanel extends JPanel {
 	private JTextField trainInput;
 	private JTextField truckInput;
 	private JTextField flexibleInput;
-	private JButton button1;
-	private JButton button2;
+	private JButton InitSureButton;
+	private JButton reInputButton;
+	private JLabel label20;
+	private JTextField alarmPercentInput;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 }

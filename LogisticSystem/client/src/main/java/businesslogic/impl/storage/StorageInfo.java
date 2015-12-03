@@ -69,12 +69,7 @@ public class StorageInfo {
 		return vo;
 	}
 
-	public StorageInfo(StorageDataService storageData, long centerID) throws RemoteException
-			{
-		this.storageData = storageData;
-		storageInfo = (StorageInfoPO) storageData.search(POType.STORAGEINFO,centerID);
-	}
-	
+
 	
 	/**
 	 * ≈–∂œ≤÷ø‚ «∑Ò¥Ê‘⁄
@@ -109,7 +104,7 @@ public class StorageInfo {
 			for (int i = 0; i < order.size(); i++) {
 				OrderPO o = order.get(i);
 				StorageArea area = o.getTransferType();
-				String[] s = getPosition(area, o.getSerialNum(), storageInfo)
+				String[] s = getPosition(area, o.getSerialNum())
 						.split("-");
 
 				switch (s[1]) {
@@ -163,7 +158,7 @@ public class StorageInfo {
 			int row = 0;
 			if (i == 0)
 				row = storageInfo.getPlaneRow();
-			else if (i == 2)
+			else if (i == 1)
 				row = storageInfo.getTrainRow();
 			else
 				row = storageInfo.getTruckRow();
@@ -295,8 +290,7 @@ public class StorageInfo {
 	 * @param storageInfo
 	 *            ø‚¥Ê–≈œ¢
 	 */
-	private String getPosition(StorageArea area, long order,
-			StorageInfoPO storageInfo) {
+	private String getPosition(StorageArea area, long order) {
 		ArrayList<long[][][]> p = storageInfo.getStorage();
 		int a = 0;
 		int shelf = 0;
@@ -371,18 +365,36 @@ public class StorageInfo {
 	 * @return
 	 * @throws RemoteException
 	 */
-	public ResultMessage modifyStorageInfo(StorageOutListPO storageOut) throws RemoteException{
-		if(storageInfo == null) return ResultMessage.FAILED;
+	public ResultMessage modifyStorageInfo(StorageOutListPO storageOut)
+			throws RemoteException {
+		if (storageInfo == null)
+			return ResultMessage.FAILED;
+
 		
 		ArrayList<long[][][]> info = storageInfo.getStorage();
 		String[][] position = storageOut.getPosition();
 		
-		for(int i = 0 ; i < position.length;i++){
-			info.get(Integer.parseInt(position[i][0]))[Integer.parseInt(position[i][1])][Integer.parseInt(position[i][2])][Integer.parseInt(position[i][3])] = 0;
-			//storageInfo[Integer.parseInt(position[i][0])][Integer.parseInt(position[i][1])][Integer.parseInt(position[i][2])][Integer.parseInt(position[i][3])] = 0;
+
+		for (int i = 0; i < position.length; i++) {
+			int index = Integer.parseInt(position[i][0]);
+			int row = Integer.parseInt(position[i][1]);
+			int shelf = Integer.parseInt(position[i][2]);
+			int num = Integer.parseInt(position[i][3]);
+			long[][][] pos = info.get(index);
+			pos[row][shelf][num] = 0;
 		}
 		storageInfo.setStorage(info);
 		storageData.modify(storageInfo);
 		return ResultMessage.SUCCESS;
 	}
+	
+
+	public StorageInfo(StorageDataService storageData, long centerID)
+			throws RemoteException {
+		this.storageData = storageData;
+		storageInfo = (StorageInfoPO) storageData.search(POType.STORAGEINFO,
+				centerID);
+	}
+
+	
 }

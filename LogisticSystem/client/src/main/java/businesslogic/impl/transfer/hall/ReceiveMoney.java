@@ -28,9 +28,7 @@ public class ReceiveMoney {
 	public void setReceipt(ReceiptPO receipt) {
 		this.receipt = receipt;
 	}
-	/*public void setOrderService(MockOrderBLService orderService) {
-		this.orderService = orderService;
-	}*/
+
 	public void setAccount(AccountPO account) {
 		this.account = account;
 	}
@@ -44,7 +42,6 @@ public class ReceiveMoney {
 	StaffPO sender;
 	ReceiptVO receiptVO;
 	ReceiptPO receipt;
-	//MockOrderBLService orderService;
 	AccountPO account;
 	CompanyDataService companyData;
 	FinancialDataService financialDataService;
@@ -54,13 +51,13 @@ public class ReceiveMoney {
 		//senders = companyData.search(POType.STAFF, hall);Õı“„≥–ÃÌº”
 		ArrayList<String> sender = new ArrayList<String>();
 		for(StaffPO s:senders){
-			sender.add(s.getSerialNum()+"-"+s.getName());
+			sender.add(s.getName());
 		}
 		return sender;
 	}
-	public ReceiptVO chooseSender(long senderNum){
+	public ReceiptVO chooseSender(String name){
 		for(StaffPO s:senders){
-			if(s.getSerialNum() == senderNum)
+			if(s.getName().equals(name))
 				sender = s;
 		}
 		

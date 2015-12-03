@@ -8,8 +8,8 @@ new FormModel {
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 				name: "operatePane"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {comp scrollPane1::t::795:x, seq {space :::p, par l:::p {comp label9::::86:x, comp label10::::86:x}, space u:::p, par l:::p {comp label11::::34:x, comp label14::::34:x}, space :::p, par l:::p {comp textField7::::49:x, comp textField10::::49:x}, space u:::p, par l:::p {comp label12::::37:x, comp label15::::37:x}, space :::p, par l:::p {comp textField8::::50:x, comp textField11::::50:x}, space u:::p, par l:::p {seq {comp label13:::p::p, space :::p, comp textField9:::p:55:p}, seq {comp label16:::p::p, space :::p, comp textField12:::::x}}, space :p:71:p, comp button3:::p::p, space :p:48:p, comp button4:::p:110:p, space ::134:x}}"
-					"$verticalGroup": "par l {seq t {space :::p, par l {comp label9:::p::p, par b {comp textField7::b:p::p, comp label11::b:p::p, comp label12::b:p::p, comp textField8::b:p::p, comp label13::b:p::p, comp textField9::b:p::p}}, space :::p, par b {comp label10::b:p::p, comp label14::b:p::p, comp textField10::b:p::p, comp label15::l:p::p, comp textField11::b:p::p, comp label16::b:p::p, comp textField12::b:p::p, comp button3::b:p::p, comp button4::b:p::p}, space ::20:x, comp scrollPane1:::p:266:p}}"
+					"$horizontalGroup": "par l {comp scrollPane1::t::795:x, seq {space :::p, par l:::p {comp label9::::86:x, comp label10::::86:x}, space u:::p, par l:::p {comp label11::::34:x, comp label14::::34:x}, space :::p, par l:::p {comp textField7::::49:x, comp textField10::::49:x}, space u:::p, par l:::p {comp label12::::37:x, comp label15::::37:x}, space :::p, par l:::p {comp textField8::::50:x, comp textField11::::50:x}, space u:::p, par l:::p {seq {comp label13:::p::p, space :::p, comp textField9:::p:55:p}, seq {comp label16:::p::p, space :::p, comp textField12:::::x}}, space :p:47:p, par l {seq {comp storageOut:::p::p, space ::182:x, comp button3:::p::p, space :::p, comp button4:::p::p}, seq {comp storageIn:::p::p, space :0:302:x}}, space :::p}}"
+					"$verticalGroup": "par l {seq t {space :::p, par l {comp label9:::p::p, par b {comp textField7::b:p::p, comp label11::b:p::p, comp label12::b:p::p, comp textField8::b:p::p, comp label13::b:p::p, comp textField9::b:p::p, comp storageIn::b:p::p}}, space :::p, par b {comp label10::b:p::p, comp label14::b:p::p, comp textField10::b:p::p, comp label15::l:p::p, comp textField11::b:p::p, comp label16::b:p::p, comp textField12::b:p::p, comp button4::b:p::p, comp button3::b:p::p, comp storageOut::b:p::p}, space ::19:x, comp scrollPane1:::p:266:p}}"
 				} ) {
 					name: "showPanel"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -75,6 +75,16 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button4"
 						"text": "查看"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "storageIn"
+						"text": "入库单"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "storageInMouseClicked", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "storageOut"
+						"text": "出库单"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "storageOutMouseClicked", true ) )
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "库存查看"
@@ -143,8 +153,8 @@ new FormModel {
 					"title": "库存调整"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :p:231:p, par l:::p {comp button1:::::x, comp label8:::::x, comp label7:::::x, comp label6:::::x, comp label5:::::x, seq {space :p:30:p, comp label3:::::x}, comp label1:::p:61:p, comp label2:::::x, comp label4:::::x}, par l {seq {space :p:11:p, par t {comp textField1:::p:70:p, comp numInput:::p:70:p}, space :0:0:x}, seq l {space u:::p, par l {comp shelfInput:::::x, comp planeInput:::::x, comp trainInput:::::x, comp truckInput:::::x, comp flexibleInput:::::x}}, seq {space :::p, comp button2:::::x}}, space :p:399:p}}"
-					"$verticalGroup": "par l {seq l {space :p:16:p, par b {comp label1::b:p::p, comp textField1::b:p::p}, space :::p, par b {comp numInput::b:p::p, comp label2::b:p::p}, space :::p, par b {comp label4::b:p::p, comp shelfInput::b:p::p}, space :::p, comp label3:::p::p, space :p:37:p, par b {comp label5::b:p::p, comp planeInput::b:p::p}, space :::p, par b {comp label6::b:p::p, comp trainInput::b:p::p}, space :::p, par b {comp label7::b:p::p, comp truckInput::b:p::p}, space :::p, par b {comp label8::b:p::p, comp flexibleInput::b:p::p}, space :p:37:p, par b {comp button1::b:p::p, comp button2::b:p::p}, space ::50:x}}"
+					"$horizontalGroup": "par l {seq l {space :p:231:p, par l {seq {comp label20:::p::p, space :0:0:x}, seq {par l:::p {comp label8:::::x, comp label7:::::x, comp label6:::::x, comp label5:::::x, seq {space :p:30:p, comp label3:::::x}, comp label1:::p:61:p, comp label2:::::x, comp label4:::::x, comp InitSureButton::l:::x}, par l {seq l {par l {seq {space :p:11:p, par t {comp textField1:::p:70:p, comp numInput:::p:70:p}, space :0:0:x}, seq l {space u:::p, par l {comp shelfInput:::::x, comp planeInput:::::x, comp trainInput:::::x, comp truckInput:::::x, comp flexibleInput:::::x, comp alarmPercentInput::l:::x}}}, space :p:399:p}, seq l {space :::p, comp reInputButton:::p:116:p, space :::x}}}}}}"
+					"$verticalGroup": "par l {seq l {space :p:16:p, par b {comp label1::b:p::p, comp textField1::b:p::p}, space :::p, par b {comp numInput::b:p::p, comp label2::b:p::p}, space :::p, par b {comp label4::b:p::p, comp shelfInput::b:p::p}, space :::p, comp label3:::p::p, space :p:37:p, par b {comp label5::b:p::p, comp planeInput::b:p::p}, space :::p, par b {comp label6::b:p::p, comp trainInput::b:p::p}, space :::p, par b {comp label7::b:p::p, comp truckInput::b:p::p}, space :::p, par b {comp label8::b:p::p, comp flexibleInput::b:p::p}, space s:::p, par b {comp label20::b:p::p, comp alarmPercentInput::b:p::p}, space ::28:x, par b {comp InitSureButton::b:p::p, comp reInputButton::b:p::p}, space :p:20:p}}"
 				} ) {
 					name: "initPanel"
 					add( new FormComponent( "javax.swing.JLabel" ) {
@@ -202,12 +212,21 @@ new FormModel {
 						name: "flexibleInput"
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "button1"
+						name: "InitSureButton"
 						"text": "确认"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "InitSureButtonMouseClicked", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "button2"
+						name: "reInputButton"
 						"text": "重新输入"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "reInputButtonMouseClicked", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label20"
+						"text": "报警比例"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "alarmPercentInput"
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "初始化"

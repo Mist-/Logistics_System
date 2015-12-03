@@ -1,0 +1,198 @@
+JFDML JFormDesigner: "5.2.2.0.199" Java: "1.8.0_31" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+				name: "tabbedPane1"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space :p:14:p, comp scrollPane1:::p:685:p, space :::p, par l:::p {comp doStorageOut::t::80:x, comp button3::t:p:65:p, comp selectStorageOut::t::80:x, comp textField1::::80:x}, space :::p}}"
+					"$verticalGroup": "par l {seq l {space :::p, par l {comp scrollPane1::::326:x, seq {comp textField1:::p::p, space :::p, comp button3:::p::p, space ::224:x, comp selectStorageOut:::p::p, space :::p, comp doStorageOut:::p::p}}, space :::p}}"
+				} ) {
+					name: "storageOutList"
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane1"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "storageOutTable"
+							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "storageOutTableMouseClicked", true ) )
+						} )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "doStorageOut"
+						"text": "出库"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "doStorageOutMouseClicked", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "selectStorageOut"
+						"text": "查看"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField1"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button3"
+						"text": "搜索"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "storageOut"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space :::p, comp scrollPane2:::p:685:p, space :::p, par l {comp textField2::::84:x, seq t {space :0:15:x, comp searchTransfer:::p::p}, comp selectTransfer::l::84:x}, space :::p}}"
+					"$verticalGroup": "par l {seq t {space :::p, par l {comp scrollPane2::::326:x, seq {comp textField2:::p::p, space :::p, comp searchTransfer:::p::p, space ::230:x, comp selectTransfer:::p:46:p}}, space :::p}}"
+				} ) {
+					name: "transferList"
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane2"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "transferListTable"
+							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "transferListTableMouseClicked", true ) )
+						} )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "selectTransfer"
+						"text": "select"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField2"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "searchTransfer"
+						"text": "search"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "transferList"
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 800, 375 )
+		} )
+		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+			name: "tabbedPane2"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp scrollPane3:::p:679:p, space :::p, par l {comp transferCancel::::90:x, comp createStorageOut::::90:x}}, seq l {par t:::p {seq l {comp label7:::p:70:p, space u:::p, comp textField9::::70:x}, seq l {comp label3:::p:70:p, space u:::p, comp textField5::::70:x}, seq l {par t:::p {comp label2::l::70:x, comp label1::l::70:x}, space u:::p, par l:::p {comp textField3::::70:x, comp textField4::::70:x}}}, space :p:99:p, par l:::p {comp label4::::70:x, comp label5::::70:x, comp label6::::70:x}, space u:::p, par l:::p {comp textField6::::70:x, comp textField7::::70:x, comp textField8::l::70:x}, space :0:0:x}}, space :::p}}"
+				"$verticalGroup": "par l {seq t {space :::p, par t {seq {space :0:259:x, comp createStorageOut:::p::p, space :::p, comp transferCancel:::p::p}, seq {par b {comp label1::b:p::p, comp textField3::b:p::p, comp label4::b:p::p, comp textField6::b:p::p}, space :::p, par l {comp label2:::p::p, par b {comp textField4::b:p::p, comp label5::b:p::p, comp textField7::b:p::p}}, space u:::p, par b {comp label3::b:p:21:p, comp textField5::b:p::p, comp label6::l:p::p, comp textField8::b:p::p}, space :::p, par b {comp label7::b:p::p, comp textField9::b:p::p}, space :p:38:p, comp scrollPane3::::167:x}}, space :::p}}"
+			} ) {
+				name: "transferVO"
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane3"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "orderAndPosition"
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "中转中心"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField3"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "目标机构"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField4"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "运输方式"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField5"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label4"
+					"text": "监装员"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField6"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label5"
+					"text": "费用"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField7"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label6"
+					"text": "日期"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField8"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label7"
+					"text": "班次"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField9"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "transferCancel"
+					"text": "cancel"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "createStorageOut"
+					"text": "create"
+				} )
+			}, new FormLayoutConstraints( null ) {
+				"title": "transfer"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 380 )
+			"size": new java.awt.Dimension( 800, 360 )
+		} )
+		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+			name: "tabbedPane3"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :::p, par l {seq {comp scrollPane4:::p:680:p, space :::p, par l {comp storageOutCancel::::89:x, comp storageOutSave::::89:x}}, seq {par t:::p {comp label9::l::70:x, comp label8::l::70:x, comp label10::::70:x}, space u:::p, par l:::p {comp transferCenter::::70:x, comp transferType::::70:x, comp transferDate::l::70:x}, space :0:0:x}}, space :::p}}"
+				"$verticalGroup": "par l {seq t {space :::p, par t {seq {space :0:255:x, comp storageOutSave:::p::p, space u:::p, comp storageOutCancel:::p::p}, seq {par b {comp label8::b:p::p, comp transferCenter::b:p::p}, space :::p, par b {comp transferType::b:p::p, comp label10::b:p::p}, space :::p, par b {comp label9::b:p::p, comp transferDate::b:p::p}, space ::7:x, comp scrollPane4:::p:229:p}}, space :::p}}"
+			} ) {
+				name: "storageOutVO"
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane4"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label8"
+					"text": "中转中心"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "transferCenter"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "transferType"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label9"
+					"text": "日期"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label10"
+					"text": "运输方式"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "transferDate"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "storageOutCancel"
+					"text": "cancel"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "storageOutSave"
+					"text": "save"
+				} )
+			}, new FormLayoutConstraints( null ) {
+				"title": "storageOut"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 745 )
+			"size": new java.awt.Dimension( 800, 360 )
+		} )
+	}
+}

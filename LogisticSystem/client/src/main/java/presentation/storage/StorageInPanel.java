@@ -23,15 +23,7 @@ public class StorageInPanel extends JPanel {
 	StorageInService storageIn;
 	ArrivalVO arrival;
 	
-	public void showList(){
-		remove(storageInVO);
-		remove(arriveList);
-		add(listPane);
-		
-		listPane.validate();
-		listPane.updateUI();
-		this.repaint();
-	}
+
 	
 	public StorageInPanel(StorageInService storageIn) {
 		this.storageIn = storageIn;
@@ -58,6 +50,14 @@ public class StorageInPanel extends JPanel {
 		
 		storageInTable.repaint();
 		arriveListTable.repaint();
+		
+		remove(storageInVO);
+		remove(arriveList);
+		add(listPane);
+		
+		listPane.validate();
+		listPane.updateUI();
+		this.repaint();
 	}
 
 	private void setStorageIn(StorageInVO vo){

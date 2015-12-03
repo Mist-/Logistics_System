@@ -36,7 +36,7 @@ new FormModel {
 						"text": "搜索"
 					} )
 				}, new FormLayoutConstraints( null ) {
-					"title": "storageOut"
+					"title": "已审批入库单"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 					"$horizontalGroup": "par l {seq l {space :::p, comp scrollPane2:::p:685:p, space :::p, par l {comp textField2::::84:x, seq t {space :0:15:x, comp searchTransfer:::p::p}, comp selectTransfer::l::84:x}, space :::p}}"
@@ -62,7 +62,7 @@ new FormModel {
 						"text": "search"
 					} )
 				}, new FormLayoutConstraints( null ) {
-					"title": "transferList"
+					"title": "已审批中转单"
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"
@@ -142,7 +142,7 @@ new FormModel {
 					"text": "create"
 				} )
 			}, new FormLayoutConstraints( null ) {
-				"title": "transfer"
+				"title": "中转单"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 380 )
@@ -188,7 +188,7 @@ new FormModel {
 					"text": "save"
 				} )
 			}, new FormLayoutConstraints( null ) {
-				"title": "storageOut"
+				"title": "出库单"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 745 )

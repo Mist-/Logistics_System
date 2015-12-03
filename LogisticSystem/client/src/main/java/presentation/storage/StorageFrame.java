@@ -57,16 +57,7 @@ public class StorageFrame extends JFrame {
 	
 
 	//显示入库panel
-	private void storageInStart(){
-		if(storageInVO == null){
-			StorageInService storageIn = storageBusiness.startStorageIn();
-			if(storageIn == null){
-				JOptionPane.showMessageDialog(null, "仓库未初始化", "提示",	 JOptionPane.INFORMATION_MESSAGE);
-				return ;
-			}
-			storageInVO = new StorageInPanel(storageIn);
-		}
-		
+	private boolean storageInStart(){
 		storageIn.setEnabled(false);
 		storageOut.setEnabled(true);
 		storageOperete.setEnabled(true);
@@ -74,6 +65,17 @@ public class StorageFrame extends JFrame {
 		storageIn.setSelected(true);
 		storageOut.setSelected(false);
 		storageOperete.setSelected(false);
+		
+		if(storageInVO == null){
+			StorageInService storageIn = storageBusiness.startStorageIn();
+			if(storageIn == null){
+				JOptionPane.showMessageDialog(null, "仓库未初始化", "提示",	 JOptionPane.INFORMATION_MESSAGE);
+				return false;
+			}
+			storageInVO = new StorageInPanel(storageIn);
+		}
+		
+
 		
 		Container container = getContentPane();
 		container.remove(emptyPanel);
@@ -87,20 +89,12 @@ public class StorageFrame extends JFrame {
 		storageInVO.validate();
 		storageInVO.updateUI();
 		container.repaint();
+		
+		return true;
 	}
 
 	//显示出库panel
-	private void storageOutStart(){
-		if(storageOutVO == null){
-			StorageOutService storageOut = storageBusiness.startStorageOut();
-			if(storageOut == null){
-				JOptionPane.showMessageDialog(null, "仓库未初始化", "提示",	 JOptionPane.INFORMATION_MESSAGE);
-				return ;
-			}else{
-			storageOutVO = new StorageOutPanel(storageOut);
-			}
-		}
-		
+	private boolean storageOutStart(){
 		storageIn.setEnabled(true);
 		storageOut.setEnabled(false);
 		storageOperete.setEnabled(true);
@@ -108,6 +102,18 @@ public class StorageFrame extends JFrame {
 		storageIn.setSelected(false);
 		storageOut.setSelected(true);
 		storageOperete.setSelected(false);
+		
+		if(storageOutVO == null){
+			StorageOutService storageOut = storageBusiness.startStorageOut();
+			if(storageOut == null){
+				JOptionPane.showMessageDialog(null, "仓库未初始化", "提示",	 JOptionPane.INFORMATION_MESSAGE);
+				return false;
+			}else{
+			storageOutVO = new StorageOutPanel(storageOut);
+			}
+		}
+		
+
 		
 		Container container = getContentPane();
 		container.remove(emptyPanel);
@@ -120,6 +126,7 @@ public class StorageFrame extends JFrame {
 		storageOutVO.validate();
 		storageOutVO.updateUI();
 		container.repaint();
+		return true;
 	}
 
 	//显示库存操作panel
@@ -164,7 +171,7 @@ public class StorageFrame extends JFrame {
 	//storageIn Button
 	private void storageInMouseClicked(MouseEvent e) {
 		storageInStart();
-		storageInVO.showList();
+
 	}
 	//storageOut Button
 	private void storageOutMouseClicked(MouseEvent e) {

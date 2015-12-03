@@ -65,47 +65,44 @@ public class StorageOperate implements StorageOperateService {
 	/**
 	 * 显示仓库比例
 	 */
+	public double[] showSpace() {
+		int plane = 0;
+		int train = 0;
+		int truck = 0;
+		ArrayList<long[][][]> storageInfo = storageInfoPO.getStorage();
 
-	// public double[] showSpace() {
-	// int plane = 0;
-	// int train = 0;
-	// int truck = 0;
-	// long[][][][] storageInfo = storageInfoPO.getOrder();
-	//
-	// for (int i = 0; i < 3; i++) {
-	// int row = 0;
-	// if (i == 0)
-	// row = storageInfoPO.getPlaneRow();
-	// else if (i == 1)
-	// row = storageInfoPO.getTrainRow();
-	// else
-	// row = storageInfoPO.getTruckRow();
-	// for (int j = 0; j < row; j++) {
-	// for (int k = 0; k < storageInfoPO.getShelf(); k++) {
-	// for (int n = 0; n < storageInfoPO.getNum(); n++) {
-	// if (i == 0 && storageInfo[i][j][k][n] != 0)
-	// plane++;
-	// else if (i == 1 && storageInfo[i][j][k][n] != 0)
-	// train++;
-	// else if (i == 2 && storageInfo[i][j][k][n] != 0)
-	// truck++;
-	// else
-	// ;
-	// }
-	// }
-	// }
-	// }
-	//
-	//
-	// double planeRate = ((double) plane) / storageInfoPO.getPlane(),
-	// trainRate = ((double) train)/ storageInfoPO.getTrain(),
-	// truckRate = ((double) truck)/ storageInfoPO.getTruck();
-	//
-	// double[] result = {planeRate,trainRate,truckRate};
-	// rate = result;
-	// return result;
-	//
-	// }
+		for (int i = 0; i < 3; i++) {
+			long[][][] info = storageInfo.get(i);
+			int row = 0;
+			if (i == 0)
+				row = storageInfoPO.getPlaneRow();
+			else if (i == 1)
+				row = storageInfoPO.getTrainRow();
+			else
+				row = storageInfoPO.getTruckRow();
+			for (int j = 0; j < row; j++) {
+				for (int k = 0; k < storageInfoPO.getShelf(); k++) {
+					for (int n = 0; n < storageInfoPO.getNum(); n++) {
+						if (i == 0 && info[j][k][n] != 0)
+							plane++;
+						else if (i == 1 && info[j][k][n] != 0)
+							train++;
+						else if (i == 2 && info[j][k][n] != 0)
+							truck++;
+						else
+							;
+					}
+				}
+			}
+		}
+		double planeRate = ((double) plane) / storageInfoPO.getPlane();
+		double trainRate = ((double) train)/ storageInfoPO.getTrain();
+		double truckRate = ((double) truck)/ storageInfoPO.getTruck();
+
+		double[] result = { planeRate, trainRate, truckRate };
+		rate = result;
+		return result;
+	}
 
 	/**
 	 * 确认调整
@@ -250,18 +247,12 @@ public class StorageOperate implements StorageOperateService {
 
 	}
 
-	public StorageOperate(InstitutionInfo center,StorageDataService storageData,StorageInfo storageInfo) throws RemoteException {
-		this.storageData = storageData;
-		this.center = center;
-		this.storageInfo =storageInfo;
-		storageInList = new ArrayList<StorageInListPO>();
-		storageOutList = new ArrayList<StorageOutListPO>();
-	}
+
 
 	/**
 	 * 输入初始化信息
 	 */
-	public ResultMessage inputStorageInitInfo(long centerID, int num,
+	public ResultMessage inputStorageInitInfo(int num,
 			int shelf, int planeR, int trainR, int truckR, int flexibleR,
 			double alarmPercent) {
 		if (storageInfoPO != null) {
@@ -273,7 +264,7 @@ public class StorageOperate implements StorageOperateService {
 				return ResultMessage.FAILED;
 			}
 		}
-		storageInfoPO = new StorageInfoPO(centerID, shelf, num, planeR, trainR,
+		storageInfoPO = new StorageInfoPO(center.getCenterID(), shelf, num, planeR, trainR,
 				truckR, flexibleR, alarmPercent);
 		try {
 			return storageData.add(storageInfoPO);
@@ -284,10 +275,14 @@ public class StorageOperate implements StorageOperateService {
 
 	}
 
-	@Override
-	public double[] showSpace() {
-		// TODO Auto-generated method stub
-		return null;
+	public StorageOperate(InstitutionInfo center,StorageDataService storageData,StorageInfo storageInfo) throws RemoteException {
+		this.storageData = storageData;
+		this.center = center;
+		this.storageInfo =storageInfo;
+		storageInList = new ArrayList<StorageInListPO>();
+		storageOutList = new ArrayList<StorageOutListPO>();
 	}
+
+
 
 }
