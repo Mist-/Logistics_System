@@ -4,8 +4,6 @@ import data.enums.UserRole;
 import data.po.StaffPO;
 import data.po.UserPO;
 
-import javax.swing.*;
-
 /**
  * 用于登陆界面和userBL之间的用户数据传输
  * Created by Mouse on 2015/10/23 0023.

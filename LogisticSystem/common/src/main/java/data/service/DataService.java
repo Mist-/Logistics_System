@@ -92,7 +92,12 @@ public interface DataService extends Remote {
     default ResultMessage delete(DataPO data) throws RemoteException {
 
         ArrayList<DataPO> list = getPOList(data.getPOType());
-        list.remove(data);
+        for (DataPO dat: list) {
+            if (dat.getSerialNum() == data.getSerialNum()) {
+                list.remove(data);
+                return ResultMessage.SUCCESS;
+            }
+        }
         return ResultMessage.NOTEXIST;
     }
 

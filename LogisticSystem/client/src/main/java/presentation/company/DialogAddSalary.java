@@ -79,11 +79,11 @@ public class DialogAddSalary extends JDialog{
 		}
 		else if(resultMessage== ResultMessage.EXIST){
             company.labelSalarySuccess.setText("");
-			JOptionPane.showMessageDialog(null,"该工资类型已存在,请勿重复添加","",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,"该工资类型已存在,请勿重复添加","",JComponent.ERROR);
 		}
 		else if(resultMessage== ResultMessage.NOTCONNECTED){
 			company.labelSalarySuccess.setText("");
-			JOptionPane.showMessageDialog(null,"网络错误...","",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,"网络错误...","",JComponent.ERROR);
 		}
 		jdialog.dispose();
 	}

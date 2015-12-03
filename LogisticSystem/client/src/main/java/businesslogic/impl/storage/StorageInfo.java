@@ -109,7 +109,8 @@ public class StorageInfo {
 			for (int i = 0; i < order.size(); i++) {
 				OrderPO o = order.get(i);
 				StorageArea area = o.getTransferType();
-				String[] s = getPosition(area, o.getSerialNum(), storageInfo).split("-");
+				String[] s = getPosition(area, o.getSerialNum(), storageInfo)
+						.split("-");
 
 				switch (s[1]) {
 				case "0":

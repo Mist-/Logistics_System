@@ -3,6 +3,7 @@ package presentation.company;
 import businesslogic.impl.company.CompanyBLController;
 import data.enums.ServiceType;
 import data.enums.StockStatus;
+import data.message.LoginMessage;
 import data.message.ResultMessage;
 import data.po.*;
 import data.vo.*;
@@ -26,8 +27,8 @@ import java.util.Vector;
  */
 public class companyManage extends JFrame {
 
-    public companyManage() {
-        initComponents();
+    public companyManage(LoginMessage loginMessage) {
+        initComponents(loginMessage);
         this.setVisible(true);
     }
 
@@ -1558,10 +1559,7 @@ public class companyManage extends JFrame {
         scrollPanelTransfer.getViewport().add(tableTransfer);
     }
 
-    private void initComponents() {
-
-
-
+    private void initComponents(LoginMessage loginMessage) {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         menuBar = new JMenuBar();
         choice = new JMenu();
@@ -2410,8 +2408,8 @@ public class companyManage extends JFrame {
         this.initStorageInTable();
         this.initStorageOutTable();
         this.initTransferTable();
-        tabbedPaneApprove.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
-
+        id.setText(loginMessage.getUserSN()+"");
+        name.setText(controller.getNameById(loginMessage.getUserSN()));
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables

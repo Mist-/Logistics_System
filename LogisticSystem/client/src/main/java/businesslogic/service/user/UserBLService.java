@@ -16,6 +16,4 @@ public interface UserBLService {
     public ResultMessage register(long staffSN);
 
     public LoginMessage loginWithMD5(long id, String pswd_md5);
-
-    public ResultMessage deleteUser(long id);
 }
