@@ -200,14 +200,15 @@ public class LoginDlg extends JDialog {
         button1 = new JButton();
 
         //======== this ========
+        setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
         Container contentPane = getContentPane();
 
         //======== panel1 ========
         {
-            panel1.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 12));
+            panel1.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
             //---- cboxAccount ----
-            cboxAccount.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 12));
+            cboxAccount.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
             cboxAccount.addKeyListener(new KeyAdapter() {
                 @Override
                 public void keyPressed(KeyEvent e) {
@@ -217,26 +218,26 @@ public class LoginDlg extends JDialog {
 
             //---- label3 ----
             label3.setText("  ");
-            label3.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 12));
+            label3.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
             //---- label1 ----
             label1.setText("\u8d26\u53f7\uff1a");
-            label1.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 12));
+            label1.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
             //---- label2 ----
             label2.setText("\u5bc6\u7801\uff1a");
-            label2.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 12));
+            label2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
             //---- textPassword ----
-            textPassword.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 12));
+            textPassword.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
             //---- chkRememberAccount ----
             chkRememberAccount.setText("\u8bb0\u4f4f\u8d26\u53f7");
-            chkRememberAccount.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 12));
+            chkRememberAccount.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
             //---- chkAnotmousLogin ----
             chkAnotmousLogin.setText("\u533f\u540d\u767b\u5f55");
-            chkAnotmousLogin.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 12));
+            chkAnotmousLogin.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
             chkAnotmousLogin.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseReleased(MouseEvent e) {
@@ -246,7 +247,7 @@ public class LoginDlg extends JDialog {
 
             //---- button1 ----
             button1.setText("\u767b\u5f55");
-            button1.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 12));
+            button1.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
             button1.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -268,25 +269,25 @@ public class LoginDlg extends JDialog {
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
                 panel1Layout.createParallelGroup()
-                    .addComponent(label3, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+                    .addComponent(label3, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(panel1Layout.createParallelGroup()
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                    .addComponent(label2, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(label1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(label2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                     .addGroup(panel1Layout.createSequentialGroup()
                                         .addComponent(chkRememberAccount, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                                        .addGap(127, 127, 127)
                                         .addComponent(chkAnotmousLogin))
-                                    .addComponent(textPassword, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
-                                    .addComponent(cboxAccount, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE))
+                                    .addComponent(cboxAccount)
+                                    .addComponent(textPassword))
                                 .addGap(6, 6, 6))
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(button1, GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
+                                .addComponent(button1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addContainerGap())))
             );
             panel1Layout.setVerticalGroup(
@@ -295,8 +296,8 @@ public class LoginDlg extends JDialog {
                         .addComponent(label3, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addComponent(cboxAccount, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label1, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(label1, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboxAccount, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
                         .addGap(9, 9, 9)
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(label2, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
@@ -307,7 +308,7 @@ public class LoginDlg extends JDialog {
                             .addComponent(chkRememberAccount))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(button1)
-                        .addContainerGap(7, Short.MAX_VALUE))
+                        .addContainerGap(8, Short.MAX_VALUE))
             );
         }
 
@@ -315,7 +316,7 @@ public class LoginDlg extends JDialog {
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()

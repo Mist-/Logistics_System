@@ -4,16 +4,17 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {comp panel1::l:::x}"
+			"$horizontalGroup": "par l {comp panel1::l::359:x}"
 			"$verticalGroup": "par l {comp panel1::l:::x}"
 		} ) {
 			name: "this"
+			"font": &Font0 new java.awt.Font( "等线", 0, 14 )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {comp label3::t::359:x, seq {space :::p, par l {seq {par t {comp label2:::p:40:p, comp label1:::p:40:p}, space :::p, par t {seq {comp chkRememberAccount:::p:90:p, space ::135:x, comp chkAnotmousLogin:::p::p}, comp textPassword::l::301:x, comp cboxAccount::l::301:x}, space :p:6:p}, seq l {comp button1::::347:x, space :::p}}}}"
-				"$verticalGroup": "par l {seq l {comp label3:::p:139:p, space :::p, par t {comp cboxAccount:::p:25:p, comp label1:::p:21:p}, space :9:9:p, par b {comp label2::b:p:25:p, comp textPassword::b:p:25:p}, space :6:6:p, par b {comp chkAnotmousLogin::b:p::p, comp chkRememberAccount::b:p::p}, space u:::p, comp button1:::p::p, space ::7:x}}"
+				"$horizontalGroup": "par l {comp label3::t:::x, seq {space :::p, par l {seq {par t {comp label1:::::x, comp label2:::::x}, space :::p, par l:::p {seq {comp chkRememberAccount:::p:90:p, space :p:127:p, comp chkAnotmousLogin:::p::p}, comp cboxAccount:::::x, comp textPassword:::::x}, space :p:6:p}, seq l {comp button1:::::x, space :::p}}}}"
+				"$verticalGroup": "par l {seq l {comp label3:::p:139:p, space :::p, par t {comp label1:::p:21:p, comp cboxAccount:::p:25:p}, space :9:9:p, par b {comp label2::b:p:25:p, comp textPassword::b:p:25:p}, space :6:6:p, par b {comp chkAnotmousLogin::b:p::p, comp chkRememberAccount::b:p::p}, space u:::p, comp button1:::p::p, space ::8:x}}"
 			} ) {
 				name: "panel1"
-				"font": &Font0 new java.awt.Font( "微软雅黑", 0, 12 )
+				"font": #Font0
 				add( new FormComponent( "javax.swing.JComboBox" ) {
 					name: "cboxAccount"
 					"font": #Font0

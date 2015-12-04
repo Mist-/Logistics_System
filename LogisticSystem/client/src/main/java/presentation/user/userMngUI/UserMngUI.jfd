@@ -8,10 +8,10 @@ new FormModel {
 			"$verticalGroup": "par l {comp panel2::l:::x}"
 		} ) {
 			name: "this"
-			"font": &Font0 new java.awt.Font( "微软雅黑", 0, 12 )
+			"font": &Font0 new java.awt.Font( "等线", 0, 14 )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {par l {seq l {space :::p, comp tbActive:::p::p, space s:::p, comp tbDeleted:::p::p}, seq l {space :p:37:p, comp label1:::p::p, space :p:74:p, comp label2:::p::p}}, space ::691:x}, comp panel3::t:::x}"
-				"$verticalGroup": "par l {seq l {space :::p, par l {comp tbActive:::p:96:p, comp tbDeleted:::p:96:p}, space :6:6:p, par l {comp label1:::p::p, comp label2:::p::p}, space :::p, comp panel3:::::x}}"
+				"$horizontalGroup": "par l {seq {par l {seq l {space :::p, comp tbActive:::p::p, space s:::p, comp tbDeleted:::p::p}, seq l {space :p:32:p, comp label1:::p::p, space :p:69:p, comp label2:::p::p}}, space ::691:x}, comp panel3::t:::x}"
+				"$verticalGroup": "par l {seq l {space :::p, par l {comp tbActive:::p:96:p, comp tbDeleted:::p:96:p}, space :6:6:p, par b {comp label2::b:p::p, comp label1::b:p::p}, space :::p, comp panel3:::::x}}"
 			} ) {
 				name: "panel2"
 				"font": #Font0
@@ -43,8 +43,8 @@ new FormModel {
 					"font": #Font0
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp scrollPane1::::860:x, space :::p, par l {comp btRe:::p:41:p, par l {comp btDelete::t:p:41:p, comp btAdd::t:p:41:p}}}, seq {comp lbOrderNum:::p::p, space :6:6:p, comp tfOrderInput:::p:361:p, space :::p, comp btSearch:::p:27:p, space :0:447:x}}, space :::p}}"
-					"$verticalGroup": "par l {seq l {space :p:55:p, comp btAdd:::p:38:p, space u:::p, comp btDelete:::p:38:p, space ::286:x, comp btRe:::p:38:p, space :p:15:p}, seq l {par l {seq l {space :4:4:p, comp lbOrderNum:::p::p}, comp tfOrderInput:::p::p, comp btSearch::l:p:25:p}, space u:::p, comp scrollPane1::::439:x, space :::p}}"
+					"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp scrollPane1::::860:x, space :::p, par l {comp btRe:::p:41:p, par l {comp btDelete::t:p:41:p, comp btAdd::t:p:41:p}}}, seq {comp lbOrderNum:::p::p, space :6:6:p, comp tfOrderInput:::p:361:p, space :::p, comp btSearch:::p:27:p, space :0:437:x}}, space :::p}}"
+					"$verticalGroup": "par l {seq l {space :p:55:p, comp btAdd:::p:38:p, space u:::p, comp btDelete:::p:38:p, space ::287:x, comp btRe:::p:38:p, space :p:15:p}, seq l {par l {seq l {space :4:4:p, comp lbOrderNum:::p::p}, comp tfOrderInput:::p::p, comp btSearch::l:p:25:p}, space u:::p, comp scrollPane1::::440:x, space :::p}}"
 				} ) {
 					name: "panel3"
 					"font": #Font0

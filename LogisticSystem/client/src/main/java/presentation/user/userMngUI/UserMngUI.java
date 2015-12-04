@@ -194,7 +194,7 @@ public class UserMngUI extends JFrame {
         btRe = new JButton();
 
         //======== this ========
-        setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 12));
+        setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
         Container contentPane = getContentPane();
 
         //======== menuBar1 ========
@@ -249,11 +249,11 @@ public class UserMngUI extends JFrame {
 
         //======== panel2 ========
         {
-            panel2.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 12));
+            panel2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
             //---- tbActive ----
             tbActive.setIcon(new ImageIcon(getClass().getResource("/icons/account_72x72.png")));
-            tbActive.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 12));
+            tbActive.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
             tbActive.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -269,7 +269,7 @@ public class UserMngUI extends JFrame {
 
             //---- tbDeleted ----
             tbDeleted.setIcon(new ImageIcon(getClass().getResource("/icons/account_72x72.png")));
-            tbDeleted.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 12));
+            tbDeleted.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
             tbDeleted.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -284,26 +284,26 @@ public class UserMngUI extends JFrame {
 
             //---- label2 ----
             label2.setText("\u5df2\u5220\u9664");
-            label2.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 12));
+            label2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
             //---- label1 ----
             label1.setText("\u6d3b\u52a8\u8d26\u6237");
-            label1.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 12));
+            label1.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
             //======== panel3 ========
             {
-                panel3.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 12));
+                panel3.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
                 //---- lbOrderNum ----
                 lbOrderNum.setText("\u7528\u6237\u4fe1\u606f\uff1a");
-                lbOrderNum.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 12));
+                lbOrderNum.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
                 //---- tfOrderInput ----
-                tfOrderInput.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 12));
+                tfOrderInput.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
                 //---- btSearch ----
                 btSearch.setIcon(new ImageIcon("D:\\DATA\\Project\\GUI\\resources\\search_16x16.png"));
-                btSearch.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 12));
+                btSearch.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
                 btSearch.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseReleased(MouseEvent e) {
@@ -314,7 +314,7 @@ public class UserMngUI extends JFrame {
 
                 //======== scrollPane1 ========
                 {
-                    scrollPane1.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 12));
+                    scrollPane1.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
                     scrollPane1.addFocusListener(new FocusAdapter() {
                         @Override
                         public void focusGained(FocusEvent e) {
@@ -333,7 +333,7 @@ public class UserMngUI extends JFrame {
                     });
 
                     //---- tbUserInfo ----
-                    tbUserInfo.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 12));
+                    tbUserInfo.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
                     tbUserInfo.addMouseListener(new MouseAdapter() {
                         @Override
                         public void mouseClicked(MouseEvent e) {
@@ -345,7 +345,7 @@ public class UserMngUI extends JFrame {
 
                 //---- btDelete ----
                 btDelete.setIcon(new ImageIcon(getClass().getResource("/icons/delete_24x24.png")));
-                btDelete.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 12));
+                btDelete.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
                 btDelete.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseReleased(MouseEvent e) {
@@ -355,7 +355,7 @@ public class UserMngUI extends JFrame {
 
                 //---- btAdd ----
                 btAdd.setIcon(new ImageIcon(getClass().getResource("/icons/new_24x24.png")));
-                btAdd.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 12));
+                btAdd.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
                 btAdd.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseReleased(MouseEvent e) {
@@ -365,7 +365,7 @@ public class UserMngUI extends JFrame {
 
                 //---- btRe ----
                 btRe.setIcon(new ImageIcon(getClass().getResource("/icons/recover_24x24.png")));
-                btRe.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 12));
+                btRe.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
                 btRe.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseReleased(MouseEvent e) {
@@ -394,7 +394,7 @@ public class UserMngUI extends JFrame {
                                     .addComponent(tfOrderInput, GroupLayout.PREFERRED_SIZE, 361, GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(btSearch, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 447, Short.MAX_VALUE)))
+                                    .addGap(0, 437, Short.MAX_VALUE)))
                             .addContainerGap())
                 );
                 panel3Layout.setVerticalGroup(
@@ -404,7 +404,7 @@ public class UserMngUI extends JFrame {
                             .addComponent(btAdd, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(btDelete, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 286, Short.MAX_VALUE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 287, Short.MAX_VALUE)
                             .addComponent(btRe, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
                             .addGap(15, 15, 15))
                         .addGroup(panel3Layout.createSequentialGroup()
@@ -415,7 +415,7 @@ public class UserMngUI extends JFrame {
                                 .addComponent(tfOrderInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btSearch, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
+                            .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
                             .addContainerGap())
                 );
             }
@@ -432,9 +432,9 @@ public class UserMngUI extends JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(tbDeleted))
                             .addGroup(panel2Layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
+                                .addGap(32, 32, 32)
                                 .addComponent(label1)
-                                .addGap(74, 74, 74)
+                                .addGap(69, 69, 69)
                                 .addComponent(label2)))
                         .addContainerGap(691, Short.MAX_VALUE))
                     .addComponent(panel3, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -447,9 +447,9 @@ public class UserMngUI extends JFrame {
                             .addComponent(tbActive, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
                             .addComponent(tbDeleted, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE))
                         .addGap(6, 6, 6)
-                        .addGroup(panel2Layout.createParallelGroup()
-                            .addComponent(label1)
-                            .addComponent(label2))
+                        .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(label2)
+                            .addComponent(label1))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
