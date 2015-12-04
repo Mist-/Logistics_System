@@ -22,7 +22,7 @@ public class RememberedUserAccount implements Serializable{
     }
 
     public void setPswd_md5(String pswd) {
-        pswd_md5 = PasswordHelper.generateMD5Checksum(pswd);
+        pswd_md5 = pswd;
     }
 
     public void setSN(long sn) {

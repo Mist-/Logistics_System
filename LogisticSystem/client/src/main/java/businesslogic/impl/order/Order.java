@@ -9,6 +9,7 @@ import data.vo.OrderVO;
 import utils.Connection;
 import utils.Timestamper;
 
+import javax.swing.*;
 import java.rmi.RemoteException;
 import java.util.*;
 
@@ -52,6 +53,28 @@ public class Order {
             e.printStackTrace();
         }
         return ResultMessage.SUCCESS;
+    }
+
+    /**
+     * 获得显示数据
+     *
+     * @return 包含所有OrderVO的ArrayList
+     */
+    public ArrayList<OrderVO> getDisplayData() {
+        ArrayList<OrderVO> result = new ArrayList<>();
+        ArrayList<DataPO> data = null;
+        try {
+            data = orderDataService.getPOList(POType.ORDER);
+        } catch (RemoteException e) {
+        }
+        if (data == null) {
+            System.err.println("获取订单数据时发生错误");
+            return null;
+        }
+        for (DataPO dat: data) {
+            result.add(new OrderVO((OrderPO) dat));
+        }
+        return result;
     }
 
     /**

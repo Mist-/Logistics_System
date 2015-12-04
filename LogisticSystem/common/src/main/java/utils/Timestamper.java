@@ -39,4 +39,18 @@ public class Timestamper {
         }
         return result;
     }
+
+    public static String getTimeByDate(Calendar calendar) {
+        String result = "";
+        result += calendar.get(Calendar.YEAR) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.DATE);
+        return result;
+    }
+
+    public static String getTimeBySecond(Calendar calendar) {
+        String result = "";
+        result += calendar.get(Calendar.YEAR) + "/" + calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.DATE);
+        result += calendar.get(Calendar.HOUR) + ":" + calendar.get(Calendar.MINUTE) + ":" +
+                "" + calendar.get(Calendar.SECOND);
+        return result;
+    }
 }

@@ -59,4 +59,9 @@ public class OrderBLController implements OrderBLService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+    @Override
+    public ArrayList<OrderVO> getDisplayData() {
+        return new Order().getDisplayData();
+    }
 }

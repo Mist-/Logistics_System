@@ -36,8 +36,10 @@ public class UserVO {
     }
 
     public UserVO(UserPO userPO) {
+        this.serialNum = userPO.getSerialNum();
         this.staffsn = userPO.getStaffsn();
         this.name = userPO.getName();
         this.userRole = userPO.getRole();
+        this.deleted = userPO.isDeleted();
     }
 }

@@ -4,8 +4,10 @@ import data.enums.DataState;
 import data.enums.POType;
 import data.message.ResultMessage;
 import data.po.DataPO;
+import data.po.UserPO;
 import utils.FileIOHelper;
 
+import javax.swing.*;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -49,14 +51,21 @@ public interface DataService extends Remote {
      */
     default ResultMessage modify(DataPO data) throws RemoteException {
         ArrayList<DataPO> list = getPOList(data.getPOType());
+        DataPO dataToModift = null;
         for (DataPO dat: list) {
             if (dat.getSerialNum() == data.getSerialNum()) {
-                list.remove(dat);
-                list.add(data);
-                return ResultMessage.SUCCESS;
+                dataToModift = dat;
             }
         }
-        return ResultMessage.NOTEXIST;
+
+        if (dataToModift == null) {
+            return ResultMessage.NOTEXIST;
+        }
+        else {
+            list.remove(dataToModift);
+            list.add(data);
+        }
+        return ResultMessage.SUCCESS;
     }
 
     /**
@@ -90,15 +99,19 @@ public interface DataService extends Remote {
      * @return NOTEXIST表示要删除的项目不再表中。SUCCESS表示删除成功
      */
     default ResultMessage delete(DataPO data) throws RemoteException {
-
         ArrayList<DataPO> list = getPOList(data.getPOType());
-        for (DataPO dat: list) {
-            if (dat.getSerialNum() == data.getSerialNum()) {
-                list.remove(data);
-                return ResultMessage.SUCCESS;
+        boolean contains = false;
+
+        for (int i = 0; i < list.size(); ++i) {
+
+            if (list.get(i).getSerialNum() == data.getSerialNum()) {
+                list.remove(i);
+                --i;
+                contains = true;
             }
         }
-        return ResultMessage.NOTEXIST;
+        if (!contains) return ResultMessage.NOTEXIST;
+        else return ResultMessage.SUCCESS;
     }
 
     default ResultMessage delete(POType type) throws RemoteException {

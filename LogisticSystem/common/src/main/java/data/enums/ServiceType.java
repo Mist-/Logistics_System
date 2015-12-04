@@ -1,5 +1,5 @@
 package data.enums;
 
 public enum ServiceType {
-    FINACE, STANDARD, FAST
+    经济快递, 标准快递, 特快快递
 }

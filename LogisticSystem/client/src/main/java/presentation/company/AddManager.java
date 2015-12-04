@@ -16,7 +16,7 @@ public class AddManager {
         CompanyDataService c = (CompanyDataService) DataServiceFactory.getDataServiceByPO(POType.STAFF);
         StaffPO staffPO = new StaffPO();
         staffPO.setSerialNum(10003);
-        staffPO.setUserRole(UserRole.TOP_MNGR);
+        staffPO.setUserRole(UserRole.×Ü¾­Àí);
         try {
             c.add(staffPO);
         } catch (RemoteException e) {

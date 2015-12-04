@@ -22,6 +22,7 @@ import java.util.Calendar;
  * Created by mist on 2015/11/12 0012.
  */
 public class Server {
+
     static SayHelloService hello = null;
 
     public static void main(String[] args) {

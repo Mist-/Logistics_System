@@ -29,6 +29,7 @@ public class LoginDlg extends JDialog {
         super(owner, "LCS", true);
         initComponents();
         this.loginMessage = loginMessage;
+        getRememberedUsers();
     }
 
     public LoginDlg(Dialog owner) {
@@ -63,9 +64,19 @@ public class LoginDlg extends JDialog {
         for (RememberedUserAccount user: users) {
             cboxAccount.addItem(user.getSn());
         }
+
+        if (users.size() > 0) {
+            chkRememberAccount.setSelected(true);
+        }
     }
 
     public void remember(RememberedUserAccount user) {
+        for (int i = 0; i < users.size(); ++i) {
+            if (users.get(i).getSn() == user.getSn()) {
+                users.remove(i);
+                i--;
+            }
+        }
         users.add(user);
         FileIOHelper.saveToFile(users, "user/SAVED.DAT");
     }
@@ -134,20 +145,45 @@ public class LoginDlg extends JDialog {
         }
 
         if (loginMessage.getResult() == ResultMessage.SUCCESS) {
-            RememberedUserAccount userToRmb = new RememberedUserAccount();
-            userToRmb.setSN(Long.parseLong((String) cboxAccount.getSelectedItem()));
-            userToRmb.setPswd_md5(textPassword.getText());
-            remember(userToRmb);
+            if (chkRememberAccount.isSelected()) {
+                RememberedUserAccount userToRmb = new RememberedUserAccount();
+                userToRmb.setSN(Long.parseLong(cboxAccount.getSelectedItem().toString()));
+                userToRmb.setPswd_md5(textPassword.getText());
+                remember(userToRmb);
+            }
+            else {
+                forget(Long.parseLong(cboxAccount.getSelectedItem().toString()));
+            }
             this.setVisible(false);
         }
     }
 
+    private void forget(long sn) {
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getSn() == sn) {
+                users.remove(i);
+                --i;
+            }
+        }
+        FileIOHelper.saveToFile(users, "user/SAVED.DAT");
+    }
+
+    // 账号文本框的KeyPressed时间
     private void cboxAccountKeyPressed(KeyEvent e) {
         // TODO add your code here
     }
 
+    // 登陆按钮的Clicked功能
     private void loginButtonClicked(MouseEvent e) {
         // TODO add your code here
+    }
+
+    // 登录按钮的KeyPressed事件
+    private void button1KeyPressed(KeyEvent e) {
+        // TODO add your code here
+        if (e.getKeyChar() == '\n') {
+            button1MouseReleased(null);
+        }
     }
 
 
@@ -219,6 +255,12 @@ public class LoginDlg extends JDialog {
                 @Override
                 public void mouseReleased(MouseEvent e) {
                     button1MouseReleased(e);
+                }
+            });
+            button1.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    button1KeyPressed(e);
                 }
             });
 
@@ -295,6 +337,9 @@ public class LoginDlg extends JDialog {
                 }
             }
         });
+
+        button1.setMnemonic(KeyEvent.VK_ENTER);
+
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables

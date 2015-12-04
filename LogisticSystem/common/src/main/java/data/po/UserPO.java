@@ -19,6 +19,15 @@ public class UserPO extends DataPO {
     UserRole role = null;
 
     long staffsn = 0;
+    boolean deleted = false;
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
 
     public UserPO(long sn, String name, String pswd, UserRole role) {
         super(POType.USER);

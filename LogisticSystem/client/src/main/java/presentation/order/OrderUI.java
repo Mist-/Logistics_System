@@ -1,6 +1,9 @@
 package presentation.order;
 
+import businesslogic.impl.order.OrderBLController;
 import data.message.LoginMessage;
+import data.vo.OrderVO;
+import utils.Timestamper;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -10,6 +13,7 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Vector;
 /*
  * Created by JFormDesigner on Thu Oct 29 23:00:05 CST 2015
@@ -26,7 +30,34 @@ public class OrderUI extends JFrame {
     }
 
     private void btOrderMngMouseClicked(MouseEvent e) {
-        ((JToggleButton)btOrderMng).setSelected(true);
+        btOrderMng.setSelected(true);
+    }
+
+    private void btOrderMngMouseReleased(MouseEvent e) {
+        btOrderMng.setSelected(true);
+        refresh();
+    }
+
+    private void refresh() {
+        ArrayList<OrderVO> displayData = new OrderBLController().getDisplayData();
+        Vector tabelData = ((DefaultTableModel) tbOrderInfo.getModel()).getDataVector();
+        Vector row = null;
+        for (OrderVO order: displayData) {
+            row = new Vector();
+            row.add(order.id);
+            row.add(order.date);
+            row.add(order.sname);
+            row.add(order.sphone);
+            row.add(order.saddress);
+            row.add(order.scompany);
+            row.add(order.rname);
+            row.add(order.rphone);
+            row.add(order.raddress);
+            row.add(order.rcompany);
+            row.add(order.serviceType);
+            tabelData.add(row);
+        }
+        tbOrderInfo.updateUI();
     }
 
     private void initComponents() {
@@ -165,6 +196,10 @@ public class OrderUI extends JFrame {
                 public void mouseClicked(MouseEvent e) {
                     btOrderMngMouseClicked(e);
                 }
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    btOrderMngMouseReleased(e);
+                }
             });
 
             //---- separator2 ----
@@ -192,7 +227,7 @@ public class OrderUI extends JFrame {
                         .addGroup(panel1Layout.createParallelGroup()
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addComponent(btOrderMng)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 720, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lbUserInfo))
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addGroup(panel1Layout.createParallelGroup()
@@ -268,16 +303,18 @@ public class OrderUI extends JFrame {
         KeyStroke ksModify = KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.CTRL_MASK);
         miModify.setAccelerator(ksModify);
 
-        String names[] = { "ID", "日期", "寄件人", "电话", "地址", "单位", "收件人", "电话", "地址", "单位", "服务类型" };
+        String names[] = { "订单号", "日期", "寄件人", "电话", "地址", "单位", "收件人", "电话", "地址", "单位", "服务类型" };
+
         for (int i = 0; i < names.length; i++) {
             tbOrderInfo.addColumn(new TableColumn(i));
             tbOrderInfo.getColumnModel().getColumn(i).setHeaderValue(names[i]);
         }
+
         //tbOrderInfo.setRowSorter(new TableRowSorter<TableModel>((DefaultTableModel)tbOrderInfo.getModel()));
         tbOrderInfo.getTableHeader().setFont(new Font("方正中等线简体", 1, 14));
         tbOrderInfo.setRowHeight(50);
         Vector<Object> row = new Vector<>();
-        row.add((Integer)1234567890);
+        row.add(1234567890);
         row.add("2015/01/01 01:01:59");
         row.add("蜗牛梦溪");
         row.add("18362918579");
@@ -290,7 +327,7 @@ public class OrderUI extends JFrame {
         row.add("吃！");
         ((DefaultTableModel)tbOrderInfo.getModel()).getDataVector().add(row);
         row = new Vector<>();
-        row.add((Integer)1234567890);
+        row.add(1234567890);
         row.add("2015/01/01 01:01:59");
         row.add("蜗牛梦溪");
         row.add("18362918579");

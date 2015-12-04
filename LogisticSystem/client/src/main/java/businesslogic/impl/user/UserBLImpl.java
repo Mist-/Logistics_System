@@ -47,7 +47,7 @@ public class UserBLImpl implements UserBLService {
             return new LoginMessage(ResultMessage.NOTCONNECTED);
 		}
     	
-    	if (userPO == null) {
+    	if (userPO == null || userPO.isDeleted()) {
     		return new LoginMessage(ResultMessage.NOTEXIST);
     	}
     	
@@ -130,7 +130,7 @@ public class UserBLImpl implements UserBLService {
             return ResultMessage.NOTEXIST;
         }
 
-        UserPO user = new UserPO(userPO.getSerialNum(), userPO.getName(), "123456", userPO.getRole());
+        UserPO user = new UserPO(userPO.getStaffsn(), userPO.getName(), "123456", userPO.getRole());
         try {
             userDataService.add(user);
         } catch (RemoteException e) {
@@ -146,16 +146,16 @@ public class UserBLImpl implements UserBLService {
         if (userDataService == null) userDataService = (UserDataService) DataServiceFactory.getDataServiceByType(DataType.UserDataService);
         if (userDataService == null) return new LoginMessage(ResultMessage.NOTCONNECTED);
 
-        StaffPO staffPO = null;
+        UserPO staffPO = null;
 
         try {
-            staffPO = (StaffPO) userDataService.search(POType.USER, id);
+            staffPO = (UserPO) userDataService.search(POType.USER, id);
         } catch (RemoteException e) {
             System.err.println("网络连接失败，无法登陆（通过已保存的密码）");
             return new LoginMessage(ResultMessage.NOTCONNECTED);
         }
 
-        if (staffPO == null) {
+        if (staffPO == null || staffPO.isDeleted()) {
             return new LoginMessage(ResultMessage.NOTEXIST);
         }
 
@@ -163,7 +163,7 @@ public class UserBLImpl implements UserBLService {
             return new LoginMessage(ResultMessage.FAILED);
         }
 
-        return new LoginMessage(ResultMessage.SUCCESS, id, staffPO.getUserRole());
+        return new LoginMessage(ResultMessage.SUCCESS, id, staffPO.getRole());
     }
 
     @Override
@@ -177,10 +177,35 @@ public class UserBLImpl implements UserBLService {
         }
         UserPO userToDelete = null;
         for (DataPO data: users) {
-            if (((UserPO) data).getStaffsn() == id) {
+            if (data.getSerialNum() == id) {
                 userToDelete = (UserPO) data;
+                userToDelete.setDeleted(true);
                 try {
-                    userDataService.delete(userToDelete);
+                    userDataService.modify(userToDelete);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return ResultMessage.SUCCESS;
+    }
+
+    public ResultMessage revertUser(long id) {
+        ArrayList<DataPO> users = null;
+        try {
+            users = userDataService.getPOList(POType.USER);
+        } catch (RemoteException e) {
+            System.err.println("网络连接失败，无法获取用户数据 - " + Calendar.getInstance().getTime());
+            return ResultMessage.NOTCONNECTED;
+        }
+        UserPO userToRevert = null;
+        for (DataPO data: users) {
+            if (((UserPO) data).getSerialNum() == id) {
+                userToRevert = (UserPO) data;
+                userToRevert.setDeleted(false);
+                try {
+                    userDataService.modify(userToRevert);
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }

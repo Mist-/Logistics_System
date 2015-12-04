@@ -1,0 +1,130 @@
+JFDML JFormDesigner: "5.2.2.2.228" Java: "1.8.0_51" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp panel1::l:::x}"
+			"$verticalGroup": "par l {comp panel1::l:::x}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :::p, par l {seq l {space :12:12:p, comp lbSender:::p::p, space :272:272:p, comp lbReceiver:::p::p}, seq l {space :24:24:p, comp lbSname:::p::p, space :6:6:p, comp textField13:::p:236:p, space :42:42:p, comp lbRname:::p::p, space :6:6:p, comp textField9:::p:236:p}, seq l {space :24:24:p, comp lbSphone:::p::p, space :6:6:p, comp textField14:::p:236:p, space :42:42:p, comp lbRphone:::p::p, space :6:6:p, comp textField10:::p:236:p}, seq l {space :24:24:p, comp lbScompany:::p::p, space :6:6:p, comp textField15:::p:236:p, space :42:42:p, comp lbRcompany:::p::p, space :6:6:p, comp textField11:::p:236:p}, seq l {space :24:24:p, comp lbSaddress:::p::p, space :6:6:p, comp comboBox4:::p:115:p, space :6:6:p, comp comboBox3:::p:115:p, space :42:42:p, comp lbRaddress:::p::p, space :6:6:p, comp comboBox1:::p:115:p, space :6:6:p, comp comboBox2:::p:115:p}, seq l {comp lbSaddress2:::p::p, space :6:6:p, comp textField16:::p:236:p, space :18:18:p, comp lbRaddress2:::p::p, space :6:6:p, comp textField12:::p:236:p}}, space ::36:x}}"
+				"$verticalGroup": "par l {seq l {space :p:63:p, par l {comp lbSender:::p::p, comp lbReceiver:::p::p}, space :18:18:p, par l {comp textField13:::p::p, comp textField9:::p::p, seq l {space :4:4:p, par l {comp lbSname:::p::p, comp lbRname:::p::p}}}, space :18:18:p, par l {seq l {space :2:2:p, comp lbSphone:::p:17:p}, comp textField14:::p::p, seq l {space :4:4:p, comp lbRphone:::p::p}, comp textField10:::p::p}, space :18:18:p, par l {comp textField15:::p::p, comp textField11:::p::p, seq l {space :4:4:p, par l {comp lbScompany:::p::p, comp lbRcompany:::p::p}}}, space :18:18:p, par l {comp lbSaddress:::p:27:p, comp comboBox4:::p::p, comp comboBox3:::p::p, comp lbRaddress:::p:27:p, comp comboBox1:::p::p, comp comboBox2:::p::p}, space :18:18:p, par l {comp textField16:::p::p, comp textField12:::p::p, seq l {space :4:4:p, par l {comp lbSaddress2:::p::p, comp lbRaddress2:::p::p}}}, space ::164:x}}"
+			} ) {
+				name: "panel1"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbRname"
+					"text": "姓名："
+					"font": &Font0 new java.awt.Font( "等线", 0, 12 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbRphone"
+					"text": "电话："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbRaddress"
+					"text": "地址："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbRcompany"
+					"text": "单位："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbSname"
+					"text": "姓名："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbSphone"
+					"text": "电话："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbSaddress"
+					"text": "地址："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbScompany"
+					"text": "单位："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField9"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField10"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField11"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField13"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField14"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField15"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "comboBox1"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "comboBox2"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "comboBox3"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "comboBox4"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbRaddress2"
+					"text": "详细地址："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField12"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField16"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbSaddress2"
+					"text": "详细地址："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbReceiver"
+					"text": "收件方："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbSender"
+					"text": "寄件方："
+					"font": #Font0
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 680, 480 )
+		} )
+	}
+}

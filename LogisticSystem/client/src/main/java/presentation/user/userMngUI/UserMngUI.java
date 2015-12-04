@@ -68,6 +68,7 @@ public class UserMngUI extends JFrame {
                 userRecord.add(userVO.staffsn);
                 userRecord.add(userVO.name);
                 userRecord.add(userVO.userRole);
+                userRecord.add(userVO.serialNum);
                 ((DefaultTableModel) tbUserInfo.getModel()).getDataVector().add(userRecord);
             }
         }
@@ -122,6 +123,7 @@ public class UserMngUI extends JFrame {
                 }
             }
         }
+        tbUserInfo.updateUI();
     }
 
     private void btAddMouseReleased(MouseEvent e) {
@@ -142,13 +144,29 @@ public class UserMngUI extends JFrame {
     }
 
     private void btDeleteMouseReleased(MouseEvent e) {
-        JOptionPane.showMessageDialog(null, tbUserInfo.getSelectedRow());
-        long snToDel = Long.parseLong(((Vector<Object>)((DefaultTableModel) tbUserInfo.getModel()).getDataVector().get(tbUserInfo.getSelectedRow())).get(0).toString());
+        long snToDel = Long.parseLong(((Vector<Object>)((DefaultTableModel) tbUserInfo.getModel()).getDataVector().get(tbUserInfo.getSelectedRow())).get(3).toString());
         new UserBLImpl().deleteUser(snToDel);
+
+        refresh(ACTIVATED);
     }
 
     private void scrollPane1MouseClicked(MouseEvent e) {
         // TODO add your code here
+    }
+
+    private void btReMouseReleased(MouseEvent e) {
+        long snToRevert = Long.parseLong(((Vector<Object>)((DefaultTableModel) tbUserInfo.getModel()).getDataVector().get(tbUserInfo.getSelectedRow())).get(3).toString());
+        new UserBLImpl().revertUser(snToRevert);
+
+        refresh(DELETED);
+    }
+
+    private void miQuitMouseReleased(MouseEvent e) {
+        System.exit(0);
+    }
+
+    private void miLogoutMouseReleased(MouseEvent e) {
+
     }
 
     private void initComponents() {
@@ -192,12 +210,24 @@ public class UserMngUI extends JFrame {
                 miLogout.setText("\u6ce8\u9500");
                 miLogout.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
                 miLogout.setIcon(new ImageIcon(getClass().getResource("/icons/logout_16x16.png")));
+                miLogout.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+                        miLogoutMouseReleased(e);
+                    }
+                });
                 mnFile.add(miLogout);
 
                 //---- miQuit ----
                 miQuit.setText("\u9000\u51fa");
                 miQuit.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
                 miQuit.setIcon(new ImageIcon(getClass().getResource("/icons/exit_16x16.png")));
+                miQuit.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+                        miQuitMouseReleased(e);
+                    }
+                });
                 mnFile.add(miQuit);
             }
             menuBar1.add(mnFile);
@@ -336,6 +366,12 @@ public class UserMngUI extends JFrame {
                 //---- btRe ----
                 btRe.setIcon(new ImageIcon(getClass().getResource("/icons/recover_24x24.png")));
                 btRe.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 12));
+                btRe.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+                        btReMouseReleased(e);
+                    }
+                });
 
                 GroupLayout panel3Layout = new GroupLayout(panel3);
                 panel3.setLayout(panel3Layout);
@@ -393,14 +429,14 @@ public class UserMngUI extends JFrame {
                             .addGroup(panel2Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(tbActive)
-                                .addGap(24, 24, 24)
+                                .addGap(18, 18, 18)
                                 .addComponent(tbDeleted))
                             .addGroup(panel2Layout.createSequentialGroup()
                                 .addGap(37, 37, 37)
                                 .addComponent(label1)
-                                .addGap(80, 80, 80)
+                                .addGap(74, 74, 74)
                                 .addComponent(label2)))
-                        .addContainerGap(685, Short.MAX_VALUE))
+                        .addContainerGap(691, Short.MAX_VALUE))
                     .addComponent(panel3, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             );
             panel2Layout.setVerticalGroup(
@@ -408,8 +444,8 @@ public class UserMngUI extends JFrame {
                     .addGroup(panel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(panel2Layout.createParallelGroup()
-                            .addComponent(tbDeleted, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tbActive, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tbActive, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tbDeleted, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE))
                         .addGap(6, 6, 6)
                         .addGroup(panel2Layout.createParallelGroup()
                             .addComponent(label1)

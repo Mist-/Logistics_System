@@ -30,6 +30,18 @@ public class OrderPO extends DataPO {
     double fee;
     int evaluatedTime;
 
+    public String[] getStockType() {
+        return stockType;
+    }
+
+    public String getRcompany() {
+        return rcompany;
+    }
+
+    public String getScompany() {
+        return scompany;
+    }
+
     public OrderPO() {
         super(POType.ORDER);
         routine = new long[4];

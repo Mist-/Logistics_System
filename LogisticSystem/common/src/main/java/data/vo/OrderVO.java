@@ -2,12 +2,15 @@ package data.vo;
 
 
 import data.enums.ServiceType;
+import data.po.OrderPO;
+import utils.Timestamper;
 
 /**
  *
  * Created by Mouse on 2015/10/23 0023.
  */
 public class OrderVO {
+    public String date;
     // 收/寄件人信息，s开头表示寄件人（sender），r开头表示收件人（receiver）
     public String sname, saddress, scompany, sphone,
             rname, raddress, rcompany, rphone;
@@ -48,5 +51,24 @@ public class OrderVO {
         this.serviceType = type;
         this.fee = fee;
         this.id = id;
+    }
+
+    public  OrderVO(OrderPO orderPO) {
+        this.sname = orderPO.getSname();
+        this.saddress = orderPO.getSaddress();
+        this.scompany = orderPO.getScompany();
+        this.sphone = orderPO.getSphone();
+        this.rname = orderPO.getRname();
+        this.raddress = orderPO.getRaddress();
+        this.rcompany = orderPO.getRcompany();
+        this.rphone = orderPO.getRphone();
+        this.stockNum = orderPO.getStockNum();
+        this.weight = orderPO.getWeight();
+        this.volume = orderPO.getVolume();
+        this.stockType = orderPO.getStockType();
+        this.serviceType = orderPO.getServiceType();
+        this.fee = orderPO.getFee();
+        this.id = orderPO.getSerialNum();
+        this.date = Timestamper.getTimeByDate(orderPO.getGenDate());
     }
 }

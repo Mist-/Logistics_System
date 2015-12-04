@@ -2409,7 +2409,7 @@ public class companyManage extends JFrame {
         this.initStorageOutTable();
         this.initTransferTable();
         id.setText(loginMessage.getUserSN()+"");
-        name.setText(controller.getNameById(loginMessage.getUserSN()));
+        //name.setText(controller.getNameById(loginMessage.getUserSN()));
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables

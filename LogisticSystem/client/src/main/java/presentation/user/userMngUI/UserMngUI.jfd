@@ -10,8 +10,8 @@ new FormModel {
 			name: "this"
 			"font": &Font0 new java.awt.Font( "微软雅黑", 0, 12 )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {par l {seq l {space :::p, comp tbActive:::p::p, space :p:24:p, comp tbDeleted:::p::p}, seq l {space :p:37:p, comp label1:::p::p, space :p:80:p, comp label2:::p::p}}, space ::685:x}, comp panel3::t:::x}"
-				"$verticalGroup": "par l {seq l {space :::p, par l {comp tbDeleted:::p:96:p, comp tbActive:::p:96:p}, space :6:6:p, par l {comp label1:::p::p, comp label2:::p::p}, space :::p, comp panel3:::::x}}"
+				"$horizontalGroup": "par l {seq {par l {seq l {space :::p, comp tbActive:::p::p, space s:::p, comp tbDeleted:::p::p}, seq l {space :p:37:p, comp label1:::p::p, space :p:74:p, comp label2:::p::p}}, space ::691:x}, comp panel3::t:::x}"
+				"$verticalGroup": "par l {seq l {space :::p, par l {comp tbActive:::p:96:p, comp tbDeleted:::p:96:p}, space :6:6:p, par l {comp label1:::p::p, comp label2:::p::p}, space :::p, comp panel3:::::x}}"
 			} ) {
 				name: "panel2"
 				"font": #Font0
@@ -92,6 +92,7 @@ new FormModel {
 						name: "btRe"
 						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/recover_24x24.png" )
 						"font": #Font0
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btReMouseReleased", true ) )
 					} )
 				} )
 			} )
@@ -109,12 +110,14 @@ new FormModel {
 						"text": "注销"
 						"font": new java.awt.Font( "等线", 0, 14 )
 						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/logout_16x16.png" )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "miLogoutMouseReleased", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "miQuit"
 						"text": "退出"
 						"font": new java.awt.Font( "等线", 0, 14 )
 						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/exit_16x16.png" )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "miQuitMouseReleased", true ) )
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {

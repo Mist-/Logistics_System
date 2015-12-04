@@ -36,4 +36,6 @@ public interface OrderBLService {
     
     ArrayList<OrderPO> search(long[] order);
 
+
+    ArrayList<OrderVO> getDisplayData();
 }
