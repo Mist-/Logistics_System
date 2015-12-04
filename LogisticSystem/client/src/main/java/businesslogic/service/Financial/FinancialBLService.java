@@ -60,13 +60,13 @@ public interface FinancialBLService {
     
     ArrayList<ReceiptVO> searchAllReceipt ();
     
-    ResultMessage buildPaymentFromEntruck(PaymentVO pay, long institution);
+    PaymentVO buildPaymentFromEntruck(PaymentVO pay, long institution);
     
-    ResultMessage buildPaymentFromTransfer(PaymentVO pay, long institution);
+    PaymentVO buildPaymentFromTransfer(PaymentVO pay, long institution);
     
     ResultMessage buildPaymentFromRent(PaymentVO pay);
     
-    ResultMessage buildPaymentFromWages(PaymentVO pay);
+    PaymentVO buildPaymentFromWages(PaymentVO pay,String institution);
     
     ResultMessage printPayment(String info);
 

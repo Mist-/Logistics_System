@@ -103,8 +103,8 @@ new FormModel {
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 					name: "scrollPane14"
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq l {comp scrollPane16:::p:622:p, space :::p, par l {comp textAddress:::::x, comp textDate:::::x, comp btDate:::::x, comp btAddress::l:::x}, space :p:95:p}}"
-						"$verticalGroup": "par l {seq {space :p:69:p, comp textDate:::p::p, space :::p, comp btDate:::p::p, space u:::p, comp textAddress:::p::p, space :::p, comp btAddress:::p::p, space ::777:x}, seq l {comp scrollPane16:::p:247:p, space :0:709:x}}"
+						"$horizontalGroup": "par l {seq l {comp scrollPane16:::p:622:p, space u:::p, par l {seq {par l {comp textAddress:::::x, comp btAddress::l:::x, comp textDate::l:::x, comp btDate::l:::x, comp label15::l:::x}, space :p:95:p}, seq {comp lbAll:::p::p, space :::p, comp lbTotal:::p:39:p, space :::x}}}}"
+						"$verticalGroup": "par l {seq {space :p:32:p, comp textDate:::p::p, space :::p, comp btDate:::p::p, space :::p, comp label15:::p:26:p, space u:::p, comp textAddress:::p::p, space :::p, comp btAddress:::p::p, space u:::p, par b {comp lbAll::b:p:24:p, comp lbTotal::b:p::p}, space ::748:x}, seq l {comp scrollPane16:::p:247:p, space :0:709:x}}"
 					} ) {
 						name: "panel3"
 						add( new FormComponent( "javax.swing.JButton" ) {
@@ -128,6 +128,18 @@ new FormModel {
 							add( new FormComponent( "javax.swing.JTable" ) {
 								name: "tableReceipt"
 							} )
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label15"
+							"text": " 如：2015/11/27"
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "lbAll"
+							"text": "合计："
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "lbTotal"
+							"text": "text"
 						} )
 					} )
 				}, new FormLayoutConstraints( null ) {
@@ -276,7 +288,7 @@ new FormModel {
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 					name: "scrollPane2"
 					add( new FormComponent( "javax.swing.JTable" ) {
-						name: "table2"
+						name: "table4"
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "机构人员表"

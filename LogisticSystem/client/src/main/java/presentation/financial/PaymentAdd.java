@@ -5,35 +5,45 @@
 package presentation.financial;
 
 import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.*;
 
 import javax.swing.*;
+
+import businesslogic.impl.financialbl.FinancialBLController;
+import businesslogic.service.Financial.FinancialBLService;
+import utils.Timestamper;
+import data.vo.PaymentVO;
 
 /**
  * @author wanghui
  */
 public class PaymentAdd extends JFrame {
+	FinancialBLService financialBL = new FinancialBLController();
+	
 	public PaymentAdd() {
 		initComponents();
 		hiahia();
 	}
+	
+	
+	String [] infos ;
+	String [] occupation;
+	String [] list;
+	PaymentVO payment = new PaymentVO();
+	
 	private void hiahia(){
-	String [] info ;
-	final String [] occupation;
-	final String [] list;
-	String money;
-	JLabel lbMoney;
-	JTextField tfMoney;
 	
-	info = new String[] {"租金","运费","人员工资"};
-	cbInfo = new JComboBox<String>(info);
+	
+	
+	infos = new String[] {"租金","运费","人员工资","奖励"};
+	for (String name: infos) {
+		cbInfo.addItem(name);
+	}
 	occupation = new String[] {"快递员","财务人员","货车驾驶","营业厅业务员","中转中心业务员"};
-	cbOccupatiom = new JComboBox<String>(occupation);
-	list = new String[] {"装车单","中转单"};
-	lbMoney= new JLabel("付款金额:");
-	tfMoney= new JTextField();
 	
+	list = new String[] {"装车单","中转单"};
+	lbInstitution.setVisible(false);
+	tfInstitution.setVisible(false);
 	
 	cbInfo.addItemListener(new ItemListener() {
 		@Override
@@ -42,21 +52,94 @@ public class PaymentAdd extends JFrame {
 				cbOccupatiom.removeAllItems();
 			    for(int i=0;i<occupation.length;i++){
 			    	cbOccupatiom.addItem(occupation[i]);
+			    	
 			}
-			  
+			    lbMoney.setVisible(false);
+				tfMoney.setVisible(false);
+				lbInstitution.setVisible(false);
+				tfInstitution.setVisible(false);
 		}
 			else if(cbInfo.getSelectedIndex()==1){
 				cbOccupatiom.removeAllItems();
 				for(int i=0;i<list.length;i++){
 					cbOccupatiom.addItem(list[i]);
 				}
+				lbMoney.setVisible(false);
+				tfMoney.setVisible(false);
+				lbInstitution.setVisible(true);
+				tfInstitution.setVisible(true);
 			}
-			else if(cbInfo.getSelectedIndex()==0||cbInfo.getSelectedIndex()==4){
-				cbOccupatiom.setEnabled(true);
-				
+			else if(cbInfo.getSelectedIndex()==0||cbInfo.getSelectedIndex()==3){
+				cbOccupatiom.removeAllItems();
+				lbMoney.setVisible(true);
+				tfMoney.setVisible(true);
+				lbInstitution.setVisible(false);
+				tfInstitution.setVisible(false);
 			}
 		}
 	});
+	}
+//新建付款单确定的监听
+	public void button1MouseReleased(MouseEvent e) {
+		
+		String people = tfPeople.getText();
+		String account = tfAccount.getText();
+		String info; 
+		String exInfo = tfExinfo.getText();
+		
+		payment.setName(people);
+		payment.setAccount(account);
+		payment.setDate(Timestamper.getTimeByDate());
+		payment.setExInfo(exInfo);
+		
+		//租金或者奖励
+		if(cbInfo.getSelectedIndex()==0||cbInfo.getSelectedIndex()==3){
+			if(cbInfo.getSelectedIndex()==0){
+			info = infos[0];
+			}
+			else{
+				info = infos[3];
+			}
+			double money = Double.valueOf(tfMoney.getText());	
+			payment.setInfo(info);
+			payment.setMoney(money);
+			
+			financialBL.buildPaymentFromRent(payment);
+			this.setVisible(false);
+		   
+		}
+		//运费
+		else if(cbInfo.getSelectedIndex()==1){
+			info = infos[1];
+			
+			payment.setMoney(0);
+			long institution = Long.valueOf(tfInstitution.getText());
+			if(cbOccupatiom.getSelectedIndex()==0){
+			 info = info + ":" + list[0];
+			 payment.setInfo(info);
+			 payment = financialBL.buildPaymentFromEntruck(payment, institution);
+			}
+			else if(cbOccupatiom.getSelectedIndex()==1){
+			 info = info + ":" + list[1];
+			 payment.setInfo(info);
+				this.setVisible(false);
+
+			payment = financialBL.buildPaymentFromTransfer(payment, institution);
+			}
+		}
+		//人员工资
+		else if(cbInfo.getSelectedIndex()==2){
+			String ins = (String) cbOccupatiom.getSelectedItem();
+			info = infos[2] + ":" + ins ;
+			payment.setInfo(info);
+			payment.setMoney(0);
+			this.setVisible(false);
+
+			payment = financialBL.buildPaymentFromWages(payment, ins);
+			
+		}
+		this.setVisible(false);
+		
 	}
 	
 	private void initComponents() {
@@ -70,6 +153,11 @@ public class PaymentAdd extends JFrame {
 		cbInfo = new JComboBox();
 		lbExinfo = new JLabel();
 		tfExinfo = new JTextField();
+		lbMoney = new JLabel();
+		tfMoney = new JTextField();
+		btYes = new JButton();
+		lbInstitution = new JLabel();
+		tfInstitution = new JTextField();
 
 		//======== this ========
 		setTitle("\u65b0\u5efa\u4ed8\u6b3e\u5355");
@@ -87,33 +175,52 @@ public class PaymentAdd extends JFrame {
 		//---- lbExinfo ----
 		lbExinfo.setText("    \u5907\u6ce8\uff1a");
 
+		//---- lbMoney ----
+		lbMoney.setText("    \u91d1\u989d\uff1a");
+
+		//---- btYes ----
+		btYes.setText("\u786e\u8ba4");
+		btYes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				button1MouseReleased(e);
+			}
+		});
+
+		//---- lbInstitution ----
+		lbInstitution.setText("    \u673a\u6784ID\uff1a");
+
 		GroupLayout contentPaneLayout = new GroupLayout(contentPane);
 		contentPane.setLayout(contentPaneLayout);
 		contentPaneLayout.setHorizontalGroup(
 			contentPaneLayout.createParallelGroup()
+				.addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+					.addContainerGap(166, Short.MAX_VALUE)
+					.addComponent(btYes)
+					.addGap(161, 161, 161))
 				.addGroup(contentPaneLayout.createSequentialGroup()
 					.addGap(69, 69, 69)
 					.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+						.addComponent(lbInstitution, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lbMoney, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lbInfo, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
 						.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
 							.addComponent(lbPeople, GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
 							.addComponent(lbAccount, GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE))
 						.addComponent(lbExinfo, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 					.addGroup(contentPaneLayout.createParallelGroup()
-						.addGroup(contentPaneLayout.createSequentialGroup()
-							.addGap(5, 5, 5)
-							.addComponent(cbInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-							.addComponent(cbOccupatiom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(contentPaneLayout.createSequentialGroup()
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(contentPaneLayout.createParallelGroup()
-								.addComponent(tfPeople, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
-								.addComponent(tfAccount, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(contentPaneLayout.createSequentialGroup()
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(tfExinfo, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(103, Short.MAX_VALUE))
+						.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+							.addGroup(contentPaneLayout.createSequentialGroup()
+								.addComponent(cbInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(cbOccupatiom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addComponent(tfAccount)
+							.addComponent(tfPeople)
+							.addComponent(tfMoney)
+							.addComponent(tfExinfo))
+						.addComponent(tfInstitution, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(108, Short.MAX_VALUE))
 		);
 		contentPaneLayout.setVerticalGroup(
 			contentPaneLayout.createParallelGroup()
@@ -129,13 +236,23 @@ public class PaymentAdd extends JFrame {
 					.addGap(2, 2, 2)
 					.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 						.addComponent(lbInfo, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-						.addComponent(cbOccupatiom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(cbInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(cbInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(cbOccupatiom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+					.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+						.addComponent(lbMoney, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+						.addComponent(tfMoney, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+					.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+						.addComponent(lbInstitution, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+						.addComponent(tfInstitution, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(8, 8, 8)
 					.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 						.addComponent(lbExinfo, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
 						.addComponent(tfExinfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(153, Short.MAX_VALUE))
+					.addGap(3, 3, 3)
+					.addComponent(btYes)
+					.addContainerGap(71, Short.MAX_VALUE))
 		);
 		pack();
 		setLocationRelativeTo(getOwner());
@@ -152,5 +269,10 @@ public class PaymentAdd extends JFrame {
 	private JComboBox cbInfo;
 	private JLabel lbExinfo;
 	private JTextField tfExinfo;
+	private JLabel lbMoney;
+	private JTextField tfMoney;
+	private JButton btYes;
+	private JLabel lbInstitution;
+	private JTextField tfInstitution;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 }

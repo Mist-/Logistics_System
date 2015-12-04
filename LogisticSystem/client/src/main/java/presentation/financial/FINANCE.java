@@ -34,7 +34,11 @@ public class FINANCE extends JFrame {
     
     public FINANCE() {
         initComponents();
+        
         this.setVisible(true);
+        lbAll.setVisible(false);
+        lbTotal.setVisible(false);
+        
     }
 
     private void tgZJGLMouseClicked(MouseEvent e) {
@@ -218,6 +222,10 @@ public class FINANCE extends JFrame {
 	            
 	            data.add(row);
 		}
+		double num = financialBL.total(re);
+		lbTotal = new JLabel(num + "元");
+		lbAll.setVisible(true);
+        lbTotal.setVisible(true);
 		tableReceipt.updateUI();
 		tableReceipt.repaint();
 		}
@@ -241,6 +249,10 @@ public class FINANCE extends JFrame {
 	            
 	            data.add(row);
 		}
+		double num = financialBL.total(re);
+		lbTotal = new JLabel(num + "元");
+		lbAll.setVisible(true);
+        lbTotal.setVisible(true);
 		tableReceipt.updateUI();
 		tableReceipt.repaint();
 		}
@@ -284,7 +296,7 @@ public class FINANCE extends JFrame {
 	            row.add(paymentVO.getAccount());
 	            row.add(paymentVO.getInfo());
 	            row.add(paymentVO.getExInfo());
-	            data.add(row);
+	            data1.add(row);
 	        }
 	        tablePay.updateUI();
 	        tablePay.repaint();
@@ -297,28 +309,35 @@ public class FINANCE extends JFrame {
 
 			CostBenefitVO costBenefitVO = companyBLcontroller.searchCostBenefitVO();
 
-			
+			Vector data = ((DefaultTableModel)tableBenefit.getModel()).getDataVector();
+            Vector<Object> row = new Vector<>();
+	            row.add(costBenefitVO.getAllIncome());
+	            row.add(costBenefitVO.getAllPay());
+	            row.add(costBenefitVO.getAllProfit());
 
-			
+	            tableBenefit.updateUI();
+	            tableBenefit.repaint();
 		}
 
 		 //ZJGL 新建付款单
 		private void button1MouseReleased(MouseEvent e) {
-			DialogAddPayment dialogAddSalary = new DialogAddPayment(this);
+			PaymentAdd dialogAddSalary = new PaymentAdd();
+			dialogAddSalary.setVisible(true);
+			PaymentVO paymentVO = dialogAddSalary.payment;
+			Vector data = ((DefaultTableModel)tablePayment.getModel()).getDataVector();
+            Vector<Object> row = new Vector<>();
+	            row.add(paymentVO.getDate());
+	            row.add(paymentVO.getMoney());
+	            row.add(paymentVO.getName());
+	            row.add(paymentVO.getAccount());
+	            row.add(paymentVO.getInfo());
+	            row.add(paymentVO.getExInfo());
+	            data.add(row);
+	         
+	        tablePayment.updateUI();
+	        tablePayment.repaint();
 		}
-		//ZJGL 删除付款单
-		private void btDeletePMouseReleased(MouseEvent e) {
-			Vector data = ((DefaultTableModel) tableAccounts.getModel()).getDataVector();
-		     long accountNum = (long)((Vector<Object>)data.get(tableAccounts.getSelectedRow())).get(0);
-		        
-		        financialBL.deleteAccount(accountNum);
-		        // TODO: 调用逻辑层接口删除数据
-
-		        data.remove(tableAccounts.getSelectedRow());
-		        tableAccounts.updateUI();
-		        tableAccounts.repaint();
-		}
-
+		
 		
 
 		
@@ -359,6 +378,9 @@ public class FINANCE extends JFrame {
 		textAddress = new JTextField();
 		scrollPane16 = new JScrollPane();
 		tableReceipt = new JTable();
+		label15 = new JLabel();
+		lbAll = new JLabel();
+		lbTotal = new JLabel();
 		panel1 = new JPanel();
 		btAddP = new JButton();
 		scrollPane15 = new JScrollPane();
@@ -393,7 +415,7 @@ public class FINANCE extends JFrame {
 		pnQCJZ = new JPanel();
 		tp = new JTabbedPane();
 		scrollPane2 = new JScrollPane();
-		table2 = new JTable();
+		table4 = new JTable();
 		scrollPane3 = new JScrollPane();
 		table5 = new JTable();
 		scrollPane4 = new JScrollPane();
@@ -630,32 +652,55 @@ public class FINANCE extends JFrame {
 							scrollPane16.setViewportView(tableReceipt);
 						}
 
+						//---- label15 ----
+						label15.setText(" \u5982\uff1a2015/11/27");
+
+						//---- lbAll ----
+						lbAll.setText("\u5408\u8ba1\uff1a");
+
+						//---- lbTotal ----
+						lbTotal.setText("text");
+
 						GroupLayout panel3Layout = new GroupLayout(panel3);
 						panel3.setLayout(panel3Layout);
 						panel3Layout.setHorizontalGroup(
 							panel3Layout.createParallelGroup()
 								.addGroup(panel3Layout.createSequentialGroup()
 									.addComponent(scrollPane16, GroupLayout.PREFERRED_SIZE, 622, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 									.addGroup(panel3Layout.createParallelGroup()
-										.addComponent(textAddress)
-										.addComponent(textDate)
-										.addComponent(btDate, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(btAddress, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-									.addGap(95, 95, 95))
+										.addGroup(panel3Layout.createSequentialGroup()
+											.addGroup(panel3Layout.createParallelGroup()
+												.addComponent(textAddress)
+												.addComponent(btAddress, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+												.addComponent(textDate)
+												.addComponent(btDate, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+												.addComponent(label15, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+											.addGap(95, 95, 95))
+										.addGroup(panel3Layout.createSequentialGroup()
+											.addComponent(lbAll)
+											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+											.addComponent(lbTotal, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+											.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
 						);
 						panel3Layout.setVerticalGroup(
 							panel3Layout.createParallelGroup()
 								.addGroup(panel3Layout.createSequentialGroup()
-									.addGap(69, 69, 69)
+									.addGap(32, 32, 32)
 									.addComponent(textDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 									.addComponent(btDate)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(label15, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 									.addComponent(textAddress, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 									.addComponent(btAddress)
-									.addContainerGap(777, Short.MAX_VALUE))
+									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+									.addGroup(panel3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+										.addComponent(lbAll, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lbTotal))
+									.addContainerGap(748, Short.MAX_VALUE))
 								.addGroup(panel3Layout.createSequentialGroup()
 									.addComponent(scrollPane16, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE)
 									.addGap(0, 709, Short.MAX_VALUE))
@@ -887,7 +932,7 @@ public class FINANCE extends JFrame {
 
 				//======== scrollPane2 ========
 				{
-					scrollPane2.setViewportView(table2);
+					scrollPane2.setViewportView(table4);
 				}
 				tp.addTab("\u673a\u6784\u4eba\u5458\u8868", scrollPane2);
 
@@ -1093,7 +1138,7 @@ public class FINANCE extends JFrame {
         
 
       
-        String names3[] = { "??????", "???", "????", "???????" };
+        String names3[] = { "总收入", "总支出", "总收益"};
         for (int i = 0; i < names3.length; i++) {
             tableBenefit.addColumn(new TableColumn(i));
             tableBenefit.getColumnModel().getColumn(i).setHeaderValue(names3[i]);
@@ -1102,10 +1147,10 @@ public class FINANCE extends JFrame {
 
         String names4[] = { "??????", "???", "????", "???????" };
         for (int i = 0; i < names4.length; i++) {
-            table2.addColumn(new TableColumn(i));
-            table2.getColumnModel().getColumn(i).setHeaderValue(names4[i]);
+            table4.addColumn(new TableColumn(i));
+            table4.getColumnModel().getColumn(i).setHeaderValue(names4[i]);
         }
-        table2.setRowHeight(50);
+        table4.setRowHeight(50);
         
         String names5[] = { "账户名称", "账户余额" };
         for (int i = 0; i < names5.length; i++) {
@@ -1113,6 +1158,23 @@ public class FINANCE extends JFrame {
             tableAccounts.getColumnModel().getColumn(i).setHeaderValue(names5[i]);
         }
         tableAccounts.setRowHeight(50);
+        
+        String names6[] = { "收款日期", "收款单位", "收款人", "收款方", "收款金额", "收款地点"};
+        for (int i = 0; i < names6.length; i++) {
+            tableRec.addColumn(new TableColumn(i));
+            tableRec.getColumnModel().getColumn(i).setHeaderValue(names[i]);
+        }
+        tableRec.setRowHeight(50);
+        
+        String names7[] = { "付款日期", "付款金额", "付款人", "付款账号", "条目", "备注"};
+        for (int i = 0; i < names7.length; i++) {
+        	tablePay.addColumn(new TableColumn(i));
+        	tablePay.getColumnModel().getColumn(i).setHeaderValue(names1[i]);
+        }
+        tablePay.setRowHeight(50);
+        
+        panelMain.add(pnZJGL, BorderLayout.CENTER);
+
     }
     
     
@@ -1148,6 +1210,9 @@ public class FINANCE extends JFrame {
 	private JTextField textAddress;
 	private JScrollPane scrollPane16;
 	private JTable tableReceipt;
+	private JLabel label15;
+	private JLabel lbAll;
+	private JLabel lbTotal;
 	private JPanel panel1;
 	private JButton btAddP;
 	private JScrollPane scrollPane15;
@@ -1182,7 +1247,7 @@ public class FINANCE extends JFrame {
 	private JPanel pnQCJZ;
 	private JTabbedPane tp;
 	private JScrollPane scrollPane2;
-	private JTable table2;
+	private JTable table4;
 	private JScrollPane scrollPane3;
 	private JTable table5;
 	private JScrollPane scrollPane4;

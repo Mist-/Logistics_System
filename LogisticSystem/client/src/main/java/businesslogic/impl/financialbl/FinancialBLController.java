@@ -140,7 +140,7 @@ public class FinancialBLController implements FinancialBLService {
 		return fundsManage.searchAllReceipt();
 	}
 	@Override
-	public ResultMessage buildPaymentFromEntruck(PaymentVO pay,long institution) {
+	public PaymentVO buildPaymentFromEntruck(PaymentVO pay,long institution) {
 		try {
 			return fundsManage.buildPaymentFromEntruck(pay,institution);
 		} catch (RemoteException e) {
@@ -150,7 +150,7 @@ public class FinancialBLController implements FinancialBLService {
 	}
 
 	@Override
-	public ResultMessage buildPaymentFromTransfer(PaymentVO pay,long institution) {
+	public PaymentVO buildPaymentFromTransfer(PaymentVO pay,long institution) {
 		try {
 			return fundsManage.buildPaymentFromTransfer(pay,institution);
 		} catch (RemoteException e) {
@@ -171,8 +171,8 @@ public class FinancialBLController implements FinancialBLService {
 	}
 
 	@Override
-	public ResultMessage buildPaymentFromWages(PaymentVO pay) {
-		return fundsManage.buildPaymentFromWages(pay);
+	public PaymentVO buildPaymentFromWages(PaymentVO pay,String institution) {
+		return fundsManage.buildPaymentFromWages(pay,institution);
 	}
 	
 	

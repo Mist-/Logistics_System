@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 
 
+
 import utils.Timestamper;
 import businesslogic.impl.company.SalaryManageBLImpl;
 import data.enums.DataType;
@@ -25,6 +26,7 @@ import data.po.DataPO;
 import data.po.EntruckPO;
 import data.po.PaymentPO;
 import data.po.ReceiptPO;
+import data.po.SalaryPO;
 import data.po.TransferListPO;
 import data.service.FinancialDataService;
 import data.service.TransferDataService;
@@ -97,7 +99,7 @@ public class FundsManage {
 		}
 	
 	 //this four methord need write!!!!
-	public ResultMessage buildPaymentFromEntruck(PaymentVO pay,long institution) throws RemoteException {
+	public PaymentVO buildPaymentFromEntruck(PaymentVO pay,long institution) throws RemoteException {
 		// if each , then not use all; else , use all to add continue
 		
 		ArrayList<DataPO> entruckList = transferDataService.searchUncountedList(POType.ENTRUCK, institution);
@@ -117,7 +119,7 @@ public class FundsManage {
 		}
 		payment.setMoney(sum);
 		//continue add the element
-		payment.setDate(timestamper.getTimeByDate());
+		payment.setDate(pay.getDate());
 	    payment.setAccount(pay.getAccount());
 	    payment.setExInfo(pay.getExInfo());
 	    payment.setInfo(pay.getInfo());
@@ -125,11 +127,12 @@ public class FundsManage {
 	    
 		financialDataService.add(payment);
 		
+		paymentVO = pay;
+		paymentVO.setMoney(sum);
 		
-		
-		return null;
+		return paymentVO;
 	}
-	public ResultMessage buildPaymentFromTransfer(PaymentVO pay,long institution) throws RemoteException {
+	public PaymentVO buildPaymentFromTransfer(PaymentVO pay,long institution) throws RemoteException {
 		// if each , then not use all; else , use all to add continue
 		ArrayList<DataPO> TransferList = transferDataService.searchUncountedList(POType.TRANSFERLIST, institution);
 		
@@ -148,7 +151,7 @@ public class FundsManage {
 		}
 		payment.setMoney(sum);
 		//continue add the element
-		payment.setDate(timestamper.getTimeByDate());
+		payment.setDate(pay.getDate());
 		payment.setAccount(pay.getAccount());
 	    payment.setExInfo(pay.getExInfo());
 	    payment.setInfo(pay.getInfo());
@@ -156,14 +159,16 @@ public class FundsManage {
 		
 		financialDataService.add(payment);
 		
-        
+		paymentVO = pay;
+		paymentVO.setMoney(sum);
 		
-		return null;
+		
+		return paymentVO;
 	}
 	public ResultMessage buildPaymentFromRent(PaymentVO pay) throws RemoteException  {
 		PaymentPO payment = new PaymentPO();
 		//continue add the element
-		payment.setDate(timestamper.getTimeByDate());
+		payment.setDate(pay.getDate());
 		payment.setAccount(pay.getAccount());
 	    payment.setExInfo(pay.getExInfo());
 	    payment.setInfo(pay.getInfo());
@@ -179,16 +184,31 @@ public class FundsManage {
 	}
 	
 	
-	public ResultMessage buildPaymentFromWages(PaymentVO pay){
+	public PaymentVO buildPaymentFromWages(PaymentVO pay,String institution){
 		payment = new PaymentPO();
-		SalaryManageBLImpl sa=new SalaryManageBLImpl();
-		String department = pay.getExInfo();
-		SalaryVO salary = sa.getsalaryByString(department);
-        payment.setMoney(salary.getSalary());
-        payment.setInfo("人员工资"+department);
-        payment.setExInfo(salary.getType());
-        payment.setDate(timestamper.getTimeByDate());
-		//continue add the element
+		paymentVO = pay;
+		try {
+			ArrayList<DataPO> a = DataServiceFactory.getDataServiceByPO(POType.SALARY).getPOList(POType.SALARY);
+		for(DataPO po:a){
+			SalaryPO salaryPO = (SalaryPO) po; 
+			if(salaryPO.getInstitution().equals(institution)){
+				 payment.setMoney(salaryPO.getSalary());
+				 payment.setInfo(pay.getInfo());
+				 payment.setExInfo(salaryPO.getType());
+				 payment.setDate(pay.getDate());
+				 payment.setName(pay.getName());
+				 payment.setAccount(pay.getAccount());
+				 
+				 paymentVO.setMoney(salaryPO.getSalary());
+				 payment.setExInfo(salaryPO.getType());
+			}
+		}
+		
+		} catch (RemoteException e1) {
+			// TODO 自动生成的 catch 块
+			e1.printStackTrace();
+		}
+		
 		
     	
 		try {
@@ -197,7 +217,9 @@ public class FundsManage {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		return null;
+		
+		
+		return paymentVO;
 		
 	}
 	
