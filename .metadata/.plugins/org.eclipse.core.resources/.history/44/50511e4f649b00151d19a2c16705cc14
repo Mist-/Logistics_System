@@ -11,9 +11,5 @@ public class ArrivalListVO {
 	public ArrivalListVO(String[][] info){
 		this.info = info;
 	}
-	
-	public static int getColumnNum(){
-		return 2;
-	}
 
 }

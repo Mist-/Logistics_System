@@ -399,21 +399,21 @@ public class FundsManage {
 //	    	   }
 //	    	   
 //	       }
-//			//写入数据并关闭文件
-//
-//			book.write();
-//
-//			book.close();
-//
-//			}catch(Exception e)
-//
-//			{
-//
-//			System.out.println(e);
-//
-//			}
-//		return null;
-//	}
+			//写入数据并关闭文件
+
+			book.write();
+
+			book.close();
+
+			}catch(Exception e)
+
+			{
+
+			System.out.println(e);
+
+			}
+		return null;
+	}
 	public FundsManage(){
 		transferDataService = (TransferDataService) DataServiceFactory.getDataServiceByType(DataType.TransferDataService);
 		financialDataService = (FinancialDataService) DataServiceFactory.getDataServiceByType(DataType.FinancialDataService);

@@ -27,19 +27,31 @@ public class EntruckReceivePanel extends JPanel {
 	ArrivalVO arrival;
 	TransferListVO transferList;
 	EntruckListVO entruckList;
-
+	ArrivalListVO arrivalList;
+	
 	public EntruckReceivePanel(EntruckReceiveService entruckReceive) {
 		this.entruckReceive = entruckReceive;
 		initComponents();
-		getArrivalList();
-
+		getArrivalList();//只能调用一次
+		setArrivalList();
 		this.validate();
 		this.updateUI();
 		this.setVisible(true);
 	}
+	
+	private void setArrivalList(){
+		if(arrivalVO != null)
+			remove(arrivalVO);
+		if(entruckVO != null)
+			remove(entruckVO);
+		add(startPane,BorderLayout.CENTER);
+		startPane.updateUI();
+		startPane.setVisible(true);
+	}
 
-	private ResultMessage getArrivalList() {
-		ArrivalListVO arrivalList = null;
+	//设置到达单列表
+	private void getArrivalList() {
+		arrivalList = null;
 		try {
 			arrivalList = entruckReceive.getCheckedArrivals();
 		} catch (RemoteException e) {
@@ -47,7 +59,6 @@ public class EntruckReceivePanel extends JPanel {
 			errorDialog.validate();
 			errorDialog.repaint();
 			errorDialog.setVisible(true);
-			return ResultMessage.FAILED;
 		}
 		DefaultTableModel arrivalListModel = new DefaultTableModel(
 				arrivalList.info, arrivalList.header);
@@ -55,17 +66,19 @@ public class EntruckReceivePanel extends JPanel {
 		arrivalTable.validate();
 		arrivalTable.updateUI();
 		arrivalTable.repaint();
-		return ResultMessage.SUCCESS;
+		selectArrival.setEnabled(false);
 	}
 
-
-
+	//设置到达单
 	private void setArrivalVO() {
 		DefaultTableModel model = new DefaultTableModel(
 				arrival.getOrderAndStatus(), arrival.getHeader());
 		arrivalVOTable.setModel(model);
 		arrivalVOTable.validate();
 		arrivalVOTable.updateUI();
+		transferID.setText(arrival.getDeliveryListNum());
+		from.setText(arrival.getFromName());
+		arrivalDate.setText(arrival.getDate());
 		remove(startPane);
 		add(arrivalVO, BorderLayout.CENTER);
 		arrivalVO.validate();
@@ -73,7 +86,7 @@ public class EntruckReceivePanel extends JPanel {
 		arrivalVO.setVisible(true);
 	}
 
-
+	//设置运输单列表
 	private void getDeliveryList(long id) {
 
 		try {
@@ -102,6 +115,7 @@ public class EntruckReceivePanel extends JPanel {
 
 	}
 
+	//设置装车单
 	private void setEntruckList() {
 		DefaultTableModel model = new DefaultTableModel(entruckList.info,
 				entruckList.header);
@@ -111,6 +125,7 @@ public class EntruckReceivePanel extends JPanel {
 		deliveryTable.repaint();
 	}
 
+	//设置中转单
 	private void setTransferList() {
 		DefaultTableModel model = new DefaultTableModel(
 				transferList.orderAndPosition, transferList.header);
@@ -120,15 +135,10 @@ public class EntruckReceivePanel extends JPanel {
 		deliveryTable.repaint();
 	}
 
+	//===============================监听===============================
 	private void cancelArrivalMouseClicked(MouseEvent e) {
-		remove(arrivalVO);
-		if (entruckVO != null)
-			remove(entruckVO);
-		add(startPane, BorderLayout.CENTER);
+		cancelDialog.setVisible(true);
 
-		startPane.validate();
-		startPane.updateUI();
-		startPane.setVisible(true);
 	}
 
 	private void selectArrivalMouseClicked(MouseEvent e) {
@@ -136,10 +146,15 @@ public class EntruckReceivePanel extends JPanel {
 		saveArrival.setEnabled(false);
 		doArrive.setVisible(true);
 		doArrive.setEnabled(true);
+		
 		int row = arrivalTable.getSelectedRow();
 		String id = (String) arrivalTable.getValueAt(row, 0);
 		long ID = Long.parseLong(id);
 		arrival = entruckReceive.chooseArrival(ID);
+		doArrive.setEnabled(true);
+		doArrive.setVisible(true);
+		saveArrival.setEnabled(false);
+		saveArrival.setVisible(false);
 		setArrivalVO();
 	}
 
@@ -149,15 +164,27 @@ public class EntruckReceivePanel extends JPanel {
 		getDeliveryList(num);
 	}
 	
+	private void deleteRow(int row){
+		String[][] info = arrivalList.info;
+		String[][] newInfo = new String[info.length-1][ArrivalListVO.getColumnNum()];
+		for(int i = 0 ; i < info.length;i++){
+			if(i == row){
+				
+			}
+		}
+	}
+	
 	private void doArriveMouseClicked(MouseEvent e) {
 		ResultMessage result = entruckReceive.doArrive();
 		if (result == ResultMessage.FAILED) {
-			label6.setText("操作失败");
+			JOptionPane.showMessageDialog(null, "操作失败，请稍后再试", "提示", JOptionPane.ERROR_MESSAGE);
+		}else{
+			JOptionPane.showMessageDialog(null, "操作成功", "提示", JOptionPane.INFORMATION_MESSAGE);
+			
+			int row = arrivalTable.getSelectedRow();
+			deleteRow(row);
+			setArrivalList();
 		}
-
-		resultDialog.validate();
-		resultDialog.repaint();
-		resultDialog.setVisible(true);
 	}
 
 	private void cancelLoadMouseClicked(MouseEvent e) {
@@ -215,7 +242,6 @@ public class EntruckReceivePanel extends JPanel {
 		
 	}
 
-
 	private void saveArrivalMouseClicked(MouseEvent e) {
 		ResultMessage result = entruckReceive.saveArrival(arrival);
 		if(result == ResultMessage.SUCCESS){
@@ -225,6 +251,29 @@ public class EntruckReceivePanel extends JPanel {
 		}
 	}
 
+	private void arrivalTableMouseClicked(MouseEvent e) {
+		selectArrival.setEnabled(true);
+	}
+
+
+
+	private void cancelSureButtonMouseClicked(MouseEvent e) {
+		cancelDialog.setVisible(false);
+		remove(arrivalVO);
+		if (entruckVO != null)
+			remove(entruckVO);
+		add(startPane, BorderLayout.CENTER);
+
+		startPane.validate();
+		startPane.updateUI();
+		startPane.setVisible(true);
+		
+	}
+
+	private void notCancelButtonMouseReleased(MouseEvent e) {
+		cancelDialog.setVisible(false);
+	}
+//==============================监听=================================
 
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY
@@ -268,6 +317,12 @@ public class EntruckReceivePanel extends JPanel {
 		errorDialog = new JDialog();
 		label7 = new JLabel();
 		errorSure = new JButton();
+		cancelDialog = new JDialog();
+		panel = new JPanel();
+		label8 = new JLabel();
+		label9 = new JLabel();
+		cancelSureButton = new JButton();
+		notCancelButton = new JButton();
 
 		//======== this ========
 		setLayout(new BorderLayout());
@@ -280,11 +335,19 @@ public class EntruckReceivePanel extends JPanel {
 
 				//======== scrollPane2 ========
 				{
+
+					//---- arrivalTable ----
+					arrivalTable.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							arrivalTableMouseClicked(e);
+						}
+					});
 					scrollPane2.setViewportView(arrivalTable);
 				}
 
 				//---- selectArrival ----
-				selectArrival.setText("text");
+				selectArrival.setText("\u67e5\u770b");
 				selectArrival.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
@@ -381,7 +444,7 @@ public class EntruckReceivePanel extends JPanel {
 							.addContainerGap(187, Short.MAX_VALUE))
 				);
 			}
-			startPane.addTab("searchList", searchListPanel);
+			startPane.addTab("\u641c\u7d22\u8fd0\u8f93\u5355", searchListPanel);
 		}
 		add(startPane, BorderLayout.CENTER);
 
@@ -410,10 +473,6 @@ public class EntruckReceivePanel extends JPanel {
 				cancelArrival.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						cancelArrivalMouseClicked(e);
-						cancelArrivalMouseClicked(e);
-						cancelArrivalMouseClicked(e);
-						cancelArrivalMouseClicked(e);
 						cancelArrivalMouseClicked(e);
 					}
 				});
@@ -656,6 +715,78 @@ public class EntruckReceivePanel extends JPanel {
 			errorDialog.pack();
 			errorDialog.setLocationRelativeTo(errorDialog.getOwner());
 		}
+
+		//======== cancelDialog ========
+		{
+			cancelDialog.setTitle("\u63d0\u793a");
+			Container cancelDialogContentPane = cancelDialog.getContentPane();
+			cancelDialogContentPane.setLayout(new BorderLayout());
+
+			//======== panel ========
+			{
+
+				//---- label8 ----
+				label8.setText("\u53d6\u6d88\u540e\u672c\u6b21\u7f16\u8f91\u5c06\u4e0d\u80fd\u751f\u6548");
+
+				//---- label9 ----
+				label9.setText("\u662f\u5426\u786e\u8ba4\u53d6\u6d88\uff1f");
+
+				//---- cancelSureButton ----
+				cancelSureButton.setText("\u662f");
+				cancelSureButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						cancelSureButtonMouseClicked(e);
+					}
+				});
+
+				//---- notCancelButton ----
+				notCancelButton.setText("\u5426");
+				notCancelButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						notCancelButtonMouseReleased(e);
+					}
+				});
+
+				GroupLayout panelLayout = new GroupLayout(panel);
+				panel.setLayout(panelLayout);
+				panelLayout.setHorizontalGroup(
+					panelLayout.createParallelGroup()
+						.addGroup(panelLayout.createSequentialGroup()
+							.addGroup(panelLayout.createParallelGroup()
+								.addGroup(panelLayout.createSequentialGroup()
+									.addGap(55, 55, 55)
+									.addComponent(label8))
+								.addGroup(panelLayout.createSequentialGroup()
+									.addGap(101, 101, 101)
+									.addGroup(panelLayout.createParallelGroup()
+										.addComponent(cancelSureButton)
+										.addComponent(notCancelButton))))
+							.addContainerGap(60, Short.MAX_VALUE))
+						.addGroup(GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+							.addGap(0, 88, Short.MAX_VALUE)
+							.addComponent(label9)
+							.addGap(87, 87, 87))
+				);
+				panelLayout.setVerticalGroup(
+					panelLayout.createParallelGroup()
+						.addGroup(panelLayout.createSequentialGroup()
+							.addGap(42, 42, 42)
+							.addComponent(label8, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(label9)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(cancelSureButton)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+							.addComponent(notCancelButton)
+							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+				);
+			}
+			cancelDialogContentPane.add(panel, BorderLayout.CENTER);
+			cancelDialog.pack();
+			cancelDialog.setLocationRelativeTo(cancelDialog.getOwner());
+		}
 		// //GEN-END:initComponents
 	}
 
@@ -700,5 +831,11 @@ public class EntruckReceivePanel extends JPanel {
 	private JDialog errorDialog;
 	private JLabel label7;
 	private JButton errorSure;
+	private JDialog cancelDialog;
+	private JPanel panel;
+	private JLabel label8;
+	private JLabel label9;
+	private JButton cancelSureButton;
+	private JButton notCancelButton;
 	// JFormDesigner - End of variables declaration //GEN-END:variables
 }
