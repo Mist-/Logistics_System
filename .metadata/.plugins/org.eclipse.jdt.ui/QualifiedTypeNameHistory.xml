@@ -9,9 +9,10 @@
 <fullyQualifiedTypeName name="data.vo.TruckListVO"/>
 <fullyQualifiedTypeName name="data.vo.TruckInfoVO"/>
 <fullyQualifiedTypeName name="businesslogic.service.Transfer.hall.TruckManagementService"/>
-<fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="data.message.ResultMessage"/>
 <fullyQualifiedTypeName name="org.junit.internal.builders.NullBuilder"/>
 <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="data.vo.ArrivalListVO"/>
+<fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
 </qualifiedTypeNameHistroy>

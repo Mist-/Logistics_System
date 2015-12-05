@@ -40,6 +40,9 @@ public class EntruckReceivePanel extends JPanel {
 	}
 	
 	private void setArrivalList(){
+		arrivalTable.validate();
+		arrivalTable.updateUI();
+		arrivalTable.repaint();
 		if(arrivalVO != null)
 			remove(arrivalVO);
 		if(entruckVO != null)
@@ -63,12 +66,7 @@ public class EntruckReceivePanel extends JPanel {
 		DefaultTableModel arrivalListModel = new DefaultTableModel(
 				arrivalList.info, arrivalList.header);
 		arrivalTable.setModel(arrivalListModel);
-		arrivalTable.validate();
-		arrivalTable.updateUI();
-		arrivalTable.repaint();
 		selectArrival.setEnabled(false);
-		
-		
 	}
 
 	//设置到达单
@@ -166,6 +164,19 @@ public class EntruckReceivePanel extends JPanel {
 		getDeliveryList(num);
 	}
 	
+	private void deleteRow(int row){
+		String[][] info = arrivalList.info;
+		String[][] newInfo = new String[info.length-1][ArrivalListVO.getColumnNum()];
+		for(int i = 0 ,j = 0; i < info.length;i++,j++){
+			if(i == row){
+				continue;
+			}else{
+				newInfo[j] = info[i];
+			}
+		}
+		info = newInfo;
+	}
+	
 	private void doArriveMouseClicked(MouseEvent e) {
 		ResultMessage result = entruckReceive.doArrive();
 		if (result == ResultMessage.FAILED) {
@@ -173,8 +184,9 @@ public class EntruckReceivePanel extends JPanel {
 		}else{
 			JOptionPane.showMessageDialog(null, "操作成功", "提示", JOptionPane.INFORMATION_MESSAGE);
 			
+			int row = arrivalTable.getSelectedRow();
+			deleteRow(row);
 			setArrivalList();
-			
 		}
 	}
 
