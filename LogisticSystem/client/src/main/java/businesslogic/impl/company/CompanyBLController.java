@@ -280,25 +280,137 @@ public class CompanyBLController {
         return staff.getstaffByID(id);
     }
 
-    public ResultMessage addStaff(String institution, String id, boolean gender, String name, String phoneNum){
-      //TODO
+    public ResultMessage addStaff(String institution, String id, boolean gender, String name, String phoneNum, String idCardNum){
         StaffVO staffVO = new StaffVO();
-      //  staffVO.setInstitution(institution);
-        staffVO.setId(Long.valueOf(id));
-        staffVO.setPhoneNum(Long.valueOf(phoneNum));
-        staffVO.setGender(gender);
-        return staff.addStaff(staffVO,Long.valueOf(id));
+        //判断网络状况和机构是否存在
+        if(longInstitution(institution)==0){
+            return ResultMessage.NOTEXIST;
+        }
+        else if(longInstitution(institution)==1){
+            return ResultMessage.NOTCONNECTED;
+        }
+        else {
+            staffVO.setInstitution(longInstitution(institution));
+            staffVO.setId(Long.valueOf(id));
+            staffVO.setPhoneNum(Long.valueOf(phoneNum));
+            staffVO.setGender(gender);
+            staffVO.setName(name);
+            staffVO.setIdcardNum(idCardNum);
+            return staff.addStaff(staffVO, Long.valueOf(id));
+        }
     }
 
     public ResultMessage deleteStaff(String institution, String ID) {
-        long id = Long.valueOf(ID);
-        return staff.deleteStaff(this.institution,id);
+        //判断网络状况和机构是否存在
+        if(longInstitution(institution)==0){
+            return ResultMessage.NOTEXIST;
+        }
+        else if(longInstitution(institution)==1){
+            return ResultMessage.NOTCONNECTED;
+        }
+        else {
+            long id = Long.valueOf(ID);
+            return staff.deleteStaff(this.institution,id);
+        }
     }
 
     public ResultMessage moveStaff(String fromInstitution, String toInstitution, String ID){
-        long id;
-        id = Long.valueOf(ID);
-        return staff.moveStaff(this.fromInstitution,this.toInstitution,id);
+        //判断网络状况和机构是否存在
+        if(longInstitution(fromInstitution)==0){
+            return ResultMessage.NOTEXIST;
+        }
+        else if(longInstitution(fromInstitution)==1){
+            return ResultMessage.NOTCONNECTED;
+        }
+        else {
+            //判断网络状况和机构是否存在
+            if(longInstitution(toInstitution)==0){
+                return ResultMessage.NOTEXIST;
+            }
+            else if(longInstitution(toInstitution)==1){
+                return ResultMessage.NOTCONNECTED;
+            }
+            else {
+                long id;
+                id = Long.valueOf(ID);
+                return staff.moveStaff(this.fromInstitution,this.toInstitution,id);
+            }
+        }
+
     }
 
+    //将institution由String改为long
+    public long longInstitution(String institution){
+        try {
+            ArrayList<DataPO> institutionPOs = DataServiceFactory.getDataServiceByPO(POType.INSTITUTION).getPOList(POType.INSTITUTION);
+            for(int i=0;i<institutionPOs.size();i++){
+                InstitutionPO institutionPO = (InstitutionPO) institutionPOs.get(i);
+                if(institutionPO.getName().equals(institution)){
+                    return institutionPO.getSerialNum();
+                }
+            }
+            return 0;
+        } catch (RemoteException e) {
+           return 1;
+        }
+    }
+
+    //根据员工id获取员工姓名
+    public String getNameById(long id){
+        try {
+            ArrayList<DataPO> staffs = DataServiceFactory.getDataServiceByPO(POType.STAFF).getPOList(POType.STAFF);
+            for(int i=0;i<staffs.size();i++){
+                StaffPO staffPO = (StaffPO) staffs.get(i);
+                if(staffPO.getSerialNum() == id){
+                    return staffPO.getName();
+                }
+            }
+            return null;
+        } catch (RemoteException e) {
+            return null;
+        }
+    }
+
+    //获取所有城市名字
+    public String[] getCitys(){
+        try {
+            ArrayList<DataPO> cityInfoPOs = DataServiceFactory.getDataServiceByPO(POType.CITYINFO).getPOList(POType.CITYINFO);
+            String [] citys = new String[cityInfoPOs.size()];
+            for(int i=0;i<cityInfoPOs.size();i++){
+                CityInfoPO cityInfoPO = (CityInfoPO) cityInfoPOs.get(i);
+                citys[i] = cityInfoPO.getName();
+            }
+            return citys;
+        } catch (RemoteException e) {
+            return null;
+        }
+
+    }
+
+    //根据城市名字获取营业厅名字
+    public ArrayList<String> getBusinessOffices(String city){
+        try {
+            ArrayList<DataPO> cityInfoPOs = DataServiceFactory.getDataServiceByPO(POType.CITYINFO).getPOList(POType.CITYINFO);
+            ArrayList<String> businessOffices = new ArrayList<>();
+            for(int i=0;i<cityInfoPOs.size();i++){
+                CityInfoPO cityInfoPO = (CityInfoPO) cityInfoPOs.get(i);
+                if(cityInfoPO.getName().equals(city)){
+                    ArrayList<Long> businessOfficesId = cityInfoPO.getBusinessOfficeList();
+                    ArrayList<DataPO> institutions = DataServiceFactory.getDataServiceByPO(POType.INSTITUTION).getPOList(POType.INSTITUTION);
+                    for(int k=0;k<businessOfficesId.size();k++){
+                        for(int j=0;j<institutions.size();j++){
+                            InstitutionPO institutionPO = (InstitutionPO) institutions.get(j);
+                            if(institutionPO.getSerialNum() == businessOfficesId.get(k)){
+                                businessOffices.add(institutionPO.getName());
+                            }
+                        }
+                    }
+                    break;
+                }
+            }
+            return businessOffices;
+        } catch (RemoteException e) {
+            return null;
+        }
+    }
 }
