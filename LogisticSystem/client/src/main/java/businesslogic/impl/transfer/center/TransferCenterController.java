@@ -42,9 +42,9 @@ public class TransferCenterController implements TransferCenterService{
 	}
 
 
-	public TransferCenterController(LoginMessage login) throws RemoteException {
+	public TransferCenterController(LoginMessage login) throws Exception {
 		companyData = (CompanyDataService) DataServiceFactory.getDataServiceByType(DataType.CompanyDataService);
-		//center = new InstitutionInfo(login);
+		center = new InstitutionInfo(login);
 	}
 
 }
