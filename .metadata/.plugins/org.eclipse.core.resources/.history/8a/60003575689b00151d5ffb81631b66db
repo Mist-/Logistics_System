@@ -2,6 +2,7 @@ package businesslogic.impl.storage;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+
 import mock.MockStorageDataService;
 import mock.MockTransferDataService;
 import businesslogic.impl.order.OrderBLController;
@@ -9,9 +10,7 @@ import businesslogic.impl.transfer.center.OrderList;
 import businesslogic.impl.transfer.hall.ArrivalList;
 import businesslogic.impl.user.InstitutionInfo;
 import businesslogic.service.storage.StorageInService;
-import data.enums.DataType;
 import data.enums.POType;
-import data.factory.DataServiceFactory;
 import data.message.ResultMessage;
 import data.po.ArrivalPO;
 import data.po.OrderPO;
@@ -161,9 +160,9 @@ public class StorageIn implements StorageInService{
 	}
 
 	public StorageIn(InstitutionInfo user,StorageInfo storageInfo,StorageDataService storageData) throws RemoteException {
-		transferData = (TransferDataService) DataServiceFactory
-				.getDataServiceByType(DataType.TransferDataService);
-		//transferData = new MockTransferDataService();
+//		transferData = (TransferDataService) DataServiceFactory
+//				.getDataServiceByType(DataType.TransferDataService);
+		transferData = new MockTransferDataService();
 		this.storageData = storageData;
 		this.user = user;
 		this.storageInfo = storageInfo;

@@ -63,9 +63,9 @@ public class StorageBusinessController implements StorageBusinessService {
 	}
 
 	public StorageBusinessController(LoginMessage user) throws Exception {
-		storageData = (StorageDataService) DataServiceFactory
-				.getDataServiceByType(DataType.StorageDataService);
-		//storageData = new MockStorageDataService();
+//		storageData = (StorageDataService) DataServiceFactory
+//				.getDataServiceByType(DataType.StorageDataService);
+		storageData = new MockStorageDataService();
 		this.center = new InstitutionInfo(user);
 		storageInfo = new StorageInfo(storageData, center.getCenterID());
 	}

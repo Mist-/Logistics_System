@@ -15,4 +15,6 @@
 <fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="data.vo.ArrivalListVO"/>
 <fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
+<fullyQualifiedTypeName name="data.factory.DataServiceFactory"/>
+<fullyQualifiedTypeName name="data.enums.DataType"/>
 </qualifiedTypeNameHistroy>
