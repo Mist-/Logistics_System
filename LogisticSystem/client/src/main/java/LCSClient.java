@@ -15,6 +15,7 @@ import presentation.order.OrderUI;
 import presentation.order.SimplifiedOrderUI;
 import presentation.storage.StorageFrame;
 import presentation.transfer.center.TransferCenterFrame;
+import presentation.transfer.hall.TransferHallFrame;
 import presentation.user.login.LoginDlg;
 import presentation.user.userMngUI.UserMngUI;
 import utils.Connection;
@@ -69,8 +70,8 @@ public class LCSClient extends JFrame{
                 storageUI.setVisible(true);
             } else
             if (loginMessage.getUserRole() == UserRole.营业厅业务员) {      // 营业厅业务员登录
-                TransferCenterFrame transferUI = new TransferCenterFrame(loginMessage);
-                transferUI.setVisible(true);
+                TransferHallFrame transferHall = new TransferHallFrame(loginMessage);
+                transferHall.setVisible(true);
             } else
             if (loginMessage.getUserRole() == UserRole.系统管理员) {     // 系统管理员
                 UserMngUI userMngUI = new UserMngUI();
@@ -83,6 +84,10 @@ public class LCSClient extends JFrame{
             if (loginMessage.getUserRole() == UserRole.财务人员) {
                 FINANCE finance = new FINANCE();
                 finance.setVisible(true);
+            } else
+            if (loginMessage.getUserRole() == UserRole.中转中心业务员) {
+                TransferCenterFrame transferUI = new TransferCenterFrame(loginMessage);
+                transferUI.setVisible(true);
             }
         }
     }
