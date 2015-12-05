@@ -6,6 +6,7 @@ import data.po.AccountPO;
 import data.po.DataPO;
 import data.po.ReceiptPO;
 import data.service.FinancialDataService;
+import data.vo.AccountVO;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -101,6 +102,26 @@ public class FinancialDataSerializableImpl extends UnicastRemoteObject implement
 	        }
 	        return ResultMessage.NOTEXIST;
 	    }
+
+	@Override
+	public ResultMessage modify(AccountVO accountVO) throws RemoteException {
+		ArrayList<DataPO> list = getPOList(POType.ACCOUNT);
+        for (DataPO dat: list) {
+            if (dat.getSerialNum() == accountVO.getAccountNum()) {
+            	AccountPO po = (AccountPO)dat;
+            	po.setMoney(accountVO.getMoney());
+            	po.setName(accountVO.getName());
+            	 list.remove(dat);
+                 list.add(po);
+                 return ResultMessage.SUCCESS;
+            }
+            else
+            	return ResultMessage.NOTEXIST;
+        }
+		return null;
+        
+        
+	}
 
 
 	    
