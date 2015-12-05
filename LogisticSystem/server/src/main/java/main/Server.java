@@ -2,22 +2,18 @@ package main;
 
 import data.enums.DataType;
 import data.factory.DataImplFactory;
-import data.impl.*;
-import data.po.OrderPO;
 import data.service.DataService;
 import utils.FileSaver;
 import utils.SayHelloImpl;
 import utils.SayHelloService;
 
-import java.io.File;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Calendar;
 
 /**
- * RMI server thread
+ * 服务器主线程
  *
  * Created by mist on 2015/11/12 0012.
  */

@@ -22,6 +22,16 @@ public class Order {
     OrderDataService orderDataService = (OrderDataService) DataServiceFactory.getDataServiceByType(DataType.OrderDataService);
     CompanyDataService companyDataService = (CompanyDataService) DataServiceFactory.getDataServiceByType(DataType.CompanyDataService);
 
+    public OrderPO search(long sn) {
+        OrderPO result = null;
+        try {
+            result = (OrderPO) orderDataService.search(POType.ORDER, sn);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     public ResultMessage createOrder(OrderVO order) {
         OrderPO newOrder = new OrderPO();
 
