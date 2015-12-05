@@ -124,7 +124,7 @@ public class DialogAddStaff extends JDialog{
 		else {
 			gender = true;
 		}
-        resultMessage = controller.addStaff(instituion,stringSerialNum,gender,stringName,stringPhoneNum);
+        //resultMessage = controller.addStaff(instituion,stringSerialNum,gender,stringName,stringPhoneNum);
 		if(resultMessage== ResultMessage.SUCCESS){
 			company.labelStaffSuccess.setText("Ìí¼Ó³É¹¦!");
 		}

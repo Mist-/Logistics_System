@@ -27,8 +27,9 @@ public class InstitutionPO extends DataPO {
 		this.targetCenter = targetCenter;
 	}
 
-	public InstitutionPO() {
+	public InstitutionPO(long sn) {
         super(POType.INSTITUTION);
+        this.serialNum = sn;
     }
 
     public String getName() {

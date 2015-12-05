@@ -6,6 +6,7 @@ import data.po.InstitutionPO;
 
 public class MockInstitutionPO extends InstitutionPO {
 	public MockInstitutionPO(long Institution){
+		super(Institution);
 		hall = new ArrayList<Long>();
 		serialNum = Institution;
 		hall.add(1025001L);
