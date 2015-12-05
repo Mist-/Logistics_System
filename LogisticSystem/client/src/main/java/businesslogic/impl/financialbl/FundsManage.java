@@ -17,10 +17,10 @@ import java.util.ArrayList;
 
 
 
-import jxl.Workbook;
+/*import jxl.Workbook;
 import jxl.write.Label;
 import jxl.write.WritableSheet;
-import jxl.write.WritableWorkbook;
+import jxl.write.WritableWorkbook;*/
 import utils.Timestamper;
 import businesslogic.impl.company.SalaryManageBLImpl;
 import data.enums.DataType;
@@ -230,7 +230,7 @@ public class FundsManage {
 	}
 	
 	public ResultMessage printPayment(ArrayList<PaymentVO> payList) {
-		try{
+		/*try{
 
 		//打开文件
 
@@ -286,7 +286,7 @@ public class FundsManage {
 
 		System.out.println(e);
 
-		}
+		}*/
 		return null;
 	}
 
@@ -357,7 +357,7 @@ public class FundsManage {
 	}
 	
 	public ResultMessage printReceipt(ArrayList<ReceiptVO> recList) {
-		try{
+		/*try{
 
 			//打开文件
 
@@ -413,7 +413,7 @@ public class FundsManage {
 
 			System.out.println(e);
 
-			}
+			}*/
 		return null;
 	}
 

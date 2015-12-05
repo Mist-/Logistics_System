@@ -3,7 +3,6 @@ package presentation.order;
 import businesslogic.impl.order.OrderBLController;
 import data.message.LoginMessage;
 import data.vo.OrderVO;
-import utils.Timestamper;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -61,7 +60,7 @@ public class OrderUI extends JFrame {
     }
 
     private void miNewOrderMouseReleased(MouseEvent e) {
-        OrderVO newOrder = new NewOrderDlg(this).getNewOrderInfo();
+        OrderVO newOrder = new NewOrderDlg1(this).getNewOrderInfo();
         if (newOrder == null) JOptionPane.showMessageDialog(null, "¿Õ¶©µ¥");
 
     }
