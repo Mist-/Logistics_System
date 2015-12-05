@@ -388,7 +388,7 @@ public class companyManage extends JFrame {
             this.initPaymentTable();
             this.initReceiptTable();
             this.initEntruckTable();
-            this.initarrivalTable();
+            this.initArrivalTable();
             this.initStorageInTable();
             this.initStorageOutTable();
             this.initTransferTable();
@@ -429,7 +429,6 @@ public class companyManage extends JFrame {
         ArrayList<ResultMessage> resultMessages = null;
         //根据单据的类型不同来修改单据
         switch (index) {
-            //装车单
             case 0:
                 resultMessages = new ArrayList<ResultMessage>();
                 //将最后一个被编辑的单元格设置停止编辑状态,加入到EntruckModify中
@@ -441,15 +440,14 @@ public class companyManage extends JFrame {
                     Vector<String> entruck = entrukModify.get(i);
                     entruckListVO.entruckListID = entruck.get(0);
                     entruckListVO.fromID = entruck.get(2);
-                    entruckListVO.destID = Long.valueOf(entruck.get(3));
-                    entruckListVO.monitorName = entruck.get(4);
-                    entruckListVO.escortName = entruck.get(5);
-                    entruckListVO.fee = entruck.get(6);
-                    entruckListVO.vehicleID = entruck.get(7);
+                    entruckListVO.destID = Long.valueOf(entruck.get(4));
+                    entruckListVO.monitorName = entruck.get(5);
+                    entruckListVO.escortName = entruck.get(6);
+                    entruckListVO.fee = entruck.get(7);
+                    entruckListVO.vehicleID = entruck.get(8);
                     resultMessages.add(controller.modifyEntruck(entruckListVO));
                 }
                 break;
-            //到达单
             case 1:
                 resultMessages = new ArrayList<ResultMessage>();
                 //将最后一个被编辑的单元格设置停止编辑状态,加入到salaryModify中
@@ -457,24 +455,14 @@ public class companyManage extends JFrame {
                 column = tableArrival.getSelectedColumn();
                 tableArrival.getCellEditor(row, column).stopCellEditing();
                 for (int i = 0; i < arrivalModify.size(); i++) {
-                    ArrayList<StockStatus> stockStatuses = new ArrayList<>();
                     ArrivalVO arrivalVO = new ArrivalVO();
                     Vector<String> arrival = arrivalModify.get(i);
                     arrivalVO.setId(Long.valueOf(arrival.get(0)));
                     arrivalVO.setFromName(arrival.get(2));
                     arrivalVO.setDestName(arrival.get(3));
                     arrivalVO.setDate(arrival.get(4));
-                    for(int k=0;k<tableArrival.getRowCount();k++){
-                        //判断到达单号和所选单号是否一样
-                        if(arrivalModel.getValueAt(k,0).equals(arrival.get(0))){
-                            //将所有快递单的货物状态加入
-                            stockStatuses.add(StockStatus.valueOf((String)arrivalModel.getValueAt(k,5)));
-                        }
-                    }
-                    arrivalVO.setStatus(stockStatuses);
                     resultMessages.add(controller.modifyArrival(arrivalVO));
                 }
-             //收款单
             case 2:
                 resultMessages = new ArrayList<ResultMessage>();
                 //将最后一个被编辑的单元格设置停止编辑状态,加入到salaryModify中
@@ -485,12 +473,11 @@ public class companyManage extends JFrame {
                     ReceiptVO receiptVO = new ReceiptVO();
                     Vector<String> receipt = receiptModify.get(i);
                     receiptVO.setId(Long.valueOf(receipt.get(0)));
-                    receiptVO.setCourierName(receipt.get(1));
+                    receiptVO.setSender(receipt.get(1));
                     receiptVO.setMoney(Double.valueOf(receipt.get(2)));
                     receiptVO.setDate(receipt.get(3));
                     resultMessages.add(controller.modifyReceipt(receiptVO));
                 }
-             //出库单
             case 3:
                 resultMessages = new ArrayList<ResultMessage>();
                 //将最后一个被编辑的单元格设置停止编辑状态,加入到salaryModify中
@@ -506,7 +493,6 @@ public class companyManage extends JFrame {
                     storageOutVO.setTransferListNum(storageOut.get(4));
                     resultMessages.add(controller.modifyStorageOutList(storageOutVO));
                 }
-             //付款单
             case 4:
                 resultMessages = new ArrayList<ResultMessage>();
                 //将最后一个被编辑的单元格设置停止编辑状态,加入到salaryModify中
@@ -525,7 +511,6 @@ public class companyManage extends JFrame {
                     paymentVO.setExInfo(payment.get(6));
                     resultMessages.add(controller.modifyPayment(paymentVO));
                 }
-            //派件单
             case 5:
                 resultMessages = new ArrayList<ResultMessage>();
                 //将最后一个被编辑的单元格设置停止编辑状态,加入到salaryModify中
@@ -539,7 +524,6 @@ public class companyManage extends JFrame {
                     SendListVO sendListVO = new SendListVO(null,null,sender,null,id);
                     resultMessages.add(controller.modifySend(sendListVO));
                 }
-             //中转单
             case 6:
                 resultMessages = new ArrayList<ResultMessage>();
                 //将最后一个被编辑的单元格设置停止编辑状态,加入到salaryModify中
@@ -557,7 +541,6 @@ public class companyManage extends JFrame {
                     transferListVO.date = transfer.get(6);
                     resultMessages.add(controller.modifyTransferList(transferListVO));
                 }
-            //入库单
             case 7:
                 resultMessages = new ArrayList<ResultMessage>();
                 //将最后一个被编辑的单元格设置停止编辑状态,加入到salaryModify中
@@ -571,7 +554,6 @@ public class companyManage extends JFrame {
                     storageInVO.setDate(storageIn.get(7));
                     resultMessages.add(controller.modifyStorageInList(storageInVO));
                 }
-            //寄件单
             case 8:
                 resultMessages = new ArrayList<ResultMessage>();
                 //将最后一个被编辑的单元格设置停止编辑状态,加入到salaryModify中
@@ -1254,9 +1236,9 @@ public class companyManage extends JFrame {
     }
 
     /*
-     * 初始化Arrival(到达单审批)表格
+     * 初始化arrival(营业厅到达单审批)表格
      */
-    private void initarrivalTable(){
+    private void initArrivalTable(){
         //表头
         Vector<String> arrivalColumns = new Vector<String>();
         arrivalColumns.add("到达单编号");
@@ -1280,7 +1262,7 @@ public class companyManage extends JFrame {
                 arrivalVO.add(arrivalPO.getSerialNum()+"");
                 arrivalVO.add(orderPO.getSerialNum()+"");
                 arrivalVO.add(arrivalPO.getFromName());
-                arrivalVO.add(arrivalPO.getDestName());
+             //   arrivalVO.add(arrivalPO.getToname());
                 arrivalVO.add(arrivalPO.getDate());
                 arrivalVO.add(stockStatuses.get(i).toString());
                 arrivalData.add(arrivalVO);
@@ -1310,69 +1292,9 @@ public class companyManage extends JFrame {
         tableArrival.getTableHeader().setReorderingAllowed(false);
         tableArrival.getTableHeader().setPreferredSize(new Dimension(30,30));
         tableArrival.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        scrollPanelarrival.getViewport().add(tableArrival);
+        scrollPanelArrival.getViewport().add(tableArrival);
     }
-
-   /*
-     * 初始化CenterArrival(中转中心到达单审批)表格
-
-    private void initCenterArrivalTable(){
-        //表头
-        Vector<String> centerArrivalColumns = new Vector<String>();
-        centerArrivalColumns.add("到达单编号");
-        centerArrivalColumns.add("订单编号");
-        centerArrivalColumns.add("中转中心编号");
-        centerArrivalColumns.add("出发地");
-        centerArrivalColumns.add("到达日期");
-        centerArrivalColumns.add("货物状态");
-        //数据:第一个Vector用来存放一个VO,第二个Vector存放VO集合
-        Vector<String> centerArrivalVO = null;
-        Vector<Vector<String>> centerArrivalData = new Vector<Vector<String>>();
-   //    ArrayList<ArrivalPO> arrivalPOs = controller.getUnapprovedCenterArrivalList();
-        ArrayList<ArrivalPO> arrivalPOs = new ArrayList<>();
-        for(int i=0;i<arrivalPOs.size();i++){
-            ArrivalPO arrivalPO = arrivalPOs.get(i);
-            long [] orderList = arrivalPO.getOrder();
-            ArrayList<StockStatus> stockStatuses = arrivalPO.getStockStatus();
-            for(int k=0;k<orderList.length;k++) {
-                centerArrivalVO = new Vector<String>();
-                OrderPO orderPO = controller.getOrderData(orderList[k]);
-                centerArrivalVO.add(arrivalPO.getSerialNum()+"");
-                centerArrivalVO.add(orderPO.getSerialNum()+"");
-                centerArrivalVO.add(arrivalPO.getTransferList()+"");
-                centerArrivalVO.add(arrivalPO.getFromName());
-                centerArrivalVO.add(arrivalPO.getDate());
-                centerArrivalVO.add(stockStatuses.get(i).toString());
-                centerArrivalData.add(centerArrivalVO);
-            }
-        }
-        //模型
-        centerArrivalModel = new DefaultTableModel(centerArrivalData,centerArrivalColumns);
-        centerArrivalModel.addTableModelListener(new TableModelListener() {
-
-            @Override
-            public void tableChanged(TableModelEvent e) {
-                Vector<String> centerArrival = new Vector<String>();
-                int row = tableCenterArrival.getSelectedRow();
-                for(int i=0;i<tableCenterArrival.getColumnCount();i++){
-                    centerArrival.add((String) centerArrivalModel.getValueAt(row, i));
-                }
-                centerArrivalModify.addElement(centerArrival);
-            }
-        });
-        //表格
-        tableCenterArrival = new JTable(centerArrivalModel){
-            private static final long serialVersionUid = 1L;
-
-            public boolean isCellEditable(int row, int column){
-                return false;}
-        };
-        tableCenterArrival.getTableHeader().setReorderingAllowed(false);
-        tableCenterArrival.getTableHeader().setPreferredSize(new Dimension(30,30));
-        tableCenterArrival.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        scrollPanelCenterArrival.getViewport().add(tableCenterArrival);
-    }
-     */
+    
 
     /*
      * 初始化StorageIn(入库单审批)表格
@@ -1584,10 +1506,6 @@ public class companyManage extends JFrame {
         tableFinancial = new JTable();
         scrollPanelTrunk = new JScrollPane();
         tableTrunk = new JTable();
-        scrollPanelTrain = new JScrollPane();
-        tableTrain = new JTable();
-        scrollPanelPlane = new JScrollPane();
-        tablePlane = new JTable();
         scrollPanelCenter = new JPanel();
         labelCenter = new JLabel();
         comboBoxCenter = new JComboBox();
@@ -1636,7 +1554,7 @@ public class companyManage extends JFrame {
         tabbedPaneApprove = new JTabbedPane();
         scrollPanelEntruk = new JScrollPane();
         tableEntruk = new JTable();
-        scrollPanelarrival = new JScrollPane();
+        scrollPanelArrival = new JScrollPane();
         tableArrival = new JTable();
         scrollPanelReceipt = new JScrollPane();
         tableReceipt = new JTable();
@@ -2276,11 +2194,11 @@ public class companyManage extends JFrame {
                 }
                 tabbedPaneApprove.addTab("\u88c5\u8f66\u5355", scrollPanelEntruk);
 
-                //======== scrollPanelarrival ========
+                //======== scrollPanelArrival ========
                 {
-                    scrollPanelarrival.setViewportView(tableArrival);
+                    scrollPanelArrival.setViewportView(tableArrival);
                 }
-                tabbedPaneApprove.addTab("\u5230\u8fbe\u5355", scrollPanelarrival);
+                tabbedPaneApprove.addTab("\u5230\u8fbe\u5355", scrollPanelArrival);
 
                 //======== scrollPanelReceipt ========
                 {
@@ -2403,13 +2321,16 @@ public class companyManage extends JFrame {
         this.initPaymentTable();
         this.initReceiptTable();
         this.initEntruckTable();
-        this.initarrivalTable();
-      //  this.initCenterArrivalTable();
+        this.initArrivalTable();
         this.initStorageInTable();
         this.initStorageOutTable();
         this.initTransferTable();
+        tabbedPaneApprove.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+
+        //显示员工的id跟名字
         id.setText(loginMessage.getUserSN()+"");
-        //name.setText(controller.getNameById(loginMessage.getUserSN()));
+        name.setText(controller.getNameById(loginMessage.getUserSN()));
+
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
@@ -2436,10 +2357,6 @@ public class companyManage extends JFrame {
     private JTable tableFinancial;
     private JScrollPane scrollPanelTrunk;
     private JTable tableTrunk;
-    private JScrollPane scrollPanelTrain;
-    private JTable tableTrain;
-    private JScrollPane scrollPanelPlane;
-    private JTable tablePlane;
     private JPanel scrollPanelCenter;
     private JLabel labelCenter;
     private JComboBox comboBoxCenter;
@@ -2488,7 +2405,7 @@ public class companyManage extends JFrame {
     private JTabbedPane tabbedPaneApprove;
     private JScrollPane scrollPanelEntruk;
     private JTable tableEntruk;
-    private JScrollPane scrollPanelarrival;
+    private JScrollPane scrollPanelArrival;
     private JTable tableArrival;
     private JScrollPane scrollPanelReceipt;
     private JTable tableReceipt;
@@ -2498,8 +2415,6 @@ public class companyManage extends JFrame {
     private JTable tablePayment;
     private JScrollPane scrollPanelSend;
     private JTable tableSend;
-//    private JScrollPane scrollPanelCenterArrival;
-//    private JTable tableCenterArrival;
     private JScrollPane scrollPanelTransfer;
     private JTable tableTransfer;
     private JScrollPane scrollPanelStorageIn;
@@ -2525,7 +2440,6 @@ public class companyManage extends JFrame {
     DefaultTableModel receiptModel = null;
     DefaultTableModel entrukModel = null;
     DefaultTableModel arrivalModel = null;
-    DefaultTableModel centerArrivalModel = null;
     DefaultTableModel storageInModel = null;
     DefaultTableModel storageOutModel = null;
     DefaultTableModel transferModel = null;
@@ -2536,7 +2450,6 @@ public class companyManage extends JFrame {
     Vector<Vector<String>> receiptModify = new Vector<Vector<String>>();
     Vector<Vector<String>> entrukModify = new Vector<Vector<String>>();
     Vector<Vector<String>> arrivalModify = new Vector<Vector<String>>();
- //   Vector<Vector<String>> centerArrivalModify = new Vector<Vector<String>>();
     Vector<Vector<String>> storageInModify = new Vector<Vector<String>>();
     Vector<Vector<String>> storageOutModify = new Vector<Vector<String>>();
     Vector<Vector<String>> transferModify = new Vector<Vector<String>>();
