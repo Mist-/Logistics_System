@@ -45,7 +45,7 @@ public interface FinancialBLService {
 
     AccountVO addAccount(String name, double money);
 
-    ResultMessage changeAccount(String name, double money);
+    ResultMessage changeAccount(AccountVO accountVO);
 
     ResultMessage deleteAccount(long num);
     

@@ -56,12 +56,22 @@ public class OrderBLController implements OrderBLService {
 
 	@Override
 	public ArrayList<OrderPO> search(long[] order) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<OrderPO> result = new ArrayList<>();
+        for (long sn: order) {
+            OrderPO tmp = search(sn);
+            if (tmp != null) {
+                result.add(tmp);
+            }
+        }
+        return result;
 	}
 
     @Override
     public ArrayList<OrderVO> getDisplayData() {
         return new Order().getDisplayData();
+    }
+
+    public OrderPO search(long sn) {
+        return order.search(sn);
     }
 }

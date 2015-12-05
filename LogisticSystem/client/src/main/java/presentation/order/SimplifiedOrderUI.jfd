@@ -5,17 +5,17 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 			"$horizontalGroup": "par l {comp panel1::l:::x}"
-			"$verticalGroup": "par l {comp panel1::l::651:x}"
+			"$verticalGroup": "par l {comp panel1::l:::x}"
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq t {space :0:0:x, par l:::p {comp panel2:::::x, comp menuBar1::::1004:x}}}"
-				"$verticalGroup": "par l {seq l {comp menuBar1:::p:23:p, space :::x, comp panel2:::p::p, space :::p}}"
+				"$horizontalGroup": "par l {seq t {space :0:0:x, comp menuBar1:::p:1004:p}, seq l {comp panel2:::p::p, space :0:0:x}}"
+				"$verticalGroup": "par l {seq l {comp menuBar1:::p:23:p, space :::x, comp panel2:::p::p}}"
 			} ) {
 				name: "panel1"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :::p, par l {seq l {comp btOrderMng:::p::p, space :::x, comp lbUserInfo:::p::p}, comp scrollPane1:::::x, seq t {space :26:26:p, comp label1:::p::p, space :::x, comp separator2:::::x}, seq l {comp lbOrderNum:::p::p, space u:::p, comp tfOrderInput:::p:361:p, space u:::p, comp btSearch:::p::p, space :0:447:x}}, space :::p}}"
-					"$verticalGroup": "par l {seq {space :::p, par l {seq {comp btOrderMng:::p:96:p, space :::x, comp label1:::p:16:p}, seq {comp lbUserInfo:::p::p, space :0:0:x}}, space :::p, par l {seq {space :0:0:x, comp separator2:::p:0:p}, comp lbOrderNum::l:p::p, par b:l {comp tfOrderInput::b:p::p, comp btSearch::b:p:25:p}}, space u:::p, comp scrollPane1:::p:456:p, space :::p}}"
+					"$horizontalGroup": "par l {seq {space :::p, par l {seq l {comp btOrderMng:::p::p, space :::x, comp lbUserInfo:::p::p}, seq t {par l {seq {space :26:26:p, comp label1:::p::p}, seq l {comp lbOrderNum:::p::p, space :::p, comp textOrderNum:::p:361:p, space u:::p, comp btSearch:::p::p}}, space ::342:x, comp separator2::::111:x}, seq l {comp scrollPane1:::p:502:p, space :::p, comp scrollPane2::::484:x}}, space :::p}}"
+					"$verticalGroup": "par l {seq {space :::p, par l {seq {comp btOrderMng:::p:96:p, space :::x, comp label1:::p:16:p}, seq {comp lbUserInfo:::p::p, space :0:0:x}}, par l {seq l {space u:::p, par b {comp textOrderNum::b:p::p, comp btSearch::b:p:25:p, comp lbOrderNum::b:p::p}}, seq {space :0:0:x, comp separator2:::p:0:p, space :p:24:p}}, space :::x, par l:::p {comp scrollPane1::::444:x, comp scrollPane2::::444:x}, space :::p}}"
 				} ) {
 					name: "panel2"
 					"font": &Font0 new java.awt.Font( "等线", 0, 14 )
@@ -25,7 +25,7 @@ new FormModel {
 						"font": #Font0
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "tfOrderInput"
+						name: "textOrderNum"
 						"font": #Font0
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
@@ -33,6 +33,7 @@ new FormModel {
 						"icon": new com.jformdesigner.model.SwingIcon( 1, "D:\\DATA\\Project\\GUI\\resources\\search_16x16.png" )
 						"font": #Font0
 						"text": "Search"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btSearchMouseReleased", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "lbOrderNum"
@@ -49,7 +50,7 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label1"
-						"text": "订单管理"
+						"text": "订单查询"
 						"font": #Font0
 					} )
 					add( new FormComponent( "javax.swing.JToggleButton" ) {
@@ -61,6 +62,12 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JSeparator" ) {
 						name: "separator2"
 						"font": #Font0
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane2"
+						add( new FormComponent( "javax.swing.JTextArea" ) {
+							name: "textLogisticsInfo"
+						} )
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
