@@ -1,0 +1,213 @@
+JFDML JFormDesigner: "5.2.2.2.228" Java: "1.8.0_51" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp panel1::l:::x}"
+			"$verticalGroup": "par l {comp panel1::t:::x}"
+		} ) {
+			name: "this"
+			"font": &Font0 new java.awt.Font( "等线", 0, 14 )
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosing", "thisWindowClosing", true ) )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {space :::p, par l {seq {par t {par l:t {seq l {comp lbSaddress2:::p::p, space :::p, comp textSaddress:::p:236:p}, seq l {space :p:28:p, par l {seq l {comp lbSname:::p::p, space :6:6:p, comp textSname:::p:236:p}, seq l {comp lbSphone:::p::p, space :6:6:p, comp textSphone:::p:236:p}, seq l {comp lbScompany:::p::p, space :6:6:p, comp textScompany:::p:236:p}, seq l {comp lbSaddress:::p::p, space :6:6:p, comp cboxScity:::p:115:p, space :6:6:p, comp cboxSblock:::p:115:p}}}}, comp lbSender::l:p::p}, space s:::p, par t {seq {par l {par t:l {comp lbRphone:::p::p, comp lbRname:::p::p}, comp lbRaddress::l:p::p, comp lbRcompany::l:p::p}, space :::p, par l:::p {seq l {comp cboxRcity:::p:115:p, space :::p, comp cboxRblock:::p:115:p}, comp textRcompany::l:::x, comp textRphone::l:::x, comp textRname::l:p:236:p}}, par l:t {comp lbReceiver:::p::p, seq {comp lbRaddress2:::p::p, space :::p, comp textRaddress:::p:236:p}}}}, par t:l {seq t {comp lbScompany5:::p::p, space :::p, comp textWeight:::p:103:p}, seq t {comp lbSaddress3:::p::p, space :::p, comp cboxServiceType:::p:177:p, space u:::p, comp lbRcompany2:::p::p, space :::p, comp textFee:::p:111:p, space :::p, comp lbRcompany3:::p::p, space :::p, comp textTimeEvaluated:::p:86:p}}, comp lbSaddress4:::p::p, seq l {comp lbScompany2:::p::p, space :::p, comp textLength:::p:85:p, space s:::p, comp lbScompany3:::p::p, space :6:6:p, comp textWidth:::p:85:p, space s:::p, comp lbScompany4:::p::p, space :6:6:p, comp textHeight:::p:85:p}}, space ::21:x}, seq t {space ::537:x, comp btOK:::p::p, space s:::p, comp btCancel:::p::p, space :::p}}"
+				"$verticalGroup": "par l {seq l {par l {seq {space :p:17:p, comp lbSender:::p::p}, seq t {space :::p, comp lbReceiver:::p::p}}, space s:::p, par l {seq {par l {comp textSname:::p::p, seq l {space :4:4:p, comp lbSname:::p::p}}, space :18:18:p, par l {seq l {space :2:2:p, comp lbSphone:::p:17:p}, comp textSphone:::p::p}, space :18:18:p, par l {comp textScompany:::p::p, seq l {space :4:4:p, comp lbScompany:::p::p}}, space :18:18:p, par l {comp lbSaddress:::p:27:p, comp cboxScity:::p::p, comp cboxSblock:::p::p}, space :18:18:p}, seq t {par t {seq t {comp lbRname:::p::p, space :p:22:p, comp lbRphone:::p::p, space :p:26:p, comp lbRcompany:::p::p, space :p:22:p, comp lbRaddress:::p:27:p}, seq t {comp textRname:::p::p, space :p:18:p, comp textRphone:::p::p, space :p:18:p, comp textRcompany:::p::p, space :p:18:p, par l {comp cboxRcity:::p::p, comp cboxRblock:::p::p}}}, space s:::p}}, par b {comp textSaddress::b:p::p, comp lbRaddress2::b:p::p, comp textRaddress::b:p::p, comp lbSaddress2::t:p:24:p}, space s:::p, comp lbSaddress4:::p:27:p, space :p:6:p, par l {par l:l {seq l {space :p:4:p, comp lbScompany2:::p::p}, comp textLength::l:p::p, par l:t {par b:l {comp textWidth::b:p::p, comp lbScompany5::b:p::p, comp textWeight::b:p::p}, seq l {space :4:4:p, comp lbScompany3:::p::p}}}, comp textHeight::l:p::p, seq l {space :4:4:p, comp lbScompany4:::p::p}}, space :p:21:p, par l {par b:l {comp textFee::b:p::p, comp lbRcompany2::b:p::p, comp lbRcompany3::b:p::p, comp textTimeEvaluated::b:p::p}, comp lbSaddress3:::p:27:p, comp cboxServiceType::l:p::p}, space ::28:x, par b {comp btCancel::b:p::p, comp btOK::b:p::p}, space :::p}}"
+			} ) {
+				name: "panel1"
+				"font": #Font0
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbRname"
+					"text": "姓名："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbRphone"
+					"text": "电话："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbRaddress"
+					"text": "地址："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbRcompany"
+					"text": "单位："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbSname"
+					"text": "姓名："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbSphone"
+					"text": "电话："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbSaddress"
+					"text": "地址："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbScompany"
+					"text": "单位："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textRname"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textRphone"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textRcompany"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textSname"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textSphone"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textScompany"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "cboxRcity"
+					"font": #Font0
+					addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "cboxRcityItemStateChanged", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "cboxRblock"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "cboxSblock"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "cboxScity"
+					"font": #Font0
+					addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "cboxScityItemStateChanged", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbRaddress2"
+					"text": "详细地址："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textRaddress"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textSaddress"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbSaddress2"
+					"text": "详细地址："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbReceiver"
+					"text": "收件方："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbSender"
+					"text": "寄件方："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btOK"
+					"text": "确定"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btOKMouseReleased", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btCancel"
+					"text": "取消"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btCancelMouseReleased", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "cboxServiceType"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbSaddress3"
+					"text": "快递服务类型："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbRcompany2"
+					"text": "报价："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textFee"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textTimeEvaluated"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbRcompany3"
+					"text": "预计送达(天)："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbSaddress4"
+					"text": "快件信息："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbScompany2"
+					"text": "长(cm)："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textLength"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textWidth"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbScompany3"
+					"text": "宽(cm)："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textHeight"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbScompany4"
+					"text": "高(cm)："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textWeight"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbScompany5"
+					"text": "重量："
+					"font": #Font0
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 685, 475 )
+		} )
+	}
+}

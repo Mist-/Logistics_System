@@ -10,6 +10,7 @@ import org.jb2011.lnf.windows2.Windows2LookAndFeel;
 import data.message.LoginMessage;
 import data.message.ResultMessage;
 import presentation.company.companyManage;
+import presentation.financial.FINANCE;
 import presentation.order.OrderUI;
 import presentation.order.SimplifiedOrderUI;
 import presentation.storage.StorageFrame;
@@ -78,6 +79,10 @@ public class LCSClient extends JFrame{
             if (loginMessage.getUserRole() == UserRole.总经理) {      // 总经理界面
                 companyManage companyUI = new companyManage(loginMessage);
                 companyUI.setVisible(true);
+            } else
+            if (loginMessage.getUserRole() == UserRole.财务人员) {
+                FINANCE finance = new FINANCE();
+                finance.setVisible(true);
             }
         }
     }

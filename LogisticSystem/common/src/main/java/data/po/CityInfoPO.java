@@ -31,6 +31,15 @@ public class CityInfoPO extends DataPO {
     }
 
     /**
+     * 设置中转中心编号
+     *
+     * @param sn
+     */
+    public void setTransferCenter(long sn) {
+        transferCenter = sn;
+    }
+
+    /**
      * 获取营业厅本城市的营业厅列表
      * @return 包含所有营业厅的ArrayList
      */

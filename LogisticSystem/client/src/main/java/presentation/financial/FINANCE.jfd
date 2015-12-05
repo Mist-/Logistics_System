@@ -95,7 +95,7 @@ new FormModel {
 		} )
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 			"$horizontalGroup": "par l {comp tabbedPane4::t::765:x}"
-			"$verticalGroup": "par l {comp tabbedPane4::t::289:x}"
+			"$verticalGroup": "par l {comp tabbedPane4::t::275:x}"
 		} ) {
 			name: "pnZJGL"
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
@@ -152,7 +152,7 @@ new FormModel {
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 					"$horizontalGroup": "par l {seq t {comp scrollPane15::::675:x, space :::p, par l {comp btAddP:::p:40:p, comp btPExcel:::p::p}, space :p:22:p}}"
-					"$verticalGroup": "par l {seq l {space :::p, comp btAddP:::p::p, space u:::p, comp btPExcel:::p::p, space ::184:x}, seq l {comp scrollPane15:::p:245:p, space :0:15:x}}"
+					"$verticalGroup": "par l {seq l {space :::p, comp btAddP:::p::p, space u:::p, comp btPExcel:::p::p, space ::170:x}, seq l {comp scrollPane15:::p:245:p, space :0:1:x}}"
 				} ) {
 					name: "panel1"
 					add( new FormComponent( "javax.swing.JButton" ) {
@@ -169,6 +169,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "btPExcel"
 						"text": "导出"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btPExcelMouseReleased", true ) )
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "付款单"

@@ -340,7 +340,7 @@ public class LoginDlg extends JDialog {
         });
 
         button1.setMnemonic(KeyEvent.VK_ENTER);
-
+        this.setModal(true);
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
