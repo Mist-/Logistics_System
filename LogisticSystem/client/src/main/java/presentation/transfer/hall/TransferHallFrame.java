@@ -22,10 +22,11 @@ import businesslogic.service.Transfer.hall.TransferHallService;
  */
 public class TransferHallFrame extends JFrame {
 	TransferHallService transferHall;
-	EntruckReceivePanel entruckReceivePanel;
-	LoadAndSortPanel loadAndSortPanel;
-	DriverPanel driverPanel;
-	TruckPanel truckPanel;
+	EntruckReceivePanel entruckReceivePanel;//装车接收面板
+	LoadAndSortPanel loadAndSortPanel;//分拣装车面板
+	DriverPanel driverPanel;//司机信息管理面板
+	TruckPanel truckPanel;//车辆信息管理面板
+	//结算面板 未完成
 	public static void main(String[] args) {
 		TransferHallFrame transferHallFrame = new TransferHallFrame(new LoginMessage(ResultMessage.SUCCESS,100000));
 	}

@@ -23,9 +23,9 @@ public class ArrivalList {
 	
 
 	public long[]  doArrive() throws RemoteException{
-		choosenArrival.setOperated(true);
-		transferData.modify(choosenArrival);
-		
+//		choosenArrival.setOperated(true);
+//		transferData.modify(choosenArrival);
+//		
 		return choosenArrival.getOrder();
 		
 	}

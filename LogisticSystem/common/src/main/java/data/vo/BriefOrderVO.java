@@ -1,9 +1,18 @@
 package data.vo;
 
+import java.util.Vector;
+
 public class BriefOrderVO {
-	public String[][] info;
-	public String[] header = {"订单号","目的地"};
-	public BriefOrderVO(String[][] info) {
+	public Vector<Vector<String>> info;
+	public Vector<String> header;
+	public BriefOrderVO(Vector<Vector<String>> info) {
 		this.info = info;
+		header = new Vector<String>();
+		header.add("订单号");
+		header.add("重量（kg）");
+	}
+	
+	public static int getColumnNum(){
+		return 2;
 	}
 }

@@ -1,0 +1,201 @@
+JFDML JFormDesigner: "5.2.2.0.199" Java: "1.8.0_31" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+				name: "driverListPane"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {comp scrollPane1:::p:688:p, space :::p, par l {comp addDriverButton::::91:x, comp showDriverButton::::91:x}, space :::p}}"
+					"$verticalGroup": "par l {comp scrollPane1::::346:x, seq t {space ::284:x, comp showDriverButton:::p::p, space :::p, comp addDriverButton:::p::p, space :::p}}"
+				} ) {
+					name: "panel1"
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane1"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "driverTable"
+							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "driverTableMouseClicked", true ) )
+						} )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "addDriverButton"
+						"text": "添加"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "addDriverButtonMouseClicked", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "showDriverButton"
+						"text": "查看"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "showDriverButtonMouseClicked", true ) )
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "司机列表"
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 800, 375 )
+		} )
+		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+			name: "driverPane"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {space :::p, par l {seq {space :0:705:x, par l {comp modifyButton::t:p:70:p, comp saveButton::t:p:70:p, comp cancelButton::t:p:70:p}}, seq {par l {comp label3::l:p::p, comp label4::l:p::p, comp label5::l:p::p, comp label6::l:p::p, comp label7::l:p::p, comp label8::l:p::p, comp label9::l:p::p, comp label10::l:p::p}, space :p:36:p, par l {par l:l::p {comp name::::85:x, comp num::::85:x, comp id::::85:x, comp gender::::85:x, comp phone::::85:x, comp status::::85:x}, seq l {par t:::p {comp licenseY::l::45:x, comp bornY::l::45:x}, space u:::p, par l:::p {seq {comp label11:::p::p, space u:::p, comp bornM:::p:40:p}, seq {comp label14:::p::p, space u:::p, comp licenseM:::::x}}, space u:::p, par l:::p {seq {comp label12:::p::p, space :::p, comp bornD:::p:42:p}, seq {comp label15:::p::p, space :::p, comp licenseD:::::x}}, space :::p, par l {comp label13:::p::p, comp label16:::p::p}}}}}, space :::p}}"
+				"$verticalGroup": "par l {seq t {space :::p, par b {comp label3::b:p::p, comp name::b:p::p}, space :::p, par b {comp label4::b:p::p, comp num::b:p::p}, space :::p, par b {comp label5::b:p::p, comp id::b:p::p}, space :::p, par b {comp label6::b:p::p, comp gender::b:p::p}, space :::p, par b {comp label7::b:p::p, comp phone::b:p::p}, space :::p, par l {comp label8:::p::p, comp status:::p::p}, space :::p, par l {comp label9:::p::p, par b {comp bornY::b:p::p, comp label11::b:p::p, comp bornM::b:p::p, comp label12::b:p::p, comp bornD::b:p::p, comp label13::b:p::p}}, space :::p, par b {comp label10::b:p::p, comp licenseY::b:p::p, comp label14::b:p::p, comp licenseM::b:p::p, comp label15::b:p::p, comp licenseD::b:p::p, comp label16::b:p::p}, space ::30:x, comp saveButton:::p::p, space :::p, comp modifyButton:::p::p, space :::p, comp cancelButton:::p::p, space :::p}}"
+			} ) {
+				name: "panel2"
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "saveButton"
+					"text": "保存"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "saveButtonMouseClicked", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "modifyButton"
+					"text": "修改"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "modifyButtonMouseClicked", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "cancelButton"
+					"text": "取消"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "cancelButtonMouseClicked", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "姓名"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label4"
+					"text": "编号"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label5"
+					"text": "身份证号"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label6"
+					"text": "性别"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label7"
+					"text": "联系电话"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label8"
+					"text": "工作状态"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label9"
+					"text": "出生日期"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "name"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "num"
+					"editable": false
+					"text": "保存后生成"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "id"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "gender"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "phone"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "status"
+					"editable": false
+					"text": "空闲"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "bornY"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "licenseY"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label10"
+					"text": "驾驶证期限"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label11"
+					"text": "年"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "bornM"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label12"
+					"text": "月"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "bornD"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label13"
+					"text": "日"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label14"
+					"text": "年"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "licenseM"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label15"
+					"text": "月"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "licenseD"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label16"
+					"text": "日"
+				} )
+			}, new FormLayoutConstraints( null ) {
+				"title": "司机详细信息"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 385 )
+			"size": new java.awt.Dimension( 800, 370 )
+		} )
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "dialog1"
+			"title": "提示"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {par l {seq {space :p:55:p, comp label1:::p::p}, seq l {space :p:101:p, par l {comp cancelSureButton:::p::p, comp notCancelButton:::p::p}}}, space ::60:x}, seq t {space :0:88:x, comp label2:::p::p, space :p:87:p}}"
+				"$verticalGroup": "par l {seq l {space :p:42:p, comp label1:::p:26:p, space :::p, comp label2:::p::p, space :::p, comp cancelSureButton:::p::p, space u:::p, comp notCancelButton:::p::p, space :::x}}"
+			} ) {
+				name: "cancelDialog"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "取消后本次编辑将不能生效"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "是否确认取消？"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "cancelSureButton"
+					"text": "是"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "cancelSureButtonMouseClicked", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "notCancelButton"
+					"text": "否"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "notCancelButtonMouseReleased", true ) )
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 805, 450 )
+			"size": new java.awt.Dimension( 275, 200 )
+		} )
+	}
+}
