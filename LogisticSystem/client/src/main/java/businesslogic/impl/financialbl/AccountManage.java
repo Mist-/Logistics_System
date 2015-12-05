@@ -25,7 +25,7 @@ public class AccountManage {
 	}
 	
 	public ResultMessage acIdentity(String name, String password) {
-		//please realize the methord
+		
 		return ResultMessage.SUCCESS;
 	}
     public ArrayList<AccountVO> searchAllAccounts (){
@@ -81,14 +81,14 @@ public class AccountManage {
 		return account;
 	}
 
-	public ResultMessage changeAccount(String name, double money) {
-		AccountPO po=new AccountPO(name, money);
+	public ResultMessage changeAccount(AccountVO accountVO) {
+		
 		try {
-			financialDataService.modify(po);
+			financialDataService.modify(accountVO);
 			
 		} catch (RemoteException e) {
 			e.printStackTrace();
-			return ResultMessage.FAILED;
+			
 		}
 		return null;
 	}

@@ -112,8 +112,8 @@ public class FinancialBLController implements FinancialBLService {
 	}
 
 	@Override
-	public ResultMessage changeAccount(String name, double money) {
-		return accountManage.changeAccount(name, money);
+	public ResultMessage changeAccount(AccountVO accountVO) {
+		return accountManage.changeAccount(accountVO);
 	}
 
 	@Override

@@ -172,6 +172,7 @@ public class FINANCE extends JFrame {
         data.clear();
         for (AccountVO accountVO: accounts) {
             Vector<Object> row = new Vector<>();
+            row.add(accountVO.getAccountNum());
             row.add(accountVO.getName());
             row.add(accountVO.getMoney());
             data.add(row);
@@ -189,6 +190,7 @@ public class FINANCE extends JFrame {
         AccountVO account = financialBL.addAccount(name, money);
         Vector data = ((DefaultTableModel) tableAccounts.getModel()).getDataVector();
         Vector<Object> row = new Vector<>();
+        row.add(account.getAccountNum());
         row.add(account.getName());
         row.add(account.getMoney());
         data.add(row);
@@ -196,13 +198,31 @@ public class FINANCE extends JFrame {
         tableAccounts.repaint();
 	}
 
-	 //ZHGL 修改账户
+	 //ZHGL 修改账户,在JTable中修改后会
 	private void btModifyMouseReleased(MouseEvent e) {
 		//please add the change
+		Vector data = ((DefaultTableModel) tableAccounts.getModel()).getDataVector();
+//		//1、获得你选中的单元格所在的行和列，取消他的编辑状态
+//		int columnId = tableAccounts.getSelectedColumn();
+//		 int rowId = tableAccounts.getSelectedRow();
+//		 CellEditor ce = tableAccounts.getCellEditor(rowId, columnId);
+//		 ce.stopCellEditing();
+//		//以上是百度的，不知道啥用
+//		// 2、获得你修改后的值和当前值的列名
+		 String name = (String)((Vector<Object>)data.get(tableAccounts.getSelectedRow())).get(1);
+	     double money = (Double)((Vector<Object>)data.get(tableAccounts.getSelectedRow())).get(2);   
+	     
+//	     AccountVO accountVO = new AccountVO();
+//	     accountVO
+//	    		 financialBL.changeAccount(name, money);
+//	     Vector<Object> row = new Vector<>();
+//	        
+
+	     
+		 
 		
-		
-		
-		
+		tableAccounts.updateUI();
+	    tableAccounts.repaint();
 		
 		
 	}
@@ -415,6 +435,11 @@ public class FINANCE extends JFrame {
 		panelMain = new JPanel();
 		pnZJGL = new JPanel();
 		tabbedPane4 = new JTabbedPane();
+		panel1 = new JPanel();
+		btAddP = new JButton();
+		scrollPane15 = new JScrollPane();
+		tablePayment = new JTable();
+		btPExcel = new JButton();
 		scrollPane14 = new JScrollPane();
 		panel3 = new JPanel();
 		btDate = new JButton();
@@ -427,11 +452,6 @@ public class FINANCE extends JFrame {
 		lbAll = new JLabel();
 		lbTotal = new JLabel();
 		btRExcel = new JButton();
-		panel1 = new JPanel();
-		btAddP = new JButton();
-		scrollPane15 = new JScrollPane();
-		tablePayment = new JTable();
-		btPExcel = new JButton();
 		pnTJBB = new JPanel();
 		tpCost = new JTabbedPane();
 		scrollPane5 = new JScrollPane();
@@ -671,6 +691,59 @@ public class FINANCE extends JFrame {
 			//======== tabbedPane4 ========
 			{
 
+				//======== panel1 ========
+				{
+
+					//---- btAddP ----
+					btAddP.setIcon(new ImageIcon(getClass().getResource("/icons/new_24x24.png")));
+					btAddP.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							button1MouseReleased(e);
+						}
+					});
+
+					//======== scrollPane15 ========
+					{
+						scrollPane15.setViewportView(tablePayment);
+					}
+
+					//---- btPExcel ----
+					btPExcel.setText("\u5bfc\u51fa");
+					btPExcel.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							btPExcelMouseReleased(e);
+						}
+					});
+
+					GroupLayout panel1Layout = new GroupLayout(panel1);
+					panel1.setLayout(panel1Layout);
+					panel1Layout.setHorizontalGroup(
+						panel1Layout.createParallelGroup()
+							.addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+								.addComponent(scrollPane15, GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addGroup(panel1Layout.createParallelGroup()
+									.addComponent(btAddP, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+									.addComponent(btPExcel))
+								.addGap(22, 22, 22))
+					);
+					panel1Layout.setVerticalGroup(
+						panel1Layout.createParallelGroup()
+							.addGroup(panel1Layout.createSequentialGroup()
+								.addContainerGap()
+								.addComponent(btAddP)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+								.addComponent(btPExcel)
+								.addContainerGap(170, Short.MAX_VALUE))
+							.addGroup(panel1Layout.createSequentialGroup()
+								.addComponent(scrollPane15, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE)
+								.addGap(0, 1, Short.MAX_VALUE))
+					);
+				}
+				tabbedPane4.addTab("\u4ed8\u6b3e\u5355", panel1);
+
 				//======== scrollPane14 ========
 				{
 
@@ -769,59 +842,6 @@ public class FINANCE extends JFrame {
 					scrollPane14.setViewportView(panel3);
 				}
 				tabbedPane4.addTab("\u6536\u6b3e\u5355", scrollPane14);
-
-				//======== panel1 ========
-				{
-
-					//---- btAddP ----
-					btAddP.setIcon(new ImageIcon(getClass().getResource("/icons/new_24x24.png")));
-					btAddP.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							button1MouseReleased(e);
-						}
-					});
-
-					//======== scrollPane15 ========
-					{
-						scrollPane15.setViewportView(tablePayment);
-					}
-
-					//---- btPExcel ----
-					btPExcel.setText("\u5bfc\u51fa");
-					btPExcel.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							btPExcelMouseReleased(e);
-						}
-					});
-
-					GroupLayout panel1Layout = new GroupLayout(panel1);
-					panel1.setLayout(panel1Layout);
-					panel1Layout.setHorizontalGroup(
-						panel1Layout.createParallelGroup()
-							.addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-								.addComponent(scrollPane15, GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
-								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(panel1Layout.createParallelGroup()
-									.addComponent(btAddP, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-									.addComponent(btPExcel))
-								.addGap(22, 22, 22))
-					);
-					panel1Layout.setVerticalGroup(
-						panel1Layout.createParallelGroup()
-							.addGroup(panel1Layout.createSequentialGroup()
-								.addContainerGap()
-								.addComponent(btAddP)
-								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-								.addComponent(btPExcel)
-								.addContainerGap(170, Short.MAX_VALUE))
-							.addGroup(panel1Layout.createSequentialGroup()
-								.addComponent(scrollPane15, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE)
-								.addGap(0, 1, Short.MAX_VALUE))
-					);
-				}
-				tabbedPane4.addTab("\u4ed8\u6b3e\u5355", panel1);
 			}
 
 			GroupLayout pnZJGLLayout = new GroupLayout(pnZJGL);
@@ -1287,6 +1307,11 @@ public class FINANCE extends JFrame {
 	private JPanel panelMain;
 	private JPanel pnZJGL;
 	private JTabbedPane tabbedPane4;
+	private JPanel panel1;
+	private JButton btAddP;
+	private JScrollPane scrollPane15;
+	private JTable tablePayment;
+	private JButton btPExcel;
 	private JScrollPane scrollPane14;
 	private JPanel panel3;
 	private JButton btDate;
@@ -1299,11 +1324,6 @@ public class FINANCE extends JFrame {
 	private JLabel lbAll;
 	private JLabel lbTotal;
 	private JButton btRExcel;
-	private JPanel panel1;
-	private JButton btAddP;
-	private JScrollPane scrollPane15;
-	private JTable tablePayment;
-	private JButton btPExcel;
 	private JPanel pnTJBB;
 	private JTabbedPane tpCost;
 	private JScrollPane scrollPane5;
