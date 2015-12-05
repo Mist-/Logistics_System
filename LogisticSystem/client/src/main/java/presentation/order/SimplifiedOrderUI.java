@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
+import javax.swing.table.TableColumn;
 
 /**
  * @author mist
@@ -22,6 +23,10 @@ public class SimplifiedOrderUI extends JFrame {
     }
 
     private void btOrderMngMouseClicked(MouseEvent e) {
+        btOrderMng.setSelected(true);
+    }
+
+    private void btSearchMouseReleased(MouseEvent e) {
         if (!textOrderNum.getText().matches("[0-9]*") || textOrderNum.getText().length() != 10) {
             JOptionPane.showMessageDialog(this, "订单号必须是由0-9组成的10位数字", "LCS物流管理系统", JOptionPane.INFORMATION_MESSAGE);
             textOrderNum.requestFocus();
@@ -71,6 +76,12 @@ public class SimplifiedOrderUI extends JFrame {
                 btSearch.setIcon(new ImageIcon("D:\\DATA\\Project\\GUI\\resources\\search_16x16.png"));
                 btSearch.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
                 btSearch.setText("Search");
+                btSearch.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+                        btSearchMouseReleased(e);
+                    }
+                });
 
                 //---- lbOrderNum ----
                 lbOrderNum.setText("\u8ba2\u5355\u7f16\u53f7\uff1a");
@@ -227,6 +238,17 @@ public class SimplifiedOrderUI extends JFrame {
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
         textLogisticsInfo.setEditable(false);
+
+
+        // 设置表格抬头
+        String names[] = { "订单号", "日期", "寄件人", "收件人", "电话", "地址" };
+
+        for (int i = 0; i < names.length; i++) {
+            tbOrderInfo.addColumn(new TableColumn(i));
+            tbOrderInfo.getColumnModel().getColumn(i).setHeaderValue(names[i]);
+        }
+        tbOrderInfo.setRowHeight(50);
+        tbOrderInfo.setCellEditor(null);
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables

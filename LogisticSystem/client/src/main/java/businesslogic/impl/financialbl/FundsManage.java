@@ -230,7 +230,7 @@ public class FundsManage {
 	}
 	
 	public ResultMessage printPayment(ArrayList<PaymentVO> payList) {
-		try{
+		/*try{
 
 		//打开文件
 
@@ -286,7 +286,7 @@ public class FundsManage {
 
 		System.out.println(e);
 
-		}
+		}*/
 		return null;
 	}
 	public ArrayList<ReceiptVO> checkFromAddress(String institution) {
@@ -355,7 +355,7 @@ public class FundsManage {
 		
 	}
 	public ResultMessage printReceipt(ArrayList<ReceiptVO> recList) {
-		try{
+		/*try{
 
 			//打开文件
 
@@ -411,7 +411,7 @@ public class FundsManage {
 
 			System.out.println(e);
 
-			}
+			}*/
 		return null;
 	}
 	public FundsManage(){

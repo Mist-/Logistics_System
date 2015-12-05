@@ -33,6 +33,7 @@ new FormModel {
 						"icon": new com.jformdesigner.model.SwingIcon( 1, "D:\\DATA\\Project\\GUI\\resources\\search_16x16.png" )
 						"font": #Font0
 						"text": "Search"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btSearchMouseReleased", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "lbOrderNum"
