@@ -77,6 +77,20 @@ public class Order {
         return result;
     }
 
+    public ArrayList<String> getCityList() {
+        ArrayList<String> result = new ArrayList<>();
+        DataService ds = utils.DataServiceFactory.getDataServiceByType(DataType.CompanyDataService);
+        try {
+            for (DataPO dataPO: ds.getPOList(POType.CITYINFO)) {
+                result.add(((CityInfoPO) dataPO).getName());
+            }
+        } catch (RemoteException e) {
+            System.err.println("获取城市列表时网络连接失败");
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     /**
      * 根据地址，解析出目标营业厅地址
      *
@@ -151,8 +165,38 @@ public class Order {
         return (int) time;
     }
 
+    /**
+     * 根据订单信息产生订单号
+     *
+     * @param orderVO 需要计算费用的订单号
+     * @return 计算出的费用
+     */
     public double generateFee(OrderVO orderVO) {
         return 0;
+    }
+
+    public ArrayList<String> getBlockByCity(String city) {
+        CompanyDataService ds = (CompanyDataService) DataServiceFactory.getDataServiceByType(DataType.CompanyDataService);
+        CityInfoPO cityInfo = null;
+        try {
+            cityInfo = (CityInfoPO) ds.searchCity(city);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        if (cityInfo == null) {
+            ArrayList<String> res = new ArrayList<>();
+            res.add("暂时无法获取分区信息");
+        }
+        ArrayList<String> result = new ArrayList<>();
+        for (long bosn: cityInfo.getBusinessOfficeList()) {
+            try {
+                result.add(((InstitutionPO) ds.search(POType.INSTITUTION, bosn)).getName());
+            } catch (RemoteException e) {
+                System.err.println("网络连接错误。无法获取城区信息 - " + Calendar.getInstance().getTime());
+                e.printStackTrace();
+            }
+        }
+        return result;
     }
 
     /**

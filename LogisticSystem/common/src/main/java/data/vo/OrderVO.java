@@ -10,6 +10,9 @@ import utils.Timestamper;
  * Created by Mouse on 2015/10/23 0023.
  */
 public class OrderVO {
+
+    public OrderVO(){}
+
     public String date;
     // 收/寄件人信息，s开头表示寄件人（sender），r开头表示收件人（receiver）
     public String sname, saddress, scompany, sphone,
