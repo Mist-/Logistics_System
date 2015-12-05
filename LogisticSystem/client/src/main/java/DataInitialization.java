@@ -1,19 +1,19 @@
-import businesslogic.impl.user.CityInfo;
+
 import data.enums.DataType;
+import data.enums.UserRole;
 import data.factory.DataServiceFactory;
-import data.po.CityInfoPO;
-import data.po.InstitutionPO;
+import data.po.StaffPO;
 import data.service.CompanyDataService;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 
 /**
+ *
  * Created by mist on 2015/12/5 0005.
  */
 public class DataInitialization {
     public static void main(String[] args) {
-        CityInfoPO[] city = new CityInfoPO[4];
+        /*CityInfoPO[] city = new CityInfoPO[4];
         city[0] = new CityInfoPO(025);
         city[0].setName("南京");
         city[0].addBusinessOffice(1002500001);
@@ -108,9 +108,9 @@ public class DataInitialization {
         institution[18].setTargetCenter(10020);
         institution[19] = new InstitutionPO(10020);
         institution[19].setName("北京市");
-
+        */
         CompanyDataService companyDataService = (CompanyDataService) DataServiceFactory.getDataServiceByType(DataType.CompanyDataService);
-
+/*
         try {
             for (CityInfoPO cityInfoPO: city) {
                 companyDataService.add(cityInfoPO);
@@ -118,6 +118,69 @@ public class DataInitialization {
             for (InstitutionPO institutionPO: institution) {
                 companyDataService.add(institutionPO);
             }
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+   */
+
+        StaffPO staff1 = new StaffPO();
+        staff1.setSerialNum(10000);
+        staff1.setName("孙九日");
+        staff1.setGender(false);
+        staff1.setInstitution(1002100001);
+        staff1.setUserRole(UserRole.快递员);
+
+        StaffPO staff2 = new StaffPO();
+        staff2.setSerialNum(10001);
+        staff2.setName("孙九日");
+        staff2.setGender(false);
+        staff2.setInstitution(1002100001);
+        staff2.setUserRole(UserRole.营业厅业务员);
+
+        StaffPO staff3 = new StaffPO();
+        staff3.setSerialNum(10002);
+        staff3.setName("孙九日");
+        staff3.setGender(false);
+        staff3.setInstitution(10021);
+        staff3.setUserRole(UserRole.中转中心业务员);
+
+        StaffPO staff4 = new StaffPO();
+        staff4.setSerialNum(10003);
+        staff4.setName("孙九日");
+        staff4.setGender(false);
+        staff4.setInstitution(10021);
+        staff4.setUserRole(UserRole.仓库管理员);
+
+        StaffPO staff5 = new StaffPO();
+        staff5.setSerialNum(10004);
+        staff5.setName("孙九日");
+        staff5.setGender(false);
+        staff5.setInstitution(10021);
+        staff5.setUserRole(UserRole.财务人员);
+
+        StaffPO staff6 = new StaffPO();
+        staff6.setSerialNum(10005);
+        staff6.setName("孙九日");
+        staff6.setGender(false);
+        staff6.setInstitution(10021);
+        staff6.setUserRole(UserRole.总经理);
+
+        StaffPO staff7 = new StaffPO();
+        staff7.setSerialNum(10006);
+        staff7.setName("孙九日");
+        staff7.setGender(false);
+        staff7.setInstitution(10021);
+        staff7.setUserRole(UserRole.系统管理员);
+
+        try {
+            companyDataService.add(staff1);
+            companyDataService.add(staff2);
+            companyDataService.add(staff3);
+            companyDataService.add(staff4);
+            companyDataService.add(staff5);
+            companyDataService.add(staff6);
+            companyDataService.add(staff7);
+
         } catch (RemoteException e) {
             e.printStackTrace();
         }
