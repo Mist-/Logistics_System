@@ -89,6 +89,7 @@ public class LCSClient extends JFrame{
                 TransferCenterFrame transferUI = new TransferCenterFrame(loginMessage);
                 transferUI.setVisible(true);
             }
+            //hehe
         }
     }
 }
