@@ -23,8 +23,8 @@ import businesslogic.service.Transfer.hall.TransferCenterService;
 public class TransferCenterFrame extends JFrame {
 	
 	TransferCenterService transferCenter;
-	TransferReceivePanel receivePanel;
-	TransferLoadPanel loadPanel;
+	TransferReceivePanel receivePanel;//中转接收面板
+	TransferLoadPanel loadPanel;//装运管理面板
 	
 	public static void main(String[] args) {
 		TransferCenterFrame centerUI = new TransferCenterFrame(new LoginMessage(ResultMessage.SUCCESS, 100000));
@@ -41,10 +41,8 @@ public class TransferCenterFrame extends JFrame {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		
-		
 		initComponents();
-		transferReceiveStart();
+		transferReceiveStart();//默认显示中转接收界面
 		this.setVisible(true);
 	}
 	

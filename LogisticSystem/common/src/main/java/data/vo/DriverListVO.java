@@ -11,4 +11,8 @@ public class DriverListVO {
 	public DriverListVO(String[][] info){
 		this.info = info;
 	}
+	
+	public int getIDRow(){
+		return 1;
+	}
 }

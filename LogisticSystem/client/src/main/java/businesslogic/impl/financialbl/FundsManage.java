@@ -17,10 +17,10 @@ import java.util.ArrayList;
 
 
 
-import jxl.Workbook;
-import jxl.write.Label;
-import jxl.write.WritableSheet;
-import jxl.write.WritableWorkbook;
+//import jxl.Workbook;
+//import jxl.write.Label;
+//import jxl.write.WritableSheet;
+//import jxl.write.WritableWorkbook;
 import utils.Timestamper;
 import businesslogic.impl.company.SalaryManageBLImpl;
 import data.enums.DataType;
@@ -289,7 +289,6 @@ public class FundsManage {
 		}
 		return null;
 	}
-
 	public ArrayList<ReceiptVO> checkFromAddress(String institution) {
 	
 		receiptVOList = new ArrayList<ReceiptVO>();
@@ -355,7 +354,6 @@ public class FundsManage {
 		return sum;
 		
 	}
-	
 	public ResultMessage printReceipt(ArrayList<ReceiptVO> recList) {
 		try{
 
@@ -416,7 +414,6 @@ public class FundsManage {
 			}
 		return null;
 	}
-
 	public FundsManage(){
 		transferDataService = (TransferDataService) DataServiceFactory.getDataServiceByType(DataType.TransferDataService);
 		financialDataService = (FinancialDataService) DataServiceFactory.getDataServiceByType(DataType.FinancialDataService);

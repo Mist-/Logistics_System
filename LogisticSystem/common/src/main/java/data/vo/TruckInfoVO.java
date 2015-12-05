@@ -3,11 +3,14 @@ package data.vo;
 import data.po.VehicleInfoPO;
 
 public class TruckInfoVO {
-	   String ID;
-	   String license;
+	   public String ID;
+	   public String license;
 	    // Format: yyyy/mm/dd
-	    String dutyDate;
-	    String engaged;
+	    public String dutyDate;
+	    public String year;
+	    public String month;
+	    public String day;
+	    public String engaged;
 	    
 	    
 	public TruckInfoVO(VehicleInfoPO po){
@@ -15,5 +18,9 @@ public class TruckInfoVO {
 		license = po.getLicense();
 		dutyDate = po.getDutyDate();
 		engaged = po.getEngagedString();
+		String[] date = dutyDate.split("/");
+		year = date[0];
+		month = date[1];
+		day = date[2];
 	}
 }

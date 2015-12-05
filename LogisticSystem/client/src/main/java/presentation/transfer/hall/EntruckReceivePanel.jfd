@@ -16,11 +16,12 @@ new FormModel {
 						name: "scrollPane2"
 						add( new FormComponent( "javax.swing.JTable" ) {
 							name: "arrivalTable"
+							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "arrivalTableMouseClicked", true ) )
 						} )
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "selectArrival"
-						"text": "text"
+						"text": "查看"
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "selectArrivalMouseClicked", true ) )
 					} )
 				}, new FormLayoutConstraints( null ) {
@@ -56,7 +57,7 @@ new FormModel {
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "searchListMouseClicked", true ) )
 					} )
 				}, new FormLayoutConstraints( null ) {
-					"title": "searchList"
+					"title": "搜索运输单"
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"
@@ -108,10 +109,6 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "cancelArrival"
 					"text": "取消"
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "cancelArrivalMouseClicked", true ) )
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "cancelArrivalMouseClicked", true ) )
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "cancelArrivalMouseClicked", true ) )
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "cancelArrivalMouseClicked", true ) )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "cancelArrivalMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
@@ -207,6 +204,39 @@ new FormModel {
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 850, 70 )
 			"size": new java.awt.Dimension( 280, 200 )
+		} )
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "cancelDialog"
+			"title": "提示"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {par l {seq {space :p:55:p, comp label8:::p::p}, seq l {space :p:101:p, par l {comp cancelSureButton:::p::p, comp notCancelButton:::p::p}}}, space ::60:x}, seq t {space :0:88:x, comp label9:::p::p, space :p:87:p}}"
+				"$verticalGroup": "par l {seq l {space :p:42:p, comp label8:::p:26:p, space :::p, comp label9:::p::p, space :::p, comp cancelSureButton:::p::p, space u:::p, comp notCancelButton:::p::p, space :::x}}"
+			} ) {
+				name: "panel"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label8"
+					"text": "取消后本次编辑将不能生效"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label9"
+					"text": "是否确认取消？"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "cancelSureButton"
+					"text": "是"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "cancelSureButtonMouseClicked", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "notCancelButton"
+					"text": "否"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "notCancelButtonMouseReleased", true ) )
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"size": new java.awt.Dimension( 275, 200 )
+			"location": new java.awt.Point( 0, 1105 )
 		} )
 	}
 }

@@ -8,4 +8,8 @@ public class TruckListVO {
 	public TruckListVO(String[][] info) {
 		this.info = info;
 	}
+	
+	public int getIDRow(){
+		return 0;
+	}
 }

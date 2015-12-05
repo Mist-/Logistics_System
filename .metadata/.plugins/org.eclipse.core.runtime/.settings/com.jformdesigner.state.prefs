@@ -1,4 +1,11 @@
+designer/forms/paletteexpanded-1819101530=components,containers,windows
+designer/forms/selection-132376639=doArrive
+designer/forms/selection-1819101530=dialog1
+designer/forms/selection-395956753=notCancelButton
+designer/forms/selection1338596979=driverButton
 designer/forms/selection504548227=operatePane
+designer/newcontainer.layoutmanager=org.jdesktop.layout.GroupLayout
+designer/properties.expanded.events=true
 eclipse.preferences.version=1
 lookandfeel=com.sun.java.swing.plaf.windows.WindowsLookAndFeel
 updates.infoshown=true

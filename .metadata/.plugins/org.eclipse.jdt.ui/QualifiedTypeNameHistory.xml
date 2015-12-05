@@ -1,2 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="data.vo.DriverListVO"/>
+<fullyQualifiedTypeName name="java.lang.Long"/>
+<fullyQualifiedTypeName name="data.vo.DriverInfoVO"/>
+<fullyQualifiedTypeName name="presentation.transfer.hall.DriverPanel"/>
+<fullyQualifiedTypeName name="javax.naming.spi.DirStateFactory.Result"/>
+<fullyQualifiedTypeName name="org.junit.experimental.results.ResultMatchers"/>
+<fullyQualifiedTypeName name="data.vo.TruckListVO"/>
+<fullyQualifiedTypeName name="data.vo.TruckInfoVO"/>
+<fullyQualifiedTypeName name="businesslogic.service.Transfer.hall.TruckManagementService"/>
+<fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="data.message.ResultMessage"/>
+<fullyQualifiedTypeName name="org.junit.internal.builders.NullBuilder"/>
+<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+</qualifiedTypeNameHistroy>

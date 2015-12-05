@@ -29,11 +29,11 @@ public class EntruckPO extends DataPO{
     long    transID,    // 运转单编号
             destID,     // 目标单位的编号
             vehicleID,  // 车辆编号
-            escortID,   // 押运员ID
+            escortID,   // 押运员ID//司机
     		from;		//出发地ID
     
-    String 	monitorName,
-    		escortName,
+    String 	monitorName,//监装员 同staff
+    		escortName,//押运员 （司机）
     		destName;
     
     double fee;

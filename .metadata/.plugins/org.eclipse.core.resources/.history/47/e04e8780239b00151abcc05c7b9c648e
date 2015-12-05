@@ -1,0 +1,56 @@
+JFDML JFormDesigner: "5.2.2.0.199" Java: "1.8.0_31" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+				name: "driverListPane"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {comp scrollPane1:::p:688:p, space :::p, par l {comp addDriverButton::::91:x, comp showDriverButton::::91:x}, space :::p}}"
+					"$verticalGroup": "par l {comp scrollPane1::::346:x, seq t {space ::284:x, comp showDriverButton:::p::p, space :::p, comp addDriverButton:::p::p, space :::p}}"
+				} ) {
+					name: "panel1"
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane1"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "driverTable"
+							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "driverTableMouseClicked", true ) )
+						} )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "addDriverButton"
+						"text": "添加"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "showDriverButton"
+						"text": "查看"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "showDriverButtonMouseClicked", true ) )
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "司机列表"
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 800, 375 )
+		} )
+		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+			name: "driverPane"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {space :0:795:x}"
+				"$verticalGroup": "par l {space :0:341:x}"
+			} ) {
+				name: "panel2"
+			}, new FormLayoutConstraints( null ) {
+				"title": "司机详细信息"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 385 )
+			"size": new java.awt.Dimension( 800, 370 )
+		} )
+	}
+}

@@ -50,13 +50,13 @@ public class TransferReceivePanel extends JPanel {
 	}
 
 	private void selectArrivalMouseClicked(MouseEvent e) {
-//		int row = arriveListTabble.getSelectedRow();
-//		arriveListTabble.remove(row);
-//		arriveListTabble.updateUI();
-//		String info = (String) arriveListTabble.getValueAt(row, 0);
-//		long id = Long.parseLong(info);
-//		arrival = transferReceive.chooseArrival(id);
-//		
+		int row = arriveListTabble.getSelectedRow();
+		arriveListTabble.remove(row);//Õâ¾ä´íµÄ£¡£¡£¡
+		arriveListTabble.updateUI();
+		String info = (String) arriveListTabble.getValueAt(row, 0);
+		long id = Long.parseLong(info);
+		arrival = transferReceive.chooseArrival(id);
+		
 		setArrivalVO();
 		remove(startPane);
 		add(arrivalVO);
