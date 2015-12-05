@@ -8,7 +8,6 @@ public class ReceiptVO {
 	long id;
 	double money;
 	String date;
-	String courierName;
 	String people;
 	String institution;
 	String address;
@@ -49,14 +48,6 @@ public class ReceiptVO {
 
 	public void setDate(String date) {
 		this.date = date;
-	}
-
-	public String getCourierName() {
-		return courierName;
-	}
-
-	public void setCourierName(String courierName) {
-		this.courierName = courierName;
 	}
 
 	public String getPeople() {

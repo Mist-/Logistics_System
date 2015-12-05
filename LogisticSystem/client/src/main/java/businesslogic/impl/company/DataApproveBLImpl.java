@@ -204,7 +204,7 @@ public class DataApproveBLImpl implements DataApproveBLService {
             ReceiptPO receiptPO = (ReceiptPO) dataService.search(POType.RECEIPT,receiptVO.getId());
             receiptPO.setMoney(receiptVO.getMoney());
             receiptPO.setDate(receiptVO.getDate());
-            receiptPO.setSender(receiptVO.getCourierName());
+            receiptPO.setSender(receiptVO.getSender());
             resultMessage = ResultMessage.SUCCESS;
         } catch (RemoteException e) {
             System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());

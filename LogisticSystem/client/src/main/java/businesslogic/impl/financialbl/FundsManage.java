@@ -1,5 +1,6 @@
 package businesslogic.impl.financialbl;
 
+import java.io.File;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -15,6 +16,11 @@ import java.util.ArrayList;
 
 
 
+
+import jxl.Workbook;
+import jxl.write.Label;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
 import utils.Timestamper;
 import businesslogic.impl.company.SalaryManageBLImpl;
 import data.enums.DataType;
@@ -85,7 +91,7 @@ public class FundsManage {
 					receipt = (ReceiptPO) po;
 					receiptVO = new ReceiptVO(); 
 					receiptVO.setAddress(receipt.getInstitution());
-					receiptVO.setCourierName(receipt.getSender());
+					receiptVO.setPeople(receipt.getSender());
 					receiptVO.setDate(receipt.getDate());
 					receiptVO.setInstitution(receipt.getInstitution());
 					receiptVO.setMoney(receipt.getMoney());
@@ -223,28 +229,67 @@ public class FundsManage {
 		
 	}
 	
-	public ResultMessage printPayment(String info) {
-		// print Excel
+	public ResultMessage printPayment(ArrayList<PaymentVO> payList) {
+		try{
+
+		//打开文件
+
+		WritableWorkbook book = Workbook.createWorkbook(new File("付款单.xls"));
+
+		//生成名为“第一页”的工作表，参数0表示这是第一页
+
+		WritableSheet sheet = book.createSheet("第一页",0);
+
+		//在Label对象的构造子中指名单元格位置是第一列第一行(0,0)
+    	//将定义好的单元格添加到工作表中
+	   Label label = new Label(0,0,"付款日期");
+	   sheet.addCell(label);
+       label = new Label(1,0,"付款金额");
+       sheet.addCell(label);
+       label = new Label(2,0,"付款人");
+       sheet.addCell(label);
+       label = new Label(3,0,"付款账号");
+       sheet.addCell(label);
+       label = new Label(4,0,"条目");
+       sheet.addCell(label);
+       label = new Label(5,0,"备注");
+       sheet.addCell(label);
+		
+       //其中i表示列，j表示行
+       
+       for(PaymentVO pay:payList){
+    	   for(int j = 1;j <= payList.size();j++){
+    		   label = new Label(0,j,pay.getDate());
+               sheet.addCell(label);
+               label = new Label(1,j,Double.toString(pay.getMoney()));
+               sheet.addCell(label);
+               label = new Label(2,j,pay.getName());
+               sheet.addCell(label);
+               label = new Label(3,j,pay.getAccount());
+               sheet.addCell(label);
+               label = new Label(4,j,pay.getInfo());
+               sheet.addCell(label);
+               label = new Label(5,j,pay.getExInfo());
+               sheet.addCell(label);
+    	   }
+    	   
+       }
+		//写入数据并关闭文件
+
+		book.write();
+
+		book.close();
+
+		}catch(Exception e)
+
+		{
+
+		System.out.println(e);
+
+		}
 		return null;
 	}
 
-//	public ResultMessage recordRecDate(String info) {
-//		return null;
-//	}
-//
-//	public ResultMessage recordRecMoney(String info) {
-//		return null;
-//	}
-
-//	public double total(double[] po){
-//		double sum=0;
-//		for(int i=0;i<po.length;i++)
-//		sum += po[i];
-//		
-//		return sum;
-//		
-//	}
-	
 	public ArrayList<ReceiptVO> checkFromAddress(String institution) {
 	
 		receiptVOList = new ArrayList<ReceiptVO>();
@@ -255,7 +300,7 @@ public class FundsManage {
 				receipt = (ReceiptPO) po;
 				receiptVO = new ReceiptVO(); 
 				receiptVO.setAddress(receipt.getInstitution());
-				receiptVO.setCourierName(receipt.getSender());
+				receiptVO.setPeople(receipt.getSender());
 				receiptVO.setDate(receipt.getDate());
 				receiptVO.setInstitution(receipt.getInstitution());
 				receiptVO.setMoney(receipt.getMoney());
@@ -281,7 +326,7 @@ public class FundsManage {
 				receipt = (ReceiptPO) po;
 				receiptVO = new ReceiptVO(); 
 				receiptVO.setAddress(receipt.getInstitution());
-				receiptVO.setCourierName(receipt.getSender());
+				receiptVO.setPeople(receipt.getSender());
 				receiptVO.setDate(receipt.getDate());
 				receiptVO.setInstitution(receipt.getInstitution());
 				receiptVO.setMoney(receipt.getMoney());
@@ -311,21 +356,67 @@ public class FundsManage {
 		
 	}
 	
-	public ResultMessage printReceipt(String info) {
+	public ResultMessage printReceipt(ArrayList<ReceiptVO> recList) {
+		try{
+
+			//打开文件
+
+			WritableWorkbook book = Workbook.createWorkbook(new File("收款单.xls"));
+
+			//生成名为“第一页”的工作表，参数0表示这是第一页
+
+			WritableSheet sheet = book.createSheet("第一页",0);
+
+			//在Label对象的构造子中指名单元格位置是第一列第一行(0,0)
+	    	//将定义好的单元格添加到工作表中
+		   Label label = new Label(0,0,"收款日期");
+		   sheet.addCell(label);
+	       label = new Label(1,0,"收款单位");
+	       sheet.addCell(label);
+	       label = new Label(2,0,"收款人");
+	       sheet.addCell(label);
+	       label = new Label(3,0,"收款方");
+	       sheet.addCell(label);
+	       label = new Label(4,0,"收款金额");
+	       sheet.addCell(label);
+	       label = new Label(5,0,"收款地点");
+	       sheet.addCell(label);
+			
+	       //其中i表示列，j表示行
+	       
+	       for(ReceiptVO rec:recList){
+	    	   for(int j = 1;j <= recList.size();j++){
+	    		   label = new Label(0,j,rec.getDate());
+	               sheet.addCell(label);
+	               label = new Label(1,j,rec.getInstitution());
+	               sheet.addCell(label);
+	               label = new Label(2,j,rec.getPeople());
+	               sheet.addCell(label);
+	               label = new Label(3,j,rec.getSender());
+	               sheet.addCell(label);
+	               label = new Label(4,j,Double.toString(rec.getMoney()));
+	               sheet.addCell(label);
+	               label = new Label(5,j,rec.getAddress());
+	               sheet.addCell(label);
+	    	   }
+	    	   
+	       }
+			//写入数据并关闭文件
+
+			book.write();
+
+			book.close();
+
+			}catch(Exception e)
+
+			{
+
+			System.out.println(e);
+
+			}
 		return null;
 	}
 
-//	public double[] addReciptItem(MockReceiptPO receiptPO) {
-//		po1[i]=receiptPO.getPrice();
-//		i++;
-//		return po1;
-//	}
-//	public double[] addPaymentItem(MockPaymentPO paymentPO) {
-//		po2[j]=paymentPO.getPrice();
-//		j++;
-//		return po2;
-//	}
-	
 	public FundsManage(){
 		transferDataService = (TransferDataService) DataServiceFactory.getDataServiceByType(DataType.TransferDataService);
 		financialDataService = (FinancialDataService) DataServiceFactory.getDataServiceByType(DataType.FinancialDataService);

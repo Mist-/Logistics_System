@@ -68,7 +68,7 @@ public interface FinancialBLService {
     
     PaymentVO buildPaymentFromWages(PaymentVO pay,String institution);
     
-    ResultMessage printPayment(String info);
+    ResultMessage printPayment(ArrayList<PaymentVO> payList);
 
 //    ResultMessage recordRecDate (String info);
 //
@@ -80,7 +80,7 @@ public interface FinancialBLService {
     
     double total (ArrayList<ReceiptVO> re);
     
-    ResultMessage printReceipt (String info);
+    ResultMessage printReceipt (ArrayList<ReceiptVO> recList);
 
     void endFinancial();
 

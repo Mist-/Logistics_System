@@ -103,8 +103,8 @@ new FormModel {
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 					name: "scrollPane14"
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq l {comp scrollPane16:::p:622:p, space u:::p, par l {seq {par l {comp textAddress:::::x, comp btAddress::l:::x, comp textDate::l:::x, comp btDate::l:::x, comp label15::l:::x}, space :p:95:p}, seq {comp lbAll:::p::p, space :::p, comp lbTotal:::p:39:p, space :::x}}}}"
-						"$verticalGroup": "par l {seq {space :p:32:p, comp textDate:::p::p, space :::p, comp btDate:::p::p, space :::p, comp label15:::p:26:p, space u:::p, comp textAddress:::p::p, space :::p, comp btAddress:::p::p, space u:::p, par b {comp lbAll::b:p:24:p, comp lbTotal::b:p::p}, space ::748:x}, seq l {comp scrollPane16:::p:247:p, space :0:709:x}}"
+						"$horizontalGroup": "par l {seq l {comp scrollPane16:::p:622:p, space u:::p, par l {seq {par l {comp textAddress:::::x, comp btAddress::l:::x, comp textDate::l:::x, comp btDate::l:::x, comp label15::l:::x, comp btRExcel::t:::x}, space :p:95:p}, seq {comp lbAll:::p::p, space :::p, comp lbTotal:::p:39:p, space :::x}}}}"
+						"$verticalGroup": "par l {seq {space :p:32:p, comp textDate:::p::p, space :::p, comp btDate:::p::p, space :::p, comp label15:::p:26:p, space u:::p, comp textAddress:::p::p, space :::p, comp btAddress:::p::p, space u:::p, par b {comp lbAll::b:p:24:p, comp lbTotal::b:p::p}, space :::p, comp btRExcel:::p::p, space ::719:x}, seq l {comp scrollPane16:::p:247:p, space :0:709:x}}"
 					} ) {
 						name: "panel3"
 						add( new FormComponent( "javax.swing.JButton" ) {
@@ -141,13 +141,18 @@ new FormModel {
 							name: "lbTotal"
 							"text": "text"
 						} )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "btRExcel"
+							"text": "导出"
+							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btRExcelMouseReleased", true ) )
+						} )
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "收款单"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq t {comp scrollPane15::::692:x, space :::p, comp btAddP:::p:40:p, space :p:22:p}}"
-					"$verticalGroup": "par l {seq l {space :::p, comp btAddP:::p::p, space :::x}, seq l {comp scrollPane15:::p:245:p, space :0:15:x}}"
+					"$horizontalGroup": "par l {seq t {comp scrollPane15::::675:x, space :::p, par l {comp btAddP:::p:40:p, comp btPExcel:::p::p}, space :p:22:p}}"
+					"$verticalGroup": "par l {seq l {space :::p, comp btAddP:::p::p, space u:::p, comp btPExcel:::p::p, space ::184:x}, seq l {comp scrollPane15:::p:245:p, space :0:15:x}}"
 				} ) {
 					name: "panel1"
 					add( new FormComponent( "javax.swing.JButton" ) {
@@ -160,6 +165,10 @@ new FormModel {
 						add( new FormComponent( "javax.swing.JTable" ) {
 							name: "tablePayment"
 						} )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "btPExcel"
+						"text": "导出"
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "付款单"
@@ -180,8 +189,8 @@ new FormModel {
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 					name: "scrollPane5"
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq {comp label5:::p::p, space u:::p, comp textBeginYear:::p:26:p, space :::p, comp label8:::p::p, space :::p, comp textBeginMonth:::p:26:p, space :::p, comp label10:::p::p, space :::p, comp textBeginDay:::p:26:p, space :::p, comp label11:::p::p, space :p:12:p, comp label9:::p::p, space :::p, comp textEndYear:::p:30:p, space :::p, comp label12:::p:14:p, space :p:3:p, comp textEndMonth:::p:30:p, space :::p, comp label13:::p::p, space :::p, comp textEndDay:::p:30:p, space :::p, comp label14:::p::p, space :::p, comp btSearch2:::p:27:p, space :0:154:x}, seq l {comp scrollPane17:::::x, space :::p}}"
-						"$verticalGroup": "par l {seq {par l {par b {comp label5::b:p::p, comp textBeginYear::b:p::p, comp textBeginMonth::b:p::p, comp label8::b:p::p, comp label10::b:p::p, comp textBeginDay::b:p::p, comp label9::b:p::p, comp label11::b:p::p, comp textEndYear::b:p::p, comp label12::b:p::p, comp textEndMonth::b:p::p, comp label13::b:p::p, comp textEndDay::b:p::p, comp label14::b:p::p}, comp btSearch2:::p:25:p}, space u:::p, comp scrollPane17:::p:328:p, space :0:96:x}}"
+						"$horizontalGroup": "par l {seq {comp label5:::p::p, space u:::p, comp textBeginYear:::p:26:p, space :::p, comp label8:::p::p, space :::p, comp textBeginMonth:::p:26:p, space :::p, comp label10:::p::p, space :::p, comp textBeginDay:::p:26:p, space :::p, comp label11:::p::p, space :p:12:p, comp label9:::p::p, space :::p, comp textEndYear:::p:30:p, space :::p, comp label12:::p:14:p, space :p:3:p, comp textEndMonth:::p:30:p, space :::p, comp label13:::p::p, space :::p, comp textEndDay:::p:30:p, space :::p, comp label14:::p::p, space :::p, comp btSearch2:::p:27:p, space :p:41:p, comp jbExcel:::p::p, space :0:56:x}, seq l {comp scrollPane17:::::x, space :::p}}"
+						"$verticalGroup": "par l {seq {par l {par b {comp label5::b:p::p, comp textBeginYear::b:p::p, comp textBeginMonth::b:p::p, comp label8::b:p::p, comp label10::b:p::p, comp textBeginDay::b:p::p, comp label9::b:p::p, comp label11::b:p::p, comp textEndYear::b:p::p, comp label12::b:p::p, comp textEndMonth::b:p::p, comp label13::b:p::p, comp textEndDay::b:p::p, comp label14::b:p::p}, comp btSearch2:::p:25:p, comp jbExcel::t:p::p}, space u:::p, comp scrollPane17:::p:328:p, space :0:96:x}}"
 					} ) {
 						name: "panel4"
 						add( new FormComponent( "javax.swing.JLabel" ) {
@@ -260,6 +269,11 @@ new FormModel {
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "label14"
 							"text": "日"
+						} )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "jbExcel"
+							"text": "导出"
+							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "jbExcelMouseReleased", true ) )
 						} )
 					} )
 				}, new FormLayoutConstraints( null ) {

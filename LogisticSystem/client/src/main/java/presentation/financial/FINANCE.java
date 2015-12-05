@@ -215,8 +215,8 @@ public class FINANCE extends JFrame {
 			 Vector<Object> row = new Vector<>();
 			    row.add(receiptVO.getDate());
 	            row.add(receiptVO.getInstitution());
-	            row.add(receiptVO.getSender());
-	            row.add(receiptVO.getCourierName());
+	            row.add(receiptVO.getPeople());
+	            row.add(receiptVO.getSender());	            
 	            row.add(receiptVO.getMoney());
 	            row.add(receiptVO.getAddress());
 	            
@@ -242,8 +242,8 @@ public class FINANCE extends JFrame {
 			 Vector<Object> row = new Vector<>();
 			    row.add(receiptVO.getDate());
 	            row.add(receiptVO.getInstitution());
+	            row.add(receiptVO.getPeople());
 	            row.add(receiptVO.getSender());
-	            row.add(receiptVO.getCourierName());
 	            row.add(receiptVO.getMoney());
 	            row.add(receiptVO.getAddress());
 	            
@@ -275,8 +275,8 @@ public class FINANCE extends JFrame {
 				 Vector<Object> row = new Vector<>();
 				    row.add(receiptVO.getDate());
 		            row.add(receiptVO.getInstitution());
+		            row.add(receiptVO.getPeople());
 		            row.add(receiptVO.getSender());
-		            row.add(receiptVO.getCourierName());
 		            row.add(receiptVO.getMoney());
 		            row.add(receiptVO.getAddress());
 		            
@@ -337,6 +337,15 @@ public class FINANCE extends JFrame {
 	        tablePayment.updateUI();
 	        tablePayment.repaint();
 		}
+
+		//导出经营情况表成Excel
+		private void jbExcelMouseReleased(MouseEvent e) {
+			// TODO add your code here
+		}
+
+		private void btRExcelMouseReleased(MouseEvent e) {
+			// TODO add your code here
+		}
 		
 		
 
@@ -381,10 +390,12 @@ public class FINANCE extends JFrame {
 		label15 = new JLabel();
 		lbAll = new JLabel();
 		lbTotal = new JLabel();
+		btRExcel = new JButton();
 		panel1 = new JPanel();
 		btAddP = new JButton();
 		scrollPane15 = new JScrollPane();
 		tablePayment = new JTable();
+		btPExcel = new JButton();
 		pnTJBB = new JPanel();
 		tpCost = new JTabbedPane();
 		scrollPane5 = new JScrollPane();
@@ -410,6 +421,7 @@ public class FINANCE extends JFrame {
 		textEndDay = new JTextField();
 		label13 = new JLabel();
 		label14 = new JLabel();
+		jbExcel = new JButton();
 		scrollPane7 = new JScrollPane();
 		tableBenefit = new JTable();
 		pnQCJZ = new JPanel();
@@ -661,6 +673,15 @@ public class FINANCE extends JFrame {
 						//---- lbTotal ----
 						lbTotal.setText("text");
 
+						//---- btRExcel ----
+						btRExcel.setText("\u5bfc\u51fa");
+						btRExcel.addMouseListener(new MouseAdapter() {
+							@Override
+							public void mouseReleased(MouseEvent e) {
+								btRExcelMouseReleased(e);
+							}
+						});
+
 						GroupLayout panel3Layout = new GroupLayout(panel3);
 						panel3.setLayout(panel3Layout);
 						panel3Layout.setHorizontalGroup(
@@ -675,7 +696,8 @@ public class FINANCE extends JFrame {
 												.addComponent(btAddress, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 												.addComponent(textDate)
 												.addComponent(btDate, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-												.addComponent(label15, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+												.addComponent(label15, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+												.addComponent(btRExcel, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 											.addGap(95, 95, 95))
 										.addGroup(panel3Layout.createSequentialGroup()
 											.addComponent(lbAll)
@@ -700,7 +722,9 @@ public class FINANCE extends JFrame {
 									.addGroup(panel3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 										.addComponent(lbAll, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
 										.addComponent(lbTotal))
-									.addContainerGap(748, Short.MAX_VALUE))
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(btRExcel)
+									.addContainerGap(719, Short.MAX_VALUE))
 								.addGroup(panel3Layout.createSequentialGroup()
 									.addComponent(scrollPane16, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE)
 									.addGap(0, 709, Short.MAX_VALUE))
@@ -727,14 +751,19 @@ public class FINANCE extends JFrame {
 						scrollPane15.setViewportView(tablePayment);
 					}
 
+					//---- btPExcel ----
+					btPExcel.setText("\u5bfc\u51fa");
+
 					GroupLayout panel1Layout = new GroupLayout(panel1);
 					panel1.setLayout(panel1Layout);
 					panel1Layout.setHorizontalGroup(
 						panel1Layout.createParallelGroup()
 							.addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-								.addComponent(scrollPane15, GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
+								.addComponent(scrollPane15, GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
 								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(btAddP, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+								.addGroup(panel1Layout.createParallelGroup()
+									.addComponent(btAddP, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+									.addComponent(btPExcel))
 								.addGap(22, 22, 22))
 					);
 					panel1Layout.setVerticalGroup(
@@ -742,7 +771,9 @@ public class FINANCE extends JFrame {
 							.addGroup(panel1Layout.createSequentialGroup()
 								.addContainerGap()
 								.addComponent(btAddP)
-								.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+								.addComponent(btPExcel)
+								.addContainerGap(184, Short.MAX_VALUE))
 							.addGroup(panel1Layout.createSequentialGroup()
 								.addComponent(scrollPane15, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE)
 								.addGap(0, 15, Short.MAX_VALUE))
@@ -835,6 +866,15 @@ public class FINANCE extends JFrame {
 						//---- label14 ----
 						label14.setText("\u65e5");
 
+						//---- jbExcel ----
+						jbExcel.setText("\u5bfc\u51fa");
+						jbExcel.addMouseListener(new MouseAdapter() {
+							@Override
+							public void mouseReleased(MouseEvent e) {
+								jbExcelMouseReleased(e);
+							}
+						});
+
 						GroupLayout panel4Layout = new GroupLayout(panel4);
 						panel4.setLayout(panel4Layout);
 						panel4Layout.setHorizontalGroup(
@@ -869,7 +909,9 @@ public class FINANCE extends JFrame {
 									.addComponent(label14)
 									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 									.addComponent(btSearch2, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-									.addGap(0, 154, Short.MAX_VALUE))
+									.addGap(41, 41, 41)
+									.addComponent(jbExcel)
+									.addGap(0, 56, Short.MAX_VALUE))
 								.addGroup(panel4Layout.createSequentialGroup()
 									.addComponent(scrollPane17)
 									.addContainerGap())
@@ -893,7 +935,8 @@ public class FINANCE extends JFrame {
 											.addComponent(label13)
 											.addComponent(textEndDay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 											.addComponent(label14))
-										.addComponent(btSearch2, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+										.addComponent(btSearch2, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+										.addComponent(jbExcel, GroupLayout.Alignment.TRAILING))
 									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 									.addComponent(scrollPane17, GroupLayout.PREFERRED_SIZE, 328, GroupLayout.PREFERRED_SIZE)
 									.addGap(0, 96, Short.MAX_VALUE))
@@ -1213,10 +1256,12 @@ public class FINANCE extends JFrame {
 	private JLabel label15;
 	private JLabel lbAll;
 	private JLabel lbTotal;
+	private JButton btRExcel;
 	private JPanel panel1;
 	private JButton btAddP;
 	private JScrollPane scrollPane15;
 	private JTable tablePayment;
+	private JButton btPExcel;
 	private JPanel pnTJBB;
 	private JTabbedPane tpCost;
 	private JScrollPane scrollPane5;
@@ -1242,6 +1287,7 @@ public class FINANCE extends JFrame {
 	private JTextField textEndDay;
 	private JLabel label13;
 	private JLabel label14;
+	private JButton jbExcel;
 	private JScrollPane scrollPane7;
 	private JTable tableBenefit;
 	private JPanel pnQCJZ;

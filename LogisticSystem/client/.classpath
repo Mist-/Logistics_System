@@ -30,5 +30,6 @@
 			<attribute name="javadoc_location" value="jar:platform:/resource/client/lib/swing-layout-javadoc.zip!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="E:/eclipse/eclipse/jexcelapi/jxl.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

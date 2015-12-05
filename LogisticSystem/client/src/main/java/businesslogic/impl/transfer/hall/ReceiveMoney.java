@@ -74,11 +74,11 @@ public class ReceiveMoney {
 		receipt.setMoney(account.getMoney()+all);
 		ReceiptVO rec = new ReceiptVO();
 		rec.setAddress(receipt.getInstitution());
-		rec.setCourierName(receipt.getSender());
 		rec.setDate(receipt.getDate());
 		rec.setInstitution(receipt.getInstitution());
 		rec.setMoney(receipt.getMoney());
 		rec.setSender(receipt.getSender());
+		rec.setPeople(receipt.getSender());
 		return rec;
 
 	}
