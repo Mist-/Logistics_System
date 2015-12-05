@@ -3,6 +3,7 @@ package presentation.order;
 import org.jb2011.lnf.windows2.Windows2LookAndFeel;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -20,6 +21,7 @@ public class Test extends JFrame {
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-
+        NewOrderDlg newOrderDlg = new NewOrderDlg(new Frame());
+        newOrderDlg.setVisible(true);
     }
 }

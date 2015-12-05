@@ -566,6 +566,8 @@ public class NewOrderDlg extends JDialog {
         }
 
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+
+        this.setModal(true);
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables

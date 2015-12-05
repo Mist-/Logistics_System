@@ -60,6 +60,12 @@ public class OrderUI extends JFrame {
         tbOrderInfo.updateUI();
     }
 
+    private void miNewOrderMouseReleased(MouseEvent e) {
+        OrderVO newOrder = new NewOrderDlg(this).getNewOrderInfo();
+        if (newOrder == null) JOptionPane.showMessageDialog(null, "¿Õ¶©µ¥");
+
+    }
+
     private void initComponents() {
 
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -104,6 +110,12 @@ public class OrderUI extends JFrame {
                 miNewOrder.setText("\u65b0\u5efa\u8ba2\u5355...");
                 miNewOrder.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
                 miNewOrder.setIcon(new ImageIcon(getClass().getResource("/icons/new_16x16.png")));
+                miNewOrder.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+                        miNewOrderMouseReleased(e);
+                    }
+                });
                 mnFile.add(miNewOrder);
 
                 //---- miSign ----
