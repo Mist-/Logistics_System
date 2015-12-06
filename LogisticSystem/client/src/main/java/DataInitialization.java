@@ -2,6 +2,8 @@
 import data.enums.DataType;
 import data.enums.UserRole;
 import data.factory.DataServiceFactory;
+import data.po.CityInfoPO;
+import data.po.InstitutionPO;
 import data.po.StaffPO;
 import data.service.CompanyDataService;
 
@@ -13,7 +15,7 @@ import java.rmi.RemoteException;
  */
 public class DataInitialization {
     public static void main(String[] args) {
-        /*CityInfoPO[] city = new CityInfoPO[4];
+        CityInfoPO[] city = new CityInfoPO[4];
         city[0] = new CityInfoPO(025);
         city[0].setName("南京");
         city[0].addBusinessOffice(1002500001);
@@ -108,9 +110,9 @@ public class DataInitialization {
         institution[18].setTargetCenter(10020);
         institution[19] = new InstitutionPO(10020);
         institution[19].setName("北京市");
-        */
+
         CompanyDataService companyDataService = (CompanyDataService) DataServiceFactory.getDataServiceByType(DataType.CompanyDataService);
-/*
+
         try {
             for (CityInfoPO cityInfoPO: city) {
                 companyDataService.add(cityInfoPO);
@@ -121,7 +123,6 @@ public class DataInitialization {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-   */
 
         StaffPO staff1 = new StaffPO();
         staff1.setSerialNum(10000);

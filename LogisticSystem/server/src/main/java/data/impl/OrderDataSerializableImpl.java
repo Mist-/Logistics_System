@@ -27,13 +27,8 @@ public class OrderDataSerializableImpl extends UnicastRemoteObject implements Or
     }
 
 
-    /**
-     * key包含两部分，第一部分表示出发地地址，第二部分表示到达地地址，用空格隔开。包含城市名称
-     * 如果对出发地或者到达地不做要求，则将这一部分设为字符‘*’。
-     * 返回符合要求的PO组成的POList
-     */
     public ArrayList<DataPO> searchByLoc(String key) throws RemoteException {
-        String locs[] = key.split("\\-");
+        String locs[] = key.split("[ ]");
         ArrayList<DataPO> result = new ArrayList<>();
         for (DataPO dataPO : poLists.get(POType.ORDER)) {
             OrderPO order = (OrderPO) dataPO;
@@ -54,6 +49,17 @@ public class OrderDataSerializableImpl extends UnicastRemoteObject implements Or
             if (signPO.getOrder() == ordersn) return signPO;
         }
         return null;
+    }
+
+    @Override
+    public ArrayList<DataPO> searchByCourier(long sn) {
+        ArrayList<DataPO> result = new ArrayList<>();
+        for (DataPO dataPO: poLists.get(POType.ORDER)) {
+            if (((OrderPO) dataPO).getCourier() == sn) {
+                result.add(dataPO);
+            }
+        }
+        return result;
     }
 
     public ArrayList<DataPO> getPOList(POType type) throws RemoteException {

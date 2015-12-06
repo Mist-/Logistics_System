@@ -5,6 +5,8 @@ import data.enums.ServiceType;
 import data.po.OrderPO;
 import utils.Timestamper;
 
+import java.util.ArrayList;
+
 /**
  *
  * Created by Mouse on 2015/10/23 0023.
@@ -21,6 +23,8 @@ public class OrderVO {
     // 货物数量
     public int stockNum;
 
+    public int evaluatedTime;
+
     //金额
     public double fee;
 
@@ -34,6 +38,8 @@ public class OrderVO {
 
     // 字符串保存每一件货品的类型（名称）
     public String stockType[];
+
+    public ArrayList<Long> routine;
 
     // 构造函数。因为是VO，所以在构造函数里面一次性完成啦。
     public OrderVO(String sname, String saddress, String scompany, String sphone,

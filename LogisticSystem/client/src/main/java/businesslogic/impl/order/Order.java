@@ -33,24 +33,7 @@ public class Order {
     }
 
     public ResultMessage createOrder(OrderVO order) {
-        OrderPO newOrder = new OrderPO();
-
-        // 克隆订单信息
-        newOrder.setInfo(OrderPO.RADDRESS, order.raddress);
-        newOrder.setInfo(OrderPO.RCOMPANY, order.rcompany);
-        newOrder.setInfo(OrderPO.RNAME, order.rname);
-        newOrder.setInfo(OrderPO.RPHONE, order.rphone);
-        newOrder.setInfo(OrderPO.SADDRESS, order.saddress);
-        newOrder.setInfo(OrderPO.SCOMPANY, order.scompany);
-        newOrder.setInfo(OrderPO.SNAME, order.sname);
-        newOrder.setInfo(OrderPO.SPHONE, order.sphone);
-        newOrder.setStockNum(order.stockNum, order.stockType);
-        newOrder.setVolume(order.volume);
-        newOrder.setWeight(order.weight);
-        newOrder.setServiceType(order.serviceType);
-        newOrder.setFee(generateFee(order));
-        newOrder.setDestID(getDestID(order.raddress));
-        newOrder.setEvaluatedTime(evaluateTime(order));
+        OrderPO newOrder = new OrderPO(order);
 
         // 创建物流信息
         LogisticInfoPO logisticInfoPO =  new LogisticInfoPO(newOrder.getSerialNum());
@@ -61,6 +44,7 @@ public class Order {
             orderDataService.add(newOrder);
         } catch (RemoteException e) {
             e.printStackTrace();
+            return ResultMessage.FAILED;
         }
         return ResultMessage.SUCCESS;
     }

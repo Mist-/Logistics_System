@@ -179,8 +179,8 @@ public class FinancialBLController implements FinancialBLService {
 	
 	@Override
 	public ResultMessage printPayment(ArrayList<PaymentVO> payList) {
-	
-		return fundsManage.printPayment(payList);
+		return null;
+		//return fundsManage.printPayment(payList);
 	
 	}
 
@@ -206,7 +206,8 @@ public class FinancialBLController implements FinancialBLService {
 
 	@Override
 	public ResultMessage printReceipt(ArrayList<ReceiptVO> recList) {
-		return fundsManage.printReceipt(recList);
+		return null;
+		//return fundsManage.printReceipt(recList);
 	}
 
 	@Override
@@ -218,12 +219,4 @@ public class FinancialBLController implements FinancialBLService {
 	public void endFinancial() {
 		
 	}
-
-	
-
-	
-
-
-
-	
 }

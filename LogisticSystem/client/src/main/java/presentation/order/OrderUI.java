@@ -2,6 +2,8 @@ package presentation.order;
 
 import businesslogic.impl.order.OrderBLController;
 import data.message.LoginMessage;
+import data.message.ResultMessage;
+import data.po.OrderPO;
 import data.vo.OrderVO;
 
 import javax.swing.*;
@@ -23,9 +25,13 @@ import java.util.Vector;
  * @author sunhao
  */
 public class OrderUI extends JFrame {
+
+    LoginMessage loginMessage = null;
+
     public OrderUI(LoginMessage loginMessage) {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         initComponents();
+        this.loginMessage = loginMessage;
     }
 
     private void btOrderMngMouseClicked(MouseEvent e) {
@@ -60,9 +66,15 @@ public class OrderUI extends JFrame {
     }
 
     private void miNewOrderMouseReleased(MouseEvent e) {
-        OrderVO newOrder = new NewOrderDlg1(this).getNewOrderInfo();
+        OrderVO newOrder = new NewOrderDlg(this).getNewOrderInfo();
         if (newOrder == null) JOptionPane.showMessageDialog(null, "空订单");
-
+        ResultMessage result = new OrderBLController().createOrder(newOrder);
+        if (result == ResultMessage.SUCCESS) {
+            JOptionPane.showMessageDialog(this, "创建新订单成功", "LCS物流管理系统", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "创建新订单失败。请检查网络连接", "LCS物流管理系统", JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     private void initComponents() {

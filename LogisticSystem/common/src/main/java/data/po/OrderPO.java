@@ -23,12 +23,35 @@ public class OrderPO extends DataPO {
     long[] routine;
     // 目标营业厅的编号
     long destID;
+
+    // 货物数量
     int stockNum;
+
+    // 货物重量和体积
     double weight, volume;
+
+    // 货物种类
     String stockType[];
+
+    // 快递服务类型
     ServiceType serviceType;
+
+    // 快递费用
     double fee;
+
+    // 预计送达时间
     int evaluatedTime;
+
+    // 揽件的快递员
+    long courier;
+
+    public long getCourier() {
+        return courier;
+    }
+
+    public void setCourier(long sn) {
+        courier = sn;
+    }
 
     public String[] getStockType() {
         return stockType;
@@ -52,6 +75,23 @@ public class OrderPO extends DataPO {
         super(POType.ORDER);
         stockType = new String[stockNum];
         routine = new long[4];
+    }
+
+    public OrderPO(OrderVO order) {
+        super(POType.ORDER);
+        saddress = order.saddress;
+        sname = order.sname;
+        scompany = order.scompany;
+        sphone = order.sphone;
+        raddress = order.raddress;
+        rname = order.rname;
+        rcompany = order.rcompany;
+        rphone = order.rphone;
+        serviceType = order.serviceType;
+        fee = order.fee;
+        evaluatedTime = order.evaluatedTime;
+        volume = order.volume;
+        weight = order.weight;
     }
 
     public StorageArea getTransferType() {

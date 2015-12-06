@@ -69,6 +69,25 @@ public class NewOrderDlg extends JDialog {
             textRcompany.requestFocus();
             return;
         }
+
+        // 快件大小以及重量信息的检查
+        if (!textLength.getText().matches("[0-9]*[.]?[0-9]*")) {
+            textLength.requestFocus();
+            return;
+        }
+        if (!textWidth.getText().matches("[0-9]*[.]?[0-9]*")) {
+            textWidth.requestFocus();
+            return;
+        }
+        if (!textHeight.getText().matches("[0-9]*[.]?[0-9]*")) {
+            textHeight.requestFocus();
+            return;
+        }
+        if (!textWeight.getText().matches("[0-9]*[.]?[0-9]*")) {
+            textWeight.requestFocus();
+            return;
+        }
+
         if (textRaddress.getText().length() < 5) {
             textRaddress.requestFocus();
             JOptionPane.showMessageDialog(this, "详细地址信息长度不能小于5个字符。", "订单信息", JOptionPane.INFORMATION_MESSAGE);
@@ -101,7 +120,7 @@ public class NewOrderDlg extends JDialog {
             return;
         }
 
-        // 检查数据格式是否正确
+        // 检查电话号码格式是否正确
         if (!textRphone.getText().matches("[0-9]*")) {
             JOptionPane.showMessageDialog(this, "电话号码格式不正确", "LCS物流管理系统", JOptionPane.INFORMATION_MESSAGE);
             textRphone.requestFocus();
@@ -124,6 +143,24 @@ public class NewOrderDlg extends JDialog {
         orderVO.rphone = textRphone.getText();
         orderVO.date = Timestamper.getTimeByDate();
         orderVO.serviceType = (ServiceType) cboxServiceType.getSelectedItem();
+
+        float height = Float.parseFloat(textHeight.getText());
+        float width = Float.parseFloat(textWidth.getText());
+        float length = Float.parseFloat(textLength.getText());
+        orderVO.volume = height * width * length;
+        orderVO.weight = Float.parseFloat(textWeight.getText());
+
+        orderVO.fee = Float.parseFloat(textFee.getText());
+        orderVO.evaluatedTime = Integer.parseInt(textTimeEvaluated.getText());
+
+        btFeeRefreshMouseReleased(e);
+        btTimeRefreshMouseReleased(e);
+
+        int DlgResult = JOptionPane.showConfirmDialog(null, "报价：" + textFee.getText() + "元\n" + "预计" + textTimeEvaluated.getText() + "天内送达\n" + "是否保存订单？", "LCS物流管理系统", JOptionPane.OK_CANCEL_OPTION);
+        if (DlgResult == JOptionPane.YES_OPTION) {
+            this.setVisible(false);
+            return;
+        }
     }
 
     private void cboxScityItemStateChanged(ItemEvent e) {
@@ -164,7 +201,99 @@ public class NewOrderDlg extends JDialog {
         }
     }
 
+    private void btFeeRefreshMouseReleased(MouseEvent e) {
+
+        // 快件大小以及重量信息的检查
+        if (!textLength.getText().matches("[0-9]*[.]?[0-9]*")) {
+            textLength.requestFocus();
+            return;
+        }
+        if (!textWidth.getText().matches("[0-9]*[.]?[0-9]*")) {
+            textWidth.requestFocus();
+            return;
+        }
+        if (!textHeight.getText().matches("[0-9]*[.]?[0-9]*")) {
+            textHeight.requestFocus();
+            return;
+        }
+        if (!textWeight.getText().matches("[0-9]*[.]?[0-9]*")) {
+            textWeight.requestFocus();
+            return;
+        }
+        if (cboxScity.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "请选择正确的城市", "LCS物流管理系统", JOptionPane.INFORMATION_MESSAGE);
+            cboxScity.requestFocus();
+            return;
+        }
+        if (cboxSblock.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "请选择正确的城区", "LCS物流管理系统", JOptionPane.INFORMATION_MESSAGE);
+            cboxSblock.requestFocus();
+            return;
+        }
+        if (cboxRcity.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "请选择正确的城市", "LCS物流管理系统", JOptionPane.INFORMATION_MESSAGE);
+            cboxRcity.requestFocus();
+            return;
+        }
+        if (cboxRblock.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "请选择正确的城区", "LCS物流管理系统", JOptionPane.INFORMATION_MESSAGE);
+            cboxRblock.requestFocus();
+            return;
+        }
+        if (cboxServiceType.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "请选择正确的服务类型", "LCS物流管理系统", JOptionPane.INFORMATION_MESSAGE);
+            cboxServiceType.requestFocus();
+            return;
+        }
+        textFee.setText("正在计算...");
+        orderVO = new OrderVO();
+        orderVO.saddress = cboxScity.getSelectedItem().toString() + "-" + cboxSblock.getSelectedItem().toString() + "-" + textSaddress.getText();
+        orderVO.raddress = cboxRcity.getSelectedItem().toString() + "-" + cboxRblock.getSelectedItem().toString() + "-" + textRaddress.getText();
+        orderVO.serviceType = (ServiceType) cboxServiceType.getSelectedItem();
+        float height = Float.parseFloat(textHeight.getText());
+        float width = Float.parseFloat(textWidth.getText());
+        float length = Float.parseFloat(textLength.getText());
+        orderVO.volume = height * width * length;
+        orderVO.weight = Float.parseFloat(textWeight.getText());
+        textFee.setText(String.valueOf(new Order().generateFee(orderVO)));
+    }
+
+    private void btTimeRefreshMouseReleased(MouseEvent e) {
+        if (cboxScity.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "请选择正确的城市", "LCS物流管理系统", JOptionPane.INFORMATION_MESSAGE);
+            cboxScity.requestFocus();
+            return;
+        }
+        if (cboxSblock.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "请选择正确的城区", "LCS物流管理系统", JOptionPane.INFORMATION_MESSAGE);
+            cboxSblock.requestFocus();
+            return;
+        }
+        if (cboxRcity.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "请选择正确的城市", "LCS物流管理系统", JOptionPane.INFORMATION_MESSAGE);
+            cboxRcity.requestFocus();
+            return;
+        }
+        if (cboxRblock.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "请选择正确的城区", "LCS物流管理系统", JOptionPane.INFORMATION_MESSAGE);
+            cboxRblock.requestFocus();
+            return;
+        }
+        if (cboxServiceType.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "请选择正确的服务类型", "LCS物流管理系统", JOptionPane.INFORMATION_MESSAGE);
+            cboxServiceType.requestFocus();
+            return;
+        }
+        textTimeEvaluated.setText("正在计算...");
+        orderVO = new OrderVO();
+        orderVO.saddress = cboxScity.getSelectedItem().toString() + "-" + cboxSblock.getSelectedItem().toString() + "-" + textSaddress.getText();
+        orderVO.raddress = cboxRcity.getSelectedItem().toString() + "-" + cboxRblock.getSelectedItem().toString() + "-" + textRaddress.getText();
+        orderVO.serviceType = (ServiceType) cboxServiceType.getSelectedItem();
+        textTimeEvaluated.setText(String.valueOf(new Order().evaluateTime(orderVO)));
+    }
+
     private void initComponents() {
+
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         panel1 = new JPanel();
         lbRname = new JLabel();
@@ -208,6 +337,8 @@ public class NewOrderDlg extends JDialog {
         lbScompany4 = new JLabel();
         textWeight = new JTextField();
         lbScompany5 = new JLabel();
+        btFeeRefresh = new JButton();
+        btTimeRefresh = new JButton();
 
         //======== this ========
         setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
@@ -390,6 +521,24 @@ public class NewOrderDlg extends JDialog {
             lbScompany5.setText("\u91cd\u91cf\uff1a");
             lbScompany5.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
+            //---- btFeeRefresh ----
+            btFeeRefresh.setIcon(new ImageIcon(getClass().getResource("/icons/refresh_16x16.png")));
+            btFeeRefresh.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    btFeeRefreshMouseReleased(e);
+                }
+            });
+
+            //---- btTimeRefresh ----
+            btTimeRefresh.setIcon(new ImageIcon(getClass().getResource("/icons/refresh_16x16.png")));
+            btTimeRefresh.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    btTimeRefreshMouseReleased(e);
+                }
+            });
+
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
@@ -397,92 +546,98 @@ public class NewOrderDlg extends JDialog {
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(panel1Layout.createParallelGroup()
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                    .addGroup(panel1Layout.createParallelGroup()
-                                        .addGroup(panel1Layout.createSequentialGroup()
-                                            .addComponent(lbSaddress2)
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(textSaddress, GroupLayout.PREFERRED_SIZE, 236, GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(panel1Layout.createSequentialGroup()
-                                            .addGap(28, 28, 28)
-                                            .addGroup(panel1Layout.createParallelGroup()
-                                                .addGroup(panel1Layout.createSequentialGroup()
-                                                    .addComponent(lbSname)
-                                                    .addGap(6, 6, 6)
-                                                    .addComponent(textSname, GroupLayout.PREFERRED_SIZE, 236, GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(panel1Layout.createSequentialGroup()
-                                                    .addComponent(lbSphone)
-                                                    .addGap(6, 6, 6)
-                                                    .addComponent(textSphone, GroupLayout.PREFERRED_SIZE, 236, GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(panel1Layout.createSequentialGroup()
-                                                    .addComponent(lbScompany)
-                                                    .addGap(6, 6, 6)
-                                                    .addComponent(textScompany, GroupLayout.PREFERRED_SIZE, 236, GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(panel1Layout.createSequentialGroup()
-                                                    .addComponent(lbSaddress)
-                                                    .addGap(6, 6, 6)
-                                                    .addComponent(cboxScity, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(6, 6, 6)
-                                                    .addComponent(cboxSblock, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)))))
-                                    .addComponent(lbSender, GroupLayout.Alignment.LEADING))
-                                .addGap(18, 18, 18)
-                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                    .addGroup(panel1Layout.createSequentialGroup()
-                                        .addGroup(panel1Layout.createParallelGroup()
-                                            .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                                .addComponent(lbRphone)
-                                                .addComponent(lbRname))
-                                            .addComponent(lbRaddress)
-                                            .addComponent(lbRcompany))
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(panel1Layout.createSequentialGroup()
-                                                .addComponent(cboxRcity, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(cboxRblock, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(textRcompany)
-                                            .addComponent(textRphone)
-                                            .addComponent(textRname, GroupLayout.PREFERRED_SIZE, 236, GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(panel1Layout.createParallelGroup()
-                                        .addComponent(lbReceiver)
-                                        .addGroup(panel1Layout.createSequentialGroup()
-                                            .addComponent(lbRaddress2)
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(textRaddress, GroupLayout.PREFERRED_SIZE, 236, GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                            .addGroup(panel1Layout.createParallelGroup()
                                 .addGroup(panel1Layout.createSequentialGroup()
+                                    .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                        .addGroup(panel1Layout.createParallelGroup()
+                                            .addGroup(panel1Layout.createSequentialGroup()
+                                                .addComponent(lbSaddress2)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(textSaddress, GroupLayout.PREFERRED_SIZE, 236, GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(panel1Layout.createSequentialGroup()
+                                                .addGap(28, 28, 28)
+                                                .addGroup(panel1Layout.createParallelGroup()
+                                                    .addGroup(panel1Layout.createSequentialGroup()
+                                                        .addComponent(lbSname)
+                                                        .addGap(6, 6, 6)
+                                                        .addComponent(textSname, GroupLayout.PREFERRED_SIZE, 236, GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(panel1Layout.createSequentialGroup()
+                                                        .addComponent(lbSphone)
+                                                        .addGap(6, 6, 6)
+                                                        .addComponent(textSphone, GroupLayout.PREFERRED_SIZE, 236, GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(panel1Layout.createSequentialGroup()
+                                                        .addComponent(lbScompany)
+                                                        .addGap(6, 6, 6)
+                                                        .addComponent(textScompany, GroupLayout.PREFERRED_SIZE, 236, GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(panel1Layout.createSequentialGroup()
+                                                        .addComponent(lbSaddress)
+                                                        .addGap(6, 6, 6)
+                                                        .addComponent(cboxScity, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(6, 6, 6)
+                                                        .addComponent(cboxSblock, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(lbSender, GroupLayout.Alignment.LEADING))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                        .addGroup(panel1Layout.createParallelGroup()
+                                            .addComponent(lbReceiver)
+                                            .addGroup(panel1Layout.createSequentialGroup()
+                                                .addComponent(lbRaddress2)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(textRaddress, GroupLayout.PREFERRED_SIZE, 236, GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(panel1Layout.createParallelGroup()
+                                            .addGroup(panel1Layout.createSequentialGroup()
+                                                .addComponent(lbRname)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(textRname, GroupLayout.PREFERRED_SIZE, 236, GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(panel1Layout.createSequentialGroup()
+                                                .addGroup(panel1Layout.createParallelGroup()
+                                                    .addComponent(lbRphone)
+                                                    .addComponent(lbRaddress)
+                                                    .addComponent(lbRcompany))
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                                    .addGroup(panel1Layout.createSequentialGroup()
+                                                        .addComponent(cboxRcity, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(cboxRblock, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(textRcompany)
+                                                    .addComponent(textRphone))))))
+                                .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                                     .addComponent(lbScompany5)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(textWeight, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lbSaddress4)
                                 .addGroup(panel1Layout.createSequentialGroup()
-                                    .addComponent(lbSaddress3)
+                                    .addComponent(lbScompany2)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(cboxServiceType, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(lbRcompany2)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(textFee, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lbRcompany3)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(textTimeEvaluated, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(lbSaddress4)
+                                    .addComponent(textLength, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(lbScompany3)
+                                    .addGap(6, 6, 6)
+                                    .addComponent(textWidth, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(lbScompany4)
+                                    .addGap(6, 6, 6)
+                                    .addComponent(textHeight, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)))
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(lbScompany2)
+                                .addComponent(lbSaddress3)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textLength, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lbScompany3)
-                                .addGap(6, 6, 6)
-                                .addComponent(textWidth, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lbScompany4)
-                                .addGap(6, 6, 6)
-                                .addComponent(textHeight, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(21, Short.MAX_VALUE))
+                                .addComponent(cboxServiceType, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lbRcompany2)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textFee, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btFeeRefresh, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbRcompany3)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textTimeEvaluated, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btTimeRefresh, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(18, Short.MAX_VALUE))
                     .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                        .addContainerGap(537, Short.MAX_VALUE)
+                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btOK)
                         .addGap(18, 18, 18)
                         .addComponent(btCancel)
@@ -498,11 +653,32 @@ public class NewOrderDlg extends JDialog {
                             .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(lbReceiver)))
-                        .addGap(18, 18, 18)
                         .addGroup(panel1Layout.createParallelGroup()
-                            .addGroup(panel1Layout.createSequentialGroup()
+                            .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
                                 .addGroup(panel1Layout.createParallelGroup()
-                                    .addComponent(textSname, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                            .addComponent(lbRphone)
+                                            .addComponent(textRphone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                        .addGap(22, 22, 22)
+                                        .addComponent(lbRcompany)
+                                        .addGap(22, 22, 22)
+                                        .addComponent(lbRaddress, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                                        .addComponent(textRcompany, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(panel1Layout.createParallelGroup()
+                                            .addComponent(cboxRcity, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cboxRblock, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+                                .addGap(18, 18, 18))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(panel1Layout.createParallelGroup()
+                                    .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(textSname, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(textRname, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lbRname))
                                     .addGroup(panel1Layout.createSequentialGroup()
                                         .addGap(4, 4, 4)
                                         .addComponent(lbSname)))
@@ -523,27 +699,6 @@ public class NewOrderDlg extends JDialog {
                                     .addComponent(lbSaddress, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cboxScity, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cboxSblock, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18))
-                            .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                    .addGroup(panel1Layout.createSequentialGroup()
-                                        .addComponent(lbRname)
-                                        .addGap(22, 22, 22)
-                                        .addComponent(lbRphone)
-                                        .addGap(26, 26, 26)
-                                        .addComponent(lbRcompany)
-                                        .addGap(22, 22, 22)
-                                        .addComponent(lbRaddress, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panel1Layout.createSequentialGroup()
-                                        .addComponent(textRname, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(textRphone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(textRcompany, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addGroup(panel1Layout.createParallelGroup()
-                                            .addComponent(cboxRcity, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cboxRblock, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
                                 .addGap(18, 18, 18)))
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(textSaddress, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -573,14 +728,18 @@ public class NewOrderDlg extends JDialog {
                                 .addComponent(lbScompany4)))
                         .addGap(21, 21, 21)
                         .addGroup(panel1Layout.createParallelGroup()
-                            .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(textFee, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lbRcompany2)
-                                .addComponent(lbRcompany3)
-                                .addComponent(textTimeEvaluated, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                             .addComponent(lbSaddress3, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboxServiceType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                            .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                .addGroup(panel1Layout.createParallelGroup()
+                                    .addComponent(btTimeRefresh, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btFeeRefresh, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(textTimeEvaluated, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lbRcompany3)
+                                        .addComponent(textFee, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lbRcompany2)))
+                                .addComponent(cboxServiceType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(btCancel)
                             .addComponent(btOK))
@@ -602,7 +761,7 @@ public class NewOrderDlg extends JDialog {
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
 
-        // 初始化地址选择框。
+
         cboxRblock.addItem("请选择区");
         cboxRcity.addItem("请选择城市");
         for (String cityName: new Order().getCityList()) {
@@ -626,6 +785,7 @@ public class NewOrderDlg extends JDialog {
 
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
+        // 让整个线程暂定在这个对话框处
         this.setModal(true);
     }
 
@@ -672,5 +832,7 @@ public class NewOrderDlg extends JDialog {
     private JLabel lbScompany4;
     private JTextField textWeight;
     private JLabel lbScompany5;
+    private JButton btFeeRefresh;
+    private JButton btTimeRefresh;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
