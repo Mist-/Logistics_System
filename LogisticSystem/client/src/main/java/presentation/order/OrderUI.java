@@ -89,8 +89,7 @@ public class OrderUI extends JFrame {
         miQuit = new JMenuItem();
         mnEdit = new JMenu();
         miModify = new JMenuItem();
-        panel1 = new JPanel();
-        lbUserInfo = new JLabel();
+        panel2 = new JPanel();
         tfOrderInput = new JTextField();
         btSearch = new JButton();
         lbOrderNum = new JLabel();
@@ -100,7 +99,6 @@ public class OrderUI extends JFrame {
         btSign = new JButton();
         label1 = new JLabel();
         btOrderMng = new JToggleButton();
-        separator2 = new JSeparator();
 
         //======== this ========
         setOpacity(0.0F);
@@ -171,13 +169,8 @@ public class OrderUI extends JFrame {
         }
         setJMenuBar(menuBar1);
 
-        //======== panel1 ========
+        //======== panel2 ========
         {
-            panel1.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-            //---- lbUserInfo ----
-            lbUserInfo.setText("1000001 \u5b59\u4e5d\u65e5 \u5feb\u9012\u5458");
-            lbUserInfo.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
             //---- tfOrderInput ----
             tfOrderInput.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
@@ -185,6 +178,7 @@ public class OrderUI extends JFrame {
             //---- btSearch ----
             btSearch.setIcon(new ImageIcon("D:\\DATA\\Project\\GUI\\resources\\search_16x16.png"));
             btSearch.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+            btSearch.setText("\u641c\u7d22");
 
             //---- lbOrderNum ----
             lbOrderNum.setText("\u8ba2\u5355\u7f16\u53f7\uff1a");
@@ -202,10 +196,12 @@ public class OrderUI extends JFrame {
             //---- btDelete ----
             btDelete.setIcon(new ImageIcon("D:\\DATA\\Project\\GUI\\resources\\delete_24x24.png"));
             btDelete.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+            btDelete.setText("\u5220\u9664");
 
             //---- btSign ----
             btSign.setIcon(new ImageIcon("D:\\DATA\\Project\\GUI\\resources\\sign_24x24.png"));
             btSign.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+            btSign.setText("\u7b7e\u6536");
 
             //---- label1 ----
             label1.setText("\u8ba2\u5355\u7ba1\u7406");
@@ -225,73 +221,56 @@ public class OrderUI extends JFrame {
                 }
             });
 
-            //---- separator2 ----
-            separator2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-            GroupLayout panel1Layout = new GroupLayout(panel1);
-            panel1.setLayout(panel1Layout);
-            panel1Layout.setHorizontalGroup(
-                panel1Layout.createParallelGroup()
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addGroup(panel1Layout.createParallelGroup()
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addComponent(label1))
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(lbOrderNum)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfOrderInput, GroupLayout.PREFERRED_SIZE, 361, GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
-                                .addComponent(btSearch, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 487, Short.MAX_VALUE))
-                    .addGroup(panel1Layout.createSequentialGroup()
+            GroupLayout panel2Layout = new GroupLayout(panel2);
+            panel2.setLayout(panel2Layout);
+            panel2Layout.setHorizontalGroup(
+                panel2Layout.createParallelGroup()
+                    .addGroup(panel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(panel1Layout.createParallelGroup()
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(btOrderMng)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lbUserInfo))
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addGroup(panel1Layout.createParallelGroup()
-                                    .addGroup(panel1Layout.createSequentialGroup()
-                                        .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 898, Short.MAX_VALUE)
-                                        .addGap(18, 18, 18)
-                                        .addGroup(panel1Layout.createParallelGroup()
-                                            .addComponent(btSign, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btDelete, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(separator2, GroupLayout.DEFAULT_SIZE, 957, Short.MAX_VALUE))
-                                .addContainerGap())))
+                        .addGroup(panel2Layout.createParallelGroup()
+                            .addGroup(panel2Layout.createSequentialGroup()
+                                .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 830, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panel2Layout.createParallelGroup()
+                                    .addComponent(btDelete, GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                                    .addComponent(btSign, GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)))
+                            .addGroup(panel2Layout.createSequentialGroup()
+                                .addGroup(panel2Layout.createParallelGroup()
+                                    .addComponent(btOrderMng)
+                                    .addGroup(panel2Layout.createSequentialGroup()
+                                        .addGap(25, 25, 25)
+                                        .addComponent(label1))
+                                    .addGroup(panel2Layout.createSequentialGroup()
+                                        .addComponent(lbOrderNum)
+                                        .addGap(6, 6, 6)
+                                        .addComponent(tfOrderInput, GroupLayout.PREFERRED_SIZE, 361, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(btSearch)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
             );
-            panel1Layout.setVerticalGroup(
-                panel1Layout.createParallelGroup()
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addGroup(panel1Layout.createParallelGroup()
-                            .addComponent(lbUserInfo)
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(btOrderMng, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+            panel2Layout.setVerticalGroup(
+                panel2Layout.createParallelGroup()
+                    .addGroup(panel2Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(btOrderMng, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
                         .addComponent(label1)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED, 16, Short.MAX_VALUE)
-                        .addComponent(separator2, GroupLayout.PREFERRED_SIZE, 0, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panel1Layout.createParallelGroup()
-                            .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(lbOrderNum)
-                                .addComponent(tfOrderInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6)
+                        .addGroup(panel2Layout.createParallelGroup()
+                            .addGroup(panel2Layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(lbOrderNum))
+                            .addComponent(tfOrderInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addComponent(btSearch, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-                        .addGroup(panel1Layout.createParallelGroup()
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panel2Layout.createParallelGroup()
+                            .addGroup(panel2Layout.createSequentialGroup()
                                 .addComponent(btSign, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btDelete, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(309, Short.MAX_VALUE))
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
-                                .addContainerGap())))
+                                .addContainerGap(343, Short.MAX_VALUE))
+                            .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)))
             );
         }
 
@@ -299,11 +278,11 @@ public class OrderUI extends JFrame {
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
-                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -376,8 +355,7 @@ public class OrderUI extends JFrame {
     private JMenuItem miQuit;
     private JMenu mnEdit;
     private JMenuItem miModify;
-    private JPanel panel1;
-    private JLabel lbUserInfo;
+    private JPanel panel2;
     private JTextField tfOrderInput;
     private JButton btSearch;
     private JLabel lbOrderNum;
@@ -387,6 +365,5 @@ public class OrderUI extends JFrame {
     private JButton btSign;
     private JLabel label1;
     private JToggleButton btOrderMng;
-    private JSeparator separator2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

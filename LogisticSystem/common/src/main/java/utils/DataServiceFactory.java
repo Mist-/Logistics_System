@@ -3,6 +3,7 @@ package utils;
 import data.enums.DataType;
 import data.enums.POType;
 import data.service.DataService;
+import utils.Connection;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -14,25 +15,25 @@ import java.rmi.RemoteException;
  * Created by mist on 2015/11/12 0012.
  */
 public class DataServiceFactory {
-    public static DataService getDataServiceByType(DataType type) {
+	public static DataService getDataServiceByType(DataType type) {
 		Connection.startConnectionCheck();
-        try {
+		try {
 			DataService ds = (DataService) Naming.lookup("rmi://127.0.0.1:32000/" + type.name());
-            return ds;
+			return ds;
 		} catch (MalformedURLException e) {
 			/* 假设这不会发生！ */
 			//e.printStackTrace();
 		} catch (RemoteException e) {
 			// 网络连接问题
-            System.err.println("Connection error while fetching " + type.name());
+			System.err.println("Connection error while fetching " + type.name());
 
-            //e.printStackTrace();
+			//e.printStackTrace();
 		} catch (NotBoundException e) {
 			/* 假设这不会发生！ */
 			e.printStackTrace();
 		}
 		return null;
-    }
+	}
 
 	public static DataService getDataServiceByPO(POType type) {
 		switch (type) {
