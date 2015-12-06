@@ -3,7 +3,6 @@ package presentation.order;
 import businesslogic.impl.order.OrderBLController;
 import data.message.LoginMessage;
 import data.message.ResultMessage;
-import data.po.OrderPO;
 import data.vo.OrderVO;
 
 import javax.swing.*;
@@ -46,6 +45,7 @@ public class OrderUI extends JFrame {
     private void refresh() {
         ArrayList<OrderVO> displayData = new OrderBLController().getDisplayData();
         Vector tabelData = ((DefaultTableModel) tbOrderInfo.getModel()).getDataVector();
+        tabelData.clear();
         Vector row = null;
         for (OrderVO order: displayData) {
             row = new Vector();

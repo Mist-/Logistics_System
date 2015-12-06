@@ -22,6 +22,7 @@ public class NewOrderDlg extends JDialog {
     OrderVO orderVO = null;
 
     public OrderVO getNewOrderInfo() {
+        orderVO = new OrderVO();
         this.setVisible(true);
         return orderVO;
     }
@@ -132,7 +133,6 @@ public class NewOrderDlg extends JDialog {
             return;
         }
 
-        orderVO = new OrderVO();
         orderVO.sname = textSname.getText();
         orderVO.scompany = textScompany.getText();
         orderVO.saddress = cboxScity.getSelectedItem().toString() + "-" + cboxSblock.getSelectedItem().toString() + "-" + textSaddress.getText();
@@ -150,11 +150,13 @@ public class NewOrderDlg extends JDialog {
         orderVO.volume = height * width * length;
         orderVO.weight = Float.parseFloat(textWeight.getText());
 
-        orderVO.fee = Float.parseFloat(textFee.getText());
-        orderVO.evaluatedTime = Integer.parseInt(textTimeEvaluated.getText());
 
         btFeeRefreshMouseReleased(e);
         btTimeRefreshMouseReleased(e);
+
+        orderVO.fee = Float.parseFloat(textFee.getText());
+        orderVO.evaluatedTime = Integer.parseInt(textTimeEvaluated.getText());
+
 
         int DlgResult = JOptionPane.showConfirmDialog(null, "报价：" + textFee.getText() + "元\n" + "预计" + textTimeEvaluated.getText() + "天内送达\n" + "是否保存订单？", "LCS物流管理系统", JOptionPane.OK_CANCEL_OPTION);
         if (DlgResult == JOptionPane.YES_OPTION) {
@@ -245,8 +247,8 @@ public class NewOrderDlg extends JDialog {
             cboxServiceType.requestFocus();
             return;
         }
+        if (orderVO == null) orderVO = new OrderVO();
         textFee.setText("正在计算...");
-        orderVO = new OrderVO();
         orderVO.saddress = cboxScity.getSelectedItem().toString() + "-" + cboxSblock.getSelectedItem().toString() + "-" + textSaddress.getText();
         orderVO.raddress = cboxRcity.getSelectedItem().toString() + "-" + cboxRblock.getSelectedItem().toString() + "-" + textRaddress.getText();
         orderVO.serviceType = (ServiceType) cboxServiceType.getSelectedItem();
@@ -285,7 +287,6 @@ public class NewOrderDlg extends JDialog {
             return;
         }
         textTimeEvaluated.setText("正在计算...");
-        orderVO = new OrderVO();
         orderVO.saddress = cboxScity.getSelectedItem().toString() + "-" + cboxSblock.getSelectedItem().toString() + "-" + textSaddress.getText();
         orderVO.raddress = cboxRcity.getSelectedItem().toString() + "-" + cboxRblock.getSelectedItem().toString() + "-" + textRaddress.getText();
         orderVO.serviceType = (ServiceType) cboxServiceType.getSelectedItem();

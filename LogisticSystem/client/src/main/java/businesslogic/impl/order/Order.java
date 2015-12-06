@@ -89,6 +89,7 @@ public class Order {
 
     /**
      * 根据起止地址，计算出一条物流路线
+     *
      * @param depart 出发地地址信息。格式为[City]-[Block]-[Address]
      * @param dest 目的地地址信息。格式为[City]-[Block]-[Address]
      * @return 包含路线的ArrayList。最多包含四站。如果网络连接失败，则返回null
@@ -112,6 +113,11 @@ public class Order {
         return null;
     }
 
+    /**
+     *
+     * @param orderVO
+     * @return
+     */
     public int evaluateTime(@NotNull OrderVO orderVO) {
         ArrayList<DataPO> orders = null;
         float time = 0.0f;
@@ -120,7 +126,7 @@ public class Order {
             return 0;
         }
         try {
-            orders = orderDataService.searchByLoc(orderVO.saddress.substring(0, 3) + "-" + orderVO.raddress.substring(0, 3));
+            orders = orderDataService.searchByLoc(orderVO.saddress.substring(0, 2) + " " + orderVO.raddress.substring(0, 2));
         } catch (RemoteException e) {
             System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
             return 0;

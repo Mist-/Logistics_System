@@ -6,6 +6,7 @@ import data.po.OrderPO;
 import data.po.SignPO;
 import data.service.OrderDataService;
 
+import javax.swing.*;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -33,9 +34,9 @@ public class OrderDataSerializableImpl extends UnicastRemoteObject implements Or
         for (DataPO dataPO : poLists.get(POType.ORDER)) {
             OrderPO order = (OrderPO) dataPO;
             boolean addable = true;
-            if (!locs[1].equals("*") && !locs[1].equals(order.getSInfo(OrderPO.SADDRESS).substring(0, 3)))
+            if (!locs[0].equals("*") && !locs[0].equals(order.getSInfo(OrderPO.SADDRESS).substring(0, 2)))
                 addable = false;
-            if (!locs[2].equals("*") && !locs[2].equals(order.getSInfo(OrderPO.SADDRESS).substring(0, 3)))
+            if (!locs[1].equals("*") && !locs[1].equals(order.getSInfo(OrderPO.SADDRESS).substring(0, 2)))
                 addable = false;
             if (addable) result.add(order);
         }
