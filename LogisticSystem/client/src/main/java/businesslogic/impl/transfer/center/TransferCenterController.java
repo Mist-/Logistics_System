@@ -19,12 +19,14 @@ import data.po.InstitutionPO;
 import data.po.StaffPO;
 import data.po.TransferListPO;
 import data.service.CompanyDataService;
+import data.service.TransferDataService;
 import data.vo.ArrivalVO;
 import data.vo.BriefOrderVO;
 import data.vo.TransferListVO;
 
 public class TransferCenterController implements TransferCenterService{
 	InstitutionInfo center;
+	TransferDataService transferData;
 	CompanyDataService companyData;
 	@Override
 	public TransferLoadService startTransferLoad() {
@@ -38,11 +40,12 @@ public class TransferCenterController implements TransferCenterService{
 	}
 	@Override
 	public TransferReceiveService startTransferReceiver() {
-		return new TransferReceive(center);
+		return new TransferReceive(center,transferData);
 	}
 
 
 	public TransferCenterController(LoginMessage login) throws Exception {
+		transferData = (TransferDataService) DataServiceFactory.getDataServiceByType(DataType.TransferDataService);
 		companyData = (CompanyDataService) DataServiceFactory.getDataServiceByType(DataType.CompanyDataService);
 		center = new InstitutionInfo(login);
 	}

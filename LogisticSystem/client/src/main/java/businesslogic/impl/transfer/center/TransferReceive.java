@@ -58,6 +58,9 @@ public class TransferReceive implements TransferReceiveService {
 		try {
 			transferList = (TransferListPO) transferData.search(
 					POType.TRANSFERLIST, code);
+			if (transferList == null) {
+				return null;
+			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return null;
@@ -68,6 +71,9 @@ public class TransferReceive implements TransferReceiveService {
 	public EntruckListVO getEntruckList(long code) {
 		try {
 			entruckList = (EntruckPO) transferData.search(POType.ENTRUCK, code);
+			if (entruckList == null) {
+				return null;
+			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return null;
@@ -114,9 +120,8 @@ public class TransferReceive implements TransferReceiveService {
 	}
 	
 	
-	public TransferReceive(InstitutionInfo center) {
-		//transferData = (TransferDataService) DataServiceFactory
-		//		.getDataServiceByType(DataType.TransferDataService);
+	public TransferReceive(InstitutionInfo center,TransferDataService transferData) {
+		this.transferData = transferData;
 		arrivalList = new ArrivalList(transferData);
 		this.center = center;
 	}

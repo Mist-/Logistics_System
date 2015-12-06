@@ -23,6 +23,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "addTruckButton"
 						"text": "添加"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "addTruckButtonMouseClicked", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "showTruckButton"
@@ -42,8 +43,8 @@ new FormModel {
 		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 			name: "truckPane"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space :::p, par l {seq {par l {seq t {comp label1:::p::p, space :::p, comp id:::p:100:p}, seq l {comp label2:::p::p, space s:::p, comp license:::p:98:p}, seq l {comp label3:::p::p, space :::p, comp year:::p:40:p, space :::p, comp label4:::p::p, space :::p, comp month:::p:40:p}}, space :::p, comp label5:::p::p, space :::p, comp day:::p:40:p, space :::p, comp label6:::p::p}, seq l {comp label7:::p::p, space :::p, comp status:::p:53:p}}, space ::557:x}, seq t {space ::728:x, par l {comp cancelButton:::p::p, comp modifyButton:::p::p, comp saveButton:::p::p}, space :::p}}"
-				"$verticalGroup": "par l {seq l {space :::p, par b {comp label1::b:p::p, comp id::b:p::p}, space :::p, par b {comp label2::b:p::p, comp license::b:p::p}, space :::p, par b {comp label3::b:p::p, comp label4::b:p::p, comp month::b:p::p, comp label5::b:p::p, comp day::b:p::p, comp label6::b:p::p, comp year::b:p::p}, space :::p, par b {comp label7::b:p::p, comp status::b:p::p}, space ::143:x, comp cancelButton:::p::p, space :::p, comp modifyButton:::p::p, space :::p, comp saveButton:::p::p, space :::p}}"
+				"$horizontalGroup": "par l {seq {space :::p, par l {seq {par l {seq {par l {seq t {comp label1:::p::p, space :::p, comp id:::p:100:p}, seq l {comp label2:::p::p, space s:::p, comp license:::p:98:p}, seq l {comp label3:::p::p, space :::p, comp year:::p:40:p, space :::p, comp label4:::p::p, space :::p, comp month:::p:40:p}}, space :::p, comp label5:::p::p, space :::p, comp day:::p:40:p, space :::p, comp label6:::p::p}, seq l {comp label7:::p::p, space :::p, comp status:::p:53:p}}, space :0:547:x}, seq t {space :0:718:x, par l {comp cancelButton::t:p::p, comp modifyButton::t:p::p, comp saveButton::t:p::p}}}, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :::p, par b {comp label1::b:p::p, comp id::b:p::p}, space :::p, par b {comp label2::b:p::p, comp license::b:p::p}, space :::p, par b {comp label3::b:p::p, comp label4::b:p::p, comp month::b:p::p, comp label5::b:p::p, comp day::b:p::p, comp label6::b:p::p, comp year::b:p::p}, space :::p, par b {comp label7::b:p::p, comp status::b:p::p}, space ::65:x, comp saveButton:::p::p, space :::p, comp modifyButton:::p::p, space :::p, comp cancelButton:::p::p, space :p:13:p}}"
 			} ) {
 				name: "panel2"
 				add( new FormComponent( "javax.swing.JLabel" ) {
@@ -116,16 +117,16 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 385 )
-			"size": new java.awt.Dimension( 800, 375 )
+			"size": new java.awt.Dimension( 800, 300 )
 		} )
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
-			name: "dialog1"
+			name: "cancelDialog"
 			"title": "提示"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {par l {seq {space :p:55:p, comp label8:::p::p}, seq l {space :p:101:p, par l {comp cancelSureButton:::p::p, comp notCancelButton:::p::p}}}, space ::60:x}, seq t {space :0:88:x, comp label9:::p::p, space :p:87:p}}"
-				"$verticalGroup": "par l {seq l {space :p:42:p, comp label8:::p:26:p, space :::p, comp label9:::p::p, space u:::p, comp cancelSureButton:::p::p, space :::p, comp notCancelButton:::p::p, space :::x}}"
+				"$horizontalGroup": "par l {seq t {space :0:88:x, comp label9:::p::p, space :p:87:p}, seq {par l {seq {space :p:55:p, comp label8:::p::p}, seq l {space :p:70:p, comp cancelSureButton:::p::p, space s:::p, comp notCancelButton:::p::p}}, space ::60:x}}"
+				"$verticalGroup": "par l {seq l {space :p:42:p, comp label8:::p:26:p, space :::p, comp label9:::p::p, space u:::p, par b {comp cancelSureButton::b:p::p, comp notCancelButton::b:p::p}, space ::39:x}}"
 			} ) {
-				name: "cancelDialog"
+				name: "panel"
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label8"
 					"text": "取消后本次编辑将不能生效"

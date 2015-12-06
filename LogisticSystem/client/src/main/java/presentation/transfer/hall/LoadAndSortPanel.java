@@ -9,6 +9,7 @@ import java.awt.event.*;
 import java.rmi.RemoteException;
 import java.util.Vector;
 
+import javax.management.modelmbean.ModelMBean;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -27,41 +28,46 @@ public class LoadAndSortPanel extends JPanel {
 	BriefOrderVO briefOrder;
 	BriefEntruckListVO briefEntruckList;
 	EntruckListVO entruck;
-	
+
 	public LoadAndSortPanel(LoadAndSortService loadAndSort)
 			throws RemoteException {
 		this.loadAndSort = loadAndSort;
 		initComponents();
 		selectEntruck.setEnabled(false);
 		removeOrder.setEnabled(false);
+		createEntruck.setEnabled(false);
 		setDestination();
 		setEntruckList();
 		this.setVisible(true);
 	}
 
 	// =========================设置界面====================================================
-	//设置目的地comboBox
+	// 设置目的地comboBox
 	private void setDestination() throws RemoteException {
 
 		String[] des = null;
 		des = loadAndSort.getDestination();
-
-		DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(des);
-		comboBox1.setModel(model);
-		comboBox1.validate();
-		comboBox1.updateUI();
+		if (des != null) {// 目的地信息获取成功时显示，不成功则不显示
+			DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(des);
+			comboBox1.setModel(model);
+			comboBox1.validate();
+			comboBox1.updateUI();
+		} else {
+			return;
+		}
 	}
-	//设置装车单
+
+	// 设置装车单
 	private void setEntruck() {
 		if (entruck != null) {
-			//设置装车单 订单列表
+			// 设置装车单 订单列表
 			DefaultTableModel model = new DefaultTableModel(entruck.info,
 					entruck.header);
 			entruckTable.setModel(model);
 			listID.setText(entruck.entruckListID);
 			hallID.setText(entruck.fromID);
 			hallName.setText(entruck.fromName);
-			destID.setText(entruck.destID+"");
+			destID.setText(entruck.destID + "");
 			destName.setText(entruck.destName);
 			truckID.setText(entruck.vehicleID);
 			staffName.setText(entruck.monitorName);
@@ -75,12 +81,14 @@ public class LoadAndSortPanel extends JPanel {
 			entruckVO.validate();
 			entruckVO.updateUI();
 			entruckVO.setVisible(true);
-		}else{
-			JOptionPane.showMessageDialog(null,"未查找到装车单信息" , "异常", JOptionPane.ERROR_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(null, "未查找到装车单信息", "异常",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	//设置装车单不可编辑
-	private void setDisabled(){
+
+	// 设置装车单不可编辑
+	private void setDisabled() {
 		entruckTable.setEnabled(false);
 		listID.setEnabled(false);
 		hallID.setEnabled(false);
@@ -91,10 +99,10 @@ public class LoadAndSortPanel extends JPanel {
 		staffName.setEnabled(false);
 		driverName.setEnabled(false);
 		fee.setEnabled(false);
-		
-		
+
 	}
-	//设置显示装车单
+
+	// 设置显示装车单
 	private void setEntruckList() {
 		try {
 			if (briefEntruckList == null)
@@ -103,12 +111,16 @@ public class LoadAndSortPanel extends JPanel {
 			e.printStackTrace();
 			errorDialog.setVisible(true);
 		}
-		DefaultTableModel model = new DefaultTableModel(briefEntruckList.info,
-				briefEntruckList.header);
-		entruckListTable.setModel(model);
-		entruckListTable.validate();
-		entruckListTable.updateUI();
-		entruckListTable.setVisible(true);
+		if (briefEntruckList != null) {// 为空则获取失败
+			DefaultTableModel model = new DefaultTableModel(
+					briefEntruckList.info, briefEntruckList.header);
+			entruckListTable.setModel(model);
+			entruckListTable.validate();
+			entruckListTable.updateUI();
+			entruckListTable.setVisible(true);
+		}else{
+			entruckListTable.setEnabled(false);
+		}
 	}
 
 	// =========================监听==================================================
@@ -129,23 +141,33 @@ public class LoadAndSortPanel extends JPanel {
 		int index = comboBox1.getSelectedIndex();
 		String des = (String) comboBox1.getItemAt(index);
 		briefOrder = loadAndSort.chooseDestination(des);
-
-		DefaultTableModel model = new DefaultTableModel(briefOrder.info,
-				briefOrder.header);
+		DefaultTableModel model = new DefaultTableModel();
+		if(briefOrder != null){
+		model.setDataVector(briefOrder.info, briefOrder.header);
 		orderTable.setModel(model);
-		orderTable.validate();
+		orderTable.setEnabled(true);
 		orderTable.updateUI();
 		orderTable.setVisible(true);
+		removeOrder.setEnabled(true);
+		createEntruck.setEnabled(true);
+		}else{
+			orderTable.setEnabled(false);
+		}
 	}
 
 	private void createEntruckMouseClicked(MouseEvent e) {
-		//vector 转 string[][] 暂时这么着
+		// vector 转 string[][] 暂时这么着
+		if(orderTable.isEnabled()){
 		Vector<Vector<String>> v = briefOrder.info;
+		if(v.size() == 0){//订单列表长度为0时，只提示
+			JOptionPane.showMessageDialog(null, "没有可装车订单","提示",JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
 		String[][] info = new String[v.size()][BriefOrderVO.getColumnNum()];
-		for(int i = 0 ; i < v.size();i++){
+		for (int i = 0; i < v.size(); i++) {
 			Vector<String> in = v.get(i);
 			String[] ins = new String[in.size()];
-			for(int j = 0 ; j < in.size();j++){
+			for (int j = 0; j < in.size(); j++) {
 				ins[i] = in.get(j);
 			}
 			info[i] = ins;
@@ -157,6 +179,7 @@ public class LoadAndSortPanel extends JPanel {
 		saveEntruck.setEnabled(true);
 		setEntruck();
 		setDisabled();
+		}
 	}
 
 	private void saveEntruckMouseClicked(MouseEvent e) {
@@ -170,24 +193,28 @@ public class LoadAndSortPanel extends JPanel {
 	}
 
 	private void selectEntruckMouseClicked(MouseEvent e) {
-		int row = entruckListTable.getSelectedRow();
-		String id = (String) entruckListTable.getValueAt(row, 0);
-		entruck = loadAndSort.chooseEntruckList(Long.parseLong(id));
-		doEntruck.setVisible(true);
-		doEntruck.setEnabled(true);
-		saveEntruck.setVisible(false);
-		saveEntruck.setEnabled(false);
-		setEntruck();
-		setDisabled();
+		if (entruckListTable.isEnabled()) {
+			int row = entruckListTable.getSelectedRow();
+			String id = (String) entruckListTable.getValueAt(row, 0);
+			entruck = loadAndSort.chooseEntruckList(Long.parseLong(id));
+			doEntruck.setVisible(true);
+			doEntruck.setEnabled(true);
+			saveEntruck.setVisible(false);
+			saveEntruck.setEnabled(false);
+			setEntruck();
+			setDisabled();
+		}
 	}
 
 	private void doEntruckMouseClicked(MouseEvent e) {
 		ResultMessage result = loadAndSort.doEntruck();
-		if(result == ResultMessage.SUCCESS){
-			JOptionPane.showMessageDialog(null, "操作成功", "提示", JOptionPane.INFORMATION_MESSAGE);
+		if (result == ResultMessage.SUCCESS) {
+			JOptionPane.showMessageDialog(null, "操作成功", "提示",
+					JOptionPane.INFORMATION_MESSAGE);
 			setEntruckList();
-		}else{
-			JOptionPane.showMessageDialog(null, "操作失败,请稍后再试", "提示",JOptionPane.ERROR_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(null, "操作失败,请稍后再试", "提示",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -204,17 +231,24 @@ public class LoadAndSortPanel extends JPanel {
 		removeOrder.setEnabled(true);
 	}
 
-	//删除选中订单项
+	// 删除选中订单项
 	private void removeOrderMouseReleased(MouseEvent e) {
+		if(orderTable.isEnabled()){//订单列表有效时才生效
 		int[] rows = orderTable.getSelectedRows();
+		if (rows.length == 0) {
+			JOptionPane.showMessageDialog(null, "未选中订单","提示",JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
 		Vector<Vector<String>> v = briefOrder.info;
-		for(int i = 0 ; i < rows.length;i++){
+		for (int i = 0; i < rows.length; i++) {
 			v.remove(rows[i]);
 		}
-		DefaultTableModel model = new DefaultTableModel(briefOrder.info,briefOrder.header);
+		DefaultTableModel model = new DefaultTableModel(briefOrder.info,
+				briefOrder.header);
 		orderTable.setModel(model);
 		orderTable.updateUI();
 		orderTable.repaint();
+		}
 	}
 
 	private void initComponents() {
@@ -222,8 +256,6 @@ public class LoadAndSortPanel extends JPanel {
 		// //GEN-BEGIN:initComponents
 		loadAndSortPane = new JTabbedPane();
 		entruckListPanel = new JPanel();
-		scrollPane3 = new JScrollPane();
-		entruckListTable = new JTable();
 		selectEntruck = new JButton();
 		panel1 = new JPanel();
 		scrollPane1 = new JScrollPane();
@@ -266,6 +298,8 @@ public class LoadAndSortPanel extends JPanel {
 		panel3 = new JPanel();
 		label3 = new JLabel();
 		resultSure = new JButton();
+		scrollPane3 = new JScrollPane();
+		entruckListTable = new JTable();
 
 		//======== this ========
 		setLayout(new BorderLayout());
@@ -275,20 +309,6 @@ public class LoadAndSortPanel extends JPanel {
 
 			//======== entruckListPanel ========
 			{
-
-				//======== scrollPane3 ========
-				{
-
-					//---- entruckListTable ----
-					entruckListTable.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-					entruckListTable.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							entruckListTableMouseReleased(e);
-						}
-					});
-					scrollPane3.setViewportView(entruckListTable);
-				}
 
 				//---- selectEntruck ----
 				selectEntruck.setText("\u67e5\u770b");
@@ -304,14 +324,12 @@ public class LoadAndSortPanel extends JPanel {
 				entruckListPanelLayout.setHorizontalGroup(
 					entruckListPanelLayout.createParallelGroup()
 						.addGroup(entruckListPanelLayout.createSequentialGroup()
-							.addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 688, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addGap(694, 694, 694)
 							.addComponent(selectEntruck, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
 							.addContainerGap())
 				);
 				entruckListPanelLayout.setVerticalGroup(
 					entruckListPanelLayout.createParallelGroup()
-						.addComponent(scrollPane3, GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
 						.addGroup(GroupLayout.Alignment.TRAILING, entruckListPanelLayout.createSequentialGroup()
 							.addContainerGap(313, Short.MAX_VALUE)
 							.addComponent(selectEntruck)
@@ -658,6 +676,20 @@ public class LoadAndSortPanel extends JPanel {
 			resultDialog.pack();
 			resultDialog.setLocationRelativeTo(resultDialog.getOwner());
 		}
+
+		//======== scrollPane3 ========
+		{
+
+			//---- entruckListTable ----
+			entruckListTable.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+			entruckListTable.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					entruckListTableMouseReleased(e);
+				}
+			});
+			scrollPane3.setViewportView(entruckListTable);
+		}
 		// //GEN-END:initComponents
 	}
 
@@ -665,8 +697,6 @@ public class LoadAndSortPanel extends JPanel {
 	// //GEN-BEGIN:variables
 	private JTabbedPane loadAndSortPane;
 	private JPanel entruckListPanel;
-	private JScrollPane scrollPane3;
-	private JTable entruckListTable;
 	private JButton selectEntruck;
 	private JPanel panel1;
 	private JScrollPane scrollPane1;
@@ -709,5 +739,7 @@ public class LoadAndSortPanel extends JPanel {
 	private JPanel panel3;
 	private JLabel label3;
 	private JButton resultSure;
+	private JScrollPane scrollPane3;
+	private JTable entruckListTable;
 	// JFormDesigner - End of variables declaration //GEN-END:variables
 }

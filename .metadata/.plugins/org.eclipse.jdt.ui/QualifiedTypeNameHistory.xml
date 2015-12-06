@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="data.vo.DriverListVO"/>
-<fullyQualifiedTypeName name="java.lang.Long"/>
 <fullyQualifiedTypeName name="data.vo.DriverInfoVO"/>
 <fullyQualifiedTypeName name="presentation.transfer.hall.DriverPanel"/>
 <fullyQualifiedTypeName name="javax.naming.spi.DirStateFactory.Result"/>
@@ -11,12 +10,29 @@
 <fullyQualifiedTypeName name="businesslogic.service.Transfer.hall.TruckManagementService"/>
 <fullyQualifiedTypeName name="data.message.ResultMessage"/>
 <fullyQualifiedTypeName name="org.junit.internal.builders.NullBuilder"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="data.vo.ArrivalListVO"/>
+<fullyQualifiedTypeName name="presentation.user.userMngUI.UserMngUI"/>
+<fullyQualifiedTypeName name="javax.management.modelmbean.ModelMBean"/>
+<fullyQualifiedTypeName name="businesslogic.impl.transfer.TransferInfo"/>
+<fullyQualifiedTypeName name="javax.swing.DefaultListModel"/>
+<fullyQualifiedTypeName name="java.awt.event.ItemListener"/>
+<fullyQualifiedTypeName name="java.awt.event.ItemEvent"/>
+<fullyQualifiedTypeName name="data.enums.StorageArea"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="javax.swing.DefaultComboBoxModel"/>
+<fullyQualifiedTypeName name="data.vo.BriefOrderVO"/>
+<fullyQualifiedTypeName name="data.vo.TransferLoadVO"/>
 <fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
+<fullyQualifiedTypeName name="data.po.TransferListPO"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="java.lang.Long"/>
+<fullyQualifiedTypeName name="data.vo.TransferListVO"/>
+<fullyQualifiedTypeName name="data.service.TransferDataService"/>
 <fullyQualifiedTypeName name="data.factory.DataServiceFactory"/>
 <fullyQualifiedTypeName name="data.enums.DataType"/>
-<fullyQualifiedTypeName name="presentation.user.userMngUI.UserMngUI"/>
+<fullyQualifiedTypeName name="data.vo.EntruckListVO"/>
 <fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="data.vo.StorageListVO"/>
 <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 </qualifiedTypeNameHistroy>

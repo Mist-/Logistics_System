@@ -8,8 +8,8 @@ new FormModel {
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 				name: "tabbedPane1"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {comp scrollPane1::l::795:x, seq l {space :::p, par l:::p {comp label2:::::x, comp label1:::::x}, space :::p, par l:::p {comp comboBox1::::88:x, comp comboBox2::::88:x}, space :p:58:p, comp getOrder:::p:88:p, space :::p, comp button1:::p::p, space ::328:x}}"
-					"$verticalGroup": "par l {seq t {space :::p, par l {seq {par b {comp label1::b:p::p, comp comboBox1::b:p::p}, space :::p, par b {comp label2::b:p::p, comp comboBox2::b:p::p}}, comp getOrder:::p:50:p, comp button1::l:::x}, space ::52:x, comp scrollPane1:::p:233:p}}"
+					"$horizontalGroup": "par l {seq {space :::p, par l:::p {comp label2:::::x, comp label1:::::x}, space :::p, par l:::p {comp transferTypeBox::::88:x, comp destBox::::88:x}, space u:::p, comp getOrderButton:::p:85:p, space :::p, comp removeOrderButton:::p:85:p, space ::348:x, comp createTransferButton:::p:101:p, space :::p}, comp scrollPane1::l::795:x}"
+					"$verticalGroup": "par l {seq t {space :::p, par l {seq {par l {seq {par b {comp label1::b:p::p, comp transferTypeBox::b:p::p}, space :::p, par b {comp label2::b:p::p, comp destBox::b:p::p}}, comp createTransferButton::l:p:52:p}, space :0:0:x}, seq {par b {comp getOrderButton::b:p:52:p, comp removeOrderButton::b:p:52:p}, space ::9:x}}, comp scrollPane1::::265:x, space :::p}}"
 				} ) {
 					name: "loadPanel"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -20,28 +20,34 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label1"
-						"text": "transferType"
+						"text": "运输类型"
 					} )
 					add( new FormComponent( "javax.swing.JComboBox" ) {
-						name: "comboBox1"
+						name: "transferTypeBox"
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label2"
-						"text": "destination"
+						"text": "目的地"
 					} )
 					add( new FormComponent( "javax.swing.JComboBox" ) {
-						name: "comboBox2"
+						name: "destBox"
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "getOrder"
-						"text": "getOrder"
+						name: "getOrderButton"
+						"text": "搜索库存"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "getOrderButtonMouseReleased", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "button1"
-						"text": "createDeliveryList"
+						name: "createTransferButton"
+						"text": "生成中转单"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "createTransferButtonMouseReleased", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "removeOrderButton"
+						"text": "移除"
 					} )
 				}, new FormLayoutConstraints( null ) {
-					"title": "load"
+					"title": "中转装运"
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"

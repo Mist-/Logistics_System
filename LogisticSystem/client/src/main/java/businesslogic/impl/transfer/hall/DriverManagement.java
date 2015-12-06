@@ -3,6 +3,8 @@ package businesslogic.impl.transfer.hall;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import data.enums.DataType;
 import data.enums.POType;
 import data.factory.DataServiceFactory;
@@ -85,9 +87,12 @@ public class DriverManagement implements DriverManagementService {
 		String[][] info;
 		try {
 			drivers = transferData.searchList(POType.DRIVERINFO,user.getInstitutionID());
+			if(drivers == null){
+				return null;
+			}
 			info = new String[drivers.size()][3];
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, "网络连接中断，请稍后再试", "提示", JOptionPane.INFORMATION_MESSAGE);
 			return null;
 		}
 		

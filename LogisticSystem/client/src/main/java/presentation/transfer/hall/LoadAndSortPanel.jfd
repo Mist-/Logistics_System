@@ -8,18 +8,10 @@ new FormModel {
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 				name: "loadAndSortPane"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {comp scrollPane3:::p:688:p, space :::p, comp selectEntruck::::91:x, space :::p}}"
-					"$verticalGroup": "par l {comp scrollPane3::l::346:x, seq t {space ::313:x, comp selectEntruck:::p::p, space :::p}}"
+					"$horizontalGroup": "par l {seq l {space :p:694:p, comp selectEntruck::::91:x, space :::p}}"
+					"$verticalGroup": "par l {seq t {space ::313:x, comp selectEntruck:::p::p, space :::p}}"
 				} ) {
 					name: "entruckListPanel"
-					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-						name: "scrollPane3"
-						add( new FormComponent( "javax.swing.JTable" ) {
-							name: "entruckListTable"
-							"selectionMode": 1
-							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "entruckListTableMouseReleased", true ) )
-						} )
-					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "selectEntruck"
 						"text": "查看"
@@ -218,6 +210,17 @@ new FormModel {
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 805, 285 )
 			"size": new java.awt.Dimension( 260, 200 )
+		} )
+		add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+			name: "scrollPane3"
+			add( new FormComponent( "javax.swing.JTable" ) {
+				name: "entruckListTable"
+				"selectionMode": 1
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "entruckListTableMouseReleased", true ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 210, 35 )
+			"size": new java.awt.Dimension( 688, 346 )
 		} )
 	}
 }

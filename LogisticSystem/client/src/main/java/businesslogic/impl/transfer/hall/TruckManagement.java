@@ -84,6 +84,9 @@ public class TruckManagement implements TruckManagementService {
 		String[][] info;
 		try {
 			trucks = transferData.searchList(POType.VEHICLEINFO, user.getInstitutionID());
+			if(trucks == null){
+				return null;
+			}
 			info = new String[trucks.size()][2];
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
