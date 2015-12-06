@@ -48,16 +48,20 @@ new FormModel {
 				add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 					name: "tabbedPane1"
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {comp label6::t::779:x}"
-						"$verticalGroup": "par l {comp label6::l::308:x}"
+						"$horizontalGroup": "par l {seq l {space :p:296:p, par l:::p {comp label4::::83:x, comp label5::::83:x}, space ::400:x}}"
+						"$verticalGroup": "par l {seq l {space :p:141:p, comp label4:::p::p, space :::p, comp label5:::p::p, space ::131:x}}"
 					} ) {
 						name: "panel2"
 						add( new FormComponent( "javax.swing.JLabel" ) {
-							name: "label6"
-							"text": "text"
+							name: "label4"
+							"text": "仓库未初始化"
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label5"
+							"text": "请先初始化仓库"
 						} )
 					}, new FormLayoutConstraints( null ) {
-						"title": "text"
+						"title": "提示"
 					} )
 				}, new FormLayoutConstraints( class java.lang.String ) {
 					"value": "Center"

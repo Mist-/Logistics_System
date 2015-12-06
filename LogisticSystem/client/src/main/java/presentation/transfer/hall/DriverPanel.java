@@ -20,6 +20,7 @@ public class DriverPanel extends JPanel {
 	DriverManagementService driverManagement;
 	DriverListVO driverList;
 	DriverInfoVO driver;
+
 	public DriverPanel(DriverManagementService driverManagement) {
 		initComponents();
 		this.driverManagement = driverManagement;
@@ -28,71 +29,79 @@ public class DriverPanel extends JPanel {
 		setList();
 	}
 
-//===========================显示设置=========================
-	
-	private void setDriverVO(){
-		if(driver != null){
-		name.setEnabled(false);
-		num.setEnabled(false);
-		id.setEnabled(false);
-		gender.setEnabled(false);
-		phone.setEnabled(false);
-		status.setEnabled(false);
-		bornY.setEnabled(false);
-		bornM.setEnabled(false);
-		bornD.setEnabled(false);
-		licenseY.setEnabled(false);
-		licenseM.setEnabled(false);
-		licenseD.setEnabled(false);
-		name.setText(driver.name);
-		num.setText(driver.driverID);
-		id.setText(driver.IDCard);
-		gender.setText(driver.gender);
-		phone.setText(driver.phoneNum);
-		status.setText(driver.engaged);
-		bornY.setText(driver.bornY);
-		bornM.setText(driver.bornM);
-		bornD.setText(driver.bornD);
-		licenseY.setText(driver.licenseY);
-		licenseM.setText(driver.licenseM);
-		licenseD.setText(driver.licenseD);
-		modifyButton.setEnabled(true);
-		saveButton.setEnabled(false);
-		driverPane.validate();
-		driverPane.updateUI();
-		driverPane.repaint();
-		}else{
-			JOptionPane.showMessageDialog(null, "未能获取司机信息","异常",JOptionPane.ERROR_MESSAGE);
+	// ===========================显示设置=========================
+
+	private void setDriverVO() {
+		if (driver != null) {
+			name.setEnabled(false);
+			num.setEnabled(false);
+			id.setEnabled(false);
+			gender.setEnabled(false);
+			phone.setEnabled(false);
+			status.setEnabled(false);
+			bornY.setEnabled(false);
+			bornM.setEnabled(false);
+			bornD.setEnabled(false);
+			licenseY.setEnabled(false);
+			licenseM.setEnabled(false);
+			licenseD.setEnabled(false);
+			name.setText(driver.name);
+			num.setText(driver.driverID);
+			id.setText(driver.IDCard);
+			gender.setText(driver.gender);
+			phone.setText(driver.phoneNum);
+			status.setText(driver.engaged);
+			bornY.setText(driver.bornY);
+			bornM.setText(driver.bornM);
+			bornD.setText(driver.bornD);
+			licenseY.setText(driver.licenseY);
+			licenseM.setText(driver.licenseM);
+			licenseD.setText(driver.licenseD);
+			modifyButton.setEnabled(true);
+			saveButton.setEnabled(false);
+			driverPane.validate();
+			driverPane.updateUI();
+			driverPane.repaint();
+		} else {
+			JOptionPane.showMessageDialog(null, "未能获取司机信息", "异常",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
-	private void setList(){
-		
+	private void setList() {
+
 		driverList = driverManagement.getDrivers();
-		if(driverList != null){
-		DefaultTableModel model = new DefaultTableModel(driverList.info,driverList.header);
-		driverTable.setModel(model);
-		driverTable.validate();
-		driverTable.updateUI();
-		driverTable.repaint();
-		if(driverPane != null){
-			remove(driverPane);
-			add(driverListPane);
-			driverListPane.validate();
-			driverListPane.updateUI();
-			driverListPane.setVisible(true);
-		}
-	
-		}else{
-			JOptionPane.showMessageDialog(null, "司机信息为空","提示",JOptionPane.INFORMATION_MESSAGE);
+		if (driverList != null) {
+			driverTable.setEnabled(true);
+			DefaultTableModel model = new DefaultTableModel(driverList.info,
+					driverList.header);
+			driverTable.setModel(model);
+			driverTable.validate();
+			driverTable.updateUI();
+			driverTable.repaint();
+			if (driverPane != null) {
+				remove(driverPane);
+				add(driverListPane);
+				driverListPane.validate();
+				driverListPane.updateUI();
+				driverListPane.setVisible(true);
+			}
+
+		} else {
+			JOptionPane.showMessageDialog(null, "司机信息为空", "提示",
+					JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
-//============================监听=============================
+
+	// ============================监听=============================
 	private void driverTableMouseClicked(MouseEvent e) {
 		showDriverButton.setEnabled(true);
 	}
 
 	private void showDriverButtonMouseClicked(MouseEvent e) {
+		if (driverTable.isEnabled()) {
+			modifyButton.setVisible(false);
+			saveButton.setVisible(false);
 		int row = driverTable.getSelectedRow();
 		String id = (String) driverTable.getValueAt(row, driverList.getIDRow());
 		long idNum = Long.parseLong(id);
@@ -100,12 +109,13 @@ public class DriverPanel extends JPanel {
 		setDriverVO();
 		remove(driverListPane);
 		add(driverPane);
-		
 		driverPane.updateUI();
 		driverPane.setVisible(true);
+		}
 	}
 
 	private void addDriverButtonMouseClicked(MouseEvent e) {
+		modifyButton.setVisible(false);
 		remove(driverListPane);
 		add(driverPane);
 		modifyButton.setEnabled(false);
@@ -126,14 +136,14 @@ public class DriverPanel extends JPanel {
 		licenseD.setEditable(true);
 		licenseM.setEditable(true);
 		licenseY.setEditable(true);
-		modifyButton.setEnabled(false);//只能点击一次，点击后失效
-		saveButton.setEnabled(true);//点击修改后，保存按钮可用
+		modifyButton.setEnabled(false);// 只能点击一次，点击后失效
+		saveButton.setEnabled(true);// 点击修改后，保存按钮可用
 	}
 
 	private void cancelButtonMouseClicked(MouseEvent e) {
-		if(modifyButton.isSelected()){
+		if (modifyButton.isVisible() || addDriverButton.isVisible()) {
 			cancelDialog.setVisible(true);
-		}else{
+		} else {
 			remove(driverPane);
 			add(driverListPane);
 			driverListPane.validate();
@@ -143,12 +153,13 @@ public class DriverPanel extends JPanel {
 	}
 
 	private void cancelSureButtonMouseClicked(MouseEvent e) {
+		cancelDialog.setVisible(false);
 		remove(driverPane);
 		add(driverListPane);
 		driverListPane.validate();
 		driverListPane.updateUI();
 		driverListPane.setVisible(true);
-		
+
 		name.setText("");
 		id.setText("");
 		gender.setText("");
@@ -161,19 +172,54 @@ public class DriverPanel extends JPanel {
 		licenseY.setText("");
 	}
 
+	private boolean checkAddInput() {
+		boolean checkResult = true;
+		if (name.getText().equals("")) {
+			checkResult = false;
+		} else if (id.getText().equals("")) {
+			checkResult = false;
+		} else if (gender.getText().equals("")) {
+			checkResult = false;
+		} else if (phone.getText().equals("")) {
+			checkResult = false;
+		} else if (bornY.getText().equals("")) {
+			checkResult = false;
+		} else if (bornM.getText().equals("")) {
+			checkResult = false;
+		} else if (bornD.getText().equals("")) {
+			checkResult = false;
+		} else if (licenseY.getText().equals("")) {
+			checkResult = false;
+		}else if (licenseM.getText().equals("")) {
+			checkResult = false;
+		}else if (licenseD.getText().equals("")) {
+			checkResult = false;
+		}else {
+			;
+		}
+	
+		return checkResult;
+	}
+
 	private void saveButtonMouseClicked(MouseEvent e) {
-		driver.name = name.getText();
-		driver.IDCard = id.getText();
-		driver.gender = id.getText();
-		driver.phoneNum = phone.getText();
-		driver.bornDate = bornY+"/"+bornM+"/"+bornD;
-		driver.timeLimit = licenseY+"/"+licenseM+"/"+licenseD;
-		ResultMessage result = driverManagement.modifyDriver(driver);
-		if(result == ResultMessage.SUCCESS){
-			JOptionPane.showMessageDialog(null, "保存成功","提示",JOptionPane.INFORMATION_MESSAGE);
-			setList();
+		if (checkAddInput()) {
+			driver.name = name.getText();
+			driver.IDCard = id.getText();
+			driver.gender = gender.getText();
+			driver.phoneNum = phone.getText();
+			driver.bornDate = bornY + "/" + bornM + "/" + bornD;
+			driver.timeLimit = licenseY + "/" + licenseM + "/" + licenseD;
+			ResultMessage result = driverManagement.modifyDriver(driver);
+			if (result == ResultMessage.SUCCESS) {
+				JOptionPane.showMessageDialog(null, "保存成功", "提示",
+						JOptionPane.INFORMATION_MESSAGE);
+				setList();
+			} else {
+				JOptionPane.showMessageDialog(null, "保存未成功,请稍后再试", "异常",
+						JOptionPane.ERROR_MESSAGE);
+			}
 		}else{
-			JOptionPane.showMessageDialog(null,"保存未成功,请稍后再试", "异常", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "输入不完整，请重新检查输入", "提示", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 
@@ -182,7 +228,8 @@ public class DriverPanel extends JPanel {
 	}
 
 	private void initComponents() {
-		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
+		// JFormDesigner - Component initialization - DO NOT MODIFY
+		// //GEN-BEGIN:initComponents
 		driverListPane = new JTabbedPane();
 		panel1 = new JPanel();
 		scrollPane1 = new JScrollPane();
@@ -384,59 +431,56 @@ public class DriverPanel extends JPanel {
 						.addGroup(panel2Layout.createSequentialGroup()
 							.addContainerGap()
 							.addGroup(panel2Layout.createParallelGroup()
+								.addComponent(label3)
+								.addComponent(label4)
+								.addComponent(label5)
+								.addComponent(label6)
+								.addComponent(label7)
+								.addComponent(label8)
+								.addComponent(label9)
+								.addComponent(label10))
+							.addGap(36, 36, 36)
+							.addGroup(panel2Layout.createParallelGroup()
+								.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+									.addComponent(name, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+									.addComponent(num, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+									.addComponent(id, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+									.addComponent(gender, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+									.addComponent(phone, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+									.addComponent(status, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
 								.addGroup(panel2Layout.createSequentialGroup()
-									.addGap(0, 705, Short.MAX_VALUE)
-									.addGroup(panel2Layout.createParallelGroup()
-										.addComponent(modifyButton, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-										.addComponent(saveButton, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-										.addComponent(cancelButton, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)))
-								.addGroup(panel2Layout.createSequentialGroup()
-									.addGroup(panel2Layout.createParallelGroup()
-										.addComponent(label3)
-										.addComponent(label4)
-										.addComponent(label5)
-										.addComponent(label6)
-										.addComponent(label7)
-										.addComponent(label8)
-										.addComponent(label9)
-										.addComponent(label10))
-									.addGap(36, 36, 36)
-									.addGroup(panel2Layout.createParallelGroup()
-										.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-											.addComponent(name, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-											.addComponent(num, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-											.addComponent(id, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-											.addComponent(gender, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-											.addComponent(phone, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-											.addComponent(status, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
+									.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+										.addComponent(licenseY, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+										.addComponent(bornY, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
+									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+									.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
 										.addGroup(panel2Layout.createSequentialGroup()
-											.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-												.addComponent(licenseY, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-												.addComponent(bornY, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
+											.addComponent(label11)
 											.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-											.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-												.addGroup(panel2Layout.createSequentialGroup()
-													.addComponent(label11)
-													.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-													.addComponent(bornM, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-												.addGroup(panel2Layout.createSequentialGroup()
-													.addComponent(label14)
-													.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-													.addComponent(licenseM)))
+											.addComponent(bornM, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+										.addGroup(panel2Layout.createSequentialGroup()
+											.addComponent(label14)
 											.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-											.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-												.addGroup(panel2Layout.createSequentialGroup()
-													.addComponent(label12)
-													.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-													.addComponent(bornD, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))
-												.addGroup(panel2Layout.createSequentialGroup()
-													.addComponent(label15)
-													.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-													.addComponent(licenseD)))
+											.addComponent(licenseM)))
+									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+									.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+										.addGroup(panel2Layout.createSequentialGroup()
+											.addComponent(label12)
 											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-											.addGroup(panel2Layout.createParallelGroup()
-												.addComponent(label13)
-												.addComponent(label16))))))
+											.addComponent(bornD, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))
+										.addGroup(panel2Layout.createSequentialGroup()
+											.addComponent(label15)
+											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+											.addComponent(licenseD)))
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addGroup(panel2Layout.createParallelGroup()
+										.addComponent(label13)
+										.addComponent(label16))))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 408, Short.MAX_VALUE)
+							.addGroup(panel2Layout.createParallelGroup()
+								.addComponent(cancelButton, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+								.addComponent(modifyButton, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+								.addComponent(saveButton, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
 							.addContainerGap())
 				);
 				panel2Layout.setVerticalGroup(
@@ -458,40 +502,43 @@ public class DriverPanel extends JPanel {
 							.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 								.addComponent(label6)
 								.addComponent(gender, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(label7)
-								.addComponent(phone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addGroup(panel2Layout.createParallelGroup()
-								.addComponent(label8)
-								.addComponent(status, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(panel2Layout.createParallelGroup()
-								.addComponent(label9)
-								.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-									.addComponent(bornY, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addComponent(label11)
-									.addComponent(bornM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addComponent(label12)
-									.addComponent(bornD, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addComponent(label13)))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(label10)
-								.addComponent(licenseY, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(label14)
-								.addComponent(licenseM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(label15)
-								.addComponent(licenseD, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(label16))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-							.addComponent(saveButton)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(modifyButton)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(cancelButton)
-							.addContainerGap())
+								.addGroup(panel2Layout.createSequentialGroup()
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+										.addComponent(label7)
+										.addComponent(phone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addGroup(panel2Layout.createParallelGroup()
+										.addComponent(label8)
+										.addComponent(status, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addGroup(panel2Layout.createParallelGroup()
+										.addComponent(label9)
+										.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+											.addComponent(bornY, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addComponent(label11)
+											.addComponent(bornM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addComponent(label12)
+											.addComponent(bornD, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addComponent(label13)))
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+										.addComponent(label10)
+										.addComponent(licenseY, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(label14)
+										.addComponent(licenseM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(label15)
+										.addComponent(licenseD, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(label16)))
+								.addGroup(panel2Layout.createSequentialGroup()
+									.addGap(27, 27, 27)
+									.addComponent(saveButton)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(modifyButton)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(cancelButton)))
+							.addContainerGap(36, Short.MAX_VALUE))
 				);
 			}
 			driverPane.addTab("\u53f8\u673a\u8be6\u7ec6\u4fe1\u606f", panel2);
@@ -535,15 +582,14 @@ public class DriverPanel extends JPanel {
 				panelLayout.setHorizontalGroup(
 					panelLayout.createParallelGroup()
 						.addGroup(panelLayout.createSequentialGroup()
-							.addGroup(panelLayout.createParallelGroup()
+							.addGap(55, 55, 55)
+							.addGroup(panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
 								.addGroup(panelLayout.createSequentialGroup()
-									.addGap(55, 55, 55)
-									.addComponent(label1))
-								.addGroup(panelLayout.createSequentialGroup()
-									.addGap(101, 101, 101)
-									.addGroup(panelLayout.createParallelGroup()
-										.addComponent(cancelSureButton)
-										.addComponent(notCancelButton))))
+									.addGap(13, 13, 13)
+									.addComponent(cancelSureButton)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(notCancelButton))
+								.addComponent(label1))
 							.addContainerGap(60, Short.MAX_VALUE))
 						.addGroup(GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
 							.addGap(0, 88, Short.MAX_VALUE)
@@ -558,20 +604,21 @@ public class DriverPanel extends JPanel {
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addComponent(label2)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(cancelSureButton)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-							.addComponent(notCancelButton)
-							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addGroup(panelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(cancelSureButton)
+								.addComponent(notCancelButton))
+							.addContainerGap(43, Short.MAX_VALUE))
 				);
 			}
 			cancelDialogContentPane.add(panel, BorderLayout.CENTER);
 			cancelDialog.pack();
 			cancelDialog.setLocationRelativeTo(cancelDialog.getOwner());
 		}
-		// JFormDesigner - End of component initialization  //GEN-END:initComponents
+		// //GEN-END:initComponents
 	}
 
-	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+	// JFormDesigner - Variables declaration - DO NOT MODIFY
+	// //GEN-BEGIN:variables
 	private JTabbedPane driverListPane;
 	private JPanel panel1;
 	private JScrollPane scrollPane1;
@@ -615,5 +662,5 @@ public class DriverPanel extends JPanel {
 	private JLabel label2;
 	private JButton cancelSureButton;
 	private JButton notCancelButton;
-	// JFormDesigner - End of variables declaration  //GEN-END:variables
+	// JFormDesigner - End of variables declaration //GEN-END:variables
 }

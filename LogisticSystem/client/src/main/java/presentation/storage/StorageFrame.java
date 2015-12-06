@@ -35,26 +35,15 @@ public class StorageFrame extends JFrame {
 			e1.printStackTrace();
 		}
 		initComponents();
+		this.setVisible(true);
 		try {
 			storageBusiness = new StorageBusinessController(user);
 		} catch (Exception e) {
 			e.printStackTrace();
 			dialog1.setVisible(true);
 		}
-		
 		storageInStart();//默认显示入库界面
-		this.setVisible(true);
-	
 	}
-	
-
-	//测试用入口
-	public static void main(String[] args){
-
-		StorageFrame storage = new StorageFrame(new LoginMessage(ResultMessage.SUCCESS, 100000));
-	}
-	
-	
 
 	//显示入库panel
 	private boolean storageInStart(){
@@ -150,6 +139,7 @@ public class StorageFrame extends JFrame {
 		
 		Container container = getContentPane();
 		container.remove(emptyPanel);
+		if (storageInVO != null) 
 		container.remove(storageInVO);
 		if(storageOutVO != null)
 		container.remove(storageOutVO);
@@ -194,7 +184,8 @@ public class StorageFrame extends JFrame {
 		emptyPanel = new JPanel();
 		tabbedPane1 = new JTabbedPane();
 		panel2 = new JPanel();
-		label6 = new JLabel();
+		label4 = new JLabel();
+		label5 = new JLabel();
 		dialog1 = new JDialog();
 		panel3 = new JPanel();
 		label7 = new JLabel();
@@ -307,21 +298,34 @@ public class StorageFrame extends JFrame {
 				//======== panel2 ========
 				{
 
-					//---- label6 ----
-					label6.setText("text");
+					//---- label4 ----
+					label4.setText("\u4ed3\u5e93\u672a\u521d\u59cb\u5316");
+
+					//---- label5 ----
+					label5.setText("\u8bf7\u5148\u521d\u59cb\u5316\u4ed3\u5e93");
 
 					GroupLayout panel2Layout = new GroupLayout(panel2);
 					panel2.setLayout(panel2Layout);
 					panel2Layout.setHorizontalGroup(
 						panel2Layout.createParallelGroup()
-							.addComponent(label6, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 779, Short.MAX_VALUE)
+							.addGroup(panel2Layout.createSequentialGroup()
+								.addGap(296, 296, 296)
+								.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+									.addComponent(label4, GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+									.addComponent(label5, GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE))
+								.addContainerGap(400, Short.MAX_VALUE))
 					);
 					panel2Layout.setVerticalGroup(
 						panel2Layout.createParallelGroup()
-							.addComponent(label6, GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+							.addGroup(panel2Layout.createSequentialGroup()
+								.addGap(141, 141, 141)
+								.addComponent(label4)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(label5)
+								.addContainerGap(131, Short.MAX_VALUE))
 					);
 				}
-				tabbedPane1.addTab("text", panel2);
+				tabbedPane1.addTab("\u63d0\u793a", panel2);
 			}
 			emptyPanel.add(tabbedPane1, BorderLayout.CENTER);
 		}
@@ -378,7 +382,8 @@ public class StorageFrame extends JFrame {
 	private JPanel emptyPanel;
 	private JTabbedPane tabbedPane1;
 	private JPanel panel2;
-	private JLabel label6;
+	private JLabel label4;
+	private JLabel label5;
 	private JDialog dialog1;
 	private JPanel panel3;
 	private JLabel label7;

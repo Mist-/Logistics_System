@@ -26,9 +26,7 @@ public class TransferCenterFrame extends JFrame {
 	TransferReceivePanel receivePanel;//中转接收面板
 	TransferLoadPanel loadPanel;//装运管理面板
 	
-	public static void main(String[] args) {
-		TransferCenterFrame centerUI = new TransferCenterFrame(new LoginMessage(ResultMessage.SUCCESS, 100000));
-	}
+
 	
 	public TransferCenterFrame(LoginMessage login) {
 		try {
@@ -82,7 +80,6 @@ public class TransferCenterFrame extends JFrame {
 		container.remove(emptyPanel);
 		container.remove(receivePanel);
 		container.add(loadPanel,BorderLayout.CENTER);
-		
 		loadPanel.setVisible(true);
 		loadPanel.validate();
 		loadPanel.updateUI();
@@ -169,18 +166,17 @@ public class TransferCenterFrame extends JFrame {
 			panel1Layout.setHorizontalGroup(
 				panel1Layout.createParallelGroup()
 					.addGroup(panel1Layout.createSequentialGroup()
-						.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-							.addGroup(panel1Layout.createSequentialGroup()
+						.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+							.addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
 								.addContainerGap()
 								.addComponent(receive, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)
 								.addGap(18, 18, 18)
 								.addComponent(load, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE))
-							.addGroup(panel1Layout.createSequentialGroup()
-								.addGap(39, 39, 39)
+							.addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
+								.addGap(48, 48, 48)
 								.addComponent(label6, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(label7)
-								.addGap(63, 63, 63)))
+								.addGap(122, 122, 122)
+								.addComponent(label7)))
 						.addContainerGap(460, Short.MAX_VALUE))
 			);
 			panel1Layout.setVerticalGroup(
@@ -221,7 +217,7 @@ public class TransferCenterFrame extends JFrame {
 				emptyPanelLayout.createParallelGroup()
 					.addGroup(GroupLayout.Alignment.TRAILING, emptyPanelLayout.createSequentialGroup()
 						.addContainerGap()
-						.addComponent(tabbedPane1, GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
+						.addComponent(tabbedPane1, GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE))
 			);
 		}
 		contentPane.add(emptyPanel, BorderLayout.CENTER);

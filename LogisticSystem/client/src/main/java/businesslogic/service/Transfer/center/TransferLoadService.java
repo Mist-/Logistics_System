@@ -14,7 +14,7 @@ public interface TransferLoadService {
 	
 	public boolean checkCapacity(TransferLoadVO vo);
 	
-	public TransferListVO createTransferList(TransferLoadVO load,String staffName,long staffID,String centerName,long centerID);
+	public TransferListVO createTransferList(TransferLoadVO load);
 	
 	public ResultMessage saveTransferList(TransferListVO vo);
 }

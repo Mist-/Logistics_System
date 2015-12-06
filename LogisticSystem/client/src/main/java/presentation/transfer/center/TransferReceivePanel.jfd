@@ -8,8 +8,8 @@ new FormModel {
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 				name: "startPane"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {comp scrollPane2:::p:684:p, space :::p, comp selectArrival:::p:90:p, space :::x}}"
-					"$verticalGroup": "par l {comp scrollPane2::::321:x, seq t {space ::270:x, comp selectArrival:::p:41:p, space :::p}}"
+					"$horizontalGroup": "par l {seq l {comp scrollPane2:::p:684:p, space :::p, comp selectArrival::::95:x, space :::p}}"
+					"$verticalGroup": "par l {comp scrollPane2::::321:x, seq {space :0:280:x, comp selectArrival:::p:41:p}}"
 				} ) {
 					name: "arrivelistPanel"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -17,22 +17,20 @@ new FormModel {
 						add( new FormComponent( "javax.swing.JTable" ) {
 							name: "arriveListTabble"
 							"selectionMode": 1
+							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "arriveListTabbleMouseReleased", true ) )
 						} )
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "selectArrival"
-						"text": "selectArrival"
-						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "showArrivalMouseClicked", true ) )
-						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "selectArrivalMouseClicked", true ) )
-						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "selectArrivalMouseClicked", true ) )
+						"text": "查看"
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "selectArrivalMouseClicked", true ) )
 					} )
 				}, new FormLayoutConstraints( null ) {
-					"title": "arriveList"
+					"title": "到达单列表"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :p:128:p, comp label5:::p:105:p, space :::p, par l:::p {seq {comp entruck:::p::p, space :::x, comp transfer:::p::p}, comp textField1:::p:157:p}, space s:::p, comp searchList:::p:69:p, space ::314:x}}"
-					"$verticalGroup": "par l {seq l {space :p:95:p, par b {comp label5::b:p::p, comp textField1::b:p::p, comp searchList::b:p::p}, space s:::p, par l {comp transfer:::p::p, comp entruck::l:p::p}, space ::162:x}}"
+					"$horizontalGroup": "par l {seq l {space :p:128:p, comp label5:::p:105:p, space :::p, par l:::p {seq {comp entruck:::p::p, space :::x, comp transfer:::p::p}, comp deliveryID:::p:157:p}, space s:::p, comp searchList:::p:69:p, space ::314:x}}"
+					"$verticalGroup": "par l {seq l {space :p:95:p, par b {comp label5::b:p::p, comp deliveryID::b:p::p, comp searchList::b:p::p}, space s:::p, par l {comp transfer:::p::p, comp entruck::l:p::p}, space ::162:x}}"
 				} ) {
 					name: "searchListPanel"
 					add( new FormComponent( "javax.swing.JLabel" ) {
@@ -40,25 +38,27 @@ new FormModel {
 						"text": "请输入运输单号"
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField1"
+						name: "deliveryID"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "deliveryIDMouseReleased", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JRadioButton" ) {
 						name: "entruck"
 						"text": "装车单"
 						"selected": true
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "entruckMouseClicked", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JRadioButton" ) {
 						name: "transfer"
 						"text": "中转单"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "transferMouseReleased", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "searchList"
 						"text": "查找"
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "searchListMouseClicked", true ) )
-						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "searchListMouseClicked", true ) )
 					} )
 				}, new FormLayoutConstraints( null ) {
-					"title": "searchList"
+					"title": "搜索运输单"
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"
@@ -70,8 +70,8 @@ new FormModel {
 		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 			name: "arrivalVO"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :::x, par t {seq t {comp status:::p:117:p, space u:::p, comp modifyStatus:::p:105:p}, par l {comp scrollPane1:::p:671:p, seq l {par l {par t:::p {comp label3::l:::x, seq l {space :p:30:p, comp label2:::::x}, comp label1::l:p:100:p}, comp label4::l:p:80:p}, space u:::p, par l:::p {comp transferID::::70:x, comp from::::70:x, comp arrivalDate::l::70:x}}}}, space :::p, par l:::p {comp cancelArrival::::98:x, comp doArrive::::98:x}, space :::x}}"
-				"$verticalGroup": "par l {seq t {space :::p, par t {seq {space :0:224:x, comp doArrive:::p:48:p, space :::p, comp cancelArrival:::p::p}, seq {par b {comp transferID::b:p::p, comp label1::b:p::p}, space :::p, par b {comp label2::b:p::p, comp from::b:p::p, comp label4::b:p::p}, space :::p, par b {comp label3::b:p::p, comp arrivalDate::b:p::p}, space :p:11:p, par b {comp status::b:p::p, comp modifyStatus::b:p::p}, space :::p, comp scrollPane1::::186:x}}, space :::p}}"
+				"$horizontalGroup": "par l {seq l {space :::x, par t {seq t {comp label13:::p::p, space :::p, comp statusBox:::p:117:p, space u:::p, comp modifyStatus:::p:105:p}, par l {comp scrollPane1:::p:671:p, seq l {par l {par t:::p {comp label3::l:::x, seq l {space :p:30:p, comp label2:::::x}, comp label1::l:p:100:p}, comp label4::l:p:80:p}, space u:::p, par l:::p {comp transferID::::70:x, comp from::::70:x, comp arrivalDate::l::70:x}}}}, space :::p, par l:::p {comp cancelArrival::::98:x, comp doArrive::::98:x}, space :::x}}"
+				"$verticalGroup": "par l {seq t {space :::p, par t {seq {space :0:224:x, comp doArrive:::p:48:p, space :::p, comp cancelArrival:::p::p}, seq {par b {comp transferID::b:p::p, comp label1::b:p::p}, space :::p, par b {comp label2::b:p::p, comp from::b:p::p, comp label4::b:p::p}, space :::p, par b {comp label3::b:p::p, comp arrivalDate::b:p::p}, space :p:11:p, par b {comp statusBox::b:p::p, comp modifyStatus::b:p::p, comp label13::b:p::p}, space :::p, comp scrollPane1::::186:x}}, space :::p}}"
 			} ) {
 				name: "panel1"
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -101,11 +101,11 @@ new FormModel {
 					name: "arrivalDate"
 				} )
 				add( new FormComponent( "javax.swing.JComboBox" ) {
-					name: "status"
+					name: "statusBox"
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "modifyStatus"
-					"text": "text"
+					"text": "修改状态"
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "cancelArrival"
@@ -115,7 +115,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "doArrive"
-					"text": "do"
+					"text": "确认到达"
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "createStorageInMouseClicked", true ) )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "doArriveMouseClicked", true ) )
 				} )
@@ -123,8 +123,12 @@ new FormModel {
 					name: "label4"
 					"text": "出发地"
 				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label13"
+					"text": "状态"
+				} )
 			}, new FormLayoutConstraints( null ) {
-				"title": "arrival"
+				"title": "到达单"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 360 )
@@ -194,15 +198,15 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "transferCancel"
-					"text": "cancel"
+					"text": "取消"
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "transferCancelMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "createArrival"
-					"text": "create"
+					"text": "生成到达单"
 				} )
 			}, new FormLayoutConstraints( null ) {
-				"title": "deliveryList"
+				"title": "运输单"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 720 )

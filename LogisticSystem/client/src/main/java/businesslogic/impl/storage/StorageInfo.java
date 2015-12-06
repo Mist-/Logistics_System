@@ -237,11 +237,13 @@ public class StorageInfo {
 	}
 
 	public StoragePositionAndOrderID getOrderID(StorageArea transferType) {
+		if (storageInfo == null) {
+			return null;
+		}
 		ArrayList<long[][][]> orders = storageInfo.getStorage();
 		ArrayList<Long> order = new ArrayList<>();
 		ArrayList<String> position = new ArrayList<>();
 		String areas = "º½ÔËÇø";
-
 		int area = 0, row = storageInfo.getPlaneRow();
 		if (transferType == StorageArea.TRAIN) {
 			area = 1;

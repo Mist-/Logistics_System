@@ -1,0 +1,13 @@
+package businesslogic.impl.transfer;
+
+public class TransferInfo {
+	//capacity
+	public static int planeCapacity = 500,trainCapacity = 200000,truckCapacity = 1000;//个数
+	public static int Eachweight = 10;//kg
+	public static String[] transferType = {"航运","铁运","汽运"};
+	
+	public static String[] getTransferType(){
+		
+	}
+	//fee(??)
+}

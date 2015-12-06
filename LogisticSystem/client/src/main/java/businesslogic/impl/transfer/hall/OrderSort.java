@@ -66,15 +66,17 @@ public class OrderSort implements LoadAndSortService {
 			return null;
 		}
 
-		ArrayList<String> halls = city.getHalls();
+		
+		ArrayList<String> halls = city.getHalls();//获取本城市下辖所有营业厅（包括自己）
+		halls.add(user.getCenterName());// 增加本营业厅目标中转中心
 		for (int i = 0; i < halls.size(); i++) {
 			if (halls.get(i).equals(user.getInstitutionName())) {
 				halls.remove(i);// 删掉本营业厅
 				break;
 			}
 		}
-		halls.add(user.getCenterName());// 增加本营业厅目标中转中心
-		String[] h = (String[]) halls.toArray();
+		String[] h = new String[halls.size()];
+		halls.toArray(h);//转成数组
 		return h;
 	}
 
@@ -89,11 +91,26 @@ public class OrderSort implements LoadAndSortService {
 				.getDataServiceByType(DataType.OrderDataService);
 		try {
 			ArrayList<DataPO> o = orderData.searchByLoc(user
-					.getInstitutionName());
-			for (DataPO d : o) {
-				OrderPO or = (OrderPO) d;
-				if (or.getNextDestination() == desID)
-					order.add(or);
+					.getInstitutionName());//根据目的地搜索订单
+			if(o != null){//如果正确搜索到订单
+				order = new ArrayList<OrderPO>();
+				for (DataPO d : o) {
+					OrderPO or = (OrderPO) d;
+					if (or.getNextDestination() == desID)
+						order.add(or);
+				}
+				
+				Vector<Vector<String>> info = new Vector<Vector<String>>();
+				for(int i = 0 ; i < order.size();i++){
+					Vector<String> row = new Vector<String>();
+					OrderPO oo = order.get(i);
+					row.add(oo.getSerialNum()+"");
+					row.add(oo.getWeight()+"");
+					info.add(row);
+				}
+				return new BriefOrderVO(info);
+			}else {//未能正确搜索到订单，返回空
+				return null;
 			}
 		} catch (RemoteException e) {
 			System.err.println("网络连接中断");
@@ -101,16 +118,7 @@ public class OrderSort implements LoadAndSortService {
 			return null;
 		}
 
-
-		Vector<Vector<String>> info = new Vector<Vector<String>>();
-		for(int i = 0 ; i < order.size();i++){
-			Vector<String> row = new Vector<String>();
-			OrderPO o = order.get(i);
-			row.add(o.getSerialNum()+"");
-			row.add(o.getWeight()+"");
-			info.add(row);
-		}
-		return new BriefOrderVO(info);
+		
 	}
 
 	@Override

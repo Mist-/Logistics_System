@@ -97,7 +97,12 @@ public class EntruckReceivePanel extends JPanel {
 		try {
 			if (transfer.isSelected()) {
 				transferList = entruckReceive.searchTransferList(id);
+				if(transferList == null){
+					deliveryID.setText("µ¥ºÅ²»´æÔÚ");
+					return;
+				}
 				setTransferList();
+			
 			} else {
 				entruckList = entruckReceive.searchEntruckList(id);
 				if(entruckList == null){
@@ -150,7 +155,7 @@ public class EntruckReceivePanel extends JPanel {
 	}
 
 	private void selectArrivalMouseClicked(MouseEvent e) {
-
+		if(arrivalList != null){
 		int row = arrivalTable.getSelectedRow();
 		System.out.println(row);
 		String id = (String) arrivalTable.getValueAt(row, 0);
@@ -162,6 +167,9 @@ public class EntruckReceivePanel extends JPanel {
 		saveArrival.setEnabled(false);
 		saveArrival.setVisible(false);
 		setArrivalVO();
+		}else {
+			return ;
+		}
 	}
 
 	private void searchListMouseClicked(MouseEvent e){
@@ -781,21 +789,21 @@ public class EntruckReceivePanel extends JPanel {
 				panel.setLayout(panelLayout);
 				panelLayout.setHorizontalGroup(
 					panelLayout.createParallelGroup()
+						.addGroup(GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+							.addGap(0, 88, Short.MAX_VALUE)
+							.addComponent(label9)
+							.addGap(87, 87, 87))
 						.addGroup(panelLayout.createSequentialGroup()
 							.addGroup(panelLayout.createParallelGroup()
 								.addGroup(panelLayout.createSequentialGroup()
 									.addGap(55, 55, 55)
 									.addComponent(label8))
 								.addGroup(panelLayout.createSequentialGroup()
-									.addGap(101, 101, 101)
-									.addGroup(panelLayout.createParallelGroup()
-										.addComponent(cancelSureButton)
-										.addComponent(notCancelButton))))
+									.addGap(76, 76, 76)
+									.addComponent(cancelSureButton)
+									.addGap(18, 18, 18)
+									.addComponent(notCancelButton)))
 							.addContainerGap(60, Short.MAX_VALUE))
-						.addGroup(GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-							.addGap(0, 88, Short.MAX_VALUE)
-							.addComponent(label9)
-							.addGap(87, 87, 87))
 				);
 				panelLayout.setVerticalGroup(
 					panelLayout.createParallelGroup()
@@ -805,10 +813,10 @@ public class EntruckReceivePanel extends JPanel {
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addComponent(label9)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(cancelSureButton)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-							.addComponent(notCancelButton)
-							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addGroup(panelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(cancelSureButton)
+								.addComponent(notCancelButton))
+							.addContainerGap(43, Short.MAX_VALUE))
 				);
 			}
 			cancelDialogContentPane.add(panel, BorderLayout.CENTER);

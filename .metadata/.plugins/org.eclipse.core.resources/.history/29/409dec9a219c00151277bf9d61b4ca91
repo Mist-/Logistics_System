@@ -1,0 +1,242 @@
+JFDML JFormDesigner: "5.2.2.0.199" Java: "1.8.0_31" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+				name: "operatePane"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {comp scrollPane1::t::795:x, seq {space :::p, par l:::p {comp label9::::86:x, comp label10::::86:x}, space u:::p, par l:::p {comp label11::::34:x, comp label14::::34:x}, space :::p, par l:::p {comp textField7::::49:x, comp textField10::::49:x}, space u:::p, par l:::p {comp label12::::37:x, comp label15::::37:x}, space :::p, par l:::p {comp textField8::::50:x, comp textField11::::50:x}, space u:::p, par l:::p {seq {comp label13:::p::p, space :::p, comp textField9:::p:55:p}, seq {comp label16:::p::p, space :::p, comp textField12:::::x}}, space :p:47:p, par l {seq {comp storageOut:::p::p, space ::182:x, comp button3:::p::p, space :::p, comp button4:::p::p}, seq {comp storageIn:::p::p, space :0:302:x}}, space :::p}}"
+					"$verticalGroup": "par l {seq t {space :::p, par l {comp label9:::p::p, par b {comp textField7::b:p::p, comp label11::b:p::p, comp label12::b:p::p, comp textField8::b:p::p, comp label13::b:p::p, comp textField9::b:p::p, comp storageIn::b:p::p}}, space :::p, par b {comp label10::b:p::p, comp label14::b:p::p, comp textField10::b:p::p, comp label15::l:p::p, comp textField11::b:p::p, comp label16::b:p::p, comp textField12::b:p::p, comp button4::b:p::p, comp button3::b:p::p, comp storageOut::b:p::p}, space ::19:x, comp scrollPane1:::p:266:p}}"
+				} ) {
+					name: "showPanel"
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane1"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "table1"
+						} )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label9"
+						"text": "起始日期"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label10"
+						"text": "终止日期"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField7"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label11"
+						"text": "年"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label12"
+						"text": "月"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField8"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label13"
+						"text": "日"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField9"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label14"
+						"text": "年"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField10"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label15"
+						"text": "月"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField11"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label16"
+						"text": "日"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField12"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button3"
+						"text": "查找"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button4"
+						"text": "查看"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "storageIn"
+						"text": "入库单"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "storageInMouseClicked", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "storageOut"
+						"text": "出库单"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "storageOutMouseClicked", true ) )
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "库存查看"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {comp scrollPane2::t::795:x, seq l {space :::p, comp button5:::p:87:p, space u:::p, comp button6:::p:84:p, space ::604:x}}"
+					"$verticalGroup": "par l {seq t {space :::p, par l {comp button5::::35:x, comp button6::::35:x}, space s:::p, comp scrollPane2:::p:283:p}}"
+				} ) {
+					name: "checkPanel"
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane2"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "table2"
+						} )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button5"
+						"text": "保存"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button6"
+						"text": "导出"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "库存盘点"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space :p:235:p, par l:::p {comp label17::::54:x, comp label18::::54:x, comp label19::::54:x}, space :::p, par l:::p {comp planePercent::::115:x, comp trainPercent::::115:x, comp truckPercent::::115:x}, space :::p, par l {comp button7:::p::p, comp button8:::p::p, comp button9::l:p::p}, space ::324:x}}"
+					"$verticalGroup": "par l {seq l {space :p:63:p, par b {comp label17::b:p:27:p, comp planePercent::b:p::p, comp button7::b:p::p}, space :::p, par b {comp label18::b:p:26:p, comp trainPercent::b:p::p, comp button8::b:p::p}, space :::p, par b {comp label19::b:p:28:p, comp truckPercent::b:p::p, comp button9::b:p::p}, space ::190:x}}"
+				} ) {
+					name: "adjustPanel"
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label17"
+						"text": "航运区："
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label18"
+						"text": "铁运区："
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label19"
+						"text": "汽运区："
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "planePercent"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "trainPercent"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "truckPercent"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button7"
+						"text": "扩充"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button8"
+						"text": "扩充"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button9"
+						"text": "扩充"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "库存调整"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space :p:231:p, par l {seq {comp label20:::p::p, space :0:0:x}, seq {par l:::p {comp label8:::::x, comp label7:::::x, comp label6:::::x, comp label5:::::x, seq {space :p:30:p, comp label3:::::x}, comp label1:::p:61:p, comp label2:::::x, comp label4:::::x, comp InitSureButton::l:::x}, par l {seq l {par l {seq {space :p:11:p, par t {comp textField1:::p:70:p, comp numInput:::p:70:p}, space :0:0:x}, seq l {space u:::p, par l {comp shelfInput:::::x, comp planeInput:::::x, comp trainInput:::::x, comp truckInput:::::x, comp flexibleInput:::::x, comp alarmPercentInput::l:::x}}}, space :p:399:p}, seq l {space :::p, comp reInputButton:::p:116:p, space :::x}}}}}}"
+					"$verticalGroup": "par l {seq l {space :p:16:p, par b {comp label1::b:p::p, comp textField1::b:p::p}, space :::p, par b {comp numInput::b:p::p, comp label2::b:p::p}, space :::p, par b {comp label4::b:p::p, comp shelfInput::b:p::p}, space :::p, comp label3:::p::p, space :p:37:p, par b {comp label5::b:p::p, comp planeInput::b:p::p}, space :::p, par b {comp label6::b:p::p, comp trainInput::b:p::p}, space :::p, par b {comp label7::b:p::p, comp truckInput::b:p::p}, space :::p, par b {comp label8::b:p::p, comp flexibleInput::b:p::p}, space s:::p, par b {comp label20::b:p::p, comp alarmPercentInput::b:p::p}, space ::28:x, par b {comp InitSureButton::b:p::p, comp reInputButton::b:p::p}, space :p:20:p}}"
+				} ) {
+					name: "initPanel"
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label1"
+						"text": "区域数量"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField1"
+						"text": "4"
+						"editable": false
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label2"
+						"text": "货架规格（位）"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "numInput"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label3"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label4"
+						"text": "每排架数（架）"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "shelfInput"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label5"
+						"text": "航运区"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label6"
+						"text": "铁运区"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label7"
+						"text": "汽运区"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label8"
+						"text": "机动区"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "planeInput"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "trainInput"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "truckInput"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "flexibleInput"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "InitSureButton"
+						"text": "确认"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "InitSureButtonMouseClicked", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "reInputButton"
+						"text": "重新输入"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "reInputButtonMouseClicked", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label20"
+						"text": "报警比例"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "alarmPercentInput"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "初始化"
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "North"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 800, 375 )
+		} )
+	}
+}

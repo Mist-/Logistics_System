@@ -70,7 +70,11 @@ public class EntruckReceive implements EntruckReceiveService{
 	public TransferListVO searchTransferList(long listID) throws RemoteException {
 		listType = POType.TRANSFERLIST;
 		TransferListPO transfer = (TransferListPO) transferData.search(POType.TRANSFERLIST, listID);
+		if(transfer != null){
 		return new TransferListVO(transfer);
+		}else {
+			return null;
+		}
 	}
 	
 
