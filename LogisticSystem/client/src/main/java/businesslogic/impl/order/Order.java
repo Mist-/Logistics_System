@@ -1,5 +1,8 @@
 package businesslogic.impl.order;
 
+import businesslogic.impl.company.CompanyBLController;
+import businesslogic.impl.user.CityInfo;
+import com.sun.istack.internal.NotNull;
 import data.enums.*;
 import data.factory.DataServiceFactory;
 import data.message.ResultMessage;
@@ -20,7 +23,6 @@ import java.util.*;
 public class Order {
 
     OrderDataService orderDataService = (OrderDataService) DataServiceFactory.getDataServiceByType(DataType.OrderDataService);
-    CompanyDataService companyDataService = (CompanyDataService) DataServiceFactory.getDataServiceByType(DataType.CompanyDataService);
 
     public OrderPO search(long sn) {
         OrderPO result = null;
@@ -86,42 +88,31 @@ public class Order {
     }
 
     /**
-     * 根据地址，解析出目标营业厅地址
-     *
-     * @param address 地址信息，必须符合 [城市]-[区]-[详细地址]的规范
-     * @return 目标营业厅编号
+     * 根据起止地址，计算出一条物流路线
+     * @param depart 出发地地址信息。格式为[City]-[Block]-[Address]
+     * @param dest 目的地地址信息。格式为[City]-[Block]-[Address]
+     * @return 包含路线的ArrayList。最多包含四站。如果网络连接失败，则返回null
      */
-    public long getDestID(String address) {
+    public ArrayList<Long> getRoutine(@NotNull String depart, @NotNull String dest) {
         if (!Connection.connected) {
-            System.err.println("尚未连接到服务器，无法估计目标营业厅地址" + Calendar.getInstance().getTime());
-            return 0;
+            return null;
         }
-        long destID;
-        String addr[] = address.split("\\-");
-        CityInfoPO cityInfoPO = null;
-        CompanyDataService companyDataService = (CompanyDataService) DataServiceFactory.getDataServiceByType(DataType.CompanyDataService);
+        String[] from = depart.split("[-]");
+        String[] to = dest.split("[-]");
 
-        // 根据城市名称确定目标城市
+        // 获取当前营业厅编号
+        CompanyDataService ds = (CompanyDataService) DataServiceFactory.getDataServiceByType(DataType.CompanyDataService);
+        CityInfoPO fromCity = null;
         try {
-            cityInfoPO = (CityInfoPO) companyDataService.searchCity(addr[0]);
+             fromCity = (CityInfoPO) ds.searchCity(from[0]);
         } catch (RemoteException e) {
             e.printStackTrace();
+            return null;
         }
 
-        // 根据区位信息确定营业厅编号
-        if (cityInfoPO == null) return 0;
-        else {
-            try {
-                long tmp = companyDataService.searchBusinessOffice(addr[1]);
-                return tmp;
-            } catch (RemoteException e) {
-                System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
-            }
-        }
-        return 0;
     }
 
-    public int evaluateTime(OrderVO orderVO) {
+    public int evaluateTime(@NotNull OrderVO orderVO) {
         ArrayList<DataPO> orders = null;
         float time = 0.0f;
         if (!Connection.connected) {

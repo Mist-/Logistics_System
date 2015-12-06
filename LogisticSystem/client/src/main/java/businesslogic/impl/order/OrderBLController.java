@@ -74,4 +74,8 @@ public class OrderBLController implements OrderBLService {
     public OrderPO search(long sn) {
         return order.search(sn);
     }
+
+    public ArrayList<Long> routine(OrderVO orderVO) {
+        return new Order().getRoutine(orderVO.saddress, orderVO.raddress);
+    }
 }

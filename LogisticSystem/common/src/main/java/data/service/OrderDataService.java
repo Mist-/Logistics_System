@@ -37,5 +37,5 @@ public interface OrderDataService extends DataService {
      * @param sn 快递员的人员编号
      * @return 该快递员签收的所有订单。如果没有搜索到结果，将会返回一个大小为0的<code>ArrayList</code>
      */
-    ArrayList<DataPO> searchByCourier(long sn);
+    ArrayList<DataPO> searchByCourier(long sn) throws RemoteException;
 }
