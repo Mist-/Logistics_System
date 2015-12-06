@@ -1,8 +1,8 @@
 designer/forms/paletteexpanded-1819101530=components,containers,windows
-designer/forms/selection-132376639=status
+designer/forms/selection-132376639=selectArrival
 designer/forms/selection-1819101530=dialog1
 designer/forms/selection-395956753=notCancelButton
-designer/forms/selection1338596979=driverButton
+designer/forms/selection1338596979=loadButton
 designer/forms/selection504548227=operatePane
 designer/newcontainer.layoutmanager=org.jdesktop.layout.GroupLayout
 designer/properties.expanded.events=true

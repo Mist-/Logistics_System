@@ -13,7 +13,7 @@ import java.awt.event.MouseEvent;
  */
 public class DialogAddCity extends JDialog{
 	JDialog jdialog = null;
-	String [] city = null;
+	String [] citys = null;
 	JComboBox<String> boxFromCity = null;
 	JComboBox<String> boxToCity = null;
 	JLabel labelFromCity = null;
@@ -36,9 +36,9 @@ public class DialogAddCity extends JDialog{
 		this.company = company;
 		controller = new CompanyBLController();
 		jdialog = new JDialog(company,"添加城市信息");
-		city = new String[]{"广州","南京","上海","北京"};
-		boxFromCity = new JComboBox<String>(city);
-		boxToCity = new JComboBox<String>(city);
+		citys = controller.getCitys();
+		boxFromCity = new JComboBox<String>(citys);
+		boxToCity = new JComboBox<String>(citys);
 		labelFromCity = new JLabel("发车城市:");
 		labelToCity = new JLabel("到达城市:");
 		labelTrunk = new JLabel("货车价格:");

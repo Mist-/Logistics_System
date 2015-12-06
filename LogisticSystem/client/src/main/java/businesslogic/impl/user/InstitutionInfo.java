@@ -67,9 +67,9 @@ public class InstitutionInfo {
 	}
 
 	public InstitutionInfo(LoginMessage login) throws Exception {
-		//companyData = DataServiceFactory
-		//		.getDataServiceByType(DataType.CompanyDataService);
-		companyData = new MockCompanyDataService();
+		companyData = DataServiceFactory
+				.getDataServiceByType(DataType.CompanyDataService);
+		//companyData = new MockCompanyDataService();
 		
 		if(companyData == null){
 			throw new Exception();

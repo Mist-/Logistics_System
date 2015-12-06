@@ -38,6 +38,7 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "deliveryID"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "deliveryIDMouseClicked", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JRadioButton" ) {
 						name: "entruck"

@@ -38,8 +38,9 @@ public class TransferCenterFrame extends JFrame {
 		}
 		try {
 			transferCenter = new TransferCenterController(login);
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "网络连接中断", "LCS物流管理系统", JOptionPane.INFORMATION_MESSAGE);
 		}
 		initComponents();
 		transferReceiveStart();//默认显示中转接收界面

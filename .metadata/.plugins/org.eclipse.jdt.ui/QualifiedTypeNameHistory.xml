@@ -11,10 +11,12 @@
 <fullyQualifiedTypeName name="businesslogic.service.Transfer.hall.TruckManagementService"/>
 <fullyQualifiedTypeName name="data.message.ResultMessage"/>
 <fullyQualifiedTypeName name="org.junit.internal.builders.NullBuilder"/>
-<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 <fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="data.vo.ArrivalListVO"/>
 <fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
 <fullyQualifiedTypeName name="data.factory.DataServiceFactory"/>
 <fullyQualifiedTypeName name="data.enums.DataType"/>
+<fullyQualifiedTypeName name="presentation.user.userMngUI.UserMngUI"/>
+<fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
+<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 </qualifiedTypeNameHistroy>

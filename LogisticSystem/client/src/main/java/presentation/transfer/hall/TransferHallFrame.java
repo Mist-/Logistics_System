@@ -14,7 +14,7 @@ import org.jb2011.lnf.windows2.Windows2LookAndFeel;
 
 import data.message.LoginMessage;
 import data.message.ResultMessage;
-import businesslogic.impl.transfer.TransferHallController;
+import businesslogic.impl.transfer.hall.TransferHallController;
 import businesslogic.service.Transfer.hall.TransferHallService;
 
 /**

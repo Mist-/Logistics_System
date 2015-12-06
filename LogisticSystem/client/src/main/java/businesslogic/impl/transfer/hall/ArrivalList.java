@@ -45,9 +45,9 @@ public class ArrivalList {
 
 	public ArrivalListVO getCheckedArrivals(long institutionID)
 			throws RemoteException {
-		// TODO Auto-generated method stub
 		checkedArrivals = transferData.searchCheckedList(POType.ARRIVAL,
 				institutionID);
+		if(checkedArrivals != null){
 		String[][] info = new String[checkedArrivals.size()][2];
 		for (int i = 0; i < checkedArrivals.size(); i++) {
 			ArrivalPO arrival = (ArrivalPO) checkedArrivals.get(i);
@@ -55,6 +55,9 @@ public class ArrivalList {
 			info[i] = in;
 		}
 		return new ArrivalListVO(info);
+		}else{
+			return null;
+		}
 	}
 
 	public ArrivalPO chooseArrival(long ID) {
