@@ -8,6 +8,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 
 public class DialogMoveStaff extends JDialog{
@@ -17,10 +18,8 @@ public class DialogMoveStaff extends JDialog{
 	String institutions[];
 	public JComboBox<String> city = null;
 	String citys[];
-	public JComboBox<String> num = null;
-	String nums20[];
-	String nums15[];
-	String nums10[];
+	public JComboBox<String> businessOffice = null;
+    ArrayList<String> businessOffices = null;
 	public JLabel choose = null;
 	public companyManage company = null;
 	CompanyBLController controller = null;
@@ -34,67 +33,56 @@ public class DialogMoveStaff extends JDialog{
 		jdialog = new JDialog(company,"移动员工");
 		choose = new JLabel("请选择部门:");
 		finish = new JButton("确认");
-		institutions = new String[]{"快递员","财务人员","货车驾驶员","火车驾驶员","飞机驾驶员","仓库管理员","营业厅业务员","中转中心业务员"};
-		citys = new String[]{"北京","上海","南京","广州"};
-		nums20 = new String[20];
-		nums15 = new String[15];
-		nums10 = new String[10];
-		for(int i=0;i<20;i++){
-			nums20[i] = String.valueOf(i+1);
-		}
-		for(int i=0;i<15;i++){
-			nums15[i] = String.valueOf(i+1);
-		}
-		for(int i=0;i<10;i++){
-			nums10[i] = String.valueOf(i+1);
-		}
+		institutions = new String[]{"快递员","财务人员","货车驾驶员","仓库管理员","营业厅业务员","中转中心业务员"};
+		citys = controller.getCitys();
 		institution = new JComboBox<String>(institutions);
 		city = new JComboBox<String>();
-		num = new JComboBox<String>();
+		businessOffice = new JComboBox<String>();
 		institution.addItemListener(new ItemListener() {
-
 			@Override
 			public void itemStateChanged(ItemEvent arg0) {
-				if(institution.getSelectedIndex()==5||institution.getSelectedIndex()==7){
+				if(institution.getSelectedIndex()==3||institution.getSelectedIndex()==5){
 				    city.removeAllItems();
+					businessOffice.removeAllItems();
 				    for(int i=0;i<citys.length;i++){
 					     city.addItem(citys[i]);
 				}
-				    num.removeAllItems();
+					//获取移动机构的名称
+					city.addItemListener(new ItemListener() {
+						@Override
+						public void itemStateChanged(ItemEvent e) {
+							toInstitution = (String) city.getSelectedItem()+institution.getSelectedItem();
+						}
+					});
 			}
-				else if(institution.getSelectedIndex()==6){
+				else if(institution.getSelectedIndex()==4){
 					city.removeAllItems();
 					for(int i=0;i<citys.length;i++){
 						city.addItem(citys[i]);
 					}
 					city.addItemListener(new ItemListener() {
-
 						@Override
 						public void itemStateChanged(ItemEvent arg0) {
-							if(city.getSelectedIndex()==0||city.getSelectedIndex()==1){
-								num.removeAllItems();
-								for(int i =0;i<nums20.length;i++){
-									num.addItem(nums20[i]);
-								}
+							businessOffice.removeAllItems();
+							businessOffices = controller.getBusinessOffices((String) city.getSelectedItem());
+							for(int i=0;i<businessOffices.size();i++){
+								businessOffice.addItem(businessOffices.get(i));
 							}
-							else if(city.getSelectedIndex()==2){
-								num.removeAllItems();
-								for(int i =0;i<nums10.length;i++){
-									num.addItem(nums10[i]);
+							//获取移动机构的名称
+							businessOffice.addItemListener(new ItemListener() {
+								@Override
+								public void itemStateChanged(ItemEvent e) {
+									toInstitution = (String) businessOffice.getSelectedItem();
 								}
-							}
-							else if(city.getSelectedIndex()==3){
-								num.removeAllItems();
-								for(int i =0;i<nums15.length;i++){
-									num.addItem(nums15[i]);
-								}
-							}
+							});
 						}
 					});
 				}
 				else{
-					num.removeAllItems();
+					businessOffice.removeAllItems();
 					city.removeAllItems();
+					//获取移动机构的名称
+					toInstitution = (String) institution.getSelectedItem();
 				}
 			}
 		});
@@ -102,12 +90,12 @@ public class DialogMoveStaff extends JDialog{
 		choose.setBounds(20,30,80,30);
 		institution.setBounds(110, 30, 105, 30);
 		city.setBounds(215, 30, 70, 30);
-		num.setBounds(285, 30, 70, 30);
+		businessOffice.setBounds(285, 30, 70, 30);
 		jdialog.setSize(410,200);
 		jdialog.add(choose);
 		jdialog.add(institution);
 		jdialog.add(city);
-		jdialog.add(num);
+		jdialog.add(businessOffice);
 		jdialog.add(finish);
 		jdialog.setModal(true);
 		jdialog.setLayout(null);
@@ -124,7 +112,6 @@ public class DialogMoveStaff extends JDialog{
 	  }
 
 	  private void buttonEnsure(MouseEvent e){
-		  toInstitution = (String)city.getSelectedItem()+institution.getSelectedItem()+num.getSelectedItem();
 		  resultMessage = controller.moveStaff(fromInstitution,toInstitution,ID);
 		  //根据resultMessage类型对界面进行输出
 		  if(resultMessage == ResultMessage.SUCCESS){

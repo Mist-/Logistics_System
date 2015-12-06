@@ -23,16 +23,12 @@ public class DialogAddStaff extends JDialog{
 	 JLabel labelPhoneNum = null;
 	 JTextField phoneNum = null;
 	 JLabel labelDate = null;
-	 JTextField year = null;
-	 JLabel labelYear = null;
-	 JTextField month = null;
-	 JLabel labelMonth = null;
-	 JLabel labelDay = null;
-	 JTextField day = null;
 	 JButton finish = null;
+	 JLabel labelIdCardNum = null;
+	 JTextField idCardNum = null;
 	 companyManage company = null;
 	 //从界面传过来机构的名称instituion
-	 String stringName,stringSerialNum,stringPhoneNum,stringYear,stringMonth,stringDay,instituion;
+	 String stringName,stringSerialNum,stringPhoneNum,instituion,stringIdCardNum;
 	 boolean gender;
 	 ResultMessage resultMessage = null;
 	 CompanyBLController controller = null;
@@ -48,18 +44,14 @@ public class DialogAddStaff extends JDialog{
 		labelGender = new JLabel("性别:");
 		labelPhoneNum = new JLabel("联系电话:");
 		labelDate = new JLabel("出生日期:");
-		labelYear = new JLabel("年");
-		labelMonth = new JLabel("月");
-		labelDay = new JLabel("日"); 
 		man = new JRadioButton("男",true);
 		woman = new JRadioButton("女");
 		bg = new ButtonGroup();
 		name = new JTextField();
 		serialNum = new JTextField();
 		phoneNum = new JTextField();
-		year = new JTextField();
-		month = new JTextField();
-		day = new JTextField();
+		labelIdCardNum = new JLabel("身份证:");
+		idCardNum = new JTextField();
 		labelName.setBounds(10, 10, 60, 30);
 		name.setBounds(80,10,100,30);
 		labelSerialNum.setBounds(10,50,60,30);
@@ -69,13 +61,8 @@ public class DialogAddStaff extends JDialog{
 		woman.setBounds(140, 90, 40, 30);
 		labelPhoneNum.setBounds(10, 130, 60, 30);
 		phoneNum.setBounds(80, 130, 100, 30);
-		labelDate.setBounds(10,170,60,30);
-		year.setBounds(80, 170, 40, 30);
-		labelYear.setBounds(120, 170, 20, 30);
-		month.setBounds(140, 170, 40, 30);
-		labelMonth.setBounds(180, 170, 20, 30);
-		day.setBounds(200, 170, 40, 30);
-		labelDay.setBounds(240,170,20,30);
+		labelIdCardNum.setBounds(10,170,60,30);
+		idCardNum.setBounds(80,170,100,30);
 		finish.setBounds(110, 230, 60, 35);
 		bg.add(man);
 		bg.add(woman);
@@ -91,12 +78,8 @@ public class DialogAddStaff extends JDialog{
 		jdialog.add(labelPhoneNum);
 		jdialog.add(phoneNum);
 		jdialog.add(labelDate);
-		jdialog.add(year);
-		jdialog.add(labelYear);
-		jdialog.add(month);
-		jdialog.add(labelMonth);
-		jdialog.add(day);
-		jdialog.add(labelDay);
+		jdialog.add(labelIdCardNum);
+		jdialog.add(idCardNum);
 		jdialog.add(finish);
 		jdialog.setModal(true);
 		jdialog.setLayout(null);
@@ -115,23 +98,21 @@ public class DialogAddStaff extends JDialog{
 		stringName = name.getText();
 		stringSerialNum = serialNum.getText();
 		stringPhoneNum = phoneNum.getText();
-		stringYear = year.getText();
-		stringMonth = month.getText();
-		stringDay = day.getText();
+		stringIdCardNum = idCardNum.getText();
 		if(man.isSelected()){
 			gender = false;
 		}
 		else {
 			gender = true;
 		}
-        //resultMessage = controller.addStaff(instituion,stringSerialNum,gender,stringName,stringPhoneNum);
-		if(resultMessage== ResultMessage.SUCCESS){
+        resultMessage = controller.addStaff(instituion,stringSerialNum,gender,stringName,stringPhoneNum,stringIdCardNum);
+		if(resultMessage == ResultMessage.SUCCESS){
 			company.labelStaffSuccess.setText("添加成功!");
 		}
-		else if(resultMessage== ResultMessage.EXIST){
+		else if(resultMessage == ResultMessage.EXIST){
 			company.labelStaffSuccess.setText("已经存在!");
 		}
-		else if(resultMessage== ResultMessage.FAILED){
+		else if(resultMessage == ResultMessage.FAILED){
 			company.labelStaffSuccess.setText("网络错误!");
 		}
 		jdialog.dispose();

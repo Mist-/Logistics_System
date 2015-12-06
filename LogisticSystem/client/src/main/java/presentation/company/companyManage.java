@@ -15,6 +15,8 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -194,12 +196,15 @@ public class companyManage extends JFrame {
             institution = tabbedPaneStaff.getTitleAt(index);
         }
         else if(index==3){
+            //城市名+"中转中心"
             institution = comboBoxCenter.getSelectedItem()+tabbedPaneStaff.getTitleAt(index);
         }
         else if(index==4){
-            institution = comboBoxBusinessCity.getSelectedItem()+tabbedPaneStaff.getTitleAt(index)+comboBoxBusinessNum.getSelectedItem();
+            //营业厅名称
+            institution = (String) comboBoxBusinessNum.getSelectedItem();
         }
         else if(index==5){
+            //城市名+"仓库管理员"
             institution = comboBoxStorage.getSelectedItem()+tabbedPaneStaff.getTitleAt(index);
         }
         else{
@@ -1483,6 +1488,10 @@ public class companyManage extends JFrame {
 
     private void initComponents(LoginMessage loginMessage) {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
+        String [] citys = controller.getCitys();
+        if(citys==null){
+             JOptionPane.showMessageDialog(null,"网络错误...","",JOptionPane.INFORMATION_MESSAGE);
+        }
         menuBar = new JMenuBar();
         choice = new JMenu();
         help = new JMenu();
@@ -1508,20 +1517,30 @@ public class companyManage extends JFrame {
         tableTrunk = new JTable();
         scrollPanelCenter = new JPanel();
         labelCenter = new JLabel();
-        comboBoxCenter = new JComboBox();
+        comboBoxCenter = new JComboBox(citys);
         buttonEnsureCenter = new JButton();
         scrollPaneCenter = new JScrollPane();
         tableCenter = new JTable();
         scrollPanelBusiness = new JPanel();
         labelBusiness = new JLabel();
-        comboBoxBusinessCity = new JComboBox();
+        comboBoxBusinessCity = new JComboBox(citys);
         comboBoxBusinessNum = new JComboBox();
+        comboBoxBusinessCity.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                comboBoxBusinessNum.removeAllItems();
+                ArrayList<String> businessOffices = controller.getBusinessOffices((String) comboBoxBusinessCity.getSelectedItem());
+                for(int i=0;i<businessOffices.size();i++){
+                    comboBoxBusinessNum.addItem(businessOffices.get(i));
+                }
+            }
+        });
         buttonEnsureBusiness = new JButton();
         scrollPaneBusiness = new JScrollPane();
         tableBusiness = new JTable();
         scrollPanelStorage = new JPanel();
         labelCenterStorage = new JLabel();
-        comboBoxStorage = new JComboBox();
+        comboBoxStorage = new JComboBox(citys);
         buttonEnsureStorage = new JButton();
         scrollPaneStorage = new JScrollPane();
         tableStorage = new JTable();
@@ -1540,9 +1559,9 @@ public class companyManage extends JFrame {
         labelSalarySuccess = new JLabel();
         panelCity = new JPanel();
         labelLeaveCity = new JLabel();
-        comboBoxLeaveCity = new JComboBox();
+        comboBoxLeaveCity = new JComboBox(citys);
         labelArrivalCity = new JLabel();
-        comboBoxArrivalCity = new JComboBox();
+        comboBoxArrivalCity = new JComboBox(citys);
         buttonEnsureCity = new JButton();
         scrollPanelCity = new JScrollPane();
         tableCity = new JTable();
@@ -1564,8 +1583,6 @@ public class companyManage extends JFrame {
         tablePayment = new JTable();
         scrollPanelSend = new JScrollPane();
         tableSend = new JTable();
-     //   scrollPanelCenterArrival = new JScrollPane();
-     //   tableCenterArrival = new JTable();
         scrollPanelTransfer = new JScrollPane();
         tableTransfer = new JTable();
         scrollPanelStorageIn = new JScrollPane();

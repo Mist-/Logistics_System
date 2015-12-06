@@ -58,7 +58,7 @@ public class DataApproveBLImpl implements DataApproveBLService {
         try {
             DataPO dataPO = DataServiceFactory.getDataServiceByPO(type).search(type,id);
             DataService ds = DataServiceFactory.getDataServiceByPO(type);
-            resultMessage = dataService.approveOf(dataPO);
+            resultMessage = ds.approveOf(dataPO);
         } catch (RemoteException e) {
             System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
             resultMessage = ResultMessage.NOTCONNECTED;

@@ -46,9 +46,9 @@ public class CompanyBLController {
         dataServiceFactory = new DataServiceFactory();
         staffVO = new StaffVO();
         //单据的名称与类型一一对应,进行查找
-        poTypes = new POType[]{POType.ORDER, POType.RECEIPT, POType.PAYMENT, POType.ENTRUCK, POType.ARRIVAL, POType.ARRIVAL,
+        poTypes = new POType[]{POType.ORDER, POType.RECEIPT, POType.PAYMENT, POType.ENTRUCK, POType.ARRIVAL,
                                POType.STORAGEINLIST, POType.STORAGEOUTLIST, POType.SEND, POType.TRANSFERLIST};
-        dataTypes = new String[]{"寄件单","收款单","付款单","装车单","营业厅到达单","中转到达单","入库单","出库单","派件单","中转单"};
+        dataTypes = new String[]{"寄件单","收款单","付款单","装车单","到达单","入库单","出库单","派件单","中转单"};
     }
 
     //对审批单据的控制
@@ -413,4 +413,5 @@ public class CompanyBLController {
             return null;
         }
     }
+
 }
