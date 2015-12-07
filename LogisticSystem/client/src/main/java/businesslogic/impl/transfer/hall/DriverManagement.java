@@ -79,9 +79,7 @@ public class DriverManagement implements DriverManagementService {
 		transferData = (TransferDataService) DataServiceFactory.getDataServiceByType(DataType.TransferDataService);
 
 	}
-	//
 	@Override
-
 	public DriverListVO getDrivers() {
 		ArrayList<DataPO> drivers;
 		String[][] info;
@@ -108,7 +106,7 @@ public class DriverManagement implements DriverManagementService {
 		
 		return new DriverListVO(info);
 	}
-
+	
 	@Override
 	public DriverInfoVO chooseDriver(long driverID) {
 		for(DriverInfoPO d: drivers){
@@ -120,12 +118,10 @@ public class DriverManagement implements DriverManagementService {
 
 	@Override
 	public ResultMessage addDriver(DriverInfoVO newDriver) {
-		// TODO Auto-generated method stub
 		DriverInfoPO driver = new DriverInfoPO(newDriver);
 		try {
 			return transferData.add(driver);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			return ResultMessage.FAILED;
 		}
 	}
@@ -143,13 +139,11 @@ public class DriverManagement implements DriverManagementService {
 
 	@Override
 	public ResultMessage deleteDriver(long driverID) {
-		// TODO Auto-generated method stub
 		for(DriverInfoPO d:drivers){
 			if(d.getSerialNum() == driverID){
 				try {
 					return transferData.delete(d);
 				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
 					return ResultMessage.FAILED;
 				}
 				

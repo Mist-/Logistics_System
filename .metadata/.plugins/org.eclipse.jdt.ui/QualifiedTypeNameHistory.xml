@@ -47,9 +47,9 @@
 <fullyQualifiedTypeName name="data.vo.StorageInfoVO"/>
 <fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
 <fullyQualifiedTypeName name="java.lang.String"/>
-<fullyQualifiedTypeName name="data.message.ResultMessage"/>
 <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
-<fullyQualifiedTypeName name="data.vo.TruckInfoVO"/>
-<fullyQualifiedTypeName name="data.vo.DriverInfoVO"/>
 <fullyQualifiedTypeName name="java.awt.Container"/>
+<fullyQualifiedTypeName name="data.message.ResultMessage"/>
+<fullyQualifiedTypeName name="data.vo.DriverInfoVO"/>
+<fullyQualifiedTypeName name="data.vo.TruckInfoVO"/>
 </qualifiedTypeNameHistroy>

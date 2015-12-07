@@ -130,7 +130,6 @@ public class TruckPanel extends JPanel {
 	}
 
 	private void saveButtonMouseReleased(MouseEvent e) {
-		TruckInfoVO truck = new TruckInfoVO();
 		if(!checkAllInput()){
 			JOptionPane.showMessageDialog(null, "输入不完整，请重新检查输入", "提示", JOptionPane.INFORMATION_MESSAGE);
 			return ;
@@ -141,7 +140,12 @@ public class TruckPanel extends JPanel {
 		truck.month = month.getText();
 		truck.day = day.getText();
 		truck.dutyDate = truck.year+"/"+truck.month+"/"+truck.day;
-		ResultMessage result = truckManagement.modifyTruck(truck);
+		ResultMessage result = ResultMessage.SUCCESS;
+		if (modifyButton.isEnabled()) {
+			result = truckManagement.modifyTruck(truck);
+		}else{
+			result = truckManagement.addTruck(truck);
+		}
 		if(result == ResultMessage.SUCCESS){
 			setList();
 			JOptionPane.showMessageDialog(null, "保存成功", "提示", JOptionPane.INFORMATION_MESSAGE);
@@ -182,6 +186,7 @@ public class TruckPanel extends JPanel {
 	}
 
 	private void addTruckButtonMouseClicked(MouseEvent e) {
+		truck = new TruckInfoVO();
 		modifyButton.setVisible(false);
 		modifyButton.setEnabled(false);
 		saveButton.setVisible(true);

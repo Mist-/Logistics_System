@@ -115,6 +115,7 @@ public class DriverPanel extends JPanel {
 	}
 
 	private void addDriverButtonMouseClicked(MouseEvent e) {
+		driver = new DriverInfoVO();
 		modifyButton.setVisible(false);
 		remove(driverListPane);
 		add(driverPane);
@@ -203,14 +204,18 @@ public class DriverPanel extends JPanel {
 
 	private void saveButtonMouseClicked(MouseEvent e) {
 		if (checkAddInput()) {
-			DriverInfoVO driver = new DriverInfoVO();
 			driver.name = name.getText();
 			driver.IDCard = id.getText();
 			driver.gender = gender.getText();
 			driver.phoneNum = phone.getText();
 			driver.bornDate = bornY + "/" + bornM + "/" + bornD;
 			driver.timeLimit = licenseY + "/" + licenseM + "/" + licenseD;
-			ResultMessage result = driverManagement.modifyDriver(driver);
+			ResultMessage result = ResultMessage.FAILED;
+			if (modifyButton.isEnabled()) {
+				result = driverManagement.modifyDriver(driver);
+			}else{
+				result = driverManagement.addDriver(driver);
+			}
 			if (result == ResultMessage.SUCCESS) {
 				JOptionPane.showMessageDialog(null, "保存成功", "提示",
 						JOptionPane.INFORMATION_MESSAGE);
