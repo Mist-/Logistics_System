@@ -34,6 +34,7 @@ public class StorageOperatePanel extends JPanel {
 		setPercent();
 		setStorageInfoTable();
 		selectStorageListButton.setEnabled(false);
+		exportExcel.setEnabled(false);
 		this.repaint();
 	}
 

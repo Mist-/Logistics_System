@@ -59,6 +59,12 @@ public class StorageFrame extends JFrame {
 			StorageInService storageIn = storageBusiness.startStorageIn();
 			if(storageIn == null){
 				JOptionPane.showMessageDialog(null, "仓库未初始化", "提示",	 JOptionPane.INFORMATION_MESSAGE);
+				Container container = getContentPane();
+				if (storageOperateVO != null) {
+					container.remove(storageOperateVO);
+				}
+				add(emptyPanel);
+				emptyPanel.setVisible(true);
 				return false;
 			}
 			storageInVO = new StorageInPanel(storageIn);
@@ -96,6 +102,12 @@ public class StorageFrame extends JFrame {
 			StorageOutService storageOut = storageBusiness.startStorageOut();
 			if(storageOut == null){
 				JOptionPane.showMessageDialog(null, "仓库未初始化", "提示",	 JOptionPane.INFORMATION_MESSAGE);
+				Container container = getContentPane();
+				if (storageOperateVO != null) {
+					container.remove(storageOperateVO);
+				}
+				add(emptyPanel);
+				emptyPanel.setVisible(true);
 				return false;
 			}else{
 			storageOutVO = new StorageOutPanel(storageOut);

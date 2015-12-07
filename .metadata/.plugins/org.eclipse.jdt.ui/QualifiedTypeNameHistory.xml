@@ -51,4 +51,5 @@
 <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 <fullyQualifiedTypeName name="data.vo.TruckInfoVO"/>
 <fullyQualifiedTypeName name="data.vo.DriverInfoVO"/>
+<fullyQualifiedTypeName name="java.awt.Container"/>
 </qualifiedTypeNameHistroy>
