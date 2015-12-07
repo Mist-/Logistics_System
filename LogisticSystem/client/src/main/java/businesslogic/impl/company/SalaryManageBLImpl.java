@@ -61,10 +61,9 @@ public class SalaryManageBLImpl implements SalaryManageBLService {
                 salaryPO = company.searchByInstitution(institution);
                 salaryPO.setSalary(salary);
                 resultMessage = company.modify(salaryPO);
-
             } catch (RemoteException e) {
                 System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
-                resultMessage = ResultMessage.FAILED;
+                resultMessage = ResultMessage.NOTCONNECTED;
             }
         return resultMessage;
     }
@@ -76,10 +75,9 @@ public class SalaryManageBLImpl implements SalaryManageBLService {
                 salaryPO = new SalaryPO(salary,institution,type);
                 resultMessage = company.add(salaryPO);
             }
-            resultMessage = ResultMessage.EXIST;
         } catch (RemoteException e) {
             System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
-            resultMessage = ResultMessage.FAILED;
+            resultMessage = ResultMessage.NOTCONNECTED;
         }
         return resultMessage;
     }

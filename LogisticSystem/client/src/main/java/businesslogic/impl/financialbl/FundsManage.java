@@ -242,9 +242,9 @@ public class FundsManage {
        sheet.addCell(label);
 		
        //其中i表示列，j表示行
-       
+       int j =1;
        for(PaymentVO pay:payList){
-    	   for(int j = 1;j <= payList.size();j++){
+    	   if(j <= payList.size()){
     		   label = new Label(0,j,pay.getDate());
                sheet.addCell(label);
                label = new Label(1,j,Double.toString(pay.getMoney()));
@@ -257,6 +257,7 @@ public class FundsManage {
                sheet.addCell(label);
                label = new Label(5,j,pay.getExInfo());
                sheet.addCell(label);
+               j++;
     	   }
     	   
        }
@@ -367,9 +368,9 @@ public class FundsManage {
 	       sheet.addCell(label);
 			
 	       //其中i表示列，j表示行
-	       
+	       int j=1;
 	       for(ReceiptVO rec:recList){
-	    	   for(int j = 1;j <= recList.size();j++){
+	    	   if(j <= recList.size()){
 	    		   label = new Label(0,j,rec.getDate());
 	               sheet.addCell(label);
 	               label = new Label(1,j,rec.getInstitution());
@@ -382,6 +383,7 @@ public class FundsManage {
 	               sheet.addCell(label);
 	               label = new Label(5,j,rec.getAddress());
 	               sheet.addCell(label);
+	               j++;
 	    	   }
 	    	   
 	       }

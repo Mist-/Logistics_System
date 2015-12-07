@@ -142,9 +142,13 @@ public class companyManage extends JFrame {
         //获取出发城市和到达城市
         String fromCity = (String) comboBoxLeaveCity.getSelectedItem();
         String toCity = (String) comboBoxArrivalCity.getSelectedItem();
-      //  CityTransVO cityTransVO = controller.getCityTransInfo(fromCity,toCity);
-        CityTransVO cityTransVO = new CityTransVO("1","2",1,2,3,4);
-        this.initCityTable(cityTransVO);
+        CityTransVO cityTransVO = controller.getCityTransInfo(fromCity,toCity);
+        if(cityTransVO == null){
+            JOptionPane.showMessageDialog(null,"城市之间信息不存在!","",JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+            this.initCityTable(cityTransVO);
+        }
     }
 
     //添加城市之间物流信息按钮
@@ -159,12 +163,12 @@ public class companyManage extends JFrame {
         tableCity.getCellEditor(0,column).stopCellEditing();
         for(int i=0;i<cityModify.size();i++){
             Iterator<String> info = cityModify.get(i).iterator();
-            String fromCity = info.next();
-            String toCity = info.next();
             double distance = Double.valueOf(info.next());
             double trunkPrice = Double.valueOf(info.next());
             double trainPrice = Double.valueOf(info.next());
             double planePrice = Double.valueOf(info.next());
+            String fromCity = (String) comboBoxLeaveCity.getSelectedItem();
+            String toCity = (String) comboBoxArrivalCity.getSelectedItem();
             CityTransVO cityTransVO = new CityTransVO(fromCity,toCity,distance,trunkPrice,trainPrice,planePrice);
             ResultMessage resultmessage = controller.modifyCityInfo(cityTransVO);
             if(resultmessage == ResultMessage.SUCCESS){
@@ -309,7 +313,7 @@ public class companyManage extends JFrame {
             id = (String) centerModel.getValueAt(tableCenter.getSelectedRow(),0);
         }
         else if(index==4){
-            institution = comboBoxBusinessCity.getSelectedItem()+tabbedPaneStaff.getTitleAt(index)+comboBoxBusinessNum.getSelectedItem();
+            institution = (String) comboBoxBusinessNum.getSelectedItem();
             id = (String) businessModel.getValueAt(tableBusiness.getSelectedRow(),0);
         }
         else if(index==5){
@@ -655,8 +659,8 @@ public class companyManage extends JFrame {
         //数据:第一个Vector用来存放一个VO,第二个Vector存放VO集合
         Vector<String> salaryVO = null;
         Vector<Vector<String>> salaryData = new Vector<Vector<String>>();
-     //   ArrayList<SalaryVO> salaryVOs = controller.searchAllSalary();
-        ArrayList<SalaryVO> salaryVOs = new ArrayList<SalaryVO>();
+        ArrayList<SalaryVO> salaryVOs = controller.searchAllSalary();
+     //   ArrayList<SalaryVO> salaryVOs = new ArrayList<SalaryVO>();
         for(int i=0;i<salaryVOs.size();i++){
             salaryVO = new Vector<String>();
             salaryVO.add(salaryVOs.get(i).getInstitution());
@@ -749,7 +753,6 @@ public class companyManage extends JFrame {
         deliverColumns.add("id");
         deliverColumns.add("姓名");
         deliverColumns.add("性别");
-        deliverColumns.add("年龄");
         deliverColumns.add("身份证号");
         deliverColumns.add("联系电话");
         //数据
@@ -779,7 +782,6 @@ public class companyManage extends JFrame {
         financialColumns.add("id");
         financialColumns.add("姓名");
         financialColumns.add("性别");
-        financialColumns.add("年龄");
         financialColumns.add("身份证号");
         financialColumns.add("联系电话");
         //数据
@@ -809,7 +811,6 @@ public class companyManage extends JFrame {
         trunkColumns.add("id");
         trunkColumns.add("姓名");
         trunkColumns.add("性别");
-        trunkColumns.add("年龄");
         trunkColumns.add("身份证号");
         trunkColumns.add("联系电话");
         //数据
@@ -839,7 +840,6 @@ public class companyManage extends JFrame {
         centerColumns.add("id");
         centerColumns.add("姓名");
         centerColumns.add("性别");
-        centerColumns.add("年龄");
         centerColumns.add("身份证号");
         centerColumns.add("联系电话");
         //数据
@@ -871,7 +871,6 @@ public class companyManage extends JFrame {
         businessColumns.add("id");
         businessColumns.add("姓名");
         businessColumns.add("性别");
-        businessColumns.add("年龄");
         businessColumns.add("身份证号");
         businessColumns.add("联系电话");
         //数据
@@ -902,7 +901,6 @@ public class companyManage extends JFrame {
         storageColumns.add("id");
         storageColumns.add("姓名");
         storageColumns.add("性别");
-        storageColumns.add("年龄");
         storageColumns.add("身份证号");
         storageColumns.add("联系电话");
         //数据
@@ -930,8 +928,8 @@ public class companyManage extends JFrame {
     private Vector<Vector<String>> getStaff(String institution){
         Vector<String> staffVO = null;
         Vector<Vector<String>> staffData = new Vector<Vector<String>>();
-      //  ArrayList<StaffVO> staffVOs = controller.getStaffByInstitution(institution);
-        ArrayList<StaffVO> staffVOs = new ArrayList<>();
+        ArrayList<StaffVO> staffVOs = controller.getStaffByInstitution(institution);
+       // ArrayList<StaffVO> staffVOs = new ArrayList<>();
         for(int i=0;i<staffVOs.size();i++){
             staffVO = new Vector<String>();
             staffVO.add(staffVOs.get(i).getId()+"");
@@ -2417,7 +2415,7 @@ public class companyManage extends JFrame {
     private JButton buttonAddCity;
     private JButton buttonModifyCity;
     private JButton buttonExitCity;
-    private JLabel labelCitySuccess;
+    public JLabel labelCitySuccess;
     private JPanel panelApprove;
     private JTabbedPane tabbedPaneApprove;
     private JScrollPane scrollPanelEntruk;

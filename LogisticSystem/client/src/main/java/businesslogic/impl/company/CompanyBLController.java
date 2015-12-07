@@ -273,7 +273,7 @@ public class CompanyBLController {
 
     //对StaffManage的控制，主要是将机构的String型转为long型
     public ArrayList<StaffVO> getStaffByInstitution(String institution){
-        return staff.getStaffByInstitution(this.institution);
+        return staff.getStaffByInstitution(longInstitution(institution));
     }
 
     public StaffVO getstaffByID(long id){
@@ -292,7 +292,7 @@ public class CompanyBLController {
         else {
             staffVO.setInstitution(longInstitution(institution));
             staffVO.setId(Long.valueOf(id));
-            staffVO.setPhoneNum(Long.valueOf(phoneNum));
+            staffVO.setPhoneNum(phoneNum);
             staffVO.setGender(gender);
             staffVO.setName(name);
             staffVO.setIdcardNum(idCardNum);

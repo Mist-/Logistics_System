@@ -43,7 +43,8 @@ public class StaffManageBLImpl implements StaffManageBLService {
                     staffVO.setId(staffPO.getSerialNum());
                     staffVO.setName(staffPO.getName());
                     staffVO.setGender(staffPO.getGender());
-                    staffVO.setPhoneNum(staffPO.getPhoneNum());
+                    staffVO.setPhoneNum(staffPO.getPhoneNum()+"");
+                    staffVO.setIdcardNum(staffPO.getIdcardNum());
                     vlist.add(staffVO);
                 }
             }
@@ -68,7 +69,7 @@ public class StaffManageBLImpl implements StaffManageBLService {
             staffVO.setId(staffPO.getSerialNum());
             staffVO.setName(staffPO.getName());
             staffVO.setGender(staffPO.getGender());
-            staffVO.setPhoneNum(staffPO.getPhoneNum());
+            staffVO.setPhoneNum(staffPO.getPhoneNum()+"");
             return staffVO;
         }
         return null;
@@ -81,7 +82,7 @@ public class StaffManageBLImpl implements StaffManageBLService {
             if(staffPO==null){
                 staffPO = new StaffPO();
                 staffPO.setInstitution(staffVO.getInstitution());
-                staffPO.setPhoneNum(staffVO.getPhoneNum());
+                staffPO.setPhoneNum(Long.valueOf(staffVO.getPhoneNum()));
                 staffPO.setGender(staffVO.getGender());
                 staffPO.setName(staffVO.getName());
                 staffPO.setSerialNum(staffVO.getId());
@@ -124,12 +125,12 @@ public class StaffManageBLImpl implements StaffManageBLService {
             resultMessage = this.deleteStaff(fromInstitution,id);
             if(resultMessage == ResultMessage.SUCCESS){
                 staffVO = new StaffVO();
-                staffVO.setId(staffPO.getSerialNum());
-                staffVO.setInstitution(staffPO.getInstitution());
-                staffVO.setGender(staffPO.getGender());
-                staffVO.setPhoneNum(staffPO.getPhoneNum());
-                staffVO.setIdcardNum(staffPO.getIdcardNum());
-                staffVO.setName(staffPO.getName());
+                staffVO.setId(staff.getSerialNum());
+                staffVO.setInstitution(staff.getInstitution());
+                staffVO.setGender(staff.getGender());
+                staffVO.setPhoneNum(staff.getPhoneNum()+"");
+                staffVO.setIdcardNum(staff.getIdcardNum());
+                staffVO.setName(staff.getName());
                 resultMessage = this.addStaff(staffVO,staffVO.getId());
                 return resultMessage;
             }
@@ -139,7 +140,7 @@ public class StaffManageBLImpl implements StaffManageBLService {
         } catch (RemoteException e) {
             System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
         }
-        return ResultMessage.FAILED;
+        return ResultMessage.NOTCONNECTED;
     }
 
     @Override

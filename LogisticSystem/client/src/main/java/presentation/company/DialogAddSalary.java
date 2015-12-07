@@ -76,6 +76,7 @@ public class DialogAddSalary extends JDialog{
 		if(resultMessage== ResultMessage.SUCCESS){
 			company.labelSalarySuccess.setText("Ìí¼Ó³É¹¦!");
 			company.initSalaryTable();
+			jdialog.dispose();
 		}
 		else if(resultMessage== ResultMessage.EXIST){
             company.labelSalarySuccess.setText("");
@@ -85,6 +86,5 @@ public class DialogAddSalary extends JDialog{
 			company.labelSalarySuccess.setText("");
 			JOptionPane.showMessageDialog(null,"ÍøÂç´íÎó...","",JOptionPane.ERROR_MESSAGE);
 		}
-		jdialog.dispose();
 	}
 }

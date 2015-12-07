@@ -31,18 +31,22 @@ public class CityManageBLImpl implements CityManageBLService {
     public CityTransVO getCityTransInfo(String fromCity, String toCity) {
         try {
             cityTransPO = company.searchByCityName(fromCity, toCity);
-            String vFromCity = cityTransPO.getFromCity();
-            String vToCity = cityTransPO.getToCity();
-            double distance = cityTransPO.getDistance();
-            double trunkPrice = cityTransPO.getTrunkPrice();
-            double trainPrice = cityTransPO.getTrainPrice();
-            double planePrice = cityTransPO.getPlanePrice();
-            cityTransVO = new CityTransVO(vFromCity, vToCity, distance, trunkPrice, trainPrice, planePrice);
+            if(cityTransPO!=null) {
+                String vFromCity = cityTransPO.getFromCity();
+                String vToCity = cityTransPO.getToCity();
+                double distance = cityTransPO.getDistance();
+                double trunkPrice = cityTransPO.getTrunkPrice();
+                double trainPrice = cityTransPO.getTrainPrice();
+                double planePrice = cityTransPO.getPlanePrice();
+                cityTransVO = new CityTransVO(vFromCity, vToCity, distance, trunkPrice, trainPrice, planePrice);
+            }
+            else {
+                cityTransVO = null;
+            }
         } catch (RemoteException e) {
             System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
             cityTransVO = null;
         }
-
         return cityTransVO;
     }
 
@@ -75,7 +79,6 @@ public class CityManageBLImpl implements CityManageBLService {
                                                                 cityTransVO.getTrainPrice(), cityTransVO.getPlanePrice());
                 resultMessage = company.add(cityTransPO);
             }
-            resultMessage = ResultMessage.EXIST;
         } catch (RemoteException e) {
             System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
             resultMessage = ResultMessage.FAILED;
