@@ -13,6 +13,9 @@ import java.util.Collections;
  */
 public class FileSaver implements Runnable {
 
+    /**
+     * 希望自动保存内存数据的委托者
+     */
     private ArrayList<DataService> dataServices = null;
 
     public FileSaver() {
@@ -33,6 +36,9 @@ public class FileSaver implements Runnable {
         this.dataServices.add(dataService);
     }
 
+    /**
+     * 持续自动写入文件。
+     */
     @Override
     public void run() {
         while (true) {

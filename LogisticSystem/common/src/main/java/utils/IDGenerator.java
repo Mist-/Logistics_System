@@ -31,6 +31,14 @@ public class IDGenerator {
             }
         }
 
+        if (maxSN == 0) {
+            switch (type) {
+                case ORDER:
+                    return 1000000001;
+                case STAFF:
+                    return 10001;
+            }
+        }
         return 1 + maxSN;
     }
 

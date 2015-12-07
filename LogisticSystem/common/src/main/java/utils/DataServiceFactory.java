@@ -1,5 +1,6 @@
 package utils;
 
+import com.sun.istack.internal.NotNull;
 import data.enums.DataType;
 import data.enums.POType;
 import data.service.DataService;
@@ -15,7 +16,14 @@ import java.rmi.RemoteException;
  * Created by mist on 2015/11/12 0012.
  */
 public class DataServiceFactory {
-	public static DataService getDataServiceByType(DataType type) {
+
+	/**
+	 * 直接根据数据层类型返回数据层对象的引用
+	 *
+	 * @param type 希望获得的数据服务类型
+	 * @return
+     */
+	public static DataService getDataServiceByType(@NotNull DataType type) {
 		Connection.startConnectionCheck();
 		try {
 			DataService ds = (DataService) Naming.lookup("rmi://127.0.0.1:32000/" + type.name());
@@ -35,7 +43,13 @@ public class DataServiceFactory {
 		return null;
 	}
 
-	public static DataService getDataServiceByPO(POType type) {
+	/**
+	 * 通过持久化数据的类型来获得相应的数据层服务
+	 *
+	 * @param type 希望获得的数据层服务下管理的某种持久化数据类型
+	 * @return
+     */
+	public static DataService getDataServiceByPO(@NotNull POType type) {
 		switch (type) {
 			case SALARY:
 			case STAFF:

@@ -17,6 +17,12 @@ import java.util.Objects;
  */
 public class FileIOHelper {
 
+    /**
+     * 将对象保存在filepath指定的文件中
+     *
+     * @param object 希望保存的对象
+     * @param filePath 希望保存的文件位置
+     */
     public static void saveToFile(Object object, String filePath) {
         if (object == null) return;
         FileOutputStream fout = null;
@@ -53,6 +59,12 @@ public class FileIOHelper {
         }
     }
 
+    /**
+     * 从文件中读取对象
+     *
+     * @param filePath 希望读取的文件位置
+     * @return 从文件中读取的对象
+     */
     public static Object getFromFile(String filePath) {
         FileInputStream fin = null;
         ObjectInputStream oin = null;
