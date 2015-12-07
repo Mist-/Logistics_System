@@ -11,7 +11,7 @@ public interface StorageDataService extends DataService {
 
 	ArrayList<DataPO> searchNewStorageInList(long institution) throws RemoteException;
 	ArrayList<DataPO> searchNewStorageOutList(long institution) throws RemoteException;
-	ArrayList<DataPO> searchByDate(POType type, String date) throws RemoteException;
+	DataPO searchByDate(POType type, String date) throws RemoteException;
 
 	DataPO searchStorageInfo(String date) throws RemoteException;
 

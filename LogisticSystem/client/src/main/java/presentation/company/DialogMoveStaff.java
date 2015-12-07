@@ -113,6 +113,7 @@ public class DialogMoveStaff extends JDialog{
 
 	  private void buttonEnsure(MouseEvent e){
 		  resultMessage = controller.moveStaff(fromInstitution,toInstitution,ID);
+		  System.out.print(toInstitution);
 		  //根据resultMessage类型对界面进行输出
 		  if(resultMessage == ResultMessage.SUCCESS){
 			  company.labelStaffSuccess.setText("移动成功");
@@ -140,11 +141,11 @@ public class DialogMoveStaff extends JDialog{
 		  }
 		  else if(resultMessage == ResultMessage.EXIST){
 			  company.labelStaffSuccess.setText("");
-			  JOptionPane.showMessageDialog(null,"该员工已存在,请勿重复添加","",JComponent.ERROR);
+			  JOptionPane.showMessageDialog(null,"该员工已存在,请勿重复添加","",JOptionPane.ERROR_MESSAGE);
 		  }
 		  else if(resultMessage == ResultMessage.NOTCONNECTED){
 			  company.labelStaffSuccess.setText("");
-			  JOptionPane.showMessageDialog(null,"网络错误...","",JComponent.ERROR);
+			  JOptionPane.showMessageDialog(null,"网络错误...","",JOptionPane.ERROR_MESSAGE);
 		  }
 		  jdialog.dispose();
 	  }

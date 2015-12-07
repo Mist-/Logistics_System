@@ -1,12 +1,13 @@
 designer/forms/paletteexpanded-1819101530=components,containers,windows
 designer/forms/selection-1141663014=transferCancel
+designer/forms/selection-1345751664=selectArrival
 designer/forms/selection-177178625=sortButton
 designer/forms/selection-1819101530=showDriverButton
 designer/forms/selection-395956753=showTruckButton
 designer/forms/selection1300170521=orderTable
 designer/forms/selection1338596979=loadButton
-designer/forms/selection2016746974=storageOperete
-designer/forms/selection504548227=searchListButton
+designer/forms/selection2016746974=storageOut
+designer/forms/selection504548227=selectStorageListButton
 designer/forms/selection920177459=load
 designer/newcontainer.layoutmanager=org.jdesktop.layout.GroupLayout
 designer/properties.expanded.constraints=true

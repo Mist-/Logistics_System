@@ -5,7 +5,7 @@ public class StaffVO {
     public long institution;
     public String name;
     public boolean gender /* 0 - male , 1 - female */;
-    public long phoneNum;
+    public String phoneNum;
     public long id;
     public String idcardNum;
 
@@ -21,11 +21,11 @@ public class StaffVO {
         this.institution = institution;
     }
 
-    public long getPhoneNum() {
+    public String getPhoneNum() {
         return phoneNum;
     }
 
-    public void setPhoneNum(long phoneNum) {
+    public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
     }
 

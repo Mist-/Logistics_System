@@ -17,11 +17,13 @@ import data.vo.PaymentVO;
 /**
  * @author wanghui
  */
-public class PaymentAdd extends JFrame {
+public class PaymentAdd extends JDialog {
 	FinancialBLService financialBL = new FinancialBLController();
 	
 	public PaymentAdd() {
 		initComponents();
+		this.setModal(true);
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		hiahia();
 	}
 	
@@ -29,13 +31,10 @@ public class PaymentAdd extends JFrame {
 	String [] infos ;
 	String [] occupation;
 	String [] list;
-	PaymentVO payment = new PaymentVO();
+    PaymentVO payment = new PaymentVO();
 	
 	private void hiahia(){
-	
-	
-	
-	infos = new String[] {"租金","运费","人员工资","奖励"};
+    infos = new String[] {"租金","运费","人员工资","奖励"};
 	for (String name: infos) {
 		cbInfo.addItem(name);
 	}
@@ -70,7 +69,8 @@ public class PaymentAdd extends JFrame {
 				tfInstitution.setVisible(true);
 			}
 			else if(cbInfo.getSelectedIndex()==0||cbInfo.getSelectedIndex()==3){
-				cbOccupatiom.removeAllItems();
+				cbOccupatiom.setVisible(false);
+				
 				lbMoney.setVisible(true);
 				tfMoney.setVisible(true);
 				lbInstitution.setVisible(false);
@@ -79,8 +79,14 @@ public class PaymentAdd extends JFrame {
 		}
 	});
 	}
-//新建付款单确定的监听
+	
+	//新建付款单确定的监听
 	public void button1MouseReleased(MouseEvent e) {
+		
+		if(tfPeople.getText() == null || tfAccount.getText() == null || tfExinfo.getText() == null){
+			JOptionPane.showMessageDialog(this, "您的数据输入不全，请继续输入");
+			return;
+		}
 		
 		String people = tfPeople.getText();
 		String account = tfAccount.getText();
@@ -94,8 +100,17 @@ public class PaymentAdd extends JFrame {
 		
 		//租金或者奖励
 		if(cbInfo.getSelectedIndex()==0||cbInfo.getSelectedIndex()==3){
+			if (tfMoney.getText() == null || !tfMoney.getText().matches("[0-9]*[.]?[0-9]*")) {
+				JOptionPane.showMessageDialog(this, "您输入的金额数据格式错误");
+				tfMoney.requestFocus();
+				return;
+			}
 			if(cbInfo.getSelectedIndex()==0){
 			info = infos[0];
+			if(!tfExinfo.getText().matches("[0-9]*")){
+				JOptionPane.showMessageDialog(this, "您输入的备注有错，请输入租金年份");
+				return;
+			}
 			}
 			else{
 				info = infos[3];
@@ -138,12 +153,22 @@ public class PaymentAdd extends JFrame {
 			payment = financialBL.buildPaymentFromWages(payment, ins);
 			
 		}
+		
 		this.setVisible(false);
 		
 	}
+
+	private void thisWindowClosing(WindowEvent e) {
+		int result = JOptionPane.showConfirmDialog(this, "确定要退出吗？所有信息将不被保存。", "LCS物流管理系统", JOptionPane.OK_CANCEL_OPTION);
+		if (result == JOptionPane.OK_OPTION) {
+			this.setVisible(false);
+		}
+	}
+	
 	
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
+		panel1 = new JPanel();
 		tfAccount = new JTextField();
 		lbPeople = new JLabel();
 		lbAccount = new JLabel();
@@ -161,98 +186,125 @@ public class PaymentAdd extends JFrame {
 
 		//======== this ========
 		setTitle("\u65b0\u5efa\u4ed8\u6b3e\u5355");
-		Container contentPane = getContentPane();
-
-		//---- lbPeople ----
-		lbPeople.setText("  \u4ed8\u6b3e\u4eba\uff1a");
-
-		//---- lbAccount ----
-		lbAccount.setText("\u4ed8\u6b3e\u8d26\u53f7\uff1a");
-
-		//---- lbInfo ----
-		lbInfo.setText("    \u6761\u76ee\uff1a");
-
-		//---- lbExinfo ----
-		lbExinfo.setText("    \u5907\u6ce8\uff1a");
-
-		//---- lbMoney ----
-		lbMoney.setText("    \u91d1\u989d\uff1a");
-
-		//---- btYes ----
-		btYes.setText("\u786e\u8ba4");
-		btYes.addMouseListener(new MouseAdapter() {
+		addWindowListener(new WindowAdapter() {
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				button1MouseReleased(e);
+			public void windowClosing(WindowEvent e) {
+				thisWindowClosing(e);
 			}
 		});
+		Container contentPane = getContentPane();
 
-		//---- lbInstitution ----
-		lbInstitution.setText("    \u673a\u6784ID\uff1a");
+		//======== panel1 ========
+		{
+
+			//---- lbPeople ----
+			lbPeople.setText("  \u4ed8\u6b3e\u4eba\uff1a");
+
+			//---- lbAccount ----
+			lbAccount.setText("\u4ed8\u6b3e\u8d26\u53f7\uff1a");
+
+			//---- lbInfo ----
+			lbInfo.setText("    \u6761\u76ee\uff1a");
+
+			//---- lbExinfo ----
+			lbExinfo.setText("    \u5907\u6ce8\uff1a");
+
+			//---- lbMoney ----
+			lbMoney.setText("    \u91d1\u989d\uff1a");
+
+			//---- btYes ----
+			btYes.setText("\u786e\u8ba4");
+			btYes.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					button1MouseReleased(e);
+				}
+			});
+
+			//---- lbInstitution ----
+			lbInstitution.setText("    \u673a\u6784ID\uff1a");
+
+			GroupLayout panel1Layout = new GroupLayout(panel1);
+			panel1.setLayout(panel1Layout);
+			panel1Layout.setHorizontalGroup(
+				panel1Layout.createParallelGroup()
+					.addGroup(panel1Layout.createSequentialGroup()
+						.addGap(89, 89, 89)
+						.addGroup(panel1Layout.createParallelGroup()
+							.addGroup(panel1Layout.createSequentialGroup()
+								.addComponent(lbPeople, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
+								.addGap(4, 4, 4)
+								.addComponent(tfPeople, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
+							.addGroup(panel1Layout.createSequentialGroup()
+								.addComponent(lbAccount, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
+								.addGap(4, 4, 4)
+								.addComponent(tfAccount, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
+							.addGroup(panel1Layout.createSequentialGroup()
+								.addComponent(lbInfo, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
+								.addGap(4, 4, 4)
+								.addComponent(cbInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addGap(6, 6, 6)
+								.addComponent(cbOccupatiom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGroup(panel1Layout.createSequentialGroup()
+								.addComponent(lbMoney, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
+								.addGap(4, 4, 4)
+								.addComponent(tfMoney, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
+							.addGroup(panel1Layout.createSequentialGroup()
+								.addComponent(lbInstitution, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
+								.addGap(4, 4, 4)
+								.addComponent(tfInstitution, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
+							.addGroup(panel1Layout.createSequentialGroup()
+								.addComponent(lbExinfo, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
+								.addGap(4, 4, 4)
+								.addComponent(tfExinfo, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
+							.addGroup(panel1Layout.createSequentialGroup()
+								.addGap(97, 97, 97)
+								.addComponent(btYes)))
+						.addContainerGap(88, Short.MAX_VALUE))
+			);
+			panel1Layout.setVerticalGroup(
+				panel1Layout.createParallelGroup()
+					.addGroup(panel1Layout.createSequentialGroup()
+						.addGap(40, 40, 40)
+						.addGroup(panel1Layout.createParallelGroup()
+							.addComponent(lbPeople, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+							.addComponent(tfPeople, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGap(6, 6, 6)
+						.addGroup(panel1Layout.createParallelGroup()
+							.addComponent(lbAccount, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+							.addComponent(tfAccount, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGap(2, 2, 2)
+						.addGroup(panel1Layout.createParallelGroup()
+							.addComponent(lbInfo, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+							.addComponent(cbInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(cbOccupatiom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGap(6, 6, 6)
+						.addGroup(panel1Layout.createParallelGroup()
+							.addComponent(lbMoney, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+							.addComponent(tfMoney, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGap(6, 6, 6)
+						.addGroup(panel1Layout.createParallelGroup()
+							.addComponent(lbInstitution, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+							.addComponent(tfInstitution, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGap(8, 8, 8)
+						.addGroup(panel1Layout.createParallelGroup()
+							.addComponent(lbExinfo, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+							.addComponent(tfExinfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGap(3, 3, 3)
+						.addComponent(btYes)
+						.addContainerGap(41, Short.MAX_VALUE))
+			);
+		}
 
 		GroupLayout contentPaneLayout = new GroupLayout(contentPane);
 		contentPane.setLayout(contentPaneLayout);
 		contentPaneLayout.setHorizontalGroup(
 			contentPaneLayout.createParallelGroup()
-				.addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-					.addContainerGap(166, Short.MAX_VALUE)
-					.addComponent(btYes)
-					.addGap(161, 161, 161))
-				.addGroup(contentPaneLayout.createSequentialGroup()
-					.addGap(69, 69, 69)
-					.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-						.addComponent(lbInstitution, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lbMoney, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lbInfo, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-						.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-							.addComponent(lbPeople, GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-							.addComponent(lbAccount, GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE))
-						.addComponent(lbExinfo, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-					.addGroup(contentPaneLayout.createParallelGroup()
-						.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-							.addGroup(contentPaneLayout.createSequentialGroup()
-								.addComponent(cbInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(cbOccupatiom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addComponent(tfAccount)
-							.addComponent(tfPeople)
-							.addComponent(tfMoney)
-							.addComponent(tfExinfo))
-						.addComponent(tfInstitution, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(108, Short.MAX_VALUE))
+				.addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 		);
 		contentPaneLayout.setVerticalGroup(
 			contentPaneLayout.createParallelGroup()
-				.addGroup(contentPaneLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-						.addComponent(lbPeople, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-						.addComponent(tfPeople, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-					.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-						.addComponent(lbAccount, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-						.addComponent(tfAccount, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(2, 2, 2)
-					.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-						.addComponent(lbInfo, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-						.addComponent(cbInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(cbOccupatiom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-					.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-						.addComponent(lbMoney, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-						.addComponent(tfMoney, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-					.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-						.addComponent(lbInstitution, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-						.addComponent(tfInstitution, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(8, 8, 8)
-					.addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-						.addComponent(lbExinfo, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-						.addComponent(tfExinfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(3, 3, 3)
-					.addComponent(btYes)
-					.addContainerGap(71, Short.MAX_VALUE))
+				.addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 		);
 		pack();
 		setLocationRelativeTo(getOwner());
@@ -260,6 +312,7 @@ public class PaymentAdd extends JFrame {
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+	private JPanel panel1;
 	private JTextField tfAccount;
 	private JLabel lbPeople;
 	private JLabel lbAccount;

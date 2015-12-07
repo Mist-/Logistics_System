@@ -67,7 +67,7 @@ public class MockStorageDataService implements StorageDataService {
 	}
 
 	@Override
-	public ArrayList<DataPO> searchByDate(POType type, String date) {
+	public DataPO searchByDate(POType type, String date) {
 		// TODO Auto-generated method stub
 		return null;
 	}

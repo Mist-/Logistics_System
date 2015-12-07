@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="data.vo.DriverListVO"/>
-<fullyQualifiedTypeName name="data.vo.DriverInfoVO"/>
 <fullyQualifiedTypeName name="presentation.transfer.hall.DriverPanel"/>
 <fullyQualifiedTypeName name="javax.naming.spi.DirStateFactory.Result"/>
 <fullyQualifiedTypeName name="org.junit.experimental.results.ResultMatchers"/>
 <fullyQualifiedTypeName name="data.vo.TruckListVO"/>
-<fullyQualifiedTypeName name="data.vo.TruckInfoVO"/>
 <fullyQualifiedTypeName name="businesslogic.service.Transfer.hall.TruckManagementService"/>
-<fullyQualifiedTypeName name="data.message.ResultMessage"/>
 <fullyQualifiedTypeName name="org.junit.internal.builders.NullBuilder"/>
 <fullyQualifiedTypeName name="data.vo.ArrivalListVO"/>
 <fullyQualifiedTypeName name="presentation.user.userMngUI.UserMngUI"/>
@@ -18,14 +15,10 @@
 <fullyQualifiedTypeName name="java.awt.event.ItemListener"/>
 <fullyQualifiedTypeName name="java.awt.event.ItemEvent"/>
 <fullyQualifiedTypeName name="data.enums.StorageArea"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="javax.swing.DefaultComboBoxModel"/>
 <fullyQualifiedTypeName name="data.vo.BriefOrderVO"/>
 <fullyQualifiedTypeName name="data.vo.TransferLoadVO"/>
-<fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
 <fullyQualifiedTypeName name="data.po.TransferListPO"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
-<fullyQualifiedTypeName name="java.lang.Long"/>
 <fullyQualifiedTypeName name="data.vo.TransferListVO"/>
 <fullyQualifiedTypeName name="data.service.TransferDataService"/>
 <fullyQualifiedTypeName name="data.factory.DataServiceFactory"/>
@@ -33,6 +26,29 @@
 <fullyQualifiedTypeName name="data.vo.EntruckListVO"/>
 <fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
 <fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="java.lang.Long"/>
+<fullyQualifiedTypeName name="data.vo.StorageInVO"/>
+<fullyQualifiedTypeName name="data.vo.StorageOutVO"/>
 <fullyQualifiedTypeName name="data.vo.StorageListVO"/>
+<fullyQualifiedTypeName name="data.po.StorageInListPO"/>
+<fullyQualifiedTypeName name="data.po.DataPO"/>
+<fullyQualifiedTypeName name="java.rmi.RemoteException"/>
+<fullyQualifiedTypeName name="data.enums.POType"/>
+<fullyQualifiedTypeName name="java.lang.Override"/>
+<fullyQualifiedTypeName name="java.lang.Iterable"/>
+<fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+<fullyQualifiedTypeName name="java.sql.Date"/>
+<fullyQualifiedTypeName name="java.util.Calendar"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.text.ParseException"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="businesslogic.impl.storage.StorageInfo"/>
+<fullyQualifiedTypeName name="data.po.StorageInfoPO"/>
+<fullyQualifiedTypeName name="data.vo.StorageInfoVO"/>
+<fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="data.message.ResultMessage"/>
 <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+<fullyQualifiedTypeName name="data.vo.TruckInfoVO"/>
+<fullyQualifiedTypeName name="data.vo.DriverInfoVO"/>
 </qualifiedTypeNameHistroy>

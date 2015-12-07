@@ -1,0 +1,179 @@
+JFDML JFormDesigner: "5.2.2.0.199" Java: "1.8.0_31" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+				name: "listPane"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space :::p, comp scrollPane4:::p:638:p, space :::p, par l {comp textField9:::::x, seq t {space :0:0:x, comp button5:::p::p}, comp doStorageIn::l:::x, comp selectStorageIn::l:::x}, space :::p}}"
+					"$verticalGroup": "par l {seq t {space :::p, par t {comp scrollPane4::::311:x, seq {comp textField9:::p::p, space :::p, comp button5:::p::p, space ::169:x, comp selectStorageIn:::p:40:p, space :::p, comp doStorageIn:::p:46:p}}, space :::p}}"
+				} ) {
+					name: "storageInList"
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane4"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "storageInTable"
+							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "storageInTableMouseClicked", true ) )
+							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "storageInTableMouseClicked", true ) )
+						} )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField9"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button5"
+						"text": "text"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "doStorageIn"
+						"text": "storageIn"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "doStorageInMouseClicked", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "selectStorageIn"
+						"text": "select"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "selectStorageInMouseClicked", true ) )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "selectStorageInMouseClicked", true ) )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "selectStorageInMouseClicked", true ) )
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "storageInList"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space :::p, comp scrollPane3:::p:638:p, space :::p, par l {comp arrivalID:::::x, seq t {space :0:62:x, comp search:::p::p}, comp selectArrival::l:::x}, space :::p}}"
+					"$verticalGroup": "par l {seq t {space :::p, par t {comp scrollPane3::::311:x, seq {comp arrivalID:::p::p, space :::p, comp search:::p::p, space ::192:x, comp selectArrival:::p:69:p}}, space :::p}}"
+				} ) {
+					name: "arriveList"
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane3"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "arriveListTable"
+							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "arriveListTableMouseClicked", true ) )
+							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "arriveListTableMouseClicked", true ) )
+							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "arriveListTableMouseClicked", true ) )
+						} )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "arrivalID"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "search"
+						"text": "search"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "selectArrival"
+						"text": "select"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "selectArrivalMouseClicked", true ) )
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "arriveList"
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 800, 360 )
+		} )
+		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+			name: "storageInVO"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp scrollPane2:::p:668:p, space :::p, par l {comp cancelStorageIn::::101:x, comp saveStorageIn::::101:x}}, seq {comp label10:::p:70:p, space u:::p, comp storageDate:::p:71:p, space :0:624:x}}, space :::p}}"
+				"$verticalGroup": "par l {seq t {par t {seq {space ::309:x, comp saveStorageIn:::p::p, space :::p, comp cancelStorageIn:::p::p}, seq {space :p:19:p, par b {comp label10::b:p:21:p, comp storageDate::b:p::p}, space :p:28:p, comp scrollPane2::::293:x}}, space :::p}}"
+			} ) {
+				name: "storageInPanel"
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane2"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "storageOrder"
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label10"
+					"text": "日期："
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "storageDate"
+					"editable": false
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "cancelStorageIn"
+					"text": "cancel"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "saveStorageIn"
+					"text": "save"
+				} )
+			}, new FormLayoutConstraints( null ) {
+				"title": "storageIn"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 370 )
+			"size": new java.awt.Dimension( 800, 400 )
+		} )
+		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+			name: "arrivalVO"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :::x, par t {seq t {comp status:::p:117:p, space u:::p, comp modifyStatus:::p:105:p}, par l {comp scrollPane1:::p:671:p, seq l {par l {par t:::p {comp label3::l:::x, seq l {space :p:30:p, comp label2:::::x}, comp label1::l:p:100:p}, comp label4::l:p:80:p}, space u:::p, par l:::p {comp transferID::::70:x, comp from::::70:x, comp arrivalDate::l::70:x}}}}, space :::p, par l:::p {comp cancelArrival::::98:x, comp createStorageIn::::98:x}, space :::x}}"
+				"$verticalGroup": "par l {seq t {space :::p, par t {seq {space :0:199:x, comp createStorageIn:::p:48:p, space :::p, comp cancelArrival:::p::p}, seq {par b {comp transferID::b:p::p, comp label1::b:p::p}, space :::p, par b {comp label2::b:p::p, comp from::b:p::p, comp label4::b:p::p}, space :::p, par b {comp label3::b:p::p, comp arrivalDate::b:p::p}, space :p:11:p, par b {comp status::b:p::p, comp modifyStatus::b:p::p}, space :::p, comp scrollPane1::::161:x}}, space :::p}}"
+			} ) {
+				name: "panel1"
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane1"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "arrivalTable"
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "中转单编号"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "transferID"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "from"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "日期"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "arrivalDate"
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "status"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "modifyStatus"
+					"text": "text"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "cancelArrival"
+					"text": "text"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "cancelArrivalMouseClicked", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "createStorageIn"
+					"text": "text"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "createStorageInMouseClicked", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label4"
+					"text": "出发地"
+				} )
+			}, new FormLayoutConstraints( null ) {
+				"title": "arrival"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 775 )
+			"size": new java.awt.Dimension( 800, 325 )
+		} )
+	}
+}

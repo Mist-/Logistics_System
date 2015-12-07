@@ -11,8 +11,8 @@ import data.po.StorageInfoPO;
  *
  */
 public class StorageInfoVO {
-	String[][] orderAndPostition;
-	
+	public String[][] orderAndPostition;
+	public String[] header = {"¶©µ¥ºÅ","ÇøºÅ","ÅÅºÅ","¼ÜºÅ","Î»ºÅ"};
 	public StorageInfoVO(StorageInfoPO po){
 		int num = po.getFlexible()+po.getPlane()+po.getTrain()+po.getTruck();
 		ArrayList<long[][][]> info = po.getStorage();

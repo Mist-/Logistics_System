@@ -4,60 +4,67 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq t {space ::166:x, comp btYes:::p::p, space :p:161:p}, seq l {space :p:69:p, par t {comp lbInstitution:::p:73:p, comp lbMoney:::p:73:p, comp lbInfo:::p:73:p, par l:::p {comp lbPeople::::73:x, comp lbAccount::::73:x}, comp lbExinfo::t:p:73:p}, space :::p, par l {par l:::p {seq l {comp cbInfo:::p::p, space :::p, comp cbOccupatiom:::p::p}, comp tfAccount::l:::x, comp tfPeople::l:::x, comp tfMoney:::::x, comp tfExinfo::l:::x}, comp tfInstitution:::p:130:p}, space ::108:x}}"
-			"$verticalGroup": "par l {seq l {space u:::p, par b {comp lbPeople::b:p:21:p, comp tfPeople::b:p::p}, space :::p, par b {comp lbAccount::b:p:21:p, comp tfAccount::b:p::p}, space :p:2:p, par b {comp lbInfo::b:p:21:p, comp cbInfo::b:p::p, comp cbOccupatiom::b:p::p}, space :::p, par b {comp lbMoney::b:p:21:p, comp tfMoney::b:p::p}, space :::p, par b {comp lbInstitution::b:p:21:p, comp tfInstitution::b:p::p}, space :p:8:p, par b {comp lbExinfo::b:p:21:p, comp tfExinfo::b:p::p}, space :p:3:p, comp btYes:::p::p, space ::71:x}}"
+			"$horizontalGroup": "par l {comp panel1::l:::x}"
+			"$verticalGroup": "par l {comp panel1::l:::x}"
 		} ) {
 			name: "this"
 			"title": "新建付款单"
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "tfAccount"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "lbPeople"
-				"text": "  付款人："
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "lbAccount"
-				"text": "付款账号："
-			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "tfPeople"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "lbInfo"
-				"text": "    条目："
-			} )
-			add( new FormComponent( "javax.swing.JComboBox" ) {
-				name: "cbOccupatiom"
-			} )
-			add( new FormComponent( "javax.swing.JComboBox" ) {
-				name: "cbInfo"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "lbExinfo"
-				"text": "    备注："
-			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "tfExinfo"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "lbMoney"
-				"text": "    金额："
-			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "tfMoney"
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "btYes"
-				"text": "确认"
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "button1MouseReleased", true ) )
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "lbInstitution"
-				"text": "    机构ID："
-			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "tfInstitution"
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosing", "thisWindowClosing", true ) )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :p:89:p, par l {seq l {comp lbPeople:::p:73:p, space :4:4:p, comp tfPeople:::p:130:p}, seq l {comp lbAccount:::p:73:p, space :4:4:p, comp tfAccount:::p:130:p}, seq l {comp lbInfo:::p:73:p, space :4:4:p, comp cbInfo:::p::p, space :6:6:p, comp cbOccupatiom:::p::p}, seq l {comp lbMoney:::p:73:p, space :4:4:p, comp tfMoney:::p:130:p}, seq l {comp lbInstitution:::p:73:p, space :4:4:p, comp tfInstitution:::p:130:p}, seq l {comp lbExinfo:::p:73:p, space :4:4:p, comp tfExinfo:::p:130:p}, seq l {space :97:97:p, comp btYes:::p::p}}, space ::88:x}}"
+				"$verticalGroup": "par l {seq l {space :p:40:p, par l {comp lbPeople:::p:21:p, comp tfPeople:::p::p}, space :6:6:p, par l {comp lbAccount:::p:21:p, comp tfAccount:::p::p}, space :2:2:p, par l {comp lbInfo:::p:21:p, comp cbInfo:::p::p, comp cbOccupatiom:::p::p}, space :6:6:p, par l {comp lbMoney:::p:21:p, comp tfMoney:::p::p}, space :6:6:p, par l {comp lbInstitution:::p:21:p, comp tfInstitution:::p::p}, space :8:8:p, par l {comp lbExinfo:::p:21:p, comp tfExinfo:::p::p}, space :3:3:p, comp btYes:::p::p, space ::41:x}}"
+			} ) {
+				name: "panel1"
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "tfAccount"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbPeople"
+					"text": "  付款人："
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbAccount"
+					"text": "付款账号："
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "tfPeople"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbInfo"
+					"text": "    条目："
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "cbOccupatiom"
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "cbInfo"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbExinfo"
+					"text": "    备注："
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "tfExinfo"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbMoney"
+					"text": "    金额："
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "tfMoney"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btYes"
+					"text": "确认"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "button1MouseReleased", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbInstitution"
+					"text": "    机构ID："
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "tfInstitution"
+				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 25, 0 )

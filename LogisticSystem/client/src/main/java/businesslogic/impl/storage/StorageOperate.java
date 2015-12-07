@@ -1,19 +1,15 @@
 package businesslogic.impl.storage;
 
 import java.rmi.RemoteException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
-import javax.jws.soap.SOAPBinding;
-
-import mock.MockCompanyDataService;
-import mock.MockStorageDataService;
+import java.util.Calendar;
+import java.util.Date;
 import data.enums.POType;
 import data.enums.StorageArea;
-import data.message.LoginMessage;
 import data.message.ResultMessage;
 import data.po.DataPO;
-import data.po.InstitutionPO;
-import data.po.StaffPO;
 import data.po.StorageInListPO;
 import data.po.StorageInfoPO;
 import data.po.StorageOutListPO;
@@ -30,12 +26,10 @@ public class StorageOperate implements StorageOperateService {
 	StorageDataService storageData;
 	DataService companyData;
 	InstitutionInfo center;
-	StorageInfo storageInfo;
 	StorageInfoPO storageInfoPO;
-	ArrayList<StorageInListPO> storageInList;
-	ArrayList<StorageOutListPO> storageOutList;
-
-	double[] rate;
+	StorageInfo storageInfo;
+	ArrayList<DataPO> storageList;
+	double[] actualRate;
 
 	/**
 	 * 库存报警
@@ -43,9 +37,9 @@ public class StorageOperate implements StorageOperateService {
 	public ArrayList<String> storageAlarm() {
 		// 前提是已经调用过showspace
 		ArrayList<String> result = new ArrayList<String>();
-		double planeRate = rate[0];
-		double trainRate = rate[1];
-		double truckRate = rate[2];
+		double planeRate = actualRate[0];
+		double trainRate = actualRate[1];
+		double truckRate = actualRate[2];
 		StorageArea enlargeArea = storageInfoPO.getEnlargeArea();
 		if (planeRate >= storageInfoPO.getAlarmPercent()
 				&& enlargeArea != StorageArea.PLANE)
@@ -69,6 +63,9 @@ public class StorageOperate implements StorageOperateService {
 		int plane = 0;
 		int train = 0;
 		int truck = 0;
+		if(storageInfoPO == null){
+			return null;
+		}
 		ArrayList<long[][][]> storageInfo = storageInfoPO.getStorage();
 
 		for (int i = 0; i < 3; i++) {
@@ -96,11 +93,11 @@ public class StorageOperate implements StorageOperateService {
 			}
 		}
 		double planeRate = ((double) plane) / storageInfoPO.getPlane();
-		double trainRate = ((double) train)/ storageInfoPO.getTrain();
-		double truckRate = ((double) truck)/ storageInfoPO.getTruck();
+		double trainRate = ((double) train) / storageInfoPO.getTrain();
+		double truckRate = ((double) truck) / storageInfoPO.getTruck();
 
 		double[] result = { planeRate, trainRate, truckRate };
-		rate = result;
+		actualRate = result;
 		return result;
 	}
 
@@ -118,70 +115,65 @@ public class StorageOperate implements StorageOperateService {
 
 	/**
 	 * 输入查看时间范围内所有入库单，出库单
-	 * @throws RemoteException 
+	 * @throws ParseException 
+	 * 
+	 * @throws RemoteException
 	 */
-	public StorageListVO inputTime(int[] startTime, int[] endTime) throws RemoteException {
-		// 查找
-		for (int y = startTime[0]; y <= endTime[0]; y++) {
-			int m = 1;
-			if (y == startTime[0])
-				m = startTime[1];
-
-			for (; m <= 12; m++) {
-				if (m == 13)
-					break;
-
-				int d = 1;
-				if (m == startTime[2])
-					d = startTime[3];
-
-				for (; d < 31; d++) {
-					if (d == 32)
-						break;
-
-					ArrayList<DataPO> in = null;
-					try {
-						in = storageData.searchByDate(POType.STORAGEINLIST, y
-								+ "/" + m + "/" + d);
-					} catch (RemoteException e) {
-						e.printStackTrace();
-					}
-					for (DataPO po : in)
-						storageInList.add((StorageInListPO) po);
-					ArrayList<DataPO> out = null;
-					try {
-						out = storageData.searchByDate(POType.STORAGEOUTLIST, y
-								+ "/" + m + "/" + d);
-					} catch (RemoteException e) {
-						e.printStackTrace();
-					}
-					for (DataPO po : out)
-						storageOutList.add((StorageOutListPO) po);
-				}
+	@Override
+	public StorageListVO getStorageInList(String startTime, String endTime,
+			POType type) throws ParseException, RemoteException {
+		ArrayList<String> date = getTime(startTime, endTime);
+		if (date == null) {
+			return null;
+		}
+		for(String d:date){
+			DataPO i = storageData.searchByDate(type,d);
+			if (i != null) {
+				storageList.add(i);
 			}
 		}
-
-		String[][] outList = new String[storageInList.size()][2];
-		String[][] inList = new String[storageOutList.size()][2];
-		int inAll = 0;
-		int outAll = 0;
-
-		for (int i = 0; i < inList.length; i++) {
-			StorageInListPO in = storageInList.get(i);
-			inAll += in.getOrderNum();
+		int all = 0;
+		String[][] List = new String[storageList.size()][2];
+		for (int i = 0; i < List.length; i++) {
+			StorageInListPO in = (StorageInListPO) storageList.get(i);
+			all += in.getOrderNum();
 			String[] s = { in.getSerialNum() + "", in.getDate() };
-			inList[i] = s;
+			List[i] = s;
 		}
+		return new StorageListVO(List, all);
+	}
 
-		for (int i = 0; i < outList.length; i++) {
-			StorageOutListPO out = storageOutList.get(i);
-			outAll += out.getOrderNum();
-			String[] s = { out.getSerialNum() + "", out.getDate() };
-			outList[i] = s;
+	/**
+	 * 获取时间段内所有日期
+	 * @param start 起始
+	 * @param end 终止
+	 * @return 所有日期
+	 * @throws ParseException
+	 */
+	private ArrayList<String> getTime(String start, String end){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		ArrayList<String> date = new ArrayList<String>();
+		try {
+			Date s = sdf.parse(start);
+			Date e = sdf.parse(end);
+			date.add(sdf.format(s));
+			Calendar begin = Calendar.getInstance();
+			begin.setTime(s);
+			Calendar over = Calendar.getInstance();
+			over.setTime(e);
+			if (begin.after(end)) {
+				return null;
+			}
+			while (over.after(begin.getTime())) {
+				begin.add(Calendar.DAY_OF_MONTH, 1);
+				date.add(sdf.format(begin));
+			}
+			return date;
+			
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+			return null;
 		}
-
-		return new StorageListVO(inList, outList, center.getCenterID(),
-				center.getCenterName(), inAll, outAll);
 	}
 
 	/**
@@ -191,9 +183,9 @@ public class StorageOperate implements StorageOperateService {
 	 * @return
 	 */
 	public StorageInVO getStorageIn(long listCode) {
-		for (StorageInListPO in : storageInList) {
+		for (DataPO in : storageList) {
 			if (in.getSerialNum() == listCode) {
-				return new StorageInVO(in);
+				return new StorageInVO((StorageInListPO) in);
 			}
 		}
 
@@ -207,9 +199,9 @@ public class StorageOperate implements StorageOperateService {
 	 * @return
 	 */
 	public StorageOutVO getStorageOut(long listCode) {
-		for (StorageOutListPO out : storageOutList) {
+		for (DataPO out : storageList) {
 			if (out.getSerialNum() == listCode) {
-				return new StorageOutVO(out);
+				return new StorageOutVO((StorageOutListPO) out);
 			}
 		}
 
@@ -219,13 +211,12 @@ public class StorageOperate implements StorageOperateService {
 	/**
 	 * 库存盘点
 	 */
-	public StorageInfoVO storageCheck(String date) {
-		try {
-			storageInfoPO = (StorageInfoPO) storageData.searchStorageInfo(date);
-		} catch (RemoteException e) {
-			e.printStackTrace();
+	public StorageInfoVO storageCheck() {
+		if (storageInfoPO != null) {
+			return new StorageInfoVO(storageInfoPO);
+		}else{
+			return null;
 		}
-		return new StorageInfoVO(storageInfoPO);
 	}
 
 	/**
@@ -233,10 +224,14 @@ public class StorageOperate implements StorageOperateService {
 	 * 
 	 * @throws RemoteException
 	 */
-	public ResultMessage saveStorageInfo(StorageInfoPO info)
+	public ResultMessage saveStorageInfo()
 			throws RemoteException {
+		if(storageInfoPO != null){
 		storageInfoPO.setPoType(POType.STORAGECHECK);
-		return storageData.add(info);
+		return storageData.add(storageInfoPO);
+		}else{
+			return ResultMessage.FAILED;
+		}
 	}
 
 	/**
@@ -247,25 +242,22 @@ public class StorageOperate implements StorageOperateService {
 
 	}
 
-
-
 	/**
 	 * 输入初始化信息
 	 */
-	public ResultMessage inputStorageInitInfo(int num,
-			int shelf, int planeR, int trainR, int truckR, int flexibleR,
-			double alarmPercent) {
+	public ResultMessage inputStorageInitInfo(int num, int shelf, int planeR,
+			int trainR, int truckR, int flexibleR, double alarmPercent) {
 		if (storageInfoPO != null) {
 			try {
 				storageData.delete(storageInfoPO);
 			} catch (RemoteException e) {
 				e.printStackTrace();
-				
+
 				return ResultMessage.FAILED;
 			}
 		}
-		storageInfoPO = new StorageInfoPO(center.getCenterID(), shelf, num, planeR, trainR,
-				truckR, flexibleR, alarmPercent);
+		storageInfoPO = new StorageInfoPO(center.getCenterID(), shelf, num,
+				planeR, trainR, truckR, flexibleR, alarmPercent);
 		try {
 			return storageData.add(storageInfoPO);
 		} catch (RemoteException e) {
@@ -275,14 +267,14 @@ public class StorageOperate implements StorageOperateService {
 
 	}
 
-	public StorageOperate(InstitutionInfo center,StorageDataService storageData,StorageInfo storageInfo) throws RemoteException {
+	public StorageOperate(InstitutionInfo center,
+			StorageDataService storageData, StorageInfo storageInfo)
+			throws RemoteException {
 		this.storageData = storageData;
 		this.center = center;
-		this.storageInfo =storageInfo;
-		storageInList = new ArrayList<StorageInListPO>();
-		storageOutList = new ArrayList<StorageOutListPO>();
+		this.storageInfo = storageInfo;
+		storageInfoPO = storageInfo.getStorageInfoPO();
+		storageList = new ArrayList<DataPO>();
 	}
-
-
 
 }

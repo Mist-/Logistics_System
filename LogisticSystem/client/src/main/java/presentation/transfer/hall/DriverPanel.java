@@ -203,6 +203,7 @@ public class DriverPanel extends JPanel {
 
 	private void saveButtonMouseClicked(MouseEvent e) {
 		if (checkAddInput()) {
+			DriverInfoVO driver = new DriverInfoVO();
 			driver.name = name.getText();
 			driver.IDCard = id.getText();
 			driver.gender = gender.getText();

@@ -18,99 +18,107 @@ public class DataInitialization {
     public static void main(String[] args) {
         CityInfoPO[] city = new CityInfoPO[4];
         city[0] = new CityInfoPO(025);
-        city[0].setName("ÄÏ¾©");
+        city[0].setName("å—äº¬");
         city[0].addBusinessOffice(1002500001);
         city[0].addBusinessOffice(1002500002);
         city[0].addBusinessOffice(1002500003);
         city[0].addBusinessOffice(1002500004);
         city[0].setTransferCenter(10025);
         city[1] = new CityInfoPO(021);
-        city[1].setName("ÉÏº£");
+        city[1].setName("ä¸Šæµ·");
         city[1].addBusinessOffice(1002100001);
         city[1].addBusinessOffice(1002100002);
         city[1].addBusinessOffice(1002100003);
         city[1].addBusinessOffice(1002100004);
         city[1].setTransferCenter(10021);
         city[2] = new CityInfoPO(010);
-        city[2].setName("±±¾©");
+        city[2].setName("åŒ—äº¬");
         city[2].addBusinessOffice(1001000001);
         city[2].addBusinessOffice(1001000002);
         city[2].addBusinessOffice(1001000003);
         city[2].addBusinessOffice(1001000004);
         city[2].setTransferCenter(10021);
         city[3] = new CityInfoPO(020);
-        city[3].setName("¹ãÖİ");
+        city[3].setName("å¹¿å·");
         city[3].addBusinessOffice(1002000001);
         city[3].addBusinessOffice(1002000002);
         city[3].addBusinessOffice(1002000003);
         city[3].addBusinessOffice(1002000004);
         city[3].setTransferCenter(10020);
 
-        InstitutionPO[] institution = new InstitutionPO[20];
+        InstitutionPO[] institution = new InstitutionPO[25];
 
-        // ÄÏ¾©
+        // å—äº¬
         institution[0] = new InstitutionPO(1002500001);
-        institution[0].setName("¹ÄÂ¥Çø");
+        institution[0].setName("é¼“æ¥¼åŒº");
         institution[0].setTargetCenter(10025);
         institution[1] = new InstitutionPO(1002500002);
-        institution[1].setName("ÆÜÏ¼Çø");
+        institution[1].setName("æ –éœåŒº");
         institution[1].setTargetCenter(10025);
         institution[2] = new InstitutionPO(1002500003);
-        institution[2].setName("ĞşÎäÇø");
+        institution[2].setName("ç„æ­¦åŒº");
         institution[2].setTargetCenter(10025);
         institution[3] = new InstitutionPO(1002500004);
-        institution[3].setName("ÇØ»´Çø");
+        institution[3].setName("ç§¦æ·®åŒº");
         institution[3].setTargetCenter(10025);
         institution[4] = new InstitutionPO(10025);
-        institution[4].setName("ÄÏ¾©ÊĞ");
+        institution[4].setName("å—äº¬å¸‚");
 
-        // ±±¾©
+        // åŒ—äº¬
         institution[5] = new InstitutionPO(1001000001);
-        institution[5].setName("¶«³ÇÇø");
+        institution[5].setName("ä¸œåŸåŒº");
         institution[5].setTargetCenter(10010);
         institution[6] = new InstitutionPO(1001000002);
-        institution[6].setName("Î÷³ÇÇø");
+        institution[6].setName("è¥¿åŸåŒº");
         institution[6].setTargetCenter(10010);
         institution[7] = new InstitutionPO(1001000003);
-        institution[7].setName("º£µíÇø");
+        institution[7].setName("æµ·æ·€åŒº");
         institution[7].setTargetCenter(10010);
         institution[8] = new InstitutionPO(1001000004);
-        institution[8].setName("³¯ÑôÇø");
+        institution[8].setName("æœé˜³åŒº");
         institution[8].setTargetCenter(10010);
         institution[9] = new InstitutionPO(10010);
-        institution[9].setName("±±¾©ÊĞ");
+        institution[9].setName("åŒ—äº¬å¸‚");
 
-        // ÉÏº£
+        // ä¸Šæµ·
         institution[10] = new InstitutionPO(1002100001);
-        institution[10].setName("ãÉĞĞÇø");
+        institution[10].setName("é—µè¡ŒåŒº");
         institution[10].setTargetCenter(10021);
         institution[11] = new InstitutionPO(1002100002);
-        institution[11].setName("ÇàÆÖÇø");
+        institution[11].setName("é’æµ¦åŒº");
         institution[11].setTargetCenter(10021);
         institution[12] = new InstitutionPO(1002100003);
-        institution[12].setName("»ÆÆÖÇø");
+        institution[12].setName("é»„æµ¦åŒº");
         institution[12].setTargetCenter(10021);
         institution[13] = new InstitutionPO(1002100004);
-        institution[13].setName("¼Î¶¨Çø");
+        institution[13].setName("å˜‰å®šåŒº");
         institution[13].setTargetCenter(10021);
         institution[14] = new InstitutionPO(10021);
-        institution[14].setName("ÉÏº£ÊĞ");
+        institution[14].setName("ä¸Šæµ·å¸‚");
 
-        // ¹ãÖİ
+        // å¹¿å·
         institution[15] = new InstitutionPO(1002000001);
-        institution[15].setName("·¬ÓíÇø");
+        institution[15].setName("ç•ªç¦¹åŒº");
         institution[15].setTargetCenter(10020);
         institution[16] = new InstitutionPO(1002000002);
-        institution[16].setName("ÂÜ¸ÚÇø");
+        institution[16].setName("èå²—åŒº");
         institution[16].setTargetCenter(10020);
         institution[17] = new InstitutionPO(1002000003);
-        institution[17].setName("ÌìºÓÇø");
+        institution[17].setName("å¤©æ²³åŒº");
         institution[17].setTargetCenter(10020);
         institution[18] = new InstitutionPO(1002000004);
-        institution[18].setName("»ÆÆÒÇø");
+        institution[18].setName("é»„åŸ”åŒº");
         institution[18].setTargetCenter(10020);
         institution[19] = new InstitutionPO(10020);
-        institution[19].setName("±±¾©ÊĞ");
+        institution[19].setName("åŒ—äº¬å¸‚");
+
+        //
+        institution[20] = new InstitutionPO(11111);
+        institution[20].setName("å¿«é€’å‘˜");
+        institution[21] = new InstitutionPO(22222);
+        institution[21].setName("è´¢åŠ¡äººå‘˜");
+        institution[22] = new InstitutionPO(33333);
+        institution[22].setName("è´§è½¦é©¾é©¶å‘˜");
 
         CompanyDataService companyDataService = (CompanyDataService) DataServiceFactory.getDataServiceByType(DataType.CompanyDataService);
 
@@ -127,52 +135,52 @@ public class DataInitialization {
 
         StaffPO staff1 = new StaffPO();
         staff1.setSerialNum(10000);
-        staff1.setName("Ëï¾ÅÈÕ");
+        staff1.setName("å­™ä¹æ—¥");
         staff1.setGender(false);
         staff1.setInstitution(1002100001);
-        staff1.setUserRole(UserRole.¿ìµİÔ±);
+        staff1.setUserRole(UserRole.å¿«é€’å‘˜);
 
         StaffPO staff2 = new StaffPO();
         staff2.setSerialNum(10001);
-        staff2.setName("Ëï¾ÅÈÕ");
+        staff2.setName("å­™ä¹æ—¥");
         staff2.setGender(false);
         staff2.setInstitution(1002100001);
-        staff2.setUserRole(UserRole.ÓªÒµÌüÒµÎñÔ±);
+        staff2.setUserRole(UserRole.è¥ä¸šå…ä¸šåŠ¡å‘˜);
 
         StaffPO staff3 = new StaffPO();
         staff3.setSerialNum(10002);
-        staff3.setName("Ëï¾ÅÈÕ");
+        staff3.setName("å­™ä¹æ—¥");
         staff3.setGender(false);
         staff3.setInstitution(10021);
-        staff3.setUserRole(UserRole.ÖĞ×ªÖĞĞÄÒµÎñÔ±);
+        staff3.setUserRole(UserRole.ä¸­è½¬ä¸­å¿ƒä¸šåŠ¡å‘˜);
 
         StaffPO staff4 = new StaffPO();
         staff4.setSerialNum(10003);
-        staff4.setName("Ëï¾ÅÈÕ");
+        staff4.setName("å­™ä¹æ—¥");
         staff4.setGender(false);
         staff4.setInstitution(10021);
-        staff4.setUserRole(UserRole.²Ö¿â¹ÜÀíÔ±);
+        staff4.setUserRole(UserRole.ä»“åº“ç®¡ç†å‘˜);
 
         StaffPO staff5 = new StaffPO();
         staff5.setSerialNum(10004);
-        staff5.setName("Ëï¾ÅÈÕ");
+        staff5.setName("å­™ä¹æ—¥");
         staff5.setGender(false);
         staff5.setInstitution(10021);
-        staff5.setUserRole(UserRole.²ÆÎñÈËÔ±);
+        staff5.setUserRole(UserRole.è´¢åŠ¡äººå‘˜);
 
         StaffPO staff6 = new StaffPO();
         staff6.setSerialNum(10005);
-        staff6.setName("Ëï¾ÅÈÕ");
+        staff6.setName("å­™ä¹æ—¥");
         staff6.setGender(false);
         staff6.setInstitution(10021);
-        staff6.setUserRole(UserRole.×Ü¾­Àí);
+        staff6.setUserRole(UserRole.æ€»ç»ç†);
 
         StaffPO staff7 = new StaffPO();
         staff7.setSerialNum(10006);
-        staff7.setName("Ëï¾ÅÈÕ");
+        staff7.setName("å­™ä¹æ—¥");
         staff7.setGender(false);
         staff7.setInstitution(10021);
-        staff7.setUserRole(UserRole.ÏµÍ³¹ÜÀíÔ±);
+        staff7.setUserRole(UserRole.ç³»ç»Ÿç®¡ç†å‘˜);
 
         try {
             companyDataService.add(staff1);

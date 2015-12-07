@@ -108,6 +108,7 @@ public class DialogAddStaff extends JDialog{
         resultMessage = controller.addStaff(instituion,stringSerialNum,gender,stringName,stringPhoneNum,stringIdCardNum);
 		if(resultMessage == ResultMessage.SUCCESS){
 			company.labelStaffSuccess.setText("添加成功!");
+			jdialog.dispose();
 		}
 		else if(resultMessage == ResultMessage.EXIST){
 			company.labelStaffSuccess.setText("已经存在!");
@@ -115,6 +116,5 @@ public class DialogAddStaff extends JDialog{
 		else if(resultMessage == ResultMessage.FAILED){
 			company.labelStaffSuccess.setText("网络错误!");
 		}
-		jdialog.dispose();
 	}
 }
