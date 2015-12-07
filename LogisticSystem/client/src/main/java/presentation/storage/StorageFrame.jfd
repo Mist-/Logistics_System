@@ -84,23 +84,5 @@ new FormModel {
 			"location": new java.awt.Point( 0, 0 )
 			"size": new java.awt.Dimension( 800, 500 )
 		} )
-		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
-			name: "dialog1"
-			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :p:29:p, comp label7:::p:119:p, space ::36:x}}"
-				"$verticalGroup": "par l {seq l {space :p:37:p, comp label7:::p:30:p, space ::79:x}}"
-			} ) {
-				name: "panel3"
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label7"
-					"text": "未查找到用户信息"
-				} )
-			}, new FormLayoutConstraints( class java.lang.String ) {
-				"value": "Center"
-			} )
-		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 830, 300 )
-			"size": new java.awt.Dimension( 200, 185 )
-		} )
 	}
 }

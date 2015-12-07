@@ -1,13 +1,17 @@
 package businesslogic.service.storage;
 
+import data.enums.POType;
 import data.enums.StorageArea;
 import data.enums.TransferCenter;
 import data.message.ResultMessage;
 import data.po.StorageInfoPO;
+import data.vo.StorageInVO;
 import data.vo.StorageInfoVO;
 import data.vo.StorageListVO;
+import data.vo.StorageOutVO;
 
 import java.rmi.RemoteException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 public interface StorageOperateService {
@@ -20,20 +24,20 @@ public interface StorageOperateService {
 	
 	
 	//ø‚¥Ê≤Èø¥
-	public StorageListVO inputTime(int[] startTime,int[] endTime) throws RemoteException;
+	StorageListVO getStorageInList(String startTime, String endTime, POType type) throws RemoteException, ParseException;	
 
-	
 	//ø‚¥Ê≈Ãµ„
-	public StorageInfoVO storageCheck(String date);
-	public ResultMessage saveStorageInfo(StorageInfoPO info) throws RemoteException;
+	public StorageInfoVO storageCheck();
+	public ResultMessage saveStorageInfo() throws RemoteException;
 	public void storageCheckOutput(StorageInfoPO info);//excel 
 	
 	//ø‚¥Ê≥ı ºªØ
 	public ResultMessage inputStorageInitInfo(int num,int shelf,int planeR,int trainR,int truckR,int flexibleR,double alarmPercent);
 	
-	
-	
-	
+	public StorageInVO getStorageIn(long id);
+
+	public StorageOutVO getStorageOut(long id);
+
 
 	
 	

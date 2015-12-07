@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="F:\workspace2\Logistics_System\LogisticSystem"/>
 			<item value="F:\workspace2\Logistics_System"/>
 		</list>
 		<list key="projectNameTemplate">

@@ -130,6 +130,7 @@ public class TruckPanel extends JPanel {
 	}
 
 	private void saveButtonMouseReleased(MouseEvent e) {
+		TruckInfoVO truck = new TruckInfoVO();
 		if(!checkAllInput()){
 			JOptionPane.showMessageDialog(null, "输入不完整，请重新检查输入", "提示", JOptionPane.INFORMATION_MESSAGE);
 			return ;

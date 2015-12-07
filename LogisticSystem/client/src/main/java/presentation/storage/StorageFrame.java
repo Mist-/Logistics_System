@@ -40,7 +40,7 @@ public class StorageFrame extends JFrame {
 			storageBusiness = new StorageBusinessController(user);
 		} catch (Exception e) {
 			e.printStackTrace();
-			dialog1.setVisible(true);
+			JOptionPane.showMessageDialog(null, "网络连接中断，请稍后再试", "提示", JOptionPane.INFORMATION_MESSAGE);
 		}
 		storageInStart();//默认显示入库界面
 	}
@@ -186,9 +186,6 @@ public class StorageFrame extends JFrame {
 		panel2 = new JPanel();
 		label4 = new JLabel();
 		label5 = new JLabel();
-		dialog1 = new JDialog();
-		panel3 = new JPanel();
-		label7 = new JLabel();
 
 		//======== this ========
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -332,39 +329,6 @@ public class StorageFrame extends JFrame {
 		contentPane.add(emptyPanel, BorderLayout.CENTER);
 		pack();
 		setLocationRelativeTo(getOwner());
-
-		//======== dialog1 ========
-		{
-			Container dialog1ContentPane = dialog1.getContentPane();
-			dialog1ContentPane.setLayout(new BorderLayout());
-
-			//======== panel3 ========
-			{
-
-				//---- label7 ----
-				label7.setText("\u672a\u67e5\u627e\u5230\u7528\u6237\u4fe1\u606f");
-
-				GroupLayout panel3Layout = new GroupLayout(panel3);
-				panel3.setLayout(panel3Layout);
-				panel3Layout.setHorizontalGroup(
-					panel3Layout.createParallelGroup()
-						.addGroup(panel3Layout.createSequentialGroup()
-							.addGap(29, 29, 29)
-							.addComponent(label7, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(36, Short.MAX_VALUE))
-				);
-				panel3Layout.setVerticalGroup(
-					panel3Layout.createParallelGroup()
-						.addGroup(panel3Layout.createSequentialGroup()
-							.addGap(37, 37, 37)
-							.addComponent(label7, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(79, Short.MAX_VALUE))
-				);
-			}
-			dialog1ContentPane.add(panel3, BorderLayout.CENTER);
-			dialog1.pack();
-			dialog1.setLocationRelativeTo(dialog1.getOwner());
-		}
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}
 
@@ -384,8 +348,5 @@ public class StorageFrame extends JFrame {
 	private JPanel panel2;
 	private JLabel label4;
 	private JLabel label5;
-	private JDialog dialog1;
-	private JPanel panel3;
-	private JLabel label7;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 }

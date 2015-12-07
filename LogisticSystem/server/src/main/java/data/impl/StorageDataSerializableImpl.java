@@ -58,7 +58,7 @@ public class StorageDataSerializableImpl extends UnicastRemoteObject implements 
 
 
 	@Override
-	public ArrayList<DataPO> searchByDate(POType type, String date) {
+	public DataPO searchByDate(POType type, String date) {
 		// TODO Auto-generated method stub
 		return null;
 	}

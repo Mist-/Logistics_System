@@ -398,5 +398,7 @@ public class StorageInfo {
 				centerID);
 	}
 
-	
+	public StorageInfoPO getStorageInfoPO(){
+		return storageInfo;
+	}
 }

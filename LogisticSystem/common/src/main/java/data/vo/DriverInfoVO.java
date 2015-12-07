@@ -40,4 +40,8 @@ public class DriverInfoVO {
 		licenseD = license[2];
 		driverID = po.getSerialNum()+"";
 	}
+	
+	public DriverInfoVO(){
+		
+	}
 }

@@ -12,6 +12,9 @@ public class TruckInfoVO {
 	    public String day;
 	    public String engaged;
 	    
+	    public TruckInfoVO(){
+	    	
+	    }
 	    
 	public TruckInfoVO(VehicleInfoPO po){
 		ID = po.getSerialNum()+"";
