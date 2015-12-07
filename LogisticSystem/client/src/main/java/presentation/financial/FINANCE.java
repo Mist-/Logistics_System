@@ -41,6 +41,7 @@ public class FINANCE extends JFrame {
         
     }
 
+    //资金管理初始化
     private void tgZJGLMouseClicked(MouseEvent e) {
         tgZJGL.setSelected(true);
         tgQCJZ.setSelected(false);
@@ -51,45 +52,49 @@ public class FINANCE extends JFrame {
         panelMain.remove(pnZHGL);
         panelMain.remove(pnZJGL);
         panelMain.add(pnZJGL, BorderLayout.CENTER);
-
-//        ArrayList<PaymentVO> payments = financialBL.searchAllPayment();
-//        Vector data = ((DefaultTableModel)tablePayment.getModel()).getDataVector();
-//        data.clear();
-//        for (PaymentVO paymentVO: payments) {
-//            Vector<Object> row = new Vector<>();
-//            row.add(paymentVO.getDate());
-//            row.add(paymentVO.getMoney());
-//            row.add(paymentVO.getName());
-//            row.add(paymentVO.getAccount());
-//            row.add(paymentVO.getInfo());
-//            row.add(paymentVO.getExInfo());
-//            data.add(row);
-//        }
-//        tablePayment.updateUI();
-//        tablePayment.repaint();
-//        
-//        ArrayList<ReceiptVO> receipts = financialBL.searchAllReceipt();
-//        data = ((DefaultTableModel)tableReceipt.getModel()).getDataVector();
-//        data.clear();
-//        for (ReceiptVO receiptVO: receipts) {
-//            Vector<Object> row = new Vector<>();
-//            row.add(receiptVO.getDate());
-//            row.add(receiptVO.getInstitution());
-//            row.add(receiptVO.getPeople());
-//            row.add(receiptVO.getCourierName());
-//            row.add(receiptVO.getMoney());
-//            row.add(receiptVO.getAddress());
-//            
-//            data.add(row);
-//        }
-//        tableReceipt.updateUI();
-//        tableReceipt.repaint();
         
-        
+        refresh();
         panelMain.updateUI();
         this.repaint();
     }
-
+    	 
+    //更新收款单和付款单
+    private void refresh() {
+    	ArrayList<PaymentVO> payments = financialBL.searchAllPayment();
+        Vector data = ((DefaultTableModel)tablePayment.getModel()).getDataVector();
+        data.clear();
+        for (PaymentVO paymentVO: payments) {
+            Vector<Object> row = new Vector<>();
+            row.add(paymentVO.getDate());
+            row.add(paymentVO.getMoney());
+            row.add(paymentVO.getName());
+            row.add(paymentVO.getAccount());
+            row.add(paymentVO.getInfo());
+            row.add(paymentVO.getExInfo());
+            data.add(row);
+        }
+        tablePayment.updateUI();
+        tablePayment.repaint();
+        
+        ArrayList<ReceiptVO> receipts = financialBL.searchAllReceipt();
+        data = ((DefaultTableModel)tableReceipt.getModel()).getDataVector();
+        data.clear();
+        for (ReceiptVO receiptVO: receipts) {
+            Vector<Object> row = new Vector<>();
+            row.add(receiptVO.getDate());
+            row.add(receiptVO.getInstitution());
+            row.add(receiptVO.getPeople());
+            row.add(receiptVO.getSender());
+            row.add(receiptVO.getMoney());
+            row.add(receiptVO.getAddress());
+            
+            data.add(row);
+        }
+        tableReceipt.updateUI();
+        tableReceipt.repaint();
+    }
+    
+    //账户管理初始化
     private void tgZHGLMouseClicked(MouseEvent e) {
         tgZJGL.setSelected(false);
         tgQCJZ.setSelected(false);
@@ -102,22 +107,24 @@ public class FINANCE extends JFrame {
         panelMain.add(pnZHGL, BorderLayout.CENTER);
         
         
-//        ArrayList<AccountVO> accounts = financialBL.searchAllAccounts();
-//        Vector data = ((DefaultTableModel)tableAccounts.getModel()).getDataVector();
-//        data.clear();
-//        for (AccountVO accountVO: accounts) {
-//            Vector<Object> row = new Vector<>();
-//            row.add(accountVO.getName());
-//            row.add(accountVO.getMoney());
-//            data.add(row);
-//        }
-//        tableAccounts.updateUI();
-//        tableAccounts.repaint();
+        ArrayList<AccountVO> accounts = financialBL.searchAllAccounts();
+        Vector data = ((DefaultTableModel)tableAccounts.getModel()).getDataVector();
+        data.clear();
+        for (AccountVO accountVO: accounts) {
+            Vector<Object> row = new Vector<>();
+            row.add(accountVO.getAccountNum());
+            row.add(accountVO.getName());
+            row.add(accountVO.getMoney());
+            data.add(row);
+        }
+        tableAccounts.updateUI();
+        tableAccounts.repaint();
         
         panelMain.updateUI();
         this.repaint();
     }
 
+    //统计报表初始化
     private void tgTJBBMouseClicked(MouseEvent e) {
         tgZJGL.setSelected(false);
         tgQCJZ.setSelected(false);
@@ -144,6 +151,7 @@ public class FINANCE extends JFrame {
         this.repaint();
     }
 
+    //期初建账初始化
     private void tgQCJZMouseClicked(MouseEvent e) {
         tgZJGL.setSelected(false);
         tgQCJZ.setSelected(true);
@@ -186,6 +194,11 @@ public class FINANCE extends JFrame {
     //ZHGL 新增账户
 	private void btAddMouseReleased(MouseEvent e) {
 		String name = textName.getText();
+		if (textName2.getText() == null || !textName2.getText().matches("[0-9]*[.]?[0-9]*")) {
+			JOptionPane.showMessageDialog(this, "您输入的金额数据格式错误");
+			textName2.requestFocus();
+			return;
+		}
         double money = Double.valueOf(textName2.getText());
         AccountVO account = financialBL.addAccount(name, money);
         Vector data = ((DefaultTableModel) tableAccounts.getModel()).getDataVector();
@@ -198,28 +211,16 @@ public class FINANCE extends JFrame {
         tableAccounts.repaint();
 	}
 
-	 //ZHGL 修改账户,在JTable中修改后会
+	 //ZHGL 修改账户,在JTable中修改后会  新弹出窗口进行修改
 	private void btModifyMouseReleased(MouseEvent e) {
-		//please add the change
 		Vector data = ((DefaultTableModel) tableAccounts.getModel()).getDataVector();
-//		//1、获得你选中的单元格所在的行和列，取消他的编辑状态
-//		int columnId = tableAccounts.getSelectedColumn();
-//		 int rowId = tableAccounts.getSelectedRow();
-//		 CellEditor ce = tableAccounts.getCellEditor(rowId, columnId);
-//		 ce.stopCellEditing();
-//		//以上是百度的，不知道啥用
-//		// 2、获得你修改后的值和当前值的列名
-		 String name = (String)((Vector<Object>)data.get(tableAccounts.getSelectedRow())).get(1);
-	     double money = (Double)((Vector<Object>)data.get(tableAccounts.getSelectedRow())).get(2);   
-	     
-//	     AccountVO accountVO = new AccountVO();
-//	     accountVO
-//	    		 financialBL.changeAccount(name, money);
-//	     Vector<Object> row = new Vector<>();
-//	        
-
-	     
-		 
+		Vector row = (Vector<Object>)data.get(tableAccounts.getSelectedRow());
+		long accountNum = (long)row.get(0);
+		String name = (String)row.get(1);
+		double money = (Double)row.get(2);
+		ModifyAccount modifyAccount = new ModifyAccount(accountNum,name,money);
+		modifyAccount.setVisible(true);
+		
 		
 		tableAccounts.updateUI();
 	    tableAccounts.repaint();
@@ -227,6 +228,7 @@ public class FINANCE extends JFrame {
 		
 	}
 	
+	//ZHGL 删除账户
     //ZHGL 删除账户
 	private void button11MouseReleased(MouseEvent e) {
 		 Vector data = ((DefaultTableModel) tableAccounts.getModel()).getDataVector();
@@ -236,9 +238,22 @@ public class FINANCE extends JFrame {
 	        // TODO: 调用逻辑层接口删除数据
 
 	        data.remove(tableAccounts.getSelectedRow());
+	        
+	        ArrayList<AccountVO> accounts = financialBL.searchAllAccounts();
+	        
+	        data.clear();
+	        for (AccountVO accountVO: accounts) {
+	            Vector<Object> row = new Vector<>();
+	            row.add(accountVO.getName());
+	            row.add(accountVO.getMoney());
+	            data.add(row);
+	        }
 	        tableAccounts.updateUI();
 	        tableAccounts.repaint();
+	        
 	}
+	
+	//ZJGL 按日期查看收款单
 	
 	ArrayList<ReceiptVO> re;
 	//ZJGL 按天对收款单进行查看
@@ -265,10 +280,12 @@ public class FINANCE extends JFrame {
 		tableReceipt.updateUI();
 		tableReceipt.repaint();
 		}
+	
+	    //ZJGL 按营业厅查看收款单
 
 	
 	//ZJGL 按营业厅对收款单进行查看
-	private void btAddressMouseReleased(MouseEvent e) {
+	    private void btAddressMouseReleased(MouseEvent e) {
 		String address = textAddress.getText();
 		
 		re =  financialBL.checkFromAddress(address);
@@ -294,7 +311,9 @@ public class FINANCE extends JFrame {
 		}
 
 	ArrayList<PaymentVO> pay;
-	ArrayList<ReceiptVO> rec;
+	    ArrayList<ReceiptVO> rec;
+	
+	    //TJBB 查看经营情况表
 		//TJBB 对经营情况表的查看
 		private void btSearch2MouseReleased(MouseEvent e) {
 			String BeginYear = textBeginYear.getText();
@@ -338,6 +357,8 @@ public class FINANCE extends JFrame {
 	        tablePay.repaint();
 			
 		}
+		
+		//TJBB 查看成本收益表
 
 		//TJBB 对成本收益表的查看
 		private void tpCostMouseReleased(MouseEvent e) {
@@ -359,48 +380,35 @@ public class FINANCE extends JFrame {
 		private void button1MouseReleased(MouseEvent e) {
 			PaymentAdd dialogAddSalary = new PaymentAdd();
 			dialogAddSalary.setVisible(true);
-			PaymentVO paymentVO = dialogAddSalary.payment;
-			Vector data = ((DefaultTableModel)tablePayment.getModel()).getDataVector();
-            Vector<Object> row = new Vector<>();
-	            row.add(paymentVO.getDate());
-	            row.add(paymentVO.getMoney());
-	            row.add(paymentVO.getName());
-	            row.add(paymentVO.getAccount());
-	            row.add(paymentVO.getInfo());
-	            row.add(paymentVO.getExInfo());
-	            data.add(row);
-	         
-	        tablePayment.updateUI();
-	        tablePayment.repaint();
+			refresh();
 		}
 
 		//TJBB 导出经营情况表成Excel
 		private void jbExcelMouseReleased(MouseEvent e) {
 			financialBL.printPayment(pay);
 			financialBL.printReceipt(rec);
+			JOptionPane.showMessageDialog(this, "导出经营情况表Excel成功，位于client的根目录下");
 		}
+		
+		//ZJGL 导出收款单成Excel
 
 		//ZJGL 导出收款单表成Excel
 		private void btRExcelMouseReleased(MouseEvent e) {
 			financialBL.printReceipt(re);
+			JOptionPane.showMessageDialog(this, "导出收款单Excel成功，位于client的根目录下");
 		}
+		
+		//ZJGL 导出付款单成Excel
 
 		//ZJGL 导出付款单表成Excel
 		private void btPExcelMouseReleased(MouseEvent e) {
-			Vector data = ((DefaultTableModel)tablePayment.getModel()).getDataVector();
-			ArrayList<PaymentVO> paList = null;
-			for(Object row: data){
-			Vector vector = (Vector) row;
-			PaymentVO pa = new PaymentVO();
-			pa.setDate((String) vector.get(0));
-			pa.setMoney((double) vector.get(1));
-			pa.setName((String) vector.get(2));
-			pa.setAccount((String) vector.get(3));
-			pa.setInfo((String) vector.get(4));
-			pa.setExInfo((String) vector.get(5));
-			paList.add(pa);
-			}
-			financialBL.printPayment(paList);
+			ArrayList<PaymentVO> payments = financialBL.searchAllPayment();
+			financialBL.printPayment(payments);
+			JOptionPane.showMessageDialog(this, "导出付款单Excel成功，位于client的根目录下");
+		}
+
+		private void thisWindowOpened(WindowEvent e) {
+			refresh();
 		}
 		
 		
@@ -463,10 +471,10 @@ public class FINANCE extends JFrame {
 		btSearch2 = new JButton();
 		scrollPane17 = new JScrollPane();
 		tabbedPane5 = new JTabbedPane();
-		scrollPane18 = new JScrollPane();
-		tableRec = new JTable();
 		scrollPane19 = new JScrollPane();
 		tablePay = new JTable();
+		scrollPane18 = new JScrollPane();
+		tableRec = new JTable();
 		textBeginMonth = new JTextField();
 		label8 = new JLabel();
 		label10 = new JLabel();
@@ -516,6 +524,12 @@ public class FINANCE extends JFrame {
 		textName2 = new JTextField();
 
 		//======== this ========
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+				thisWindowOpened(e);
+			}
+		});
 		Container contentPane = getContentPane();
 
 		//======== menuBar1 ========
@@ -737,9 +751,7 @@ public class FINANCE extends JFrame {
 								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 								.addComponent(btPExcel)
 								.addContainerGap(170, Short.MAX_VALUE))
-							.addGroup(panel1Layout.createSequentialGroup()
-								.addComponent(scrollPane15, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE)
-								.addGap(0, 1, Short.MAX_VALUE))
+							.addComponent(scrollPane15, GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
 					);
 				}
 				tabbedPane4.addTab("\u4ed8\u6b3e\u5355", panel1);
@@ -895,17 +907,17 @@ public class FINANCE extends JFrame {
 							//======== tabbedPane5 ========
 							{
 
-								//======== scrollPane18 ========
-								{
-									scrollPane18.setViewportView(tableRec);
-								}
-								tabbedPane5.addTab("\u6536\u6b3e\u5355", scrollPane18);
-
 								//======== scrollPane19 ========
 								{
 									scrollPane19.setViewportView(tablePay);
 								}
 								tabbedPane5.addTab("\u4ed8\u6b3e\u5355", scrollPane19);
+
+								//======== scrollPane18 ========
+								{
+									scrollPane18.setViewportView(tableRec);
+								}
+								tabbedPane5.addTab("\u6536\u6b3e\u5355", scrollPane18);
 							}
 							scrollPane17.setViewportView(tabbedPane5);
 						}
@@ -1133,7 +1145,7 @@ public class FINANCE extends JFrame {
 			});
 
 			//---- btModify ----
-			btModify.setText("\u786e\u8ba4");
+			btModify.setText("\u4fee\u6539");
 			btModify.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseReleased(MouseEvent e) {
@@ -1257,7 +1269,7 @@ public class FINANCE extends JFrame {
         }
         table4.setRowHeight(50);
         
-        String names5[] = { "账户名称", "账户余额" };
+        String names5[] = { "ID","账户名称", "账户余额" };
         for (int i = 0; i < names5.length; i++) {
         	tableAccounts.addColumn(new TableColumn(i));
             tableAccounts.getColumnModel().getColumn(i).setHeaderValue(names5[i]);
@@ -1335,10 +1347,10 @@ public class FINANCE extends JFrame {
 	private JButton btSearch2;
 	private JScrollPane scrollPane17;
 	private JTabbedPane tabbedPane5;
-	private JScrollPane scrollPane18;
-	private JTable tableRec;
 	private JScrollPane scrollPane19;
 	private JTable tablePay;
+	private JScrollPane scrollPane18;
+	private JTable tableRec;
 	private JTextField textBeginMonth;
 	private JLabel label8;
 	private JLabel label10;

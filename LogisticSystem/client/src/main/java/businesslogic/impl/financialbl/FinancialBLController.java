@@ -4,20 +4,16 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import businesslogic.service.Financial.FinancialBLService;
-import data.enums.POType;
-import data.message.LoginMessage;
 import data.message.ResultMessage;
 import data.po.InstitutionPO;
-import data.po.StaffPO;
 import data.service.FinancialDataService;
 import data.vo.AccountVO;
 import data.vo.PaymentVO;
 import data.vo.ReceiptVO;
 
 public class FinancialBLController implements FinancialBLService {
-	StaffPO staff;
+	
 	InstitutionPO institution;
-	LoginMessage user;
 	FinancialDataService financialData;
 	
 	AccountManage accountManage;
@@ -25,17 +21,7 @@ public class FinancialBLController implements FinancialBLService {
 	InitialBuild initialBuild;
 	StatementStatistic statementStatistic;
 	
-	public  void getInfo(long userID) {
-
-		try {
-			staff = (StaffPO) financialData.search(POType.STAFF,userID);
-			institution = (InstitutionPO) financialData.search(POType.INSTITUTION, staff.getInstitution());
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
+	
 	
 	public FinancialBLController() {
 		
@@ -179,8 +165,7 @@ public class FinancialBLController implements FinancialBLService {
 	
 	@Override
 	public ResultMessage printPayment(ArrayList<PaymentVO> payList) {
-		return null;
-		//return fundsManage.printPayment(payList);
+		return fundsManage.printPayment(payList);
 	
 	}
 
@@ -206,8 +191,7 @@ public class FinancialBLController implements FinancialBLService {
 
 	@Override
 	public ResultMessage printReceipt(ArrayList<ReceiptVO> recList) {
-		return null;
-		//return fundsManage.printReceipt(recList);
+		return fundsManage.printReceipt(recList);
 	}
 
 	@Override
