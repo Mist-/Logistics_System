@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class EntruckPO extends DataPO{
 
-
+    private static final long serialVersionUID = 7;
 	
 	public static final int TRANS = 1, DESTINATION = 2, MONITOR = 3, ESCORT = 4;
 

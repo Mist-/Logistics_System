@@ -1,6 +1,7 @@
 package data.vo;
 
 
+import data.enums.DataState;
 import data.enums.ServiceType;
 import data.po.OrderPO;
 import utils.Timestamper;
@@ -41,6 +42,9 @@ public class OrderVO {
 
     public ArrayList<Long> routine;
 
+    // 单据的审批状态
+    public DataState dataState;
+
     // 构造函数。因为是VO，所以在构造函数里面一次性完成啦。
     public OrderVO(String sname, String saddress, String scompany, String sphone,
                    String rname, String raddress, String rcompany, String rphone,
@@ -79,5 +83,6 @@ public class OrderVO {
         this.fee = orderPO.getFee();
         this.id = orderPO.getSerialNum();
         this.date = Timestamper.getTimeByDate(orderPO.getGenDate());
+        this.dataState = orderPO.getState();
     }
 }

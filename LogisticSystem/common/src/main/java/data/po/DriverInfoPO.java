@@ -11,8 +11,9 @@ import data.vo.DriverInfoVO;
  */
 public class DriverInfoPO extends DataPO {
 
+    private static final long serialVersionUID = 6;
+
    //司机编号：（城市编号（电话号码区号南京025）+营业厅编号（000三位数字）+000三位数字
-	private static final long serialVersionUID = 7713110376436575616L;
     long IDCard;
     String name;
     boolean engaged;

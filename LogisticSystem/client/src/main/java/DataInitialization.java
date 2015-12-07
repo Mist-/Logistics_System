@@ -5,6 +5,7 @@ import data.factory.DataServiceFactory;
 import data.po.CityInfoPO;
 import data.po.InstitutionPO;
 import data.po.StaffPO;
+import data.po.UserPO;
 import data.service.CompanyDataService;
 
 import java.rmi.RemoteException;
@@ -184,6 +185,16 @@ public class DataInitialization {
 
         } catch (RemoteException e) {
             e.printStackTrace();
+        }
+
+        int i = 0;
+        for (UserRole role: UserRole.values()) {
+            UserPO user = new UserPO(10000 + i++, role.name(), "123456", role);
+            try {
+                DataServiceFactory.getDataServiceByType(DataType.UserDataService).add(user);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

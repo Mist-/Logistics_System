@@ -10,6 +10,8 @@ import utils.PasswordHelper;
  */
 public class StaffPO extends DataPO {
 
+    private static final long serialVersionUID = 17;
+
     protected long institution;
     protected String name;
     protected boolean gender /* 0 - male , 1 - female */;

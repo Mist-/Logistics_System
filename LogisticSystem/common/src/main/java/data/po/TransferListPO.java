@@ -12,6 +12,7 @@ import data.vo.TransferLoadVO;
  *
  */
 public class TransferListPO extends DataPO {
+	private static final long serialVersionUID = 21;
     public long getTransferListID() {
 		return transferListID;
 	}

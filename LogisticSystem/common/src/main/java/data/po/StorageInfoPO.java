@@ -13,6 +13,8 @@ import data.vo.StorageInfoVO;
  *
  */
 public class StorageInfoPO extends DataPO {
+
+	private static final long serialVersionUID = 18;
 //物理库存信息
 //默认大小
 	private int planeRow = 5,

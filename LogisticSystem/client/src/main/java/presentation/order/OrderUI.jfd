@@ -12,8 +12,8 @@ new FormModel {
 			"title": "物流管理系统"
 			"font": &Font0 new java.awt.Font( "等线", 0, 14 )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :::p, par l {seq {comp scrollPane1:::p:830:p, space :::p, par l {comp btDelete::::96:x, comp btSign::::96:x}}, seq {par l {comp btOrderMng::l:p::p, seq l {space :25:25:p, comp label1:::p::p}, seq l {comp lbOrderNum:::p::p, space :6:6:p, comp tfOrderInput:::p:361:p, space :p:12:p, comp btSearch:::p::p}}, space :0:0:x}}, space :::p}}"
-				"$verticalGroup": "par l {seq l {space :6:6:p, comp btOrderMng:::p:96:p, space :6:6:p, comp label1:::p::p, space :6:6:p, par l {seq l {space :4:4:p, comp lbOrderNum:::p::p}, comp tfOrderInput:::p::p, comp btSearch:::p:25:p}, space :::p, par l {seq {comp btSign:::p:38:p, space s:::p, comp btDelete:::p:38:p, space ::343:x}, comp scrollPane1::::437:x}}}"
+				"$horizontalGroup": "par l {seq l {space :::p, par l {seq l {par l {seq {comp scrollPane1:::p:830:p, space :::x, par l {comp btSign2:::p:96:p, comp btDelete:::::x, comp btSign:::::x, comp btModify::t:p:96:p}}, seq {comp lbOrderNum:::p::p, space :6:6:p, comp tfOrderInput:::p:361:p, space :p:12:p, comp btSearch:::p::p}}, space :::p}, seq l {par l {comp btOrderMng::l:p::p, seq l {space :25:25:p, comp label1:::p::p}}, space :116::x}}}}"
+				"$verticalGroup": "par l {seq l {space :p:6:p, comp btOrderMng:::p:96:p, space :6:6:p, comp label1:::p::p, space :6:6:p, par l {seq l {space :4:4:p, comp lbOrderNum:::p::p}, comp tfOrderInput:::p::p, comp btSearch:::p:25:p}, space :::p, par l {comp scrollPane1::::437:x, seq {comp btSign2:::p:38:p, space s:::p, comp btSign:::p:38:p, space s:::p, comp btDelete:::p:38:p, space s:::p, comp btModify:::p:38:p, space ::231:x}}, space :::p}}"
 			} ) {
 				name: "panel2"
 				add( new FormComponent( "javax.swing.JTextField" ) {
@@ -25,6 +25,7 @@ new FormModel {
 					"icon": new com.jformdesigner.model.SwingIcon( 1, "D:\\DATA\\Project\\GUI\\resources\\search_16x16.png" )
 					"font": #Font0
 					"text": "搜索"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btSearchMouseReleased", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "lbOrderNum"
@@ -44,10 +45,11 @@ new FormModel {
 					"icon": new com.jformdesigner.model.SwingIcon( 1, "D:\\DATA\\Project\\GUI\\resources\\delete_24x24.png" )
 					"font": #Font0
 					"text": "删除"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btDeleteMouseReleased", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btSign"
-					"icon": new com.jformdesigner.model.SwingIcon( 1, "D:\\DATA\\Project\\GUI\\resources\\sign_24x24.png" )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/sign_24x24.png" )
 					"font": #Font0
 					"text": "签收"
 				} )
@@ -62,6 +64,20 @@ new FormModel {
 					"font": #Font0
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "btOrderMngMouseClicked", true ) )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btOrderMngMouseReleased", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btModify"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/modify_24x24.png" )
+					"font": #Font0
+					"text": "修改"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btModifyMouseReleased", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btSign2"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/new_24x24.png" )
+					"font": #Font0
+					"text": "新建"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btSign2MouseReleased", true ) )
 				} )
 			} )
 			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
@@ -115,6 +131,7 @@ new FormModel {
 						"text": "修改"
 						"font": #Font1
 						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/modify_16x16.png" )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "miModifyMouseReleased", true ) )
 					} )
 				} )
 			}

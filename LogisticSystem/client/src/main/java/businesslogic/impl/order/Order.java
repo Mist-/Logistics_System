@@ -1,7 +1,5 @@
 package businesslogic.impl.order;
 
-import businesslogic.impl.company.CompanyBLController;
-import businesslogic.impl.user.CityInfo;
 import com.sun.istack.internal.NotNull;
 import data.enums.*;
 import data.factory.DataServiceFactory;
@@ -34,6 +32,48 @@ public class Order {
         return result;
     }
 
+    public ResultMessage deleteOrder(long sn) {
+        OrderPO orderToDelete = null;
+        try {
+            orderToDelete = (OrderPO) orderDataService.search(POType.ORDER, sn);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return ResultMessage.NOTCONNECTED;
+        }
+        if (orderToDelete == null) {
+            return ResultMessage.NOTEXIST;
+        }
+        ResultMessage result = ResultMessage.FAILED;
+        try {
+            result = orderDataService.delete(orderToDelete);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return ResultMessage.NOTCONNECTED;
+        }
+        return result;
+    }
+
+    public ResultMessage modify(long sn, OrderVO orderInfo) {
+        orderDataService = (OrderDataService) DataServiceFactory.getDataServiceByType(DataType.OrderDataService);
+        if (orderDataService == null) {
+            JOptionPane.showMessageDialog(null, "网络连接失败", "LCS物流管理系统", JOptionPane.INFORMATION_MESSAGE);
+            return ResultMessage.NOTCONNECTED;
+        }
+        OrderPO orderToModify = null;
+        try {
+            orderToModify = (OrderPO) orderDataService.search(POType.ORDER, sn);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        orderToModify.fastModify(orderInfo);
+        try {
+            orderDataService.modify(orderToModify);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return ResultMessage.SUCCESS;
+    }
+
     public ResultMessage createOrder(OrderVO order) {
         OrderPO newOrder = new OrderPO(order);
 
@@ -44,6 +84,7 @@ public class Order {
         // 提交订单
         try {
             orderDataService.add(newOrder);
+            orderDataService.add(logisticInfoPO);
         } catch (RemoteException e) {
             e.printStackTrace();
             return ResultMessage.FAILED;
@@ -114,9 +155,10 @@ public class Order {
     }
 
     /**
+     * 估计某订单的送达时间
      *
-     * @param orderVO
-     * @return
+     * @param orderVO 需要估计的订单的信息
+     * @return 估计出的时间。是估计结果向上取整的整数。如果网络断开或者没有数据，则返回0.
      */
     public int evaluateTime(@NotNull OrderVO orderVO) {
         ArrayList<DataPO> orders = null;

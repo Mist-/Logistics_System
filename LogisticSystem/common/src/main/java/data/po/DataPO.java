@@ -27,6 +27,7 @@ public class DataPO implements Serializable {
         serialNum = IDGenerator.getNextID(type);
         setPoType(type);
         genDate = Calendar.getInstance();
+        state = DataState.APPROVING;
     }
 
     public DataState getState() {

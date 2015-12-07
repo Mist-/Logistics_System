@@ -6,6 +6,7 @@ import data.enums.POType;
  * Created by mist on 2015/11/16 0016.
  */
 public class SignPO extends DataPO {
+    private static final long serialVersionUID = 16;
     // 签收的订单号
     long order;
     // 签收人姓名，电话

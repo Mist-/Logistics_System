@@ -12,7 +12,7 @@ import data.vo.StorageOutVO;
  *
  */
 public class StorageOutListPO extends StorageListPO {
-	
+	private static final long serialVersionUID = 21;
 	
 	//¶©µ¥ºÅ
     long[] order;

@@ -8,6 +8,8 @@ import data.enums.POType;
 
 public class CostBenefitPO extends DataPO {
 
+    private static final long serialVersionUID = 5;
+
     double allIncome;
     double allPay;
     double allProfit;

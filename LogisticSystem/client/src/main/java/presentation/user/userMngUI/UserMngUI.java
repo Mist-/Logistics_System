@@ -195,6 +195,7 @@ public class UserMngUI extends JFrame {
 
         //======== this ========
         setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+        setTitle("LCS\u7269\u6d41\u7ba1\u7406\u7cfb\u7edf - \u7cfb\u7edf\u7528\u6237\u7ba1\u7406");
         Container contentPane = getContentPane();
 
         //======== menuBar1 ========

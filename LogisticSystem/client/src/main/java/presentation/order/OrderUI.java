@@ -1,9 +1,13 @@
 package presentation.order;
 
+import businesslogic.impl.order.Order;
 import businesslogic.impl.order.OrderBLController;
 import data.message.LoginMessage;
 import data.message.ResultMessage;
+import data.po.LogisticInfoPO;
+import data.po.OrderPO;
 import data.vo.OrderVO;
+import utils.Timestamper;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -27,6 +31,8 @@ public class OrderUI extends JFrame {
 
     LoginMessage loginMessage = null;
 
+    NewOrderDlg newOrderDlg = new NewOrderDlg(this);
+
     public OrderUI(LoginMessage loginMessage) {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         initComponents();
@@ -35,6 +41,7 @@ public class OrderUI extends JFrame {
 
     private void btOrderMngMouseClicked(MouseEvent e) {
         btOrderMng.setSelected(true);
+        refresh();
     }
 
     private void btOrderMngMouseReleased(MouseEvent e) {
@@ -65,16 +72,86 @@ public class OrderUI extends JFrame {
         tbOrderInfo.updateUI();
     }
 
+    /**
+     * 菜单项 新建 按钮点击事件
+     * @param e
+     */
     private void miNewOrderMouseReleased(MouseEvent e) {
         OrderVO newOrder = new NewOrderDlg(this).getNewOrderInfo();
-        if (newOrder == null) JOptionPane.showMessageDialog(null, "空订单");
+        if (newOrder == null) return;
         ResultMessage result = new OrderBLController().createOrder(newOrder);
         if (result == ResultMessage.SUCCESS) {
-            JOptionPane.showMessageDialog(this, "创建新订单成功", "LCS物流管理系统", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "订单保存成功。", "LCS物流管理系统", JOptionPane.INFORMATION_MESSAGE);
         }
         else {
-            JOptionPane.showMessageDialog(this, "创建新订单失败。请检查网络连接", "LCS物流管理系统", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "订单保存失败。请检查网络连接", "LCS物流管理系统", JOptionPane.WARNING_MESSAGE);
         }
+        refresh();
+    }
+
+    /**
+     * 删除按钮点击事件
+     * @param e
+     */
+    private void btDeleteMouseReleased(MouseEvent e) {
+        int selected = tbOrderInfo.getSelectedRow();
+        long orderSn = (long)((Vector<Object>) ((DefaultTableModel) tbOrderInfo.getModel()).getDataVector().get(selected)).get(0);
+        ResultMessage result = new Order().deleteOrder(orderSn);
+        if (result == ResultMessage.NOTEXIST) {
+            JOptionPane.showMessageDialog(this, "订单删除失败！订单可能已经被删除。", "LCS物流管理系统", JOptionPane.WARNING_MESSAGE);
+        } else if (result == ResultMessage.FAILED) {
+            JOptionPane.showMessageDialog(this, "订单删除失败！订单已被审批，无法完成删除操作。", "LCS物流管理系统", JOptionPane.WARNING_MESSAGE);
+        }
+        refresh();
+    }
+
+    private void btSign2MouseReleased(MouseEvent e) {
+        miNewOrderMouseReleased(e);
+    }
+
+    private void btModifyMouseReleased(MouseEvent e) {
+        int row = tbOrderInfo.getSelectedRow();
+        long sn = (long) ((Vector<Object>) ((DefaultTableModel) tbOrderInfo.getModel()).getDataVector().get(row)).get(0);
+        OrderVO orderInfo = new OrderVO(new Order().search(sn));
+        orderInfo = newOrderDlg.getModifiedOrderInfo(orderInfo);
+        if (orderInfo == null) return;
+        new Order().modify(sn, orderInfo);
+        refresh();
+    }
+
+    private void miModifyMouseReleased(MouseEvent e) {
+        JOptionPane.showMessageDialog(null, tbOrderInfo.getSelectedRowCount());
+        btModifyMouseReleased(e);
+    }
+
+    private void btSearchMouseReleased(MouseEvent e) {
+        if (!tfOrderInput.getText().matches("[0-9]*") || tfOrderInput.getText().length() != 10) {
+            tfOrderInput.requestFocus();
+            return;
+        }
+        long sn = Long.parseLong(tfOrderInput.getText());
+        OrderPO orderPO = new OrderBLController().search(sn);
+        ((DefaultTableModel) tbOrderInfo.getModel()).getDataVector().clear();
+        if (orderPO == null) {
+            tbOrderInfo.updateUI();
+            tbOrderInfo.repaint();
+            return;
+        }
+        Vector<Object> row = new Vector<>();
+        row.add(orderPO.getSerialNum());
+        row.add(Timestamper.getTimeByDate(orderPO.getGenDate()));
+        row.add(orderPO.getSname());
+        row.add(orderPO.getSphone());
+        row.add(orderPO.getSaddress());
+        row.add(orderPO.getScompany());
+        row.add(orderPO.getRname());
+        row.add(orderPO.getRphone());
+        row.add(orderPO.getRaddress());
+        row.add(orderPO.getRcompany());
+        row.add(orderPO.getServiceType());
+        ((DefaultTableModel) tbOrderInfo.getModel()).getDataVector().add(row);
+        tbOrderInfo.updateUI();
+        tbOrderInfo.repaint();
     }
 
     private void initComponents() {
@@ -99,6 +176,8 @@ public class OrderUI extends JFrame {
         btSign = new JButton();
         label1 = new JLabel();
         btOrderMng = new JToggleButton();
+        btModify = new JButton();
+        btSign2 = new JButton();
 
         //======== this ========
         setOpacity(0.0F);
@@ -163,6 +242,12 @@ public class OrderUI extends JFrame {
                 miModify.setText("\u4fee\u6539");
                 miModify.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
                 miModify.setIcon(new ImageIcon(getClass().getResource("/icons/modify_16x16.png")));
+                miModify.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+                        miModifyMouseReleased(e);
+                    }
+                });
                 mnEdit.add(miModify);
             }
             menuBar1.add(mnEdit);
@@ -179,6 +264,12 @@ public class OrderUI extends JFrame {
             btSearch.setIcon(new ImageIcon("D:\\DATA\\Project\\GUI\\resources\\search_16x16.png"));
             btSearch.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
             btSearch.setText("\u641c\u7d22");
+            btSearch.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    btSearchMouseReleased(e);
+                }
+            });
 
             //---- lbOrderNum ----
             lbOrderNum.setText("\u8ba2\u5355\u7f16\u53f7\uff1a");
@@ -197,9 +288,15 @@ public class OrderUI extends JFrame {
             btDelete.setIcon(new ImageIcon("D:\\DATA\\Project\\GUI\\resources\\delete_24x24.png"));
             btDelete.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
             btDelete.setText("\u5220\u9664");
+            btDelete.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    btDeleteMouseReleased(e);
+                }
+            });
 
             //---- btSign ----
-            btSign.setIcon(new ImageIcon("D:\\DATA\\Project\\GUI\\resources\\sign_24x24.png"));
+            btSign.setIcon(new ImageIcon(getClass().getResource("/icons/sign_24x24.png")));
             btSign.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
             btSign.setText("\u7b7e\u6536");
 
@@ -221,6 +318,28 @@ public class OrderUI extends JFrame {
                 }
             });
 
+            //---- btModify ----
+            btModify.setIcon(new ImageIcon(getClass().getResource("/icons/modify_24x24.png")));
+            btModify.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+            btModify.setText("\u4fee\u6539");
+            btModify.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    btModifyMouseReleased(e);
+                }
+            });
+
+            //---- btSign2 ----
+            btSign2.setIcon(new ImageIcon(getClass().getResource("/icons/new_24x24.png")));
+            btSign2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+            btSign2.setText("\u65b0\u5efa");
+            btSign2.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    btSign2MouseReleased(e);
+                }
+            });
+
             GroupLayout panel2Layout = new GroupLayout(panel2);
             panel2.setLayout(panel2Layout);
             panel2Layout.setHorizontalGroup(
@@ -229,25 +348,29 @@ public class OrderUI extends JFrame {
                         .addContainerGap()
                         .addGroup(panel2Layout.createParallelGroup()
                             .addGroup(panel2Layout.createSequentialGroup()
-                                .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 830, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(panel2Layout.createParallelGroup()
-                                    .addComponent(btDelete, GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                                    .addComponent(btSign, GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)))
-                            .addGroup(panel2Layout.createSequentialGroup()
-                                .addGroup(panel2Layout.createParallelGroup()
-                                    .addComponent(btOrderMng)
                                     .addGroup(panel2Layout.createSequentialGroup()
-                                        .addGap(25, 25, 25)
-                                        .addComponent(label1))
+                                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 830, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(panel2Layout.createParallelGroup()
+                                            .addComponent(btSign2, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btDelete, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(btSign, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(btModify, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(panel2Layout.createSequentialGroup()
                                         .addComponent(lbOrderNum)
                                         .addGap(6, 6, 6)
                                         .addComponent(tfOrderInput, GroupLayout.PREFERRED_SIZE, 361, GroupLayout.PREFERRED_SIZE)
                                         .addGap(12, 12, 12)
                                         .addComponent(btSearch)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
+                                .addContainerGap())
+                            .addGroup(panel2Layout.createSequentialGroup()
+                                .addGroup(panel2Layout.createParallelGroup()
+                                    .addComponent(btOrderMng)
+                                    .addGroup(panel2Layout.createSequentialGroup()
+                                        .addGap(25, 25, 25)
+                                        .addComponent(label1)))
+                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             );
             panel2Layout.setVerticalGroup(
                 panel2Layout.createParallelGroup()
@@ -265,12 +388,17 @@ public class OrderUI extends JFrame {
                             .addComponent(btSearch, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panel2Layout.createParallelGroup()
+                            .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
                             .addGroup(panel2Layout.createSequentialGroup()
+                                .addComponent(btSign2, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(btSign, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btDelete, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(343, Short.MAX_VALUE))
-                            .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(btModify, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)))
+                        .addContainerGap())
             );
         }
 
@@ -343,6 +471,8 @@ public class OrderUI extends JFrame {
         ((DefaultTableModel)tbOrderInfo.getModel()).getDataVector().add(row);
         mnFile.setMnemonic('F');
         mnEdit.setMnemonic('E');
+
+        refresh();
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
@@ -365,5 +495,7 @@ public class OrderUI extends JFrame {
     private JButton btSign;
     private JLabel label1;
     private JToggleButton btOrderMng;
+    private JButton btModify;
+    private JButton btSign2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

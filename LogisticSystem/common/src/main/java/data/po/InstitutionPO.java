@@ -7,6 +7,8 @@ import data.enums.POType;
  */
 public class InstitutionPO extends DataPO {
 
+    private static final long serialVersionUID = 8;
+
     /**
      * 机构的名字。因为在展示层可能直接显示营业厅的名字了所以要规定一下
      *

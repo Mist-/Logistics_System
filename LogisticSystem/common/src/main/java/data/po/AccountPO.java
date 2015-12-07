@@ -11,7 +11,7 @@ public class AccountPO extends DataPO {
     /**
      * 银行账户
      */
-    private static final long serialVersionUID = -5344511556034467117L;
+    private static final long serialVersionUID = 1;
 
     String name;
     double money;

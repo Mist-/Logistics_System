@@ -34,16 +34,17 @@ public class Server {
                 reg.rebind(type.name(), tmp);
             }
 
+            // 说实话，这部分并没有什么卵用。就是为了测试网络连接性而专门建出来的一个类。
             hello = new SayHelloImpl();
             reg.rebind("hello", hello);
 
             System.out.println("服务器初始化成功 - " + Calendar.getInstance().getTime());
         } catch (RemoteException e) {
-            System.err.println("服务器初始化失败 - " + Calendar.getInstance().getTime());
             e.printStackTrace();
+            System.err.println("服务器初始化失败 - " + Calendar.getInstance().getTime());
         }
 
-
+        // 缓一缓，等内存加载完了，再来保存
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {

@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 public class CityInfoPO extends DataPO {
 
+    private static final long serialVersionUID = 3;
+
     protected String name = null;               //城市名称
 
     protected ArrayList<Long> businessOfficeList;   //城市中营业厅的编号

@@ -50,7 +50,7 @@ class CheckConnectionRunnable implements Runnable {
         while (true) {
             Connection.checkConnection();
             if (!Connection.connected) {
-            	System.err.println("与服务器的连接断开 -" + Calendar.getInstance().getTime());
+            	System.err.println("与服务器的连接断开 - " + Calendar.getInstance().getTime());
 
                 // 60秒后重新尝试
                 ++tries;

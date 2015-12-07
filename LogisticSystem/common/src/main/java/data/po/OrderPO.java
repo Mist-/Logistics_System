@@ -7,6 +7,8 @@ import data.vo.OrderVO;
 
 public class OrderPO extends DataPO {
 
+    private static final long serialVersionUID = 10;
+
     public static final int SNAME = 1, SADDRESS = 2, SCOMPANY = 3, SPHONE = 4, RNAME = 5, RADDRESS = 6, RCOMPANY = 7, RPHONE = 8;
     //新增：运输方式
     StorageArea transferType;
@@ -92,6 +94,7 @@ public class OrderPO extends DataPO {
         evaluatedTime = order.evaluatedTime;
         volume = order.volume;
         weight = order.weight;
+        setState(order.dataState);
     }
 
     public StorageArea getTransferType() {
@@ -319,6 +322,23 @@ public class OrderPO extends DataPO {
 
     public void setRaddress(String raddress) {
         this.raddress = raddress;
+    }
+
+    public void fastModify(OrderVO order) {
+        saddress = order.saddress;
+        sname = order.sname;
+        scompany = order.scompany;
+        sphone = order.sphone;
+        raddress = order.raddress;
+        rname = order.rname;
+        rcompany = order.rcompany;
+        rphone = order.rphone;
+        serviceType = order.serviceType;
+        fee = order.fee;
+        evaluatedTime = order.evaluatedTime;
+        volume = order.volume;
+        weight = order.weight;
+        setState(order.dataState);
     }
 }
 

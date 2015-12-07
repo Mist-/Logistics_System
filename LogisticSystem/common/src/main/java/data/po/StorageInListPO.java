@@ -11,6 +11,8 @@ import java.util.ArrayList;
  *
  */
 public class StorageInListPO extends StorageListPO {
+	private static final long serialVersionUID = 19;
+
 	//中转中心编号
 	long transferNum;
 	//入库日期

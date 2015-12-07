@@ -6,7 +6,7 @@ import data.vo.TruckInfoVO;
 
 public class VehicleInfoPO extends DataPO {
 
-    private static final long serialVersionUID = -8365240623519578242L;
+    private static final long serialVersionUID = 23;
     long ID;
     String license;
     // Format: yyyy/mm/dd

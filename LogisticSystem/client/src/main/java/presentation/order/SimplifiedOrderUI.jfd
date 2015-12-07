@@ -8,9 +8,10 @@ new FormModel {
 			"$verticalGroup": "par l {comp panel1::l:::x}"
 		} ) {
 			name: "this"
+			"title": "订单信息查询"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq t {space :0:0:x, comp menuBar1:::p:1004:p}, seq l {comp panel2:::p::p, space :0:0:x}}"
-				"$verticalGroup": "par l {seq l {comp menuBar1:::p:23:p, space :::x, comp panel2:::p::p}}"
+				"$horizontalGroup": "par l {seq l {par l:::p {comp panel2:::::x, comp menuBar1::::1004:x}, space :0:0:x}}"
+				"$verticalGroup": "par l {seq l {comp menuBar1:::p:23:p, space ::11:x, comp panel2:::p::p}}"
 			} ) {
 				name: "panel1"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {

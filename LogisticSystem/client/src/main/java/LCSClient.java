@@ -31,10 +31,6 @@ public class LCSClient extends JFrame{
 
     public static void main(String[] args) {
 
-
-        // 数据初始化操作结束
-
-
         try {
             UIManager.setLookAndFeel(new Windows2LookAndFeel());
         } catch (UnsupportedLookAndFeelException e1) {

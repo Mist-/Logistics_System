@@ -5,6 +5,7 @@
 package presentation.order;
 
 import businesslogic.impl.order.Order;
+import data.enums.DataState;
 import data.enums.ServiceType;
 import data.vo.OrderVO;
 import utils.Timestamper;
@@ -19,13 +20,70 @@ import javax.swing.LayoutStyle;
  * @author mist
  */
 public class NewOrderDlg extends JDialog {
+
+    boolean isEditing = true;
+
     OrderVO orderVO = null;
 
     public OrderVO getNewOrderInfo() {
+        this.setTitle("新建订单");
+        isEditing = true;
+        setEditable(true);
         orderVO = new OrderVO();
         this.setVisible(true);
         return orderVO;
     }
+
+    /**
+     * 根据已有订单信息显示窗口，并返回修改后的结果
+     *
+     * @param vo
+     * @return
+     */
+    public OrderVO getModifiedOrderInfo(OrderVO vo) {
+        orderVO = vo;
+
+        textRcompany.setText(vo.rcompany);
+        textRname.setText(vo.rname);
+        textRphone.setText(vo.rphone);
+        textSname.setText(vo.sname);
+        textScompany.setText(vo.scompany);
+        textSphone.setText(vo.sphone);
+        String[] saddress = vo.saddress.split("[-]");
+        String[] raddress = vo.raddress.split("[-]");
+        cboxRcity.setSelectedItem(raddress[0]);
+        cboxRcityItemStateChanged(null);
+        cboxRblock.setSelectedItem(raddress[1]);
+        cboxScity.setSelectedItem(saddress[0]);
+        cboxScityItemStateChanged(null);
+        cboxSblock.setSelectedItem(saddress[1]);
+
+        textSaddress.setText(saddress[2]);
+        textRaddress.setText(raddress[2]);
+
+        textFee.setText(String.valueOf(vo.fee));
+        textTimeEvaluated.setText(String.valueOf(vo.evaluatedTime));
+        textWeight.setText(String.valueOf(vo.weight));
+        textHeight.setText("1");
+        textWidth.setText("1");
+        textLength.setText(String.valueOf(vo.volume));
+
+        cboxServiceType.setSelectedItem(vo.serviceType);
+
+        if (vo.dataState == DataState.APPROVED) {
+            setEditable(false);
+            this.setTitle("订单查看模式");
+        }
+        else {
+            setEditable(true);
+            this.setTitle("订单编辑模式");
+        }
+
+        this.setVisible(true);
+
+        return orderVO;
+    }
+
 
     public NewOrderDlg(Frame owner) {
         super(owner);
@@ -38,6 +96,11 @@ public class NewOrderDlg extends JDialog {
     }
 
     private void btOKMouseReleased(MouseEvent e) {
+        if (!isEditing) {
+            this.setVisible(false);
+            return;
+        }
+
         orderVO = new OrderVO();
 
         // 检查信息是否填写完整
@@ -72,19 +135,19 @@ public class NewOrderDlg extends JDialog {
         }
 
         // 快件大小以及重量信息的检查
-        if (!textLength.getText().matches("[0-9]*[.]?[0-9]*")) {
+        if (!textLength.getText().matches("[0-9]*[.]?[0-9]*([Ee][-+]?[0-9]*)?")) {
             textLength.requestFocus();
             return;
         }
-        if (!textWidth.getText().matches("[0-9]*[.]?[0-9]*")) {
+        if (!textWidth.getText().matches("[0-9]*[.]?[0-9]*([Ee][-+]?[0-9]*)?")) {
             textWidth.requestFocus();
             return;
         }
-        if (!textHeight.getText().matches("[0-9]*[.]?[0-9]*")) {
+        if (!textHeight.getText().matches("[0-9]*[.]?[0-9]*([Ee][-+]?[0-9]*)?")) {
             textHeight.requestFocus();
             return;
         }
-        if (!textWeight.getText().matches("[0-9]*[.]?[0-9]*")) {
+        if (!textWeight.getText().matches("[0-9]*[.]?[0-9]*([Ee][-+]?[0-9]*)?")) {
             textWeight.requestFocus();
             return;
         }
@@ -188,14 +251,25 @@ public class NewOrderDlg extends JDialog {
     }
 
     private void btCancelMouseReleased(MouseEvent e) {
+
+        orderVO = null;
+        if (!isEditing) {
+            this.setVisible(false);
+            return;
+        }
+
         int result = JOptionPane.showConfirmDialog(this, "确定要退出编辑订单？所有信息将不被保存。", "订单信息", JOptionPane.YES_NO_OPTION);
         if (result == JOptionPane.YES_OPTION) {
-            orderVO = null;
             this.setVisible(false);
         }
     }
 
     private void thisWindowClosing(WindowEvent e) {
+        if (!isEditing) {
+            this.setVisible(false);
+            return;
+        }
+
         int result = JOptionPane.showConfirmDialog(this, "确定要退出编辑订单？所有信息将不被保存。", "订单信息", JOptionPane.YES_NO_OPTION);
         if (result == JOptionPane.YES_OPTION) {
             orderVO = null;
@@ -206,19 +280,19 @@ public class NewOrderDlg extends JDialog {
     private void btFeeRefreshMouseReleased(MouseEvent e) {
 
         // 快件大小以及重量信息的检查
-        if (!textLength.getText().matches("[0-9]*[.]?[0-9]*")) {
+        if (!textLength.getText().matches("[0-9]*[.]?[0-9]*([Ee][-+]?[0-9]*)?")) {
             textLength.requestFocus();
             return;
         }
-        if (!textWidth.getText().matches("[0-9]*[.]?[0-9]*")) {
+        if (!textWidth.getText().matches("[0-9]*[.]?[0-9]*([Ee][-+]?[0-9]*)?")) {
             textWidth.requestFocus();
             return;
         }
-        if (!textHeight.getText().matches("[0-9]*[.]?[0-9]*")) {
+        if (!textHeight.getText().matches("[0-9]*[.]?[0-9]*([Ee][-+]?[0-9]*)?")) {
             textHeight.requestFocus();
             return;
         }
-        if (!textWeight.getText().matches("[0-9]*[.]?[0-9]*")) {
+        if (!textWeight.getText().matches("[0-9]*[.]?[0-9]*([Ee][-+]?[0-9]*)?")) {
             textWeight.requestFocus();
             return;
         }
@@ -258,6 +332,33 @@ public class NewOrderDlg extends JDialog {
         orderVO.volume = height * width * length;
         orderVO.weight = Float.parseFloat(textWeight.getText());
         textFee.setText(String.valueOf(new Order().generateFee(orderVO)));
+    }
+
+
+    /**
+     * 设置是否可编辑
+     * @param editable
+     */
+    private void setEditable(boolean editable) {
+        textRaddress.setEditable(editable);
+        textRcompany.setEditable(editable);
+        textRname.setEditable(editable);
+        textRphone.setEditable(editable);
+        textScompany.setEditable(editable);
+        textSname.setEditable(editable);
+        textSphone.setEditable(editable);
+        textSaddress.setEditable(editable);
+        textHeight.setEditable(editable);
+        textLength.setEditable(editable);
+        textWidth.setEditable(editable);
+        textWeight.setEditable(editable);
+        textLength.setEditable(editable);
+        cboxRblock.setEnabled(editable);
+        cboxScity.setEnabled(editable);
+        cboxRcity.setEnabled(editable);
+        cboxSblock.setEnabled(editable);
+        cboxServiceType.setEnabled(editable);
+        isEditing = editable;
     }
 
     private void btTimeRefreshMouseReleased(MouseEvent e) {
@@ -343,6 +444,7 @@ public class NewOrderDlg extends JDialog {
 
         //======== this ========
         setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+        setTitle("\u8ba2\u5355\u4fe1\u606f");
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {

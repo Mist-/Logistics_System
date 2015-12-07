@@ -7,7 +7,7 @@ import utils.PasswordHelper;
 
 public class UserPO extends DataPO {
 
-    private static final long serialVersionUID = 2205631303533979093L;
+    private static final long serialVersionUID = 22;
 
     String name = "";
 

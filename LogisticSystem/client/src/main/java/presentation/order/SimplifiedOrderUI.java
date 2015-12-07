@@ -5,12 +5,16 @@
 package presentation.order;
 
 import businesslogic.impl.order.OrderBLController;
+import data.po.LogisticInfoPO;
 import data.po.OrderPO;
+import utils.Timestamper;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Vector;
 import javax.swing.*;
 import javax.swing.GroupLayout;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 /**
@@ -27,12 +31,49 @@ public class SimplifiedOrderUI extends JFrame {
     }
 
     private void btSearchMouseReleased(MouseEvent e) {
+
         if (!textOrderNum.getText().matches("[0-9]*") || textOrderNum.getText().length() != 10) {
             JOptionPane.showMessageDialog(this, "订单号必须是由0-9组成的10位数字", "LCS物流管理系统", JOptionPane.INFORMATION_MESSAGE);
             textOrderNum.requestFocus();
             return;
         }
+
         OrderPO orderPO = new OrderBLController().search(Long.parseLong(textOrderNum.getText()));
+        if (orderPO == null) {
+            textLogisticsInfo.setText("(没有找到相关物流信息)");
+
+            tbOrderInfo.updateUI();
+            tbOrderInfo.repaint();
+            return;
+        }
+
+        String[] logisticInfo = new OrderBLController().enquire(Long.parseLong(textOrderNum.getText()));
+        int index = 0;
+        textLogisticsInfo.setText("");
+        if (logisticInfo == null) {
+            textLogisticsInfo.setText("(没有找到相关物流信息)");
+
+            tbOrderInfo.updateUI();
+            tbOrderInfo.repaint();
+            return;
+        }
+        for (String info: logisticInfo) {
+            textLogisticsInfo.append(++index + ".\t" + info + "\n\n");
+        }
+
+        Vector tableDataVector = ((DefaultTableModel) tbOrderInfo.getModel()).getDataVector();
+        tableDataVector.clear();
+        Vector<Object> row = new Vector<>();
+        row.add(orderPO.getSerialNum());
+        row.add(Timestamper.getTimeByDate(orderPO.getGenDate()));
+        row.add(orderPO.getSname());
+        row.add(orderPO.getRname());
+        row.add(orderPO.getRphone());
+        row.add(orderPO.getRaddress());
+        tableDataVector.add(row);
+
+        tbOrderInfo.updateUI();
+        tbOrderInfo.repaint();
     }
 
     private void initComponents() {
@@ -56,6 +97,7 @@ public class SimplifiedOrderUI extends JFrame {
         miQuit = new JMenuItem();
 
         //======== this ========
+        setTitle("\u8ba2\u5355\u4fe1\u606f\u67e5\u8be2");
         Container contentPane = getContentPane();
 
         //======== panel1 ========
@@ -208,18 +250,17 @@ public class SimplifiedOrderUI extends JFrame {
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
                 panel1Layout.createParallelGroup()
-                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(menuBar1, GroupLayout.PREFERRED_SIZE, 1004, GroupLayout.PREFERRED_SIZE))
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addComponent(panel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addComponent(panel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(menuBar1, GroupLayout.DEFAULT_SIZE, 1004, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
             );
             panel1Layout.setVerticalGroup(
                 panel1Layout.createParallelGroup()
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addComponent(menuBar1, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                         .addComponent(panel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
             );
         }

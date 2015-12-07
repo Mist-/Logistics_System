@@ -7,16 +7,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class LogisticInfoPO extends DataPO implements Serializable {
+public class LogisticInfoPO extends DataPO {
 
-    private static final long serialVersionUID = 4149146341000434330L;
+    private static final long serialVersionUID = 9;
 
     List<LogisticInfo> infoList;
 
     public LogisticInfoPO(long serialNum) {
         super(POType.LOGISTICINFO);
         this.serialNum = serialNum;
-        infoList = new ArrayList<LogisticInfo>();
+        infoList = new ArrayList<>();
     }
 
     /**
@@ -50,7 +50,7 @@ public class LogisticInfoPO extends DataPO implements Serializable {
     }
 
     // 物流信息保存在此处
-    public class LogisticInfo {
+    public class LogisticInfo implements Serializable {
         /**
          * FORMAT = "yyyy/mm/dd hh:mm:ss"
          */
@@ -65,7 +65,7 @@ public class LogisticInfoPO extends DataPO implements Serializable {
 
         @Override
         public String toString() {
-            String result = timestamp + "： 货物到达 " + location;
+            String result = timestamp + "： " + location;
             return result;
         }
 

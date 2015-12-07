@@ -4,6 +4,8 @@ package data.po;
 import data.enums.POType;
 
 public class SalaryPO extends DataPO {
+    private static final long serialVersionUID = 13;
+
     /*
     三个参数分别对应 薪水、部门、结薪方式（计次、按月）
      */

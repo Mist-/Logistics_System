@@ -61,8 +61,8 @@ public class LoginDlg extends JDialog {
         users = (ArrayList<RememberedUserAccount>) FileIOHelper.getFromFile("user/SAVED.DAT");
 
         // 将记住的账号添加到可选的列表中
-        for (RememberedUserAccount user: users) {
-            cboxAccount.addItem(user.getSn());
+        for (int i = users.size() - 1; i >= 0; --i) {
+            cboxAccount.addItem(users.get(i).getSn());
         }
 
         if (users.size() > 0) {
@@ -201,6 +201,7 @@ public class LoginDlg extends JDialog {
 
         //======== this ========
         setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+        setTitle("LCS\u7269\u6d41\u7ba1\u7406\u7cfb\u7edf");
         Container contentPane = getContentPane();
 
         //======== panel1 ========

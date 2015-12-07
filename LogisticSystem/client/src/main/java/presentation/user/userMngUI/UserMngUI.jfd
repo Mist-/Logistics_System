@@ -9,6 +9,7 @@ new FormModel {
 		} ) {
 			name: "this"
 			"font": &Font0 new java.awt.Font( "等线", 0, 14 )
+			"title": "LCS物流管理系统 - 系统用户管理"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 				"$horizontalGroup": "par l {seq {par l {seq l {space :::p, comp tbActive:::p::p, space s:::p, comp tbDeleted:::p::p}, seq l {space :p:32:p, comp label1:::p::p, space :p:69:p, comp label2:::p::p}}, space ::691:x}, comp panel3::t:::x}"
 				"$verticalGroup": "par l {seq l {space :::p, par l {comp tbActive:::p:96:p, comp tbDeleted:::p:96:p}, space :6:6:p, par b {comp label2::b:p::p, comp label1::b:p::p}, space :::p, comp panel3:::::x}}"

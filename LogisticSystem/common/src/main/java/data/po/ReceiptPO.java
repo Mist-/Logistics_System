@@ -3,6 +3,8 @@ package data.po;
 import data.enums.POType;
 public class ReceiptPO extends DataPO {
 
+	private static final long serialVersionUID = 12;
+
     public ReceiptPO() {
         super(POType.RECEIPT);
     }

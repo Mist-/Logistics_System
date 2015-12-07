@@ -11,6 +11,8 @@ import java.util.ArrayList;
  *
  */
 public class ArrivalPO extends DataPO {
+
+	private static final long serialVersionUID = 2;
 	
 	public ArrivalPO(TransferListPO transfer){
 		super(POType.ARRIVAL);

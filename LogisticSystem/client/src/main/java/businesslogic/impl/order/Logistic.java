@@ -29,10 +29,13 @@ public class Logistic {
      * @return 物流信息数组。纯字符串形式。
      */
     public String[] enquire(long sn) {
+        orderDataService = (OrderDataService) DataServiceFactory.getDataServiceByType(DataType.OrderDataService);
+        if (orderDataService == null) {
+            return null;
+        }
         LogisticInfoPO logisticInfoPO = null;
         try {
-            if (Connection.connected)
-                logisticInfoPO = (LogisticInfoPO)orderDataService.search(POType.LOGISTICINFO, sn);
+            logisticInfoPO = (LogisticInfoPO)orderDataService.search(POType.LOGISTICINFO, sn);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -40,9 +43,7 @@ public class Logistic {
         //*********************** test code **********************
 
         if (logisticInfoPO == null) {
-            String result[] = new String[1];
-            result[0] = "没有找到相关物流信息";
-            return result;
+            return null;
         }
 
         String result[] = logisticInfoPO.toString().split("\\n\\n");

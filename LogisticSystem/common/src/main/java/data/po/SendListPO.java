@@ -9,6 +9,7 @@ import data.vo.SendListVO;
  *
  */
 public class SendListPO extends DataPO {
+	private static final long serialVersionUID = 15;
 	/**
 	 * 
 	 */

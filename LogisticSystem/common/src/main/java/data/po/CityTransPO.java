@@ -6,6 +6,8 @@ import data.enums.POType;
  * Created by apple on 2015/11/15.
  */
 public class CityTransPO extends DataPO {
+
+    private static final long serialVersionUID = 4;
     /*
      * 包含参数 起始城市、到达城市、距离、货车价格、火车价格、飞机价格
      */
