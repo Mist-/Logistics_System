@@ -4371,3 +4371,15 @@ org.eclipse.core.runtime.CoreException: Launch configuration TransferHallFrame r
 2015-12-07 23:13:17,805 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\workspace2\Logistics_System\LogisticSystem\client\src\main\resources
 2015-12-07 23:13:17,807 [Worker-0] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
 2015-12-07 23:13:17,808 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\workspace2\Logistics_System\LogisticSystem\client\src\test\resources
+2015-12-07 23:25:10,738 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-12-07 23:25:10,786 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\workspace2\Logistics_System\LogisticSystem\common\src\main\resources
+2015-12-07 23:25:10,789 [Worker-1] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-12-07 23:25:10,790 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\workspace2\Logistics_System\LogisticSystem\common\src\test\resources
+2015-12-07 23:25:14,646 [Worker-7] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-12-07 23:25:14,647 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\workspace2\Logistics_System\LogisticSystem\client\src\main\resources
+2015-12-07 23:25:14,649 [Worker-7] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-12-07 23:25:14,649 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\workspace2\Logistics_System\LogisticSystem\client\src\test\resources
+2015-12-07 23:25:14,794 [Worker-7] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-12-07 23:25:14,794 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\workspace2\Logistics_System\LogisticSystem\server\src\main\resources
+2015-12-07 23:25:14,796 [Worker-7] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+2015-12-07 23:25:14,797 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\workspace2\Logistics_System\LogisticSystem\server\src\test\resources
