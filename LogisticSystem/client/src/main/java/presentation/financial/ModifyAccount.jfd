@@ -9,6 +9,7 @@ new FormModel {
 		} ) {
 			name: "this"
 			"title": "修改账户"
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosing", "thisWindowClosing", true ) )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 				"$horizontalGroup": "par l {seq {par l {seq l {space :p:27:p, par l {seq t {comp lbMoney:::p:72:p, space s:::p, comp tfMoney:::p:80:p}, seq {space :p:49:p, comp lbName:::p:72:p, space s:::p, comp tfName:::p:80:p}}}, seq l {space :p:134:p, comp btYes:::p::p}}, space ::138:x}}"
 				"$verticalGroup": "par l {seq l {space :p:34:p, par b {comp tfName::b:p::p, comp lbName::b:p:24:p}, space :::p, par b {comp tfMoney::b:p::p, comp lbMoney::b:p:24:p}, space :p:66:p, comp btYes:::p::p, space ::84:x}}"
@@ -31,6 +32,7 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btYes"
 					"text": "确认"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btYesMouseReleased", true ) )
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
