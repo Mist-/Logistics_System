@@ -34,11 +34,36 @@ public class FINANCE extends JFrame {
     
     public FINANCE() {
         initComponents();
-        
         this.setVisible(true);
         lbAll.setVisible(false);
         lbTotal.setVisible(false);
         
+    }
+    private void setNot(){
+    	if(tablePayment.getRowCount()==0){
+    		btPExcel.setEnabled(false);
+    	}
+    	if(tableReceipt.getRowCount()==0){
+    		btDate.setEnabled(false);
+    		btAddress.setEnabled(false);
+    		btRExcel.setEnabled(false);
+    	}
+    	if(textBeginYear.getText().equals("") || textBeginMonth.getText().equals("") || textBeginDay.getText().equals("") || textEndYear.getText().equals("") || textEndMonth.getText().equals("") || textEndDay.getText().equals("")){
+    		btSearch2.setEnabled(false);
+    	}
+    	if(tablePay.getRowCount()==0 && tableRec.getRowCount()==0){
+    		jbExcel.setEnabled(false);
+    	}
+    	if(textName.getText().equals("")){
+    		btSearch.setEnabled(false);
+    	}
+    	if(textName.getText().equals("") || textName2.getText().equals("")){
+    		btAdd.setEnabled(false);
+    	}
+    	if(tableAccounts.getSelectedRow() == 0){
+    		btDelete.setEnabled(false);
+    		btModify.setEnabled(false);
+    	}
     }
 
     //资金管理初始化
@@ -172,10 +197,8 @@ public class FINANCE extends JFrame {
     	}
     
     //ZHGL 查找账户
+    
     private void btSearchMouseReleased(MouseEvent e) {
-    	if(textName.getText().equals("")){
-    		JOptionPane.showMessageDialog(this, "您输入的名称为空，请重新输入");
-    	}
     	
         String name = textName.getText();
        
@@ -217,8 +240,13 @@ public class FINANCE extends JFrame {
 
 	 //ZHGL 修改账户,在JTable中修改后会  新弹出窗口进行修改
 	private void btModifyMouseReleased(MouseEvent e) {
+		int x = tableAccounts.getSelectedRow(); 
+		if(x == -1){
+			return;
+		}
 		Vector data = ((DefaultTableModel) tableAccounts.getModel()).getDataVector();
 		Vector row = (Vector<Object>)data.get(tableAccounts.getSelectedRow());
+		
 		long accountNum = (long)row.get(0);
 		String name = (String)row.get(1);
 		double money = (Double)row.get(2);
@@ -371,7 +399,6 @@ public class FINANCE extends JFrame {
 
 		//TJBB 对成本收益表的查看
 		private void tpCostMouseReleased(MouseEvent e) {
-			// TODO add your code here
 
 			CostBenefitVO costBenefitVO = companyBLcontroller.searchCostBenefitVO();
 

@@ -4,35 +4,63 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {comp panel1::l:::x}"
-			"$verticalGroup": "par l {comp panel1::l:::x}"
+			"$horizontalGroup": "par l {seq t {space :::p, comp panel1:::::x, space :::p}}"
+			"$verticalGroup": "par l {comp panel1::t:::x}"
 		} ) {
 			name: "this"
 			"title": "修改账户"
 			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosing", "thisWindowClosing", true ) )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {par l {seq l {space :p:27:p, par l {seq t {comp lbMoney:::p:72:p, space s:::p, comp tfMoney:::p:80:p}, seq {space :p:49:p, comp lbName:::p:72:p, space s:::p, comp tfName:::p:80:p}}}, seq l {space :p:134:p, comp btYes:::p::p}}, space ::138:x}}"
-				"$verticalGroup": "par l {seq l {space :p:34:p, par b {comp tfName::b:p::p, comp lbName::b:p:24:p}, space :::p, par b {comp tfMoney::b:p::p, comp lbMoney::b:p:24:p}, space :p:66:p, comp btYes:::p::p, space ::84:x}}"
+				"$horizontalGroup": "par l {seq {space :p:48:p, par l {comp labelMon:::p::p, seq {par l:::p {comp lbMoneyDe::::100:x, comp lbName::t::100:x, comp lbMoneyAdd::t::100:x, comp btRefresh::t:p::p}, par l {par l:l {seq l {space s:::p, comp tfMoneyAdd:::p:80:p}, seq t {space :p:18:p, comp tfName:::p:80:p}}, seq t {space :p:18:p, par l:::p {comp lbMoney::::80:x, comp tfMoneyDe::::80:x, comp btYes::l:p::p}}}, space u:::p, par l {comp label1:::p::p, comp label2:::p::p}}}, space ::96:x}}"
+				"$verticalGroup": "par l {seq l {space :p:34:p, par b {comp tfName::b:p::p, comp lbName::b:p:24:p}, space :::p, par b {comp tfMoneyAdd::b:p::p, comp label1::b:p::p, comp lbMoneyAdd::b:p:24:p}, space :p:6:p, par t {comp label2:::p::p, par b {comp tfMoneyDe::b:p::p, comp lbMoneyDe::b:p:24:p}}, space :::p, par b {comp labelMon::b:p::p, comp lbMoney::b:p::p}, space :::p, par b {comp btYes::b:p::p, comp btRefresh::b:p::p}, space ::93:x}}"
 			} ) {
 				name: "panel1"
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "lbName"
-					"text": "账户名称："
+					"text": "账 户 名 称  ："
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "lbMoney"
-					"text": "账户余额："
+					name: "lbMoneyAdd"
+					"text": "余额增加（+）："
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "tfName"
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "tfMoney"
+					name: "tfMoneyAdd"
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btYes"
 					"text": "确认"
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btYesMouseReleased", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbMoneyDe"
+					"text": "余额减少（-）："
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "tfMoneyDe"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "元"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "元"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "labelMon"
+					"text": "账 户 余 额  ："
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbMoney"
+					"text": "text"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btRefresh"
+					"text": "刷新"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btRefreshMouseReleased", true ) )
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
