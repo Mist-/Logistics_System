@@ -1,83 +1,95 @@
-JFDML JFormDesigner: "5.2.2.0.199" Java: "1.8.0_31" encoding: "UTF-8"
+JFDML JFormDesigner: "5.2.2.2.228" Java: "1.8.0_51" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
-		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp panel1::l:::x}"
+			"$verticalGroup": "par l {comp panel1::l:::x}"
+		} ) {
 			name: "this"
 			"$sizePolicy": 0
 			"defaultCloseOperation": 3
 			"title": "中转中心仓库管理"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space :::p, par l:::p {comp label1::::72:x, comp storageIn::::72:x}, space u:::p, par l:::p {comp storageOut::::72:x, comp label2::::72:x}, space u:::p, par l:::p {comp label3::::72:x, comp storageOperete::::72:x}, space ::538:x}}"
-				"$verticalGroup": "par l {seq l {space :::p, par l {comp storageOperete::::72:x, comp storageOut:::::x, comp storageIn:::::x}, space :::p, par b {comp label1::b:p::p, comp label3::b:p::p, comp label2::b:p::p}}}"
+				"$horizontalGroup": "par l {seq t {space :0:0:x, comp emptyPanel:::p::p}, seq {space :::p, par l {seq l {comp storageIn:::p::p, space :18:18:p, comp storageOut:::p::p}, seq l {space :p:35:p, comp label1:::p::p, space :p:84:p, comp label2:::p::p}}, par l {seq {space :p:18:p, comp storageOperete:::p::p}, seq l {space :p:36:p, comp label3:::p::p}}, space ::436:x}, comp tabbedPane1::t::784:x}"
+				"$verticalGroup": "par l {seq t {space :::p, par l {comp storageIn:::p::p, comp storageOut:::p::p, comp storageOperete:::p::p}, space :6:6:p, par l {comp label1:::p::p, comp label2::l:p::p, comp label3::l:p::p}, space :::p, comp tabbedPane1::::310:x, space :::p, comp emptyPanel:::p::p}}"
 			} ) {
 				name: "panel1"
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label1"
 					"text": "入库"
+					"font": &Font0 new java.awt.Font( "等线", 0, 14 )
 				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label2"
-					"text": "出库"
+				add( new FormComponent( "javax.swing.JToggleButton" ) {
+					name: "storageOperete"
+					"font": #Font0
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/storage_72x72.png" )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "storageOpereteMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label3"
 					"text": "库存操作"
-				} )
-				add( new FormComponent( "javax.swing.JToggleButton" ) {
-					name: "storageOperete"
-					"text": "text"
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "storageOpereteMouseClicked", true ) )
+					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JToggleButton" ) {
 					name: "storageOut"
-					"text": "text"
+					"font": #Font0
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/storageout_72x72.png" )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "storageOutMouseClicked", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "出库"
+					"font": #Font0
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {space :0:0:x}"
+					"$verticalGroup": "par l {space :0:0:x}"
+				} ) {
+					name: "emptyPanel"
 				} )
 				add( new FormComponent( "javax.swing.JToggleButton" ) {
 					name: "storageIn"
-					"text": "text"
+					"font": new java.awt.Font( "等线", 0, 14 )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/storagein_72x72.png" )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "storageInMouseClicked", true ) )
 				} )
-			}, new FormLayoutConstraints( class java.lang.String ) {
-				"value": "North"
-			} )
-			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
-				name: "emptyPanel"
 				add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 					name: "tabbedPane1"
+					"font": #Font0
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq l {space :p:296:p, par l:::p {comp label4::::83:x, comp label5::::83:x}, space ::400:x}}"
-						"$verticalGroup": "par l {seq l {space :p:141:p, comp label4:::p::p, space :::p, comp label5:::p::p, space ::131:x}}"
+						"$horizontalGroup": "par l {seq l {space :p:296:p, par l:::p {comp label4::::83:x, comp label5::::83:x}, space :::x}}"
+						"$verticalGroup": "par l {seq l {space :p:141:p, comp label4:::p::p, space :::p, comp label5:::p::p, space :::x}}"
 					} ) {
 						name: "panel2"
+						"font": #Font0
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "label4"
 							"text": "仓库未初始化"
+							"font": #Font0
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "label5"
 							"text": "请先初始化仓库"
+							"font": #Font0
 						} )
 					}, new FormLayoutConstraints( null ) {
 						"title": "提示"
 					} )
-				}, new FormLayoutConstraints( class java.lang.String ) {
-					"value": "Center"
 				} )
-			}, new FormLayoutConstraints( class java.lang.String ) {
-				"value": "Center"
 			} )
 			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
 				name: "menuBar1"
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 					name: "menu1"
 					"text": "选项"
+					"font": #Font0
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 					name: "menu2"
 					"text": "帮助"
+					"font": #Font0
 				} )
 			}
 		}, new FormLayoutConstraints( null ) {

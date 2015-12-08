@@ -230,569 +230,663 @@ public class StorageOperatePanel extends JPanel {
  	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY
 		// //GEN-BEGIN:initComponents
-		operatePane = new JTabbedPane();
-		showPanel = new JPanel();
-		scrollPane1 = new JScrollPane();
-		listTable = new JTable();
-		label9 = new JLabel();
-		label10 = new JLabel();
-		startY = new JTextField();
-		label11 = new JLabel();
-		label12 = new JLabel();
-		startM = new JTextField();
-		label13 = new JLabel();
-		startD = new JTextField();
-		label14 = new JLabel();
-		endY = new JTextField();
-		label15 = new JLabel();
-		endM = new JTextField();
-		label16 = new JLabel();
-		endD = new JTextField();
-		searchListButton = new JButton();
-		selectStorageListButton = new JButton();
-		storageIn = new JRadioButton();
-		storageOut = new JRadioButton();
-		checkPanel = new JPanel();
-		scrollPane2 = new JScrollPane();
-		storageInfoTable = new JTable();
-		saveStorageCheck = new JButton();
-		exportExcel = new JButton();
-		adjustPanel = new JPanel();
-		label17 = new JLabel();
-		label18 = new JLabel();
-		label19 = new JLabel();
-		planePercent = new JTextField();
-		trainPercent = new JTextField();
-		truckPercent = new JTextField();
-		enlargePlane = new JButton();
-		enlargeTrain = new JButton();
-		enlargeTruck = new JButton();
-		initPanel = new JPanel();
-		label1 = new JLabel();
-		textField1 = new JTextField();
-		label2 = new JLabel();
-		numInput = new JTextField();
-		label3 = new JLabel();
-		label4 = new JLabel();
-		shelfInput = new JTextField();
-		label5 = new JLabel();
-		label6 = new JLabel();
-		label7 = new JLabel();
-		label8 = new JLabel();
-		planeInput = new JTextField();
-		trainInput = new JTextField();
-		truckInput = new JTextField();
-		flexibleInput = new JTextField();
-		InitSureButton = new JButton();
-		reInputButton = new JButton();
-		label20 = new JLabel();
-		alarmPercentInput = new JTextField();
-		label23 = new JLabel();
+        operatePane = new JTabbedPane();
+        showPanel = new JPanel();
+        label9 = new JLabel();
+        label10 = new JLabel();
+        startY = new JTextField();
+        endY = new JTextField();
+        searchListButton = new JButton();
+        selectStorageListButton = new JButton();
+        storageIn = new JRadioButton();
+        storageOut = new JRadioButton();
+        scrollPane1 = new JScrollPane();
+        listTable = new JTable();
+        startD = new JTextField();
+        label13 = new JLabel();
+        label12 = new JLabel();
+        startM = new JTextField();
+        label11 = new JLabel();
+        label14 = new JLabel();
+        endM = new JTextField();
+        label15 = new JLabel();
+        endD = new JTextField();
+        label16 = new JLabel();
+        checkPanel = new JPanel();
+        scrollPane2 = new JScrollPane();
+        storageInfoTable = new JTable();
+        saveStorageCheck = new JButton();
+        exportExcel = new JButton();
+        adjustPanel = new JPanel();
+        label17 = new JLabel();
+        label18 = new JLabel();
+        label19 = new JLabel();
+        planePercent = new JTextField();
+        trainPercent = new JTextField();
+        truckPercent = new JTextField();
+        enlargePlane = new JButton();
+        enlargeTrain = new JButton();
+        enlargeTruck = new JButton();
+        initPanel = new JPanel();
+        label1 = new JLabel();
+        textField1 = new JTextField();
+        label2 = new JLabel();
+        numInput = new JTextField();
+        label4 = new JLabel();
+        shelfInput = new JTextField();
+        label5 = new JLabel();
+        label6 = new JLabel();
+        label7 = new JLabel();
+        label8 = new JLabel();
+        planeInput = new JTextField();
+        trainInput = new JTextField();
+        truckInput = new JTextField();
+        flexibleInput = new JTextField();
+        InitSureButton = new JButton();
+        reInputButton = new JButton();
+        label20 = new JLabel();
+        alarmPercentInput = new JTextField();
 
-		//======== this ========
-		setLayout(new BorderLayout());
+        //======== this ========
 
-		//======== operatePane ========
-		{
+        //======== operatePane ========
+        {
+            operatePane.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-			//======== showPanel ========
-			{
+            //======== showPanel ========
+            {
+                showPanel.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//======== scrollPane1 ========
-				{
+                //---- label9 ----
+                label9.setText("\u8d77\u59cb\u65e5\u671f\uff1a");
+                label9.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-					//---- listTable ----
-					listTable.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-					listTable.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseClicked(MouseEvent e) {
-							listTableMouseClicked(e);
-						}
-					});
-					scrollPane1.setViewportView(listTable);
-				}
+                //---- label10 ----
+                label10.setText("\u7ec8\u6b62\u65e5\u671f\uff1a");
+                label10.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- label9 ----
-				label9.setText("\u8d77\u59cb\u65e5\u671f");
+                //---- startY ----
+                startY.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- label10 ----
-				label10.setText("\u7ec8\u6b62\u65e5\u671f");
+                //---- endY ----
+                endY.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- label11 ----
-				label11.setText("\u5e74");
+                //---- searchListButton ----
+                searchListButton.setText("\u67e5\u627e");
+                searchListButton.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+                searchListButton.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+                        searchListButtonMouseReleased(e);
+                    }
+                });
 
-				//---- label12 ----
-				label12.setText("\u6708");
+                //---- selectStorageListButton ----
+                selectStorageListButton.setText("\u67e5\u770b");
+                selectStorageListButton.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+                selectStorageListButton.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+                        selectStorageListButtonMouseReleased(e);
+                    }
+                });
 
-				//---- label13 ----
-				label13.setText("\u65e5");
+                //---- storageIn ----
+                storageIn.setText("\u5165\u5e93\u5355");
+                storageIn.setSelected(true);
+                storageIn.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+                storageIn.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        storageInMouseClicked(e);
+                    }
+                });
 
-				//---- label14 ----
-				label14.setText("\u5e74");
+                //---- storageOut ----
+                storageOut.setText("\u51fa\u5e93\u5355");
+                storageOut.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+                storageOut.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        storageOutMouseClicked(e);
+                    }
+                });
 
-				//---- label15 ----
-				label15.setText("\u6708");
+                //======== scrollPane1 ========
+                {
 
-				//---- label16 ----
-				label16.setText("\u65e5");
+                    //---- listTable ----
+                    listTable.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+                    listTable.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+                    listTable.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseClicked(MouseEvent e) {
+                            listTableMouseClicked(e);
+                        }
+                    });
+                    scrollPane1.setViewportView(listTable);
+                }
 
-				//---- searchListButton ----
-				searchListButton.setText("\u67e5\u627e");
-				searchListButton.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseReleased(MouseEvent e) {
-						searchListButtonMouseReleased(e);
-					}
-				});
+                //---- startD ----
+                startD.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- selectStorageListButton ----
-				selectStorageListButton.setText("\u67e5\u770b");
-				selectStorageListButton.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseReleased(MouseEvent e) {
-						selectStorageListButtonMouseReleased(e);
-					}
-				});
+                //---- label13 ----
+                label13.setText("\u65e5");
+                label13.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- storageIn ----
-				storageIn.setText("\u5165\u5e93\u5355");
-				storageIn.setSelected(true);
-				storageIn.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						storageInMouseClicked(e);
-					}
-				});
+                //---- label12 ----
+                label12.setText("\u6708");
+                label12.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- storageOut ----
-				storageOut.setText("\u51fa\u5e93\u5355");
-				storageOut.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						storageOutMouseClicked(e);
-					}
-				});
+                //---- startM ----
+                startM.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				GroupLayout showPanelLayout = new GroupLayout(showPanel);
-				showPanel.setLayout(showPanelLayout);
-				showPanelLayout.setHorizontalGroup(
-					showPanelLayout.createParallelGroup()
-						.addGroup(showPanelLayout.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(showPanelLayout.createParallelGroup()
-								.addComponent(label9, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(label10, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(showPanelLayout.createParallelGroup()
-								.addComponent(startY, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-								.addComponent(endY, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-							.addGroup(showPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-								.addComponent(label14, GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-								.addComponent(label11, GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(showPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-								.addGroup(showPanelLayout.createSequentialGroup()
-									.addComponent(startM, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(label12, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-								.addGroup(showPanelLayout.createSequentialGroup()
-									.addComponent(endM, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(label15, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-							.addGroup(showPanelLayout.createParallelGroup()
-								.addGroup(showPanelLayout.createSequentialGroup()
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(startD, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE))
-								.addGroup(showPanelLayout.createSequentialGroup()
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(endD, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(showPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-								.addGroup(showPanelLayout.createSequentialGroup()
-									.addComponent(label16)
-									.addGap(22, 22, 22)
-									.addComponent(searchListButton))
-								.addGroup(showPanelLayout.createSequentialGroup()
-									.addComponent(label13)
-									.addGap(18, 18, 18)
-									.addComponent(storageIn)))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-							.addGroup(showPanelLayout.createParallelGroup()
-								.addComponent(storageOut)
-								.addComponent(selectStorageListButton))
-							.addContainerGap(313, Short.MAX_VALUE))
-						.addComponent(scrollPane1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
-				);
-				showPanelLayout.setVerticalGroup(
-					showPanelLayout.createParallelGroup()
-						.addGroup(GroupLayout.Alignment.TRAILING, showPanelLayout.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(showPanelLayout.createParallelGroup()
-								.addGroup(showPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-									.addComponent(label11, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(startM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addComponent(label12, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-									.addComponent(startD, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addComponent(label13, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(storageIn)
-									.addComponent(storageOut))
-								.addGroup(showPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-									.addComponent(startY, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addComponent(label9, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(showPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(label10, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-								.addComponent(endY, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(label14)
-								.addComponent(endM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(label15)
-								.addComponent(endD, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(label16)
-								.addComponent(searchListButton)
-								.addComponent(selectStorageListButton))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())
-				);
-			}
-			operatePane.addTab("\u5e93\u5b58\u67e5\u770b", showPanel);
+                //---- label11 ----
+                label11.setText("\u5e74");
+                label11.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-			//======== checkPanel ========
-			{
+                //---- label14 ----
+                label14.setText("\u5e74");
+                label14.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//======== scrollPane2 ========
-				{
+                //---- endM ----
+                endM.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-					//---- storageInfoTable ----
-					storageInfoTable.setShowHorizontalLines(false);
-					storageInfoTable.setEnabled(false);
-					scrollPane2.setViewportView(storageInfoTable);
-				}
+                //---- label15 ----
+                label15.setText("\u6708");
+                label15.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- saveStorageCheck ----
-				saveStorageCheck.setText("\u4fdd\u5b58");
-				saveStorageCheck.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseReleased(MouseEvent e) {
-						saveStorageCheckMouseReleased(e);
-					}
-				});
+                //---- endD ----
+                endD.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- exportExcel ----
-				exportExcel.setText("\u5bfc\u51faexcel");
+                //---- label16 ----
+                label16.setText("\u65e5");
+                label16.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				GroupLayout checkPanelLayout = new GroupLayout(checkPanel);
-				checkPanel.setLayout(checkPanelLayout);
-				checkPanelLayout.setHorizontalGroup(
-					checkPanelLayout.createParallelGroup()
-						.addGroup(checkPanelLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(saveStorageCheck, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(exportExcel, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(560, Short.MAX_VALUE))
-						.addComponent(scrollPane2, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
-				);
-				checkPanelLayout.setVerticalGroup(
-					checkPanelLayout.createParallelGroup()
-						.addGroup(GroupLayout.Alignment.TRAILING, checkPanelLayout.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(checkPanelLayout.createParallelGroup()
-								.addComponent(saveStorageCheck, GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-								.addComponent(exportExcel, GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
-							.addContainerGap())
-				);
-			}
-			operatePane.addTab("\u5e93\u5b58\u76d8\u70b9", checkPanel);
+                GroupLayout showPanelLayout = new GroupLayout(showPanel);
+                showPanel.setLayout(showPanelLayout);
+                showPanelLayout.setHorizontalGroup(
+                    showPanelLayout.createParallelGroup()
+                        .addGroup(showPanelLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(showPanelLayout.createParallelGroup()
+                                .addGroup(showPanelLayout.createSequentialGroup()
+                                    .addComponent(scrollPane1)
+                                    .addContainerGap())
+                                .addGroup(showPanelLayout.createSequentialGroup()
+                                    .addGroup(showPanelLayout.createParallelGroup()
+                                        .addComponent(label10)
+                                        .addComponent(label9, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(showPanelLayout.createParallelGroup()
+                                        .addGroup(showPanelLayout.createSequentialGroup()
+                                            .addComponent(endY, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(label14, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(5, 5, 5)
+                                            .addComponent(endM, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(5, 5, 5)
+                                            .addComponent(label15, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(5, 5, 5)
+                                            .addComponent(endD, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(label16))
+                                        .addGroup(showPanelLayout.createSequentialGroup()
+                                            .addComponent(startY, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(label11, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(5, 5, 5)
+                                            .addComponent(startM, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(5, 5, 5)
+                                            .addComponent(label12, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(5, 5, 5)
+                                            .addComponent(startD, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(label13)))
+                                    .addGap(53, 53, 53)
+                                    .addGroup(showPanelLayout.createParallelGroup()
+                                        .addComponent(storageIn)
+                                        .addComponent(searchListButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(showPanelLayout.createParallelGroup()
+                                        .addComponent(storageOut)
+                                        .addComponent(selectStorageListButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGap(292, 292, 292))))
+                );
+                showPanelLayout.setVerticalGroup(
+                    showPanelLayout.createParallelGroup()
+                        .addGroup(GroupLayout.Alignment.TRAILING, showPanelLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(showPanelLayout.createParallelGroup()
+                                .addGroup(showPanelLayout.createSequentialGroup()
+                                    .addGroup(showPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(startY)
+                                        .addComponent(label9, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(GroupLayout.Alignment.TRAILING, showPanelLayout.createParallelGroup()
+                                            .addComponent(label11, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(startM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(label12, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(showPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                .addComponent(startD, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(label13, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))))
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(showPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                        .addGroup(showPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                            .addComponent(endY, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(label10, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(showPanelLayout.createParallelGroup()
+                                            .addComponent(label14, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(endM, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(label15, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(showPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                .addComponent(endD, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(label16, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(showPanelLayout.createSequentialGroup()
+                                    .addGroup(showPanelLayout.createParallelGroup()
+                                        .addComponent(storageIn, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(storageOut, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(showPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(searchListButton, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(selectStorageListButton, GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(scrollPane1)
+                            .addContainerGap())
+                );
+            }
+            operatePane.addTab("\u5e93\u5b58\u67e5\u770b", showPanel);
 
-			//======== adjustPanel ========
-			{
+            //======== checkPanel ========
+            {
 
-				//---- label17 ----
-				label17.setText("\u822a\u8fd0\u533a\uff1a");
+                //======== scrollPane2 ========
+                {
 
-				//---- label18 ----
-				label18.setText("\u94c1\u8fd0\u533a\uff1a");
+                    //---- storageInfoTable ----
+                    storageInfoTable.setShowHorizontalLines(false);
+                    storageInfoTable.setEnabled(false);
+                    storageInfoTable.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+                    scrollPane2.setViewportView(storageInfoTable);
+                }
 
-				//---- label19 ----
-				label19.setText("\u6c7d\u8fd0\u533a\uff1a");
+                //---- saveStorageCheck ----
+                saveStorageCheck.setText("\u4fdd\u5b58");
+                saveStorageCheck.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+                saveStorageCheck.setIcon(new ImageIcon(getClass().getResource("/icons/save_24x24.png")));
+                saveStorageCheck.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+                        saveStorageCheckMouseReleased(e);
+                    }
+                });
 
-				//---- planePercent ----
-				planePercent.setEditable(false);
-				planePercent.setEnabled(false);
+                //---- exportExcel ----
+                exportExcel.setText("\u5bfc\u51faexcel");
+                exportExcel.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+                exportExcel.setIcon(new ImageIcon(getClass().getResource("/icons/excel_24x24.png")));
 
-				//---- trainPercent ----
-				trainPercent.setEditable(false);
-				trainPercent.setEnabled(false);
+                GroupLayout checkPanelLayout = new GroupLayout(checkPanel);
+                checkPanel.setLayout(checkPanelLayout);
+                checkPanelLayout.setHorizontalGroup(
+                    checkPanelLayout.createParallelGroup()
+                        .addGroup(checkPanelLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
+                            .addGap(7, 7, 7)
+                            .addGroup(checkPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                .addComponent(saveStorageCheck, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(exportExcel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addContainerGap())
+                );
+                checkPanelLayout.setVerticalGroup(
+                    checkPanelLayout.createParallelGroup()
+                        .addGroup(checkPanelLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(checkPanelLayout.createParallelGroup()
+                                .addGroup(checkPanelLayout.createSequentialGroup()
+                                    .addComponent(saveStorageCheck)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(exportExcel)
+                                    .addContainerGap(424, Short.MAX_VALUE))
+                                .addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)))
+                );
+            }
+            operatePane.addTab("\u5e93\u5b58\u76d8\u70b9", checkPanel);
 
-				//---- truckPercent ----
-				truckPercent.setEditable(false);
-				truckPercent.setEnabled(false);
+            //======== adjustPanel ========
+            {
+                adjustPanel.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- enlargePlane ----
-				enlargePlane.setText("\u6269\u5145");
+                //---- label17 ----
+                label17.setText("\u822a\u8fd0\u533a\uff1a");
+                label17.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- enlargeTrain ----
-				enlargeTrain.setText("\u6269\u5145");
+                //---- label18 ----
+                label18.setText("\u94c1\u8fd0\u533a\uff1a");
+                label18.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- enlargeTruck ----
-				enlargeTruck.setText("\u6269\u5145");
+                //---- label19 ----
+                label19.setText("\u6c7d\u8fd0\u533a\uff1a");
+                label19.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				GroupLayout adjustPanelLayout = new GroupLayout(adjustPanel);
-				adjustPanel.setLayout(adjustPanelLayout);
-				adjustPanelLayout.setHorizontalGroup(
-					adjustPanelLayout.createParallelGroup()
-						.addGroup(adjustPanelLayout.createSequentialGroup()
-							.addGap(235, 235, 235)
-							.addGroup(adjustPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-								.addComponent(label17, GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
-								.addComponent(label18, GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
-								.addComponent(label19, GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(adjustPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-								.addComponent(planePercent, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-								.addComponent(trainPercent, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-								.addComponent(truckPercent, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(adjustPanelLayout.createParallelGroup()
-								.addComponent(enlargePlane)
-								.addComponent(enlargeTrain)
-								.addComponent(enlargeTruck))
-							.addContainerGap(324, Short.MAX_VALUE))
-				);
-				adjustPanelLayout.setVerticalGroup(
-					adjustPanelLayout.createParallelGroup()
-						.addGroup(adjustPanelLayout.createSequentialGroup()
-							.addGap(63, 63, 63)
-							.addGroup(adjustPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(label17, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-								.addComponent(planePercent, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(enlargePlane))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(adjustPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(label18, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-								.addComponent(trainPercent, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(enlargeTrain))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(adjustPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(label19, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-								.addComponent(truckPercent, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(enlargeTruck))
-							.addContainerGap(203, Short.MAX_VALUE))
-				);
-			}
-			operatePane.addTab("\u5e93\u5b58\u8c03\u6574", adjustPanel);
+                //---- planePercent ----
+                planePercent.setEditable(false);
+                planePercent.setEnabled(false);
+                planePercent.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-			//======== initPanel ========
-			{
+                //---- trainPercent ----
+                trainPercent.setEditable(false);
+                trainPercent.setEnabled(false);
+                trainPercent.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- label1 ----
-				label1.setText("\u533a\u57df\u6570\u91cf");
+                //---- truckPercent ----
+                truckPercent.setEditable(false);
+                truckPercent.setEnabled(false);
+                truckPercent.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- textField1 ----
-				textField1.setText("4");
-				textField1.setEditable(false);
+                //---- enlargePlane ----
+                enlargePlane.setText("\u6269\u5145");
+                enlargePlane.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- label2 ----
-				label2.setText("\u8d27\u67b6\u89c4\u683c\uff08\u4f4d\uff09");
+                //---- enlargeTrain ----
+                enlargeTrain.setText("\u6269\u5145");
+                enlargeTrain.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- label4 ----
-				label4.setText("\u6bcf\u6392\u67b6\u6570\uff08\u67b6\uff09");
+                //---- enlargeTruck ----
+                enlargeTruck.setText("\u6269\u5145");
+                enlargeTruck.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- label5 ----
-				label5.setText("\u822a\u8fd0\u533a\uff08\u6392\uff09");
+                GroupLayout adjustPanelLayout = new GroupLayout(adjustPanel);
+                adjustPanel.setLayout(adjustPanelLayout);
+                adjustPanelLayout.setHorizontalGroup(
+                    adjustPanelLayout.createParallelGroup()
+                        .addGroup(adjustPanelLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(adjustPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                .addComponent(label17, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(label18, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(label19))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(adjustPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                .addComponent(planePercent)
+                                .addComponent(trainPercent)
+                                .addComponent(truckPercent, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(adjustPanelLayout.createParallelGroup()
+                                .addComponent(enlargePlane)
+                                .addComponent(enlargeTrain)
+                                .addComponent(enlargeTruck))
+                            .addContainerGap(600, Short.MAX_VALUE))
+                );
+                adjustPanelLayout.setVerticalGroup(
+                    adjustPanelLayout.createParallelGroup()
+                        .addGroup(adjustPanelLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(adjustPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label17, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(planePercent, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(enlargePlane))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(adjustPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label18, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(trainPercent, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(enlargeTrain))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(adjustPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label19, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(truckPercent, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(enlargeTruck))
+                            .addContainerGap(400, Short.MAX_VALUE))
+                );
+            }
+            operatePane.addTab("\u5e93\u5b58\u8c03\u6574", adjustPanel);
 
-				//---- label6 ----
-				label6.setText("\u94c1\u8fd0\u533a\uff08\u6392\uff09");
+            //======== initPanel ========
+            {
 
-				//---- label7 ----
-				label7.setText("\u6c7d\u8fd0\u533a\uff08\u6392\uff09");
+                //---- label1 ----
+                label1.setText("\u533a\u57df\u6570\u91cf");
+                label1.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- label8 ----
-				label8.setText("\u673a\u52a8\u533a\uff08\u6392\uff09");
+                //---- textField1 ----
+                textField1.setText("4");
+                textField1.setEditable(false);
+                textField1.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- InitSureButton ----
-				InitSureButton.setText("\u786e\u8ba4");
-				InitSureButton.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						InitSureButtonMouseClicked(e);
-					}
-				});
+                //---- label2 ----
+                label2.setText("\u8d27\u67b6\u89c4\u683c\uff08\u4f4d\uff09");
+                label2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- reInputButton ----
-				reInputButton.setText("\u91cd\u65b0\u8f93\u5165");
-				reInputButton.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						reInputButtonMouseClicked(e);
-					}
-				});
+                //---- numInput ----
+                numInput.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- label20 ----
-				label20.setText("\u62a5\u8b66\u6bd4\u4f8b\uff080.xx\uff09");
+                //---- label4 ----
+                label4.setText("\u6bcf\u6392\u67b6\u6570\uff08\u67b6\uff09");
+                label4.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				GroupLayout initPanelLayout = new GroupLayout(initPanel);
-				initPanel.setLayout(initPanelLayout);
-				initPanelLayout.setHorizontalGroup(
-					initPanelLayout.createParallelGroup()
-						.addGroup(initPanelLayout.createSequentialGroup()
-							.addGroup(initPanelLayout.createParallelGroup()
-								.addGroup(initPanelLayout.createSequentialGroup()
-									.addGap(229, 229, 229)
-									.addComponent(label3, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-									.addGap(26, 26, 26)
-									.addGroup(initPanelLayout.createParallelGroup()
-										.addComponent(reInputButton, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
-										.addGroup(initPanelLayout.createSequentialGroup()
-											.addGroup(initPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-												.addComponent(label8, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-												.addComponent(label7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-												.addComponent(label6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-												.addComponent(label5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-											.addGroup(initPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-												.addComponent(truckInput, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-												.addComponent(trainInput, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-												.addComponent(planeInput, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-												.addComponent(flexibleInput, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
-											.addGap(8, 8, 8)
-											.addComponent(label23, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE))))
-								.addGroup(initPanelLayout.createSequentialGroup()
-									.addGap(87, 87, 87)
-									.addGroup(initPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-										.addComponent(label1, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
-										.addComponent(label2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(label4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-									.addGap(18, 18, 18)
-									.addGroup(initPanelLayout.createParallelGroup()
-										.addComponent(shelfInput, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
-										.addComponent(numInput, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-										.addComponent(textField1, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)))
-								.addGroup(initPanelLayout.createSequentialGroup()
-									.addGap(87, 87, 87)
-									.addComponent(label20, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addGroup(initPanelLayout.createParallelGroup()
-										.addComponent(InitSureButton, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
-										.addComponent(alarmPercentInput, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE))))
-							.addContainerGap(289, Short.MAX_VALUE))
-				);
-				initPanelLayout.setVerticalGroup(
-					initPanelLayout.createParallelGroup()
-						.addGroup(initPanelLayout.createSequentialGroup()
-							.addGap(13, 13, 13)
-							.addGroup(initPanelLayout.createParallelGroup()
-								.addGroup(initPanelLayout.createSequentialGroup()
-									.addGroup(initPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-										.addComponent(label1)
-										.addComponent(textField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addGroup(initPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-										.addComponent(label2)
-										.addComponent(numInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addGroup(initPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-										.addComponent(label4)
-										.addComponent(shelfInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addGroup(initPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-										.addComponent(alarmPercentInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(label20, GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(label3))
-								.addGroup(initPanelLayout.createSequentialGroup()
-									.addGroup(initPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-										.addComponent(label5)
-										.addComponent(planeInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addGroup(initPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-										.addComponent(label6)
-										.addComponent(trainInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addGroup(initPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-										.addComponent(label7)
-										.addComponent(truckInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addGroup(initPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-										.addComponent(label8)
-										.addComponent(flexibleInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(label23))))
-							.addGap(42, 42, 42)
-							.addGroup(initPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(reInputButton)
-								.addComponent(InitSureButton))
-							.addContainerGap(169, Short.MAX_VALUE))
-				);
-			}
-			operatePane.addTab("\u521d\u59cb\u5316", initPanel);
-		}
-		add(operatePane, BorderLayout.NORTH);
+                //---- shelfInput ----
+                shelfInput.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+                //---- label5 ----
+                label5.setText("\u822a\u8fd0\u533a\uff08\u6392\uff09");
+                label5.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+                //---- label6 ----
+                label6.setText("\u94c1\u8fd0\u533a\uff08\u6392\uff09");
+                label6.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+                //---- label7 ----
+                label7.setText("\u6c7d\u8fd0\u533a\uff08\u6392\uff09");
+                label7.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+                //---- label8 ----
+                label8.setText("\u673a\u52a8\u533a\uff08\u6392\uff09");
+                label8.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+                //---- planeInput ----
+                planeInput.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+                //---- trainInput ----
+                trainInput.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+                //---- truckInput ----
+                truckInput.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+                //---- flexibleInput ----
+                flexibleInput.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+                //---- InitSureButton ----
+                InitSureButton.setText("\u786e\u8ba4");
+                InitSureButton.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+                InitSureButton.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        InitSureButtonMouseClicked(e);
+                    }
+                });
+
+                //---- reInputButton ----
+                reInputButton.setText("\u91cd\u65b0\u8f93\u5165");
+                reInputButton.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+                reInputButton.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        reInputButtonMouseClicked(e);
+                    }
+                });
+
+                //---- label20 ----
+                label20.setText("\u62a5\u8b66\u6bd4\u4f8b\uff080.xx\uff09");
+                label20.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+                //---- alarmPercentInput ----
+                alarmPercentInput.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+                GroupLayout initPanelLayout = new GroupLayout(initPanel);
+                initPanel.setLayout(initPanelLayout);
+                initPanelLayout.setHorizontalGroup(
+                    initPanelLayout.createParallelGroup()
+                        .addGroup(initPanelLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(initPanelLayout.createParallelGroup()
+                                .addGroup(initPanelLayout.createSequentialGroup()
+                                    .addComponent(label1, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(55, 55, 55)
+                                    .addComponent(textField1, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(19, 19, 19)
+                                    .addComponent(label5)
+                                    .addGap(6, 6, 6)
+                                    .addComponent(planeInput, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(initPanelLayout.createSequentialGroup()
+                                    .addComponent(label2)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(numInput, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(19, 19, 19)
+                                    .addComponent(label6)
+                                    .addGap(6, 6, 6)
+                                    .addComponent(trainInput, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(initPanelLayout.createSequentialGroup()
+                                    .addComponent(label4)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(shelfInput, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(label7)
+                                    .addGap(6, 6, 6)
+                                    .addComponent(truckInput, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(initPanelLayout.createSequentialGroup()
+                                    .addComponent(label20)
+                                    .addGap(9, 9, 9)
+                                    .addComponent(alarmPercentInput, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(label8)
+                                    .addGap(6, 6, 6)
+                                    .addComponent(flexibleInput, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(initPanelLayout.createSequentialGroup()
+                                    .addGap(81, 81, 81)
+                                    .addComponent(InitSureButton, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(68, 68, 68)
+                                    .addComponent(reInputButton, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)))
+                            .addContainerGap(476, Short.MAX_VALUE))
+                );
+                initPanelLayout.setVerticalGroup(
+                    initPanelLayout.createParallelGroup()
+                        .addGroup(initPanelLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(initPanelLayout.createParallelGroup()
+                                .addComponent(textField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(planeInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGroup(initPanelLayout.createSequentialGroup()
+                                    .addGap(4, 4, 4)
+                                    .addGroup(initPanelLayout.createParallelGroup()
+                                        .addComponent(label1)
+                                        .addComponent(label5))))
+                            .addGap(6, 6, 6)
+                            .addGroup(initPanelLayout.createParallelGroup()
+                                .addComponent(numInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(trainInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGroup(initPanelLayout.createSequentialGroup()
+                                    .addGap(4, 4, 4)
+                                    .addGroup(initPanelLayout.createParallelGroup()
+                                        .addComponent(label2)
+                                        .addComponent(label6))))
+                            .addGap(6, 6, 6)
+                            .addGroup(initPanelLayout.createParallelGroup()
+                                .addComponent(shelfInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(truckInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGroup(initPanelLayout.createSequentialGroup()
+                                    .addGap(4, 4, 4)
+                                    .addGroup(initPanelLayout.createParallelGroup()
+                                        .addComponent(label4)
+                                        .addComponent(label7))))
+                            .addGap(6, 6, 6)
+                            .addGroup(initPanelLayout.createParallelGroup()
+                                .addComponent(label20, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(alarmPercentInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGroup(initPanelLayout.createSequentialGroup()
+                                    .addGap(4, 4, 4)
+                                    .addComponent(label8))
+                                .addComponent(flexibleInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGap(7, 7, 7)
+                            .addGroup(initPanelLayout.createParallelGroup()
+                                .addComponent(reInputButton)
+                                .addComponent(InitSureButton))
+                            .addContainerGap(355, Short.MAX_VALUE))
+                );
+            }
+            operatePane.addTab("\u521d\u59cb\u5316", initPanel);
+        }
+
+        GroupLayout layout = new GroupLayout(this);
+        setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup()
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(operatePane)
+                    .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup()
+                .addComponent(operatePane, GroupLayout.Alignment.TRAILING)
+        );
 		// //GEN-END:initComponents
 	}
 
-	// JFormDesigner - Variables declaration - DO NOT MODIFY
-	// //GEN-BEGIN:variables
-	private JTabbedPane operatePane;
-	private JPanel showPanel;
-	private JScrollPane scrollPane1;
-	private JTable listTable;
-	private JLabel label9;
-	private JLabel label10;
-	private JTextField startY;
-	private JLabel label11;
-	private JLabel label12;
-	private JTextField startM;
-	private JLabel label13;
-	private JTextField startD;
-	private JLabel label14;
-	private JTextField endY;
-	private JLabel label15;
-	private JTextField endM;
-	private JLabel label16;
-	private JTextField endD;
-	private JButton searchListButton;
-	private JButton selectStorageListButton;
-	private JRadioButton storageIn;
-	private JRadioButton storageOut;
-	private JPanel checkPanel;
-	private JScrollPane scrollPane2;
-	private JTable storageInfoTable;
-	private JButton saveStorageCheck;
-	private JButton exportExcel;
-	private JPanel adjustPanel;
-	private JLabel label17;
-	private JLabel label18;
-	private JLabel label19;
-	private JTextField planePercent;
-	private JTextField trainPercent;
-	private JTextField truckPercent;
-	private JButton enlargePlane;
-	private JButton enlargeTrain;
-	private JButton enlargeTruck;
-	private JPanel initPanel;
-	private JLabel label1;
-	private JTextField textField1;
-	private JLabel label2;
-	private JTextField numInput;
-	private JLabel label3;
-	private JLabel label4;
-	private JTextField shelfInput;
-	private JLabel label5;
-	private JLabel label6;
-	private JLabel label7;
-	private JLabel label8;
-	private JTextField planeInput;
-	private JTextField trainInput;
-	private JTextField truckInput;
-	private JTextField flexibleInput;
-	private JButton InitSureButton;
-	private JButton reInputButton;
-	private JLabel label20;
-	private JTextField alarmPercentInput;
-	private JLabel label23;
+	// JFormDesigner - Variables declaration - DO NOT MODIFY //GEN-BEGIN:variables
+    private JTabbedPane operatePane;
+    private JPanel showPanel;
+    private JLabel label9;
+    private JLabel label10;
+    private JTextField startY;
+    private JTextField endY;
+    private JButton searchListButton;
+    private JButton selectStorageListButton;
+    private JRadioButton storageIn;
+    private JRadioButton storageOut;
+    private JScrollPane scrollPane1;
+    private JTable listTable;
+    private JTextField startD;
+    private JLabel label13;
+    private JLabel label12;
+    private JTextField startM;
+    private JLabel label11;
+    private JLabel label14;
+    private JTextField endM;
+    private JLabel label15;
+    private JTextField endD;
+    private JLabel label16;
+    private JPanel checkPanel;
+    private JScrollPane scrollPane2;
+    private JTable storageInfoTable;
+    private JButton saveStorageCheck;
+    private JButton exportExcel;
+    private JPanel adjustPanel;
+    private JLabel label17;
+    private JLabel label18;
+    private JLabel label19;
+    private JTextField planePercent;
+    private JTextField trainPercent;
+    private JTextField truckPercent;
+    private JButton enlargePlane;
+    private JButton enlargeTrain;
+    private JButton enlargeTruck;
+    private JPanel initPanel;
+    private JLabel label1;
+    private JTextField textField1;
+    private JLabel label2;
+    private JTextField numInput;
+    private JLabel label4;
+    private JTextField shelfInput;
+    private JLabel label5;
+    private JLabel label6;
+    private JLabel label7;
+    private JLabel label8;
+    private JTextField planeInput;
+    private JTextField trainInput;
+    private JTextField truckInput;
+    private JTextField flexibleInput;
+    private JButton InitSureButton;
+    private JButton reInputButton;
+    private JLabel label20;
+    private JTextField alarmPercentInput;
 	// JFormDesigner - End of variables declaration //GEN-END:variables
 }
