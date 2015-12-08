@@ -28,7 +28,7 @@ import data.vo.StorageInVO;
 public class StorageIn implements StorageInService{
 	InstitutionInfo user;
 	StorageInfo storageInfo;
-	ArrivalList arrivalList;
+	ArrivalListService arrivalList;
 	StorageList storageInList;
 	OrderList orderList;
 	/**

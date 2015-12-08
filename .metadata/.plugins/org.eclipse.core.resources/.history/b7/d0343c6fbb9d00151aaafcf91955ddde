@@ -2,6 +2,8 @@ package businesslogic.impl.transfer.hall;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+
+import businesslogic.impl.storage.ArrivalListService;
 import data.enums.POType;
 import data.enums.StockStatus;
 import data.message.ResultMessage;
