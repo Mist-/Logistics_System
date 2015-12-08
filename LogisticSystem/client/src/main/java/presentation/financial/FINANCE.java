@@ -218,17 +218,32 @@ public class FINANCE extends JFrame {
 		long accountNum = (long)row.get(0);
 		String name = (String)row.get(1);
 		double money = (Double)row.get(2);
+		
 		ModifyAccount modifyAccount = new ModifyAccount(accountNum,name,money);
 		modifyAccount.setVisible(true);
 		
-		
-		tableAccounts.updateUI();
-	    tableAccounts.repaint();
+		searchAccount();
 		
 		
 	}
 	
-	//ZHGL 删除账户
+	//搜索所有的AccountPO并显示
+	private void searchAccount(){
+    ArrayList<AccountVO> accounts = financialBL.searchAllAccounts();
+    Vector data = ((DefaultTableModel) tableAccounts.getModel()).getDataVector();
+	
+        data.clear();
+        for (AccountVO accountVO: accounts) {
+            Vector<Object> rows = new Vector<>();
+            rows.add(accountVO.getAccountNum());
+            rows.add(accountVO.getName());
+            rows.add(accountVO.getMoney());
+            data.add(rows);
+        }
+        tableAccounts.updateUI();
+        tableAccounts.repaint();
+	}
+	
     //ZHGL 删除账户
 	private void button11MouseReleased(MouseEvent e) {
 		 Vector data = ((DefaultTableModel) tableAccounts.getModel()).getDataVector();
@@ -239,21 +254,11 @@ public class FINANCE extends JFrame {
 
 	        data.remove(tableAccounts.getSelectedRow());
 	        
-	        ArrayList<AccountVO> accounts = financialBL.searchAllAccounts();
-	        
-	        data.clear();
-	        for (AccountVO accountVO: accounts) {
-	            Vector<Object> row = new Vector<>();
-	            row.add(accountVO.getName());
-	            row.add(accountVO.getMoney());
-	            data.add(row);
-	        }
-	        tableAccounts.updateUI();
-	        tableAccounts.repaint();
+	        searchAccount();
 	        
 	}
 	
-	//ZJGL 按日期查看收款单
+	
 	
 	ArrayList<ReceiptVO> re;
 	//ZJGL 按天对收款单进行查看
@@ -281,7 +286,7 @@ public class FINANCE extends JFrame {
 		tableReceipt.repaint();
 		}
 	
-	    //ZJGL 按营业厅查看收款单
+	   
 
 	
 	//ZJGL 按营业厅对收款单进行查看
@@ -313,7 +318,7 @@ public class FINANCE extends JFrame {
 	ArrayList<PaymentVO> pay;
 	    ArrayList<ReceiptVO> rec;
 	
-	    //TJBB 查看经营情况表
+	
 		//TJBB 对经营情况表的查看
 		private void btSearch2MouseReleased(MouseEvent e) {
 			String BeginYear = textBeginYear.getText();
@@ -358,7 +363,7 @@ public class FINANCE extends JFrame {
 			
 		}
 		
-		//TJBB 查看成本收益表
+
 
 		//TJBB 对成本收益表的查看
 		private void tpCostMouseReleased(MouseEvent e) {

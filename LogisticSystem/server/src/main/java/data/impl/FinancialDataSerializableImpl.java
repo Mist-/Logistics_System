@@ -13,6 +13,8 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * Created by mist on 2015/11/8 0008.
@@ -103,11 +105,11 @@ public class FinancialDataSerializableImpl extends UnicastRemoteObject implement
 	        return ResultMessage.NOTEXIST;
 	    }
 
-	@Override
-	public ResultMessage modify(AccountVO accountVO) throws RemoteException {
+	public ResultMessage modifyAccount(AccountVO accountVO) throws RemoteException {
 		ArrayList<DataPO> list = getPOList(POType.ACCOUNT);
         for (DataPO dat: list) {
             if (dat.getSerialNum() == accountVO.getAccountNum()) {
+            	
             	AccountPO po = (AccountPO)dat;
             	po.setMoney(accountVO.getMoney());
             	po.setName(accountVO.getName());
@@ -115,13 +117,13 @@ public class FinancialDataSerializableImpl extends UnicastRemoteObject implement
                  list.add(po);
                  return ResultMessage.SUCCESS;
             }
-            else
-            	return ResultMessage.NOTEXIST;
-        }
-		return null;
+            }
+       
+		return ResultMessage.FAILED;
         
         
 	}
+
 
 
 	    

@@ -5,9 +5,12 @@
 package presentation.financial;
 
 import java.awt.*;
+import java.awt.event.*;
 
 import javax.swing.*;
 
+import data.message.ResultMessage;
+import data.vo.AccountVO;
 import businesslogic.impl.financialbl.FinancialBLController;
 import businesslogic.service.Financial.FinancialBLService;
 
@@ -17,22 +20,64 @@ import businesslogic.service.Financial.FinancialBLService;
 public class ModifyAccount extends JDialog {
 	public ModifyAccount() {
 		initComponents();
+		this.setModal(true);
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		haha();
 	}
-
+	
+    FinancialBLService financialBL;
+    long accountNum;
+	String name;
+	double money;
+	
 	public ModifyAccount(long accountNum, String name, double money) {
-		FinancialBLService financialBL = new FinancialBLController();
+		financialBL = new FinancialBLController();
 		this.accountNum = accountNum;
 		this.name = name;
 		this.money = money;
+		initComponents();
+		this.setModal(true);
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		haha();
 	}
-	long accountNum = 0;
-	String name = null;
-	double money = 0;
+	
 	
 	private void haha(){
 		tfName.setText(name);
 		tfMoney.setText(Double.toString(money));
 	}
+
+	//对确认的监听
+	private void btYesMouseReleased(MouseEvent e) {
+        String theName  = tfName.getText();
+        
+        if (tfMoney.getText() == null || !tfMoney.getText().matches("[0-9]*[.]?[0-9]*")) {
+			JOptionPane.showMessageDialog(this, "您输入的金额数据格式错误");
+			tfMoney.requestFocus();
+			return;
+		}
+        double theMoney = Double.valueOf(tfMoney.getText());
+        AccountVO accountvo = new AccountVO();
+        accountvo.setAccountNum(accountNum);
+        accountvo.setName(theName);
+        accountvo.setMoney(theMoney);
+        
+        ResultMessage a = financialBL.changeAccount(accountvo);
+        if(a == ResultMessage.SUCCESS)
+        JOptionPane.showMessageDialog(this, "修改成功");
+        else 
+        	JOptionPane.showMessageDialog(this, "false");
+        this.setVisible(false);
+	}
+	
+	//窗口关闭提醒
+	private void thisWindowClosing(WindowEvent e) {
+		int result = JOptionPane.showConfirmDialog(this, "确定要退出吗？所有信息将不被更改。", "LCS物流管理系统", JOptionPane.OK_CANCEL_OPTION);
+		if (result == JOptionPane.OK_OPTION) {
+			this.setVisible(false);
+		}
+	}
+	
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
 		panel1 = new JPanel();
@@ -44,6 +89,12 @@ public class ModifyAccount extends JDialog {
 
 		//======== this ========
 		setTitle("\u4fee\u6539\u8d26\u6237");
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				thisWindowClosing(e);
+			}
+		});
 		Container contentPane = getContentPane();
 
 		//======== panel1 ========
@@ -57,6 +108,12 @@ public class ModifyAccount extends JDialog {
 
 			//---- btYes ----
 			btYes.setText("\u786e\u8ba4");
+			btYes.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					btYesMouseReleased(e);
+				}
+			});
 
 			GroupLayout panel1Layout = new GroupLayout(panel1);
 			panel1.setLayout(panel1Layout);
