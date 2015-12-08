@@ -41,7 +41,6 @@ public class AccountManage {
     				accountVOList.add(account);
     			}
 		} catch (RemoteException e) {
-			// TODO 自动生成�? catch �?
 			e.printStackTrace();
 		}
     		return 	accountVOList;
@@ -84,7 +83,7 @@ public class AccountManage {
 	public ResultMessage changeAccount(AccountVO accountVO) {
 		
 		try {
-			financialDataService.modify(accountVO);
+			return financialDataService.modifyAccount(accountVO);
 			
 		} catch (RemoteException e) {
 			e.printStackTrace();

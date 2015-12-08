@@ -21,7 +21,7 @@ public interface FinancialDataService extends DataService {
 
 	ArrayList<DataPO> searchRecFromDate(String info) throws RemoteException;
 
-	ResultMessage modify(AccountVO accountVO) throws RemoteException;
+	ResultMessage modifyAccount(AccountVO accountVO) throws RemoteException;
 
 	ResultMessage delete(long num) throws RemoteException;
 	
