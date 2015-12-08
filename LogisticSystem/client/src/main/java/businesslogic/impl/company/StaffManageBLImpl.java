@@ -3,6 +3,7 @@ package businesslogic.impl.company;
 import businesslogic.service.company.StaffManageBLService;
 import data.enums.DataType;
 import data.enums.POType;
+import data.enums.UserRole;
 import data.factory.DataServiceFactory;
 import data.message.ResultMessage;
 import data.po.DataPO;
@@ -45,6 +46,7 @@ public class StaffManageBLImpl implements StaffManageBLService {
                     staffVO.setGender(staffPO.getGender());
                     staffVO.setPhoneNum(staffPO.getPhoneNum()+"");
                     staffVO.setIdcardNum(staffPO.getIdcardNum());
+                    staffVO.setUserRole(staffPO.getUserRole());
                     vlist.add(staffVO);
                 }
             }
@@ -87,6 +89,7 @@ public class StaffManageBLImpl implements StaffManageBLService {
                 staffPO.setName(staffVO.getName());
                 staffPO.setSerialNum(staffVO.getId());
                 staffPO.setIdcardNum(staffVO.getIdcardNum());
+                staffPO.setUserRole(staffVO.getUserRole());
                 resultMessage = company.add(staffPO);
                 return  resultMessage;
             }
@@ -119,24 +122,24 @@ public class StaffManageBLImpl implements StaffManageBLService {
     }
 
     @Override
-    public ResultMessage moveStaff(long fromInstitution, long toInstitution, long id) {
+    public ResultMessage moveStaff(long fromInstitution, long toInstitution, long id, UserRole userRole) {
         try {
             StaffPO staff = (StaffPO) company.search(POType.STAFF,id);
             resultMessage = this.deleteStaff(fromInstitution,id);
             if(resultMessage == ResultMessage.SUCCESS){
                 staffVO = new StaffVO();
                 staffVO.setId(staff.getSerialNum());
-                staffVO.setInstitution(staff.getInstitution());
+                staffVO.setInstitution(toInstitution);
                 staffVO.setGender(staff.getGender());
                 staffVO.setPhoneNum(staff.getPhoneNum()+"");
                 staffVO.setIdcardNum(staff.getIdcardNum());
                 staffVO.setName(staff.getName());
+                staffVO.setUserRole(userRole);
                 resultMessage = this.addStaff(staffVO,staffVO.getId());
                 return resultMessage;
             }
-            else{
-                return ResultMessage.FAILED;
-            }
+                return ResultMessage.SUCCESS;
+
         } catch (RemoteException e) {
             System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
         }

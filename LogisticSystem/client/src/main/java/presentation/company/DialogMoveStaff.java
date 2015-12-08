@@ -24,7 +24,8 @@ public class DialogMoveStaff extends JDialog{
 	public companyManage company = null;
 	CompanyBLController controller = null;
 	ResultMessage resultMessage = null;
-	String fromInstitution,toInstitution,ID;
+	String fromInstitution,toInstitution,ID,userRole;
+
 	  public DialogMoveStaff(companyManage company, String fromInstitution, String ID){
 		this.company = company;
 		this.fromInstitution = fromInstitution;
@@ -51,7 +52,8 @@ public class DialogMoveStaff extends JDialog{
 					city.addItemListener(new ItemListener() {
 						@Override
 						public void itemStateChanged(ItemEvent e) {
-							toInstitution = (String) city.getSelectedItem()+institution.getSelectedItem();
+							toInstitution = (String) city.getSelectedItem();
+							userRole = (String) institution.getSelectedItem();
 						}
 					});
 			}
@@ -75,6 +77,7 @@ public class DialogMoveStaff extends JDialog{
 									toInstitution = (String) businessOffice.getSelectedItem();
 								}
 							});
+							userRole = (String) institution.getSelectedItem();
 						}
 					});
 				}
@@ -83,6 +86,7 @@ public class DialogMoveStaff extends JDialog{
 					city.removeAllItems();
 					//获取移动机构的名称
 					toInstitution = (String) institution.getSelectedItem();
+					userRole = (String) institution.getSelectedItem();
 				}
 			}
 		});
@@ -112,11 +116,10 @@ public class DialogMoveStaff extends JDialog{
 	  }
 
 	  private void buttonEnsure(MouseEvent e){
-		  resultMessage = controller.moveStaff(fromInstitution,toInstitution,ID);
-		  System.out.print(toInstitution);
+		  resultMessage = controller.moveStaff(fromInstitution,toInstitution,ID,userRole);
 		  //根据resultMessage类型对界面进行输出
 		  if(resultMessage == ResultMessage.SUCCESS){
-			  company.labelStaffSuccess.setText("移动成功");
+			  company.labelStaffSuccess.setText("移动成功!");
 			  switch (company.tabbedPaneStaff.getSelectedIndex()){
 				  //重绘当前表格
 				  case 0:

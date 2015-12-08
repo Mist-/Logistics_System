@@ -194,29 +194,34 @@ public class companyManage extends JFrame {
     //添加员工按钮
     private void buttonAddStaffMouseClicked(MouseEvent e) {
         //根据机构的不同来选择不同的方式生成机构名称
-        String institution,id;
+        String institution,userRole;
         int index= tabbedPaneStaff.getSelectedIndex();
         if(index>=0&&index<=2){
             institution = tabbedPaneStaff.getTitleAt(index);
+            userRole = tabbedPaneStaff.getTitleAt(index);
         }
         else if(index==3){
-            //城市名+"中转中心"
-            institution = comboBoxCenter.getSelectedItem()+tabbedPaneStaff.getTitleAt(index);
+            //中转中心名字(城市名)
+            institution = (String) comboBoxCenter.getSelectedItem();
+            userRole = tabbedPaneStaff.getTitleAt(index);
         }
         else if(index==4){
-            //营业厅名称
+            //营业厅名称(城市区名)
             institution = (String) comboBoxBusinessNum.getSelectedItem();
+            userRole = tabbedPaneStaff.getTitleAt(index);
         }
         else if(index==5){
-            //城市名+"仓库管理员"
-            institution = comboBoxStorage.getSelectedItem()+tabbedPaneStaff.getTitleAt(index);
+            //仓库名(城市名)
+            institution = (String) comboBoxStorage.getSelectedItem();
+            userRole = tabbedPaneStaff.getTitleAt(index);
         }
         else{
             institution = null;
+            userRole = null;
             JOptionPane.showMessageDialog(null,"请选择机构","",JOptionPane.ERROR_MESSAGE);
         }
         //添加员工面板
-        DialogAddStaff dialogAddstaff = new DialogAddStaff(this,institution);
+        DialogAddStaff dialogAddstaff = new DialogAddStaff(this,institution,userRole);
     }
 
     //删除员工按钮
@@ -237,15 +242,15 @@ public class companyManage extends JFrame {
             id = (String) trunkModel.getValueAt(tableTrunk.getSelectedRow(),0);
         }
         else if(index==3){
-            institution = comboBoxCenter.getSelectedItem()+tabbedPaneStaff.getTitleAt(index);
+            institution = (String) comboBoxCenter.getSelectedItem();
             id = (String) centerModel.getValueAt(tableCenter.getSelectedRow(),0);
         }
         else if(index==4){
-            institution = comboBoxBusinessCity.getSelectedItem()+tabbedPaneStaff.getTitleAt(index)+comboBoxBusinessNum.getSelectedItem();
+            institution = (String) comboBoxBusinessNum.getSelectedItem();
             id = (String) businessModel.getValueAt(tableBusiness.getSelectedRow(),0);
         }
         else if(index==5){
-            institution = comboBoxStorage.getSelectedItem()+tabbedPaneStaff.getTitleAt(index);
+            institution = (String) comboBoxStorage.getSelectedItem();
             id = (String) storageModel.getValueAt(tableStorage.getSelectedRow(),0);
         }
         else{
@@ -309,7 +314,7 @@ public class companyManage extends JFrame {
             id = (String) trunkModel.getValueAt(tableTrunk.getSelectedRow(),0);
         }
         else if(index==3){
-            institution = comboBoxCenter.getSelectedItem()+tabbedPaneStaff.getTitleAt(index);
+            institution = (String) comboBoxCenter.getSelectedItem();
             id = (String) centerModel.getValueAt(tableCenter.getSelectedRow(),0);
         }
         else if(index==4){
@@ -317,7 +322,7 @@ public class companyManage extends JFrame {
             id = (String) businessModel.getValueAt(tableBusiness.getSelectedRow(),0);
         }
         else if(index==5){
-            institution = comboBoxStorage.getSelectedItem()+tabbedPaneStaff.getTitleAt(index);
+            institution = (String) comboBoxStorage.getSelectedItem();
             id = (String) storageModel.getValueAt(tableStorage.getSelectedRow(),0);
         }
         else {
@@ -332,20 +337,19 @@ public class companyManage extends JFrame {
     //确认选择仓库所在城市的按钮,随后显示该仓库的所有管理人员
     private void buttonEnsureStorageMouseClicked(MouseEvent e) {
         String city = (String) comboBoxStorage.getSelectedItem();
-        this.initStorageTable(city+tabbedPaneStaff.getTitleAt(tabbedPaneStaff.getSelectedIndex()));
+        this.initStorageTable(city);
     }
 
     //确认选择营业厅中转中心所在城市按钮,随后显示该营业厅的所有业务人员
     private void buttonEnsureBusinessMouseClicked(MouseEvent e) {
-        String city = (String) comboBoxBusinessCity.getSelectedItem();
         String num = (String) comboBoxBusinessNum.getSelectedItem();
-        this.initBusinessTable(city+tabbedPaneStaff.getTitleAt(tabbedPaneStaff.getSelectedIndex())+num);
+        this.initBusinessTable(num);
     }
 
     //确认选择中转中心所在城市按钮,随后显示该中转中心的所有业务人员
     private void buttonEnsureCenterMouseClicked(MouseEvent e) {
        String city = (String) comboBoxCenter.getSelectedItem();
-        this.initCenterTable(city+tabbedPaneStaff.getTitleAt(tabbedPaneStaff.getSelectedIndex()));
+        this.initCenterTable(city);
     }
 
     //退出员工机构管理的按钮
@@ -844,8 +848,13 @@ public class companyManage extends JFrame {
         centerColumns.add("联系电话");
         //数据
         Vector<Vector<String>> centerData = this.getStaff(institution);
+        Vector<Vector<String>> centerStaff = new Vector<>();
+        for(int i=0;i<centerData.size();i++){
+            if(centerData.get(i).lastElement().equals("中转中心业务员"))
+                centerStaff.add(centerData.get(i));
+        }
         //模型
-        centerModel = new DefaultTableModel(centerData,centerColumns);
+        centerModel = new DefaultTableModel(centerStaff,centerColumns);
         //表格
         tableCenter = new JTable(centerModel){
             private static final long serialVersionUid = 1L;
@@ -905,8 +914,13 @@ public class companyManage extends JFrame {
         storageColumns.add("联系电话");
         //数据
         Vector<Vector<String>> storageData = this.getStaff(institution);
+        Vector<Vector<String>> storageStaff = new Vector<>();
+        for(int i=0;i<storageData.size();i++){
+            if(storageData.get(i).lastElement().equals("仓库管理员"))
+                storageStaff.add(storageData.get(i));
+        }
         //模型
-        storageModel = new DefaultTableModel(storageData,storageColumns);
+        storageModel = new DefaultTableModel(storageStaff,storageColumns);
         //表格
         tableStorage = new JTable(storageModel){
             private static final long serialVersionUid = 1L;
@@ -940,6 +954,7 @@ public class companyManage extends JFrame {
                 staffVO.add("男");
             staffVO.add(staffVOs.get(i).getIdcardNum());
             staffVO.add(staffVOs.get(i).getPhoneNum()+"");
+            staffVO.add(staffVOs.get(i).getUserRole().toString());
             staffData.add(staffVO);
         }
         return staffData;
@@ -1844,7 +1859,7 @@ public class companyManage extends JFrame {
                                             .addComponent(scrollPaneCenter, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE))
                     );
                 }
-                tabbedPaneStaff.addTab("\u4e2d\u8f6c\u4e2d\u5fc3", scrollPanelCenter);
+                tabbedPaneStaff.addTab("\u4e2d\u8f6c\u4e2d\u5fc3业务员", scrollPanelCenter);
 
                 //======== scrollPanelBusiness ========
                 {
@@ -1895,7 +1910,7 @@ public class companyManage extends JFrame {
                                             .addGap(0, 0, Short.MAX_VALUE))
                     );
                 }
-                tabbedPaneStaff.addTab("\u8425\u4e1a\u5385", scrollPanelBusiness);
+                tabbedPaneStaff.addTab("\u8425\u4e1a\u5385业务员", scrollPanelBusiness);
 
                 //======== scrollPanelStorage ========
                 {

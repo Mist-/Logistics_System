@@ -1,12 +1,24 @@
 package data.vo;
 
+import data.enums.UserRole;
+
 public class StaffVO {
 
     public long institution;
     public String name;
     public boolean gender /* 0 - male , 1 - female */;
     public String phoneNum;
+    public UserRole userRole;
     public long id;
+
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
+    }
+
     public String idcardNum;
 
     public StaffVO() {
