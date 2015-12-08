@@ -28,14 +28,15 @@ public class DialogAddStaff extends JDialog{
 	 JTextField idCardNum = null;
 	 companyManage company = null;
 	 //从界面传过来机构的名称instituion
-	 String stringName,stringSerialNum,stringPhoneNum,instituion,stringIdCardNum;
+	 String stringName,stringSerialNum,stringPhoneNum,instituion,stringIdCardNum,userRole;
 	 boolean gender;
 	 ResultMessage resultMessage = null;
 	 CompanyBLController controller = null;
 
-	public DialogAddStaff(companyManage company, String institution){
+	public DialogAddStaff(companyManage company, String institution, String userRole){
 		this.company = company;
 		this.instituion = institution;
+		this.userRole = userRole;
 		controller =  new CompanyBLController();
 		finish = new JButton("确认");
 		jdialog = new JDialog(this,"添加员工");
@@ -105,7 +106,7 @@ public class DialogAddStaff extends JDialog{
 		else {
 			gender = true;
 		}
-        resultMessage = controller.addStaff(instituion,stringSerialNum,gender,stringName,stringPhoneNum,stringIdCardNum);
+        resultMessage = controller.addStaff(instituion,stringSerialNum,gender,stringName,stringPhoneNum,stringIdCardNum,userRole);
 		if(resultMessage == ResultMessage.SUCCESS){
 			company.labelStaffSuccess.setText("添加成功!");
 			jdialog.dispose();

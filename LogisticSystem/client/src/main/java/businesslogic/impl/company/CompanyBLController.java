@@ -2,6 +2,7 @@ package businesslogic.impl.company;
 
 import businesslogic.service.company.*;
 import data.enums.POType;
+import data.enums.UserRole;
 import data.factory.DataServiceFactory;
 import data.message.ResultMessage;
 import data.po.*;
@@ -280,7 +281,7 @@ public class CompanyBLController {
         return staff.getstaffByID(id);
     }
 
-    public ResultMessage addStaff(String institution, String id, boolean gender, String name, String phoneNum, String idCardNum){
+    public ResultMessage addStaff(String institution, String id, boolean gender, String name, String phoneNum, String idCardNum, String userRole){
         StaffVO staffVO = new StaffVO();
         //判断网络状况和机构是否存在
         if(longInstitution(institution)==0){
@@ -296,6 +297,7 @@ public class CompanyBLController {
             staffVO.setGender(gender);
             staffVO.setName(name);
             staffVO.setIdcardNum(idCardNum);
+            staffVO.setUserRole(UserRole.valueOf(userRole));
             return staff.addStaff(staffVO, Long.valueOf(id));
         }
     }
@@ -314,7 +316,7 @@ public class CompanyBLController {
         }
     }
 
-    public ResultMessage moveStaff(String fromInstitution, String toInstitution, String ID){
+    public ResultMessage moveStaff(String fromInstitution, String toInstitution, String ID, String stringUserRole){
         //判断网络状况和机构是否存在
         if(longInstitution(fromInstitution)==0){
             return ResultMessage.NOTEXIST;
@@ -333,7 +335,8 @@ public class CompanyBLController {
             else {
                 long id;
                 id = Long.valueOf(ID);
-                return staff.moveStaff(this.fromInstitution,this.toInstitution,id);
+                UserRole userRole = UserRole.valueOf(stringUserRole);
+                return staff.moveStaff(longInstitution(fromInstitution),longInstitution(toInstitution),id,userRole);
             }
         }
 
@@ -414,4 +417,13 @@ public class CompanyBLController {
         }
     }
 
+    //判断输入是否是数字不是字符
+    public boolean isNum(String str){
+        for(int i=0;i<str.length();i++){
+            if(str.charAt(i)>'9'||str.charAt(i)<'0'){
+                return false;
+            }
+        }
+        return true;
+    }
 }
