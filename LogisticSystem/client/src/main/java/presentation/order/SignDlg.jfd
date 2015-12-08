@@ -1,0 +1,51 @@
+JFDML JFormDesigner: "5.2.2.2.228" Java: "1.8.0_51" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :::p, par l {seq l {par l {comp labelOrderNum:::p::p, seq l {comp labelRname:::p::p, space :p:115:p, comp labelRphone:::p::p}}, space :::x}, seq l {par l {seq {comp label2:::p::p, space :::p, comp textName:::p:139:p, space :::p, comp label3:::p::p}, seq l {space :p:73:p, comp btOK:::p::p}}, space :::p, par l {comp textPhone::::144:x, seq {comp btCancel:::p::p, space :0:90:x}}}}}}"
+			"$verticalGroup": "par l {seq {space :p:10:p, comp labelOrderNum:::p::p, space s:::p, par b {comp labelRname::b:p::p, comp labelRphone::b:p::p}, space s:::p, par b {comp textName::b:::x, par b:b {comp label3::b:p:25:p, comp label2::b:p:25:p, comp textPhone::l:p::p}}, space s:::p, par b {comp btOK::b:p::p, comp btCancel::b:p::p}, space :::p}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "labelOrderNum"
+				"text": "订单号："
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textName"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "姓名："
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textPhone"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "电话："
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btOK"
+				"text": "确定"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "button1MouseReleased", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btCancel"
+				"text": "取消"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "labelRname"
+				"text": "收件人姓名："
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "labelRphone"
+				"text": "收件人电话："
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 395, 210 )
+		} )
+	}
+}

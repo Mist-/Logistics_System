@@ -1,10 +1,7 @@
 import javax.swing.*;
 
-import data.enums.DataType;
 import data.enums.UserRole;
 
-import data.factory.DataServiceFactory;
-import data.po.UserPO;
 import org.jb2011.lnf.windows2.Windows2LookAndFeel;
 
 import data.message.LoginMessage;
@@ -19,8 +16,6 @@ import presentation.transfer.hall.TransferHallFrame;
 import presentation.user.login.LoginDlg;
 import presentation.user.userMngUI.UserMngUI;
 import utils.Connection;
-
-import java.rmi.RemoteException;
 
 
 /**
@@ -54,38 +49,37 @@ public class LCSClient extends JFrame{
         // 以下是，登录动作完成后的界面跳转。
         if (loginMessage.getResult() == ResultMessage.FAILED || loginMessage.getResult() == ResultMessage.NOTEXIST) System.exit(1);
         else {
-            if (loginMessage.getUserSN() == 0) {                        // 匿名用户，进入订单查询界面
+            if (loginMessage.getUserSN() == 0) {                          // 匿名用户，进入订单查询界面
                 simplifiedOrderUI.setVisible(true);
             }
-            if (loginMessage.getUserRole() == UserRole.快递员) {       // 快递员登录
+            if (loginMessage.getUserRole() == UserRole.快递员) {           // 快递员登录
                 OrderUI orderUI = new OrderUI(loginMessage);
                 orderUI.setVisible(true);
             } else
-            if (loginMessage.getUserRole() == UserRole.仓库管理员) {   // 仓库管理员登录
+            if (loginMessage.getUserRole() == UserRole.仓库管理员) {         // 仓库管理员登录
                 StorageFrame storageUI = new StorageFrame(loginMessage);
                 storageUI.setVisible(true);
             } else
-            if (loginMessage.getUserRole() == UserRole.营业厅业务员) {      // 营业厅业务员登录
+            if (loginMessage.getUserRole() == UserRole.营业厅业务员) {        // 营业厅业务员登录
                 TransferHallFrame transferHall = new TransferHallFrame(loginMessage);
                 transferHall.setVisible(true);
             } else
-            if (loginMessage.getUserRole() == UserRole.系统管理员) {     // 系统管理员
+            if (loginMessage.getUserRole() == UserRole.系统管理员) {         // 系统管理员
                 UserMngUI userMngUI = new UserMngUI();
                 userMngUI.setVisible(true);
             }
-            if (loginMessage.getUserRole() == UserRole.总经理) {      // 总经理界面
+            if (loginMessage.getUserRole() == UserRole.总经理) {           // 总经理界面
                 companyManage companyUI = new companyManage(loginMessage);
                 companyUI.setVisible(true);
             } else
-            if (loginMessage.getUserRole() == UserRole.财务人员) {
+            if (loginMessage.getUserRole() == UserRole.普通财务人员) {          // 财务人员界面
                 FINANCE finance = new FINANCE();
                 finance.setVisible(true);
             } else
-            if (loginMessage.getUserRole() == UserRole.中转中心业务员) {
+            if (loginMessage.getUserRole() == UserRole.中转中心业务员) {   // 中转中心业务员界面
                 TransferCenterFrame transferUI = new TransferCenterFrame(loginMessage);
                 transferUI.setVisible(true);
             }
-            //hehe
         }
     }
 }

@@ -116,7 +116,7 @@ public class DataInitialization {
         institution[20] = new InstitutionPO(11111);
         institution[20].setName("快递员");
         institution[21] = new InstitutionPO(22222);
-        institution[21].setName("财务人员");
+        institution[21].setName("普通财务人员");
         institution[22] = new InstitutionPO(33333);
         institution[22].setName("货车驾驶员");
 
@@ -166,7 +166,7 @@ public class DataInitialization {
         staff5.setName("孙九日");
         staff5.setGender(false);
         staff5.setInstitution(10021);
-        staff5.setUserRole(UserRole.财务人员);
+        staff5.setUserRole(UserRole.普通财务人员);
 
         StaffPO staff6 = new StaffPO();
         staff6.setSerialNum(10005);
