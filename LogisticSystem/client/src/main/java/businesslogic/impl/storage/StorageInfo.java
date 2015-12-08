@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.text.Position;
 
+import businesslogic.impl.transfer.center.StorageInfoService;
 import data.enums.POType;
 import data.enums.StorageArea;
 import data.message.ResultMessage;
@@ -17,7 +18,7 @@ import data.vo.StorageInVO;
 import data.vo.StorageOutVO;
 import data.vo.StoragePositionAndOrderID;
 
-public class StorageInfo {
+public class StorageInfo implements StorageInfoService{
 	StorageDataService storageData;
 	StorageInfoPO storageInfo;
 

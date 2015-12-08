@@ -1,6 +1,7 @@
 package businesslogic.service.company;
 
 
+import data.enums.UserRole;
 import data.message.ResultMessage;
 import data.vo.StaffVO;
 
@@ -8,20 +9,20 @@ import java.util.ArrayList;
 
 public interface StaffManageBLService {
 
-    //æ‰¾åˆ°å‘˜å·¥ä¿¡æ¯
-    //æ ¹æ®æœºæ„æ‰¾åˆ°æ‰€æœ‰å‘˜å·¥
+    //ÕÒµ½Ô±¹¤ĞÅÏ¢
+    //¸ù¾İ»ú¹¹ÕÒµ½ËùÓĞÔ±¹¤
     public ArrayList<StaffVO> getStaffByInstitution(long institution);
 
-    //æ ¹æ®å‘˜å·¥IDæ‰¾åˆ°å…·ä½“å‘˜å·¥
+    //¸ù¾İÔ±¹¤IDÕÒµ½¾ßÌåÔ±¹¤
     public StaffVO getstaffByID(long id);
 
-    //å‘˜å·¥æœºæ„ç®¡ç†çš„è¿‡ç¨‹
+    //Ô±¹¤»ú¹¹¹ÜÀíµÄ¹ı³Ì
 
     public ResultMessage addStaff(StaffVO staffVO, long id);
 
     public ResultMessage deleteStaff(long institution, long id);
 
-    public ResultMessage moveStaff(long fromInstitution, long toInstitution, long id);
+    public ResultMessage moveStaff(long fromInstitution, long toInstitution, long id, UserRole userRole);
 
     public void endstaffmanage();
 }

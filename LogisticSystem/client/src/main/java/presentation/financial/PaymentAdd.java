@@ -38,7 +38,7 @@ public class PaymentAdd extends JDialog {
 	for (String name: infos) {
 		cbInfo.addItem(name);
 	}
-	occupation = new String[] {"快递员","财务人员","货车驾驶","营业厅业务员","中转中心业务员"};
+	occupation = new String[] {"快递员","普通财务人员","货车驾驶","营业厅业务员","中转中心业务员"};
 	
 	list = new String[] {"装车单","中转单"};
 	lbInstitution.setVisible(false);

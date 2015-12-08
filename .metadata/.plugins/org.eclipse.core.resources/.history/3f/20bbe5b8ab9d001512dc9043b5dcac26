@@ -1,0 +1,12 @@
+package businesslogic.service.Transfer.hall;
+import businesslogic.service.Transfer.center.TransferLoadService;
+import businesslogic.service.Transfer.center.TransferReceiveService;
+
+public interface TransferCenterService {
+
+	public TransferLoadService startTransferLoad();
+	
+	public TransferReceiveService startTransferReceiver();
+	
+	
+}

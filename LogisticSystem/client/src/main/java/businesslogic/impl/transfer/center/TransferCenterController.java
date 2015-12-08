@@ -3,6 +3,7 @@ package businesslogic.impl.transfer.center;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import businesslogic.impl.user.CityInfo;
 import businesslogic.impl.user.InstitutionInfo;
 import businesslogic.service.Transfer.center.TransferLoadService;
 import businesslogic.service.Transfer.center.TransferReceiveService;
@@ -26,13 +27,13 @@ import data.vo.TransferListVO;
 
 public class TransferCenterController implements TransferCenterService{
 	InstitutionInfo center;
-	TransferDataService transferData;
 	CompanyDataService companyData;
 	@Override
 	public TransferLoadService startTransferLoad() {
 		
 		try {
-			return new TransferLoad(center);
+			CityInfo city = new CityInfo(companyData, center.getCenterID());
+			return new TransferLoad(center,city);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return null;
@@ -40,12 +41,11 @@ public class TransferCenterController implements TransferCenterService{
 	}
 	@Override
 	public TransferReceiveService startTransferReceiver() {
-		return new TransferReceive(center,transferData);
+		return new TransferReceive(center);
 	}
 
 
 	public TransferCenterController(LoginMessage login) throws Exception {
-		transferData = (TransferDataService) DataServiceFactory.getDataServiceByType(DataType.TransferDataService);
 		companyData = (CompanyDataService) DataServiceFactory.getDataServiceByType(DataType.CompanyDataService);
 		center = new InstitutionInfo(login);
 	}

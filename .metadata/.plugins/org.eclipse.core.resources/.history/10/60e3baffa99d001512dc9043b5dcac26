@@ -1,0 +1,5 @@
+package businesslogic.impl.transfer.center;
+
+public interface StorageInfoService {
+
+}

@@ -11,37 +11,46 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "labelOrderNum"
 				"text": "订单号："
+				"font": &Font0 new java.awt.Font( "等线", 0, 14 )
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "textName"
+				"font": #Font0
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label2"
 				"text": "姓名："
+				"font": #Font0
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "textPhone"
+				"font": #Font0
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label3"
 				"text": "电话："
+				"font": #Font0
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btOK"
 				"text": "确定"
+				"font": #Font0
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "button1MouseReleased", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btCancel"
 				"text": "取消"
+				"font": #Font0
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "labelRname"
 				"text": "收件人姓名："
+				"font": #Font0
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "labelRphone"
 				"text": "收件人电话："
+				"font": #Font0
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )

@@ -26,10 +26,8 @@ import data.vo.TransferListVO;
  */
 public class TransferReceive implements TransferReceiveService {
 	TransferDataService transferData;
-
-	TransferListPO transferList;// 确定
-	EntruckPO entruckList;// 确定
-	
+	TransferListPO transferList;
+	EntruckPO entruckList;
 	InstitutionInfo center;
 	ArrivalList arrivalList;
 	/**
@@ -94,15 +92,6 @@ public class TransferReceive implements TransferReceiveService {
 		}
 	}
 
-//	/**
-//	 * 修改到达单信息
-//	 * 
-//	 * @param vo
-//	 */
-//	public void modifyArriveList(ArrivalVO vo) {
-//		arrival.setDate(vo.getDate());
-//		arrival.setStockStatus(vo.getStatus());
-//	}
 
 	/**
 	 * 保存到达单
@@ -120,13 +109,13 @@ public class TransferReceive implements TransferReceiveService {
 	}
 	
 	
-	public TransferReceive(InstitutionInfo center,TransferDataService transferData) {
-		this.transferData = transferData;
+	public TransferReceive(InstitutionInfo center) {
+		this.transferData = (TransferDataService) DataServiceFactory.getDataServiceByType(DataType.TransferDataService);
 		arrivalList = new ArrivalList(transferData);
 		this.center = center;
 	}
 	
-	public ResultMessage doArrive(){
+	public ResultMessage doArrive(){//未完成
 		long[] order = null;
 		try {
 		order =  arrivalList.doArrive();

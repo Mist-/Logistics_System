@@ -25,6 +25,11 @@ public class SignDlg extends JDialog {
     long sn = 0;
     ResultMessage result = ResultMessage.FAILED;
 
+    /**
+     * 显示对话框，并将处理结果返回
+     * @param sn 需要签收的订单号
+     * @return SUCCESS表示签收成功，并且成功创建了签收单，NOTEXIST表示要签收的订单不存在，FAILED表示订单已经被签收，或者订单还没有生效
+     */
     public ResultMessage signOrder(long sn) {
         result = ResultMessage.FAILED;
         this.sn = sn;
@@ -74,15 +79,25 @@ public class SignDlg extends JDialog {
 
         //---- labelOrderNum ----
         labelOrderNum.setText("\u8ba2\u5355\u53f7\uff1a");
+        labelOrderNum.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+        //---- textName ----
+        textName.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
         //---- label2 ----
         label2.setText("\u59d3\u540d\uff1a");
+        label2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+        //---- textPhone ----
+        textPhone.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
         //---- label3 ----
         label3.setText("\u7535\u8bdd\uff1a");
+        label3.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
         //---- btOK ----
         btOK.setText("\u786e\u5b9a");
+        btOK.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
         btOK.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
@@ -92,12 +107,15 @@ public class SignDlg extends JDialog {
 
         //---- btCancel ----
         btCancel.setText("\u53d6\u6d88");
+        btCancel.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
         //---- labelRname ----
         labelRname.setText("\u6536\u4ef6\u4eba\u59d3\u540d\uff1a");
+        labelRname.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
         //---- labelRphone ----
         labelRphone.setText("\u6536\u4ef6\u4eba\u7535\u8bdd\uff1a");
+        labelRphone.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);

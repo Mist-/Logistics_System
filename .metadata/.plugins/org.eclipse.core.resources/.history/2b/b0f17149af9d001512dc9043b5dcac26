@@ -1,0 +1,12 @@
+package businesslogic.impl.storage;
+
+import data.vo.ArrivalListVO;
+
+/**
+ * Ïû³ıÑ­»·ÒÀÀµ£¬ÒÀÀµµ¹ÖÃ
+ * @author xu
+ *
+ */
+public interface ArrivalListService {
+	public ArrivalListVO getCheckedArrivals(long institutionID);
+}

@@ -2,8 +2,6 @@ package businesslogic.impl.storage;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-
-import mock.MockTransferDataService;
 import businesslogic.impl.transfer.center.OrderList;
 import businesslogic.impl.transfer.center.TransferList;
 import businesslogic.impl.user.InstitutionInfo;
@@ -12,7 +10,6 @@ import data.enums.DataType;
 import data.enums.POType;
 import data.factory.DataServiceFactory;
 import data.message.ResultMessage;
-import data.po.StorageInfoPO;
 import data.po.StorageOutListPO;
 import data.po.TransferListPO;
 import data.service.StorageDataService;
@@ -21,6 +18,11 @@ import data.vo.BriefTransferAndStorageOutVO;
 import data.vo.StorageOutVO;
 import data.vo.TransferListVO;
 
+/**
+ * 出库 实现类
+ * @author xu
+ *
+ */
 public class StorageOut implements StorageOutService{
 	TransferDataService transferData;
 	StorageDataService storageData ;
@@ -79,7 +81,6 @@ public class StorageOut implements StorageOutService{
 			modifyStorageInfo(storageOut);
 			return storageData.add(storageOut);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return ResultMessage.FAILED;
 		}
@@ -108,7 +109,6 @@ public class StorageOut implements StorageOutService{
 		try {
 			transferInfo = transferList.getBriefTranserList(user.getCenterID());
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -128,19 +128,13 @@ public class StorageOut implements StorageOutService{
 		return storageInfo.createStorageOutList(transfer);
 	}
 	
-
 	public StorageOut(InstitutionInfo user,StorageInfo storageInfo,StorageDataService storageData) throws RemoteException{
 		this.user = user;
-		//transferData = (TransferDataService) DataServiceFactory.getDataServiceByType(DataType.TransferDataService);
-		transferData = new MockTransferDataService();
+		TransferDataService transferData = (TransferDataService) DataServiceFactory.getDataServiceByType(DataType.TransferDataService);
 		this.storageData = storageData;
 		transferList = new TransferList(transferData);
 		orderList = new OrderList();
 		this.storageInfo = storageInfo;
 		storageOutList = new StorageList(storageData, user.getCenterID(), POType.STORAGEOUTLIST);
 	}
-
-
-
-
 }

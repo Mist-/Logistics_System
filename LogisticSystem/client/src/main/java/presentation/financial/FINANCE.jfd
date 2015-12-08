@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "5.2.2.0.199" Java: "1.8.0_45" encoding: "UTF-8"
+JFDML JFormDesigner: "5.2.2.2.228" Java: "1.8.0_51" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -10,8 +10,8 @@ new FormModel {
 			name: "this"
 			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowOpened", "thisWindowOpened", true ) )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {par l {seq l {space :::p, comp tgZJGL:::p::p, space :p:18:p, comp tgZHGL:::p::p, space :p:12:p, comp tgTJBB:::p::p, space :p:18:p, comp tgQCJZ:::p::p}, seq l {space :p:33:p, comp label1:::p::p, space :p:76:p, comp label3:::p::p, space :p:60:p, comp label2:::p::p, space :p:74:p, comp label4:::p::p}}, space ::311:x}, comp panelMain::t::789:x}"
-				"$verticalGroup": "par l {seq l {space :::p, par l {comp tgZJGL:::p:100:p, comp tgZHGL:::p:100:p, comp tgTJBB:::p:100:p, comp tgQCJZ:::p:100:p}, space :::p, par l {comp label1::l:p::p, par l {par b {comp label4::b:::x, comp label2::b:p::p}, seq {comp label3:::p::p, space :0:0:x}}}, space :p:7:p, comp panelMain::::402:x}}"
+				"$horizontalGroup": "par l {seq {par l {seq l {space :::p, comp tgZJGL:::p::p, space :p:18:p, comp tgZHGL:::p::p, space :p:12:p, comp tgTJBB:::p::p, space s:::p, comp tgQCJZ:::p::p}, seq l {space :p:33:p, comp label1:::p::p, space :p:76:p, comp label3:::p::p, space :p:60:p, comp label2:::p::p, space :p:74:p, comp label4:::p::p}}, space ::327:x}, comp panelMain::t::789:x}"
+				"$verticalGroup": "par l {seq l {space :::p, par l {comp tgZJGL:::p:100:p, comp tgZHGL:::p:100:p, comp tgTJBB:::p:100:p, comp tgQCJZ::l:p:100:p}, space :::p, par l {comp label1::l:p::p, par l {par b {comp label4::b:::x, comp label2::b:p::p}, seq {comp label3:::p::p, space :0:0:x}}}, space :p:7:p, comp panelMain::::402:x}}"
 			} ) {
 				name: "panel2"
 				add( new FormComponent( "javax.swing.JToggleButton" ) {
@@ -102,8 +102,8 @@ new FormModel {
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 				name: "tabbedPane4"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq t {comp scrollPane15::::675:x, space :::p, par l {comp btAddP:::p:40:p, comp btPExcel:::p::p}, space :p:22:p}}"
-					"$verticalGroup": "par l {seq l {space :::p, comp btAddP:::p::p, space u:::p, comp btPExcel:::p::p, space ::170:x}, comp scrollPane15::l::246:x}"
+					"$horizontalGroup": "par l {seq t {comp scrollPane15::::681:x, space :::p, par l {comp btAddP:::p:40:p, comp btPExcel:::p::p}, space :p:22:p}}"
+					"$verticalGroup": "par l {seq l {space :::p, comp btAddP:::p::p, space u:::p, comp btPExcel:::p::p, space ::157:x}, comp scrollPane15::l::248:x}"
 				} ) {
 					name: "panel1"
 					add( new FormComponent( "javax.swing.JButton" ) {
@@ -129,7 +129,7 @@ new FormModel {
 					name: "scrollPane14"
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 						"$horizontalGroup": "par l {seq l {comp scrollPane16:::p:622:p, space u:::p, par l {seq {par l {comp textAddress:::::x, comp btAddress::l:::x, comp textDate::l:::x, comp btDate::l:::x, comp label15::l:::x, comp btRExcel::t:::x}, space :p:95:p}, seq {comp lbAll:::p::p, space :::p, comp lbTotal:::p:39:p, space :::x}}}}"
-						"$verticalGroup": "par l {seq {space :p:32:p, comp textDate:::p::p, space :::p, comp btDate:::p::p, space :::p, comp label15:::p:26:p, space u:::p, comp textAddress:::p::p, space :::p, comp btAddress:::p::p, space u:::p, par b {comp lbAll::b:p:24:p, comp lbTotal::b:p::p}, space :::p, comp btRExcel:::p::p, space ::719:x}, seq l {comp scrollPane16:::p:247:p, space :0:709:x}}"
+						"$verticalGroup": "par l {seq {space :p:32:p, comp textDate:::p::p, space :::p, comp btDate:::p::p, space :::p, comp label15:::p:26:p, space u:::p, comp textAddress:::p::p, space :::p, comp btAddress:::p::p, space u:::p, par b {comp lbAll::b:p:24:p, comp lbTotal::b:p::p}, space :::p, comp btRExcel:::p::p, space ::719:x}, seq l {comp scrollPane16:::p:247:p, space :0:751:x}}"
 					} ) {
 						name: "panel3"
 						add( new FormComponent( "javax.swing.JButton" ) {
@@ -295,8 +295,8 @@ new FormModel {
 			"size": new java.awt.Dimension( 575, 385 )
 		} )
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :::p, comp tp::::580:x, space :::p}}"
-			"$verticalGroup": "par l {seq l {space :::p, comp tp::::330:x, space :::p}}"
+			"$horizontalGroup": "par l {seq l {space :::p, comp tp::::588:x, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp tp::::338:x, space :::p}}"
 		} ) {
 			name: "pnQCJZ"
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
@@ -371,7 +371,7 @@ new FormModel {
 			"size": new java.awt.Dimension( 600, 350 )
 		} )
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {seq {space :p:10:p, comp label6:::p::p, space :::p, comp textName:::p:165:p, space :p:10:p, comp btSearch:::p:27:p, space :::p, comp label7:::p::p, space :::p, comp textName2:::p:165:p, space :0:13:x}, seq {space :::p, comp scrollPane12::::512:x}}, space :::p, par l {comp vSpacer1:::p:57:p, comp btAdd::l:p::p, comp btDelete::l:p::p, comp btModify::l:p::p}, space :::p}}"
+			"$horizontalGroup": "par l {seq {par l {seq {space :p:10:p, comp label6:::p::p, space :::p, comp textName:::p:165:p, space :p:10:p, comp btSearch:::p:27:p, space :::p, comp label7:::p::p, space :::p, comp textName2:::p:165:p, space :0:11:x}, seq {space :::p, comp scrollPane12::::520:x}}, space :::p, par l {comp vSpacer1:::p:57:p, comp btAdd::l:p::p, comp btDelete::l:p::p, comp btModify::l:p::p}, space :::p}}"
 			"$verticalGroup": "par l {seq l {space :::p, par l {seq {comp vSpacer1:::p:53:p, space :p:52:p, comp btAdd:::p::p, space s:::p, comp btDelete:::p::p, space s:::p, comp btModify:::p::p}, seq {par b:::p {comp label6::b:p::p, comp btSearch::l:::x, comp textName::b:p::p, comp label7::b:::x, comp textName2::b:p::p}, space :::p, comp scrollPane12:::p:357:p}}, space :::x}}"
 		} ) {
 			name: "pnZHGL"
@@ -413,8 +413,6 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btSearch"
 				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/search_16x16.png" )
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btSearchMouseReleased", true ) )
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btSearchMouseReleased", true ) )
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btSearchMouseReleased", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {

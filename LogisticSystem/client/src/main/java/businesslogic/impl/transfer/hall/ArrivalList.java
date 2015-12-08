@@ -2,7 +2,6 @@ package businesslogic.impl.transfer.hall;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-
 import data.enums.POType;
 import data.enums.StockStatus;
 import data.message.ResultMessage;
@@ -15,6 +14,11 @@ import data.vo.ArrivalVO;
 import data.vo.EntruckListVO;
 import data.vo.TransferListVO;
 
+/**
+ * 到达单相关服务 
+ * @author xu
+ *
+ */
 public class ArrivalList {
 	TransferDataService transferData;
 	ArrayList<DataPO> checkedArrivals;
@@ -22,6 +26,11 @@ public class ArrivalList {
 	
 	
 
+	/**
+	 * 确认到达，修改到达单状态信息（待确认）
+	 * @return 该到达单单号列表
+	 * @throws RemoteException
+	 */
 	public long[]  doArrive() throws RemoteException{
 //		choosenArrival.setOperated(true);
 //		transferData.modify(choosenArrival);
@@ -42,6 +51,7 @@ public class ArrivalList {
 	public ArrivalList(TransferDataService transferData) {
 		this.transferData = transferData;
 	}
+
 
 	public ArrivalListVO getCheckedArrivals(long institutionID)
 			throws RemoteException {
@@ -88,7 +98,6 @@ public class ArrivalList {
 	}
 	
 	public ArrivalVO createArrival(TransferListVO transferList) {
-		// TODO Auto-generated method stub
 		ArrivalVO vo = new ArrivalVO();
 		vo.setDate(transferList.date);
 		vo.setDeliveryListNum(transferList.transferListID);

@@ -12,7 +12,7 @@ import businesslogic.service.storage.StorageOperateService;
 import businesslogic.service.storage.StorageOutService;
 
 /**
- * !!mock!!
+ *
  * @author xu
  *
  */
@@ -61,7 +61,6 @@ public class StorageBusinessController implements StorageBusinessService {
 	public StorageBusinessController(LoginMessage user) throws Exception {
 		storageData = (StorageDataService) DataServiceFactory
 				.getDataServiceByType(DataType.StorageDataService);
-		//storageData = new MockStorageDataService();
 		this.center = new InstitutionInfo(user);
 		storageInfo = new StorageInfo(storageData, center.getCenterID());
 	}

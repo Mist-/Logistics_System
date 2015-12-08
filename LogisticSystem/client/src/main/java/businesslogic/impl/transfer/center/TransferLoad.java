@@ -22,12 +22,16 @@ import data.vo.StoragePositionAndOrderID;
 import data.vo.TransferListVO;
 import data.vo.TransferLoadVO;
 
+/**
+ * 中转装运 实现类
+ * @author xu
+ *
+ */
 public class TransferLoad implements TransferLoadService {
 	CityInfo city;
 	InstitutionInfo center;
 	StorageArea transferType;
-
-	StorageInfo storageInfo;
+	StorageInfoService storageInfo;
 	TransferListPO transferList;// 确定
 	ArrayList<OrderPO> orders;
 	String targetInstitutionName;
@@ -63,13 +67,11 @@ public class TransferLoad implements TransferLoadService {
 		}
 	}
 
-	public TransferLoad(InstitutionInfo user) throws RemoteException {
+	public TransferLoad(InstitutionInfo user,CityInfo city) throws RemoteException {
 		this.center = user;
-		CompanyDataService companyData = (CompanyDataService) DataServiceFactory
-				.getDataServiceByType(DataType.CompanyDataService);
 		StorageDataService storageData = (StorageDataService) DataServiceFactory
 				.getDataServiceByType(DataType.StorageDataService);
-		this.city = new CityInfo(companyData, user.getInstitutionID());
+		this.city = city;
 		storageInfo = new StorageInfo(storageData, user.getCenterID());
 		orders = new ArrayList<OrderPO>();
 	}

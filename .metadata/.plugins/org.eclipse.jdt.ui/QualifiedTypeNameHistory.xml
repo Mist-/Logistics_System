@@ -20,9 +20,6 @@
 <fullyQualifiedTypeName name="data.vo.TransferLoadVO"/>
 <fullyQualifiedTypeName name="data.po.TransferListPO"/>
 <fullyQualifiedTypeName name="data.vo.TransferListVO"/>
-<fullyQualifiedTypeName name="data.service.TransferDataService"/>
-<fullyQualifiedTypeName name="data.factory.DataServiceFactory"/>
-<fullyQualifiedTypeName name="data.enums.DataType"/>
 <fullyQualifiedTypeName name="data.vo.EntruckListVO"/>
 <fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
 <fullyQualifiedTypeName name="java.lang.Integer"/>
@@ -42,7 +39,6 @@
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.text.ParseException"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
-<fullyQualifiedTypeName name="businesslogic.impl.storage.StorageInfo"/>
 <fullyQualifiedTypeName name="data.po.StorageInfoPO"/>
 <fullyQualifiedTypeName name="data.vo.StorageInfoVO"/>
 <fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
@@ -52,4 +48,13 @@
 <fullyQualifiedTypeName name="data.message.ResultMessage"/>
 <fullyQualifiedTypeName name="data.vo.DriverInfoVO"/>
 <fullyQualifiedTypeName name="data.vo.TruckInfoVO"/>
+<fullyQualifiedTypeName name="businesslogic.impl.transfer.center.StorageInfoService"/>
+<fullyQualifiedTypeName name="businesslogic.impl.storage.StorageInfo"/>
+<fullyQualifiedTypeName name="data.service.CompanyDataService"/>
+<fullyQualifiedTypeName name="businesslogic.impl.user.CityInfo"/>
+<fullyQualifiedTypeName name="data.factory.DataServiceFactory"/>
+<fullyQualifiedTypeName name="data.enums.DataType"/>
+<fullyQualifiedTypeName name="data.service.StorageDataService"/>
+<fullyQualifiedTypeName name="data.service.TransferDataService"/>
+<fullyQualifiedTypeName name="businesslogic.impl.storage.ArrivalListService"/>
 </qualifiedTypeNameHistroy>
