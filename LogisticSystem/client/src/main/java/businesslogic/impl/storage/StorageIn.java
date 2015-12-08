@@ -2,9 +2,6 @@ package businesslogic.impl.storage;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import mock.MockStorageDataService;
-import mock.MockTransferDataService;
-import businesslogic.impl.order.OrderBLController;
 import businesslogic.impl.transfer.center.OrderList;
 import businesslogic.impl.transfer.hall.ArrivalList;
 import businesslogic.impl.user.InstitutionInfo;
@@ -23,14 +20,15 @@ import data.vo.ArrivalVO;
 import data.vo.BriefArrivalAndStorageInVO;
 import data.vo.StorageInVO;
 
+/**
+ * 入库服务 实现类
+ * @author xu
+ *
+ */
 public class StorageIn implements StorageInService{
-
-	// 需接口
-	TransferDataService transferData;
-	StorageDataService storageData;
 	InstitutionInfo user;
 	StorageInfo storageInfo;
-	ArrivalList arrivalList;
+	ArrivalListService arrivalList;
 	StorageList storageInList;
 	OrderList orderList;
 	/**
@@ -161,12 +159,9 @@ public class StorageIn implements StorageInService{
 	}
 
 	public StorageIn(InstitutionInfo user,StorageInfo storageInfo,StorageDataService storageData) throws RemoteException {
-		transferData = (TransferDataService) DataServiceFactory
+		TransferDataService transferData = (TransferDataService) DataServiceFactory
 				.getDataServiceByType(DataType.TransferDataService);
-		//transferData = new MockTransferDataService();
-		this.storageData = storageData;
 		this.user = user;
-		this.storageInfo = storageInfo;
 		orderList = new OrderList();
 		arrivalList = new ArrivalList(transferData);
 		storageInList = new StorageList(storageData, user.getCenterID(), POType.STORAGEINLIST);

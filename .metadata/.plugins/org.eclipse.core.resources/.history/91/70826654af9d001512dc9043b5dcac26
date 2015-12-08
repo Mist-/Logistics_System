@@ -1,0 +1,14 @@
+package businesslogic.impl.storage;
+
+import data.po.ArrivalPO;
+import data.vo.ArrivalListVO;
+
+/**
+ * œ˚≥˝—≠ª∑“¿¿µ£¨“¿¿µµπ÷√
+ * @author xu
+ *
+ */
+public interface ArrivalListService {
+	public ArrivalListVO getCheckedArrivals(long institutionID);
+	public ArrivalPO chooseArrival(long ID);
+}

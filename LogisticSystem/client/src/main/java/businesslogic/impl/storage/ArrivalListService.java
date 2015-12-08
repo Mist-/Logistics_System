@@ -1,0 +1,19 @@
+package businesslogic.impl.storage;
+
+import java.rmi.RemoteException;
+
+import data.po.ArrivalPO;
+import data.vo.ArrivalListVO;
+import data.vo.ArrivalVO;
+
+/**
+ * œ˚≥˝—≠ª∑“¿¿µ£¨“¿¿µµπ÷√
+ * @author xu
+ *
+ */
+public interface ArrivalListService {
+	public ArrivalListVO getCheckedArrivals(long institutionID) throws RemoteException;
+	public ArrivalPO chooseArrival(long ID);
+	public long[] getOrderID(ArrivalVO vo);
+	public void modifyArriveListState();
+}

@@ -1,0 +1,10 @@
+package businesslogic.impl.storage;
+
+/**
+ * Ïû³ıÑ­»·ÒÀÀµ
+ * @author xu
+ *
+ */
+public interface ArrivalListService {
+
+}
