@@ -51,7 +51,7 @@ public class ModifyAccount extends JDialog {
 	private void btYesMouseReleased(MouseEvent e) {
         String theName  = tfName.getText();
         
-        if (tfMoney.getText() == null || !tfMoney.getText().matches("[0-9]*[.]?[0-9]*")) {
+        if (tfMoney.getText().equals("") || !tfMoney.getText().matches("[0-9]*[.]?[0-9]*")) {
 			JOptionPane.showMessageDialog(this, "您输入的金额数据格式错误");
 			tfMoney.requestFocus();
 			return;

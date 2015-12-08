@@ -173,6 +173,10 @@ public class FINANCE extends JFrame {
     
     //ZHGL 查找账户
     private void btSearchMouseReleased(MouseEvent e) {
+    	if(textName.getText().equals("")){
+    		JOptionPane.showMessageDialog(this, "您输入的名称为空，请重新输入");
+    	}
+    	
         String name = textName.getText();
        
         ArrayList<AccountVO> accounts = financialBL.findAccount(name);

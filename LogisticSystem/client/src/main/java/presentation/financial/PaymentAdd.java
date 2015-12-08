@@ -43,6 +43,7 @@ public class PaymentAdd extends JDialog {
 	list = new String[] {"装车单","中转单"};
 	lbInstitution.setVisible(false);
 	tfInstitution.setVisible(false);
+	cbOccupatiom.setVisible(false);
 	
 	cbInfo.addItemListener(new ItemListener() {
 		@Override
@@ -70,7 +71,6 @@ public class PaymentAdd extends JDialog {
 			}
 			else if(cbInfo.getSelectedIndex()==0||cbInfo.getSelectedIndex()==3){
 				cbOccupatiom.setVisible(false);
-				
 				lbMoney.setVisible(true);
 				tfMoney.setVisible(true);
 				lbInstitution.setVisible(false);
@@ -83,7 +83,7 @@ public class PaymentAdd extends JDialog {
 	//新建付款单确定的监听
 	public void button1MouseReleased(MouseEvent e) {
 		
-		if(tfPeople.getText() == null || tfAccount.getText() == null || tfExinfo.getText() == null){
+		if(tfPeople.getText().equals("") || tfAccount.getText().equals("") || tfExinfo.getText().equals("")){
 			JOptionPane.showMessageDialog(this, "您的数据输入不全，请继续输入");
 			return;
 		}
@@ -100,7 +100,7 @@ public class PaymentAdd extends JDialog {
 		
 		//租金或者奖励
 		if(cbInfo.getSelectedIndex()==0||cbInfo.getSelectedIndex()==3){
-			if (tfMoney.getText() == null || !tfMoney.getText().matches("[0-9]*[.]?[0-9]*")) {
+			if (tfMoney.getText().equals("") || !tfMoney.getText().matches("[0-9]*[.]?[0-9]*")) {
 				JOptionPane.showMessageDialog(this, "您输入的金额数据格式错误");
 				tfMoney.requestFocus();
 				return;

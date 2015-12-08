@@ -107,21 +107,18 @@ public class FinancialDataSerializableImpl extends UnicastRemoteObject implement
 
 	public ResultMessage modifyAccount(AccountVO accountVO) throws RemoteException {
 		ArrayList<DataPO> list = getPOList(POType.ACCOUNT);
-        for (DataPO dat: list) {
-            if (dat.getSerialNum() == accountVO.getAccountNum()) {
+        for (int i = 0; i < list.size(); ++i) {
+            if (list.get(i).getSerialNum() == accountVO.getAccountNum()) {
             	
-            	AccountPO po = (AccountPO)dat;
+            	AccountPO po = (AccountPO)list.get(i);
             	po.setMoney(accountVO.getMoney());
             	po.setName(accountVO.getName());
-            	 list.remove(dat);
+            	 list.remove(i);
                  list.add(po);
                  return ResultMessage.SUCCESS;
             }
-            }
-       
+        }
 		return ResultMessage.FAILED;
-        
-        
 	}
 
 

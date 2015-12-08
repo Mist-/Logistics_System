@@ -83,8 +83,10 @@ public class AccountManage {
 	public ResultMessage changeAccount(AccountVO accountVO) {
 		
 		try {
-			return financialDataService.modifyAccount(accountVO);
-			
+			AccountPO account = (AccountPO) financialDataService.search(POType.ACCOUNT, accountVO.getAccountNum());
+			account.setName(accountVO.getName());
+			account.setMoney(accountVO.getMoney());
+			return financialDataService.modify(account);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			
