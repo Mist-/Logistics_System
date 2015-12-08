@@ -94,25 +94,30 @@ public class DialogAddCity extends JDialog{
 	private void buttonEnsure(MouseEvent e){
 		fromCity = (String) boxFromCity.getSelectedItem();
 		toCity = (String) boxToCity.getSelectedItem();
-		distance = Double.valueOf(distances.getText());
-		trunkPrice = Double.valueOf(trunk.getText());
-		trainPrice = Double.valueOf(train.getText());
-		planePrice = Double.valueOf(plane.getText());
-		//由界面的数据新建一个CityTransVO
-		CityTransVO cityTransVO = new CityTransVO(fromCity,toCity,distance,trunkPrice,trainPrice,planePrice);
-		resultMessage = controller.addCityTransInfo(cityTransVO);
-		//根据resultMessage类型对界面进行输出
-		if(resultMessage == ResultMessage.SUCCESS){
+		if(controller.isNum(distances.getText())&&controller.isNum(trunk.getText())&&controller.isNum(train.getText())&&controller.isNum(plane.getText())){
+		    distance = Double.valueOf(distances.getText());
+		    trunkPrice = Double.valueOf(trunk.getText());
+		    trainPrice = Double.valueOf(train.getText());
+		    planePrice = Double.valueOf(plane.getText());
+		    //由界面的数据新建一个CityTransVO
+		    CityTransVO cityTransVO = new CityTransVO(fromCity,toCity,distance,trunkPrice,trainPrice,planePrice);
+		    resultMessage = controller.addCityTransInfo(cityTransVO);
+		    //根据resultMessage类型对界面进行输出
+		    if(resultMessage == ResultMessage.SUCCESS){
 			company.labelCitySuccess.setText("添加成功!");
 			jdialog.dispose();
-		}
-		else if(resultMessage == ResultMessage.EXIST){
+		    }
+		    else if(resultMessage == ResultMessage.EXIST){
 			company.labelCitySuccess.setText("");
 			JOptionPane.showMessageDialog(null,"城市信息已存在,请勿重复添加","",JOptionPane.ERROR_MESSAGE);
-		}
-		else if(resultMessage == ResultMessage.NOTCONNECTED){
+		    }
+		    else if(resultMessage == ResultMessage.NOTCONNECTED){
 			company.labelCitySuccess.setText("");
 			JOptionPane.showMessageDialog(null,"网络错误...","",JOptionPane.ERROR_MESSAGE);
+		    }
+	    }
+		else{
+			JOptionPane.showMessageDialog(null,"请输入正确数值!","",JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

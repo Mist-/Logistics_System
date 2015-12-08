@@ -118,16 +118,21 @@ public class companyManage extends JFrame {
         for(int i=0;i<salaryModify.size();i++){
             //获取机构和工资的信息
             Iterator<String> info = salaryModify.get(i).iterator();
-            ResultMessage resultmessage = controller.modifySalary(info.next(),info.next());
-            if(resultmessage == ResultMessage.SUCCESS){
-                labelSalarySuccess.setText("修改成功!");
-            }
-            else if(resultmessage == ResultMessage.NOTCONNECTED){
-                labelSalarySuccess.setText("");
-                JOptionPane.showMessageDialog(null,"网络错误...","",JComponent.ERROR);
+            String institution = info.next();
+            String salary = info.next();
+            if(controller.isNum(salary)) {
+                ResultMessage resultmessage = controller.modifySalary(institution, salary);
+                if (resultmessage == ResultMessage.SUCCESS) {
+                    labelSalarySuccess.setText("修改成功!");
+                } else if (resultmessage == ResultMessage.NOTCONNECTED) {
+                    labelSalarySuccess.setText("");
+                    JOptionPane.showMessageDialog(null, "网络错误...", "", JComponent.ERROR);
+                } else {
+                    labelSalarySuccess.setText("修改失败!");
+                }
             }
             else{
-                labelSalarySuccess.setText("修改失败!");
+                JOptionPane.showMessageDialog(null, "请输入正确工资数值!", "", JComponent.ERROR);
             }
         }
     }
@@ -163,25 +168,31 @@ public class companyManage extends JFrame {
         tableCity.getCellEditor(0,column).stopCellEditing();
         for(int i=0;i<cityModify.size();i++){
             Iterator<String> info = cityModify.get(i).iterator();
-            double distance = Double.valueOf(info.next());
-            double trunkPrice = Double.valueOf(info.next());
-            double trainPrice = Double.valueOf(info.next());
-            double planePrice = Double.valueOf(info.next());
-            String fromCity = (String) comboBoxLeaveCity.getSelectedItem();
-            String toCity = (String) comboBoxArrivalCity.getSelectedItem();
-            CityTransVO cityTransVO = new CityTransVO(fromCity,toCity,distance,trunkPrice,trainPrice,planePrice);
-            ResultMessage resultmessage = controller.modifyCityInfo(cityTransVO);
-            if(resultmessage == ResultMessage.SUCCESS){
-                labelCitySuccess.setText("修改成功!");
-            }
-            else if(resultmessage == ResultMessage.NOTEXIST){
-                JOptionPane.showMessageDialog(null,"城市信息不存在","",JComponent.ERROR);
-            }
-            else if(controller.modifySalary(info.next(),info.next()) == ResultMessage.NOTCONNECTED){
-                JOptionPane.showMessageDialog(null,"网络错误...","",JComponent.ERROR);
+            String strDistance = info.next();
+            String strTrunkPrice = info.next();
+            String strTrainPrice = info.next();
+            String strPlanePrice = info.next();
+            if(controller.isNum(strDistance)&&controller.isNum(strTrunkPrice)&&controller.isNum(strTrainPrice)&&controller.isNum(strPlanePrice)) {
+                double distance = Double.valueOf(strDistance);
+                double trunkPrice = Double.valueOf(strTrunkPrice);
+                double trainPrice = Double.valueOf(strTrainPrice);
+                double planePrice = Double.valueOf(strPlanePrice);
+                String fromCity = (String) comboBoxLeaveCity.getSelectedItem();
+                String toCity = (String) comboBoxArrivalCity.getSelectedItem();
+                CityTransVO cityTransVO = new CityTransVO(fromCity, toCity, distance, trunkPrice, trainPrice, planePrice);
+                ResultMessage resultmessage = controller.modifyCityInfo(cityTransVO);
+                if (resultmessage == ResultMessage.SUCCESS) {
+                    labelCitySuccess.setText("修改成功!");
+                } else if (resultmessage == ResultMessage.NOTEXIST) {
+                    JOptionPane.showMessageDialog(null, "城市信息不存在", "", JOptionPane.ERROR_MESSAGE);
+                } else if (controller.modifySalary(info.next(), info.next()) == ResultMessage.NOTCONNECTED) {
+                    JOptionPane.showMessageDialog(null, "网络错误...", "",JOptionPane.ERROR_MESSAGE);
+                } else {
+                    labelSalarySuccess.setText("修改失败!");
+                }
             }
             else{
-                labelSalarySuccess.setText("修改失败!");
+                JOptionPane.showMessageDialog(null, "网络错误...", "", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -980,8 +991,8 @@ public class companyManage extends JFrame {
         //数据:第一个Vector用来存放一个VO,第二个Vector存放VO集合
         Vector<String> orderVO = null;
         Vector<Vector<String>> orderData = new Vector<Vector<String>>();
-     //   ArrayList<OrderPO> orderPOs = controller.getUnapprovedOrderList();
-        ArrayList<OrderPO> orderPOs = new ArrayList<>();
+        ArrayList<OrderPO> orderPOs = controller.getUnapprovedOrderList();
+     //   ArrayList<OrderPO> orderPOs = new ArrayList<>();
         for(int i=0;i<orderPOs.size();i++){
             orderVO = new Vector<String>();
             OrderPO orderPO = orderPOs.get(i);

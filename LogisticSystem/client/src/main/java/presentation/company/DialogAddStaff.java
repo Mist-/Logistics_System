@@ -44,7 +44,6 @@ public class DialogAddStaff extends JDialog{
 		labelSerialNum = new JLabel("员工号码:");
 		labelGender = new JLabel("性别:");
 		labelPhoneNum = new JLabel("联系电话:");
-		labelDate = new JLabel("出生日期:");
 		man = new JRadioButton("男",true);
 		woman = new JRadioButton("女");
 		bg = new ButtonGroup();
@@ -106,16 +105,21 @@ public class DialogAddStaff extends JDialog{
 		else {
 			gender = true;
 		}
-        resultMessage = controller.addStaff(instituion,stringSerialNum,gender,stringName,stringPhoneNum,stringIdCardNum,userRole);
-		if(resultMessage == ResultMessage.SUCCESS){
-			company.labelStaffSuccess.setText("添加成功!");
-			jdialog.dispose();
+		if(controller.isNum(stringSerialNum)&&controller.isNum(stringPhoneNum)) {
+			resultMessage = controller.addStaff(instituion, stringSerialNum, gender, stringName, stringPhoneNum, stringIdCardNum, userRole);
+			if (resultMessage == ResultMessage.SUCCESS) {
+				company.labelStaffSuccess.setText("添加成功!");
+				jdialog.dispose();
+			} else if (resultMessage == ResultMessage.EXIST) {
+				company.labelStaffSuccess.setText("");
+				JOptionPane.showMessageDialog(null, "员工已存在!", "", JOptionPane.ERROR_MESSAGE);
+			} else if (resultMessage == ResultMessage.FAILED) {
+				company.labelStaffSuccess.setText("");
+				JOptionPane.showMessageDialog(null, "网络错误...", "", JOptionPane.ERROR_MESSAGE);
+			}
 		}
-		else if(resultMessage == ResultMessage.EXIST){
-			company.labelStaffSuccess.setText("已经存在!");
-		}
-		else if(resultMessage == ResultMessage.FAILED){
-			company.labelStaffSuccess.setText("网络错误!");
+		else{
+			JOptionPane.showMessageDialog(null, "请输入正确信息!", "", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }
