@@ -105,11 +105,9 @@ public class EntruckReceive implements EntruckReceiveService{
 
 	@Override
 	public ResultMessage saveSendList(SendListVO sendList) {
-		// TODO Auto-generated method stub
 		try {
 			this.sendList.saveSendList(sendList);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return ResultMessage.FAILED;
 		}
@@ -122,7 +120,6 @@ public class EntruckReceive implements EntruckReceiveService{
 		try {
 			sendList = new SendList(transferData, user.getInstitutionID());
 		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
 			System.out.println("未能新建派件单");
 			e1.printStackTrace();
 		}
@@ -131,8 +128,6 @@ public class EntruckReceive implements EntruckReceiveService{
 		try {
 			return sendList.createSendList(arrival);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			
 			e.printStackTrace();
 			return null;
 		}

@@ -27,9 +27,6 @@ public class OrderSort implements LoadAndSortService {
 	InstitutionInfo user; // 构造时传入
 	CityInfo city;// getDestination时new,城市相关服务
 	EntruckList entruckList;//装车单相关服务
-	ArrayList<OrderPO> order;//符合目的地要求的订单
-	DriverManagement drivers;//司机相关服务
-	TruckManagement trucks;//车辆相关服务
 	String desName;//目的地名
 	long desID;//目的地ID
 
@@ -84,6 +81,7 @@ public class OrderSort implements LoadAndSortService {
 	public BriefOrderVO chooseDestination(String des) {
 		desName = des;
 		desID = city.getHallID(des);
+		ArrayList<OrderPO> order;//符合目的地要求的订单
 		if (desID == -1) {
 			desID = user.getCenterID();
 		}
@@ -124,6 +122,8 @@ public class OrderSort implements LoadAndSortService {
 	@Override
 	//生成装车单
 	public EntruckListVO createEntruckList(String[][] orders) {
+		DriverManagement drivers= null;
+		TruckManagement trucks = null;
 		try {
 			drivers = new DriverManagement(user);
 			trucks = new TruckManagement(user);

@@ -51,10 +51,12 @@
 <fullyQualifiedTypeName name="businesslogic.impl.transfer.center.StorageInfoService"/>
 <fullyQualifiedTypeName name="businesslogic.impl.storage.StorageInfo"/>
 <fullyQualifiedTypeName name="data.service.CompanyDataService"/>
-<fullyQualifiedTypeName name="businesslogic.impl.user.CityInfo"/>
 <fullyQualifiedTypeName name="data.factory.DataServiceFactory"/>
 <fullyQualifiedTypeName name="data.enums.DataType"/>
 <fullyQualifiedTypeName name="data.service.StorageDataService"/>
 <fullyQualifiedTypeName name="data.service.TransferDataService"/>
 <fullyQualifiedTypeName name="businesslogic.impl.storage.ArrivalListService"/>
+<fullyQualifiedTypeName name="businesslogic.impl.user.CityInfo"/>
+<fullyQualifiedTypeName name="businesslogic.impl.transfer.hall.DriverManagement"/>
+<fullyQualifiedTypeName name="businesslogic.impl.transfer.hall.TruckManagement"/>
 </qualifiedTypeNameHistroy>

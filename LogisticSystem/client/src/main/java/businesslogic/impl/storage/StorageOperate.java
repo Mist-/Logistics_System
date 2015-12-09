@@ -24,7 +24,6 @@ import businesslogic.service.storage.StorageOperateService;
 
 public class StorageOperate implements StorageOperateService {
 	StorageDataService storageData;
-	DataService companyData;
 	InstitutionInfo center;
 	StorageInfoPO storageInfoPO;
 	StorageInfo storageInfo;

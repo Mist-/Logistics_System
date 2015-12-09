@@ -33,6 +33,7 @@ public class TransferLoad implements TransferLoadService {
 	StorageArea transferType;
 	StorageInfoService storageInfo;
 	TransferListPO transferList;// È·¶¨
+	
 	ArrayList<OrderPO> orders;
 	String targetInstitutionName;
 	long desID;
