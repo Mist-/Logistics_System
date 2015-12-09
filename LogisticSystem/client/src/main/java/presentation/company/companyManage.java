@@ -2410,6 +2410,9 @@ public class companyManage extends JFrame {
                         initFinancialTable();
                         break;
                     case 2:
+                        initSFinancialTable();
+                        break;
+                    case 3:
                         initTrunkTable();
                         break;
                 }
