@@ -5,6 +5,8 @@ import data.enums.ServiceType;
 import data.enums.StorageArea;
 import data.vo.OrderVO;
 
+import java.util.ArrayList;
+
 public class OrderPO extends DataPO {
 
     private static final long serialVersionUID = 10;
@@ -22,7 +24,7 @@ public class OrderPO extends DataPO {
     /**
      * 物流路径。最多包含四站
      */
-    long[] routine;
+    ArrayList<Long> routine;
     // 目标营业厅的编号
     long destID;
 
@@ -69,14 +71,14 @@ public class OrderPO extends DataPO {
 
     public OrderPO() {
         super(POType.ORDER);
-        routine = new long[4];
+        routine = new ArrayList<>();
     }
 
 
     public OrderPO(int stockNum) {
         super(POType.ORDER);
         stockType = new String[stockNum];
-        routine = new long[4];
+        routine = new ArrayList<>();
     }
 
     public OrderPO(OrderVO order) {
@@ -106,22 +108,22 @@ public class OrderPO extends DataPO {
     }
 
     public void setRoutine(long s1, long s2, long s3, long s4) {
-        routine[0] = s1;
-        routine[1] = s2;
-        routine[2] = s3;
-        routine[3] = s4;
+        routine.add(s1);
+        routine.add(s2);
+        routine.add(s3);
+        routine.add(s4);
     }
 
     public void setRoutine(long s1, long s2) {
-        routine[0] = s1;
-        routine[1] = s2;
+        routine.add(s1);
+        routine.add(s2);
     }
 
-    public long[] getRoutine() {
+    public ArrayList<Long> getRoutine() {
         return routine;
     }
 
-    public void setRoutine(long[] routine) {
+    public void setRoutine(ArrayList<Long> routine) {
         this.routine = routine;
     }
 
@@ -132,7 +134,9 @@ public class OrderPO extends DataPO {
      * @return
      */
     public long getNextDestination() {
-        return routine[0];
+        long sn = routine.get(0);
+        routine.remove(0);
+        return sn;
     }
 
     public long getDestID() {
@@ -143,13 +147,6 @@ public class OrderPO extends DataPO {
         this.destID = destID;
     }
 
-    public void removeRoutine() {
-        for (int i = 0; i < 3; ++i) {
-            routine[i] = routine[i + 1];
-        }
-
-        routine[3] = 0;
-    }
 
     public long getSerialNum() {
         return serialNum;

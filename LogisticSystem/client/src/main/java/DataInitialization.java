@@ -120,7 +120,7 @@ public class DataInitialization {
         institution[22] = new InstitutionPO(33333);
         institution[22].setName("货车驾驶员");
         institution[23] = new InstitutionPO(44444);
-        institution[24].setName("高级财务人员");
+        institution[23].setName("高级财务人员");
 
         CompanyDataService companyDataService = (CompanyDataService) DataServiceFactory.getDataServiceByType(DataType.CompanyDataService);
 

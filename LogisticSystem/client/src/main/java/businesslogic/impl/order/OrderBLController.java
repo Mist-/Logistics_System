@@ -3,6 +3,7 @@ package businesslogic.impl.order;
 import java.util.ArrayList;
 
 import businesslogic.service.order.OrderBLService;
+import com.sun.istack.internal.NotNull;
 import data.message.ResultMessage;
 import data.po.OrderPO;
 import data.vo.OrderVO;
@@ -65,6 +66,22 @@ public class OrderBLController implements OrderBLService {
         }
         return result;
 	}
+
+    public ResultMessage deleteOrder(long sn) {
+        return new Order().deleteOrder(sn);
+    }
+
+    public ResultMessage modify(long sn, OrderVO orderInfo) {
+        return new Order().modify(sn, orderInfo);
+    }
+
+    public ArrayList<String> getCityList() {
+        return new Order().getCityList();
+    }
+
+    public ArrayList<Long> getRoutine(@NotNull String depart, @NotNull String dest) {
+        return new Order().getRoutine(depart, dest);
+    }
 
     @Override
     public ArrayList<OrderVO> getDisplayData() {

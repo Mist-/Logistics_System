@@ -24,6 +24,7 @@ public class OrderDataSerializableImpl extends UnicastRemoteObject implements Or
         super();
         poLists.put(POType.ORDER, new ArrayList<DataPO>());
         poLists.put(POType.LOGISTICINFO, new ArrayList<DataPO>());
+        poLists.put(POType.SIGN, new ArrayList<DataPO>());
         init();
     }
 

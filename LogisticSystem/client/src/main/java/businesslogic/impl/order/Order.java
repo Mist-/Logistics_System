@@ -1,5 +1,6 @@
 package businesslogic.impl.order;
 
+import businesslogic.impl.user.CityInfo;
 import com.sun.istack.internal.NotNull;
 import data.enums.*;
 import data.factory.DataServiceFactory;
@@ -7,6 +8,7 @@ import data.message.ResultMessage;
 import data.po.*;
 import data.service.*;
 import data.vo.OrderVO;
+import data.vo.SignVO;
 import utils.Connection;
 import utils.Timestamper;
 
@@ -80,7 +82,7 @@ public class Order {
         // 创建物流信息
         LogisticInfoPO logisticInfoPO =  new LogisticInfoPO(newOrder.getSerialNum());
         logisticInfoPO.addInfo(Timestamper.getTimeBySecond(), "快递员已揽件。");
-
+        newOrder.setRoutine(getRoutine(order.saddress, order.raddress));
         // 提交订单
         try {
             orderDataService.add(newOrder);
@@ -128,6 +130,7 @@ public class Order {
         return result;
     }
 
+
     /**
      * 根据起止地址，计算出一条物流路线
      *
@@ -136,6 +139,7 @@ public class Order {
      * @return 包含路线的ArrayList。最多包含四站。如果网络连接失败，则返回null
      */
     public ArrayList<Long> getRoutine(@NotNull String depart, @NotNull String dest) {
+        ArrayList<Long> routine = new ArrayList<>();
         if (!Connection.connected) {
             return null;
         }
@@ -145,12 +149,48 @@ public class Order {
         // 获取当前营业厅编号
         CompanyDataService ds = (CompanyDataService) DataServiceFactory.getDataServiceByType(DataType.CompanyDataService);
         CityInfoPO fromCity = null;
+        CityInfoPO toCity = null;
         try {
-             fromCity = (CityInfoPO) ds.searchCity(from[0]);
+            fromCity = (CityInfoPO) ds.searchCity(from[0]);
+            toCity = (CityInfoPO) ds.searchCity(to[0]);
         } catch (RemoteException e) {
             e.printStackTrace();
             return null;
         }
+        InstitutionPO fromBO = null, toBO = null;
+        for (long bosn: fromCity.getBusinessOfficeList()) {
+            InstitutionPO tmp = null;
+            try {
+                tmp = (InstitutionPO) ds.search(POType.INSTITUTION, bosn);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+            if (fromBO.getName().equals(from[1])) {
+                fromBO = tmp;
+            }
+        }
+        for (long bosn: toCity.getBusinessOfficeList()) {
+            InstitutionPO tmp = null;
+            try {
+                tmp = (InstitutionPO) ds.search(POType.INSTITUTION, bosn);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+            if (toBO.getName().equals(to[1])) {
+                toBO = tmp;
+            }
+        }
+        if (fromCity == toCity) {
+            routine.add(fromBO.getSerialNum());
+            routine.add(toBO.getSerialNum());
+        }
+        else {
+            routine.add(fromBO.getSerialNum());
+            routine.add(fromCity.getTransferCenterID());
+            routine.add(toCity.getTransferCenterID());
+            routine.add(toBO.getSerialNum());
+        }
+
         return null;
     }
 
@@ -233,59 +273,6 @@ public class Order {
     }
 
     /**
-     * 输入气运编号，完成所包含的订单的收获操作
-     *
-     * @param sn 气运编号（中转单编号）
-     * @return ResultMessage.SUCCESS表示收货成功，NOTEXIST表示该中转单不存在，FAILED表示收货失败
-     */
-    public ResultMessage receive(long sn) {
-
-        if (!Connection.connected) {
-            System.err.println("尚未连接到服务器，无法完成收货操作" + Calendar.getInstance().getTime());
-            return ResultMessage.FAILED;
-        }
-
-        TransferDataService transferDataService = (TransferDataService) DataServiceFactory.getDataServiceByType(DataType.TransferDataService);
-        if (transferDataService == null) {
-            System.err.println("");
-            return ResultMessage.FAILED;
-        }
-
-
-
-        // 从持久化数据文件中获得中转单信息
-        TransferListPO transferListPO = null;
-        try {
-            transferListPO = (TransferListPO) transferDataService.search(POType.TRANSFERLIST, sn);
-        } catch (RemoteException e) {
-            System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
-            return ResultMessage.FAILED;
-        }
-        if (transferListPO == null) return ResultMessage.NOTEXIST;
-
-
-        ArrayList<Long> orderList = transferListPO.getOrderArray();
-
-        // 根据中转单信息生成到达单信息
-        ArrivalPO arrivalPO = new ArrivalPO();
-        for (long order : orderList) {
-            arrivalPO.addOrder(order);
-            arrivalPO.addStckStatus(StockStatus.ROUND);
-        }
-        arrivalPO.setDate(Timestamper.getTimeByDate());
-        arrivalPO.setTransferList(sn);
-        arrivalPO.setFrom(transferListPO.getTransferCenter());
-
-        try {
-            transferDataService.add(arrivalPO);
-        } catch (RemoteException e) {
-            System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
-            return ResultMessage.FAILED;
-        }
-        return ResultMessage.SUCCESS;
-    }
-
-    /**
      * 签收操作
      *
      * @param sn    需要签收的订单号
@@ -304,19 +291,39 @@ public class Order {
             e.printStackTrace();
         }
         if (order == null) return ResultMessage.NOTEXIST;
-        logisticInfo.addInfo(Timestamper.getTimeBySecond(), "快件已被 " + name + " 签收");
+        logisticInfo.addInfo(Timestamper.getTimeBySecond(), "快件已被 " + name + " 签收, 电话：" + phone);
 
         // 生成签收信息
         SignPO signPO = new SignPO(sn);
         signPO.setSdate(name);
         signPO.setSphone(phone);
         try {
-            orderDataService.modify(logisticInfo);
-            orderDataService.add(signPO);
+            ResultMessage result = orderDataService.modify(logisticInfo);
+            if (result == ResultMessage.FAILED) {
+                JOptionPane.showMessageDialog(null, "更新物流信息时发生错误。签收失败");
+                return ResultMessage.FAILED;
+            }
+             result = orderDataService.add(signPO);
+            if (result == ResultMessage.FAILED) {
+                JOptionPane.showMessageDialog(null, "添加签收信息时发生错误。签收失败");
+            }
         } catch (RemoteException e) {
             e.printStackTrace();
         }
         return ResultMessage.SUCCESS;
+    }
+
+    public boolean isSigned(long sn) {
+        try {
+            return !(orderDataService.search(POType.SIGN, sn) == null);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return true;
+        }
+    }
+
+    public ResultMessage sign(SignVO signVO) {
+        return sign(signVO.sn, signVO.sname, signVO.sphone);
     }
 
     public ArrayList<OrderPO> search(long[] order) {

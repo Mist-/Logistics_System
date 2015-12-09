@@ -69,8 +69,21 @@ public class FileIOHelper {
         FileInputStream fin = null;
         ObjectInputStream oin = null;
         ArrayList<DataPO> result  = null;
+        File file = new File(filePath);
         try {
-            fin = new FileInputStream(new File(filePath));
+            if (!file.exists()) {
+                String dirPath = null;
+                for (int i = filePath.length() - 1; i >= 0; --i) {
+                    if (filePath.charAt(i) == '/') {
+                        dirPath = filePath.substring(0, i + 1);
+                        break;
+                    }
+                }
+                File dir = new File(dirPath);
+                dir.mkdir();
+                file.createNewFile();
+            }
+            fin = new FileInputStream(file);
             oin = new ObjectInputStream(fin);
             result = (ArrayList<DataPO>) oin.readObject();
         } catch (FileNotFoundException e) {

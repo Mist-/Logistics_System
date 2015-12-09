@@ -1,6 +1,8 @@
 package data.po;
 
 import data.enums.POType;
+import data.vo.SignVO;
+import utils.Timestamper;
 
 /**
  * Created by mist on 2015/11/16 0016.
@@ -16,7 +18,17 @@ public class SignPO extends DataPO {
 
     public SignPO(long sn) {
         super(POType.SIGN);
-        this.order = sn;
+        this.serialNum = sn;
+        sdate = Timestamper.getTimeByDate(genDate);
+    }
+
+
+    public SignPO(SignVO signVO) {
+        super(POType.SIGN);
+        this.order = signVO.sn;
+        this.sname = signVO.sname;
+        this.sphone = signVO.sphone;
+        sdate = Timestamper.getTimeByDate(genDate);
     }
 
     public long getOrder() {

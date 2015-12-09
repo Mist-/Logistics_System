@@ -50,6 +50,7 @@ public class DataServiceFactory {
 				return getDataServiceByType(DataType.FinancialDataService);
 			case ORDER:
 			case LOGISTICINFO:
+			case SIGN:
 				return getDataServiceByType(DataType.OrderDataService);
 			case STORAGEINFO:
 			case STORAGEINLIST:

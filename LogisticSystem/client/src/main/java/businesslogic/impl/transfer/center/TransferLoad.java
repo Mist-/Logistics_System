@@ -104,8 +104,7 @@ public class TransferLoad implements TransferLoadService {
 		// 扫描订单（取出符合目的地的）
 		int index = 0;
 		for (OrderPO o : order) {
-			long[] routine = o.getRoutine();
-			if (routine[0] == desID) {
+			if (o.getNextDestination() == desID) {
 				orderVO.add(o.getSerialNum() + "-" + positionInfo.get(index)
 						+ "-" + o.getWeight());
 				index++;

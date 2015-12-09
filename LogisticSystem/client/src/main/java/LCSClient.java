@@ -42,6 +42,7 @@ public class LCSClient extends JFrame{
 
         LoginMessage loginMessage = new LoginMessage(ResultMessage.FAILED);
 
+        simplifiedOrderUI.setVisible(true);
         // œ‘ æµ«¬ºΩÁ√Ê
         LoginDlg loginDlg = new LoginDlg(simplifiedOrderUI, loginMessage);
         loginDlg.setVisible(true);

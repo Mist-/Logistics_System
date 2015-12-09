@@ -4,54 +4,60 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space :::p, par l {seq l {par l {seq {comp label2:::p::p, space :::p, comp textName:::p:139:p, space :::p, comp label3:::p::p}, seq l {space :p:73:p, comp btOK:::p::p}}, space :::p, par l {seq {comp btCancel:::p::p, space :0:84:x}, seq {comp textPhone::::136:x, space :::p}}}, seq l {par l {comp labelOrderNum:::p::p, comp labelRname::l:p::p}, space :p:109:p, comp labelRphone:::p::p, space ::106:x}}}}"
-			"$verticalGroup": "par l {seq {space :p:10:p, comp labelOrderNum:::p::p, space s:::p, par b {comp labelRname::b:p::p, comp labelRphone::b:p::p}, space s:::p, par b {comp textName::b:::x, comp label3::b:p:25:p, comp label2::b:p:25:p, comp textPhone::b:p::p}, space s:::p, par b {comp btOK::b:p::p, comp btCancel::b:p::p}, space :::p}}"
+			"$horizontalGroup": "par l {comp panel1::l:::x}"
+			"$verticalGroup": "par l {comp panel1::l:::x}"
 		} ) {
 			name: "this"
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "labelOrderNum"
-				"text": "订单号："
-				"font": &Font0 new java.awt.Font( "等线", 0, 14 )
-			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "textName"
-				"font": #Font0
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label2"
-				"text": "姓名："
-				"font": #Font0
-			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "textPhone"
-				"font": #Font0
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label3"
-				"text": "电话："
-				"font": #Font0
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "btOK"
-				"text": "确定"
-				"font": #Font0
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "button1MouseReleased", true ) )
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "btCancel"
-				"text": "取消"
-				"font": #Font0
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btCancelMouseReleased", true ) )
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "labelRname"
-				"text": "收件人姓名："
-				"font": #Font0
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "labelRphone"
-				"text": "收件人电话："
-				"font": #Font0
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :::p, par l {comp labelOrderNum:::p::p, seq l {space :73:73:p, comp btOK:::p::p, space :110:110:p, comp btCancel:::p::p}, seq l {par l {seq {comp label2:::p::p, space :6:6:p, comp textName:::p:139:p}, comp labelRname::l:p::p}, space :p:6:p, par l {comp labelRphone:::p::p, seq {comp label3:::p::p, space :6:6:p, comp textPhone:::p:136:p}}}}, space :::x}}"
+				"$verticalGroup": "par l {seq l {space :p:14:p, comp labelOrderNum:::p::p, space :18:18:p, par b {comp labelRphone::b:p::p, comp labelRname::b:p::p}, space :18:18:p, par l {comp label2:::p:25:p, comp textName:::p::p, comp label3:::p:25:p, comp textPhone:::p::p}, space :18:18:p, par l {comp btOK:::p::p, comp btCancel:::p::p}, space ::14:x}}"
+			} ) {
+				name: "panel1"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "labelOrderNum"
+					"text": "订单号："
+					"font": &Font0 new java.awt.Font( "等线", 0, 14 )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textName"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "姓名："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textPhone"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "电话："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btOK"
+					"text": "确定"
+					"font": #Font0
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "button1MouseReleased", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btCancel"
+					"text": "取消"
+					"font": #Font0
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btCancelMouseReleased", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "labelRname"
+					"text": "收件人姓名："
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "labelRphone"
+					"text": "收件人电话："
+					"font": #Font0
+				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )

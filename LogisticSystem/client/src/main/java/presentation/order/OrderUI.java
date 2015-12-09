@@ -4,10 +4,9 @@ import businesslogic.impl.order.Order;
 import businesslogic.impl.order.OrderBLController;
 import data.message.LoginMessage;
 import data.message.ResultMessage;
-import data.po.LogisticInfoPO;
 import data.po.OrderPO;
-import data.po.SignPO;
 import data.vo.OrderVO;
+import data.vo.SignVO;
 import utils.Timestamper;
 
 import javax.swing.*;
@@ -156,6 +155,7 @@ public class OrderUI extends JFrame {
     }
 
     private void btSignMouseReleased(MouseEvent e) {
+
         if (tbOrderInfo.getSelectedRowCount() == 0) {
             return;
         }
@@ -163,8 +163,20 @@ public class OrderUI extends JFrame {
         Vector<Object> row = (Vector<Object>) ((DefaultTableModel) tbOrderInfo.getModel()).getDataVector().get(rowSelected);
         long snSelected = (long)row.get(0);
         SignDlg signDlg = new SignDlg(this);
-        signDlg.signOrder(snSelected);
+        if (new Order().isSigned(snSelected)) {
+            signDlg.showSignInfo(snSelected);
+            return;
+        }
 
+        SignVO signVO = signDlg.getSignInfo(snSelected);
+
+        ResultMessage result = new Order().sign(signVO);
+        if (result == ResultMessage.FAILED) {
+            return;
+        }
+        if (result == ResultMessage.SUCCESS) {
+            JOptionPane.showMessageDialog(this, "签收信息保存成功");
+        }
     }
 
     private void initComponents() {
