@@ -29,6 +29,37 @@ import java.util.Vector;
  */
 public class companyManage extends JFrame {
 
+    DefaultTableModel centerModel = null;
+    DefaultTableModel salaryModel = null;
+    DefaultTableModel cityModel  = null;
+    DefaultTableModel deliverModel = null;
+    DefaultTableModel financialModel = null;
+    DefaultTableModel trunkModel = null;
+    DefaultTableModel businessModel = null;
+    DefaultTableModel storageModel = null;
+    DefaultTableModel orderModel = null;
+    DefaultTableModel sendModel = null;
+    DefaultTableModel paymentModel = null;
+    DefaultTableModel receiptModel = null;
+    DefaultTableModel entrukModel = null;
+    DefaultTableModel arrivalModel = null;
+    DefaultTableModel storageInModel = null;
+    DefaultTableModel storageOutModel = null;
+    DefaultTableModel transferModel = null;
+    DefaultTableModel sFinancialModel = null;
+    Vector<Vector<String>> salaryModify = new Vector<Vector<String>>();
+    Vector<Vector<String>> cityModify = new Vector<Vector<String>>();
+    Vector<Vector<String>> sendModify = new Vector<Vector<String>>();
+    Vector<Vector<String>> paymentModify = new Vector<Vector<String>>();
+    Vector<Vector<String>> receiptModify = new Vector<Vector<String>>();
+    Vector<Vector<String>> entrukModify = new Vector<Vector<String>>();
+    Vector<Vector<String>> arrivalModify = new Vector<Vector<String>>();
+    Vector<Vector<String>> storageInModify = new Vector<Vector<String>>();
+    Vector<Vector<String>> storageOutModify = new Vector<Vector<String>>();
+    Vector<Vector<String>> transferModify = new Vector<Vector<String>>();
+    Vector<Vector<String>> orderModify = new Vector<Vector<String>>();
+    CompanyBLController controller = new CompanyBLController();
+
     public companyManage(LoginMessage loginMessage) {
         initComponents(loginMessage);
         this.setVisible(true);
@@ -207,21 +238,21 @@ public class companyManage extends JFrame {
         //根据机构的不同来选择不同的方式生成机构名称
         String institution,userRole;
         int index= tabbedPaneStaff.getSelectedIndex();
-        if(index>=0&&index<=2){
+        if(index>=0&&index<=3){
             institution = tabbedPaneStaff.getTitleAt(index);
             userRole = tabbedPaneStaff.getTitleAt(index);
         }
-        else if(index==3){
+        else if(index==4){
             //中转中心名字(城市名)
             institution = (String) comboBoxCenter.getSelectedItem();
             userRole = tabbedPaneStaff.getTitleAt(index);
         }
-        else if(index==4){
+        else if(index==5){
             //营业厅名称(城市区名)
             institution = (String) comboBoxBusinessNum.getSelectedItem();
             userRole = tabbedPaneStaff.getTitleAt(index);
         }
-        else if(index==5){
+        else if(index==6){
             //仓库名(城市名)
             institution = (String) comboBoxStorage.getSelectedItem();
             userRole = tabbedPaneStaff.getTitleAt(index);
@@ -250,17 +281,21 @@ public class companyManage extends JFrame {
         }
         else if(index==2){
             institution = tabbedPaneStaff.getTitleAt(index);
-            id = (String) trunkModel.getValueAt(tableTrunk.getSelectedRow(),0);
+            id = (String) sFinancialModel.getValueAt(tableSFinancial.getSelectedRow(),0);
         }
         else if(index==3){
+            institution = tabbedPaneStaff.getTitleAt(index);
+            id = (String) trunkModel.getValueAt(tableTrunk.getSelectedRow(),0);
+        }
+        else if(index==4){
             institution = (String) comboBoxCenter.getSelectedItem();
             id = (String) centerModel.getValueAt(tableCenter.getSelectedRow(),0);
         }
-        else if(index==4){
+        else if(index==5){
             institution = (String) comboBoxBusinessNum.getSelectedItem();
             id = (String) businessModel.getValueAt(tableBusiness.getSelectedRow(),0);
         }
-        else if(index==5){
+        else if(index==6){
             institution = (String) comboBoxStorage.getSelectedItem();
             id = (String) storageModel.getValueAt(tableStorage.getSelectedRow(),0);
         }
@@ -282,15 +317,18 @@ public class companyManage extends JFrame {
                     initFinancialTable();
                     break;
                 case 2:
-                    initTrunkTable();
+                    initSFinancialTable();
                     break;
                 case 3:
-                    initCenterTable(institution);
+                    initTrunkTable();
                     break;
                 case 4:
-                   initBusinessTable(institution);
+                    initCenterTable(institution);
                     break;
                 case 5:
+                   initBusinessTable(institution);
+                    break;
+                case 6:
                     initStorageTable(institution);
                     break;
             }
@@ -322,17 +360,21 @@ public class companyManage extends JFrame {
         }
         else if(index==2){
             institution = tabbedPaneStaff.getTitleAt(index);
-            id = (String) trunkModel.getValueAt(tableTrunk.getSelectedRow(),0);
+            id = (String) sFinancialModel.getValueAt(tableSFinancial.getSelectedRow(),0);
         }
         else if(index==3){
+            institution = tabbedPaneStaff.getTitleAt(index);
+            id = (String) trunkModel.getValueAt(tableTrunk.getSelectedRow(),0);
+        }
+        else if(index==4){
             institution = (String) comboBoxCenter.getSelectedItem();
             id = (String) centerModel.getValueAt(tableCenter.getSelectedRow(),0);
         }
-        else if(index==4){
+        else if(index==5){
             institution = (String) comboBoxBusinessNum.getSelectedItem();
             id = (String) businessModel.getValueAt(tableBusiness.getSelectedRow(),0);
         }
-        else if(index==5){
+        else if(index==6){
             institution = (String) comboBoxStorage.getSelectedItem();
             id = (String) storageModel.getValueAt(tableStorage.getSelectedRow(),0);
         }
@@ -789,7 +831,7 @@ public class companyManage extends JFrame {
     }
 
     /*
-     * 初始化Financial(财务人员)表格
+     * 初始化Financial(普通财务人员)表格
      */
     public void initFinancialTable(){
         //表头
@@ -815,6 +857,36 @@ public class companyManage extends JFrame {
         tableFinancial.getTableHeader().setPreferredSize(new Dimension(40,40));
         tableFinancial.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scrollPanelFinancial.getViewport().add(tableFinancial);
+    }
+
+
+    /*
+     * 初始化SFinancial(高级财务人员)表格
+     */
+    public void initSFinancialTable(){
+        //表头
+        Vector<String> financialColumns = new Vector<String>();
+        financialColumns.add("id");
+        financialColumns.add("姓名");
+        financialColumns.add("性别");
+        financialColumns.add("身份证号");
+        financialColumns.add("联系电话");
+        //数据
+        Vector<Vector<String>> financialData = this.getStaff(tabbedPaneStaff.getTitleAt(tabbedPaneStaff.getSelectedIndex()));
+        //模型
+        sFinancialModel = new DefaultTableModel(financialData,financialColumns);
+        //表格
+        tableSFinancial = new JTable(sFinancialModel){
+            private static final long serialVersionUid = 1L;
+
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
+        tableSFinancial.getTableHeader().setReorderingAllowed(false);
+        tableSFinancial.getTableHeader().setPreferredSize(new Dimension(40,40));
+        tableSFinancial.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        scrollPanelSFinancial.getViewport().add(tableSFinancial);
     }
 
     /*
@@ -1511,11 +1583,11 @@ public class companyManage extends JFrame {
     }
 
     private void initComponents(LoginMessage loginMessage) {
-        // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         String [] citys = controller.getCitys();
         if(citys==null){
-             JOptionPane.showMessageDialog(null,"网络错误...","",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"网络错误...","",JOptionPane.INFORMATION_MESSAGE);
         }
+        // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         menuBar = new JMenuBar();
         choice = new JMenu();
         help = new JMenu();
@@ -1531,48 +1603,6 @@ public class companyManage extends JFrame {
         labelCheck = new JLabel();
         id = new JLabel();
         name = new JLabel();
-        panelStaff = new JPanel();
-        tabbedPaneStaff = new JTabbedPane();
-        scrollPanelDeliver = new JScrollPane();
-        tableDeliver = new JTable();
-        scrollPanelFinancial = new JScrollPane();
-        tableFinancial = new JTable();
-        scrollPanelTrunk = new JScrollPane();
-        tableTrunk = new JTable();
-        scrollPanelCenter = new JPanel();
-        labelCenter = new JLabel();
-        comboBoxCenter = new JComboBox(citys);
-        buttonEnsureCenter = new JButton();
-        scrollPaneCenter = new JScrollPane();
-        tableCenter = new JTable();
-        scrollPanelBusiness = new JPanel();
-        labelBusiness = new JLabel();
-        comboBoxBusinessCity = new JComboBox(citys);
-        comboBoxBusinessNum = new JComboBox();
-        comboBoxBusinessCity.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                comboBoxBusinessNum.removeAllItems();
-                ArrayList<String> businessOffices = controller.getBusinessOffices((String) comboBoxBusinessCity.getSelectedItem());
-                for(int i=0;i<businessOffices.size();i++){
-                    comboBoxBusinessNum.addItem(businessOffices.get(i));
-                }
-            }
-        });
-        buttonEnsureBusiness = new JButton();
-        scrollPaneBusiness = new JScrollPane();
-        tableBusiness = new JTable();
-        scrollPanelStorage = new JPanel();
-        labelCenterStorage = new JLabel();
-        comboBoxStorage = new JComboBox(citys);
-        buttonEnsureStorage = new JButton();
-        scrollPaneStorage = new JScrollPane();
-        tableStorage = new JTable();
-        buttonAddStaff = new JButton();
-        buttonMoveStaff = new JButton();
-        buttonDeleteStaff = new JButton();
-        buttonExitStaff = new JButton();
-        labelStaffSuccess = new JLabel();
         panelAll = new JPanel();
         panelSalary = new JPanel();
         scrollPanelSalary = new JScrollPane();
@@ -1583,9 +1613,9 @@ public class companyManage extends JFrame {
         labelSalarySuccess = new JLabel();
         panelCity = new JPanel();
         labelLeaveCity = new JLabel();
-        comboBoxLeaveCity = new JComboBox(citys);
+        comboBoxLeaveCity = new JComboBox();
         labelArrivalCity = new JLabel();
-        comboBoxArrivalCity = new JComboBox(citys);
+        comboBoxArrivalCity = new JComboBox();
         buttonEnsureCity = new JButton();
         scrollPanelCity = new JScrollPane();
         tableCity = new JTable();
@@ -1618,6 +1648,40 @@ public class companyManage extends JFrame {
         buttonApproveAll = new JButton();
         buttonExitApprove = new JButton();
         label1 = new JLabel();
+        panelStaff = new JPanel();
+        tabbedPaneStaff = new JTabbedPane();
+        scrollPanelDeliver = new JScrollPane();
+        tableDeliver = new JTable();
+        scrollPanelFinancial = new JScrollPane();
+        tableFinancial = new JTable();
+        scrollPanelSFinancial = new JScrollPane();
+        tableSFinancial = new JTable();
+        scrollPanelTrunk = new JScrollPane();
+        tableTrunk = new JTable();
+        scrollPanelCenter = new JPanel();
+        labelCenter = new JLabel();
+        comboBoxCenter = new JComboBox();
+        buttonEnsureCenter = new JButton();
+        scrollPaneCenter = new JScrollPane();
+        tableCenter = new JTable();
+        scrollPanelBusiness = new JPanel();
+        labelBusiness = new JLabel();
+        comboBoxBusinessCity = new JComboBox();
+        comboBoxBusinessNum = new JComboBox();
+        buttonEnsureBusiness = new JButton();
+        scrollPaneBusiness = new JScrollPane();
+        tableBusiness = new JTable();
+        scrollPanelStorage = new JPanel();
+        labelCenterStorage = new JLabel();
+        comboBoxStorage = new JComboBox();
+        buttonEnsureStorage = new JButton();
+        scrollPaneStorage = new JScrollPane();
+        tableStorage = new JTable();
+        buttonAddStaff = new JButton();
+        buttonMoveStaff = new JButton();
+        buttonDeleteStaff = new JButton();
+        buttonExitStaff = new JButton();
+        labelStaffSuccess = new JLabel();
 
         //======== this ========
         Container contentPane = getContentPane();
@@ -1705,7 +1769,6 @@ public class companyManage extends JFrame {
         //---- name ----
         name.setText("\u59d3\u540d:\u5f69\u7b14");
 
-
         //======== panelAll ========
         {
 
@@ -1727,37 +1790,36 @@ public class companyManage extends JFrame {
                 contentPaneLayout.createParallelGroup()
                         .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(labelSalary, GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                                        .addComponent(buttonSalary, GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(contentPaneLayout.createParallelGroup()
                                         .addGroup(contentPaneLayout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                .addComponent(panelAll, GroupLayout.PREFERRED_SIZE, 782, GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(buttonStaff, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(buttonCity, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(buttonApprove, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(buttonCheck, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
                                         .addGroup(contentPaneLayout.createSequentialGroup()
-                                                .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                                        .addComponent(labelSalary, GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                                                        .addComponent(buttonSalary, GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(contentPaneLayout.createParallelGroup()
-                                                        .addGroup(contentPaneLayout.createSequentialGroup()
-                                                                .addComponent(buttonStaff, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(buttonCity, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(buttonApprove, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(buttonCheck, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
-                                                        .addGroup(contentPaneLayout.createSequentialGroup()
-                                                                .addComponent(labelInstitution, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(labelCity, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(labelApprove, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(labelCheck, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)))
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGroup(contentPaneLayout.createParallelGroup()
-                                                        .addComponent(id, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(name, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))))
+                                                .addComponent(labelInstitution, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(labelCity, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(labelApprove, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(labelCheck, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(contentPaneLayout.createParallelGroup()
+                                        .addComponent(id, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(name, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
                                 .addGap(33, 33, 33))
+                        .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(panelAll, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
         );
         contentPaneLayout.setVerticalGroup(
                 contentPaneLayout.createParallelGroup()
@@ -1778,273 +1840,12 @@ public class companyManage extends JFrame {
                                         .addComponent(labelApprove, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(labelCheck, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(name, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
                                 .addComponent(panelAll, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
+                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());
-
-        //======== panelStaff ========
-        {
-
-            //======== tabbedPaneStaff ========
-            {
-                tabbedPaneStaff.addChangeListener(new ChangeListener() {
-                    @Override
-                    public void stateChanged(ChangeEvent e) {
-                        switch (tabbedPaneStaff.getSelectedIndex()){
-                            case 0:
-                                initDeliverTable();
-                                break;
-                            case 1:
-                                initFinancialTable();
-                                break;
-                            case 2:
-                                initTrunkTable();
-                                break;
-                        }
-                    }
-                });
-
-                //======== scrollPanelDeliver ========
-                {
-                    scrollPanelDeliver.setViewportView(tableDeliver);
-                }
-                tabbedPaneStaff.addTab("\u5feb\u9012\u5458", scrollPanelDeliver);
-
-                //======== scrollPanelFinancial ========
-                {
-                    scrollPanelFinancial.setViewportView(tableFinancial);
-                }
-                tabbedPaneStaff.addTab("\u8d22\u52a1\u4eba\u5458", scrollPanelFinancial);
-
-                //======== scrollPanelTrunk ========
-                {
-                    scrollPanelTrunk.setViewportView(tableTrunk);
-                }
-                tabbedPaneStaff.addTab("\u8d27\u8f66\u9a7e\u9a76\u5458", scrollPanelTrunk);
-
-                //======== scrollPanelCenter ========
-                {
-
-                    //---- labelCenter ----
-                    labelCenter.setText("\u8bf7\u9009\u62e9\u4e2d\u8f6c\u4e2d\u5fc3:");
-
-                    //---- buttonEnsureCenter ----
-                    buttonEnsureCenter.setText("\u786e\u8ba4");
-                    buttonEnsureCenter.addMouseListener(new MouseAdapter() {
-                        @Override
-                        public void mouseClicked(MouseEvent e) {
-                            buttonEnsureCenterMouseClicked(e);
-                        }
-                    });
-
-                    //======== scrollPaneCenter ========
-                    {
-                        scrollPaneCenter.setViewportView(tableCenter);
-                    }
-
-                    GroupLayout scrollPanelCenterLayout = new GroupLayout(scrollPanelCenter);
-                    scrollPanelCenter.setLayout(scrollPanelCenterLayout);
-                    scrollPanelCenterLayout.setHorizontalGroup(
-                            scrollPanelCenterLayout.createParallelGroup()
-                                    .addGroup(scrollPanelCenterLayout.createSequentialGroup()
-                                            .addContainerGap(39, Short.MAX_VALUE)
-                                            .addComponent(labelCenter)
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(comboBoxCenter, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-                                            .addGap(28, 28, 28)
-                                            .addComponent(buttonEnsureCenter)
-                                            .addGap(142, 142, 142))
-                                    .addComponent(scrollPaneCenter, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
-                    );
-                    scrollPanelCenterLayout.setVerticalGroup(
-                            scrollPanelCenterLayout.createParallelGroup()
-                                    .addGroup(scrollPanelCenterLayout.createSequentialGroup()
-                                            .addGroup(scrollPanelCenterLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(buttonEnsureCenter)
-                                                    .addComponent(labelCenter)
-                                                    .addComponent(comboBoxCenter, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(scrollPaneCenter, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE))
-                    );
-                }
-                tabbedPaneStaff.addTab("\u4e2d\u8f6c\u4e2d\u5fc3业务员", scrollPanelCenter);
-
-                //======== scrollPanelBusiness ========
-                {
-
-                    //---- labelBusiness ----
-                    labelBusiness.setText("\u8bf7\u9009\u62e9\u8425\u4e1a\u5385:");
-
-                    //---- buttonEnsureBusiness ----
-                    buttonEnsureBusiness.setText("\u786e\u8ba4");
-                    buttonEnsureBusiness.addMouseListener(new MouseAdapter() {
-                        @Override
-                        public void mouseClicked(MouseEvent e) {
-                            buttonEnsureBusinessMouseClicked(e);
-                        }
-                    });
-
-                    //======== scrollPaneBusiness ========
-                    {
-                        scrollPaneBusiness.setViewportView(tableBusiness);
-                    }
-
-                    GroupLayout scrollPanelBusinessLayout = new GroupLayout(scrollPanelBusiness);
-                    scrollPanelBusiness.setLayout(scrollPanelBusinessLayout);
-                    scrollPanelBusinessLayout.setHorizontalGroup(
-                            scrollPanelBusinessLayout.createParallelGroup()
-                                    .addGroup(scrollPanelBusinessLayout.createSequentialGroup()
-                                            .addGap(83, 83, 83)
-                                            .addComponent(labelBusiness)
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(comboBoxBusinessCity, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(comboBoxBusinessNum, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(buttonEnsureBusiness)
-                                            .addContainerGap(17, Short.MAX_VALUE))
-                                    .addComponent(scrollPaneBusiness, GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
-                    );
-                    scrollPanelBusinessLayout.setVerticalGroup(
-                            scrollPanelBusinessLayout.createParallelGroup()
-                                    .addGroup(scrollPanelBusinessLayout.createSequentialGroup()
-                                            .addGroup(scrollPanelBusinessLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(comboBoxBusinessNum, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(comboBoxBusinessCity, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(buttonEnsureBusiness)
-                                                    .addComponent(labelBusiness))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(scrollPaneBusiness, GroupLayout.PREFERRED_SIZE, 242, GroupLayout.PREFERRED_SIZE)
-                                            .addGap(0, 0, Short.MAX_VALUE))
-                    );
-                }
-                tabbedPaneStaff.addTab("\u8425\u4e1a\u5385业务员", scrollPanelBusiness);
-
-                //======== scrollPanelStorage ========
-                {
-
-                    //---- labelCenterStorage ----
-                    labelCenterStorage.setText("\u8bf7\u9009\u62e9\u4ed3\u5e93:");
-
-                    //---- buttonEnsureStorage ----
-                    buttonEnsureStorage.setText("\u786e\u8ba4");
-                    buttonEnsureStorage.addMouseListener(new MouseAdapter() {
-                        @Override
-                        public void mouseClicked(MouseEvent e) {
-                            buttonEnsureStorageMouseClicked(e);
-                        }
-                    });
-
-                    //======== scrollPaneStorage ========
-                    {
-                        scrollPaneStorage.setViewportView(tableStorage);
-                    }
-
-                    GroupLayout scrollPanelStorageLayout = new GroupLayout(scrollPanelStorage);
-                    scrollPanelStorage.setLayout(scrollPanelStorageLayout);
-                    scrollPanelStorageLayout.setHorizontalGroup(
-                            scrollPanelStorageLayout.createParallelGroup()
-                                    .addGroup(scrollPanelStorageLayout.createSequentialGroup()
-                                            .addContainerGap(87, Short.MAX_VALUE)
-                                            .addComponent(labelCenterStorage)
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(comboBoxStorage, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-                                            .addGap(28, 28, 28)
-                                            .addComponent(buttonEnsureStorage)
-                                            .addGap(142, 142, 142))
-                                    .addComponent(scrollPaneStorage, GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
-                    );
-                    scrollPanelStorageLayout.setVerticalGroup(
-                            scrollPanelStorageLayout.createParallelGroup()
-                                    .addGroup(scrollPanelStorageLayout.createSequentialGroup()
-                                            .addGroup(scrollPanelStorageLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(buttonEnsureStorage)
-                                                    .addComponent(labelCenterStorage)
-                                                    .addComponent(comboBoxStorage, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(scrollPaneStorage, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE)
-                                            .addGap(0, 0, Short.MAX_VALUE))
-                    );
-                }
-                tabbedPaneStaff.addTab("\u4ed3\u5e93\u7ba1\u7406\u5458", scrollPanelStorage);
-            }
-
-            //---- buttonAddStaff ----
-            buttonAddStaff.setText("\u6dfb\u52a0\u5458\u5de5");
-            buttonAddStaff.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    buttonAddStaffMouseClicked(e);
-                }
-            });
-
-            //---- buttonMoveStaff ----
-            buttonMoveStaff.setText("\u79fb\u52a8\u5458\u5de5");
-            buttonMoveStaff.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    buttonMoveStaffMouseClicked(e);
-                }
-            });
-
-            //---- buttonDeleteStaff ----
-            buttonDeleteStaff.setText("\u5220\u9664\u5458\u5de5");
-            buttonDeleteStaff.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    buttonDeleteStaffMouseClicked(e);
-                }
-            });
-
-            //---- buttonExitStaff ----
-            buttonExitStaff.setText("\u9000\u51fa\u7cfb\u7edf");
-            buttonExitStaff.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    buttonExitStaffMouseClicked(e);
-                }
-            });
-
-            //---- labelStaffSuccess ----
-            labelStaffSuccess.setText("\u6dfb\u52a0\u6210\u529f");
-
-            GroupLayout panelStaffLayout = new GroupLayout(panelStaff);
-            panelStaff.setLayout(panelStaffLayout);
-            panelStaffLayout.setHorizontalGroup(
-                    panelStaffLayout.createParallelGroup()
-                            .addGroup(panelStaffLayout.createSequentialGroup()
-                                    .addComponent(tabbedPaneStaff, GroupLayout.PREFERRED_SIZE, 621, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(30, 30, 30)
-                                    .addGroup(panelStaffLayout.createParallelGroup()
-                                            .addGroup(panelStaffLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(buttonExitStaff, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(buttonMoveStaff, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(buttonDeleteStaff, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addComponent(buttonAddStaff)
-                                            .addComponent(labelStaffSuccess, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE))
-                                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            );
-            panelStaffLayout.setVerticalGroup(
-                    panelStaffLayout.createParallelGroup()
-                            .addGroup(panelStaffLayout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(labelStaffSuccess, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(buttonAddStaff, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(buttonDeleteStaff, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(buttonMoveStaff, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(buttonExitStaff, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-                                    .addContainerGap())
-                            .addComponent(tabbedPaneStaff, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
-            );
-        }
-
 
         //======== panelSalary ========
         {
@@ -2080,9 +1881,6 @@ public class companyManage extends JFrame {
                     buttonExitSalaryMouseClicked(e);
                 }
             });
-
-            //---- labelSalarySuccess ----
-            labelSalarySuccess.setText("\u4fee\u6539\u6210\u529f");
 
             GroupLayout panelSalaryLayout = new GroupLayout(panelSalary);
             panelSalary.setLayout(panelSalaryLayout);
@@ -2166,9 +1964,6 @@ public class companyManage extends JFrame {
                 }
             });
 
-            //---- labelCitySuccess ----
-            labelCitySuccess.setText("\u4fee\u6539\u6210\u529f");
-
             GroupLayout panelCityLayout = new GroupLayout(panelCity);
             panelCity.setLayout(panelCityLayout);
             panelCityLayout.setHorizontalGroup(
@@ -2239,7 +2034,7 @@ public class companyManage extends JFrame {
                 {
                     scrollPanelArrival.setViewportView(tableArrival);
                 }
-                tabbedPaneApprove.addTab("\u5230\u8fbe\u5355", scrollPanelArrival);
+                tabbedPaneApprove.addTab("\u8425\u4e1a\u5385\u5230\u8fbe\u5355", scrollPanelArrival);
 
                 //======== scrollPanelReceipt ========
                 {
@@ -2320,9 +2115,6 @@ public class companyManage extends JFrame {
                 }
             });
 
-            //---- label1 ----
-            label1.setText("\u5ba1\u6279\u6210\u529f");
-
             GroupLayout panelApproveLayout = new GroupLayout(panelApprove);
             panelApprove.setLayout(panelApproveLayout);
             panelApproveLayout.setHorizontalGroup(
@@ -2341,8 +2133,8 @@ public class companyManage extends JFrame {
             panelApproveLayout.setVerticalGroup(
                     panelApproveLayout.createParallelGroup()
                             .addGroup(panelApproveLayout.createSequentialGroup()
-                                    .addGap(30, 30, 30)
-                                    .addComponent(label1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addContainerGap()
+                                    .addComponent(label1, GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                                     .addGap(18, 18, 18)
                                     .addComponent(buttonApproveData, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
@@ -2355,7 +2147,285 @@ public class companyManage extends JFrame {
                             .addComponent(tabbedPaneApprove, GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
             );
         }
+
+        //======== panelStaff ========
+        {
+
+            //======== tabbedPaneStaff ========
+            {
+
+                //======== scrollPanelDeliver ========
+                {
+                    scrollPanelDeliver.setViewportView(tableDeliver);
+                }
+                tabbedPaneStaff.addTab("\u5feb\u9012\u5458", scrollPanelDeliver);
+
+                //======== scrollPanelFinancial ========
+                {
+                    scrollPanelFinancial.setViewportView(tableFinancial);
+                }
+                tabbedPaneStaff.addTab("\u666e\u901a\u8d22\u52a1\u4eba\u5458", scrollPanelFinancial);
+
+                //======== scrollSFinancial ========
+                {
+                    scrollPanelSFinancial.setViewportView(tableSFinancial);
+                }
+                tabbedPaneStaff.addTab("\u9ad8\u7ea7\u8d22\u52a1\u4eba\u5458", scrollPanelSFinancial);
+
+                //======== scrollPanelTrunk ========
+                {
+                    scrollPanelTrunk.setViewportView(tableTrunk);
+                }
+                tabbedPaneStaff.addTab("\u8d27\u8f66\u9a7e\u9a76\u5458", scrollPanelTrunk);
+
+                //======== scrollPanelCenter ========
+                {
+
+                    //---- labelCenter ----
+                    labelCenter.setText("\u8bf7\u9009\u62e9\u4e2d\u8f6c\u4e2d\u5fc3:");
+
+                    //---- buttonEnsureCenter ----
+                    buttonEnsureCenter.setText("\u786e\u8ba4");
+                    buttonEnsureCenter.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseClicked(MouseEvent e) {
+                            buttonEnsureCenterMouseClicked(e);
+                        }
+                    });
+
+                    //======== scrollPaneCenter ========
+                    {
+                        scrollPaneCenter.setViewportView(tableCenter);
+                    }
+
+                    GroupLayout scrollPanelCenterLayout = new GroupLayout(scrollPanelCenter);
+                    scrollPanelCenter.setLayout(scrollPanelCenterLayout);
+                    scrollPanelCenterLayout.setHorizontalGroup(
+                            scrollPanelCenterLayout.createParallelGroup()
+                                    .addGroup(scrollPanelCenterLayout.createSequentialGroup()
+                                            .addContainerGap(39, Short.MAX_VALUE)
+                                            .addComponent(labelCenter)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(comboBoxCenter, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(28, 28, 28)
+                                            .addComponent(buttonEnsureCenter)
+                                            .addGap(142, 142, 142))
+                                    .addComponent(scrollPaneCenter, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
+                    );
+                    scrollPanelCenterLayout.setVerticalGroup(
+                            scrollPanelCenterLayout.createParallelGroup()
+                                    .addGroup(scrollPanelCenterLayout.createSequentialGroup()
+                                            .addGroup(scrollPanelCenterLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                    .addComponent(buttonEnsureCenter)
+                                                    .addComponent(labelCenter)
+                                                    .addComponent(comboBoxCenter, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(scrollPaneCenter, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE))
+                    );
+                }
+                tabbedPaneStaff.addTab("\u4e2d\u8f6c\u4e2d\u5fc3\u4e1a\u52a1\u5458", scrollPanelCenter);
+
+                //======== scrollPanelBusiness ========
+                {
+
+                    //---- labelBusiness ----
+                    labelBusiness.setText("\u8bf7\u9009\u62e9\u8425\u4e1a\u5385:");
+
+                    //---- buttonEnsureBusiness ----
+                    buttonEnsureBusiness.setText("\u786e\u8ba4");
+                    buttonEnsureBusiness.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseClicked(MouseEvent e) {
+                            buttonEnsureBusinessMouseClicked(e);
+                        }
+                    });
+
+                    //======== scrollPaneBusiness ========
+                    {
+                        scrollPaneBusiness.setViewportView(tableBusiness);
+                    }
+
+                    GroupLayout scrollPanelBusinessLayout = new GroupLayout(scrollPanelBusiness);
+                    scrollPanelBusiness.setLayout(scrollPanelBusinessLayout);
+                    scrollPanelBusinessLayout.setHorizontalGroup(
+                            scrollPanelBusinessLayout.createParallelGroup()
+                                    .addGroup(scrollPanelBusinessLayout.createSequentialGroup()
+                                            .addGap(83, 83, 83)
+                                            .addComponent(labelBusiness)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(comboBoxBusinessCity, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(comboBoxBusinessNum, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(buttonEnsureBusiness)
+                                            .addContainerGap(17, Short.MAX_VALUE))
+                                    .addComponent(scrollPaneBusiness, GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
+                    );
+                    scrollPanelBusinessLayout.setVerticalGroup(
+                            scrollPanelBusinessLayout.createParallelGroup()
+                                    .addGroup(scrollPanelBusinessLayout.createSequentialGroup()
+                                            .addGroup(scrollPanelBusinessLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                    .addComponent(comboBoxBusinessNum, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(comboBoxBusinessCity, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(buttonEnsureBusiness)
+                                                    .addComponent(labelBusiness))
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(scrollPaneBusiness, GroupLayout.PREFERRED_SIZE, 242, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(0, 0, Short.MAX_VALUE))
+                    );
+                }
+                tabbedPaneStaff.addTab("\u8425\u4e1a\u5385\u4e1a\u52a1\u5458", scrollPanelBusiness);
+
+                //======== scrollPanelStorage ========
+                {
+
+                    //---- labelCenterStorage ----
+                    labelCenterStorage.setText("\u8bf7\u9009\u62e9\u4ed3\u5e93:");
+
+                    //---- buttonEnsureStorage ----
+                    buttonEnsureStorage.setText("\u786e\u8ba4");
+                    buttonEnsureStorage.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseClicked(MouseEvent e) {
+                            buttonEnsureStorageMouseClicked(e);
+                        }
+                    });
+
+                    //======== scrollPaneStorage ========
+                    {
+                        scrollPaneStorage.setViewportView(tableStorage);
+                    }
+
+                    GroupLayout scrollPanelStorageLayout = new GroupLayout(scrollPanelStorage);
+                    scrollPanelStorage.setLayout(scrollPanelStorageLayout);
+                    scrollPanelStorageLayout.setHorizontalGroup(
+                            scrollPanelStorageLayout.createParallelGroup()
+                                    .addGroup(scrollPanelStorageLayout.createSequentialGroup()
+                                            .addContainerGap(87, Short.MAX_VALUE)
+                                            .addComponent(labelCenterStorage)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(comboBoxStorage, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(28, 28, 28)
+                                            .addComponent(buttonEnsureStorage)
+                                            .addGap(142, 142, 142))
+                                    .addComponent(scrollPaneStorage, GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
+                    );
+                    scrollPanelStorageLayout.setVerticalGroup(
+                            scrollPanelStorageLayout.createParallelGroup()
+                                    .addGroup(scrollPanelStorageLayout.createSequentialGroup()
+                                            .addGroup(scrollPanelStorageLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                    .addComponent(buttonEnsureStorage)
+                                                    .addComponent(labelCenterStorage)
+                                                    .addComponent(comboBoxStorage, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(scrollPaneStorage, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(0, 0, Short.MAX_VALUE))
+                    );
+                }
+                tabbedPaneStaff.addTab("\u4ed3\u5e93\u7ba1\u7406\u5458", scrollPanelStorage);
+            }
+
+            //---- buttonAddStaff ----
+            buttonAddStaff.setText("\u6dfb\u52a0\u5458\u5de5");
+            buttonAddStaff.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    buttonAddSalaryMouseClicked(e);
+                    buttonAddStaffMouseClicked(e);
+                }
+            });
+
+            //---- buttonMoveStaff ----
+            buttonMoveStaff.setText("\u79fb\u52a8\u5458\u5de5");
+            buttonMoveStaff.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    buttonAddSalaryMouseClicked(e);
+                    buttonMoveStaffMouseClicked(e);
+                }
+            });
+
+            //---- buttonDeleteStaff ----
+            buttonDeleteStaff.setText("\u5220\u9664\u5458\u5de5");
+            buttonDeleteStaff.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    buttonAddSalaryMouseClicked(e);
+                    buttonDeleteStaffMouseClicked(e);
+                }
+            });
+
+            //---- buttonExitStaff ----
+            buttonExitStaff.setText("\u9000\u51fa\u7cfb\u7edf");
+            buttonExitStaff.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    buttonAddSalaryMouseClicked(e);
+                    buttonExitStaffMouseClicked(e);
+                }
+            });
+
+            GroupLayout panelStaffLayout = new GroupLayout(panelStaff);
+            panelStaff.setLayout(panelStaffLayout);
+            panelStaffLayout.setHorizontalGroup(
+                    panelStaffLayout.createParallelGroup()
+                            .addGroup(panelStaffLayout.createSequentialGroup()
+                                    .addComponent(tabbedPaneStaff, GroupLayout.PREFERRED_SIZE, 621, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(30, 30, 30)
+                                    .addGroup(panelStaffLayout.createParallelGroup()
+                                            .addGroup(panelStaffLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(buttonExitStaff, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(buttonMoveStaff, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(buttonDeleteStaff, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(buttonAddStaff)
+                                            .addComponent(labelStaffSuccess, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE))
+                                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            );
+            panelStaffLayout.setVerticalGroup(
+                    panelStaffLayout.createParallelGroup()
+                            .addGroup(panelStaffLayout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(labelStaffSuccess, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(buttonAddStaff, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(buttonDeleteStaff, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(buttonMoveStaff, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(buttonExitStaff, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+                                    .addContainerGap())
+                            .addComponent(tabbedPaneStaff, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+            );
+        }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
+        tabbedPaneStaff.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                switch (tabbedPaneStaff.getSelectedIndex()){
+                    case 0:
+                        initDeliverTable();
+                        break;
+                    case 1:
+                        initFinancialTable();
+                        break;
+                    case 2:
+                        initTrunkTable();
+                        break;
+                }
+            }
+        });
+        //营业厅业务员选择城市时显示区名字
+        comboBoxBusinessCity.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                comboBoxBusinessNum.removeAllItems();
+                ArrayList<String> businessOffices = controller.getBusinessOffices((String) comboBoxBusinessCity.getSelectedItem());
+                for(int i=0;i<businessOffices.size();i++){
+                    comboBoxBusinessNum.addItem(businessOffices.get(i));
+                }
+            }
+        });
         this.initSalaryTable();
         this.initOrderTable();
         this.initSendTable();
@@ -2367,6 +2437,7 @@ public class companyManage extends JFrame {
         this.initStorageOutTable();
         this.initTransferTable();
         tabbedPaneApprove.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+        tabbedPaneStaff.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 
         //显示员工的id跟名字
         id.setText(loginMessage.getUserSN()+"");
@@ -2467,35 +2538,9 @@ public class companyManage extends JFrame {
     private JButton buttonApproveAll;
     private JButton buttonExitApprove;
     private JLabel label1;
-    DefaultTableModel centerModel = null;
-    DefaultTableModel salaryModel = null;
-    DefaultTableModel cityModel  = null;
-    DefaultTableModel deliverModel = null;
-    DefaultTableModel financialModel = null;
-    DefaultTableModel trunkModel = null;
-    DefaultTableModel businessModel = null;
-    DefaultTableModel storageModel = null;
-    DefaultTableModel orderModel = null;
-    DefaultTableModel sendModel = null;
-    DefaultTableModel paymentModel = null;
-    DefaultTableModel receiptModel = null;
-    DefaultTableModel entrukModel = null;
-    DefaultTableModel arrivalModel = null;
-    DefaultTableModel storageInModel = null;
-    DefaultTableModel storageOutModel = null;
-    DefaultTableModel transferModel = null;
-    Vector<Vector<String>> salaryModify = new Vector<Vector<String>>();
-    Vector<Vector<String>> cityModify = new Vector<Vector<String>>();
-    Vector<Vector<String>> sendModify = new Vector<Vector<String>>();
-    Vector<Vector<String>> paymentModify = new Vector<Vector<String>>();
-    Vector<Vector<String>> receiptModify = new Vector<Vector<String>>();
-    Vector<Vector<String>> entrukModify = new Vector<Vector<String>>();
-    Vector<Vector<String>> arrivalModify = new Vector<Vector<String>>();
-    Vector<Vector<String>> storageInModify = new Vector<Vector<String>>();
-    Vector<Vector<String>> storageOutModify = new Vector<Vector<String>>();
-    Vector<Vector<String>> transferModify = new Vector<Vector<String>>();
-    Vector<Vector<String>> orderModify = new Vector<Vector<String>>();
-    CompanyBLController controller = new CompanyBLController();
+    private JScrollPane scrollPanelSFinancial;
+    private JTable tableSFinancial;
+
 
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

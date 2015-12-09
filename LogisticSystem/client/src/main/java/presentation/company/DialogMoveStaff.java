@@ -34,7 +34,7 @@ public class DialogMoveStaff extends JDialog{
 		jdialog = new JDialog(company,"移动员工");
 		choose = new JLabel("请选择部门:");
 		finish = new JButton("确认");
-		institutions = new String[]{"快递员","财务人员","货车驾驶员","仓库管理员","营业厅业务员","中转中心业务员"};
+		institutions = new String[]{"快递员","普通财务人员","高级财务人员","货车驾驶员","仓库管理员","营业厅业务员","中转中心业务员"};
 		citys = controller.getCitys();
 		institution = new JComboBox<String>(institutions);
 		city = new JComboBox<String>();
