@@ -6,7 +6,6 @@ import data.enums.DataType;
 import data.factory.DataServiceFactory;
 import data.service.StorageDataService;
 import businesslogic.impl.user.InstitutionInfo;
-import businesslogic.service.storage.StorageBusinessService;
 import businesslogic.service.storage.StorageInService;
 import businesslogic.service.storage.StorageOperateService;
 import businesslogic.service.storage.StorageOutService;
@@ -16,12 +15,11 @@ import businesslogic.service.storage.StorageOutService;
  * @author xu
  *
  */
-public class StorageBusinessController implements StorageBusinessService {
+public class StorageBusinessController{
 	InstitutionInfo center;
 	StorageInfo storageInfo;
 	StorageDataService storageData;
 
-	@Override
 	public StorageInService startStorageIn() {
 		if (!isStorageExist()) {
 			return null;
@@ -36,7 +34,6 @@ public class StorageBusinessController implements StorageBusinessService {
 
 	}
 
-	@Override
 	public StorageOutService startStorageOut() {
 		if (!isStorageExist()) {
 			return null;
@@ -65,7 +62,6 @@ public class StorageBusinessController implements StorageBusinessService {
 		storageInfo = new StorageInfo(storageData, center.getCenterID());
 	}
 
-	@Override
 	public StorageOperateService startStorageOperate() throws RemoteException {
 		return new StorageOperate(center, storageData,storageInfo);
 	}

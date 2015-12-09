@@ -70,14 +70,15 @@ new FormModel {
 		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 			name: "arrivalVO"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :::x, par t {seq t {comp status:::p:117:p, space u:::p, comp modifyStatus:::p:105:p}, par l {comp scrollPane1:::p:671:p, seq l {par l {par t:::p {comp label3::l:::x, seq l {space :p:30:p, comp label2:::::x}, comp label1::l:p:100:p}, comp label4::l:p:80:p}, space u:::p, par l:::p {comp transferID::::70:x, comp from::::70:x, comp arrivalDate::l::70:x}}}}, space :::p, par l:::p {comp cancelArrival::::98:x, comp doArrive::::98:x, comp saveArrival::::98:x}, space :::x}}"
-				"$verticalGroup": "par l {seq t {space :::p, par t {seq {space :0:168:x, comp saveArrival:::p:50:p, space :::p, comp doArrive:::p:48:p, space :::p, comp cancelArrival:::p::p}, seq {par b {comp transferID::b:p::p, comp label1::b:p::p}, space :::p, par b {comp label2::b:p::p, comp from::b:p::p, comp label4::b:p::p}, space :::p, par b {comp label3::b:p::p, comp arrivalDate::b:p::p}, space :p:11:p, par b {comp status::b:p::p, comp modifyStatus::b:p::p}, space :::p, comp scrollPane1::::186:x}}, space :::p}}"
+				"$horizontalGroup": "par l {seq l {space :::x, par t {seq t {comp label15:::p::p, space u:::p, comp status:::p:117:p, space u:::p, comp modifyStatus:::p:105:p}, par l {comp scrollPane1:::p:671:p, seq l {par l {par t:::p {comp label3::l:::x, seq l {space :p:30:p, comp label2:::::x}, comp label1::l:p:100:p}, comp label4::l:p:80:p}, space u:::p, par l:::p {comp transferID::::70:x, comp from::::70:x, comp arrivalDate::l::70:x}}}}, space :::p, par l:::p {comp cancelArrival::::98:x, comp doArrive::::98:x, comp saveArrival::::98:x}, space :::x}}"
+				"$verticalGroup": "par l {seq t {space :::p, par t {seq {space :0:168:x, comp saveArrival:::p:50:p, space :::p, comp doArrive:::p:48:p, space :::p, comp cancelArrival:::p::p}, seq {par b {comp transferID::b:p::p, comp label1::b:p::p}, space :::p, par b {comp label2::b:p::p, comp from::b:p::p, comp label4::b:p::p}, space :::p, par b {comp label3::b:p::p, comp arrivalDate::b:p::p}, space :p:11:p, par b {comp status::b:p::p, comp modifyStatus::b:p::p, comp label15::b:p::p}, space :::p, comp scrollPane1::::186:x}}, space :::p}}"
 			} ) {
 				name: "panel1"
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 					name: "scrollPane1"
 					add( new FormComponent( "javax.swing.JTable" ) {
 						name: "arrivalVOTable"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "arrivalVOTableMouseClicked", true ) )
 					} )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
@@ -105,7 +106,8 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "modifyStatus"
-					"text": "text"
+					"text": "修改状态"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "modifyStatusMouseReleased", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "cancelArrival"
@@ -126,6 +128,10 @@ new FormModel {
 					"text": "保存"
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "saveArrivalMouseClicked", true ) )
 				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label15"
+					"text": "订单状态"
+				} )
 			}, new FormLayoutConstraints( null ) {
 				"title": "到达单"
 			} )
@@ -136,8 +142,8 @@ new FormModel {
 		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 			name: "entruckVO"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {comp scrollPane3:::p:693:p, space :::p, par l {comp cancelLoad:::::x, seq {comp createArrival2:::p::p, space :0:0:x}}, space :::p}}"
-				"$verticalGroup": "par l {seq {space :35:135:x, par l {comp scrollPane3::t:p:186:p, seq t {comp createArrival2:::p:32:p, space u:::p, comp cancelLoad:::p::p, space :::p}}}}"
+				"$horizontalGroup": "par l {seq {space :::p, par l {seq l {comp scrollPane3:::p:676:p, space :::p, par l {comp cancelLoad:::::x, seq l {comp createArrival:::p::p, space :0:0:x}}}, seq l {par t {seq {comp label13:::p::p, space s:::p, comp destName:::p:66:p}, seq {par l {seq t {par l {comp label10::l:p::p, comp label11::l:p::p}, space :::p}, seq l {comp label12:::p::p, space :p:16:p}}, par t:::p {comp fromName::::68:x, comp listType::l::68:x, comp listID::l::68:x}}}, space :p:45:p, par t {seq {par l:::p {comp label14:::::x, comp vehicleLabel:::::x, seq {comp label19:::p::p, space :::p, comp staffLabel:::::x}}, space :::p, par l:::p {comp date::::70:x, comp vehicleID::::70:x, comp staff::l::70:x}}, seq {comp driverLabel:::p::p, space s:::p, comp driverName:::p:68:p}}, space :p:37:p, par t {seq {comp label18:::p::p, space u:::p, comp fee:::p:73:p}, seq {comp transferTypeLabel:::p::p, space :::p, comp transferType:::p:69:p}}, space :0:0:x}}, space :::p}}"
+				"$verticalGroup": "par l {seq {space :::p, par b {comp label10::b:p::p, comp listType::b:p::p, comp label14::b:p::p, comp date::b:p::p}, space :::p, par b {comp label11::b:p::p, comp listID::b:p::p, comp vehicleLabel::b:p::p, comp vehicleID::b:p::p}, space :::p, par b {comp label12::b:p::p, comp fromName::b:p::p, comp staffLabel::b:p::p, comp staff::b:p::p, comp label19::b:p::p, comp transferTypeLabel::b:p::p, comp transferType::b:p::p}, space :::p, par b {comp label13::b:p::p, comp destName::b:p::p, comp driverLabel::b:p::p, comp label18::b:p::p, comp fee::b:p::p, comp driverName::b:p::p}, space ::23:x, par l {seq t {comp createArrival:::p:32:p, space u:::p, comp cancelLoad:::p::p, space :::p}, comp scrollPane3::t:p:186:p}}}"
 			} ) {
 				name: "DeliveryListPanel"
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -150,13 +156,84 @@ new FormModel {
 					name: "cancelLoad"
 					"text": "取消"
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "cancelLoadMouseClicked", true ) )
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "cancelLoadMouseClicked", true ) )
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "cancelLoadMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "createArrival2"
+					name: "createArrival"
 					"text": "生成到达单"
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "createArrivalMouseClicked", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label10"
+					"text": "单据类型"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "listType"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label11"
+					"text": "单号"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "listID"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label12"
+					"text": "出发地"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "fromName"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label13"
+					"text": "目的地"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "destName"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label14"
+					"text": "装运日期"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "date"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "vehicleLabel"
+					"text": "车辆编号"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "vehicleID"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "staffLabel"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "driverLabel"
+					"text": "押运员"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "staff"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "driverName"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label18"
+					"text": "运费"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "fee"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label19"
+					"text": "监装员"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "transferTypeLabel"
+					"text": "运输类型"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "transferType"
 				} )
 			}, new FormLayoutConstraints( null ) {
 				"title": "运转单"

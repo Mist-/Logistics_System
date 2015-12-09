@@ -7,23 +7,18 @@ import java.rmi.RemoteException;
 import javax.swing.*;
 
 import org.jb2011.lnf.windows2.Windows2LookAndFeel;
-
 import businesslogic.impl.storage.StorageBusinessController;
-import businesslogic.impl.storage.StorageIn;
-import businesslogic.service.storage.StorageBusinessService;
 import businesslogic.service.storage.StorageInService;
-import businesslogic.service.storage.StorageOperateService;
 import businesslogic.service.storage.StorageOutService;
 import data.message.LoginMessage;
 /*
  * Created by JFormDesigner on Thu Nov 19 14:29:33 CST 2015
  */
-import data.message.ResultMessage;
 /**
  * @author sunxu
  */
 public class StorageFrame extends JFrame {
-	StorageBusinessService  storageBusiness;
+	StorageBusinessController  storageBusiness;
 	StorageOperatePanel storageOperateVO;
 	StorageOutPanel storageOutVO;
 	StorageInPanel storageInVO;

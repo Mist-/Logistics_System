@@ -7,6 +7,7 @@ package presentation.transfer.hall;
 import java.awt.*;
 import java.awt.event.*;
 import java.rmi.RemoteException;
+import java.security.Timestamp;
 import java.util.Vector;
 
 import javax.management.modelmbean.ModelMBean;
@@ -14,6 +15,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import utils.Timestamper;
 import data.message.ResultMessage;
 import data.vo.BriefEntruckListVO;
 import data.vo.BriefOrderVO;
@@ -64,6 +66,7 @@ public class LoadAndSortPanel extends JPanel {
 			DefaultTableModel model = new DefaultTableModel(entruck.info,
 					entruck.header);
 			entruckTable.setModel(model);
+			entruckDate.setText(Timestamper.getTimeByDate());
 			listID.setText(entruck.entruckListID);
 			hallID.setText(entruck.fromID);
 			hallName.setText(entruck.fromName);
@@ -186,7 +189,6 @@ public class LoadAndSortPanel extends JPanel {
 		try {
 			loadAndSort.saveEntruckList(entruck);
 		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			errorDialog.setVisible(true);
 		}
@@ -211,7 +213,11 @@ public class LoadAndSortPanel extends JPanel {
 		if (result == ResultMessage.SUCCESS) {
 			JOptionPane.showMessageDialog(null, "操作成功", "提示",
 					JOptionPane.INFORMATION_MESSAGE);
-			setEntruckList();
+			int row = entruckListTable.getSelectedRow();
+			DefaultTableModel model = (DefaultTableModel) entruckListTable.getModel();
+			model.removeRow(row);
+			entruckListTable.updateUI();
+			entruckListTable.repaint();
 		} else {
 			JOptionPane.showMessageDialog(null, "操作失败,请稍后再试", "提示",
 					JOptionPane.ERROR_MESSAGE);
@@ -257,6 +263,8 @@ public class LoadAndSortPanel extends JPanel {
 		loadAndSortPane = new JTabbedPane();
 		entruckListPanel = new JPanel();
 		selectEntruck = new JButton();
+		scrollPane3 = new JScrollPane();
+		entruckListTable = new JTable();
 		panel1 = new JPanel();
 		scrollPane1 = new JScrollPane();
 		orderTable = new JTable();
@@ -290,6 +298,8 @@ public class LoadAndSortPanel extends JPanel {
 		staffName = new JTextField();
 		driverName = new JTextField();
 		fee = new JTextField();
+		label4 = new JLabel();
+		entruckDate = new JTextField();
 		errorDialog = new JDialog();
 		panel2 = new JPanel();
 		label2 = new JLabel();
@@ -298,8 +308,6 @@ public class LoadAndSortPanel extends JPanel {
 		panel3 = new JPanel();
 		label3 = new JLabel();
 		resultSure = new JButton();
-		scrollPane3 = new JScrollPane();
-		entruckListTable = new JTable();
 
 		//======== this ========
 		setLayout(new BorderLayout());
@@ -319,21 +327,38 @@ public class LoadAndSortPanel extends JPanel {
 					}
 				});
 
+				//======== scrollPane3 ========
+				{
+
+					//---- entruckListTable ----
+					entruckListTable.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+					entruckListTable.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							entruckListTableMouseReleased(e);
+						}
+					});
+					scrollPane3.setViewportView(entruckListTable);
+				}
+
 				GroupLayout entruckListPanelLayout = new GroupLayout(entruckListPanel);
 				entruckListPanel.setLayout(entruckListPanelLayout);
 				entruckListPanelLayout.setHorizontalGroup(
 					entruckListPanelLayout.createParallelGroup()
 						.addGroup(entruckListPanelLayout.createSequentialGroup()
-							.addGap(694, 694, 694)
-							.addComponent(selectEntruck, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+							.addContainerGap()
+							.addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 688, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(selectEntruck, GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
 							.addContainerGap())
 				);
 				entruckListPanelLayout.setVerticalGroup(
 					entruckListPanelLayout.createParallelGroup()
-						.addGroup(GroupLayout.Alignment.TRAILING, entruckListPanelLayout.createSequentialGroup()
-							.addContainerGap(313, Short.MAX_VALUE)
-							.addComponent(selectEntruck)
-							.addContainerGap())
+						.addGroup(entruckListPanelLayout.createSequentialGroup()
+							.addGroup(entruckListPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+								.addComponent(selectEntruck)
+								.addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 346, GroupLayout.PREFERRED_SIZE))
+							.addGap(0, 0, Short.MAX_VALUE))
 				);
 			}
 			loadAndSortPane.addTab("\u5df2\u5ba1\u6279\u88c5\u8f66\u5355", entruckListPanel);
@@ -485,6 +510,9 @@ public class LoadAndSortPanel extends JPanel {
 				//---- label13 ----
 				label13.setText("\u8fd0\u8d39");
 
+				//---- label4 ----
+				label4.setText("\u88c5\u8f66\u65e5\u671f");
+
 				GroupLayout DeliveryListPanelLayout = new GroupLayout(DeliveryListPanel);
 				DeliveryListPanel.setLayout(DeliveryListPanelLayout);
 				DeliveryListPanelLayout.setHorizontalGroup(
@@ -515,17 +543,23 @@ public class LoadAndSortPanel extends JPanel {
 										.addGap(30, 30, 30)
 										.addComponent(hallName))))
 							.addGap(135, 135, 135)
-							.addGroup(DeliveryListPanelLayout.createParallelGroup()
-								.addComponent(label10)
-								.addComponent(label11)
-								.addComponent(label12)
-								.addComponent(label13))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 							.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-								.addComponent(truckID, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-								.addComponent(staffName, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-								.addComponent(driverName, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-								.addComponent(fee, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
+								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+									.addGroup(DeliveryListPanelLayout.createParallelGroup()
+										.addComponent(label10)
+										.addComponent(label11)
+										.addComponent(label12)
+										.addComponent(label13))
+									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+									.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+										.addComponent(truckID, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+										.addComponent(staffName, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+										.addComponent(driverName, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+										.addComponent(fee, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)))
+								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+									.addComponent(label4)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+									.addComponent(entruckDate, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)))
 							.addGap(264, 264, 264)
 							.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
 								.addComponent(cancelLoad, GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
@@ -539,7 +573,10 @@ public class LoadAndSortPanel extends JPanel {
 							.addContainerGap()
 							.addGroup(DeliveryListPanelLayout.createParallelGroup()
 								.addComponent(label6)
-								.addComponent(listID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+									.addComponent(listID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(label4)
+									.addComponent(entruckDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 								.addComponent(label5)
@@ -676,20 +713,6 @@ public class LoadAndSortPanel extends JPanel {
 			resultDialog.pack();
 			resultDialog.setLocationRelativeTo(resultDialog.getOwner());
 		}
-
-		//======== scrollPane3 ========
-		{
-
-			//---- entruckListTable ----
-			entruckListTable.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-			entruckListTable.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseReleased(MouseEvent e) {
-					entruckListTableMouseReleased(e);
-				}
-			});
-			scrollPane3.setViewportView(entruckListTable);
-		}
 		// //GEN-END:initComponents
 	}
 
@@ -698,6 +721,8 @@ public class LoadAndSortPanel extends JPanel {
 	private JTabbedPane loadAndSortPane;
 	private JPanel entruckListPanel;
 	private JButton selectEntruck;
+	private JScrollPane scrollPane3;
+	private JTable entruckListTable;
 	private JPanel panel1;
 	private JScrollPane scrollPane1;
 	private JTable orderTable;
@@ -731,6 +756,8 @@ public class LoadAndSortPanel extends JPanel {
 	private JTextField staffName;
 	private JTextField driverName;
 	private JTextField fee;
+	private JLabel label4;
+	private JTextField entruckDate;
 	private JDialog errorDialog;
 	private JPanel panel2;
 	private JLabel label2;
@@ -739,7 +766,5 @@ public class LoadAndSortPanel extends JPanel {
 	private JPanel panel3;
 	private JLabel label3;
 	private JButton resultSure;
-	private JScrollPane scrollPane3;
-	private JTable entruckListTable;
 	// JFormDesigner - End of variables declaration //GEN-END:variables
 }

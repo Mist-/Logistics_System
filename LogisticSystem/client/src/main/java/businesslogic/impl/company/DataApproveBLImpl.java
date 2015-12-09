@@ -125,7 +125,7 @@ public class DataApproveBLImpl implements DataApproveBLService {
                 arrivalPO.setFrom(Long.valueOf(arrivalVO.getFromNum()));
                 arrivalPO.setFromName(arrivalVO.getFromName());
                 arrivalPO.setDestName(arrivalVO.getDestName());
-                arrivalPO.setStockStatus(arrivalVO.getStatus());
+                //arrivalPO.setStockStatus(arrivalVO.getStatus()); sx×¢ÊÍ
             resultMessage = ResultMessage.SUCCESS;
 
         } catch (RemoteException e) {

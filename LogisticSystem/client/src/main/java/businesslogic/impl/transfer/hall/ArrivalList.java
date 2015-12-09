@@ -1,7 +1,10 @@
 package businesslogic.impl.transfer.hall;
 
 import java.rmi.RemoteException;
+import java.security.Timestamp;
 import java.util.ArrayList;
+
+import utils.Timestamper;
 import data.enums.POType;
 import data.enums.StockStatus;
 import data.message.ResultMessage;
@@ -99,22 +102,19 @@ public class ArrivalList {
 	
 	public ArrivalVO createArrival(TransferListVO transferList) {
 		ArrivalVO vo = new ArrivalVO();
-		vo.setDate(transferList.date);
+		vo.setDate(Timestamper.getTimeByDate());
 		vo.setDeliveryListNum(transferList.transferListID);
 		vo.setFromName(transferList.transferCenter);
 		vo.setFromNum(transferList.transferCenterID);
 
 		String[][] info = transferList.orderAndPosition;
 		String[][] orderAndStatus = new String[info.length][2];
-		ArrayList<StockStatus> status = new ArrayList<>();
 		for (int i = 0; i < info.length; i++) {
 			String[] in = { info[i][0], "完整" };
 			orderAndStatus[i] = in;
-			status.add(StockStatus.ROUND);
 		}
 
 		vo.setOrderAndStatus(orderAndStatus);
-		vo.setStatus(status);
 
 		return vo;
 	}
@@ -126,15 +126,13 @@ public class ArrivalList {
 		vo.setFromName(entruck.fromName);
 		vo.setFromNum(entruck.fromID);
 		String[][] orders = entruck.info;
-		ArrayList<StockStatus> status = new ArrayList<>();
 		for (int i = 0; i < orders.length; i++) {
 			orders[i][1] = "完整";
-			status.add(StockStatus.ROUND);
 		}
-		vo.setStatus(status);
 		vo.setOrderAndStatus(orders);
 		return vo;
 	}
+	
 
 	public ResultMessage saveArrival(ArrivalVO vo) throws RemoteException {
 		ArrivalPO arrivalPO = new ArrivalPO();
@@ -142,14 +140,24 @@ public class ArrivalList {
 		arrivalPO.setFrom(Long.parseLong(vo.getFromNum()));
 		arrivalPO.setFromName(vo.getFromName());
 		ArrayList<Long> order = new ArrayList<>();
+		ArrayList<StockStatus> status = new ArrayList<StockStatus>();
 		String[][] orders = vo.getOrderAndStatus();
 		for (int i = 0; i < orders.length; i++) {
 			long ID = Long.parseLong(orders[i][0]);
 			order.add(ID);
-
+			switch (orders[i][1]) {
+			case "完整":
+				status.add(StockStatus.ROUND);
+				break;
+			case "破损":
+				status.add(StockStatus.DAMAGED);
+			default:
+				status.add(StockStatus.LOST);
+				break;
+			}
 		}
 		arrivalPO.setOrder(order);
-		arrivalPO.setStockStatus(vo.getStatus());
+		arrivalPO.setStockStatus(status);
 		return transferData.add(arrivalPO);
 	}
 }

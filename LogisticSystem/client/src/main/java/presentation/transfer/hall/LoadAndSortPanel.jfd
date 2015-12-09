@@ -8,14 +8,22 @@ new FormModel {
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 				name: "loadAndSortPane"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :p:694:p, comp selectEntruck::::91:x, space :::p}}"
-					"$verticalGroup": "par l {seq t {space ::313:x, comp selectEntruck:::p::p, space :::p}}"
+					"$horizontalGroup": "par l {seq {space :::p, comp scrollPane3:::p:688:p, space :::p, comp selectEntruck::::81:x, space :::p}}"
+					"$verticalGroup": "par l {seq l {par t {comp selectEntruck:::p::p, comp scrollPane3:::p:346:p}, space :0:0:x}}"
 				} ) {
 					name: "entruckListPanel"
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "selectEntruck"
 						"text": "查看"
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "selectEntruckMouseClicked", true ) )
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane3"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "entruckListTable"
+							"selectionMode": 1
+							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "entruckListTableMouseReleased", true ) )
+						} )
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "已审批装车单"
@@ -67,8 +75,8 @@ new FormModel {
 		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 			name: "entruckVO"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {comp scrollPane2::t::795:x, seq {space :::p, par l {seq l {par l {comp label8::l:p::p, comp label7::l:p::p}, space s:::p, par l {comp destName:::::x, comp destID:::::x}}, par l:::p {seq {comp label6:::p::p, space :p:30:p, comp listID:::p:80:p}, seq l {comp label5:::p::p, space s:::p, comp hallID:::p:82:p}, seq l {comp label9:::p::p, space :p:30:p, comp hallName:::::x}}}, space :p:135:p, par l {comp label10::l:p::p, comp label11:::p::p, comp label12:::p::p, comp label13:::p::p}, space u:::p, par l:::p {comp truckID::::80:x, comp staffName::::80:x, comp driverName::::80:x, comp fee::::80:x}, space :p:264:p, par l:::p {comp cancelLoad::::78:x, comp saveEntruck::::78:x, comp doEntruck::::78:x}, space :::p}}"
-				"$verticalGroup": "par l {seq t {space :::p, par l {comp label6:::p::p, comp listID:::p::p}, space :::p, par b {comp label5::b:p::p, comp label10::b:p::p, comp truckID::b:p::p, comp hallID::b:p::p}, space :::x, par l {seq {comp doEntruck:::p::p, space :::p, comp saveEntruck:::p::p, space :::p, comp cancelLoad:::p::p}, seq {par b {comp label9::b:p::p, comp label11::b:p::p, comp staffName::b:p::p, comp hallName::b:p::p}, space :::p, par l {par b {comp label8::b:p::p, comp destID::b:p::p}, par b {comp label12::b:p::p, comp driverName::b:p::p}}, space :::p, par l {comp label7:::p::p, comp label13::l:p::p, comp fee::l:p::p, comp destName::l:p::p}}}, space :::p, comp scrollPane2:::p:186:p}}"
+				"$horizontalGroup": "par l {comp scrollPane2::t::795:x, seq {space :::p, par l {seq l {par l {comp label8::l:p::p, comp label7::l:p::p}, space s:::p, par l {comp destName:::::x, comp destID:::::x}}, par l:::p {seq {comp label6:::p::p, space :p:30:p, comp listID:::p:80:p}, seq l {comp label5:::p::p, space s:::p, comp hallID:::p:82:p}, seq l {comp label9:::p::p, space :p:30:p, comp hallName:::::x}}}, space :p:135:p, par l:::p {seq {par l {comp label10::l:p::p, comp label11:::p::p, comp label12:::p::p, comp label13:::p::p}, space u:::p, par l:::p {comp truckID::::80:x, comp staffName::::80:x, comp driverName::::80:x, comp fee::::80:x}}, seq {comp label4:::p::p, space u:::p, comp entruckDate::::80:x}}, space :p:264:p, par l:::p {comp cancelLoad::::78:x, comp saveEntruck::::78:x, comp doEntruck::::78:x}, space :::p}}"
+				"$verticalGroup": "par l {seq t {space :::p, par l {comp label6:::p::p, par b {comp listID::b:p::p, comp label4::b:p::p, comp entruckDate::b:p::p}}, space :::p, par b {comp label5::b:p::p, comp label10::b:p::p, comp truckID::b:p::p, comp hallID::b:p::p}, space :::x, par l {seq {comp doEntruck:::p::p, space :::p, comp saveEntruck:::p::p, space :::p, comp cancelLoad:::p::p}, seq {par b {comp label9::b:p::p, comp label11::b:p::p, comp staffName::b:p::p, comp hallName::b:p::p}, space :::p, par l {par b {comp label8::b:p::p, comp destID::b:p::p}, par b {comp label12::b:p::p, comp driverName::b:p::p}}, space :::p, par l {comp label7:::p::p, comp label13::l:p::p, comp fee::l:p::p, comp destName::l:p::p}}}, space :::p, comp scrollPane2:::p:186:p}}"
 			} ) {
 				name: "DeliveryListPanel"
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -155,6 +163,13 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "fee"
 				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label4"
+					"text": "装车日期"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "entruckDate"
+				} )
 			}, new FormLayoutConstraints( null ) {
 				"title": "装车单"
 			} )
@@ -185,7 +200,7 @@ new FormModel {
 				"value": "Center"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 805, 60 )
+			"location": new java.awt.Point( 830, 60 )
 			"size": new java.awt.Dimension( 260, 200 )
 		} )
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
@@ -208,19 +223,8 @@ new FormModel {
 				"value": "Center"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 805, 285 )
+			"location": new java.awt.Point( 830, 285 )
 			"size": new java.awt.Dimension( 260, 200 )
-		} )
-		add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-			name: "scrollPane3"
-			add( new FormComponent( "javax.swing.JTable" ) {
-				name: "entruckListTable"
-				"selectionMode": 1
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "entruckListTableMouseReleased", true ) )
-			} )
-		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 210, 35 )
-			"size": new java.awt.Dimension( 688, 346 )
 		} )
 	}
 }

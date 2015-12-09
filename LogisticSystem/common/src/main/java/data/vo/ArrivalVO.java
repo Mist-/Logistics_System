@@ -11,17 +11,25 @@ import java.util.ArrayList;
  *
  */
 public class ArrivalVO {
+	public String[] statusList = {"完整","丢失","破损"};
 	//到达日期、中转单编号、出发地、货物到达状态（损坏、完整、丢失）
+	String deliveryListNum;//中转单或装车单号
+	String[][] orderAndStatus;//订单号+状态
+    String date;//日期
+    String fromName;//出发地
+    String  fromNum;//出发地编号
+	String destName;//到达地
+    String[] header = {"订单编号","订单状态"};
+	long id;
+	long transferList;//中转中心编号
 	public ArrivalVO(){
-		
 	}
 
 
 	public ArrivalVO(ArrivalPO arrival){
-
 		deliveryListNum = arrival.getTransferList()+"";
 		long[] order = arrival.getOrder();
-		status = arrival.getStockStatus();
+		ArrayList<StockStatus> status = arrival.getStockStatus();
 		orderAndStatus = new String[order.length][2];
 		for(int i = 0 ; i < order.length;i++){
 			String[] info = new String[2];
@@ -34,12 +42,6 @@ public class ArrivalVO {
 		date = arrival.getDate();
 		fromNum = arrival.getFrom()+"";
 		
-	}
-    public ArrayList<StockStatus> getStatus() {
-		return status;
-	}
-	public void setStatus(ArrayList<StockStatus> status) {
-		this.status = status;
 	}
 
 	public String[][] getOrderAndStatus() {
@@ -75,9 +77,6 @@ public class ArrivalVO {
 		this.deliveryListNum = deliveryListNum;
 	}
 
-
-
-
 	public String getFromName() {
 		return fromName;
 	}
@@ -86,23 +85,6 @@ public class ArrivalVO {
 	public void setFromName(String fromName) {
 		this.fromName = fromName;
 	}
-
-
-
-
-
-	ArrayList<StockStatus> status;//订单状态
-
-	String deliveryListNum;//中转单或装车单号
-
-	String[][] orderAndStatus;//订单号+状态
-    String date;//日期
-    String fromName;//出发地
-    String  fromNum;//出发地编号
-	String destName;//到达地
-    String[] header = {"订单编号","订单状态"};
-	long id;
-	long transferList;//中转中心编号
 
 	public long getTransferList() {
 		return transferList;
@@ -119,7 +101,6 @@ public class ArrivalVO {
 	public void setId(long id) {
 		this.id = id;
 	}
-
 
 	public String getDestName() {
 		return destName;

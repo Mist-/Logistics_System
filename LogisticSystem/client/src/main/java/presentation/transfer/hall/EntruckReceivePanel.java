@@ -76,11 +76,16 @@ public class EntruckReceivePanel extends JPanel {
 
 	//设置到达单
 	private void setArrivalVO() {
+		modifyStatus.setEnabled(false);
 		DefaultTableModel model = new DefaultTableModel(
 				arrival.getOrderAndStatus(), arrival.getHeader());
 		arrivalVOTable.setModel(model);
 		arrivalVOTable.validate();
 		arrivalVOTable.updateUI();
+		DefaultComboBoxModel<String> model1 = new DefaultComboBoxModel<String>(arrival.statusList);
+		status.setModel(model1);
+		status.updateUI();
+		status.setEnabled(false);
 		transferID.setText(arrival.getDeliveryListNum());
 		from.setText(arrival.getFromName());
 		arrivalDate.setText(arrival.getDate());
@@ -132,6 +137,16 @@ public class EntruckReceivePanel extends JPanel {
 	private void setEntruckList() {
 		DefaultTableModel model = new DefaultTableModel(entruckList.info,
 				entruckList.header);
+		listType.setText("装车单");
+		listID.setText(entruckList.entruckListID);
+		date.setText(entruckList.loadingDate);
+		fromName.setText(entruckList.fromName);
+		destName.setText(entruckList.destName);
+		vehicleID.setText(entruckList.vehicleID);
+		staff.setText(entruckList.monitorName);
+		driverName.setText(entruckList.driverName);
+		fee.setText(entruckList.fee);
+		transferType.setText("汽运");
 		deliveryTable.setModel(model);
 		deliveryTable.validate();
 		deliveryTable.updateUI();
@@ -143,6 +158,16 @@ public class EntruckReceivePanel extends JPanel {
 		DefaultTableModel model = new DefaultTableModel(
 				transferList.orderAndPosition, transferList.header);
 		deliveryTable.setModel(model);
+		listType.setText("中转单");
+		listID.setText(transferList.transferListID);
+		fromName.setText(transferList.transferCenter);
+		destName.setText(transferList.targetName);
+		date.setText(transferList.date);
+		vehicleID.setText(transferList.vehicleCode);
+		staff.setText(transferList.staff);
+		driverName.setText("");
+		fee.setText(transferList.fee);
+		transferType.setText(transferList.transferType);
 		deliveryTable.validate();
 		deliveryTable.updateUI();
 		deliveryTable.repaint();
@@ -157,11 +182,9 @@ public class EntruckReceivePanel extends JPanel {
 	private void selectArrivalMouseClicked(MouseEvent e) {
 		if(arrivalList != null){
 		int row = arrivalTable.getSelectedRow();
-		System.out.println(row);
 		String id = (String) arrivalTable.getValueAt(row, 0);
 		long ID = Long.parseLong(id);
 		arrival = entruckReceive.chooseArrival(ID);
-		
 		doArrive.setEnabled(true);
 		doArrive.setVisible(true);
 		saveArrival.setEnabled(false);
@@ -301,6 +324,31 @@ public class EntruckReceivePanel extends JPanel {
 		deliveryID.setText("");
 		searchList.setEnabled(true);
 	}
+
+	private void modifyStatusMouseReleased(MouseEvent e) {//修改订单状态
+		if (modifyStatus.isEnabled()) {
+			int index = status.getSelectedIndex();
+			if(index != -1){
+			String s = (String) status.getItemAt(index);
+			int[] rows = arrivalVOTable.getSelectedRows();
+			if (rows == null) {
+				return;
+			}
+			String[][] info = arrival.getOrderAndStatus();
+			for(int i = 0;i < rows.length;i++){
+				info[rows[i]][1] = s;
+			}
+			
+			arrivalVOTable.updateUI();
+			arrivalVOTable.repaint();
+			}
+		}
+	}
+
+	private void arrivalVOTableMouseClicked(MouseEvent e) {
+		status.setEnabled(true);
+		modifyStatus.setEnabled(true);
+	}
 //==============================监听=================================
 
 	private void initComponents() {
@@ -333,12 +381,34 @@ public class EntruckReceivePanel extends JPanel {
 		doArrive = new JButton();
 		label4 = new JLabel();
 		saveArrival = new JButton();
+		label15 = new JLabel();
 		entruckVO = new JTabbedPane();
 		DeliveryListPanel = new JPanel();
 		scrollPane3 = new JScrollPane();
 		deliveryTable = new JTable();
 		cancelLoad = new JButton();
-		createArrival2 = new JButton();
+		createArrival = new JButton();
+		label10 = new JLabel();
+		listType = new JTextField();
+		label11 = new JLabel();
+		listID = new JTextField();
+		label12 = new JLabel();
+		fromName = new JTextField();
+		label13 = new JLabel();
+		destName = new JTextField();
+		label14 = new JLabel();
+		date = new JTextField();
+		vehicleLabel = new JLabel();
+		vehicleID = new JTextField();
+		staffLabel = new JLabel();
+		driverLabel = new JLabel();
+		staff = new JTextField();
+		driverName = new JTextField();
+		label18 = new JLabel();
+		fee = new JTextField();
+		label19 = new JLabel();
+		transferTypeLabel = new JLabel();
+		transferType = new JTextField();
 		resultDialog = new JDialog();
 		label6 = new JLabel();
 		resultSureButton = new JButton();
@@ -492,6 +562,14 @@ public class EntruckReceivePanel extends JPanel {
 
 				//======== scrollPane1 ========
 				{
+
+					//---- arrivalVOTable ----
+					arrivalVOTable.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							arrivalVOTableMouseClicked(e);
+						}
+					});
 					scrollPane1.setViewportView(arrivalVOTable);
 				}
 
@@ -502,7 +580,13 @@ public class EntruckReceivePanel extends JPanel {
 				label3.setText("\u65e5\u671f");
 
 				//---- modifyStatus ----
-				modifyStatus.setText("text");
+				modifyStatus.setText("\u4fee\u6539\u72b6\u6001");
+				modifyStatus.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						modifyStatusMouseReleased(e);
+					}
+				});
 
 				//---- cancelArrival ----
 				cancelArrival.setText("\u53d6\u6d88");
@@ -534,6 +618,9 @@ public class EntruckReceivePanel extends JPanel {
 					}
 				});
 
+				//---- label15 ----
+				label15.setText("\u8ba2\u5355\u72b6\u6001");
+
 				GroupLayout panel1Layout = new GroupLayout(panel1);
 				panel1.setLayout(panel1Layout);
 				panel1Layout.setHorizontalGroup(
@@ -542,6 +629,8 @@ public class EntruckReceivePanel extends JPanel {
 							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
 								.addGroup(panel1Layout.createSequentialGroup()
+									.addComponent(label15)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 									.addComponent(status, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 									.addComponent(modifyStatus, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE))
@@ -596,7 +685,8 @@ public class EntruckReceivePanel extends JPanel {
 									.addGap(11, 11, 11)
 									.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 										.addComponent(status, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(modifyStatus))
+										.addComponent(modifyStatus)
+										.addComponent(label15))
 									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 									.addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)))
 							.addContainerGap())
@@ -622,45 +712,155 @@ public class EntruckReceivePanel extends JPanel {
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						cancelLoadMouseClicked(e);
-						cancelLoadMouseClicked(e);
-						cancelLoadMouseClicked(e);
 					}
 				});
 
-				//---- createArrival2 ----
-				createArrival2.setText("\u751f\u6210\u5230\u8fbe\u5355");
-				createArrival2.addMouseListener(new MouseAdapter() {
+				//---- createArrival ----
+				createArrival.setText("\u751f\u6210\u5230\u8fbe\u5355");
+				createArrival.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						createArrivalMouseClicked(e);
 					}
 				});
 
+				//---- label10 ----
+				label10.setText("\u5355\u636e\u7c7b\u578b");
+
+				//---- label11 ----
+				label11.setText("\u5355\u53f7");
+
+				//---- label12 ----
+				label12.setText("\u51fa\u53d1\u5730");
+
+				//---- label13 ----
+				label13.setText("\u76ee\u7684\u5730");
+
+				//---- label14 ----
+				label14.setText("\u88c5\u8fd0\u65e5\u671f");
+
+				//---- vehicleLabel ----
+				vehicleLabel.setText("\u8f66\u8f86\u7f16\u53f7");
+
+				//---- driverLabel ----
+				driverLabel.setText("\u62bc\u8fd0\u5458");
+
+				//---- label18 ----
+				label18.setText("\u8fd0\u8d39");
+
+				//---- label19 ----
+				label19.setText("\u76d1\u88c5\u5458");
+
+				//---- transferTypeLabel ----
+				transferTypeLabel.setText("\u8fd0\u8f93\u7c7b\u578b");
+
 				GroupLayout DeliveryListPanelLayout = new GroupLayout(DeliveryListPanel);
 				DeliveryListPanel.setLayout(DeliveryListPanelLayout);
 				DeliveryListPanelLayout.setHorizontalGroup(
 					DeliveryListPanelLayout.createParallelGroup()
 						.addGroup(DeliveryListPanelLayout.createSequentialGroup()
-							.addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 693, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addContainerGap()
 							.addGroup(DeliveryListPanelLayout.createParallelGroup()
-								.addComponent(cancelLoad, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
-									.addComponent(createArrival2)
+									.addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 676, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addGroup(DeliveryListPanelLayout.createParallelGroup()
+										.addComponent(cancelLoad, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+											.addComponent(createArrival)
+											.addGap(0, 0, Short.MAX_VALUE))))
+								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+									.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+											.addComponent(label13)
+											.addGap(18, 18, 18)
+											.addComponent(destName, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE))
+										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+											.addGroup(DeliveryListPanelLayout.createParallelGroup()
+												.addGroup(GroupLayout.Alignment.TRAILING, DeliveryListPanelLayout.createSequentialGroup()
+													.addGroup(DeliveryListPanelLayout.createParallelGroup()
+														.addComponent(label10)
+														.addComponent(label11))
+													.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED))
+												.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+													.addComponent(label12)
+													.addGap(16, 16, 16)))
+											.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+												.addComponent(fromName, GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+												.addComponent(listType, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+												.addComponent(listID, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))))
+									.addGap(45, 45, 45)
+									.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+											.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+												.addComponent(label14, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+												.addComponent(vehicleLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+												.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+													.addComponent(label19)
+													.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+													.addComponent(staffLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+											.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+												.addComponent(date, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+												.addComponent(vehicleID, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+												.addComponent(staff, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)))
+										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+											.addComponent(driverLabel)
+											.addGap(18, 18, 18)
+											.addComponent(driverName, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)))
+									.addGap(37, 37, 37)
+									.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+											.addComponent(label18)
+											.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+											.addComponent(fee, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE))
+										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+											.addComponent(transferTypeLabel)
+											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+											.addComponent(transferType, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)))
 									.addGap(0, 0, Short.MAX_VALUE)))
 							.addContainerGap())
 				);
 				DeliveryListPanelLayout.setVerticalGroup(
 					DeliveryListPanelLayout.createParallelGroup()
 						.addGroup(DeliveryListPanelLayout.createSequentialGroup()
-							.addGap(35, 135, Short.MAX_VALUE)
+							.addContainerGap()
+							.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(label10)
+								.addComponent(listType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(label14)
+								.addComponent(date, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(label11)
+								.addComponent(listID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(vehicleLabel)
+								.addComponent(vehicleID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(label12)
+								.addComponent(fromName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(staffLabel)
+								.addComponent(staff, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(label19)
+								.addComponent(transferTypeLabel)
+								.addComponent(transferType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(label13)
+								.addComponent(destName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(driverLabel)
+								.addComponent(label18)
+								.addComponent(fee, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(driverName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
 							.addGroup(DeliveryListPanelLayout.createParallelGroup()
-								.addComponent(scrollPane3, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
 								.addGroup(GroupLayout.Alignment.TRAILING, DeliveryListPanelLayout.createSequentialGroup()
-									.addComponent(createArrival2, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+									.addComponent(createArrival, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 									.addComponent(cancelLoad)
-									.addContainerGap())))
+									.addContainerGap())
+								.addComponent(scrollPane3, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)))
 				);
 			}
 			entruckVO.addTab("\u8fd0\u8f6c\u5355", DeliveryListPanel);
@@ -855,12 +1055,34 @@ public class EntruckReceivePanel extends JPanel {
 	private JButton doArrive;
 	private JLabel label4;
 	private JButton saveArrival;
+	private JLabel label15;
 	private JTabbedPane entruckVO;
 	private JPanel DeliveryListPanel;
 	private JScrollPane scrollPane3;
 	private JTable deliveryTable;
 	private JButton cancelLoad;
-	private JButton createArrival2;
+	private JButton createArrival;
+	private JLabel label10;
+	private JTextField listType;
+	private JLabel label11;
+	private JTextField listID;
+	private JLabel label12;
+	private JTextField fromName;
+	private JLabel label13;
+	private JTextField destName;
+	private JLabel label14;
+	private JTextField date;
+	private JLabel vehicleLabel;
+	private JTextField vehicleID;
+	private JLabel staffLabel;
+	private JLabel driverLabel;
+	private JTextField staff;
+	private JTextField driverName;
+	private JLabel label18;
+	private JTextField fee;
+	private JLabel label19;
+	private JLabel transferTypeLabel;
+	private JTextField transferType;
 	private JDialog resultDialog;
 	private JLabel label6;
 	private JButton resultSureButton;
