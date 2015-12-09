@@ -28,13 +28,13 @@ public interface FinancialBLService {
 
     
 //Statement    
-//    ResultMessage businessConditionExcel(String dateStartYear,String dateStartMonth,String dateStartDay, String dateEndYear,String dateEndMonth,String dateEndDay);
-//
-//    ResultMessage printBusinessConditionExcel (String dateStart,String dateEnd);
-//    
-//    ResultMessage costBenefitExcel (String dateEnd);
-//    
-//    ResultMessage printCostBenefitExcel (String dateEnd);
+    ResultMessage businessConditionExcel(String dateStartYear,String dateStartMonth,String dateStartDay, String dateEndYear,String dateEndMonth,String dateEndDay);
+
+    ResultMessage printBusinessConditionExcel (String dateStart,String dateEnd);
+    
+    ResultMessage costBenefitExcel (String dateEnd);
+    
+    ResultMessage printCostBenefitExcel (String dateEnd);
 
     
 //Account    
