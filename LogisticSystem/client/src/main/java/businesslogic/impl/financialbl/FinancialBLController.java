@@ -58,26 +58,26 @@ public class FinancialBLController implements FinancialBLService {
 		return initialBuild.buildBankAccountExcel(info, name, money);
 	}
 
-//	@Override
-//	public ResultMessage businessConditionExcel(String dateStartYear,String dateStartMonth,String dateStartDay, String dateEndYear,String dateEndMonth,String dateEndDay) {
-//		return statementStatistic.businessConditionExcel(dateStartYear,dateStartMonth,dateStartDay,dateEndYear,dateEndMonth,dateEndDay);
-//	}
-//
-//	@Override
-//	public ResultMessage printBusinessConditionExcel(String dateStart,
-//			String dateEnd) {
-//		return statementStatistic.printBusinessConditionExcel(dateStart, dateEnd);
-//	}
-//
-//	@Override
-//	public ResultMessage costBenefitExcel(String dateEnd) {
-//		return statementStatistic.costBenefitExcel(dateEnd);
-//	}
-//
-//	@Override
-//	public ResultMessage printCostBenefitExcel(String dateEnd) {
-//		return statementStatistic.printCostBenefitExcel(dateEnd);
-//	}
+	@Override
+	public ResultMessage businessConditionExcel(String dateStartYear,String dateStartMonth,String dateStartDay, String dateEndYear,String dateEndMonth,String dateEndDay) {
+		return statementStatistic.businessConditionExcel(dateStartYear,dateStartMonth,dateStartDay,dateEndYear,dateEndMonth,dateEndDay);
+	}
+
+	@Override
+	public ResultMessage printBusinessConditionExcel(String dateStart,
+			String dateEnd) {
+		return statementStatistic.printBusinessConditionExcel(dateStart, dateEnd);
+	}
+
+	@Override
+	public ResultMessage costBenefitExcel(String dateEnd) {
+		return statementStatistic.costBenefitExcel(dateEnd);
+	}
+
+	@Override
+	public ResultMessage printCostBenefitExcel(String dateEnd) {
+		return statementStatistic.printCostBenefitExcel(dateEnd);
+	}
 
 //	@Override
 //	public ResultMessage acIdentity(String name, String password) {
