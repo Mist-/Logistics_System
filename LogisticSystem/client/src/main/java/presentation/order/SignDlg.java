@@ -11,6 +11,7 @@ import data.factory.DataServiceFactory;
 import data.message.ResultMessage;
 import data.po.OrderPO;
 import data.service.DataService;
+import data.vo.SignVO;
 
 import java.awt.*;
 import java.rmi.RemoteException;
@@ -21,7 +22,7 @@ import javax.swing.GroupLayout;
  * @author mist
  */
 public class SignDlg extends JDialog {
-
+    SignVO signVO = null;
     long sn = 0;
     ResultMessage result = ResultMessage.FAILED;
 
@@ -30,7 +31,7 @@ public class SignDlg extends JDialog {
      * @param sn 需要签收的订单号
      * @return SUCCESS表示签收成功，并且成功创建了签收单，NOTEXIST表示要签收的订单不存在，FAILED表示订单已经被签收，或者订单还没有生效
      */
-    public ResultMessage signOrder(long sn) {
+    public SignVO signOrder(long sn) {
         result = ResultMessage.FAILED;
         this.sn = sn;
         DataService ds = DataServiceFactory.getDataServiceByPO(POType.ORDER);
@@ -44,8 +45,10 @@ public class SignDlg extends JDialog {
             e.printStackTrace();
         }
         labelOrderNum.setText("订单号：" + sn);
+        labelRname.setText("收件人姓名：" + order.getRname());
+        labelRphone.setText("收件人电话：" + order.getRphone());
         this.setVisible(true);
-        return result;
+        return signVO;
     }
 
     public SignDlg(Frame owner) {
@@ -58,8 +61,41 @@ public class SignDlg extends JDialog {
         initComponents();
     }
 
-    private void button1MouseReleased(MouseEvent e) {
 
+    /**
+     * 确认按钮MouseRelease事件
+     * @param e
+     */
+    private void button1MouseReleased(MouseEvent e) {
+        if (textName.getText().matches("[ ]*")) {
+            textName.requestFocus();
+            return;
+        }
+        if (textPhone.getText().matches("[ ]*")) {
+            textPhone.requestFocus();
+            return;
+        }
+        if (!textPhone.getText().matches("[+]?[0-9]*")) {
+            JOptionPane.showMessageDialog(this, "电话格式错误");
+            textPhone.requestFocus();
+            return;
+        }
+        signVO = new SignVO(sn);
+        signVO.sname = textName.getText();
+        signVO.sphone = textPhone.getText();
+        int result = JOptionPane.showConfirmDialog(this, "确定到用下列信息签收？\n" +
+                "订单号：" + sn + "\n" +
+                "签收者：" + signVO.sname + "\n" +
+                "电话：" + signVO.sphone + "\n", "签收确认", JOptionPane.YES_NO_OPTION);
+        if (result == JOptionPane.YES_OPTION) {
+            this.setVisible(false);
+        }
+        this.setVisible(false);
+    }
+
+    private void btCancelMouseReleased(MouseEvent e) {
+        signVO = null;
+        this.setVisible(false);
     }
 
     private void initComponents() {
@@ -108,6 +144,12 @@ public class SignDlg extends JDialog {
         //---- btCancel ----
         btCancel.setText("\u53d6\u6d88");
         btCancel.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+        btCancel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                btCancelMouseReleased(e);
+            }
+        });
 
         //---- labelRname ----
         labelRname.setText("\u6536\u4ef6\u4eba\u59d3\u540d\uff1a");
@@ -126,14 +168,6 @@ public class SignDlg extends JDialog {
                     .addGroup(contentPaneLayout.createParallelGroup()
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addGroup(contentPaneLayout.createParallelGroup()
-                                .addComponent(labelOrderNum)
-                                .addGroup(contentPaneLayout.createSequentialGroup()
-                                    .addComponent(labelRname)
-                                    .addGap(115, 115, 115)
-                                    .addComponent(labelRphone)))
-                            .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGroup(contentPaneLayout.createParallelGroup()
                                 .addGroup(contentPaneLayout.createSequentialGroup()
                                     .addComponent(label2)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
@@ -145,10 +179,19 @@ public class SignDlg extends JDialog {
                                     .addComponent(btOK)))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(contentPaneLayout.createParallelGroup()
-                                .addComponent(textPhone, GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
                                 .addGroup(contentPaneLayout.createSequentialGroup()
                                     .addComponent(btCancel)
-                                    .addGap(0, 90, Short.MAX_VALUE))))))
+                                    .addGap(0, 84, Short.MAX_VALUE))
+                                .addGroup(contentPaneLayout.createSequentialGroup()
+                                    .addComponent(textPhone, GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                                    .addContainerGap())))
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGroup(contentPaneLayout.createParallelGroup()
+                                .addComponent(labelOrderNum)
+                                .addComponent(labelRname))
+                            .addGap(109, 109, 109)
+                            .addComponent(labelRphone)
+                            .addContainerGap(106, Short.MAX_VALUE))))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
@@ -162,10 +205,9 @@ public class SignDlg extends JDialog {
                     .addGap(18, 18, 18)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(textName)
-                        .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(label3, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label2, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textPhone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(label3, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(label2, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textPhone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                     .addGap(18, 18, 18)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(btOK)

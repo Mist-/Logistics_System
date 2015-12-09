@@ -554,7 +554,6 @@ public class FINANCE extends JFrame {
         textName = new JTextField();
         btSearch = new JButton();
         label6 = new JLabel();
-        vSpacer1 = new JPanel(null);
         btDelete = new JButton();
         label7 = new JLabel();
         textName2 = new JTextField();
@@ -746,6 +745,7 @@ public class FINANCE extends JFrame {
 
                     //---- btAddP ----
                     btAddP.setIcon(new ImageIcon(getClass().getResource("/icons/new_24x24.png")));
+                    btAddP.setText("\u65b0\u5efa");
                     btAddP.addMouseListener(new MouseAdapter() {
                         @Override
                         public void mouseReleased(MouseEvent e) {
@@ -760,6 +760,7 @@ public class FINANCE extends JFrame {
 
                     //---- btPExcel ----
                     btPExcel.setText("\u5bfc\u51fa");
+                    btPExcel.setIcon(new ImageIcon(getClass().getResource("/icons/export_24x24.png")));
                     btPExcel.addMouseListener(new MouseAdapter() {
                         @Override
                         public void mouseReleased(MouseEvent e) {
@@ -772,12 +773,14 @@ public class FINANCE extends JFrame {
                     panel1Layout.setHorizontalGroup(
                         panel1Layout.createParallelGroup()
                             .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                .addComponent(scrollPane15, GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
+                                .addComponent(scrollPane15, GroupLayout.PREFERRED_SIZE, 771, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(panel1Layout.createParallelGroup()
-                                    .addComponent(btAddP, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btPExcel))
-                                .addGap(22, 22, 22))
+                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btAddP, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addComponent(btPExcel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addContainerGap())
                     );
                     panel1Layout.setVerticalGroup(
                         panel1Layout.createParallelGroup()
@@ -786,8 +789,8 @@ public class FINANCE extends JFrame {
                                 .addComponent(btAddP)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btPExcel)
-                                .addContainerGap(157, Short.MAX_VALUE))
-                            .addComponent(scrollPane15, GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                                .addContainerGap(150, Short.MAX_VALUE))
+                            .addComponent(scrollPane15, GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                     );
                 }
                 tabbedPane4.addTab("\u4ed8\u6b3e\u5355", panel1);
@@ -896,11 +899,11 @@ public class FINANCE extends JFrame {
             pnZJGL.setLayout(pnZJGLLayout);
             pnZJGLLayout.setHorizontalGroup(
                 pnZJGLLayout.createParallelGroup()
-                    .addComponent(tabbedPane4, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
+                    .addComponent(tabbedPane4)
             );
             pnZJGLLayout.setVerticalGroup(
                 pnZJGLLayout.createParallelGroup()
-                    .addComponent(tabbedPane4, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                    .addComponent(tabbedPane4, GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
             );
         }
 
@@ -1019,11 +1022,11 @@ public class FINANCE extends JFrame {
                                     .addComponent(label14)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(btSearch2, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(41, 41, 41)
+                                    .addGap(40, 40, 40)
                                     .addComponent(jbExcel)
-                                    .addGap(0, 56, Short.MAX_VALUE))
+                                    .addGap(0, 152, Short.MAX_VALUE))
                                 .addGroup(panel4Layout.createSequentialGroup()
-                                    .addComponent(scrollPane17)
+                                    .addComponent(scrollPane17, GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
                                     .addContainerGap())
                         );
                         panel4Layout.setVerticalGroup(
@@ -1046,10 +1049,10 @@ public class FINANCE extends JFrame {
                                             .addComponent(textEndDay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                             .addComponent(label14))
                                         .addComponent(btSearch2, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jbExcel, GroupLayout.Alignment.TRAILING))
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(scrollPane17, GroupLayout.PREFERRED_SIZE, 328, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 96, Short.MAX_VALUE))
+                                        .addComponent(jbExcel, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(scrollPane17, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 0, Short.MAX_VALUE))
                         );
                     }
                     scrollPane5.setViewportView(panel4);
@@ -1067,13 +1070,17 @@ public class FINANCE extends JFrame {
             pnTJBB.setLayout(pnTJBBLayout);
             pnTJBBLayout.setHorizontalGroup(
                 pnTJBBLayout.createParallelGroup()
-                    .addComponent(tpCost, GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
+                    .addGroup(pnTJBBLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(tpCost)
+                        .addContainerGap())
             );
             pnTJBBLayout.setVerticalGroup(
                 pnTJBBLayout.createParallelGroup()
                     .addGroup(pnTJBBLayout.createSequentialGroup()
-                        .addComponent(tpCost, GroupLayout.PREFERRED_SIZE, 397, GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(tpCost, GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+                        .addContainerGap())
             );
         }
 
@@ -1173,6 +1180,7 @@ public class FINANCE extends JFrame {
 
             //---- btAdd ----
             btAdd.setText("\u6dfb\u52a0");
+            btAdd.setIcon(new ImageIcon(getClass().getResource("/icons/add_24x24.png")));
             btAdd.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseReleased(MouseEvent e) {
@@ -1182,6 +1190,7 @@ public class FINANCE extends JFrame {
 
             //---- btModify ----
             btModify.setText("\u4fee\u6539");
+            btModify.setIcon(new ImageIcon(getClass().getResource("/icons/modify_24x24.png")));
             btModify.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseReleased(MouseEvent e) {
@@ -1206,6 +1215,7 @@ public class FINANCE extends JFrame {
 
             //---- btDelete ----
             btDelete.setText("\u5220\u9664");
+            btDelete.setIcon(new ImageIcon(getClass().getResource("/icons/delete_24x24.png")));
             btDelete.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseReleased(MouseEvent e) {
@@ -1233,40 +1243,36 @@ public class FINANCE extends JFrame {
                                 .addComponent(label7)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(textName2, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 11, Short.MAX_VALUE))
+                                .addGap(0, 3, Short.MAX_VALUE))
                             .addGroup(pnZHGLLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(scrollPane12, GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)))
+                                .addComponent(scrollPane12, GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnZHGLLayout.createParallelGroup()
-                            .addComponent(vSpacer1, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btAdd)
-                            .addComponent(btDelete)
-                            .addComponent(btModify))
+                        .addGroup(pnZHGLLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btAdd, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                            .addComponent(btModify, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                            .addComponent(btDelete, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
                         .addContainerGap())
             );
             pnZHGLLayout.setVerticalGroup(
                 pnZHGLLayout.createParallelGroup()
                     .addGroup(pnZHGLLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(pnZHGLLayout.createParallelGroup()
+                        .addGroup(pnZHGLLayout.createParallelGroup(GroupLayout.Alignment.BASELINE, false)
+                            .addComponent(label6)
+                            .addComponent(textName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textName2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btSearch, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnZHGLLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                             .addGroup(pnZHGLLayout.createSequentialGroup()
-                                .addComponent(vSpacer1, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
-                                .addGap(52, 52, 52)
                                 .addComponent(btAdd)
-                                .addGap(18, 18, 18)
-                                .addComponent(btDelete)
-                                .addGap(18, 18, 18)
-                                .addComponent(btModify))
-                            .addGroup(pnZHGLLayout.createSequentialGroup()
-                                .addGroup(pnZHGLLayout.createParallelGroup(GroupLayout.Alignment.BASELINE, false)
-                                    .addComponent(label6)
-                                    .addComponent(btSearch, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(textName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(textName2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(scrollPane12, GroupLayout.PREFERRED_SIZE, 357, GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btModify)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btDelete))
+                            .addComponent(scrollPane12, GroupLayout.PREFERRED_SIZE, 357, GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
         }
@@ -1428,7 +1434,6 @@ public class FINANCE extends JFrame {
     private JTextField textName;
     private JButton btSearch;
     private JLabel label6;
-    private JPanel vSpacer1;
     private JButton btDelete;
     private JLabel label7;
     private JTextField textName2;

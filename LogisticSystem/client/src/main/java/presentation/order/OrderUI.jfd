@@ -42,7 +42,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btDelete"
-					"icon": new com.jformdesigner.model.SwingIcon( 1, "D:\\DATA\\Project\\GUI\\resources\\delete_24x24.png" )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/delete_24x24.png" )
 					"font": #Font0
 					"text": "删除"
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btDeleteMouseReleased", true ) )
@@ -52,6 +52,7 @@ new FormModel {
 					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/sign_24x24.png" )
 					"font": #Font0
 					"text": "签收"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btSignMouseReleased", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label1"

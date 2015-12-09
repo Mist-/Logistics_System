@@ -92,23 +92,24 @@ new FormModel {
 			}
 		}, new FormLayoutConstraints( null ) {
 			"size": new java.awt.Dimension( 805, 600 )
-			"location": new java.awt.Point( 5, 10 )
+			"location": new java.awt.Point( 10, 10 )
 		} )
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {comp tabbedPane4::t::765:x}"
-			"$verticalGroup": "par l {comp tabbedPane4::t::275:x}"
+			"$horizontalGroup": "par l {comp tabbedPane4::l:::x}"
+			"$verticalGroup": "par l {comp tabbedPane4::l::275:x}"
 		} ) {
 			name: "pnZJGL"
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 				name: "tabbedPane4"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq t {comp scrollPane15::::681:x, space :::p, par l {comp btAddP:::p:40:p, comp btPExcel:::p::p}, space :p:22:p}}"
-					"$verticalGroup": "par l {seq l {space :::p, comp btAddP:::p::p, space u:::p, comp btPExcel:::p::p, space ::157:x}, comp scrollPane15::l::248:x}"
+					"$horizontalGroup": "par l {seq t {comp scrollPane15:::p:771:p, space :::p, par l:::p {comp btAddP:::p:100:p, seq {space :p:2:p, comp btPExcel:::::x}}, space :::p}}"
+					"$verticalGroup": "par l {seq l {space :::p, comp btAddP:::p::p, space u:::p, comp btPExcel:::p::p, space ::150:x}, comp scrollPane15::l::0:x}"
 				} ) {
 					name: "panel1"
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "btAddP"
 						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/new_24x24.png" )
+						"text": "新建"
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "button1MouseReleased", true ) )
 					} )
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -120,6 +121,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "btPExcel"
 						"text": "导出"
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/export_24x24.png" )
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btPExcelMouseReleased", true ) )
 					} )
 				}, new FormLayoutConstraints( null ) {
@@ -177,12 +179,12 @@ new FormModel {
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 45, 645 )
-			"size": new java.awt.Dimension( 765, 275 )
+			"location": new java.awt.Point( 50, 645 )
+			"size": new java.awt.Dimension( 885, 275 )
 		} )
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {comp tpCost::l::575:x}"
-			"$verticalGroup": "par l {seq l {comp tpCost:::p:397:p, space :0:0:x}}"
+			"$horizontalGroup": "par l {seq l {space :::p, comp tpCost:::::x, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp tpCost::::503:x, space :::p}}"
 		} ) {
 			name: "pnTJBB"
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
@@ -191,8 +193,8 @@ new FormModel {
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 					name: "scrollPane5"
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq {comp label5:::p::p, space u:::p, comp textBeginYear:::p:26:p, space :::p, comp label8:::p::p, space :::p, comp textBeginMonth:::p:26:p, space :::p, comp label10:::p::p, space :::p, comp textBeginDay:::p:26:p, space :::p, comp label11:::p::p, space :p:12:p, comp label9:::p::p, space :::p, comp textEndYear:::p:30:p, space :::p, comp label12:::p:14:p, space :p:3:p, comp textEndMonth:::p:30:p, space :::p, comp label13:::p::p, space :::p, comp textEndDay:::p:30:p, space :::p, comp label14:::p::p, space :::p, comp btSearch2:::p:27:p, space :p:41:p, comp jbExcel:::p::p, space :0:56:x}, seq l {comp scrollPane17:::::x, space :::p}}"
-						"$verticalGroup": "par l {seq {par l {par b {comp label5::b:p::p, comp textBeginYear::b:p::p, comp textBeginMonth::b:p::p, comp label8::b:p::p, comp label10::b:p::p, comp textBeginDay::b:p::p, comp label9::b:p::p, comp label11::b:p::p, comp textEndYear::b:p::p, comp label12::b:p::p, comp textEndMonth::b:p::p, comp label13::b:p::p, comp textEndDay::b:p::p, comp label14::b:p::p}, comp btSearch2:::p:25:p, comp jbExcel::t:p::p}, space u:::p, comp scrollPane17:::p:328:p, space :0:96:x}}"
+						"$horizontalGroup": "par l {seq {comp label5:::p::p, space u:::p, comp textBeginYear:::p:26:p, space :::p, comp label8:::p::p, space :::p, comp textBeginMonth:::p:26:p, space :::p, comp label10:::p::p, space :::p, comp textBeginDay:::p:26:p, space :::p, comp label11:::p::p, space :p:12:p, comp label9:::p::p, space :::p, comp textEndYear:::p:30:p, space :::p, comp label12:::p:14:p, space :p:3:p, comp textEndMonth:::p:30:p, space :::p, comp label13:::p::p, space :::p, comp textEndDay:::p:30:p, space :::p, comp label14:::p::p, space :::p, comp btSearch2:::p:27:p, space :p:40:p, comp jbExcel:::p::p, space :0:152:x}, seq l {comp scrollPane17::::698:x, space :::p}}"
+						"$verticalGroup": "par l {seq {par l {par b {comp label5::b:p::p, comp textBeginYear::b:p::p, comp textBeginMonth::b:p::p, comp label8::b:p::p, comp label10::b:p::p, comp textBeginDay::b:p::p, comp label9::b:p::p, comp label11::b:p::p, comp textEndYear::b:p::p, comp label12::b:p::p, comp textEndMonth::b:p::p, comp label13::b:p::p, comp textEndDay::b:p::p, comp label14::b:p::p}, comp btSearch2:::p:25:p, comp jbExcel::l:p:25:p}, space :::p, comp scrollPane17:::p::p, space :0:0:x}}"
 					} ) {
 						name: "panel4"
 						add( new FormComponent( "javax.swing.JLabel" ) {
@@ -291,8 +293,8 @@ new FormModel {
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 945 )
-			"size": new java.awt.Dimension( 575, 385 )
+			"location": new java.awt.Point( 5, 945 )
+			"size": new java.awt.Dimension( 720, 515 )
 		} )
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 			"$horizontalGroup": "par l {seq l {space :::p, comp tp::::588:x, space :::p}}"
@@ -367,12 +369,12 @@ new FormModel {
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 1340 )
+			"location": new java.awt.Point( 0, 1470 )
 			"size": new java.awt.Dimension( 600, 350 )
 		} )
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {seq {space :p:10:p, comp label6:::p::p, space :::p, comp textName:::p:165:p, space :p:10:p, comp btSearch:::p:27:p, space :::p, comp label7:::p::p, space :::p, comp textName2:::p:165:p, space :0:11:x}, seq {space :::p, comp scrollPane12::::520:x}}, space :::p, par l {comp vSpacer1:::p:57:p, comp btAdd::l:p::p, comp btDelete::l:p::p, comp btModify::l:p::p}, space :::p}}"
-			"$verticalGroup": "par l {seq l {space :::p, par l {seq {comp vSpacer1:::p:53:p, space :p:52:p, comp btAdd:::p::p, space s:::p, comp btDelete:::p::p, space s:::p, comp btModify:::p::p}, seq {par b:::p {comp label6::b:p::p, comp btSearch::l:::x, comp textName::b:p::p, comp label7::b:::x, comp textName2::b:p::p}, space :::p, comp scrollPane12:::p:357:p}}, space :::x}}"
+			"$horizontalGroup": "par l {seq {par l {seq {space :p:10:p, comp label6:::p::p, space :::p, comp textName:::p:165:p, space :p:10:p, comp btSearch:::p:27:p, space :::p, comp label7:::p::p, space :::p, comp textName2:::p:165:p, space :0:3:x}, seq {space :::p, comp scrollPane12::::512:x}}, space :::p, par l:::p {comp btAdd::::85:x, comp btModify::::85:x, comp btDelete::t::85:x}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :::p, par b:::p {comp label6::b:p::p, comp textName::b:p::p, comp label7::b:::x, comp textName2::b:p::p, comp btSearch::b:p:23:p}, space :::p, par l:::p {seq {comp btAdd:::p::p, space :::p, comp btModify:::p::p, space :::x, comp btDelete:::p::p}, comp scrollPane12:::p:357:p}, space :::x}}"
 		} ) {
 			name: "pnZHGL"
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -396,11 +398,13 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btAdd"
 				"text": "添加"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/add_24x24.png" )
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btAddMouseReleased", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btModify"
 				"text": "修改"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/modify_24x24.png" )
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btModifyMouseReleased", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
@@ -419,12 +423,10 @@ new FormModel {
 				name: "label6"
 				"text": "账户名称："
 			} )
-			add( new FormComponent( "com.jformdesigner.designer.wrapper.VSpacer" ) {
-				name: "vSpacer1"
-			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btDelete"
 				"text": "删除"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/delete_24x24.png" )
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "button11MouseReleased", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -435,8 +437,8 @@ new FormModel {
 				name: "textName2"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 5, 1750 )
-			"size": new java.awt.Dimension( 595, 400 )
+			"location": new java.awt.Point( 5, 1835 )
+			"size": new java.awt.Dimension( 615, 400 )
 		} )
 	}
 }

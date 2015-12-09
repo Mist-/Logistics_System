@@ -6,6 +6,7 @@ import data.message.LoginMessage;
 import data.message.ResultMessage;
 import data.po.LogisticInfoPO;
 import data.po.OrderPO;
+import data.po.SignPO;
 import data.vo.OrderVO;
 import utils.Timestamper;
 
@@ -154,6 +155,18 @@ public class OrderUI extends JFrame {
         tbOrderInfo.repaint();
     }
 
+    private void btSignMouseReleased(MouseEvent e) {
+        if (tbOrderInfo.getSelectedRowCount() == 0) {
+            return;
+        }
+        int rowSelected = tbOrderInfo.getSelectedRow();
+        Vector<Object> row = (Vector<Object>) ((DefaultTableModel) tbOrderInfo.getModel()).getDataVector().get(rowSelected);
+        long snSelected = (long)row.get(0);
+        SignDlg signDlg = new SignDlg(this);
+        signDlg.signOrder(snSelected);
+
+    }
+
     private void initComponents() {
 
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -285,7 +298,7 @@ public class OrderUI extends JFrame {
             }
 
             //---- btDelete ----
-            btDelete.setIcon(new ImageIcon("D:\\DATA\\Project\\GUI\\resources\\delete_24x24.png"));
+            btDelete.setIcon(new ImageIcon(getClass().getResource("/icons/delete_24x24.png")));
             btDelete.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
             btDelete.setText("\u5220\u9664");
             btDelete.addMouseListener(new MouseAdapter() {
@@ -299,6 +312,12 @@ public class OrderUI extends JFrame {
             btSign.setIcon(new ImageIcon(getClass().getResource("/icons/sign_24x24.png")));
             btSign.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
             btSign.setText("\u7b7e\u6536");
+            btSign.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    btSignMouseReleased(e);
+                }
+            });
 
             //---- label1 ----
             label1.setText("\u8ba2\u5355\u7ba1\u7406");

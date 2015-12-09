@@ -789,7 +789,7 @@ public class companyManage extends JFrame {
     }
 
     /*
-     * 初始化Financial(财务人员)表格
+     * 初始化Financial(普通财务人员)表格
      */
     public void initFinancialTable(){
         //表头
