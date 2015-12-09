@@ -46,7 +46,7 @@ public class DataInitialization {
         city[3].addBusinessOffice(1002000004);
         city[3].setTransferCenter(10020);
 
-        InstitutionPO[] institution = new InstitutionPO[23];
+        InstitutionPO[] institution = new InstitutionPO[24];
 
         // 南京
         institution[0] = new InstitutionPO(1002500001);
@@ -119,6 +119,8 @@ public class DataInitialization {
         institution[21].setName("普通财务人员");
         institution[22] = new InstitutionPO(33333);
         institution[22].setName("货车驾驶员");
+        institution[23] = new InstitutionPO(44444);
+        institution[24].setName("高级财务人员");
 
         CompanyDataService companyDataService = (CompanyDataService) DataServiceFactory.getDataServiceByType(DataType.CompanyDataService);
 

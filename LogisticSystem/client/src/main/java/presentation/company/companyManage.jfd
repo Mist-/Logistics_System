@@ -1,0 +1,435 @@
+JFDML JFormDesigner: "5.2.2.0.199" Java: "1.8.0_45" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {space :::p, par t:::p {comp labelSalary::::110:x, comp buttonSalary::::110:x}, space s:::p, par l {seq l {comp buttonStaff:::p:110:p, space u:::p, comp buttonCity:::p:110:p, space u:::p, comp buttonApprove:::p:110:p, space u:::p, comp buttonCheck:::p:110:p}, seq l {comp labelInstitution:::p:110:p, space u:::p, comp labelCity:::p:110:p, space u:::p, comp labelApprove:::p:110:p, space u:::p, comp labelCheck:::p:110:p}}, space :::x, par l {comp id:::p:110:p, comp name:::p:110:p}, space :p:33:p}, seq t {space :::x, comp panelAll:::p::p, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :::p, par b {comp buttonSalary::b:p:60:p, comp buttonStaff::b:p:60:p, comp buttonCity::b:p:60:p, comp buttonApprove::b:p:60:p, comp buttonCheck::b:p:60:p, comp id::b:p:50:p}, space :p:1:p, par b {comp labelSalary::b:p:41:p, comp labelInstitution::b:p:41:p, comp labelCity::b:p:41:p, comp labelApprove::b:p:41:p, comp labelCheck::b:p:41:p, comp name::b:p:42:p}, space s:::p, comp panelAll:::p::p, space :::x}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JToggleButton" ) {
+				name: "buttonSalary"
+				"text": "text"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonSalaryMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JToggleButton" ) {
+				name: "buttonStaff"
+				"text": "text"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonSalary2MouseClicked", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonStaffMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JToggleButton" ) {
+				name: "buttonCity"
+				"text": "text"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonCityMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JToggleButton" ) {
+				name: "buttonApprove"
+				"text": "text"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonApproveMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JToggleButton" ) {
+				name: "buttonCheck"
+				"text": "text"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonCheckMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "labelSalary"
+				"text": "工资管理"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "labelInstitution"
+				"text": "机构管理"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "labelCity"
+				"text": "城市管理"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "labelApprove"
+				"text": "审批单据"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "labelCheck"
+				"text": "查看报表"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "id"
+				"text": "id:12345"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "name"
+				"text": "姓名:彩笔"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {space :0:786:x}"
+				"$verticalGroup": "par l {space :0:361:x}"
+			} ) {
+				name: "panelAll"
+			} )
+			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+				name: "menuBar"
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "choice"
+					"text": "选项(C)"
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "help"
+					"text": "帮助(H)"
+				} )
+			}
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 260, 0 )
+			"size": new java.awt.Dimension( 840, 595 )
+		} )
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {comp scrollPanelSalary:::p:621:p, space :::p, par l {seq {comp labelSalarySuccess:::p:144:p, space :0:0:x}, comp buttonExitSalary::t:::x, comp buttonModifySalary::l:::x, comp buttonAddSalary::t:::x}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :p:30:p, comp labelSalarySuccess:::p:48:p, space :::x, comp buttonAddSalary:::p:52:p, space :p:34:p, comp buttonModifySalary:::p:53:p, space :p:30:p, comp buttonExitSalary:::p:50:p, space :::p}, comp scrollPanelSalary::l::0:x}"
+		} ) {
+			name: "panelSalary"
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPanelSalary"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "tableSalary"
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonAddSalary"
+				"text": "添加工资"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonAddSalaryMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonModifySalary"
+				"text": "保存修改"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonModifySalaryMouseClicked", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonModifySalaryMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonExitSalary"
+				"text": "退出系统"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonExitSalaryMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "labelSalarySuccess"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 1080, 900 )
+			"size": new java.awt.Dimension( 782, 362 )
+		} )
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {par t:::p {seq {comp labelLeaveCity:::p:117:p, space s:::p, comp comboBoxLeaveCity:::p:120:p, space :::p, comp labelArrivalCity:::p:115:p, space :::p, comp comboBoxArrivalCity:::p:125:p, space :::p, comp buttonEnsureCity:::::x}, comp scrollPanelCity:::p:614:p}, space :::x, par l {comp labelCitySuccess::t:p:116:p, comp buttonAddCity::t:p:116:p, comp buttonModifyCity::t:p:116:p, comp buttonExitCity::t:p:116:p}, space :::p}}"
+			"$verticalGroup": "par l {seq l {par l {seq {space :::p, par l {par b:::p {comp labelLeaveCity::b:::x, comp labelArrivalCity::b:::x, comp comboBoxLeaveCity::b:p:54:p, comp comboBoxArrivalCity::b:p:54:p}, comp buttonEnsureCity::l:p:54:p}}, comp labelCitySuccess::l:p:56:p}, par l {seq l {space :p:37:p, comp scrollPanelCity:::p:173:p}, seq l {space :p:14:p, comp buttonAddCity:::p:53:p, space u:::p, comp buttonModifyCity:::p:56:p, space u:::p, comp buttonExitCity:::p:54:p}}, space ::68:x}}"
+		} ) {
+			name: "panelCity"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "labelLeaveCity"
+				"text": "出发城市:"
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "comboBoxLeaveCity"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "labelArrivalCity"
+				"text": "到达城市"
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "comboBoxArrivalCity"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonEnsureCity"
+				"text": "确认"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonEnsureCityMouseClicked", true ) )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPanelCity"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "tableCity"
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonAddCity"
+				"text": "添加信息"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonAddCityMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonModifyCity"
+				"text": "保存修改"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonModifyCityMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonExitCity"
+				"text": "退出系统"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonExitCityMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "labelCitySuccess"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 1185, 490 )
+		} )
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {comp tabbedPaneApprove:::p:621:p, space u:::p, par l:::p {comp buttonModifyData:::::x, comp buttonApproveAll::l:::x, comp buttonApproveData::l:::x, comp buttonExitApprove::l:::x, comp label1::l:::x}, space :::x}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp label1::::38:x, space s:::p, comp buttonApproveData:::p:53:p, space u:::p, comp buttonApproveAll:::p:47:p, space u:::p, comp buttonModifyData:::p:47:p, space u:::p, comp buttonExitApprove:::p:45:p, space :p:13:p}, comp tabbedPaneApprove::::0:x}"
+		} ) {
+			name: "panelApprove"
+			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+				name: "tabbedPaneApprove"
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPanelEntruk"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "tableEntruk"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "装车单"
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPanelArrival"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "tableArrival"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "到达单"
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPanelReceipt"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "tableReceipt"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "收款单"
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPanelStorageOut"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "tableStorageOut"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "出库单"
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPanelPayment"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "tablePayment"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "付款单"
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPanelSend"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "tableSend"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "派件单"
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPanelTransfer"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "tableTransfer"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "中转单"
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPanelStorageIn"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "tableStorageIn"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "入库单"
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPanelOrder"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "tableOrder"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "寄件单"
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonApproveData"
+				"text": "审批单据"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonAddSalaryMouseClicked", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonAddStaffMouseClicked", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonApproveDataMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonModifyData"
+				"text": "修改单据"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonAddSalaryMouseClicked", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonModifyDataMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonApproveAll"
+				"text": "全部审批"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonAddSalaryMouseClicked", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonApproveAllMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonExitApprove"
+				"text": "退出系统"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonAddSalaryMouseClicked", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonExitApproveMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 755 )
+		} )
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {comp tabbedPaneStaff:::p:621:p, space :p:30:p, par l {par l:::p {comp buttonExitStaff::l:::x, comp buttonMoveStaff::l:::x, comp buttonDeleteStaff::l:::x}, comp buttonAddStaff:::p::p, comp labelStaffSuccess:::p:129:p}, space :::x}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp labelStaffSuccess:::p:42:p, space :::x, comp buttonAddStaff:::p:50:p, space u:::p, comp buttonDeleteStaff:::p:47:p, space u:::p, comp buttonMoveStaff:::p:50:p, space s:::p, comp buttonExitStaff:::p:49:p, space :::p}, comp tabbedPaneStaff::t::0:x}"
+		} ) {
+			name: "panelStaff"
+			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+				name: "tabbedPaneStaff"
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPanelDeliver"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "tableDeliver"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "快递员"
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPanelFinancial"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "tableFinancial"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "普通财务人员"
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollSFinancial"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "tableSFinancial"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "高级财务人员"
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPanelTrunk"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "tableTrunk"
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "货车驾驶员"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space ::39:x, comp labelCenter:::p::p, space u:::p, comp comboBoxCenter:::p:125:p, space :p:28:p, comp buttonEnsureCenter:::p::p, space :p:142:p}, comp scrollPaneCenter::t::616:x}"
+					"$verticalGroup": "par l {seq l {par b {comp buttonEnsureCenter::b:p::p, comp labelCenter::b:p::p, comp comboBoxCenter::b:p::p}, space :::x, comp scrollPaneCenter:::p:237:p}}"
+				} ) {
+					name: "scrollPanelCenter"
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "labelCenter"
+						"text": "请选择中转中心:"
+					} )
+					add( new FormComponent( "javax.swing.JComboBox" ) {
+						name: "comboBoxCenter"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "buttonEnsureCenter"
+						"text": "确认"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonEnsureCenterMouseClicked", true ) )
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPaneCenter"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "tableCenter"
+						} )
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "中转中心业务员"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space :p:83:p, comp labelBusiness:::p::p, space :::p, comp comboBoxBusinessCity:::p:122:p, space :::p, comp comboBoxBusinessNum:::p:118:p, space s:::p, comp buttonEnsureBusiness:::p::p, space ::17:x}, comp scrollPaneBusiness::l::620:x}"
+					"$verticalGroup": "par l {seq l {par b {comp comboBoxBusinessNum::b:p::p, comp comboBoxBusinessCity::b:p::p, comp buttonEnsureBusiness::b:p::p, comp labelBusiness::b:p::p}, space :::p, comp scrollPaneBusiness:::p:242:p, space :0:0:x}}"
+				} ) {
+					name: "scrollPanelBusiness"
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "labelBusiness"
+						"text": "请选择营业厅:"
+					} )
+					add( new FormComponent( "javax.swing.JComboBox" ) {
+						name: "comboBoxBusinessCity"
+					} )
+					add( new FormComponent( "javax.swing.JComboBox" ) {
+						name: "comboBoxBusinessNum"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "buttonEnsureBusiness"
+						"text": "确认"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonEnsureBusinessMouseClicked", true ) )
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPaneBusiness"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "tableBusiness"
+						} )
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "营业厅业务员"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space ::87:x, comp labelCenterStorage:::p::p, space u:::p, comp comboBoxStorage:::p:125:p, space :p:28:p, comp buttonEnsureStorage:::p::p, space :p:142:p}, comp scrollPaneStorage::l::616:x}"
+					"$verticalGroup": "par l {seq l {par b {comp buttonEnsureStorage::b:p::p, comp labelCenterStorage::b:p::p, comp comboBoxStorage::b:p::p}, space :::p, comp scrollPaneStorage:::p:237:p, space :0:0:x}}"
+				} ) {
+					name: "scrollPanelStorage"
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "labelCenterStorage"
+						"text": "请选择仓库:"
+					} )
+					add( new FormComponent( "javax.swing.JComboBox" ) {
+						name: "comboBoxStorage"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "buttonEnsureStorage"
+						"text": "确认"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonEnsureStorageMouseClicked", true ) )
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPaneStorage"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "tableStorage"
+						} )
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "仓库管理员"
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonAddStaff"
+				"text": "添加员工"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonAddSalaryMouseClicked", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonAddStaffMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonMoveStaff"
+				"text": "移动员工"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonAddSalaryMouseClicked", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonMoveStaffMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonDeleteStaff"
+				"text": "删除员工"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonAddSalaryMouseClicked", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonDeleteStaffMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonExitStaff"
+				"text": "退出系统"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonAddSalaryMouseClicked", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonExitStaffMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "labelStaffSuccess"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 1140, 80 )
+			"size": new java.awt.Dimension( 782, 352 )
+		} )
+	}
+}
