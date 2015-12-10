@@ -32,7 +32,7 @@ public interface StorageOperateService {
 	public void storageCheckOutput(StorageInfoPO info);//excel 
 	
 	//ø‚¥Ê≥ı ºªØ
-	public ResultMessage inputStorageInitInfo(int num,int shelf,int planeR,int trainR,int truckR,int flexibleR,double alarmPercent);
+	public ResultMessage inputStorageInitInfo(int num, int shelf, int planeR, int trainR, int truckR, int flexibleR, double alarmPercent);
 	
 	public StorageInVO getStorageIn(long id);
 

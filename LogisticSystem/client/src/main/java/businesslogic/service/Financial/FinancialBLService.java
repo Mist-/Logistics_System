@@ -21,25 +21,25 @@ public interface FinancialBLService {
 
     ResultMessage buildVehicleInfoExcel(String info);
 
-    ResultMessage buildStorageInfoExcel (String info);
+    ResultMessage buildStorageInfoExcel(String info);
 
     //Account
     ResultMessage buildBankAccountExcel(String info, String[] name, double[] money);
 
     
 //Statement    
-    ResultMessage businessConditionExcel(String dateStartYear,String dateStartMonth,String dateStartDay, String dateEndYear,String dateEndMonth,String dateEndDay);
+    ResultMessage businessConditionExcel(String dateStartYear, String dateStartMonth, String dateStartDay, String dateEndYear, String dateEndMonth, String dateEndDay);
 
-    ResultMessage printBusinessConditionExcel (String dateStart,String dateEnd);
+    ResultMessage printBusinessConditionExcel(String dateStart, String dateEnd);
     
-    ResultMessage costBenefitExcel (String dateEnd);
+    ResultMessage costBenefitExcel(String dateEnd);
     
-    ResultMessage printCostBenefitExcel (String dateEnd);
+    ResultMessage printCostBenefitExcel(String dateEnd);
 
     
 //Account    
 //    ResultMessage acIdentity(String name, String password);
-    ArrayList<AccountVO> searchAllAccounts ();
+    ArrayList<AccountVO> searchAllAccounts();
     
     ArrayList<AccountVO> findAccount(String name);
 
@@ -56,9 +56,9 @@ public interface FinancialBLService {
 //    
 //    ResultMessage recordPayMoney (String info);
     
-    ArrayList<PaymentVO> searchAllPayment ();
+    ArrayList<PaymentVO> searchAllPayment();
     
-    ArrayList<ReceiptVO> searchAllReceipt ();
+    ArrayList<ReceiptVO> searchAllReceipt();
     
     PaymentVO buildPaymentFromEntruck(PaymentVO pay, long institution);
     
@@ -66,7 +66,7 @@ public interface FinancialBLService {
     
     ResultMessage buildPaymentFromRent(PaymentVO pay);
     
-    PaymentVO buildPaymentFromWages(PaymentVO pay,String institution);
+    PaymentVO buildPaymentFromWages(PaymentVO pay, String institution);
     
     ResultMessage printPayment(ArrayList<PaymentVO> payList);
 
@@ -74,13 +74,13 @@ public interface FinancialBLService {
 //
 //    ResultMessage recordRecMoney (String info);
 
-    ArrayList<ReceiptVO> checkFromAddress (String institution);
+    ArrayList<ReceiptVO> checkFromAddress(String institution);
     
-    ArrayList<ReceiptVO> checkFromDate (String info);
+    ArrayList<ReceiptVO> checkFromDate(String info);
     
-    double total (ArrayList<ReceiptVO> re);
+    double total(ArrayList<ReceiptVO> re);
     
-    ResultMessage printReceipt (ArrayList<ReceiptVO> recList);
+    ResultMessage printReceipt(ArrayList<ReceiptVO> recList);
 
     void endFinancial();
 

@@ -46,7 +46,7 @@ public interface TransferReceiveService {
 	 * @param deliveryList
 	 * @return 到达单详细信息
 	 */
-	public ArrivalVO createArriveList(POType type,DeliveryListVO deliveryList);
+	public ArrivalVO createArriveList(POType type, DeliveryListVO deliveryList);
 
 	/**
 	 * 保存到达单
