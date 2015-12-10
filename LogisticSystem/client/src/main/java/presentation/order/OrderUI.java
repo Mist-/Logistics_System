@@ -120,7 +120,6 @@ public class OrderUI extends JFrame {
     }
 
     private void miModifyMouseReleased(MouseEvent e) {
-        JOptionPane.showMessageDialog(null, tbOrderInfo.getSelectedRowCount());
         btModifyMouseReleased(e);
     }
 

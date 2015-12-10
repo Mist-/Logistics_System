@@ -35,9 +35,9 @@ public class OrderDataSerializableImpl extends UnicastRemoteObject implements Or
         for (DataPO dataPO : poLists.get(POType.ORDER)) {
             OrderPO order = (OrderPO) dataPO;
             boolean addable = true;
-            if (!locs[0].equals("*") && !locs[0].equals(order.getSInfo(OrderPO.SADDRESS).substring(0, 2)))
+            if (!locs[0].equals("*") && !locs[0].equals(order.getSInfo(OrderPO.SADDRESS).split("[-]")[0]))
                 addable = false;
-            if (!locs[1].equals("*") && !locs[1].equals(order.getSInfo(OrderPO.SADDRESS).substring(0, 2)))
+            if (!locs[1].equals("*") && !locs[1].equals(order.getSInfo(OrderPO.RADDRESS).split("[-]")[0]))
                 addable = false;
             if (addable) result.add(order);
         }

@@ -165,7 +165,7 @@ public class Order {
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
-            if (fromBO.getName().equals(from[1])) {
+            if (tmp.getName().equals(from[1])) {
                 fromBO = tmp;
             }
         }
@@ -176,7 +176,7 @@ public class Order {
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
-            if (toBO.getName().equals(to[1])) {
+            if (tmp.getName().equals(to[1])) {
                 toBO = tmp;
             }
         }
