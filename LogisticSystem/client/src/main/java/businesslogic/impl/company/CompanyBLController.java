@@ -318,7 +318,10 @@ public class CompanyBLController {
             else {
                 long id;
                 id = Long.valueOf(ID);
-                UserRole userRole = UserRole.valueOf(stringUserRole);
+                UserRole userRole = null;
+                if(stringUserRole!=null) {
+                    userRole = UserRole.valueOf(stringUserRole);
+                }
                 return staff.moveStaff(longInstitution(fromInstitution),longInstitution(toInstitution),id,userRole);
             }
         }

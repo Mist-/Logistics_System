@@ -2,7 +2,6 @@ package presentation.company;
 
 import businesslogic.impl.company.CompanyBLController;
 import data.enums.ServiceType;
-import data.enums.StockStatus;
 import data.message.LoginMessage;
 import data.message.ResultMessage;
 import data.po.*;
@@ -523,7 +522,7 @@ public class companyManage extends JFrame {
                     entruckListVO.escortName = entruck.get(4);
                     resultMessage = controller.modifyEntruck(entruckListVO);
                     this.isSuccess(resultMessage);
-                    if(resultMessage!=ResultMessage.SUCCESS)
+                    if(resultMessage!= ResultMessage.SUCCESS)
                         break;
                 }
                 break;
@@ -541,7 +540,7 @@ public class companyManage extends JFrame {
                     arrivalVO.setDate(arrival.get(3));
                     resultMessage = controller.modifyArrival(arrivalVO);
                     this.isSuccess(resultMessage);
-                    if(resultMessage!=ResultMessage.SUCCESS)
+                    if(resultMessage!= ResultMessage.SUCCESS)
                         break;
                 }
             case 2:
@@ -558,7 +557,7 @@ public class companyManage extends JFrame {
                     receiptVO.setDate(receipt.get(3));
                     resultMessage = controller.modifyReceipt(receiptVO);
                     this.isSuccess(resultMessage);
-                    if(resultMessage!=ResultMessage.SUCCESS)
+                    if(resultMessage!= ResultMessage.SUCCESS)
                         break;
                 }
             case 3:
@@ -575,7 +574,7 @@ public class companyManage extends JFrame {
                     storageOutVO.setDate(storageOut.get(3));
                     resultMessage = controller.modifyStorageOutList(storageOutVO);
                     this.isSuccess(resultMessage);
-                    if(resultMessage!=ResultMessage.SUCCESS)
+                    if(resultMessage!= ResultMessage.SUCCESS)
                         break;
                 }
             case 4:
@@ -595,7 +594,7 @@ public class companyManage extends JFrame {
                     paymentVO.setExInfo(payment.get(6));
                     resultMessage = controller.modifyPayment(paymentVO);
                     this.isSuccess(resultMessage);
-                    if(resultMessage!=ResultMessage.SUCCESS)
+                    if(resultMessage!= ResultMessage.SUCCESS)
                         break;
                 }
             case 5:
@@ -611,7 +610,7 @@ public class companyManage extends JFrame {
                     resultMessage = controller.modifySend(sendListVO);
                     this.isSuccess(resultMessage);
                     this.isSuccess(resultMessage);
-                    if(resultMessage!=ResultMessage.SUCCESS)
+                    if(resultMessage!= ResultMessage.SUCCESS)
                         break;
                 }
             case 6:
@@ -630,7 +629,7 @@ public class companyManage extends JFrame {
                     transferListVO.date = transfer.get(6);
                     resultMessage = controller.modifyTransferList(transferListVO);
                     this.isSuccess(resultMessage);
-                    if(resultMessage!=ResultMessage.SUCCESS)
+                    if(resultMessage!= ResultMessage.SUCCESS)
                         break;
                 }
             case 7:
@@ -645,7 +644,7 @@ public class companyManage extends JFrame {
                     storageInVO.setDate(storageIn.get(2));
                     resultMessage = controller.modifyStorageInList(storageInVO);
                     this.isSuccess(resultMessage);
-                    if(resultMessage!=ResultMessage.SUCCESS)
+                    if(resultMessage!= ResultMessage.SUCCESS)
                         break;
                 }
             case 8:
@@ -663,7 +662,7 @@ public class companyManage extends JFrame {
                     OrderVO orderVO = new OrderVO(null,null,null,null,null,null,null,null,stockNum,weight,0,null,serviceType,fee,id);
                     resultMessage = controller.modifyOrder(orderVO);
                     this.isSuccess(resultMessage);
-                    if(resultMessage!=ResultMessage.SUCCESS)
+                    if(resultMessage!= ResultMessage.SUCCESS)
                         break;
                 }
             }
@@ -1050,7 +1049,9 @@ public class companyManage extends JFrame {
                 staffVO.add("ÄÐ");
             staffVO.add(staffVOs.get(i).getIdcardNum());
             staffVO.add(staffVOs.get(i).getPhoneNum()+"");
-            staffVO.add(staffVOs.get(i).getUserRole().toString());
+            if(staffVOs.get(i).getUserRole()!=null) {
+                staffVO.add(staffVOs.get(i).getUserRole().toString());
+            }
             staffData.add(staffVO);
         }
         return staffData;

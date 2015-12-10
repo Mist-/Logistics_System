@@ -79,7 +79,6 @@ public class DialogAddStaff extends JDialog{
 		jdialog.add(woman);
 		jdialog.add(labelPhoneNum);
 		jdialog.add(phoneNum);
-		jdialog.add(labelDate);
 		jdialog.add(labelIdCardNum);
 		jdialog.add(idCardNum);
 		jdialog.add(finish);
@@ -116,7 +115,9 @@ public class DialogAddStaff extends JDialog{
 			staffVO.setIdcardNum(stringIdCardNum);
 			staffVO.setGender(gender);
 			staffVO.setPhoneNum(stringPhoneNum);
-			staffVO.setUserRole(UserRole.valueOf(userRole));
+			if(userRole!=null) {
+				staffVO.setUserRole(UserRole.valueOf(userRole));
+			}
 			resultMessage = controller.addStaff(staffVO);
 			//判断是否成功添加
 			if (resultMessage == ResultMessage.SUCCESS) {
