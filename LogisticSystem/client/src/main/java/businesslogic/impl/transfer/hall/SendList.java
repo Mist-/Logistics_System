@@ -1,13 +1,13 @@
 package businesslogic.impl.transfer.hall;
 
 import java.rmi.RemoteException;
-
+import data.enums.DataType;
+import data.factory.DataServiceFactory;
 import data.message.ResultMessage;
 import data.po.ArrivalPO;
 import data.po.SendListPO;
 import data.service.TransferDataService;
 import data.vo.SendListVO;
-import data.vo.SenderVO;
 
 /**
  * ÅÉ¼þµ¥Àà
@@ -18,20 +18,19 @@ public class SendList {
 	TransferDataService transferData;
 	Sender sender;
 	long[] order;
-	public SendList(TransferDataService transferDataService, long institutionID) throws RemoteException {
-		transferData = transferDataService;
-		sender = new Sender(transferDataService, institutionID);
+	public SendList(long institutionID) throws RemoteException {
+		transferData = (TransferDataService) DataServiceFactory.getDataServiceByType(DataType.TransferDataService);
+		sender = new Sender(transferData,institutionID);
 	}
 
 	public SendListVO createSendList(ArrivalPO arrival) throws RemoteException {
-		SenderVO availableSender = sender.getAvailableSender();
 		
 		this.order = arrival.getOrder();
 		String[] o = new String[order.length];
 		for (int i = 0; i < order.length; i++) {
 			o[i] = Long.toString(order[i]);
 		}
-		SendListVO sendList = new SendListVO(o, arrival.getDate(), availableSender.name, availableSender.ID+ "", 0);
+		SendListVO sendList = new SendListVO(o, arrival.getDate(),sender.getAvailableSender(), 0);
 
 		return sendList;
 	}
@@ -41,8 +40,7 @@ public class SendList {
 		s.setOrder(order);
 		s.setArriveDate(sendList.date);
 		s.setSender(sendList.senderName);
-		s.setSenderID(Long.parseLong(sendList.senderID));
-		
+		s.setSenderID(sender.getSenderID(sendList.senderName));
 		return transferData.add(s);
 	}
 

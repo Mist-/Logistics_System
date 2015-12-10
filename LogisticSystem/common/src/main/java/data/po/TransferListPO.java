@@ -1,13 +1,11 @@
 package data.po;
 
 import java.util.ArrayList;
-
 import data.enums.POType;
 import data.enums.StorageArea;
-import data.vo.TransferLoadVO;
 
 /**
- * ×¼±¸É¾µô
+ * 
  * @author xu
  *
  */

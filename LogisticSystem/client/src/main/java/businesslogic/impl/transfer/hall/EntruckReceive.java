@@ -16,6 +16,7 @@ import data.vo.DeliveryListVO;
 import data.vo.EntruckListVO;
 import data.vo.SendListVO;
 import data.vo.TransferListVO;
+import businesslogic.impl.transfer.center.TransferList;
 import businesslogic.impl.user.InstitutionInfo;
 import businesslogic.service.Transfer.hall.EntruckReceiveService;
 
@@ -28,16 +29,11 @@ public class EntruckReceive implements EntruckReceiveService{
 	InstitutionInfo user;
 	ArrivalList arrivalList;
 	SendList sendList;
-	TransferDataService transferData;
 	POType listType;//transfer or entruck
 	
 	public EntruckReceive(InstitutionInfo user) throws Exception{
 		this.user = user;
-		transferData = (TransferDataService) DataServiceFactory.getDataServiceByType(DataType.TransferDataService);
-		if(transferData == null){
-			throw new Exception();
-		}
-		arrivalList = new ArrivalList(transferData);
+		arrivalList = new ArrivalList();
 	}
 
 	@Override
@@ -59,22 +55,16 @@ public class EntruckReceive implements EntruckReceiveService{
 	@Override
 	public EntruckListVO searchEntruckList(long listID) throws RemoteException {
 		listType = POType.ENTRUCK;
-		EntruckPO entruck = (EntruckPO) transferData.search(POType.ENTRUCK, listID);
-		if(entruck != null)
-		return new EntruckListVO(entruck);
-		else return null;
+		EntruckList entruckList = new EntruckList();
+		return entruckList.searchEntruck(listID);
 	}
 	
 	
 	@Override
 	public TransferListVO searchTransferList(long listID) throws RemoteException {
 		listType = POType.TRANSFERLIST;
-		TransferListPO transfer = (TransferListPO) transferData.search(POType.TRANSFERLIST, listID);
-		if(transfer != null){
-		return new TransferListVO(transfer);
-		}else {
-			return null;
-		}
+		TransferList transferList = new TransferList();
+		return transferList.searchTransferList(listID);
 	}
 	
 
@@ -89,7 +79,6 @@ public class EntruckReceive implements EntruckReceiveService{
 
 	@Override
 	public ResultMessage saveArrival(ArrivalVO arrival) {
-		// TODO Auto-generated method stub
 		
 		try {
 			return arrivalList.saveArrival(arrival);
@@ -118,7 +107,7 @@ public class EntruckReceive implements EntruckReceiveService{
 	@Override
 	public SendListVO createSendList(long ArrivalID) {
 		try {
-			sendList = new SendList(transferData, user.getInstitutionID());
+			sendList = new SendList(user.getInstitutionID());
 		} catch (RemoteException e1) {
 			System.out.println("未能新建派件单");
 			e1.printStackTrace();

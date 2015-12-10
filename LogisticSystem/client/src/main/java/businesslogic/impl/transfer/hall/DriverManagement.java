@@ -149,7 +149,7 @@ public class DriverManagement implements DriverManagementService {
 				
 			}
 		}
-		return ResultMessage.NOTEXIST;
+		return ResultMessage.FAILED;
 	}
 
 }

@@ -1,5 +1,6 @@
 package businesslogic.service.Transfer.center;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import data.enums.StorageArea;
@@ -16,5 +17,5 @@ public interface TransferLoadService {
 	
 	public TransferListVO createTransferList(TransferLoadVO load);
 	
-	public ResultMessage saveTransferList(TransferListVO vo);
+	public ResultMessage saveTransferList(TransferListVO vo) throws RemoteException;
 }

@@ -29,10 +29,6 @@ public class TransferDataSerializableImpl extends UnicastRemoteObject implements
         init();
     }
 
-    @Override
-    public TransferListPO getTransferList(int source, int target) {
-        return null;
-    }
 
     @Override
     public ArrayList<DataPO> getPOList(POType type) throws RemoteException {
@@ -64,12 +60,7 @@ public class TransferDataSerializableImpl extends UnicastRemoteObject implements
 		return null;
 	}
 
-	@Override
-	public ArrayList<DataPO> searchCheckedList(POType type,long insititutionID)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
     @Override
     public ArrayList<DataPO> getNewlyApprovedPO(POType type, long institution) {

@@ -587,7 +587,7 @@ public class companyManage extends JFrame {
                     Vector<String> sendList = sendModify.get(i);
                     long id = Long.valueOf(sendList.get(0));
                     String sender = sendList.get(2);
-                    SendListVO sendListVO = new SendListVO(null,null,sender,null,id);
+                    SendListVO sendListVO = new SendListVO(sender,id);
                     resultMessages.add(controller.modifySend(sendListVO));
                 }
             case 6:

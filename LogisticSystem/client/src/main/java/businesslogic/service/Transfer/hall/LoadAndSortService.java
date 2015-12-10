@@ -50,8 +50,9 @@ public interface LoadAndSortService {
 	 * 自动生成装车单
 	 * @param orders
 	 * @return 装车单vo
+	 * @throws RemoteException 
 	 */
-	public EntruckListVO createEntruckList(String[][] orders);
+	public EntruckListVO createEntruckList(String[][] orders) throws RemoteException;
 	
 	/**
 	 * 保存装车单

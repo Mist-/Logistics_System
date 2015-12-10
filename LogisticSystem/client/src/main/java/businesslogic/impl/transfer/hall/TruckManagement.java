@@ -89,7 +89,6 @@ public class TruckManagement implements TruckManagementService {
 			}
 			info = new String[trucks.size()][2];
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			return null;
 		}
 		
@@ -117,12 +116,10 @@ public class TruckManagement implements TruckManagementService {
 
 	@Override
 	public ResultMessage addTruck(TruckInfoVO newTruck) {
-		// TODO Auto-generated method stub
 		VehicleInfoPO truck = new VehicleInfoPO(newTruck);
 		try {
 			return transferData.add(truck);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			return ResultMessage.FAILED;
 		}
 	}
@@ -140,19 +137,17 @@ public class TruckManagement implements TruckManagementService {
 
 	@Override
 	public ResultMessage deleteTruck(long truckID) {
-		// TODO Auto-generated method stub
 		for(VehicleInfoPO d:trucks){
 			if(d.getSerialNum() == truckID){
 				try {
 					return transferData.delete(d);
 				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
 					return ResultMessage.FAILED;
 				}
 				
 			}
 		}
-		return ResultMessage.NOTEXIST;
+		return ResultMessage.FAILED;
 	}
 
 }

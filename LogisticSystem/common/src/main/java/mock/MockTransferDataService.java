@@ -72,12 +72,7 @@ public class MockTransferDataService implements TransferDataService {
 		return null;
 	}
 
-	@Override
-	public TransferListPO getTransferList(int source, int target)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	public ArrayList<DataPO> searchNewArriveList(long InstitutionCode)
 			throws RemoteException {
@@ -112,13 +107,6 @@ public class MockTransferDataService implements TransferDataService {
 
 	@Override
 	public ArrayList<DataPO> searchList(POType type, long institutionID)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<DataPO> searchCheckedList(POType type, long institutionID)
 			throws RemoteException {
 		if(type == POType.ARRIVAL){
 		ArrayList<DataPO> a = new ArrayList<>();

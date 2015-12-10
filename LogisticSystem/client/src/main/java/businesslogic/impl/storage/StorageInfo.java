@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import javax.swing.text.Position;
 
 import businesslogic.impl.transfer.center.StorageInfoService;
+import data.enums.DataType;
 import data.enums.POType;
 import data.enums.StorageArea;
+import data.factory.DataServiceFactory;
 import data.message.ResultMessage;
 import data.po.OrderPO;
 import data.po.StorageInfoPO;
@@ -397,6 +399,11 @@ public class StorageInfo implements StorageInfoService{
 		this.storageData = storageData;
 		storageInfo = (StorageInfoPO) storageData.search(POType.STORAGEINFO,
 				centerID);
+	}
+	
+	public StorageInfo(long centerID) throws RemoteException{
+		this.storageData = (StorageDataService) DataServiceFactory.getDataServiceByType(DataType.StorageDataService);
+		storageInfo = (StorageInfoPO) storageData.search(POType.STORAGEINFO, centerID);
 	}
 
 	public StorageInfoPO getStorageInfoPO(){

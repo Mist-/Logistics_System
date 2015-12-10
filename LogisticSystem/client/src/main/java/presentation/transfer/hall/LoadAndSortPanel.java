@@ -7,14 +7,9 @@ package presentation.transfer.hall;
 import java.awt.*;
 import java.awt.event.*;
 import java.rmi.RemoteException;
-import java.security.Timestamp;
 import java.util.Vector;
-
-import javax.management.modelmbean.ModelMBean;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-
 import utils.Timestamper;
 import data.message.ResultMessage;
 import data.vo.BriefEntruckListVO;
@@ -175,7 +170,12 @@ public class LoadAndSortPanel extends JPanel {
 			}
 			info[i] = ins;
 		}
-		entruck = loadAndSort.createEntruckList(info);
+		try {
+			entruck = loadAndSort.createEntruckList(info);
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+			JOptionPane.showMessageDialog(null, "网络连接中断", "提示", JOptionPane.INFORMATION_MESSAGE);
+		}
 		doEntruck.setVisible(false);
 		doEntruck.setEnabled(false);
 		saveEntruck.setVisible(true);

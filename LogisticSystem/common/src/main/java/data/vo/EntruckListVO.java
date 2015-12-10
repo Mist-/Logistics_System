@@ -13,6 +13,7 @@ public class EntruckListVO extends DeliveryListVO {
 	public long escortID;
 	public String[][] info;
 	public String[] header = {"订单编号",""};
+	public String[] senders;//分拣装车用
     public String loadingDate;
     public String fromName;
     public String fromID;

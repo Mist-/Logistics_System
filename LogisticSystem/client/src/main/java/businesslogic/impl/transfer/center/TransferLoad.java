@@ -32,7 +32,7 @@ public class TransferLoad implements TransferLoadService {
 	InstitutionInfo center;
 	StorageArea transferType;
 	StorageInfoService storageInfo;
-	TransferListPO transferList;// 确定
+	TransferList transferList;
 	
 	ArrayList<OrderPO> orders;
 	String targetInstitutionName;
@@ -70,10 +70,8 @@ public class TransferLoad implements TransferLoadService {
 
 	public TransferLoad(InstitutionInfo user,CityInfo city) throws RemoteException {
 		this.center = user;
-		StorageDataService storageData = (StorageDataService) DataServiceFactory
-				.getDataServiceByType(DataType.StorageDataService);
 		this.city = city;
-		storageInfo = new StorageInfo(storageData, user.getCenterID());
+		storageInfo = new StorageInfo(user.getCenterID());
 		orders = new ArrayList<OrderPO>();
 	}
 
@@ -176,9 +174,7 @@ public class TransferLoad implements TransferLoadService {
 	 * @param load
 	 * @return
 	 */
-	private TransferListVO createTransferList(TransferLoadVO load,
-			String staffName, long staffID, String centerName, long centerID) {
-		transferList = new TransferListPO();
+	public  TransferListVO createTransferList(TransferLoadVO load) {
 		try {
 			transferFee = city.getTransferFee(targetInstitutionName,
 					transferType);
@@ -186,35 +182,8 @@ public class TransferLoad implements TransferLoadService {
 			e.printStackTrace();
 			return null;
 		}
-		transferList.setAccount(false);
-		transferList.setDate("");// 时间未设置
-		transferList.setFee(0.0);// 金额未设置
-		transferList.setStaffName(staffName);
-		transferList.setStaff(staffID);
-		transferList.setStorageOut(false);
-		transferList.setTarget(desID);
-		transferList.setTransferType(transferType);
-		transferList.setTransferCenter(centerID);
-		transferList.setTransferCenterName(centerName);
-		String[][] info = load.getOrderInfo();
-		long[] order = new long[info.length];
-		String[] position = new String[info.length];
-		String area = "0";
-		if (transferType == StorageArea.TRAIN)
-			area = "1";
-		else
-			area = "2";
-		for (int i = 0; i < info.length; i++) {
-			order[i] = Long.parseLong(info[i][0]);
-			if (info[i][1].equals("机动区"))
-				area = "3";
-			position[i] = area + "-" + info[i][2] + "-" + info[i][3] + "-"
-					+ info[i][4];
-		}
-		transferList.setOrder(order);
-		transferList.setStoragePosition(position);
-
-		return new TransferListVO(transferList);
+		return transferList.createTransferList(load, center, transferFee, transferType);
+		
 	}
 
 	/**
@@ -224,21 +193,9 @@ public class TransferLoad implements TransferLoadService {
 	 * @return
 	 * @throws RemoteException
 	 */
-	public ResultMessage saveTransferList(TransferListVO vo) {
-		TransferDataService transferData = (TransferDataService) DataServiceFactory
-				.getDataServiceByType(DataType.TransferDataService);
-		try {
-			return transferData.add(transferList);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return ResultMessage.FAILED;
-		}
+	public ResultMessage saveTransferList(TransferListVO vo) throws RemoteException {
+		return transferList.saveTransferList(vo);
 	}
 
-	@Override
-	public TransferListVO createTransferList(TransferLoadVO load) {
-		return createTransferList(load, center.getStaffName(),
-				center.getStaffID(), center.getInstitutionName(),
-				center.getCenterID());
-	}
+
 }

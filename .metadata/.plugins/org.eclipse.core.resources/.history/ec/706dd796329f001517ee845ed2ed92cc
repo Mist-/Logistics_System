@@ -1,0 +1,47 @@
+package businesslogic.impl.transfer.hall;
+
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+
+import presentation.company.companyManage;
+import data.enums.DataType;
+import data.enums.POType;
+import data.factory.DataServiceFactory;
+import data.po.DataPO;
+import data.po.SenderPO;
+import data.service.CompanyDataService;
+import data.service.TransferDataService;
+import data.vo.SenderVO;
+
+/**
+ * ¿ìµÝÔ±Àà
+ * @author xu
+ *
+ */
+public class Sender {
+	long hall;
+	CompanyDataService companyData;
+	ArrayList<DataPO> senders;
+	public Sender( long institutionID){
+		this.companyData = (CompanyDataService) DataServiceFactory.getDataServiceByType(DataType.CompanyDataService);
+		this.hall = institutionID;
+	}
+	
+	
+	public SenderVO getAvailableSender() throws RemoteException{
+		senders = companyData.sear
+		for(int i = 0 ; i < senders.size();i++){
+			SenderPO sender = (SenderPO) senders.get(i);
+			if(sender.isAvailable()){
+				SenderVO s = new SenderVO();
+				s.ID = sender.getSerialNum();
+				s.name = sender.getName();
+				return s;
+			}
+		}
+		
+		return null;
+	}
+		
+	
+}

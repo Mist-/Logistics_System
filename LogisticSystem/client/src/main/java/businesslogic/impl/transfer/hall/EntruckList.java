@@ -2,9 +2,10 @@ package businesslogic.impl.transfer.hall;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-
 import businesslogic.impl.user.InstitutionInfo;
+import data.enums.DataType;
 import data.enums.POType;
+import data.factory.DataServiceFactory;
 import data.message.ResultMessage;
 import data.po.DataPO;
 import data.po.EntruckPO;
@@ -20,7 +21,20 @@ public class EntruckList {
 	public EntruckList(TransferDataService transferData) {
 		this.transferData = transferData;
 	}
+	
+	
+	public EntruckListVO searchEntruck(long id) throws RemoteException{
+		EntruckPO entruck = (EntruckPO) transferData.search(POType.ENTRUCK, id);
+		if (entruck != null) {
+			return new EntruckListVO(entruck);
+		}else{
+			return null;
+		}
+	}
 
+	public EntruckList(){
+		this.transferData = (TransferDataService) DataServiceFactory.getDataServiceByType(DataType.TransferDataService);
+	}
 	public long[] getOrder() {
 		ArrayList<Long> order = choosedEntruck.getOrderList();
 		long[] o = new long[order.size()];
@@ -43,7 +57,7 @@ public class EntruckList {
 
 	public BriefEntruckListVO getEntruckList(long institutionID)
 			throws RemoteException {
-		entruckList = transferData.searchCheckedList(POType.ENTRUCK,
+		entruckList = transferData.getNewlyApprovedPO(POType.ENTRUCK,
 				institutionID);
 		if (entruckList != null) {//获取成功则显示
 			String[][] info = new String[entruckList.size()][2];
@@ -82,9 +96,10 @@ public class EntruckList {
 
 	public EntruckListVO createEntruckList(String[][] orders,
 			InstitutionInfo user, String desName, String driverID,
-			String driverName, String truckID) {
-
+			String driverName, String truckID) throws RemoteException {
+		Sender sender = new Sender(transferData,user.getInstitutionID());
 		EntruckListVO entruck = new EntruckListVO();
+		entruck.senders = sender.getAvailableSender();
 		entruck.escortID = user.getStaffID();
 		entruck.info = orders;
 		entruck.destName = desName;

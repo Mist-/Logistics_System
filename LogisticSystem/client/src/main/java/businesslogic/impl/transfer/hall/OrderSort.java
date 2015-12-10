@@ -23,7 +23,6 @@ import businesslogic.service.Transfer.hall.LoadAndSortService;
 import businesslogic.service.order.OrderBLService;
 
 public class OrderSort implements LoadAndSortService {
-	TransferDataService transferData;
 	InstitutionInfo user; // 构造时传入
 	CityInfo city;// getDestination时new,城市相关服务
 	EntruckList entruckList;//装车单相关服务
@@ -52,10 +51,8 @@ public class OrderSort implements LoadAndSortService {
 
 	@Override
 	public String[] getDestination() throws RemoteException {
-		CompanyDataService companyData = (CompanyDataService) DataServiceFactory
-				.getDataServiceByType(DataType.CompanyDataService);
 		try {
-			city = new CityInfo(companyData, user.getCenterID());
+			city = new CityInfo(user.getCenterID());
 
 		} catch (RemoteException e) {
 			System.out.println("未能获取城市信息");
@@ -89,7 +86,7 @@ public class OrderSort implements LoadAndSortService {
 				.getDataServiceByType(DataType.OrderDataService);
 		try {
 			ArrayList<DataPO> o = orderData.searchByLoc(user
-					.getInstitutionName());//根据目的地搜索订单
+					.getInstitutionName() + " *");//根据目的地搜索订单
 			if(o != null){//如果正确搜索到订单
 				order = new ArrayList<OrderPO>();
 				for (DataPO d : o) {
@@ -121,7 +118,7 @@ public class OrderSort implements LoadAndSortService {
 
 	@Override
 	//生成装车单
-	public EntruckListVO createEntruckList(String[][] orders) {
+	public EntruckListVO createEntruckList(String[][] orders) throws RemoteException {
 		DriverManagement drivers= null;
 		TruckManagement trucks = null;
 		try {
@@ -151,9 +148,7 @@ public class OrderSort implements LoadAndSortService {
 	}
 	
 	public OrderSort(InstitutionInfo user) {
-		transferData = (TransferDataService) DataServiceFactory
-				.getDataServiceByType(DataType.TransferDataService);
-		entruckList = new EntruckList(transferData);
+		entruckList = new EntruckList();
 		this.user = user;
 	}
 

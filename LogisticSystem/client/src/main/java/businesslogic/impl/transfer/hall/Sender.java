@@ -3,9 +3,13 @@ package businesslogic.impl.transfer.hall;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import presentation.company.companyManage;
+import data.enums.DataType;
 import data.enums.POType;
+import data.factory.DataServiceFactory;
 import data.po.DataPO;
 import data.po.SenderPO;
+import data.service.CompanyDataService;
 import data.service.TransferDataService;
 import data.vo.SenderVO;
 
@@ -17,26 +21,30 @@ import data.vo.SenderVO;
 public class Sender {
 	long hall;
 	TransferDataService transferData;
-	ArrayList<DataPO> senders;
-	public Sender(TransferDataService transferData, long institutionID){
+	ArrayList<DataPO> sender;
+	public Sender(TransferDataService transferData ,long institutionID){
 		this.transferData = transferData;
 		this.hall = institutionID;
 	}
 	
-	
-	public SenderVO getAvailableSender() throws RemoteException{
-		senders = transferData.searchList(POType.STAFF, hall);
-		for(int i = 0 ; i < senders.size();i++){
-			SenderPO sender = (SenderPO) senders.get(i);
-			if(sender.isAvailable()){
-				SenderVO s = new SenderVO();
-				s.ID = sender.getSerialNum();
-				s.name = sender.getName();
-				return s;
+	public long getSenderID(String name){
+		for (int i = 0 ; i < sender.size();i++) {
+			SenderPO s = (SenderPO) sender.get(i);
+			if (s.name ==  name) {
+				return s.getSerialNum();
 			}
 		}
-		
-		return null;
+		return -1;
+	}
+	
+	public String[] getAvailableSender() throws RemoteException{
+		sender = transferData.searchList(POType.SENDER, hall);
+		String[] name = new String[sender.size()];
+		for (int i = 0 ; i < sender.size();i++) {
+			SenderPO s = (SenderPO) sender.get(i);
+			name[i] = s.name;
+		}
+		return name;
 	}
 		
 	

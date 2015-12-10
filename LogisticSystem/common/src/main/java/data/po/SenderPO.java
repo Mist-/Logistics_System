@@ -2,18 +2,19 @@ package data.po;
 
 import data.enums.POType;
 
-public class SenderPO extends StaffPO{
+public class SenderPO extends DataPO{
+
+	public String name;
+	public long phoneNum;
+	public long id;
+	
+	public SenderPO() {
+		super(POType.SENDER);
+	}
 
 	private static final long serialVersionUID = 14;
-	boolean isAvailable;
 
-	public boolean isAvailable() {
-		return isAvailable;
-	}
 
-	public void setAvailable(boolean isAvailable) {
-		this.isAvailable = isAvailable;
-	}
 	
 	
 }

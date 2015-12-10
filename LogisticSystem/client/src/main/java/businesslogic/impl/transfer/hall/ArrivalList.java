@@ -5,8 +5,10 @@ import java.security.Timestamp;
 import java.util.ArrayList;
 
 import utils.Timestamper;
+import data.enums.DataType;
 import data.enums.POType;
 import data.enums.StockStatus;
+import data.factory.DataServiceFactory;
 import data.message.ResultMessage;
 import data.po.ArrivalPO;
 import data.po.DataPO;
@@ -55,10 +57,13 @@ public class ArrivalList {
 		this.transferData = transferData;
 	}
 
+	public ArrivalList(){
+		this.transferData = (TransferDataService) DataServiceFactory.getDataServiceByType(DataType.TransferDataService);
+	}
 
 	public ArrivalListVO getCheckedArrivals(long institutionID)
 			throws RemoteException {
-		checkedArrivals = transferData.searchCheckedList(POType.ARRIVAL,
+		checkedArrivals = transferData.getNewlyApprovedPO(POType.ARRIVAL,
 				institutionID);
 		if(checkedArrivals != null){
 		String[][] info = new String[checkedArrivals.size()][2];

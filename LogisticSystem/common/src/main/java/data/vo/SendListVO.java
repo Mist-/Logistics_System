@@ -9,14 +9,17 @@ public class SendListVO {
 	public String[] orderID;
 	public String date;
 	public String senderName;
-	public String senderID;
 	public long id;
-	
-	public SendListVO(String[] orderID, String date, String senderName, String senderID, long id) {
+	public String[] senders;
+	public SendListVO(String[] orderID, String date, String[] senders,long id) {
 		this.orderID = orderID;
 		this.date = date;
-		this.senderName = senderName;
-		this.senderID = senderID;
+		this.senders = senders;
+		this.id = id;
+	}
+	
+	public SendListVO(String name,long id){
+		senderName = name;
 		this.id = id;
 	}
 	

@@ -27,12 +27,11 @@ import data.vo.TransferListVO;
 
 public class TransferCenterController implements TransferCenterService{
 	InstitutionInfo center;
-	CompanyDataService companyData;
 	@Override
 	public TransferLoadService startTransferLoad() {
 		
 		try {
-			CityInfo city = new CityInfo(companyData, center.getCenterID());
+			CityInfo city = new CityInfo( center.getCenterID());
 			return new TransferLoad(center,city);
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -46,7 +45,6 @@ public class TransferCenterController implements TransferCenterService{
 
 
 	public TransferCenterController(LoginMessage login) throws Exception {
-		companyData = (CompanyDataService) DataServiceFactory.getDataServiceByType(DataType.CompanyDataService);
 		center = new InstitutionInfo(login);
 	}
 
