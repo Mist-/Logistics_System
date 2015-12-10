@@ -129,15 +129,18 @@ public class DialogMoveStaff extends JDialog{
 					  company.initFinancialTable();
 					  break;
 				  case 2:
-					  company.initTrunkTable();
+					  company.initSFinancialTable();
 					  break;
 				  case 3:
-					  company.initCenterTable(fromInstitution);
+					  company.initTrunkTable();
 					  break;
 				  case 4:
-					  company.initBusinessTable(fromInstitution);
+					  company.initCenterTable(fromInstitution);
 					  break;
 				  case 5:
+					  company.initBusinessTable(fromInstitution);
+					  break;
+				  case 6:
 					  company.initStorageTable(fromInstitution);
 					  break;
 			  }

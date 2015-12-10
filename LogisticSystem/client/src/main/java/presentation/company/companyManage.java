@@ -505,12 +505,10 @@ public class companyManage extends JFrame {
                     EntruckListVO entruckListVO = new EntruckListVO();
                     Vector<String> entruck = entrukModify.get(i);
                     entruckListVO.entruckListID = entruck.get(0);
-                    entruckListVO.fromID = entruck.get(2);
-                    entruckListVO.destID = Long.valueOf(entruck.get(4));
-                    entruckListVO.monitorName = entruck.get(5);
-                    entruckListVO.escortName = entruck.get(6);
-                    entruckListVO.fee = entruck.get(7);
-                    entruckListVO.vehicleID = entruck.get(8);
+                    entruckListVO.fromID = entruck.get(1);
+                    entruckListVO.destID = Long.valueOf(entruck.get(2));
+                    entruckListVO.monitorName = entruck.get(3);
+                    entruckListVO.escortName = entruck.get(4);
                     resultMessages.add(controller.modifyEntruck(entruckListVO));
                 }
                 break;
@@ -524,9 +522,9 @@ public class companyManage extends JFrame {
                     ArrivalVO arrivalVO = new ArrivalVO();
                     Vector<String> arrival = arrivalModify.get(i);
                     arrivalVO.setId(Long.valueOf(arrival.get(0)));
-                    arrivalVO.setFromName(arrival.get(2));
-                    arrivalVO.setDestName(arrival.get(3));
-                    arrivalVO.setDate(arrival.get(4));
+                    arrivalVO.setFromName(arrival.get(1));
+                    arrivalVO.setDestName(arrival.get(2));
+                    arrivalVO.setDate(arrival.get(3));
                     resultMessages.add(controller.modifyArrival(arrivalVO));
                 }
             case 2:
@@ -554,9 +552,9 @@ public class companyManage extends JFrame {
                     StorageOutVO storageOutVO = new StorageOutVO();
                     Vector<String> storageOut = storageOutModify.get(i);
                     storageOutVO.setId(storageOut.get(0));
-                    storageOutVO.setTransferNum(storageOut.get(2));
-                    storageOutVO.setTransferType(storageOut.get(3));
-                    storageOutVO.setTransferListNum(storageOut.get(4));
+                    storageOutVO.setTransferNum(storageOut.get(1));
+                    storageOutVO.setTransferType(storageOut.get(2));
+                    storageOutVO.setDate(storageOut.get(3));
                     resultMessages.add(controller.modifyStorageOutList(storageOutVO));
                 }
             case 4:
@@ -586,7 +584,7 @@ public class companyManage extends JFrame {
                 for(int i=0;i<sendModify.size();i++){
                     Vector<String> sendList = sendModify.get(i);
                     long id = Long.valueOf(sendList.get(0));
-                    String sender = sendList.get(2);
+                    String sender = sendList.get(1);
                     SendListVO sendListVO = new SendListVO(null,null,sender,null,id);
                     resultMessages.add(controller.modifySend(sendListVO));
                 }
@@ -617,7 +615,7 @@ public class companyManage extends JFrame {
                     Vector<String> storageIn = storageInModify.get(i);
                     StorageInVO storageInVO = new StorageInVO(null,null);
                     storageInVO.setId(Long.valueOf(storageIn.get(0)));
-                    storageInVO.setDate(storageIn.get(7));
+                    storageInVO.setDate(storageIn.get(2));
                     resultMessages.add(controller.modifyStorageInList(storageInVO));
                 }
             case 8:
@@ -629,17 +627,11 @@ public class companyManage extends JFrame {
                 for(int i=0;i<orderModify.size();i++){
                     Iterator<String> order = orderModify.get(i).iterator();
                     long id = Long.valueOf(order.next());
-                    String sName = order.next();
-                    String sAdress = order.next();
-                    String sPhone = order.next();
-                    String rName = order.next();
-                    String rAdress = order.next();
-                    String rPhone = order.next();
                     int stockNum = Integer.valueOf(order.next());
                     double weight = Double.valueOf(order.next());
                     double fee = Double.valueOf(order.next());
                     ServiceType serviceType = data.enums.ServiceType.valueOf(order.next());
-                    OrderVO orderVO = new OrderVO(sName,sAdress,null,sPhone,rName,rAdress,null,rPhone,stockNum,weight,0,null,serviceType,fee,id);
+                    OrderVO orderVO = new OrderVO(null,null,null,null,null,null,null,null,stockNum,weight,0,null,serviceType,fee,id);
                     resultMessages.add(controller.modifyOrder(orderVO));
                 }
             }
@@ -1050,12 +1042,6 @@ public class companyManage extends JFrame {
         //表头
         Vector<String> orderColumns = new Vector<String>();
         orderColumns.add("寄件单号");
-        orderColumns.add("寄件人");
-        orderColumns.add("寄件地址");
-        orderColumns.add("寄件人电话");
-        orderColumns.add("收件人");
-        orderColumns.add("收件地址");
-        orderColumns.add("收件人电话");
         orderColumns.add("物件数");
         orderColumns.add("重量");
         orderColumns.add("运费");
@@ -1069,12 +1055,6 @@ public class companyManage extends JFrame {
             orderVO = new Vector<String>();
             OrderPO orderPO = orderPOs.get(i);
             orderVO.add(orderPO.getSerialNum()+"");
-            orderVO.add(orderPO.getSname());
-            orderVO.add(orderPO.getSaddress());
-            orderVO.add(orderPO.getSphone());
-            orderVO.add(orderPO.getRname());
-            orderVO.add(orderPO.getRaddress());
-            orderVO.add(orderPO.getRphone());
             orderVO.add(orderPO.getStockNum()+"");
             orderVO.add(orderPO.getWeight()+"");
             orderVO.add(orderPO.getFee()+"");
@@ -1115,10 +1095,7 @@ public class companyManage extends JFrame {
         //表头
         Vector<String> sendColumns = new Vector<String>();
         sendColumns.add("派件单号");
-        sendColumns.add("寄件单号");
         sendColumns.add("派件人");
-        sendColumns.add("签收人");
-        sendColumns.add("签收人电话");
         //数据:第一个Vector用来存放一个VO,第二个Vector存放VO集合
         Vector<String> sendVO = null;
         Vector<Vector<String>> sendData = new Vector<Vector<String>>();
@@ -1126,17 +1103,9 @@ public class companyManage extends JFrame {
         ArrayList<SendListPO> sendListPOs = new ArrayList<>();
         for(int i=0;i<sendListPOs.size();i++){
             SendListPO sendListPO = sendListPOs.get(i);
-            long [] orderList = sendListPO.getOrder();
-            for(int k=0;k<orderList.length;k++){
-                sendVO = new Vector<String>();
-                OrderPO orderPO = controller.getOrderData(orderList[k]);
-                sendVO.add(sendListPO.getSerialNum()+"");
-                sendVO.add(orderPO.getSerialNum()+"");
-                sendVO.add(sendListPO.getSender());
-                sendVO.add(orderPO.getRname());
-                sendVO.add(orderPO.getRphone());
-                sendData.add(sendVO);
-            }
+            sendVO.add(sendListPO.getSerialNum()+"");
+            sendVO.add(sendListPO.getSender());
+            sendData.add(sendVO);
         }
         //模型
         sendModel = new DefaultTableModel(sendData,sendColumns);
@@ -1281,13 +1250,10 @@ public class companyManage extends JFrame {
         //表头
         Vector<String> entruckColumns = new Vector<String>();
         entruckColumns.add("装车单编号");
-        entruckColumns.add("托运单号");
         entruckColumns.add("营业厅编号");
         entruckColumns.add("到达地");
         entruckColumns.add("监装员");
         entruckColumns.add("押运员");
-        entruckColumns.add("运费");
-        entruckColumns.add("车辆/飞机编号");
         //数据:第一个Vector用来存放一个VO,第二个Vector存放VO集合
         Vector<String> entrukVO = null;
         Vector<Vector<String>> entrukData = new Vector<Vector<String>>();
@@ -1295,19 +1261,12 @@ public class companyManage extends JFrame {
         ArrayList<EntruckPO> entruckPOs = new ArrayList<>();
         for(int i=0;i<entruckPOs.size();i++){
             EntruckPO entruckPO = entruckPOs.get(i);
-            long [] orderList = entruckPO.getOrder();
-            for(int k=0;k<orderList.length;k++){
-                OrderPO orderPO = controller.getOrderData(orderList[k]);
-                entrukVO.add(entruckPO.getSerialNum()+"");
-                entrukVO.add(orderPO.getSerialNum()+"");
-                entrukVO.add(entruckPO.getFrom()+"");
-                entrukVO.add(entruckPO.getDestID()+"");
-                entrukVO.add(entruckPO.getMonitorName());
-                entrukVO.add(entruckPO.getEscortName());
-                entrukVO.add(entruckPO.getFee()+"");
-                entrukVO.add(entruckPO.getVehicleID()+"");
-                entrukData.add(entrukVO);
-            }
+            entrukVO.add(entruckPO.getSerialNum()+"");
+            entrukVO.add(entruckPO.getFrom()+"");
+            entrukVO.add(entruckPO.getDestID()+"");
+            entrukVO.add(entruckPO.getMonitorName());
+            entrukVO.add(entruckPO.getEscortName());
+            entrukData.add(entrukVO);
         }
         //模型
         entrukModel = new DefaultTableModel(entrukData,entruckColumns);
@@ -1337,17 +1296,15 @@ public class companyManage extends JFrame {
     }
 
     /*
-     * 初始化arrival(营业厅到达单审批)表格
+     * 初始化arrival(到达单审批)表格
      */
     private void initArrivalTable(){
         //表头
         Vector<String> arrivalColumns = new Vector<String>();
         arrivalColumns.add("到达单编号");
-        arrivalColumns.add("订单编号");
         arrivalColumns.add("出发地");
         arrivalColumns.add("到达地");
         arrivalColumns.add("到达日期");
-        arrivalColumns.add("货物状态");
         //数据:第一个Vector用来存放一个VO,第二个Vector存放VO集合
         Vector<String> arrivalVO = null;
         Vector<Vector<String>> arrivalData = new Vector<Vector<String>>();
@@ -1355,19 +1312,11 @@ public class companyManage extends JFrame {
         ArrayList<ArrivalPO> arrivalPOs = new ArrayList<>();
         for(int i=0;i<arrivalPOs.size();i++){
             ArrivalPO arrivalPO = arrivalPOs.get(i);
-            long [] orderList = arrivalPO.getOrder();
-            ArrayList<StockStatus> stockStatuses = arrivalPO.getStockStatus();
-            for(int k=0;k<orderList.length;k++){
-                arrivalVO = new Vector<String>();
-                OrderPO orderPO = controller.getOrderData(orderList[k]);
-                arrivalVO.add(arrivalPO.getSerialNum()+"");
-                arrivalVO.add(orderPO.getSerialNum()+"");
-                arrivalVO.add(arrivalPO.getFromName());
-             //   arrivalVO.add(arrivalPO.getToname());
-                arrivalVO.add(arrivalPO.getDate());
-                arrivalVO.add(stockStatuses.get(i).toString());
-                arrivalData.add(arrivalVO);
-            }
+            arrivalVO.add(arrivalPO.getSerialNum()+"");
+            arrivalVO.add(arrivalPO.getDestName());
+            arrivalVO.add(arrivalPO.getFromName());
+            arrivalVO.add(arrivalPO.getDate());
+            arrivalData.add(arrivalVO);
         }
         //模型
         arrivalModel = new DefaultTableModel(arrivalData,arrivalColumns);
@@ -1404,12 +1353,7 @@ public class companyManage extends JFrame {
         //表头
         Vector<String> storageInColumns = new Vector<String>();
         storageInColumns.add("入库单编号");
-        storageInColumns.add("快递编号");
         storageInColumns.add("目的地编号");
-        storageInColumns.add("区号");
-        storageInColumns.add("排号");
-        storageInColumns.add("架号");
-        storageInColumns.add("位号");
         storageInColumns.add("入库日期");
         //数据:第一个Vector用来存放一个VO,第二个Vector存放VO集合
         Vector<String> storageInVO = null;
@@ -1418,22 +1362,9 @@ public class companyManage extends JFrame {
         ArrayList<StorageInListPO> storageInListPOs = new ArrayList<>();
         for(int i=0;i<storageInListPOs.size();i++){
             StorageInListPO storageInListPO = storageInListPOs.get(i);
-            long [] orderList = storageInListPO.getOrderList();
-            ArrayList<String> position = storageInListPO.getStoragePosition();
-            for(int k=0;k<orderList.length;k++){
-                storageInVO = new Vector<String>();
-                OrderPO orderPO = controller.getOrderData(orderList[k]);
-                String []positions = position.get(i).split("[-]");
-                storageInVO.add(storageInListPO.getSerialNum()+"");
-                storageInVO.add(orderPO.getSerialNum()+"");
-                storageInVO.add(storageInListPO.getTransferNum()+"");
-                storageInVO.add(positions[0]);
-                storageInVO.add(positions[1]);
-                storageInVO.add(positions[2]);
-                storageInVO.add(positions[3]);
-                storageInVO.add(storageInListPO.getDate());
-                storageInData.add(storageInVO);
-            }
+            storageInVO.add(storageInListPO.getTransferNum()+"");
+            storageInVO.add(storageInListPO.getDate());
+            storageInData.add(storageInVO);
         }
         //模型
         storageInModel = new DefaultTableModel(storageInData,storageInColumns);
@@ -1469,11 +1400,9 @@ public class companyManage extends JFrame {
         //表头
         Vector<String> storageOutColumns = new Vector<String>();
         storageOutColumns.add("入库单编号");
-        storageOutColumns.add("快递编号");
         storageOutColumns.add("目的地编号");
         storageOutColumns.add("装运形式");
         storageOutColumns.add("出库日期");
-        storageOutColumns.add("中转单/汽运编号");
         //数据:第一个Vector用来存放一个VO,第二个Vector存放VO集合
         Vector<String> storageOutVO = null;
         Vector<Vector<String>> storageOutData = new Vector<Vector<String>>();
@@ -1481,18 +1410,11 @@ public class companyManage extends JFrame {
         ArrayList<StorageOutListPO> storageOutListPOs = new ArrayList<>();
         for(int i=0;i<storageOutListPOs.size();i++){
             StorageOutListPO storageOutListPO = storageOutListPOs.get(i);
-            long[] orderList = storageOutListPO.getOrder();
-            for(int k=0;k<orderList.length;k++){
-                storageOutVO = new Vector<String>();
-                OrderPO orderPO = controller.getOrderData(orderList[k]);
-                storageOutVO.add(storageOutListPO.getSerialNum()+"");
-                storageOutVO.add(orderPO.getSerialNum()+"");
-                storageOutVO.add(storageOutListPO.getTransferNum()+"");
-                storageOutVO.add(storageOutListPO.getTransferType().toString());
-                storageOutVO.add(storageOutListPO.getDeliveryListNum()+"");
-                storageOutVO.add(storageOutListPO.getDate());
-                storageOutData.add(storageOutVO);
-            }
+            storageOutVO.add(storageOutListPO.getSerialNum()+"");
+            storageOutVO.add(storageOutListPO.getTransferNum()+"");
+            storageOutVO.add(storageOutListPO.getTransferType().toString());
+            storageOutVO.add(storageOutListPO.getDate());
+            storageOutData.add(storageOutVO);
         }
         //模型
         storageOutModel = new DefaultTableModel(storageOutData,storageOutColumns);
@@ -1541,19 +1463,13 @@ public class companyManage extends JFrame {
         ArrayList<TransferListPO> transferListPOs = new ArrayList<>();
         for(int i=0;i<transferListPOs.size();i++){
             TransferListPO transferListPO = transferListPOs.get(i);
-            long [] orderList = transferListPO.getOrder();
-            for(int k=0;k<orderList.length;k++){
-                transferVO = new Vector<String>();
-                OrderPO orderPO = controller.getOrderData(orderList[k]);
-                transferVO.add(transferListPO.getSerialNum()+"");
-                transferVO.add(orderPO.getSerialNum()+"");
-                transferVO.add(transferListPO.getTargetCenterName());
-                transferVO.add(transferListPO.getVehicleCode()+"");
-                transferVO.add(transferListPO.getStaffName());
-                transferVO.add(transferListPO.getFee()+"");
-                transferVO.add(transferListPO.getDate());
-                transferData.add(transferVO);
-            }
+            transferVO.add(transferListPO.getSerialNum()+"");
+            transferVO.add(transferListPO.getTargetCenterName());
+            transferVO.add(transferListPO.getVehicleCode()+"");
+            transferVO.add(transferListPO.getStaffName());
+            transferVO.add(transferListPO.getFee()+"");
+            transferVO.add(transferListPO.getDate());
+            transferData.add(transferVO);
         }
         //模型
         transferModel = new DefaultTableModel(transferData,transferColumns);
