@@ -72,15 +72,14 @@ public class TruckPanel extends JPanel {
 				truckListPane.updateUI();
 				truckListPane.setVisible(true);
 			}
-			
 		}else{
 			JOptionPane.showMessageDialog(null, "车辆信息为空","提示",JOptionPane.INFORMATION_MESSAGE);
-
 		}
 	}
 
 	private void showTruckButtonMouseClicked(MouseEvent e) {
 		if(showTruckButton.isEnabled()){
+		deleteButton.setVisible(true);
 		saveButton.setVisible(false);
 		modifyButton.setVisible(false);
 		int row = truckTable.getSelectedRow();
@@ -90,7 +89,6 @@ public class TruckPanel extends JPanel {
 		setTruckVO();
 		remove(truckListPane);
 		add(truckPane);
-		
 		truckPane.updateUI();
 		truckPane.setVisible(true);
 		}
@@ -186,6 +184,7 @@ public class TruckPanel extends JPanel {
 	}
 
 	private void addTruckButtonMouseClicked(MouseEvent e) {
+		deleteButton.setVisible(true);
 		truck = new TruckInfoVO();
 		modifyButton.setVisible(false);
 		modifyButton.setEnabled(false);
@@ -196,6 +195,17 @@ public class TruckPanel extends JPanel {
 		truckPane.validate();
 		truckPane.updateUI();
 		truckPane.setVisible(true);
+	}
+
+	private void deleteButtonMouseReleased(MouseEvent e) {
+		long id = Long.parseLong(truck.ID);
+		ResultMessage result = truckManagement.deleteTruck(id);
+		JOptionPane.showMessageDialog(null, "已删除", "提示"	, JOptionPane.INFORMATION_MESSAGE);
+		int row = truckTable.getSelectedRow();
+		DefaultTableModel model = (DefaultTableModel) truckTable.getModel();
+		model.removeRow(row);
+		truckTable.updateUI();
+		truckTable.repaint();
 	}
 	
 	
@@ -225,6 +235,7 @@ public class TruckPanel extends JPanel {
 		saveButton = new JButton();
 		modifyButton = new JButton();
 		cancelButton = new JButton();
+		deleteButton = new JButton();
 		cancelDialog = new JDialog();
 		panel = new JPanel();
 		label8 = new JLabel();
@@ -362,6 +373,15 @@ public class TruckPanel extends JPanel {
 					}
 				});
 
+				//---- deleteButton ----
+				deleteButton.setText("\u5220\u9664");
+				deleteButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						deleteButtonMouseReleased(e);
+					}
+				});
+
 				GroupLayout panel2Layout = new GroupLayout(panel2);
 				panel2.setLayout(panel2Layout);
 				panel2Layout.setHorizontalGroup(
@@ -403,9 +423,11 @@ public class TruckPanel extends JPanel {
 								.addGroup(GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
 									.addGap(0, 718, Short.MAX_VALUE)
 									.addGroup(panel2Layout.createParallelGroup()
-										.addComponent(cancelButton, GroupLayout.Alignment.TRAILING)
-										.addComponent(modifyButton, GroupLayout.Alignment.TRAILING)
-										.addComponent(saveButton, GroupLayout.Alignment.TRAILING))))
+										.addComponent(deleteButton)
+										.addGroup(panel2Layout.createParallelGroup()
+											.addComponent(cancelButton, GroupLayout.Alignment.TRAILING)
+											.addComponent(modifyButton, GroupLayout.Alignment.TRAILING)
+											.addComponent(saveButton, GroupLayout.Alignment.TRAILING)))))
 							.addContainerGap())
 				);
 				panel2Layout.setVerticalGroup(
@@ -432,7 +454,9 @@ public class TruckPanel extends JPanel {
 							.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 								.addComponent(label7)
 								.addComponent(status, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+							.addComponent(deleteButton)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addComponent(saveButton)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addComponent(modifyButton)
@@ -543,6 +567,7 @@ public class TruckPanel extends JPanel {
 	private JButton saveButton;
 	private JButton modifyButton;
 	private JButton cancelButton;
+	private JButton deleteButton;
 	private JDialog cancelDialog;
 	private JPanel panel;
 	private JLabel label8;

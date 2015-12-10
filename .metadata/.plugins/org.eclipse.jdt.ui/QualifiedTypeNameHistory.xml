@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="data.vo.DriverListVO"/>
-<fullyQualifiedTypeName name="presentation.transfer.hall.DriverPanel"/>
 <fullyQualifiedTypeName name="javax.naming.spi.DirStateFactory.Result"/>
 <fullyQualifiedTypeName name="org.junit.experimental.results.ResultMatchers"/>
 <fullyQualifiedTypeName name="data.vo.TruckListVO"/>
@@ -15,7 +13,6 @@
 <fullyQualifiedTypeName name="java.awt.event.ItemListener"/>
 <fullyQualifiedTypeName name="java.awt.event.ItemEvent"/>
 <fullyQualifiedTypeName name="data.enums.StorageArea"/>
-<fullyQualifiedTypeName name="javax.swing.DefaultComboBoxModel"/>
 <fullyQualifiedTypeName name="data.vo.BriefOrderVO"/>
 <fullyQualifiedTypeName name="data.vo.TransferLoadVO"/>
 <fullyQualifiedTypeName name="data.po.TransferListPO"/>
@@ -23,7 +20,6 @@
 <fullyQualifiedTypeName name="data.vo.EntruckListVO"/>
 <fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
 <fullyQualifiedTypeName name="java.lang.Integer"/>
-<fullyQualifiedTypeName name="java.lang.Long"/>
 <fullyQualifiedTypeName name="data.vo.StorageInVO"/>
 <fullyQualifiedTypeName name="data.vo.StorageOutVO"/>
 <fullyQualifiedTypeName name="data.vo.StorageListVO"/>
@@ -36,16 +32,11 @@
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
 <fullyQualifiedTypeName name="java.sql.Date"/>
 <fullyQualifiedTypeName name="java.util.Calendar"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.text.ParseException"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="data.po.StorageInfoPO"/>
 <fullyQualifiedTypeName name="data.vo.StorageInfoVO"/>
-<fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
-<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 <fullyQualifiedTypeName name="java.awt.Container"/>
-<fullyQualifiedTypeName name="data.message.ResultMessage"/>
 <fullyQualifiedTypeName name="data.vo.DriverInfoVO"/>
 <fullyQualifiedTypeName name="data.vo.TruckInfoVO"/>
 <fullyQualifiedTypeName name="businesslogic.impl.transfer.center.StorageInfoService"/>
@@ -59,4 +50,14 @@
 <fullyQualifiedTypeName name="businesslogic.impl.user.CityInfo"/>
 <fullyQualifiedTypeName name="businesslogic.impl.transfer.hall.DriverManagement"/>
 <fullyQualifiedTypeName name="businesslogic.impl.transfer.hall.TruckManagement"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="data.enums.StockStatus"/>
+<fullyQualifiedTypeName name="javax.swing.DefaultComboBoxModel"/>
+<fullyQualifiedTypeName name="java.security.Timestamp"/>
+<fullyQualifiedTypeName name="utils.Timestamper"/>
+<fullyQualifiedTypeName name="java.lang.Long"/>
+<fullyQualifiedTypeName name="data.message.ResultMessage"/>
+<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+<fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
 </qualifiedTypeNameHistroy>

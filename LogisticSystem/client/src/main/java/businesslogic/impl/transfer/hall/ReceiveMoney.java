@@ -21,20 +21,7 @@ import data.vo.ReceiptVO;
  *
  */
 public class ReceiveMoney {
-	//>>>>>>>>>>>>>>测试用方法
-	public void setSenders(ArrayList<StaffPO> senders) {
-		this.senders = senders;
-	}
-	public void setReceipt(ReceiptPO receipt) {
-		this.receipt = receipt;
-	}
 
-	public void setAccount(AccountPO account) {
-		this.account = account;
-	}
-
-	//>>>>>>>>>>>>>>测试用方法
-	
 	
 
 
@@ -47,13 +34,9 @@ public class ReceiveMoney {
 	FinancialDataService financialDataService;
 
 
-	public ArrayList<String> getSenders(long hall){
-		//senders = companyData.search(POType.STAFF, hall);王毅承添加
-		ArrayList<String> sender = new ArrayList<String>();
-		for(StaffPO s:senders){
-			sender.add(s.getName());
-		}
-		return sender;
+	public String[] getSenders(long hall){
+		return null;
+	
 	}
 	public ReceiptVO chooseSender(String name){
 		for(StaffPO s:senders){

@@ -23,6 +23,7 @@ public class Sender {
 		this.hall = institutionID;
 	}
 	
+	
 	public SenderVO getAvailableSender() throws RemoteException{
 		senders = transferData.searchList(POType.STAFF, hall);
 		for(int i = 0 ; i < senders.size();i++){
