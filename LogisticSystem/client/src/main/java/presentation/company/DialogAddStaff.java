@@ -1,7 +1,9 @@
 package presentation.company;
 
 import businesslogic.impl.company.CompanyBLController;
+import data.enums.UserRole;
 import data.message.ResultMessage;
+import data.vo.StaffVO;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
@@ -106,7 +108,17 @@ public class DialogAddStaff extends JDialog{
 			gender = true;
 		}
 		if(controller.isNum(stringSerialNum)&&controller.isNum(stringPhoneNum)) {
-			resultMessage = controller.addStaff(instituion, stringSerialNum, gender, stringName, stringPhoneNum, stringIdCardNum, userRole);
+			//根据界面信息创建一个新的staffVO
+			StaffVO staffVO = new StaffVO();
+			staffVO.setId(Long.valueOf(stringSerialNum));
+			staffVO.setName(stringName);
+			staffVO.setInstitution(controller.longInstitution(instituion));
+			staffVO.setIdcardNum(stringIdCardNum);
+			staffVO.setGender(gender);
+			staffVO.setPhoneNum(stringPhoneNum);
+			staffVO.setUserRole(UserRole.valueOf(userRole));
+			resultMessage = controller.addStaff(staffVO);
+			//判断是否成功添加
 			if (resultMessage == ResultMessage.SUCCESS) {
 				company.labelStaffSuccess.setText("添加成功!");
 				jdialog.dispose();

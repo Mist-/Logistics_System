@@ -158,12 +158,15 @@ public class companyManage extends JFrame {
                 } else if (resultmessage == ResultMessage.NOTCONNECTED) {
                     labelSalarySuccess.setText("");
                     JOptionPane.showMessageDialog(null, "网络错误...", "", JComponent.ERROR);
+                    break;
                 } else {
                     labelSalarySuccess.setText("修改失败!");
+                    break;
                 }
             }
             else{
                 JOptionPane.showMessageDialog(null, "请输入正确工资数值!", "", JComponent.ERROR);
+                break;
             }
         }
     }
@@ -238,9 +241,14 @@ public class companyManage extends JFrame {
         //根据机构的不同来选择不同的方式生成机构名称
         String institution,userRole;
         int index= tabbedPaneStaff.getSelectedIndex();
-        if(index>=0&&index<=3){
+        if(index>=0&&index<=2){
             institution = tabbedPaneStaff.getTitleAt(index);
             userRole = tabbedPaneStaff.getTitleAt(index);
+        }
+        //如果是货车驾驶员则没有使用权限
+        else if(index==3){
+            institution = tabbedPaneStaff.getTitleAt(index);
+            userRole = null;
         }
         else if(index==4){
             //中转中心名字(城市名)
@@ -490,13 +498,17 @@ public class companyManage extends JFrame {
     //确认修改单据的按钮
     private void buttonModifyDataMouseClicked(MouseEvent e) {
         boolean isSuccess = false;
-        int row,column;
         int index = tabbedPaneApprove.getSelectedIndex();
-        ArrayList<ResultMessage> resultMessages = null;
+        this.modifyData(index);
+    }
+
+    //修改单据的方法
+    private void modifyData(int index){
+        int row,column;
+        ResultMessage resultMessage = null;
         //根据单据的类型不同来修改单据
         switch (index) {
             case 0:
-                resultMessages = new ArrayList<ResultMessage>();
                 //将最后一个被编辑的单元格设置停止编辑状态,加入到EntruckModify中
                 row = tableEntruk.getSelectedRow();
                 column = tableEntruk.getSelectedColumn();
@@ -509,11 +521,13 @@ public class companyManage extends JFrame {
                     entruckListVO.destID = Long.valueOf(entruck.get(2));
                     entruckListVO.monitorName = entruck.get(3);
                     entruckListVO.escortName = entruck.get(4);
-                    resultMessages.add(controller.modifyEntruck(entruckListVO));
+                    resultMessage = controller.modifyEntruck(entruckListVO);
+                    this.isSuccess(resultMessage);
+                    if(resultMessage!=ResultMessage.SUCCESS)
+                        break;
                 }
                 break;
             case 1:
-                resultMessages = new ArrayList<ResultMessage>();
                 //将最后一个被编辑的单元格设置停止编辑状态,加入到salaryModify中
                 row = tableArrival.getSelectedRow();
                 column = tableArrival.getSelectedColumn();
@@ -525,10 +539,12 @@ public class companyManage extends JFrame {
                     arrivalVO.setFromName(arrival.get(1));
                     arrivalVO.setDestName(arrival.get(2));
                     arrivalVO.setDate(arrival.get(3));
-                    resultMessages.add(controller.modifyArrival(arrivalVO));
+                    resultMessage = controller.modifyArrival(arrivalVO);
+                    this.isSuccess(resultMessage);
+                    if(resultMessage!=ResultMessage.SUCCESS)
+                        break;
                 }
             case 2:
-                resultMessages = new ArrayList<ResultMessage>();
                 //将最后一个被编辑的单元格设置停止编辑状态,加入到salaryModify中
                 row = tableReceipt.getSelectedRow();
                 column = tableReceipt.getSelectedColumn();
@@ -540,10 +556,12 @@ public class companyManage extends JFrame {
                     receiptVO.setSender(receipt.get(1));
                     receiptVO.setMoney(Double.valueOf(receipt.get(2)));
                     receiptVO.setDate(receipt.get(3));
-                    resultMessages.add(controller.modifyReceipt(receiptVO));
+                    resultMessage = controller.modifyReceipt(receiptVO);
+                    this.isSuccess(resultMessage);
+                    if(resultMessage!=ResultMessage.SUCCESS)
+                        break;
                 }
             case 3:
-                resultMessages = new ArrayList<ResultMessage>();
                 //将最后一个被编辑的单元格设置停止编辑状态,加入到salaryModify中
                 row = tableStorageOut.getSelectedRow();
                 column = tableStorageOut.getSelectedColumn();
@@ -555,10 +573,12 @@ public class companyManage extends JFrame {
                     storageOutVO.setTransferNum(storageOut.get(1));
                     storageOutVO.setTransferType(storageOut.get(2));
                     storageOutVO.setDate(storageOut.get(3));
-                    resultMessages.add(controller.modifyStorageOutList(storageOutVO));
+                    resultMessage = controller.modifyStorageOutList(storageOutVO);
+                    this.isSuccess(resultMessage);
+                    if(resultMessage!=ResultMessage.SUCCESS)
+                        break;
                 }
             case 4:
-                resultMessages = new ArrayList<ResultMessage>();
                 //将最后一个被编辑的单元格设置停止编辑状态,加入到salaryModify中
                 row = tablePayment.getSelectedRow();
                 column = tablePayment.getSelectedColumn();
@@ -573,10 +593,12 @@ public class companyManage extends JFrame {
                     paymentVO.setMoney(Double.valueOf(payment.get(4)));
                     paymentVO.setDate(payment.get(5));
                     paymentVO.setExInfo(payment.get(6));
-                    resultMessages.add(controller.modifyPayment(paymentVO));
+                    resultMessage = controller.modifyPayment(paymentVO);
+                    this.isSuccess(resultMessage);
+                    if(resultMessage!=ResultMessage.SUCCESS)
+                        break;
                 }
             case 5:
-                resultMessages = new ArrayList<ResultMessage>();
                 //将最后一个被编辑的单元格设置停止编辑状态,加入到salaryModify中
                 row = tableSend.getSelectedRow();
                 column = tableSend.getSelectedColumn();
@@ -586,10 +608,13 @@ public class companyManage extends JFrame {
                     long id = Long.valueOf(sendList.get(0));
                     String sender = sendList.get(1);
                     SendListVO sendListVO = new SendListVO(null,null,sender,null,id);
-                    resultMessages.add(controller.modifySend(sendListVO));
+                    resultMessage = controller.modifySend(sendListVO);
+                    this.isSuccess(resultMessage);
+                    this.isSuccess(resultMessage);
+                    if(resultMessage!=ResultMessage.SUCCESS)
+                        break;
                 }
             case 6:
-                resultMessages = new ArrayList<ResultMessage>();
                 //将最后一个被编辑的单元格设置停止编辑状态,加入到salaryModify中
                 row = tableTransfer.getSelectedRow();
                 column = tableTransfer.getSelectedColumn();
@@ -603,10 +628,12 @@ public class companyManage extends JFrame {
                     transferListVO.staff = transfer.get(4);
                     transferListVO.fee = transfer.get(5);
                     transferListVO.date = transfer.get(6);
-                    resultMessages.add(controller.modifyTransferList(transferListVO));
+                    resultMessage = controller.modifyTransferList(transferListVO);
+                    this.isSuccess(resultMessage);
+                    if(resultMessage!=ResultMessage.SUCCESS)
+                        break;
                 }
             case 7:
-                resultMessages = new ArrayList<ResultMessage>();
                 //将最后一个被编辑的单元格设置停止编辑状态,加入到salaryModify中
                 row = tableStorageIn.getSelectedRow();
                 column = tableStorageIn.getSelectedColumn();
@@ -616,10 +643,12 @@ public class companyManage extends JFrame {
                     StorageInVO storageInVO = new StorageInVO(null,null);
                     storageInVO.setId(Long.valueOf(storageIn.get(0)));
                     storageInVO.setDate(storageIn.get(2));
-                    resultMessages.add(controller.modifyStorageInList(storageInVO));
+                    resultMessage = controller.modifyStorageInList(storageInVO);
+                    this.isSuccess(resultMessage);
+                    if(resultMessage!=ResultMessage.SUCCESS)
+                        break;
                 }
             case 8:
-                resultMessages = new ArrayList<ResultMessage>();
                 //将最后一个被编辑的单元格设置停止编辑状态,加入到salaryModify中
                 row = tableOrder.getSelectedRow();
                 column = tableOrder.getSelectedColumn();
@@ -632,34 +661,26 @@ public class companyManage extends JFrame {
                     double fee = Double.valueOf(order.next());
                     ServiceType serviceType = data.enums.ServiceType.valueOf(order.next());
                     OrderVO orderVO = new OrderVO(null,null,null,null,null,null,null,null,stockNum,weight,0,null,serviceType,fee,id);
-                    resultMessages.add(controller.modifyOrder(orderVO));
+                    resultMessage = controller.modifyOrder(orderVO);
+                    this.isSuccess(resultMessage);
+                    if(resultMessage!=ResultMessage.SUCCESS)
+                        break;
                 }
             }
+    }
 
-        for(int i=0;i<resultMessages.size();i++){
-            if(resultMessages.get(i) == ResultMessage.NOTCONNECTED){
-                JOptionPane.showMessageDialog(null,"网络错误...","",JComponent.ERROR);
-                isSuccess = false;
-                break;
-            }
-            else if(resultMessages.get(i) == ResultMessage.SUCCESS){
-                isSuccess = true;
-            }
-            else if(resultMessages.get(i) == ResultMessage.FAILED){
-                isSuccess = false;
-                break;
-            }
-        }
-        if(resultMessages!=null){
-        if(isSuccess){
+    //根据resultMessage类型产生相应界面
+    private void isSuccess(ResultMessage resultMessage){
+        if(resultMessage == ResultMessage.SUCCESS){
             labelApprove.setText("修改成功!");
         }
-        else{
-            labelApprove.setText("修改失败!");
+        else if(resultMessage == ResultMessage.NOTCONNECTED){
+            labelApprove.setText("");
+            JOptionPane.showMessageDialog(null,"网络错误...","",JOptionPane.ERROR_MESSAGE);
         }
-        }
-        else{
-            JOptionPane.showMessageDialog(null,"没有修改!","",JComponent.ERROR);
+        else if(resultMessage == ResultMessage.FAILED){
+            labelApprove.setText("");
+            JOptionPane.showMessageDialog(null,"修改失败...","",JOptionPane.ERROR_MESSAGE);
         }
     }
 
