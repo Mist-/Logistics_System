@@ -107,7 +107,6 @@ public class DataApproveBLImpl implements DataApproveBLService {
             StorageOutListPO storageOutListPO = (StorageOutListPO) dataService.search(POType.STORAGEOUTLIST,Long.valueOf(storageOutVO.getId()));
             storageOutListPO.setTransferNum(Long.valueOf(storageOutVO.getTransferNum()));
             storageOutListPO.setTransferType(storageOutVO.getTransferType());
-            storageOutListPO.setDeliveryListNum(Long.valueOf(storageOutVO.getTransferListNum()));
             resultMessage = ResultMessage.SUCCESS;
         } catch (RemoteException e) {
             System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
@@ -122,7 +121,6 @@ public class DataApproveBLImpl implements DataApproveBLService {
         try {
             ArrivalPO arrivalPO = (ArrivalPO) dataService.search(POType.ARRIVAL,arrivalVO.getId());
                 arrivalPO.setDate(arrivalVO.getDate());
-                arrivalPO.setFrom(Long.valueOf(arrivalVO.getFromNum()));
                 arrivalPO.setFromName(arrivalVO.getFromName());
                 arrivalPO.setDestName(arrivalVO.getDestName());
                 //arrivalPO.setStockStatus(arrivalVO.getStatus()); sx注释
@@ -158,12 +156,6 @@ public class DataApproveBLImpl implements DataApproveBLService {
         dataService = DataServiceFactory.getDataServiceByPO(POType.ORDER);
         try {
             OrderPO orderPO = (OrderPO)dataService.search(POType.ORDER,orderVO.id);
-            orderPO.setSname(orderVO.sname);
-            orderPO.setSaddress(orderVO.saddress);
-            orderPO.setSphone(orderVO.sphone);
-            orderPO.setRname(orderVO.rname);
-            orderPO.setRaddress(orderVO.raddress);
-            orderPO.setRphone(orderVO.rphone);
             orderPO.setFee(orderVO.fee);
             orderPO.setWeight(orderVO.weight);
             orderPO.setStockNum(orderVO.stockNum);

@@ -281,25 +281,8 @@ public class CompanyBLController {
         return staff.getstaffByID(id);
     }
 
-    public ResultMessage addStaff(String institution, String id, boolean gender, String name, String phoneNum, String idCardNum, String userRole){
-        StaffVO staffVO = new StaffVO();
-        //判断网络状况和机构是否存在
-        if(longInstitution(institution)==0){
-            return ResultMessage.NOTEXIST;
-        }
-        else if(longInstitution(institution)==1){
-            return ResultMessage.NOTCONNECTED;
-        }
-        else {
-            staffVO.setInstitution(longInstitution(institution));
-            staffVO.setId(Long.valueOf(id));
-            staffVO.setPhoneNum(phoneNum);
-            staffVO.setGender(gender);
-            staffVO.setName(name);
-            staffVO.setIdcardNum(idCardNum);
-            staffVO.setUserRole(UserRole.valueOf(userRole));
-            return staff.addStaff(staffVO, Long.valueOf(id));
-        }
+    public ResultMessage addStaff(StaffVO staffVO){
+        return staff.addStaff(staffVO,staffVO.getId());
     }
 
     public ResultMessage deleteStaff(String institution, String ID) {
@@ -335,7 +318,10 @@ public class CompanyBLController {
             else {
                 long id;
                 id = Long.valueOf(ID);
-                UserRole userRole = UserRole.valueOf(stringUserRole);
+                UserRole userRole = null;
+                if(stringUserRole!=null) {
+                    userRole = UserRole.valueOf(stringUserRole);
+                }
                 return staff.moveStaff(longInstitution(fromInstitution),longInstitution(toInstitution),id,userRole);
             }
         }
@@ -420,10 +406,10 @@ public class CompanyBLController {
     //判断输入是否是数字不是字符
     public boolean isNum(String str){
         for(int i=0;i<str.length();i++){
-            if(str.charAt(i)>'9'||str.charAt(i)<'0'){
-                return false;
+            if((str.charAt(i)<='9'&&str.charAt(i)>='0')||str.charAt(i)=='.'){
+                return true;
             }
         }
-        return true;
+        return false;
     }
 }

@@ -79,6 +79,18 @@ public class FINANCE extends JFrame {
         panelMain.add(pnZJGL, BorderLayout.CENTER);
         
         refresh();
+        
+      //设置按钮不可点击，但是有bug
+//        if(tablePayment.getRowCount()==0){
+//    		btPExcel.setEnabled(false);
+//    	}
+//    	if(tableReceipt.getRowCount()==0){
+//    		btDate.setEnabled(false);
+//    		btAddress.setEnabled(false);
+//    		btRExcel.setEnabled(false);
+//    	}
+
+        
         panelMain.updateUI();
         this.repaint();
     }
@@ -145,6 +157,19 @@ public class FINANCE extends JFrame {
         tableAccounts.updateUI();
         tableAccounts.repaint();
         
+        //设置按钮不可点击，但是有bug
+//        if(textName.getText().equals("")){
+//    		btSearch.setEnabled(false);
+//    	}
+//    	if(textName.getText().equals("") || textName2.getText().equals("")){
+//    		btAdd.setEnabled(false);
+//    	}
+//    	if(tableAccounts.getSelectedRow() == 0){
+//    		btDelete.setEnabled(false);
+//    		btModify.setEnabled(false);
+//    	}
+
+        
         panelMain.updateUI();
         this.repaint();
     }
@@ -172,6 +197,14 @@ public class FINANCE extends JFrame {
 //            tableBenefit.updateUI();
 //            tableBenefit.repaint();
             
+      //设置按钮不可点击，但是有bug
+//        if(textBeginYear.getText().equals("") || textBeginMonth.getText().equals("") || textBeginDay.getText().equals("") || textEndYear.getText().equals("") || textEndMonth.getText().equals("") || textEndDay.getText().equals("")){
+//    		btSearch2.setEnabled(false);
+//    	}
+//    	if(tablePay.getRowCount()==0 && tableRec.getRowCount()==0){
+//    		jbExcel.setEnabled(false);
+//    	}
+//
         panelMain.updateUI();
         this.repaint();
     }
@@ -199,7 +232,10 @@ public class FINANCE extends JFrame {
     //ZHGL 查找账户
     
     private void btSearchMouseReleased(MouseEvent e) {
-    	
+    	if(textName.getText().equals("")){
+    		textName.requestFocus();
+    		return;
+    	}
         String name = textName.getText();
        
         ArrayList<AccountVO> accounts = financialBL.findAccount(name);
@@ -220,8 +256,12 @@ public class FINANCE extends JFrame {
 
     //ZHGL 新增账户
 	private void btAddMouseReleased(MouseEvent e) {
+		if(textName.getText().equals("") || textName2.getText().equals("")){
+			textName.requestFocus();
+    		return;
+    	}
 		String name = textName.getText();
-		if (textName2.getText() == null || !textName2.getText().matches("[0-9]*[.]?[0-9]*")) {
+		if (!textName2.getText().matches("[0-9]*[.]?[0-9]*")) {
 			JOptionPane.showMessageDialog(this, "您输入的金额数据格式错误");
 			textName2.requestFocus();
 			return;
@@ -278,6 +318,10 @@ public class FINANCE extends JFrame {
 	
     //ZHGL 删除账户
 	private void button11MouseReleased(MouseEvent e) {
+		int x = tableAccounts.getSelectedRow(); 
+		if(x == -1){
+			return;
+		}
 		 Vector data = ((DefaultTableModel) tableAccounts.getModel()).getDataVector();
 	     long accountNum = (long)((Vector<Object>)data.get(tableAccounts.getSelectedRow())).get(0);
 	        
@@ -295,6 +339,16 @@ public class FINANCE extends JFrame {
 	ArrayList<ReceiptVO> re;
 	//ZJGL 按天对收款单进行查看
 	private void btDateMouseReleased(MouseEvent e) {
+		if(textDate.getText().equals("")){
+			textDate.requestFocus();
+    		return;
+    	}
+		
+		if (textDate.getText().charAt(4)!='\\' ||  textDate.getText().charAt(7)!='\\') {
+			JOptionPane.showMessageDialog(this, "日期之间请用'\'隔开");
+			textDate.requestFocus();
+			return;
+		}
 		String date = textDate.getText();
 		re =  financialBL.checkFromDate(date);
 		Vector data = ((DefaultTableModel) tableReceipt.getModel()).getDataVector();
@@ -323,6 +377,12 @@ public class FINANCE extends JFrame {
 	
 	//ZJGL 按营业厅对收款单进行查看
 	    private void btAddressMouseReleased(MouseEvent e) {
+	    	if(textAddress.getText().equals("")){
+	    		textAddress.requestFocus();
+	    		return;
+	    	}
+			
+			
 		String address = textAddress.getText();
 		
 		re =  financialBL.checkFromAddress(address);
@@ -347,12 +407,16 @@ public class FINANCE extends JFrame {
 		tableReceipt.repaint();
 		}
 
-	ArrayList<PaymentVO> pay;
+	    ArrayList<PaymentVO> pay;
 	    ArrayList<ReceiptVO> rec;
 	
 	
 		//TJBB 对经营情况表的查看
 		private void btSearch2MouseReleased(MouseEvent e) {
+			if(textBeginYear.getText().equals("") || textBeginMonth.getText().equals("") || textBeginDay.getText().equals("") || textEndYear.getText().equals("") || textEndMonth.getText().equals("") || textEndDay.getText().equals("")){
+	    		return;
+	    	}
+
 			String BeginYear = textBeginYear.getText();
 			String BeginMonth = textBeginMonth.getText();
 			String BeginDay = textBeginDay.getText();
@@ -421,23 +485,29 @@ public class FINANCE extends JFrame {
 
 		//TJBB 导出经营情况表成Excel
 		private void jbExcelMouseReleased(MouseEvent e) {
+			if(tablePay.getRowCount()==0 && tableRec.getRowCount()==0){
+	    		return;
+	    	}
 			financialBL.printPayment(pay);
 			financialBL.printReceipt(rec);
 			JOptionPane.showMessageDialog(this, "导出经营情况表Excel成功，位于client的根目录下");
 		}
 		
-		//ZJGL 导出收款单成Excel
-
 		//ZJGL 导出收款单表成Excel
 		private void btRExcelMouseReleased(MouseEvent e) {
+			if(tableReceipt.getRowCount()==0 ){
+	    		return;
+	    	}
 			financialBL.printReceipt(re);
 			JOptionPane.showMessageDialog(this, "导出收款单Excel成功，位于client的根目录下");
 		}
 		
-		//ZJGL 导出付款单成Excel
 
 		//ZJGL 导出付款单表成Excel
 		private void btPExcelMouseReleased(MouseEvent e) {
+			if(tablePayment.getRowCount()==0 ){
+	    		return;
+	    	}
 			ArrayList<PaymentVO> payments = financialBL.searchAllPayment();
 			financialBL.printPayment(payments);
 			JOptionPane.showMessageDialog(this, "导出付款单Excel成功，位于client的根目录下");

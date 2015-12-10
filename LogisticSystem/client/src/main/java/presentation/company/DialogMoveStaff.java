@@ -42,7 +42,7 @@ public class DialogMoveStaff extends JDialog{
 		institution.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent arg0) {
-				if(institution.getSelectedIndex()==3||institution.getSelectedIndex()==5){
+				if(institution.getSelectedIndex()==4||institution.getSelectedIndex()==6){
 				    city.removeAllItems();
 					businessOffice.removeAllItems();
 				    for(int i=0;i<citys.length;i++){
@@ -57,7 +57,7 @@ public class DialogMoveStaff extends JDialog{
 						}
 					});
 			}
-				else if(institution.getSelectedIndex()==4){
+				else if(institution.getSelectedIndex()==5){
 					city.removeAllItems();
 					for(int i=0;i<citys.length;i++){
 						city.addItem(citys[i]);
@@ -80,6 +80,13 @@ public class DialogMoveStaff extends JDialog{
 							userRole = (String) institution.getSelectedItem();
 						}
 					});
+				}
+				else if(institution.getSelectedIndex()==3){
+					businessOffice.removeAllItems();
+					city.removeAllItems();
+					//获取移动机构的名称
+					toInstitution = (String) institution.getSelectedItem();
+					userRole = null;
 				}
 				else{
 					businessOffice.removeAllItems();
@@ -129,15 +136,18 @@ public class DialogMoveStaff extends JDialog{
 					  company.initFinancialTable();
 					  break;
 				  case 2:
-					  company.initTrunkTable();
+					  company.initSFinancialTable();
 					  break;
 				  case 3:
-					  company.initCenterTable(fromInstitution);
+					  company.initTrunkTable();
 					  break;
 				  case 4:
-					  company.initBusinessTable(fromInstitution);
+					  company.initCenterTable(fromInstitution);
 					  break;
 				  case 5:
+					  company.initBusinessTable(fromInstitution);
+					  break;
+				  case 6:
 					  company.initStorageTable(fromInstitution);
 					  break;
 			  }

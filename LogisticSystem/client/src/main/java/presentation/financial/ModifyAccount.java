@@ -87,6 +87,15 @@ public class ModifyAccount extends JDialog {
 	//对确认的监听
 	private void btYesMouseReleased(MouseEvent e) {
 		account();
+		if (!tfMoneyAdd.getText().matches("[0-9]*[.]?[0-9]*")) {
+			tfMoneyAdd.requestFocus();
+			return;
+		}
+        if (!tfMoneyDe.getText().matches("[0-9]*[.]?[0-9]*")) {
+			tfMoneyDe.requestFocus();
+			return;
+		}
+        
         AccountVO accountvo = new AccountVO();
         accountvo.setAccountNum(accountNum);
         accountvo.setName(theName);
