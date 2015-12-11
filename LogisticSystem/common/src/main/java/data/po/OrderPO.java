@@ -12,8 +12,15 @@ public class OrderPO extends DataPO {
     private static final long serialVersionUID = 10;
 
     public static final int SNAME = 1, SADDRESS = 2, SCOMPANY = 3, SPHONE = 4, RNAME = 5, RADDRESS = 6, RCOMPANY = 7, RPHONE = 8;
+
+    /**
+     * 是否已经被装车。如果已经被装车，则为false。否则为true
+     */
+    boolean fresh = true;
+
     //新增：运输方式
     StorageArea transferType;
+
     String sname, saddress, scompany, sphone,
             rname, rcompany, rphone;
     /**
@@ -25,6 +32,7 @@ public class OrderPO extends DataPO {
      * 物流路径。最多包含四站
      */
     ArrayList<Long> routine;
+
     // 目标营业厅的编号
     long destID;
 
@@ -48,6 +56,10 @@ public class OrderPO extends DataPO {
 
     // 揽件的快递员
     long courier;
+
+    public boolean isFresh() {
+        return fresh;
+    }
 
     public long getCourier() {
         return courier;
@@ -83,6 +95,7 @@ public class OrderPO extends DataPO {
 
     public OrderPO(OrderVO order) {
         super(POType.ORDER);
+        courier = order.courier;
         saddress = order.saddress;
         sname = order.sname;
         scompany = order.scompany;
@@ -99,25 +112,13 @@ public class OrderPO extends DataPO {
         setState(order.dataState);
     }
 
-    public StorageArea getTransferType() {
-        return transferType;
+    /**
+     * 从路径中删除最旧的机构编号
+     */
+    public void updateRoutine() {
+        routine.remove(0);
     }
 
-    public void setTransferType(StorageArea transferType) {
-        this.transferType = transferType;
-    }
-
-    public void setRoutine(long s1, long s2, long s3, long s4) {
-        routine.add(s1);
-        routine.add(s2);
-        routine.add(s3);
-        routine.add(s4);
-    }
-
-    public void setRoutine(long s1, long s2) {
-        routine.add(s1);
-        routine.add(s2);
-    }
 
     public ArrayList<Long> getRoutine() {
         return routine;
@@ -128,29 +129,52 @@ public class OrderPO extends DataPO {
     }
 
     /**
-     * 获取下一站的目的地。
+     * 获取当前所在地的机构号
      * 这回自动将这一站从路线中删除。
      *
-     * @return
+     * @return 机构号。
+     */
+    public long getPresentLocation() {
+        return routine.get(0);
+    }
+
+    /**
+     * 获取订单的下一站的目的地。并将当前所在机构号从路径中删除
+     *
+     * @return 下一站的机构号
      */
     public long getNextDestination() {
-        long sn = routine.get(0);
-        routine.remove(0);
+        long sn = routine.get(1);
+        fresh = false;
         return sn;
     }
 
+    /**
+     * 获取最终目标营业厅的地址
+     *
+     * @return 目标营业厅的机构号
+     */
     public long getDestID() {
         return destID;
     }
 
+    /**
+     * 设置最终目标营业厅的地址
+     *
+     * @param destID 目标营业厅的机构号
+     */
     public void setDestID(long destID) {
         this.destID = destID;
     }
 
-
-    public long getSerialNum() {
-        return serialNum;
+    public StorageArea getTransferType() {
+        return transferType;
     }
+
+    public void setTransferType(StorageArea transferType) {
+        this.transferType = transferType;
+    }
+
 
     public ServiceType getServiceType() {
         return serviceType;

@@ -45,6 +45,8 @@ public class OrderVO {
     // 单据的审批状态
     public DataState dataState;
 
+    public long courier;
+
     // 构造函数。因为是VO，所以在构造函数里面一次性完成啦。
     public OrderVO(String sname, String saddress, String scompany, String sphone,
                    String rname, String raddress, String rcompany, String rphone,
@@ -84,5 +86,6 @@ public class OrderVO {
         this.id = orderPO.getSerialNum();
         this.date = Timestamper.getTimeByDate(orderPO.getGenDate());
         this.dataState = orderPO.getState();
+        this.courier =  orderPO.getCourier();
     }
 }

@@ -1,6 +1,5 @@
 package data.service;
 
-import com.sun.istack.internal.NotNull;
 import data.po.DataPO;
 
 import java.rmi.RemoteException;
@@ -20,7 +19,7 @@ public interface OrderDataService extends DataService {
      * @return 起止地址完全匹配的所有订单的 <code>ArrayList</code>，不会为空
      * @throws RemoteException 网络连接错误
      */
-    ArrayList<DataPO> searchByLoc(@NotNull String key) throws RemoteException;
+    ArrayList<DataPO> searchByLoc(String key) throws RemoteException;
 
     /**
      * 根据订单信息搜索签收单字符串.
@@ -32,10 +31,11 @@ public interface OrderDataService extends DataService {
     DataPO searchSignInfo(long ordersn) throws RemoteException;
 
     /**
-     * 返回某个快递员揽件的所有订单
+     * 返回某个快递员在某一天揽件的所有订单。
      *
      * @param sn 快递员的人员编号
+     * @param date 需要返回的日期
      * @return 该快递员签收的所有订单。如果没有搜索到结果，将会返回一个大小为0的<code>ArrayList</code>
      */
-    ArrayList<DataPO> searchByCourier(long sn) throws RemoteException;
+    ArrayList<DataPO> searchByCourier(long sn, String date) throws RemoteException;
 }

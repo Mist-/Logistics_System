@@ -6,7 +6,6 @@ import data.po.OrderPO;
 import data.po.SignPO;
 import data.service.OrderDataService;
 
-import javax.swing.*;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -54,7 +53,7 @@ public class OrderDataSerializableImpl extends UnicastRemoteObject implements Or
     }
 
     @Override
-    public ArrayList<DataPO> searchByCourier(long sn) {
+    public ArrayList<DataPO> searchByCourier(long sn, String date) {
         ArrayList<DataPO> result = new ArrayList<>();
         for (DataPO dataPO: poLists.get(POType.ORDER)) {
             if (((OrderPO) dataPO).getCourier() == sn) {

@@ -41,4 +41,19 @@ public class InstitutionPO extends DataPO {
     public void setName(String name) {
         this.name = name;
     }
+
+    /**
+     * 获取直接显示的名称。如果是中转中心，则显示XX市中转中心。
+     * 如果是营业厅，则显示XX区营业厅。
+     *
+     * @return
+     */
+    public String getDisplayName() {
+        if (serialNum <= 10000) {
+            return name + "中转中心";
+        }
+        else {
+            return name + "营业厅";
+        }
+    }
 }
