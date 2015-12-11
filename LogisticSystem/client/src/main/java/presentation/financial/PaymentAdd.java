@@ -49,6 +49,7 @@ public class PaymentAdd extends JDialog {
 		@Override
 		public void itemStateChanged(ItemEvent arg0) {
 			if(cbInfo.getSelectedIndex()==2){
+				cbOccupatiom.setVisible(true);
 				cbOccupatiom.removeAllItems();
 			    for(int i=0;i<occupation.length;i++){
 			    	cbOccupatiom.addItem(occupation[i]);
@@ -60,6 +61,7 @@ public class PaymentAdd extends JDialog {
 				tfInstitution.setVisible(false);
 		}
 			else if(cbInfo.getSelectedIndex()==1){
+				cbOccupatiom.setVisible(true);
 				cbOccupatiom.removeAllItems();
 				for(int i=0;i<list.length;i++){
 					cbOccupatiom.addItem(list[i]);
