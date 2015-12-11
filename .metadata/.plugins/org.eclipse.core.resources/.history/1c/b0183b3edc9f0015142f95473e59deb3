@@ -18,7 +18,7 @@ public class DataServiceFactory {
     public static DataService getDataServiceByType(DataType type) {
 		Connection.startConnectionCheck();
         try {
-			DataService ds = (DataService) Naming.lookup("rmi://172.25.134.166:32000/" + type.name());
+			DataService ds = (DataService) Naming.lookup("rmi://127.0.0.1:32000/" + type.name());
             return ds;
 		} catch (MalformedURLException e) {
 			/* 假设这不会发生！ */
