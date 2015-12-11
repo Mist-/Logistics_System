@@ -79,26 +79,34 @@ public class OrderSort implements LoadAndSortService {
 		if (desID == -1) {
 			desID = user.getCenterID();
 		}
-		OrderListService orderData = new OrderList();
-		ArrayList<OrderPO> o = orderData.getFreshOrder(user.getInstitutionID());//根据营业厅编号搜索新订单
-		if(o != null){//如果正确搜索到订单
-			order = new ArrayList<OrderPO>();
-			for (DataPO d : o) {
-				OrderPO or = (OrderPO) d;
-				if (or.getNextDestination() == desID)
-					order.add(or);
+		OrderDataService orderData = (OrderDataService) DataServiceFactory
+				.getDataServiceByType(DataType.OrderDataService);
+		try {
+			ArrayList<DataPO> o = orderData.searchByLoc(user
+					.getInstitutionName() + " *");//根据营业厅编号搜索新订单
+			if(o != null){//如果正确搜索到订单
+				order = new ArrayList<OrderPO>();
+				for (DataPO d : o) {
+					OrderPO or = (OrderPO) d;
+					if (or.getNextDestination() == desID)
+						order.add(or);
+				}
+				
+				Vector<Vector<String>> info = new Vector<Vector<String>>();
+				for(int i = 0 ; i < order.size();i++){
+					Vector<String> row = new Vector<String>();
+					OrderPO oo = order.get(i);
+					row.add(oo.getSerialNum()+"");
+					row.add(oo.getWeight()+"");
+					info.add(row);
+				}
+				return new BriefOrderVO(info);
+			}else {//未能正确搜索到订单，返回空
+				return null;
 			}
-			
-			Vector<Vector<String>> info = new Vector<Vector<String>>();
-			for(int i = 0 ; i < order.size();i++){
-				Vector<String> row = new Vector<String>();
-				OrderPO oo = order.get(i);
-				row.add(oo.getSerialNum()+"");
-				row.add(oo.getWeight()+"");
-				info.add(row);
-			}
-			return new BriefOrderVO(info);
-		}else {//未能正确搜索到订单，返回空
+		} catch (RemoteException e) {
+			System.err.println("网络连接中断");
+			e.printStackTrace();
 			return null;
 		}
 
