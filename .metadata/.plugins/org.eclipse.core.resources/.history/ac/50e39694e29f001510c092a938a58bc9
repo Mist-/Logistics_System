@@ -138,7 +138,6 @@ public class LoadAndSortPanel extends JPanel {
 	private void sortButtonMouseClicked(MouseEvent e) {
 		int index = comboBox1.getSelectedIndex();
 		String des = (String) comboBox1.getItemAt(index);
-		System.out.println(des);
 		briefOrder = loadAndSort.chooseDestination(des);
 		DefaultTableModel model = new DefaultTableModel();
 		if(briefOrder != null){
