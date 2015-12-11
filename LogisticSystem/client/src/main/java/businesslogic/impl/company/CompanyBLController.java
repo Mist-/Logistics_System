@@ -35,7 +35,6 @@ public class CompanyBLController {
     long toInstitution = 0;
 
     public CompanyBLController(){
-        //TODO 数组中的初始化数据
         salary = new SalaryManageBLImpl();
         staff = new StaffManageBLImpl();
         data = new DataApproveBLImpl();
@@ -52,7 +51,13 @@ public class CompanyBLController {
         dataTypes = new String[]{"寄件单","收款单","付款单","装车单","到达单","入库单","出库单","派件单","中转单"};
     }
 
-    //对审批单据的控制
+    /**
+     * 审批单条单据
+     *
+     * @param dataType 等待审批的单据类型
+     * @param ID 等待审批单据的id
+     * @return  审批是否成功
+     */
     public ResultMessage approveData(String dataType, String ID){
         long id = Long.valueOf(ID);
         for(int i=0;i<dataTypes.length;i++){
@@ -63,6 +68,12 @@ public class CompanyBLController {
         return ResultMessage.FAILED;
     }
 
+    /**
+     * 审批同一类型的所有单据
+     *
+     * @param dataType 等待审批的单据类型
+     * @return  审批是否成功
+     */
     public ResultMessage approveAll(String dataType){
        for(int i=0;i<dataTypes.length;i++){
            if(dataType.equals(dataTypes[i])){
@@ -72,7 +83,11 @@ public class CompanyBLController {
         return ResultMessage.FAILED;
     }
 
-    //下面10个方法是根据不同的单据类型显示同类型单据
+    /**
+     * 获得未审批的入库单
+     *
+     * @return  未审批的入库单
+     */
     public ArrayList<StorageInListPO> getUnapprovedStorageInList(){
         ArrayList<StorageInListPO> storageInListPOs = new ArrayList<StorageInListPO>();
         dataPOs = data.getUnapprovedData(POType.STORAGEINLIST);
@@ -82,6 +97,11 @@ public class CompanyBLController {
         return storageInListPOs;
     }
 
+    /**
+     * 获得未审批的出库单
+     *
+     * @return  未审批的入库单
+     */
     public ArrayList<StorageOutListPO> getUnapprovedStoragedOutList(){
         ArrayList<StorageOutListPO> storageOutListPOs = new ArrayList<StorageOutListPO>();
         dataPOs = data.getUnapprovedData(POType.STORAGEOUTLIST);
@@ -91,26 +111,25 @@ public class CompanyBLController {
         return storageOutListPOs;
     }
 
-    public ArrayList<ArrivalPO> getUnapprovedBusinessArrivalList(){
+    /**
+     * 获得未审批的装车单
+     *
+     * @return  未审批的装车单
+     */
+    public ArrayList<ArrivalPO> getUnapprovedArrivalList(){
         ArrayList<ArrivalPO> arrivalPOs = new ArrayList<ArrivalPO>();
         dataPOs = data.getUnapprovedData(POType.ARRIVAL);
         for(int i=0;i<dataPOs.size();i++){
-            if((dataPOs.get(i).getSerialNum()/1000)<10)
             arrivalPOs.add((ArrivalPO)dataPOs.get(i));
         }
         return arrivalPOs;
     }
 
-    public ArrayList<ArrivalPO> getUnapprovedCenterArrivalList(){
-        ArrayList<ArrivalPO> arrivalPOs = new ArrayList<ArrivalPO>();
-        dataPOs = data.getUnapprovedData(POType.ARRIVAL);
-        for(int i=0;i<dataPOs.size();i++){
-            if((dataPOs.get(i).getSerialNum()/1000)>10)
-            arrivalPOs.add((ArrivalPO)dataPOs.get(i));
-        }
-        return arrivalPOs;
-    }
-
+    /**
+     * 获得未审批的入库单
+     *
+     * @return  未审批的入库单
+     */
     public ArrayList<EntruckPO> getUnapprovedEntruckList(){
         ArrayList<EntruckPO> entruckPOs = new ArrayList<EntruckPO>();
         dataPOs = data.getUnapprovedData(POType.ENTRUCK);
@@ -120,6 +139,11 @@ public class CompanyBLController {
         return entruckPOs;
     }
 
+    /**
+     * 获得未审批的入库单
+     *
+     * @return  未审批的入库单
+     */
     public ArrayList<OrderPO> getUnapprovedOrderList(){
         ArrayList<OrderPO> orderPOs = new ArrayList<OrderPO>();
         dataPOs = data.getUnapprovedData(POType.ORDER);
@@ -129,6 +153,11 @@ public class CompanyBLController {
         return orderPOs;
     }
 
+    /**
+     * 获得未审批的入库单
+     *
+     * @return  未审批的入库单
+     */
     public ArrayList<PaymentPO> getUnapprovedPaymentList(){
         ArrayList<PaymentPO> paymentPOs = new ArrayList<PaymentPO>();
         dataPOs = data.getUnapprovedData(POType.PAYMENT);
@@ -138,6 +167,11 @@ public class CompanyBLController {
         return paymentPOs;
     }
 
+    /**
+     * 获得未审批的入库单
+     *
+     * @return  未审批的入库单
+     */
     public ArrayList<ReceiptPO> getUnapprovedReceiptList(){
         ArrayList<ReceiptPO> receiptPOs = new ArrayList<ReceiptPO>();
         dataPOs = data.getUnapprovedData(POType.RECEIPT);
@@ -147,6 +181,11 @@ public class CompanyBLController {
         return receiptPOs;
     }
 
+    /**
+     * 获得未审批的入库单
+     *
+     * @return  未审批的入库单
+     */
     public ArrayList<SendListPO> getUnapprovedSendList(){
         ArrayList<SendListPO> sendPOs = new ArrayList<SendListPO>();
         dataPOs = data.getUnapprovedData(POType.SEND);
@@ -156,6 +195,11 @@ public class CompanyBLController {
         return sendPOs;
     }
 
+    /**
+     * 获得未审批的入库单
+     *
+     * @return  未审批的入库单
+     */
     public ArrayList<TransferListPO> getUnapprovedTransferList(){
         ArrayList<TransferListPO> transferListPOs = new ArrayList<TransferListPO>();
         dataPOs = data.getUnapprovedData(POType.TRANSFERLIST);

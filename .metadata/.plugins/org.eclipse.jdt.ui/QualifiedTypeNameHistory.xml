@@ -58,6 +58,6 @@
 <fullyQualifiedTypeName name="java.lang.Long"/>
 <fullyQualifiedTypeName name="data.enums.StorageArea"/>
 <fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
-<fullyQualifiedTypeName name="businesslogic.impl.order.OrderList"/>
 <fullyQualifiedTypeName name="businesslogic.service.order.OrderListService"/>
+<fullyQualifiedTypeName name="businesslogic.impl.order.OrderList"/>
 </qualifiedTypeNameHistroy>
