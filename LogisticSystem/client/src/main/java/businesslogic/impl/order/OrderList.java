@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import businesslogic.service.order.OrderBLService;
+import businesslogic.service.order.OrderListService;
 import data.enums.DataType;
 import data.enums.POType;
 import data.factory.DataServiceFactory;
@@ -12,22 +13,20 @@ import data.po.OrderPO;
 import data.service.OrderDataService;
 
 
-public class OrderList {
+public class OrderList implements OrderListService{
 
 	public ArrayList<OrderPO> getOrderList(long[] orderID) {
-		OrderBLService orderData = new OrderBLController();
-		ArrayList<OrderPO> order = orderData.search(orderID);
+		ArrayList<OrderPO> order = new Order().search(orderID);
 		return order;
 	}
 
 	public void modifyOrder(ArrayList<Long> orderID) {
-		OrderBLService orderData = new OrderBLController();
 		ArrayList<Long> orderNum = orderID;
 		long[] orderNumL = new long[orderNum.size()];
 		for (int i = 0; i < orderNum.size(); i++) {
 			orderNumL[i] = orderNum.get(i);
 		}
-		ArrayList<OrderPO> order = orderData.search(orderNumL);
+		ArrayList<OrderPO> order = new Order().search(orderNumL);
 		for (int i = 0; i < order.size(); i++) {
 			// 修改订单物流信息
 		}
@@ -49,4 +48,29 @@ public class OrderList {
 		}
 		return result;
 	}
+
+	@Override
+	public ArrayList<OrderPO> search(long[] order) {
+		ArrayList<OrderPO> result = new ArrayList<>();
+		for (long sn: order) {
+			OrderPO tmp = search(sn);
+			if (tmp != null) {
+				result.add(tmp);
+			}
+		}
+		return result;
+	}
+
+	public OrderPO search(long sn) {
+		OrderDataService orderDataService = (OrderDataService) DataServiceFactory.getDataServiceByType(DataType.OrderDataService);
+		if (orderDataService == null) return null;
+		OrderPO result = null;
+		try {
+			result = (OrderPO) orderDataService.search(POType.ORDER, sn);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

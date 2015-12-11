@@ -55,17 +55,7 @@ public class OrderBLController implements OrderBLService {
         return null;
     }
 
-	@Override
-	public ArrayList<OrderPO> search(long[] order) {
-		ArrayList<OrderPO> result = new ArrayList<>();
-        for (long sn: order) {
-            OrderPO tmp = search(sn);
-            if (tmp != null) {
-                result.add(tmp);
-            }
-        }
-        return result;
-	}
+
 
     public ResultMessage deleteOrder(long sn) {
         return new Order().deleteOrder(sn);

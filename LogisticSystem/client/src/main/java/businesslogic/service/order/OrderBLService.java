@@ -33,9 +33,6 @@ public interface OrderBLService {
 
     ResultMessage sign(long sn, String name, long phone);
 
-    
-    ArrayList<OrderPO> search(long[] order);
-
 
     ArrayList<OrderVO> getDisplayData();
 }
