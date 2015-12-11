@@ -214,9 +214,9 @@ public class SimplifiedOrderUI extends JFrame {
                                     .addComponent(separator2, GroupLayout.PREFERRED_SIZE, 0, GroupLayout.PREFERRED_SIZE)
                                     .addGap(24, 24, 24)))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
-                                .addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE))
+                            .addGroup(panel2Layout.createParallelGroup()
+                                .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 444, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(scrollPane2))
                             .addContainerGap())
                 );
             }

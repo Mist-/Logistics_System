@@ -16,7 +16,7 @@ new FormModel {
 				name: "panel1"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 					"$horizontalGroup": "par l {seq {space :::p, par l {seq l {comp btOrderMng:::p::p, space :::x, comp lbUserInfo:::p::p}, seq t {par l {seq {space :26:26:p, comp label1:::p::p}, seq l {comp lbOrderNum:::p::p, space :::p, comp textOrderNum:::p:361:p, space u:::p, comp btSearch:::p::p}}, space ::342:x, comp separator2::::111:x}, seq l {comp scrollPane1:::p:502:p, space :::p, comp scrollPane2::::484:x}}, space :::p}}"
-					"$verticalGroup": "par l {seq {space :::p, par l {seq {comp btOrderMng:::p:96:p, space :::x, comp label1:::p:16:p}, seq {comp lbUserInfo:::p::p, space :0:0:x}}, par l {seq l {space u:::p, par b {comp textOrderNum::b:p::p, comp btSearch::b:p:25:p, comp lbOrderNum::b:p::p}}, seq {space :0:0:x, comp separator2:::p:0:p, space :p:24:p}}, space :::x, par l:::p {comp scrollPane1::::444:x, comp scrollPane2::::444:x}, space :::p}}"
+					"$verticalGroup": "par l {seq {space :::p, par l {seq {comp btOrderMng:::p:96:p, space :::x, comp label1:::p:16:p}, seq {comp lbUserInfo:::p::p, space :0:0:x}}, par l {seq l {space u:::p, par b {comp textOrderNum::b:p::p, comp btSearch::b:p:25:p, comp lbOrderNum::b:p::p}}, seq {space :0:0:x, comp separator2:::p:0:p, space :p:24:p}}, space :::x, par l {comp scrollPane1:::p:444:p, comp scrollPane2:::::x}, space :::p}}"
 				} ) {
 					name: "panel2"
 					"font": &Font0 new java.awt.Font( "等线", 0, 14 )

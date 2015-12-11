@@ -18,6 +18,10 @@ public class DataPO implements Serializable {
 
     POType poType;
 
+    public void setSerialNum(long sn) {
+        serialNum = sn;
+    }
+
     // 单据的审批状态
     DataState state;
 
