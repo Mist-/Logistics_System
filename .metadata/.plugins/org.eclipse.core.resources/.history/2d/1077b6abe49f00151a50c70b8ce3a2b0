@@ -119,7 +119,6 @@ public class DriverManagement implements DriverManagementService {
 	@Override
 	public ResultMessage addDriver(DriverInfoVO newDriver) {
 		DriverInfoPO driver = new DriverInfoPO(newDriver);
-		driver.setSerialNum(driver.getSerialNum()+user.getInstitutionID());
 		try {
 			return transferData.add(driver);
 		} catch (RemoteException e) {
