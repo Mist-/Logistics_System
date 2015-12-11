@@ -3,7 +3,7 @@ package businesslogic.impl.company;
 import businesslogic.service.company.*;
 import data.enums.POType;
 import data.enums.UserRole;
-import data.factory.DataServiceFactory;
+import utils.DataServiceFactory;
 import data.message.ResultMessage;
 import data.po.*;
 import data.vo.*;

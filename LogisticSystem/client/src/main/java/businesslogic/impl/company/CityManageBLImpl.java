@@ -2,7 +2,7 @@ package businesslogic.impl.company;
 
 import businesslogic.service.company.CityManageBLService;
 import data.enums.DataType;
-import data.factory.DataServiceFactory;
+import utils.DataServiceFactory;
 import data.message.ResultMessage;
 import data.po.CityTransPO;
 import data.service.CompanyDataService;

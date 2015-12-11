@@ -6,13 +6,12 @@ import java.util.ArrayList;
 import data.enums.DataType;
 import data.enums.POType;
 import data.enums.StorageArea;
-import data.factory.DataServiceFactory;
+import utils.DataServiceFactory;
 import data.po.CityInfoPO;
 import data.po.CityTransPO;
 import data.po.DataPO;
 import data.po.InstitutionPO;
 import data.service.CompanyDataService;
-import data.service.DataService;
 
 /**
  * 保存用户所在城市相关信息

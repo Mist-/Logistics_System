@@ -4,7 +4,7 @@ import java.rmi.RemoteException;
 
 import data.enums.DataType;
 import data.enums.POType;
-import data.factory.DataServiceFactory;
+import utils.DataServiceFactory;
 import data.message.LoginMessage;
 import data.po.InstitutionPO;
 import data.po.StaffPO;

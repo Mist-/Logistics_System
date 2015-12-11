@@ -2,7 +2,7 @@ package businesslogic.impl.financialbl;
 
 import businesslogic.impl.company.StatisticsCheckBLImpl;
 import data.enums.DataType;
-import data.factory.DataServiceFactory;
+import utils.DataServiceFactory;
 import data.message.ResultMessage;
 import data.service.FinancialDataService;
 public class StatementStatistic {

@@ -6,7 +6,7 @@ import businesslogic.impl.transfer.center.StorageInfoService;
 import data.enums.DataType;
 import data.enums.POType;
 import data.enums.StorageArea;
-import data.factory.DataServiceFactory;
+import utils.DataServiceFactory;
 import data.message.ResultMessage;
 import data.po.OrderPO;
 import data.po.StorageInfoPO;
