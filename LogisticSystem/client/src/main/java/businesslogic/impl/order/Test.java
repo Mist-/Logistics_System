@@ -11,5 +11,7 @@ public class Test {
         for (long sn: routine) {
             System.out.println(sn);
         }
+
+        new OrderList().getFreshOrder(1002100002);
     }
 }

@@ -95,6 +95,7 @@ public class OrderPO extends DataPO {
 
     public OrderPO(OrderVO order) {
         super(POType.ORDER);
+        routine = order.routine;
         courier = order.courier;
         saddress = order.saddress;
         sname = order.sname;

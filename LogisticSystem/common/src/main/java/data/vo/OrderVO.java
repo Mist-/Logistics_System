@@ -87,5 +87,6 @@ public class OrderVO {
         this.date = Timestamper.getTimeByDate(orderPO.getGenDate());
         this.dataState = orderPO.getState();
         this.courier =  orderPO.getCourier();
+        this.routine = orderPO.getRoutine();
     }
 }

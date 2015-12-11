@@ -139,9 +139,7 @@ public class Order {
      */
     public ArrayList<Long> getRoutine(@NotNull String depart, @NotNull String dest) {
         ArrayList<Long> routine = new ArrayList<>();
-        if (!Connection.connected) {
-            return null;
-        }
+
         String[] from = depart.split("[-]");
         String[] to = dest.split("[-]");
 
@@ -154,7 +152,6 @@ public class Order {
             toCity = (CityInfoPO) ds.searchCity(to[0]);
         } catch (RemoteException e) {
             e.printStackTrace();
-            return null;
         }
         InstitutionPO fromBO = null, toBO = null;
         for (long bosn: fromCity.getBusinessOfficeList()) {

@@ -220,6 +220,7 @@ public class NewOrderDlg extends JDialog {
         orderVO.fee = Float.parseFloat(textFee.getText());
         orderVO.evaluatedTime = Integer.parseInt(textTimeEvaluated.getText());
 
+        orderVO.routine = new Order().getRoutine(orderVO.saddress, orderVO.raddress);
 
         int DlgResult = JOptionPane.showConfirmDialog(null, "报价：" + textFee.getText() + "元\n" + "预计" + textTimeEvaluated.getText() + "天内送达\n" + "是否保存订单？", "LCS物流管理系统", JOptionPane.OK_CANCEL_OPTION);
         if (DlgResult == JOptionPane.YES_OPTION) {
