@@ -225,6 +225,7 @@ public class Order {
                 System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
                 return 0;
             }
+            if (signPO == null) continue;
             Calendar signDate = signPO.getGenDate();
             time += (signDate.getTimeInMillis() - sendDate.getTimeInMillis()) / 1000.0f / 60.0f / 60.0f / 24.0f;
         }
