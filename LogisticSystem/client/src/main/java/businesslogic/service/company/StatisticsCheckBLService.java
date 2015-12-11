@@ -10,17 +10,39 @@ import java.util.ArrayList;
 public interface StatisticsCheckBLService {
 
     //查看统计报表
-    //经营情况表(收款单)
-    public ArrayList<ReceiptVO> searchReceiptVO(String fromYear, String fromMonth, String fromDay,
+    /**
+     * 查找指定日期之间的所有入款单ReceiptVO表
+     *
+     * @param fromYear  起始年份
+     * @param fromMonth  起始月份
+     * @param fromDay  起始日
+     * @param toYear  结束年份
+     * @param toMonth  结束月份
+     * @param toDay  结束日
+     * @return  表的引用
+     */
+    ArrayList<ReceiptVO> searchReceiptVO(String fromYear, String fromMonth, String fromDay,
                                                 String toYear, String toMonth, String toDay);
-    //经营情况表(付款单)
-    public ArrayList<PaymentVO> searchPaymentVO(String fromYear, String fromMonth, String fromDay,
+    /**
+     * 查找指定日期之间的所有付款单PaymentVO表
+     *
+     * @param fromYear  起始年份
+     * @param fromMonth  起始月份
+     * @param fromDay  起始日
+     * @param toYear  结束年份
+     * @param toMonth  结束月份
+     * @param toDay  结束日
+     * @return  表的引用
+     */
+    ArrayList<PaymentVO> searchPaymentVO(String fromYear, String fromMonth, String fromDay,
                                                 String toYear, String toMonth, String toDay);
 
-    //成本收益表
-    public CostBenefitVO searchCostBenefitVO();
+    /**
+     * 查找成本收益表(CostBenefitVO)
+     *
+     * @return VO的引用
+     */
+    CostBenefitVO searchCostBenefitVO();
 
-    //查看统计报表的过程
-    public ResultMessage endStatisticsFormCheck();
 
 }

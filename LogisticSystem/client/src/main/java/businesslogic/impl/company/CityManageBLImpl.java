@@ -63,7 +63,7 @@ public class CityManageBLImpl implements CityManageBLService {
             resultMessage = company.modify(cityTransPO);
         } catch (RemoteException e) {
             System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
-            resultMessage = ResultMessage.FAILED;
+            resultMessage = ResultMessage.NOTCONNECTED;
         }
         return resultMessage;
     }

@@ -30,7 +30,6 @@ public class DataApproveBLImpl implements DataApproveBLService {
 
     private DataService dataService = null;
     private ResultMessage resultMessage = null;
-    //private Vector<POType> dataType = null;
 
     public DataApproveBLImpl(){
         company = (CompanyDataService) DataServiceFactory.getDataServiceByType(DataType.CompanyDataService);
@@ -90,13 +89,16 @@ public class DataApproveBLImpl implements DataApproveBLService {
         dataService = DataServiceFactory.getDataServiceByPO(POType.STORAGEINLIST);
         try {
             StorageInListPO storageInListPO = (StorageInListPO) dataService.search(POType.STORAGEINLIST,storageInVO.getId());
-            storageInListPO.setDate(storageInVO.getDate());
-            resultMessage = ResultMessage.SUCCESS;
+            if(storageInListPO!=null) {
+                storageInListPO.setDate(storageInVO.getDate());
+                resultMessage = ResultMessage.SUCCESS;
+            }
+            else
+                resultMessage = ResultMessage.NOTEXIST;
         } catch (RemoteException e) {
             System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
-            resultMessage = ResultMessage.FAILED;
+            resultMessage = ResultMessage.NOTCONNECTED;
          }
-
         return resultMessage;
     }
 
@@ -105,12 +107,16 @@ public class DataApproveBLImpl implements DataApproveBLService {
         dataService = DataServiceFactory.getDataServiceByPO(POType.STORAGEOUTLIST);
         try {
             StorageOutListPO storageOutListPO = (StorageOutListPO) dataService.search(POType.STORAGEOUTLIST,Long.valueOf(storageOutVO.getId()));
-            storageOutListPO.setTransferNum(Long.valueOf(storageOutVO.getTransferNum()));
-            storageOutListPO.setTransferType(storageOutVO.getTransferType());
-            resultMessage = ResultMessage.SUCCESS;
+            if(storageOutListPO!=null) {
+                storageOutListPO.setTransferNum(Long.valueOf(storageOutVO.getTransferNum()));
+                storageOutListPO.setTransferType(storageOutVO.getTransferType());
+                resultMessage = ResultMessage.SUCCESS;
+            }
+            else
+                resultMessage = ResultMessage.NOTEXIST;
         } catch (RemoteException e) {
             System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
-            resultMessage = ResultMessage.FAILED;
+            resultMessage = ResultMessage.NOTCONNECTED;
         }
         return resultMessage;
     }
@@ -120,15 +126,18 @@ public class DataApproveBLImpl implements DataApproveBLService {
         dataService = DataServiceFactory.getDataServiceByPO(POType.ARRIVAL);
         try {
             ArrivalPO arrivalPO = (ArrivalPO) dataService.search(POType.ARRIVAL,arrivalVO.getId());
+            if(arrivalPO!=null) {
                 arrivalPO.setDate(arrivalVO.getDate());
                 arrivalPO.setFromName(arrivalVO.getFromName());
                 arrivalPO.setDestName(arrivalVO.getDestName());
                 //arrivalPO.setStockStatus(arrivalVO.getStatus()); sx注释
-            resultMessage = ResultMessage.SUCCESS;
-
+                resultMessage = ResultMessage.SUCCESS;
+            }
+            else
+                resultMessage = ResultMessage.NOTEXIST;
         } catch (RemoteException e) {
             System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
-            resultMessage = ResultMessage.FAILED;
+            resultMessage = ResultMessage.NOTCONNECTED;
         }
         return resultMessage;
     }
@@ -138,15 +147,19 @@ public class DataApproveBLImpl implements DataApproveBLService {
         dataService = DataServiceFactory.getDataServiceByPO(POType.ENTRUCK);
         try {
             EntruckPO entruckPO = (EntruckPO)dataService.search(POType.ENTRUCK,entruckListVO.getEntruckListID());
-            entruckPO.setDestID(entruckListVO.destID);
-            entruckPO.setFrom(Long.valueOf(entruckListVO.fromID));
-            entruckPO.setEscortName(entruckListVO.escortName);
-            entruckPO.setMonitorName(entruckListVO.monitorName);
-            entruckPO.setVehicleID(Long.valueOf(entruckListVO.vehicleID));
-            resultMessage = ResultMessage.SUCCESS;
+            if(entruckPO!=null) {
+                entruckPO.setDestID(entruckListVO.destID);
+                entruckPO.setFrom(Long.valueOf(entruckListVO.fromID));
+                entruckPO.setEscortName(entruckListVO.escortName);
+                entruckPO.setMonitorName(entruckListVO.monitorName);
+                entruckPO.setVehicleID(Long.valueOf(entruckListVO.vehicleID));
+                resultMessage = ResultMessage.SUCCESS;
+            }
+            else
+                resultMessage = ResultMessage.NOTEXIST;
         } catch (RemoteException e) {
             System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
-            resultMessage = ResultMessage.FAILED;
+            resultMessage = ResultMessage.NOTCONNECTED;
         }
         return resultMessage;
     }
@@ -156,14 +169,18 @@ public class DataApproveBLImpl implements DataApproveBLService {
         dataService = DataServiceFactory.getDataServiceByPO(POType.ORDER);
         try {
             OrderPO orderPO = (OrderPO)dataService.search(POType.ORDER,orderVO.id);
-            orderPO.setFee(orderVO.fee);
-            orderPO.setWeight(orderVO.weight);
-            orderPO.setStockNum(orderVO.stockNum);
-            orderPO.setServiceType(orderVO.serviceType);
-            resultMessage = ResultMessage.SUCCESS;
+            if(orderPO!=null) {
+                orderPO.setFee(orderVO.fee);
+                orderPO.setWeight(orderVO.weight);
+                orderPO.setStockNum(orderVO.stockNum);
+                orderPO.setServiceType(orderVO.serviceType);
+                resultMessage = ResultMessage.SUCCESS;
+            }
+            else
+                resultMessage = ResultMessage.NOTEXIST;
         } catch (RemoteException e) {
             System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
-            resultMessage = ResultMessage.FAILED;
+            resultMessage = ResultMessage.NOTCONNECTED;
         }
         return resultMessage;
     }
@@ -173,16 +190,21 @@ public class DataApproveBLImpl implements DataApproveBLService {
         dataService = DataServiceFactory.getDataServiceByPO(POType.PAYMENT);
         try {
             PaymentPO paymentPO = (PaymentPO) dataService.search(POType.PAYMENT,paymentVO.getId());
-            paymentPO.setAccount(paymentVO.getAccount());
-            paymentPO.setDate(paymentVO.getDate());
-            paymentPO.setExInfo(paymentVO.getExInfo());
-            paymentPO.setInfo(paymentVO.getInfo());
-            paymentPO.setMoney(paymentVO.getMoney());
-            paymentPO.setName(paymentVO.getName());
-            resultMessage = ResultMessage.SUCCESS;
+            if(paymentPO!=null) {
+                paymentPO.setAccount(paymentVO.getAccount());
+                paymentPO.setDate(paymentVO.getDate());
+                paymentPO.setExInfo(paymentVO.getExInfo());
+                paymentPO.setInfo(paymentVO.getInfo());
+                paymentPO.setMoney(paymentVO.getMoney());
+                paymentPO.setName(paymentVO.getName());
+                resultMessage = ResultMessage.SUCCESS;
+            }
+            else{
+                resultMessage = ResultMessage.NOTEXIST;
+            }
         } catch (RemoteException e) {
             System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
-            resultMessage = ResultMessage.FAILED;
+            resultMessage = ResultMessage.NOTCONNECTED;
         }
 
         return resultMessage;
@@ -194,13 +216,17 @@ public class DataApproveBLImpl implements DataApproveBLService {
         dataService = DataServiceFactory.getDataServiceByPO(POType.RECEIPT);
         try {
             ReceiptPO receiptPO = (ReceiptPO) dataService.search(POType.RECEIPT,receiptVO.getId());
-            receiptPO.setMoney(receiptVO.getMoney());
-            receiptPO.setDate(receiptVO.getDate());
-            receiptPO.setSender(receiptVO.getSender());
-            resultMessage = ResultMessage.SUCCESS;
+            if(receiptPO !=null) {
+                receiptPO.setMoney(receiptVO.getMoney());
+                receiptPO.setDate(receiptVO.getDate());
+                receiptPO.setSender(receiptVO.getSender());
+                resultMessage = ResultMessage.SUCCESS;
+            }
+            else
+                resultMessage = ResultMessage.NOTEXIST;
         } catch (RemoteException e) {
             System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
-            resultMessage = ResultMessage.FAILED;
+            resultMessage = ResultMessage.NOTCONNECTED;
         }
         return resultMessage;
     }
@@ -210,11 +236,16 @@ public class DataApproveBLImpl implements DataApproveBLService {
         dataService = DataServiceFactory.getDataServiceByPO(POType.SEND);
         try {
             SendListPO sendListPO = (SendListPO) dataService.search(POType.SEND,sendListVO.id);
-            sendListPO.setSender(sendListVO.senderName);
-            resultMessage = ResultMessage.SUCCESS;
+            if(sendListPO!=null) {
+                sendListPO.setSender(sendListVO.senderName);
+                resultMessage = ResultMessage.SUCCESS;
+            }
+            else{
+                resultMessage = ResultMessage.NOTEXIST;
+            }
         } catch (RemoteException e) {
             System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
-            resultMessage = ResultMessage.FAILED;
+            resultMessage = ResultMessage.NOTCONNECTED;
         }
         return resultMessage;
     }
@@ -224,20 +255,21 @@ public class DataApproveBLImpl implements DataApproveBLService {
         dataService = DataServiceFactory.getDataServiceByPO(POType.TRANSFERLIST);
         try {
             TransferListPO transferListPO = (TransferListPO)dataService.search(POType.TRANSFERLIST,Long.valueOf(transferListVO.transferListID));
-            transferListPO.setVehicleCode(Long.valueOf(transferListVO.vehicleCode));
-            transferListPO.setFee(Double.valueOf(transferListVO.fee));
-            transferListPO.setStaffName(transferListVO.staff);
-            transferListPO.setTargetCenterName(transferListVO.targetName);
-            transferListPO.setDate(transferListVO.date);
+            if(transferListPO!=null) {
+                transferListPO.setVehicleCode(Long.valueOf(transferListVO.vehicleCode));
+                transferListPO.setFee(Double.valueOf(transferListVO.fee));
+                transferListPO.setStaffName(transferListVO.staff);
+                transferListPO.setTargetCenterName(transferListVO.targetName);
+                transferListPO.setDate(transferListVO.date);
+                resultMessage = ResultMessage.SUCCESS;
+            }
+            else
+                resultMessage =ResultMessage.NOTEXIST;
         } catch (RemoteException e) {
             System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
-            resultMessage = ResultMessage.FAILED;
+            resultMessage = ResultMessage.NOTCONNECTED;
         }
-        return null;
+        return resultMessage;
     }
 
-    @Override
-    public void endApproveData() {
-    //TODO
-    }
 }
