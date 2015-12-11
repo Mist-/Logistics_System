@@ -18,9 +18,22 @@ import java.util.ArrayList;
 public interface CompanyDataService extends DataService {
 
     DataPO searchCity(String cityName) throws RemoteException;
-    //由部门为关键字查询此部门工资详情
-    SalaryPO searchByInstitution(String department) throws RemoteException;
-    //由始末城市为关键字查询城市之间物流的信息详情
+
+    /**
+     * 根据机构名称查找工资信息
+     * @param insititution 机构名称
+     * @return  该机构SalaryPO的引用
+     * @throws RemoteException
+     */
+    SalaryPO searchByInstitution(String insititution) throws RemoteException;
+
+    /**
+     * 根据城市名字查找两城市间物流信息
+     * @param fromCity  起始城市名字
+     * @param toCity  结束城市名字
+     * @return  两城市之间的CityTransInfoPO的引用
+     * @throws RemoteException
+     */
     CityTransPO searchByCityName(String fromCity, String toCity) throws RemoteException;
     
     long searchBusinessOffice(String boName) throws RemoteException;

@@ -6,13 +6,30 @@ import data.vo.CityTransVO;
 
 public interface CityManageBLService {
 
-    //找到城市信息
-    public CityTransVO getCityTransInfo(String fromcity, String tocity);
+    /**
+     * 获得城市之间物流信息CityTransInfoVO数据
+     *
+     * @param fromcity 起始城市的名称
+     * @param tocity  结束城市的名称
+     * @return  获得CityTransInfoVO的引用
+     */
+     CityTransVO getCityTransInfo(String fromcity, String tocity);
 
-    //城市管理的过程
-    public ResultMessage modifyCityInfo(CityTransVO cityTransVO);
+    /**
+     * 修改城市之间物流信息
+     *
+     * @param cityTransVO  城市之间物流信息的VO
+     * @return  网络错误是NOTCONNECTED,其余情况由数据层决定
+     */
+     ResultMessage modifyCityInfo(CityTransVO cityTransVO);
 
-    public ResultMessage addCityTransInfo(CityTransVO cityTransVO);
+    /**
+     * 添加城市之间物流信息
+     *
+     * @param cityTransVO  城市之间物流信息的VO
+     * @return  网络错误是NOTCONNECTED,其余情况由数据层决定
+     */
+    ResultMessage addCityTransInfo(CityTransVO cityTransVO);
 
-    public void endCityManage();
+    void endCityManage();
 }

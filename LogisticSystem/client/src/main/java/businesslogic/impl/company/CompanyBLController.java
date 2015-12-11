@@ -31,8 +31,6 @@ public class CompanyBLController {
     String [] dataTypes = null;
     long []institutionL = null;
     long institution = 0;
-    long fromInstitution = 0;
-    long toInstitution = 0;
 
     public CompanyBLController(){
         salary = new SalaryManageBLImpl();
@@ -56,7 +54,7 @@ public class CompanyBLController {
      *
      * @param dataType 等待审批的单据类型
      * @param ID 等待审批单据的id
-     * @return  审批是否成功
+     * @return  审批成功是SUCCESS,网络错误是NOTCONNECTED,表单不存在是NOTEXIST
      */
     public ResultMessage approveData(String dataType, String ID){
         long id = Long.valueOf(ID);
@@ -65,14 +63,14 @@ public class CompanyBLController {
                 return data.approveData(poTypes[i],id);
             }
         }
-        return ResultMessage.FAILED;
+        return ResultMessage.NOTEXIST;
     }
 
     /**
      * 审批同一类型的所有单据
      *
      * @param dataType 等待审批的单据类型
-     * @return  审批是否成功
+     * @return  审批成功是SUCCESS,网络错误是NOTCONNECTED,表单不存在是NOTEXIST
      */
     public ResultMessage approveAll(String dataType){
        for(int i=0;i<dataTypes.length;i++){
@@ -80,7 +78,7 @@ public class CompanyBLController {
               return data.approveAll(poTypes[i]);
           }
        }
-        return ResultMessage.FAILED;
+        return ResultMessage.NOTEXIST;
     }
 
     /**
@@ -112,9 +110,9 @@ public class CompanyBLController {
     }
 
     /**
-     * 获得未审批的装车单
+     * 获得未审批的到达单
      *
-     * @return  未审批的装车单
+     * @return  未审批的到达单
      */
     public ArrayList<ArrivalPO> getUnapprovedArrivalList(){
         ArrayList<ArrivalPO> arrivalPOs = new ArrayList<ArrivalPO>();
@@ -126,9 +124,9 @@ public class CompanyBLController {
     }
 
     /**
-     * 获得未审批的入库单
+     * 获得未审批的装车单
      *
-     * @return  未审批的入库单
+     * @return  未审批的装车单
      */
     public ArrayList<EntruckPO> getUnapprovedEntruckList(){
         ArrayList<EntruckPO> entruckPOs = new ArrayList<EntruckPO>();
@@ -140,9 +138,9 @@ public class CompanyBLController {
     }
 
     /**
-     * 获得未审批的入库单
+     * 获得未审批的寄件单
      *
-     * @return  未审批的入库单
+     * @return  未审批的寄件单
      */
     public ArrayList<OrderPO> getUnapprovedOrderList(){
         ArrayList<OrderPO> orderPOs = new ArrayList<OrderPO>();
@@ -154,9 +152,9 @@ public class CompanyBLController {
     }
 
     /**
-     * 获得未审批的入库单
+     * 获得未审批的付款单
      *
-     * @return  未审批的入库单
+     * @return  未审批的付款单
      */
     public ArrayList<PaymentPO> getUnapprovedPaymentList(){
         ArrayList<PaymentPO> paymentPOs = new ArrayList<PaymentPO>();
@@ -168,9 +166,9 @@ public class CompanyBLController {
     }
 
     /**
-     * 获得未审批的入库单
+     * 获得未审批的入款单
      *
-     * @return  未审批的入库单
+     * @return  未审批的入款单
      */
     public ArrayList<ReceiptPO> getUnapprovedReceiptList(){
         ArrayList<ReceiptPO> receiptPOs = new ArrayList<ReceiptPO>();
@@ -182,9 +180,9 @@ public class CompanyBLController {
     }
 
     /**
-     * 获得未审批的入库单
+     * 获得未审批的派件单
      *
-     * @return  未审批的入库单
+     * @return  未审批的派件单
      */
     public ArrayList<SendListPO> getUnapprovedSendList(){
         ArrayList<SendListPO> sendPOs = new ArrayList<SendListPO>();
@@ -196,9 +194,9 @@ public class CompanyBLController {
     }
 
     /**
-     * 获得未审批的入库单
+     * 获得未审批的中转单
      *
-     * @return  未审批的入库单
+     * @return  未审批的中转单
      */
     public ArrayList<TransferListPO> getUnapprovedTransferList(){
         ArrayList<TransferListPO> transferListPOs = new ArrayList<TransferListPO>();
@@ -209,85 +207,191 @@ public class CompanyBLController {
         return transferListPOs;
     }
 
-    //修改单据数据
+    /**
+     * 修改入库单PO的数据
+     *
+     * @param storageInVO 单个入库单的VO
+     * @return  修改成功是SUCCESS,网络错误是NOTCONNECTED
+     */
     public ResultMessage modifyStorageInList(StorageInVO storageInVO){
         return data.modifyStorageInList(storageInVO);
     }
 
+    /**
+     * 修改出库单PO的数据
+     *
+     * @param storageOutVO 单个出库单的VO
+     * @return  修改成功是SUCCESS,网络错误是NOTCONNECTED
+     */
     public ResultMessage modifyStorageOutList(StorageOutVO storageOutVO){
         return data.modifyStorageOutList(storageOutVO);
     }
 
+    /**
+     * 修改到达单PO的数据
+     *
+     * @param arrivalVO 单个到达单的VO
+     * @return  修改成功是SUCCESS,网络错误是NOTCONNECTED,表单不存在是NOTEXIST
+     */
     public ResultMessage modifyArrival(ArrivalVO arrivalVO){
         return data.modifyArrival(arrivalVO);
     }
 
+    /**
+     * 修改装车单PO的数据
+     *
+     * @param entruckListVO 单个装车单的VO
+     * @return  修改成功是SUCCESS,网络错误是NOTCONNECTED,表单不存在是NOTEXIST
+     */
     public ResultMessage modifyEntruck(EntruckListVO entruckListVO){
         return data.modifyEntruck(entruckListVO);
     }
 
+    /**
+     * 修改寄件单PO的数据
+     *
+     * @param orderVO 单个寄件单的VO
+     * @return  修改成功是SUCCESS,网络错误是NOTCONNECTED,表单不存在是NOTEXIST
+     */
     public ResultMessage modifyOrder(OrderVO orderVO){
         return data.modifyOrder(orderVO);
     }
 
+    /**
+     * 修改付款单PO的数据
+     *
+     * @param paymentVO 单个付款单的VO
+     * @return  修改成功是SUCCESS,网络错误是NOTCONNECTED,表单不存在是NOTEXIST
+     */
     public ResultMessage modifyPayment(PaymentVO paymentVO){
         return  data.modifyPayment(paymentVO);
     }
 
+    /**
+     * 修改收款单PO的数据
+     *
+     * @param receiptVO 单个收款单的VO
+     * @return  修改成功是SUCCESS,网络错误是NOTCONNECTED,表单不存在是NOTEXIST
+     */
     public ResultMessage modifyReceipt(ReceiptVO receiptVO){
         return data.modifyReceipt(receiptVO);
     }
 
+    /**
+     * 修改派件单PO的数据
+     *
+     * @param sendListVO 单个派件单的VO
+     * @return  修改成功是SUCCESS,网络错误是NOTCONNECTED,表单不存在是NOTEXIST
+     */
     public ResultMessage modifySend(SendListVO sendListVO) {
         return data.modifySend(sendListVO);
     }
 
+    /**
+     * 修改中转单PO的数据
+     *
+     * @param transferListVO 单个中转单的VO
+     * @return  修改成功是SUCCESS,网络错误是NOTCONNECTED,表单不存在是NOTEXIST
+     */
     public ResultMessage modifyTransferList(TransferListVO transferListVO) {
        return data.modifyTransferList(transferListVO);
     }
 
-    public OrderPO getOrderData(long id){
+     /*   public OrderPO getOrderData(long id){
         try {
             return (OrderPO) dataServiceFactory.getDataServiceByPO(POType.ORDER).search(POType.ORDER,id);
         } catch (RemoteException e) {
             System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
         }
         return null;
-    }
+    }*/
 
-    //对SalaryManage的控制,主要是函数输入类型的转换
+    /**
+     * 获得所有部门的工资的SalaryVO表
+     *
+     * @return  表的引用
+     */
     public ArrayList<SalaryVO> searchAllSalary() {
         return salary.searchAllSalary();
     }
 
+    /**
+     * 获得单个部门的SalaryVO数据
+     *
+     * @param institution  部门的名称
+     * @return  此部门SalaryVO的引用
+     */
     public SalaryVO getsalaryByString(String institution) {
         return salary.getsalaryByString(institution);
     }
 
+    /**
+     * 修改单个部门的工资数据
+     *
+     * @param institution  部门的名称
+     * @param salary  工资的数值
+     * @return  修改成功是SUCCESS,网络错误是NOTCONNECTED,部门不存在是NOTEXSIT
+     */
     public ResultMessage modifySalary(String institution, String salary){
         double sal = Double.valueOf(salary);
         return this.salary.modifySalary(institution,sal);
     }
 
+    /**
+     * 添加单个部门工资的数据
+     *
+     * @param institution  部门名称
+     * @param salary  工资的数值
+     * @param type  结算工资的方式
+     * @return  添加成功是SUCCESS,网络错误是NOTCONNECTED,部门已经存在是EXIST
+     */
     public ResultMessage addSalary(String institution, String salary, String type){
         double sal = Double.valueOf(salary);
         return this.salary.addSalary(institution,sal,type);
     }
 
-    //对CityManage的控制，主要是函数输入类型的转换
+    /**
+     * 获得城市之间物流信息CityTransInfoVO数据
+     *
+     * @param fromCity 起始城市的名称
+     * @param toCity  结束城市的名称
+     * @return  获得CityTransInfoVO的引用
+     */
     public CityTransVO getCityTransInfo(String fromCity, String toCity){
         return city.getCityTransInfo(fromCity,toCity);
     }
 
+    /**
+     * 修改城市之间物流信息
+     *
+     * @param cityTransVO  城市之间物流信息的VO
+     * @return  修改成功是SUCCESS,网络错误是NOTCONNECTED,城市不存在是NOTEXSIT
+     */
     public ResultMessage modifyCityInfo(CityTransVO cityTransVO){
         return city.modifyCityInfo(cityTransVO);
     }
 
+    /**
+     * 添加城市之间物流信息
+     *
+     * @param cityTransVO  城市之间物流信息的VO
+     * @return  添加成功是SUCCESS,网络错误是NOTCONNECTED,城市物流信息已经存在是EXIST
+     */
     public ResultMessage addCityTransInfo(CityTransVO cityTransVO){
         return city.addCityTransInfo(cityTransVO);
     }
 
-    //对StatisticsCheck的控制,主要是判断输入是否合法(是否符合年月日的大小)
+    /**
+     * 查找指定日期之间的所有入款单ReceiptVO表
+     *
+     * @param fromYear  起始年份
+     * @param fromMonth  起始月份
+     * @param fromDay  起始日
+     * @param toYear  结束年份
+     * @param toMonth  结束月份
+     * @param toDay  结束日
+     * @return  表的引用
+     */
     public ArrayList<ReceiptVO> searchReceiptVO(String fromYear, String fromMonth, String fromDay,
                                                 String toYear, String toMonth, String toDay){
         int frommonth = Integer.parseInt(fromMonth);
@@ -300,6 +404,17 @@ public class CompanyBLController {
             return null;
     }
 
+    /**
+     * 查找指定日期之间的所有付款单PaymentVO表
+     *
+     * @param fromYear  起始年份
+     * @param fromMonth  起始月份
+     * @param fromDay  起始日
+     * @param toYear  结束年份
+     * @param toMonth  结束月份
+     * @param toDay  结束日
+     * @return  表的引用
+     */
     public ArrayList<PaymentVO> searchPaymentVO(String fromYear, String fromMonth, String fromDay,
                                                 String toYear, String toMonth, String toDay){
         int frommonth = Integer.parseInt(fromMonth);
@@ -312,23 +427,52 @@ public class CompanyBLController {
             return null;
     }
 
+    /**
+     * 查找成本收益表(CostBenefitVO)
+     *
+     * @return VO的引用
+     */
     public CostBenefitVO searchCostBenefitVO(){
         return statistics.searchCostBenefitVO();
     }
 
-    //对StaffManage的控制，主要是将机构的String型转为long型
+    /**
+     * 根据部门名称获得该部门所有员工信息StaffVO表
+     *
+     * @param institution  部门名称
+     * @return  表的引用
+     */
     public ArrayList<StaffVO> getStaffByInstitution(String institution){
         return staff.getStaffByInstitution(longInstitution(institution));
     }
 
+    /**
+     * 根据员工id获得员工信息StaffVO
+     *
+     * @param id  员工id
+     * @return  StaffVO的引用
+     */
     public StaffVO getstaffByID(long id){
         return staff.getstaffByID(id);
     }
 
+    /**
+     * 添加单个员工
+     *
+     * @param staffVO  该员工所有信息
+     * @return  添加成功是SUCCESS,网络错误是NOTCONNECTED,员工id已经存在是EXIST
+     */
     public ResultMessage addStaff(StaffVO staffVO){
         return staff.addStaff(staffVO,staffVO.getId());
     }
 
+    /**
+     * 删除单个员工
+     *
+     * @param institution  员工所在机构名称
+     * @param ID  员工的id
+     * @return  删除成功是SUCCESS,网络错误是NOTCONNECTED,员工不存在是NOTEXIST
+     */
     public ResultMessage deleteStaff(String institution, String ID) {
         //判断网络状况和机构是否存在
         if(longInstitution(institution)==0){
@@ -343,6 +487,14 @@ public class CompanyBLController {
         }
     }
 
+    /**
+     * 移动员工所在机构
+     * @param fromInstitution  员工当前所在机构名称
+     * @param toInstitution  员工将要被移动到的部门名称
+     * @param ID  员工的id
+     * @param stringUserRole  员工被移动到部门的角色
+     * @return  移动成功是SUCCESS,网络错误是NOTCONNECTED,机构不存在是EXIST
+     */
     public ResultMessage moveStaff(String fromInstitution, String toInstitution, String ID, String stringUserRole){
         //判断网络状况和机构是否存在
         if(longInstitution(fromInstitution)==0){
@@ -372,7 +524,12 @@ public class CompanyBLController {
 
     }
 
-    //将institution由String改为long
+    /**
+     * 将部门由名称改为编号
+     *
+     * @param institution 机构的名称
+     * @return  机构的编号
+     */
     public long longInstitution(String institution){
         try {
             ArrayList<DataPO> institutionPOs = DataServiceFactory.getDataServiceByPO(POType.INSTITUTION).getPOList(POType.INSTITUTION);
@@ -388,7 +545,12 @@ public class CompanyBLController {
         }
     }
 
-    //根据员工id获取员工姓名
+    /**
+     * 根据员工id获得员工姓名
+     *
+     * @param id  员工id
+     * @return  员工姓名
+     */
     public String getNameById(long id){
         try {
             ArrayList<DataPO> staffs = DataServiceFactory.getDataServiceByPO(POType.STAFF).getPOList(POType.STAFF);
@@ -404,7 +566,11 @@ public class CompanyBLController {
         }
     }
 
-    //获取所有城市名字
+    /**
+     * 获取所有城市的名称数组
+     *
+     * @return  数组的引用
+     */
     public String[] getCitys(){
         try {
             ArrayList<DataPO> cityInfoPOs = DataServiceFactory.getDataServiceByPO(POType.CITYINFO).getPOList(POType.CITYINFO);
@@ -420,7 +586,12 @@ public class CompanyBLController {
 
     }
 
-    //根据城市名字获取营业厅名字
+    /**
+     * 根据城市名字获取该城市下所有营业厅名称表
+     *
+     * @param city  城市名称
+     * @return  获得表的引用
+     */
     public ArrayList<String> getBusinessOffices(String city){
         try {
             ArrayList<DataPO> cityInfoPOs = DataServiceFactory.getDataServiceByPO(POType.CITYINFO).getPOList(POType.CITYINFO);
@@ -447,7 +618,12 @@ public class CompanyBLController {
         }
     }
 
-    //判断输入是否是数字不是字符
+    /**
+     * 判断输入是否是数字不是字符
+     *
+     * @param str  指定字符串
+     * @return  是否是int或者double型
+     */
     public boolean isNum(String str){
         for(int i=0;i<str.length();i++){
             if((str.charAt(i)<='9'&&str.charAt(i)>='0')||str.charAt(i)=='.'){

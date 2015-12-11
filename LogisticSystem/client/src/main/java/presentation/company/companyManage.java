@@ -1088,7 +1088,7 @@ public class companyManage extends JFrame {
 
             @Override
             public void tableChanged(TableModelEvent e) {
-                Vector<String> order = new Vector<String>();
+                Vector<String> order = new Vector<>();
                 int row = tableOrder.getSelectedRow();
                 for(int i=0;i<tableOrder.getColumnCount();i++){
                     order.add((String) orderModel.getValueAt(row, i));
@@ -1134,7 +1134,7 @@ public class companyManage extends JFrame {
 
             @Override
             public void tableChanged(TableModelEvent e) {
-                Vector<String> send = new Vector<String>();
+                Vector<String> send = new Vector<>();
                 int row = tableSend.getSelectedRow();
                 for(int i=0;i<send.size();i++){
                     send.add((String) sendModel.getValueAt(row, i));
@@ -1190,7 +1190,7 @@ public class companyManage extends JFrame {
 
             @Override
             public void tableChanged(TableModelEvent e) {
-                Vector<String> payment = new Vector<String>();
+                Vector<String> payment = new Vector<>();
                 int row = tablePayment.getSelectedRow();
                 for(int i=0;i<tablePayment.getColumnCount();i++){
                     payment.add((String) paymentModel.getValueAt(row, i));
@@ -1241,7 +1241,7 @@ public class companyManage extends JFrame {
 
             @Override
             public void tableChanged(TableModelEvent e) {
-                Vector<String> receipt = new Vector<String>();
+                Vector<String> receipt = new Vector<>();
                 int row = tableReceipt.getSelectedRow();
                 for(int i=0;i<tableReceipt.getColumnCount();i++){
                     receipt.add((String) receiptModel.getValueAt(row, i));
@@ -1293,7 +1293,7 @@ public class companyManage extends JFrame {
 
             @Override
             public void tableChanged(TableModelEvent e) {
-                Vector<String> entruk = new Vector<String>();
+                Vector<String> entruk = new Vector<>();
                 int row = tableEntruk.getSelectedRow();
                 for(int i=0;i<tableEntruk.getColumnCount();i++){
                     entruk.add((String) entrukModel.getValueAt(row, i));
@@ -1326,7 +1326,7 @@ public class companyManage extends JFrame {
         arrivalColumns.add("到达日期");
         //数据:第一个Vector用来存放一个VO,第二个Vector存放VO集合
         Vector<String> arrivalVO;
-        Vector<Vector<String>> arrivalData = new Vector<Vector<String>>();
+        Vector<Vector<String>> arrivalData = new Vector<>();
         ArrayList<ArrivalPO> arrivalPOs = controller.getUnapprovedArrivalList();
         for(int i=0;i<arrivalPOs.size();i++){
             ArrivalPO arrivalPO = arrivalPOs.get(i);
@@ -1343,7 +1343,7 @@ public class companyManage extends JFrame {
 
             @Override
             public void tableChanged(TableModelEvent e) {
-                Vector<String> arrival = new Vector<String>();
+                Vector<String> arrival = new Vector<>();
                 int row = tableArrival.getSelectedRow();
                 for(int i=0;i<tableArrival.getColumnCount();i++){
                     arrival.add((String) arrivalModel.getValueAt(row, i));
@@ -1370,13 +1370,13 @@ public class companyManage extends JFrame {
      */
     private void initStorageInTable(){
         //表头
-        Vector<String> storageInColumns = new Vector<String>();
+        Vector<String> storageInColumns = new Vector<>();
         storageInColumns.add("入库单编号");
         storageInColumns.add("目的地编号");
         storageInColumns.add("入库日期");
         //数据:第一个Vector用来存放一个VO,第二个Vector存放VO集合
         Vector<String> storageInVO;
-        Vector<Vector<String>> storageInData = new Vector<Vector<String>>();
+        Vector<Vector<String>> storageInData = new Vector<>();
         ArrayList<StorageInListPO> storageInListPOs = controller.getUnapprovedStorageInList();
         for(int i=0;i<storageInListPOs.size();i++){
             StorageInListPO storageInListPO = storageInListPOs.get(i);
@@ -1391,7 +1391,7 @@ public class companyManage extends JFrame {
 
             @Override
             public void tableChanged(TableModelEvent e) {
-                Vector<String> storageIn = new Vector<String>();
+                Vector<String> storageIn = new Vector<>();
                 int row = tableStorageIn.getSelectedRow();
                 for(int i=0;i<tableStorageIn.getColumnCount();i++){
                     storageIn.add((String) storageInModel.getValueAt(row, i));
@@ -1417,14 +1417,14 @@ public class companyManage extends JFrame {
      */
     private void initStorageOutTable(){
         //表头
-        Vector<String> storageOutColumns = new Vector<String>();
+        Vector<String> storageOutColumns = new Vector<>();
         storageOutColumns.add("入库单编号");
         storageOutColumns.add("目的地编号");
         storageOutColumns.add("装运形式");
         storageOutColumns.add("出库日期");
         //数据:第一个Vector用来存放一个VO,第二个Vector存放VO集合
         Vector<String> storageOutVO;
-        Vector<Vector<String>> storageOutData = new Vector<Vector<String>>();
+        Vector<Vector<String>> storageOutData = new Vector<>();
         ArrayList<StorageOutListPO> storageOutListPOs = controller.getUnapprovedStoragedOutList();
         for(int i=0;i<storageOutListPOs.size();i++){
             StorageOutListPO storageOutListPO = storageOutListPOs.get(i);
@@ -1441,7 +1441,7 @@ public class companyManage extends JFrame {
 
             @Override
             public void tableChanged(TableModelEvent e) {
-                Vector<String> storageOut = new Vector<String>();
+                Vector<String> storageOut = new Vector<>();
                 int row = tableStorageOut.getSelectedRow();
                 for(int i=0;i<tableStorageOut.getColumnCount();i++){
                     storageOut.add((String) storageOutModel.getValueAt(row, i));
@@ -1467,7 +1467,7 @@ public class companyManage extends JFrame {
      */
     private void initTransferTable(){
         //表头
-        Vector<String> transferColumns = new Vector<String>();
+        Vector<String> transferColumns = new Vector<>();
         transferColumns.add("中转单编号");
         transferColumns.add("快递编号");
         transferColumns.add("目的地(营业厅)");
@@ -1477,7 +1477,7 @@ public class companyManage extends JFrame {
         transferColumns.add("装车日期");
         //数据:第一个Vector用来存放一个VO,第二个Vector存放VO集合
         Vector<String> transferVO;
-        Vector<Vector<String>> transferData = new Vector<Vector<String>>();
+        Vector<Vector<String>> transferData = new Vector<>();
         ArrayList<TransferListPO> transferListPOs = controller.getUnapprovedTransferList();
         for(int i=0;i<transferListPOs.size();i++){
             TransferListPO transferListPO = transferListPOs.get(i);
@@ -1496,7 +1496,7 @@ public class companyManage extends JFrame {
 
             @Override
             public void tableChanged(TableModelEvent e) {
-                Vector<String> transfer = new Vector<String>();
+                Vector<String> transfer = new Vector<>();
                 int row = tableTransfer.getSelectedRow();
                 for(int i=0;i<tableTransfer.getColumnCount();i++){
                     transfer.add((String) transferModel.getValueAt(row, i));

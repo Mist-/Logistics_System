@@ -31,8 +31,8 @@ public class SalaryManageBLImpl implements SalaryManageBLService {
     }
 
     public ArrayList<SalaryVO> searchAllSalary() {
-        ArrayList<DataPO> plist = null;
-        ArrayList<SalaryVO> vlist= new ArrayList<SalaryVO>();
+        ArrayList<DataPO> plist;
+        ArrayList<SalaryVO> vlist= new ArrayList<>();
         try {
             plist = company.getPOList(POType.SALARY);
             for(int i=0;i<plist.size();i++){
