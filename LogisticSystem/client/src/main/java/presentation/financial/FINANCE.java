@@ -554,18 +554,17 @@ public class FINANCE extends JFrame {
         scrollPane15 = new JScrollPane();
         tablePayment = new JTable();
         btPExcel = new JButton();
-        scrollPane14 = new JScrollPane();
         panel3 = new JPanel();
+        scrollPane16 = new JScrollPane();
+        tableReceipt = new JTable();
         btDate = new JButton();
         btAddress = new JButton();
         textDate = new JTextField();
         textAddress = new JTextField();
-        scrollPane16 = new JScrollPane();
-        tableReceipt = new JTable();
         label15 = new JLabel();
-        lbAll = new JLabel();
         lbTotal = new JLabel();
         btRExcel = new JButton();
+        lbAll = new JLabel();
         pnTJBB = new JPanel();
         tpCost = new JTabbedPane();
         scrollPane5 = new JScrollPane();
@@ -595,6 +594,46 @@ public class FINANCE extends JFrame {
         scrollPane7 = new JScrollPane();
         tableBenefit = new JTable();
         pnQCJZ = new JPanel();
+        panel6 = new JPanel();
+        chkAccount = new JCheckBox();
+        chkInstitution = new JCheckBox();
+        chkVehicle = new JCheckBox();
+        chkDriverInfo = new JCheckBox();
+        chkStorageIn = new JCheckBox();
+        chkStorageOut = new JCheckBox();
+        chkPayment = new JCheckBox();
+        chkReceipt = new JCheckBox();
+        checkBox9 = new JCheckBox();
+        label16 = new JLabel();
+        label17 = new JLabel();
+        label18 = new JLabel();
+        label19 = new JLabel();
+        label20 = new JLabel();
+        label21 = new JLabel();
+        label22 = new JLabel();
+        label23 = new JLabel();
+        label24 = new JLabel();
+        button1 = new JButton();
+        pnZHGL = new JPanel();
+        scrollPane12 = new JScrollPane();
+        tabbedPane3 = new JTabbedPane();
+        scrollPane13 = new JScrollPane();
+        tableAccounts = new JTable();
+        button7 = new JButton();
+        btAdd = new JButton();
+        btModify = new JButton();
+        button8 = new JButton();
+        textName = new JTextField();
+        btSearch = new JButton();
+        label6 = new JLabel();
+        btDelete = new JButton();
+        label7 = new JLabel();
+        textName2 = new JTextField();
+        panel5 = new JPanel();
+        btAddP2 = new JButton();
+        scrollPane20 = new JScrollPane();
+        tablePayment2 = new JTable();
+        btPExcel2 = new JButton();
         tp = new JTabbedPane();
         scrollPane2 = new JScrollPane();
         table4 = new JTable();
@@ -612,21 +651,6 @@ public class FINANCE extends JFrame {
         table10 = new JTable();
         scrollPane11 = new JScrollPane();
         table11 = new JTable();
-        pnZHGL = new JPanel();
-        scrollPane12 = new JScrollPane();
-        tabbedPane3 = new JTabbedPane();
-        scrollPane13 = new JScrollPane();
-        tableAccounts = new JTable();
-        button7 = new JButton();
-        btAdd = new JButton();
-        btModify = new JButton();
-        button8 = new JButton();
-        textName = new JTextField();
-        btSearch = new JButton();
-        label6 = new JLabel();
-        btDelete = new JButton();
-        label7 = new JLabel();
-        textName2 = new JTextField();
 
         //======== this ========
         addWindowListener(new WindowAdapter() {
@@ -843,137 +867,141 @@ public class FINANCE extends JFrame {
                     panel1Layout.setHorizontalGroup(
                         panel1Layout.createParallelGroup()
                             .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                .addComponent(scrollPane15, GroupLayout.PREFERRED_SIZE, 771, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap()
+                                .addComponent(scrollPane15, GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btAddP, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(panel1Layout.createSequentialGroup()
-                                        .addGap(2, 2, 2)
-                                        .addComponent(btPExcel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addContainerGap())
+                                    .addComponent(btPExcel, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                                    .addComponent(btAddP, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
+                                .addGap(8, 8, 8))
                     );
                     panel1Layout.setVerticalGroup(
                         panel1Layout.createParallelGroup()
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(btAddP)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btPExcel)
-                                .addContainerGap(150, Short.MAX_VALUE))
-                            .addComponent(scrollPane15, GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+                                .addGroup(panel1Layout.createParallelGroup()
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addComponent(btAddP)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(btPExcel)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(scrollPane15, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
+                                .addContainerGap())
                     );
                 }
                 tabbedPane4.addTab("\u4ed8\u6b3e\u5355", panel1);
 
-                //======== scrollPane14 ========
+                //======== panel3 ========
                 {
 
-                    //======== panel3 ========
+                    //======== scrollPane16 ========
                     {
-
-                        //---- btDate ----
-                        btDate.setText("\u6309\u5929\u67e5\u770b");
-                        btDate.addMouseListener(new MouseAdapter() {
-                            @Override
-                            public void mouseReleased(MouseEvent e) {
-                                btDateMouseReleased(e);
-                            }
-                        });
-
-                        //---- btAddress ----
-                        btAddress.setText("\u6309\u8425\u4e1a\u5385\u67e5\u770b");
-                        btAddress.addMouseListener(new MouseAdapter() {
-                            @Override
-                            public void mouseReleased(MouseEvent e) {
-                                btAddressMouseReleased(e);
-                            }
-                        });
-
-                        //======== scrollPane16 ========
-                        {
-                            scrollPane16.setViewportView(tableReceipt);
-                        }
-
-                        //---- label15 ----
-                        label15.setText(" \u5982\uff1a2015/11/27");
-
-                        //---- lbAll ----
-                        lbAll.setText("\u5408\u8ba1\uff1a");
-
-                        //---- lbTotal ----
-                        lbTotal.setText("text");
-
-                        //---- btRExcel ----
-                        btRExcel.setText("\u5bfc\u51fa");
-                        btRExcel.addMouseListener(new MouseAdapter() {
-                            @Override
-                            public void mouseReleased(MouseEvent e) {
-                                btRExcelMouseReleased(e);
-                            }
-                        });
-
-                        GroupLayout panel3Layout = new GroupLayout(panel3);
-                        panel3.setLayout(panel3Layout);
-                        panel3Layout.setHorizontalGroup(
-                            panel3Layout.createParallelGroup()
-                                .addGroup(panel3Layout.createSequentialGroup()
-                                    .addComponent(scrollPane16, GroupLayout.PREFERRED_SIZE, 622, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(panel3Layout.createParallelGroup()
-                                        .addGroup(panel3Layout.createSequentialGroup()
-                                            .addGroup(panel3Layout.createParallelGroup()
-                                                .addComponent(textAddress)
-                                                .addComponent(btAddress, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(textDate)
-                                                .addComponent(btDate, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(label15, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(btRExcel, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addGap(95, 95, 95))
-                                        .addGroup(panel3Layout.createSequentialGroup()
-                                            .addComponent(lbAll)
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(lbTotal, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-                                            .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        );
-                        panel3Layout.setVerticalGroup(
-                            panel3Layout.createParallelGroup()
-                                .addGroup(panel3Layout.createSequentialGroup()
-                                    .addGap(32, 32, 32)
-                                    .addComponent(textDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btDate)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(label15, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(textAddress, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btAddress)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(panel3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(lbAll, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lbTotal))
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btRExcel)
-                                    .addContainerGap(719, Short.MAX_VALUE))
-                                .addGroup(panel3Layout.createSequentialGroup()
-                                    .addComponent(scrollPane16, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 751, Short.MAX_VALUE))
-                        );
+                        scrollPane16.setViewportView(tableReceipt);
                     }
-                    scrollPane14.setViewportView(panel3);
+
+                    //---- btDate ----
+                    btDate.setText("\u6309\u5929\u67e5\u770b");
+                    btDate.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseReleased(MouseEvent e) {
+                            btDateMouseReleased(e);
+                        }
+                    });
+
+                    //---- btAddress ----
+                    btAddress.setText("\u6309\u8425\u4e1a\u5385\u67e5\u770b");
+                    btAddress.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseReleased(MouseEvent e) {
+                            btAddressMouseReleased(e);
+                        }
+                    });
+
+                    //---- label15 ----
+                    label15.setText(" \u5982\uff1a2015/11/27");
+
+                    //---- lbTotal ----
+                    lbTotal.setText("text");
+
+                    //---- btRExcel ----
+                    btRExcel.setText("\u5bfc\u51fa");
+                    btRExcel.setIcon(new ImageIcon(getClass().getResource("/icons/export_24x24.png")));
+                    btRExcel.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseReleased(MouseEvent e) {
+                            btRExcelMouseReleased(e);
+                        }
+                    });
+
+                    //---- lbAll ----
+                    lbAll.setText("\u5408\u8ba1\uff1a");
+
+                    GroupLayout panel3Layout = new GroupLayout(panel3);
+                    panel3.setLayout(panel3Layout);
+                    panel3Layout.setHorizontalGroup(
+                        panel3Layout.createParallelGroup()
+                            .addGroup(panel3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(scrollPane16, GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panel3Layout.createParallelGroup()
+                                    .addComponent(textDate, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btDate, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label15, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textAddress, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btAddress, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panel3Layout.createSequentialGroup()
+                                        .addComponent(lbAll)
+                                        .addGap(9, 9, 9)
+                                        .addComponent(lbTotal, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btRExcel, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap())
+                    );
+                    panel3Layout.setVerticalGroup(
+                        panel3Layout.createParallelGroup()
+                            .addGroup(panel3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(panel3Layout.createParallelGroup()
+                                    .addComponent(scrollPane16, GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+                                    .addGroup(panel3Layout.createSequentialGroup()
+                                        .addComponent(textDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(5, 5, 5)
+                                        .addComponent(btDate)
+                                        .addGap(7, 7, 7)
+                                        .addComponent(label15, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(9, 9, 9)
+                                        .addComponent(textAddress, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(5, 5, 5)
+                                        .addComponent(btAddress)
+                                        .addGap(12, 12, 12)
+                                        .addGroup(panel3Layout.createParallelGroup()
+                                            .addComponent(lbAll, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(panel3Layout.createSequentialGroup()
+                                                .addGap(5, 5, 5)
+                                                .addComponent(lbTotal)))
+                                        .addGap(6, 6, 6)
+                                        .addComponent(btRExcel)
+                                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    );
                 }
-                tabbedPane4.addTab("\u6536\u6b3e\u5355", scrollPane14);
+                tabbedPane4.addTab("\u6536\u6b3e\u5355", panel3);
             }
 
             GroupLayout pnZJGLLayout = new GroupLayout(pnZJGL);
             pnZJGL.setLayout(pnZJGLLayout);
             pnZJGLLayout.setHorizontalGroup(
                 pnZJGLLayout.createParallelGroup()
-                    .addComponent(tabbedPane4)
+                    .addGroup(GroupLayout.Alignment.TRAILING, pnZJGLLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(tabbedPane4)
+                        .addContainerGap())
             );
             pnZJGLLayout.setVerticalGroup(
                 pnZJGLLayout.createParallelGroup()
-                    .addComponent(tabbedPane4, GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                    .addGroup(pnZJGLLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(tabbedPane4)
+                        .addGap(5, 5, 5))
             );
         }
 
@@ -1157,72 +1185,156 @@ public class FINANCE extends JFrame {
         //======== pnQCJZ ========
         {
 
-            //======== tp ========
+            //======== panel6 ========
             {
 
-                //======== scrollPane2 ========
-                {
-                    scrollPane2.setViewportView(table4);
-                }
-                tp.addTab("\u673a\u6784\u4eba\u5458\u8868", scrollPane2);
+                //---- chkAccount ----
+                chkAccount.setText("\u8d26\u6237\u4fe1\u606f\u8868");
 
-                //======== scrollPane3 ========
-                {
-                    scrollPane3.setViewportView(table5);
-                }
-                tp.addTab("\u8f66\u8f86\u4fe1\u606f\u8868", scrollPane3);
+                //---- chkInstitution ----
+                chkInstitution.setText("\u673a\u6784\u8868");
 
-                //======== scrollPane4 ========
-                {
-                    scrollPane4.setViewportView(table6);
-                }
-                tp.addTab("\u53f8\u673a\u4fe1\u606f\u8868", scrollPane4);
+                //---- chkVehicle ----
+                chkVehicle.setText("\u8f66\u8f86\u4fe1\u606f\u8868");
 
-                //======== scrollPane6 ========
-                {
-                    scrollPane6.setViewportView(table7);
-                }
-                tp.addTab("\u5165\u5e93\u5355", scrollPane6);
+                //---- chkDriverInfo ----
+                chkDriverInfo.setText("\u53f8\u673a\u4fe1\u606f\u8868");
 
-                //======== scrollPane8 ========
-                {
-                    scrollPane8.setViewportView(table8);
-                }
-                tp.addTab("\u51fa\u5e93\u5355", scrollPane8);
+                //---- chkStorageIn ----
+                chkStorageIn.setText("\u5165\u5e93\u5355");
 
-                //======== scrollPane9 ========
-                {
-                    scrollPane9.setViewportView(table9);
-                }
-                tp.addTab("\u4ed8\u6b3e\u5355", scrollPane9);
+                //---- chkStorageOut ----
+                chkStorageOut.setText("\u51fa\u5e93\u5355");
 
-                //======== scrollPane10 ========
-                {
-                    scrollPane10.setViewportView(table10);
-                }
-                tp.addTab("\u6536\u6b3e\u5355", scrollPane10);
+                //---- chkPayment ----
+                chkPayment.setText("\u4ed8\u6b3e\u5355");
 
-                //======== scrollPane11 ========
-                {
-                    scrollPane11.setViewportView(table11);
-                }
-                tp.addTab("\u8d26\u6237\u4fe1\u606f\u8868", scrollPane11);
+                //---- chkReceipt ----
+                chkReceipt.setText("\u6536\u6b3e\u5355");
+
+                //---- checkBox9 ----
+                checkBox9.setText("\u4eba\u5458\u8868");
+
+                //---- label16 ----
+                label16.setText("\u5c1a\u672a\u8fdb\u884c\u8fc7\u671f\u521d\u5efa\u8d26");
+
+                //---- label17 ----
+                label17.setText("\u5c1a\u672a\u8fdb\u884c\u8fc7\u671f\u521d\u5efa\u8d26");
+
+                //---- label18 ----
+                label18.setText("\u5c1a\u672a\u8fdb\u884c\u8fc7\u671f\u521d\u5efa\u8d26");
+
+                //---- label19 ----
+                label19.setText("\u5c1a\u672a\u8fdb\u884c\u8fc7\u671f\u521d\u5efa\u8d26");
+
+                //---- label20 ----
+                label20.setText("\u5c1a\u672a\u8fdb\u884c\u8fc7\u671f\u521d\u5efa\u8d26");
+
+                //---- label21 ----
+                label21.setText("\u5c1a\u672a\u8fdb\u884c\u8fc7\u671f\u521d\u5efa\u8d26");
+
+                //---- label22 ----
+                label22.setText("\u5c1a\u672a\u8fdb\u884c\u8fc7\u671f\u521d\u5efa\u8d26");
+
+                //---- label23 ----
+                label23.setText("\u5c1a\u672a\u8fdb\u884c\u8fc7\u671f\u521d\u5efa\u8d26");
+
+                //---- label24 ----
+                label24.setText("\u5c1a\u672a\u8fdb\u884c\u8fc7\u671f\u521d\u5efa\u8d26");
+
+                GroupLayout panel6Layout = new GroupLayout(panel6);
+                panel6.setLayout(panel6Layout);
+                panel6Layout.setHorizontalGroup(
+                    panel6Layout.createParallelGroup()
+                        .addGroup(panel6Layout.createSequentialGroup()
+                            .addGroup(panel6Layout.createParallelGroup()
+                                .addComponent(chkInstitution)
+                                .addComponent(chkVehicle)
+                                .addComponent(chkDriverInfo)
+                                .addComponent(chkStorageIn)
+                                .addComponent(chkStorageOut)
+                                .addComponent(chkPayment)
+                                .addComponent(chkReceipt)
+                                .addComponent(chkAccount)
+                                .addComponent(checkBox9))
+                            .addGap(42, 42, 42)
+                            .addGroup(panel6Layout.createParallelGroup()
+                                .addComponent(label24)
+                                .addComponent(label23)
+                                .addComponent(label22)
+                                .addComponent(label21)
+                                .addComponent(label20)
+                                .addComponent(label19)
+                                .addComponent(label18)
+                                .addComponent(label17)
+                                .addComponent(label16))
+                            .addGap(0, 257, Short.MAX_VALUE))
+                );
+                panel6Layout.setVerticalGroup(
+                    panel6Layout.createParallelGroup()
+                        .addGroup(panel6Layout.createSequentialGroup()
+                            .addGroup(panel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(chkInstitution)
+                                .addComponent(label16))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(panel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(chkVehicle)
+                                .addComponent(label17))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(panel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(chkDriverInfo)
+                                .addComponent(label18))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(panel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(chkStorageIn)
+                                .addComponent(label19))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(panel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(chkStorageOut)
+                                .addComponent(label20))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(panel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(chkPayment)
+                                .addComponent(label21))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(panel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(chkReceipt)
+                                .addComponent(label22))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(panel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(chkAccount)
+                                .addComponent(label23))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(panel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(checkBox9)
+                                .addComponent(label24))
+                            .addGap(0, 49, Short.MAX_VALUE))
+                );
             }
+
+            //---- button1 ----
+            button1.setText("\u671f\u521d\u5efa\u8d26");
 
             GroupLayout pnQCJZLayout = new GroupLayout(pnQCJZ);
             pnQCJZ.setLayout(pnQCJZLayout);
             pnQCJZLayout.setHorizontalGroup(
                 pnQCJZLayout.createParallelGroup()
                     .addGroup(pnQCJZLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(tp, GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                        .addGap(9, 9, 9)
+                        .addComponent(panel6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(button1)
                         .addContainerGap())
             );
             pnQCJZLayout.setVerticalGroup(
                 pnQCJZLayout.createParallelGroup()
                     .addGroup(pnQCJZLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(tp, GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+                        .addGroup(pnQCJZLayout.createParallelGroup()
+                            .addGroup(pnQCJZLayout.createSequentialGroup()
+                                .addComponent(button1)
+                                .addGap(0, 280, Short.MAX_VALUE))
+                            .addComponent(panel6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())
             );
         }
@@ -1250,7 +1362,7 @@ public class FINANCE extends JFrame {
 
             //---- btAdd ----
             btAdd.setText("\u6dfb\u52a0");
-            btAdd.setIcon(new ImageIcon(getClass().getResource("/icons/add_24x24.png")));
+            btAdd.setIcon(new ImageIcon(getClass().getResource("/icons/new_24x24.png")));
             btAdd.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseReleased(MouseEvent e) {
@@ -1346,6 +1458,116 @@ public class FINANCE extends JFrame {
                         .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
         }
+
+        //======== panel5 ========
+        {
+
+            //---- btAddP2 ----
+            btAddP2.setIcon(new ImageIcon(getClass().getResource("/icons/new_24x24.png")));
+            btAddP2.setText("\u65b0\u5efa");
+            btAddP2.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    button1MouseReleased(e);
+                }
+            });
+
+            //======== scrollPane20 ========
+            {
+                scrollPane20.setViewportView(tablePayment2);
+            }
+
+            //---- btPExcel2 ----
+            btPExcel2.setText("\u5bfc\u51fa");
+            btPExcel2.setIcon(new ImageIcon(getClass().getResource("/icons/export_24x24.png")));
+            btPExcel2.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    btPExcelMouseReleased(e);
+                }
+            });
+
+            GroupLayout panel5Layout = new GroupLayout(panel5);
+            panel5.setLayout(panel5Layout);
+            panel5Layout.setHorizontalGroup(
+                panel5Layout.createParallelGroup()
+                    .addGroup(GroupLayout.Alignment.TRAILING, panel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(scrollPane20, GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panel5Layout.createParallelGroup()
+                            .addGroup(panel5Layout.createSequentialGroup()
+                                .addComponent(btPExcel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
+                            .addGroup(panel5Layout.createSequentialGroup()
+                                .addComponent(btAddP2, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8))))
+            );
+            panel5Layout.setVerticalGroup(
+                panel5Layout.createParallelGroup()
+                    .addGroup(panel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panel5Layout.createParallelGroup()
+                            .addComponent(scrollPane20, GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                            .addGroup(panel5Layout.createSequentialGroup()
+                                .addComponent(btAddP2, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btPExcel2)
+                                .addContainerGap(191, Short.MAX_VALUE))))
+            );
+        }
+
+        //======== tp ========
+        {
+
+            //======== scrollPane2 ========
+            {
+                scrollPane2.setViewportView(table4);
+            }
+            tp.addTab("\u673a\u6784\u4eba\u5458\u8868", scrollPane2);
+
+            //======== scrollPane3 ========
+            {
+                scrollPane3.setViewportView(table5);
+            }
+            tp.addTab("\u8f66\u8f86\u4fe1\u606f\u8868", scrollPane3);
+
+            //======== scrollPane4 ========
+            {
+                scrollPane4.setViewportView(table6);
+            }
+            tp.addTab("\u53f8\u673a\u4fe1\u606f\u8868", scrollPane4);
+
+            //======== scrollPane6 ========
+            {
+                scrollPane6.setViewportView(table7);
+            }
+            tp.addTab("\u5165\u5e93\u5355", scrollPane6);
+
+            //======== scrollPane8 ========
+            {
+                scrollPane8.setViewportView(table8);
+            }
+            tp.addTab("\u51fa\u5e93\u5355", scrollPane8);
+
+            //======== scrollPane9 ========
+            {
+                scrollPane9.setViewportView(table9);
+            }
+            tp.addTab("\u4ed8\u6b3e\u5355", scrollPane9);
+
+            //======== scrollPane10 ========
+            {
+                scrollPane10.setViewportView(table10);
+            }
+            tp.addTab("\u6536\u6b3e\u5355", scrollPane10);
+
+            //======== scrollPane11 ========
+            {
+                scrollPane11.setViewportView(table11);
+            }
+            tp.addTab("\u8d26\u6237\u4fe1\u606f\u8868", scrollPane11);
+        }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
 
         String names[] = { "收款日期", "收款单位", "收款人", "收款方", "收款金额", "收款地点"};
@@ -1434,18 +1656,17 @@ public class FINANCE extends JFrame {
     private JScrollPane scrollPane15;
     private JTable tablePayment;
     private JButton btPExcel;
-    private JScrollPane scrollPane14;
     private JPanel panel3;
+    private JScrollPane scrollPane16;
+    private JTable tableReceipt;
     private JButton btDate;
     private JButton btAddress;
     private JTextField textDate;
     private JTextField textAddress;
-    private JScrollPane scrollPane16;
-    private JTable tableReceipt;
     private JLabel label15;
-    private JLabel lbAll;
     private JLabel lbTotal;
     private JButton btRExcel;
+    private JLabel lbAll;
     private JPanel pnTJBB;
     private JTabbedPane tpCost;
     private JScrollPane scrollPane5;
@@ -1475,6 +1696,46 @@ public class FINANCE extends JFrame {
     private JScrollPane scrollPane7;
     private JTable tableBenefit;
     private JPanel pnQCJZ;
+    private JPanel panel6;
+    private JCheckBox chkAccount;
+    private JCheckBox chkInstitution;
+    private JCheckBox chkVehicle;
+    private JCheckBox chkDriverInfo;
+    private JCheckBox chkStorageIn;
+    private JCheckBox chkStorageOut;
+    private JCheckBox chkPayment;
+    private JCheckBox chkReceipt;
+    private JCheckBox checkBox9;
+    private JLabel label16;
+    private JLabel label17;
+    private JLabel label18;
+    private JLabel label19;
+    private JLabel label20;
+    private JLabel label21;
+    private JLabel label22;
+    private JLabel label23;
+    private JLabel label24;
+    private JButton button1;
+    private JPanel pnZHGL;
+    private JScrollPane scrollPane12;
+    private JTabbedPane tabbedPane3;
+    private JScrollPane scrollPane13;
+    private JTable tableAccounts;
+    private JButton button7;
+    private JButton btAdd;
+    private JButton btModify;
+    private JButton button8;
+    private JTextField textName;
+    private JButton btSearch;
+    private JLabel label6;
+    private JButton btDelete;
+    private JLabel label7;
+    private JTextField textName2;
+    private JPanel panel5;
+    private JButton btAddP2;
+    private JScrollPane scrollPane20;
+    private JTable tablePayment2;
+    private JButton btPExcel2;
     private JTabbedPane tp;
     private JScrollPane scrollPane2;
     private JTable table4;
@@ -1492,20 +1753,5 @@ public class FINANCE extends JFrame {
     private JTable table10;
     private JScrollPane scrollPane11;
     private JTable table11;
-    private JPanel pnZHGL;
-    private JScrollPane scrollPane12;
-    private JTabbedPane tabbedPane3;
-    private JScrollPane scrollPane13;
-    private JTable tableAccounts;
-    private JButton button7;
-    private JButton btAdd;
-    private JButton btModify;
-    private JButton button8;
-    private JTextField textName;
-    private JButton btSearch;
-    private JLabel label6;
-    private JButton btDelete;
-    private JLabel label7;
-    private JTextField textName2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
