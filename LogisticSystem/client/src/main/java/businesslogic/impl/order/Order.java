@@ -176,7 +176,7 @@ public class Order {
                 toBO = tmp;
             }
         }
-        if (fromCity == toCity) {
+        if (fromCity.getSerialNum() == toCity.getSerialNum()) {
             routine.add(fromBO.getSerialNum());
             routine.add(toBO.getSerialNum());
         }
