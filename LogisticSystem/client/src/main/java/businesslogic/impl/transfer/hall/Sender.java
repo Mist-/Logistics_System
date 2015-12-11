@@ -3,15 +3,10 @@ package businesslogic.impl.transfer.hall;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import presentation.company.companyManage;
-import data.enums.DataType;
 import data.enums.POType;
-import data.factory.DataServiceFactory;
 import data.po.DataPO;
 import data.po.SenderPO;
-import data.service.CompanyDataService;
 import data.service.TransferDataService;
-import data.vo.SenderVO;
 
 /**
  * ¿ìµÝÔ±Àà

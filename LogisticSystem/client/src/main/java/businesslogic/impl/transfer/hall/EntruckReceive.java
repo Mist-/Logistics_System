@@ -2,14 +2,9 @@ package businesslogic.impl.transfer.hall;
 
 import java.rmi.RemoteException;
 
-import data.enums.DataType;
 import data.enums.POType;
-import data.factory.DataServiceFactory;
 import data.message.ResultMessage;
 import data.po.ArrivalPO;
-import data.po.EntruckPO;
-import data.po.TransferListPO;
-import data.service.TransferDataService;
 import data.vo.ArrivalListVO;
 import data.vo.ArrivalVO;
 import data.vo.DeliveryListVO;

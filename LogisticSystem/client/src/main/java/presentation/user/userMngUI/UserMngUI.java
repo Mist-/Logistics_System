@@ -1,11 +1,7 @@
 package presentation.user.userMngUI;
 
 import businesslogic.impl.user.UserBLImpl;
-import data.enums.DataType;
-import data.factory.DataServiceFactory;
 import data.message.ResultMessage;
-import data.po.StaffPO;
-import data.service.CompanyDataService;
 import data.vo.UserVO;
 
 import java.awt.*;
@@ -16,7 +12,6 @@ import javax.swing.*;
 import javax.swing.GroupLayout;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableModel;
 /*
  * Created by JFormDesigner on Fri Oct 30 14:03:00 CST 2015
  */

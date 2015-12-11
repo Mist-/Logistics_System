@@ -2,7 +2,7 @@ package businesslogic.impl.transfer.hall;
 
 import java.rmi.RemoteException;
 import data.enums.DataType;
-import data.factory.DataServiceFactory;
+import utils.DataServiceFactory;
 import data.message.ResultMessage;
 import data.po.ArrivalPO;
 import data.po.SendListPO;

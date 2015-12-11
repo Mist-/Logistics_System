@@ -7,7 +7,7 @@ import businesslogic.impl.user.InstitutionInfo;
 import businesslogic.service.Transfer.center.TransferReceiveService;
 import data.enums.DataType;
 import data.enums.POType;
-import data.factory.DataServiceFactory;
+import utils.DataServiceFactory;
 import data.message.ResultMessage;
 import data.po.ArrivalPO;
 import data.po.EntruckPO;

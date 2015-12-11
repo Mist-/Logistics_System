@@ -2,7 +2,7 @@ package businesslogic.impl.order;
 
 import data.enums.DataType;
 import data.enums.POType;
-import data.factory.DataServiceFactory;
+import utils.DataServiceFactory;
 import data.message.ResultMessage;
 import data.po.LogisticInfoPO;
 import data.service.OrderDataService;

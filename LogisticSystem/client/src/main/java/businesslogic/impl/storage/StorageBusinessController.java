@@ -3,7 +3,7 @@ package businesslogic.impl.storage;
 import java.rmi.RemoteException;
 import data.message.LoginMessage;
 import data.enums.DataType;
-import data.factory.DataServiceFactory;
+import utils.DataServiceFactory;
 import data.service.StorageDataService;
 import businesslogic.impl.user.InstitutionInfo;
 import businesslogic.service.storage.StorageInService;

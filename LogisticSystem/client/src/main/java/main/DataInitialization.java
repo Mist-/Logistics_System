@@ -2,7 +2,7 @@ package main;
 
 import data.enums.DataType;
 import data.enums.UserRole;
-import data.factory.DataServiceFactory;
+import utils.DataServiceFactory;
 import data.po.CityInfoPO;
 import data.po.InstitutionPO;
 import data.po.StaffPO;
