@@ -190,7 +190,7 @@ public class Order {
             routine.add(toBO.getSerialNum());
         }
 
-        return null;
+        return routine;
     }
 
     /**
