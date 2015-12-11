@@ -97,7 +97,9 @@ public class EntruckList {
 	public EntruckListVO createEntruckList(String[][] orders,
 			InstitutionInfo user, String desName, String driverID,
 			String driverName, String truckID) throws RemoteException {
+		Sender sender = new Sender(transferData,user.getInstitutionID());
 		EntruckListVO entruck = new EntruckListVO();
+		entruck.senders = sender.getAvailableSender();
 		entruck.escortID = user.getStaffID();
 		entruck.info = orders;
 		entruck.destName = desName;

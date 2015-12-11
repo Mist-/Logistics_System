@@ -98,6 +98,7 @@ public class EntruckList {
 			InstitutionInfo user, String desName, String driverID,
 			String driverName, String truckID) throws RemoteException {
 		EntruckListVO entruck = new EntruckListVO();
+		entruck.senders ="";
 		entruck.escortID = user.getStaffID();
 		entruck.info = orders;
 		entruck.destName = desName;
