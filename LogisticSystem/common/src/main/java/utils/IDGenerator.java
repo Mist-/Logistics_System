@@ -15,6 +15,9 @@ public class IDGenerator {
     public static long getNextID(POType type) {
         // TODO: µÈ´ýÍê³É
         DataService ds = DataServiceFactory.getDataServiceByPO(type);
+        if (ds == null) {
+            return new Random().nextInt(100) + 10000000;
+        }
         ArrayList<DataPO> pos = null;
         try {
             pos = ds.getPOList(type);
