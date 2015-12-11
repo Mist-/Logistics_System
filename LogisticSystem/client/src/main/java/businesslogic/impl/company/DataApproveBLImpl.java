@@ -138,7 +138,7 @@ public class DataApproveBLImpl implements DataApproveBLService {
         dataService = DataServiceFactory.getDataServiceByPO(POType.ENTRUCK);
         try {
             EntruckPO entruckPO = (EntruckPO)dataService.search(POType.ENTRUCK,entruckListVO.getEntruckListID());
-            entruckPO.setDestID(entruckListVO.destID);
+            entruckPO.setDestID(Long.parseLong(entruckListVO.destID));
             entruckPO.setFrom(Long.valueOf(entruckListVO.fromID));
             entruckPO.setEscortName(entruckListVO.escortName);
             entruckPO.setMonitorName(entruckListVO.monitorName);

@@ -29,6 +29,7 @@ public class DriverInfoVO {
 		gender = po.getGenderString();
 		phoneNum = po.getPhoneNum();
 		bornDate = po.getBornDate();
+	
 		String[] born = bornDate.split("/");
 		bornY = born[0];
 		bornM = born[1];

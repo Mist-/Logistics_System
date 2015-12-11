@@ -29,8 +29,8 @@ new FormModel {
 					"title": "已审批装车单"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :::p, comp label1:::p:50:p, space :::p, comp comboBox1:::p:97:p, space :::p, comp sortButton:::p::p, space :::p, comp removeOrder:::p::p, space ::405:x, comp createEntruck:::p::p, space :::p}, comp scrollPane1::l::795:x}"
-					"$verticalGroup": "par l {seq t {space :::p, par b {comp label1::b:p::p, comp comboBox1::b:p::p, comp sortButton::b:p::p, comp createEntruck::b:p::p, comp removeOrder::b:p::p}, space u:::p, comp scrollPane1::::303:x}}"
+					"$horizontalGroup": "par l {seq {space :::p, par l {seq l {comp label1:::p:50:p, space :::p, comp comboBox1:::p:97:p, space :::p, comp sortButton:::p::p, space :::p, comp removeOrder:::p::p, space ::405:x, comp createEntruck:::p::p}, comp scrollPane1::l::775:x}, space :::p}}"
+					"$verticalGroup": "par l {seq t {space :::p, par b {comp label1::b:p::p, comp comboBox1::b:p::p, comp sortButton::b:p::p, comp createEntruck::b:p::p, comp removeOrder::b:p::p}, space :p:10:p, comp scrollPane1::::303:x}}"
 				} ) {
 					name: "panel1"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -75,8 +75,8 @@ new FormModel {
 		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 			name: "entruckVO"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {comp scrollPane2::t::795:x, seq {space :::p, par l {seq l {par l {comp label8::l:p::p, comp label7::l:p::p}, space s:::p, par l {comp destName:::::x, comp destID:::::x}}, par l:::p {seq {comp label6:::p::p, space :p:30:p, comp listID:::p:80:p}, seq l {comp label5:::p::p, space s:::p, comp hallID:::p:82:p}, seq l {comp label9:::p::p, space :p:30:p, comp hallName:::::x}}}, space :p:135:p, par l:::p {seq {par l {comp label10::l:p::p, comp label11:::p::p, comp label12:::p::p, comp label13:::p::p}, space u:::p, par l:::p {comp truckID::::80:x, comp staffName::::80:x, comp driverName::::80:x, comp fee::::80:x}}, seq {comp label4:::p::p, space u:::p, comp entruckDate::::80:x}}, space :p:264:p, par l:::p {comp cancelLoad::::78:x, comp saveEntruck::::78:x, comp doEntruck::::78:x}, space :::p}}"
-				"$verticalGroup": "par l {seq t {space :::p, par l {comp label6:::p::p, par b {comp listID::b:p::p, comp label4::b:p::p, comp entruckDate::b:p::p}}, space :::p, par b {comp label5::b:p::p, comp label10::b:p::p, comp truckID::b:p::p, comp hallID::b:p::p}, space :::x, par l {seq {comp doEntruck:::p::p, space :::p, comp saveEntruck:::p::p, space :::p, comp cancelLoad:::p::p}, seq {par b {comp label9::b:p::p, comp label11::b:p::p, comp staffName::b:p::p, comp hallName::b:p::p}, space :::p, par l {par b {comp label8::b:p::p, comp destID::b:p::p}, par b {comp label12::b:p::p, comp driverName::b:p::p}}, space :::p, par l {comp label7:::p::p, comp label13::l:p::p, comp fee::l:p::p, comp destName::l:p::p}}}, space :::p, comp scrollPane2:::p:186:p}}"
+				"$horizontalGroup": "par l {comp scrollPane2::t::795:x, seq {space :::p, par l {seq l {par l {comp label8::l:p::p, comp label7::l:p::p}, space s:::p, par l {comp destName:::::x, comp destID:::::x}}, par l:::p {seq {comp label6:::p::p, space :p:30:p, comp listID:::p:80:p}, seq l {comp label5:::p::p, space s:::p, comp hallID:::p:82:p}, seq l {comp label9:::p::p, space :p:30:p, comp hallName:::::x}}}, space :p:135:p, par l:::p {seq {par l {comp label10::l:p::p, comp label11:::p::p, comp label12:::p::p}, space u:::p, par l:::p {comp truckID::::80:x, comp staffName::::80:x, comp driverName::::80:x}}, seq {comp label4:::p::p, space u:::p, comp entruckDate::::80:x}}, space :p:264:p, par l:::p {comp cancelLoad::::78:x, comp saveEntruck::::78:x, comp doEntruck::::78:x}, space :::p}}"
+				"$verticalGroup": "par l {seq t {space :::p, par l {comp label6:::p::p, par b {comp listID::b:p::p, comp label4::b:p::p, comp entruckDate::b:p::p}}, space :::p, par b {comp label5::b:p::p, comp label10::b:p::p, comp truckID::b:p::p, comp hallID::b:p::p}, space :::x, par l {seq {comp doEntruck:::p::p, space :::p, comp saveEntruck:::p::p, space :::p, comp cancelLoad:::p::p}, seq {par b {comp label9::b:p::p, comp label11::b:p::p, comp staffName::b:p::p, comp hallName::b:p::p}, space :::p, par l {par b {comp label8::b:p::p, comp destID::b:p::p}, par b {comp label12::b:p::p, comp driverName::b:p::p}}, space :::p, par l {comp label7:::p::p, comp destName::l:p::p}}}, space :::p, comp scrollPane2:::p:186:p}}"
 			} ) {
 				name: "DeliveryListPanel"
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -147,10 +147,6 @@ new FormModel {
 					name: "label12"
 					"text": "押运员"
 				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label13"
-					"text": "运费"
-				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "truckID"
 				} )
@@ -159,9 +155,6 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "driverName"
-				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "fee"
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label4"

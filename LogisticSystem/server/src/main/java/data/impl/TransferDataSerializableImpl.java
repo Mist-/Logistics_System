@@ -1,7 +1,6 @@
 package data.impl;
 
 import data.enums.POType;
-
 import data.po.*;
 import data.service.TransferDataService;
 
@@ -55,9 +54,22 @@ public class TransferDataSerializableImpl extends UnicastRemoteObject implements
 
 	@Override
 	public ArrayList<DataPO> searchList(POType type, long institutionID)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+			throws RemoteException {//司机，车辆专用
+		ArrayList<DataPO> all = getPOList(type);
+		ArrayList<DataPO> drivers = new ArrayList<DataPO>();
+		if (all == null) {
+			return null;
+		}else{
+			for(DataPO d: all){
+				long hall = d.getSerialNum()/1000;
+				System.out.println(hall);
+				if (hall == institutionID) {
+					drivers.add(d);
+				}
+			}
+			
+			return drivers;
+		}
 	}
 
 

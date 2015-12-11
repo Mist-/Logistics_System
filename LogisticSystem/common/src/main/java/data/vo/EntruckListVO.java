@@ -20,7 +20,7 @@ public class EntruckListVO extends DeliveryListVO {
     public String driverName;
     public String entruckListID;//装车单编号
 
-	public long destID;
+	public String destID;
     public String vehicleID;  // 车辆编号
          
     
@@ -34,7 +34,7 @@ public class EntruckListVO extends DeliveryListVO {
     	
     }
 	public EntruckListVO(EntruckPO po){
-		destID = po.getDestID();
+		destID = po.getDestID()+"";
 		escortID = po.getEscortID();
 		loadingDate = po.getLoadingDate();
 		vehicleID = po.getVehicleID()+"";

@@ -81,7 +81,7 @@ public class TruckPanel extends JPanel {
 		if(showTruckButton.isEnabled()){
 		deleteButton.setVisible(true);
 		saveButton.setVisible(false);
-		modifyButton.setVisible(false);
+		modifyButton.setVisible(true);
 		int row = truckTable.getSelectedRow();
 		String id = (String) truckTable.getValueAt(row, truckList.getIDRow());
 		long idNum = Long.parseLong(id);
@@ -132,7 +132,6 @@ public class TruckPanel extends JPanel {
 			JOptionPane.showMessageDialog(null, "输入不完整，请重新检查输入", "提示", JOptionPane.INFORMATION_MESSAGE);
 			return ;
 		}
-		truck.ID = id.getText();
 		truck.license = license.getText();
 		truck.year = year.getText();
 		truck.month = month.getText();
@@ -184,7 +183,7 @@ public class TruckPanel extends JPanel {
 	}
 
 	private void addTruckButtonMouseClicked(MouseEvent e) {
-		deleteButton.setVisible(true);
+		deleteButton.setVisible(false);
 		truck = new TruckInfoVO();
 		modifyButton.setVisible(false);
 		modifyButton.setEnabled(false);

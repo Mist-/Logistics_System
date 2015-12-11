@@ -5,7 +5,7 @@ package data.vo;
  *
  */
 public class DriverListVO {
-	public String[] header = {"Ë¾»úĞÕÃû","±àºÅ","×´Ì¬"};
+	public String[] header = {"±àºÅ","ĞÕÃû","×´Ì¬"};
 	public String[][] info;
 	
 	public DriverListVO(String[][] info){
@@ -13,6 +13,6 @@ public class DriverListVO {
 	}
 	
 	public int getIDRow(){
-		return 1;
+		return 0;
 	}
 }

@@ -16,6 +16,9 @@ public class VehicleInfoPO extends DataPO {
     
     public VehicleInfoPO(TruckInfoVO vo){
     	super(POType.VEHICLEINFO);
+    	license = vo.license;
+    	dutyDate = vo.dutyDate;
+    	engaged = false;
     }
     public String getEngagedString(){
     	if(engaged) return "ªı‘À";

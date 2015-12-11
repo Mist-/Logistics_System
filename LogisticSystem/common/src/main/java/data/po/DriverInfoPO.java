@@ -23,7 +23,9 @@ public class DriverInfoPO extends DataPO {
     String timeLimit /* yyyy/mm/dd */;
     
     public String getGenderString(){
-    	if(gender == true) return "Å®";
+    	if(gender == true) {
+    		return "Å®";
+    	}
     	else {
 			return "ÄÐ";
 		}
@@ -31,6 +33,18 @@ public class DriverInfoPO extends DataPO {
 
     public DriverInfoPO(DriverInfoVO vo){
     	super(POType.DRIVERINFO);
+    	this.bornDate = vo.bornDate;
+    	this.engaged = false;
+    	if (vo.gender.equals("ÄÐ")) {
+			this.gender = false;
+		}else {
+			this.gender = true;
+		}
+    	
+    	this.IDCard =Long.parseLong(vo.IDCard);
+    	this.name = vo.name;
+    	this.phoneNum = vo.phoneNum;
+    	this.timeLimit = vo.timeLimit;
     	
     }
     public DriverInfoPO(long ID, String name, boolean gender, String phoneNum, String bornDate, String timeLimit) {

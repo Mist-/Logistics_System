@@ -33,6 +33,8 @@ public class DriverPanel extends JPanel {
 
 	private void setDriverVO() {
 		if (driver != null) {
+			setTextFieldEditable(false);
+			setTextFieldEnabled(false);
 			name.setEnabled(false);
 			num.setEnabled(false);
 			id.setEnabled(false);
@@ -69,7 +71,6 @@ public class DriverPanel extends JPanel {
 	}
 
 	private void setList() {
-
 		driverList = driverManagement.getDrivers();
 		if (driverList != null) {
 			driverTable.setEnabled(true);
@@ -101,7 +102,7 @@ public class DriverPanel extends JPanel {
 	private void showDriverButtonMouseClicked(MouseEvent e) {
 		if (driverTable.isEnabled()) {
 			deleteButton.setVisible(true);
-			modifyButton.setVisible(false);
+			modifyButton.setVisible(true);
 			saveButton.setVisible(false);
 		int row = driverTable.getSelectedRow();
 		String id = (String) driverTable.getValueAt(row, driverList.getIDRow());
@@ -116,29 +117,66 @@ public class DriverPanel extends JPanel {
 	}
 
 	private void addDriverButtonMouseClicked(MouseEvent e) {
+		setTextFieldEditable(true);
 		driver = new DriverInfoVO();
 		deleteButton.setVisible(false);
 		modifyButton.setVisible(false);
+		saveButton.setVisible(true);
+		saveButton.setEnabled(true);
 		remove(driverListPane);
 		add(driverPane);
-		modifyButton.setEnabled(false);
-		saveButton.setEnabled(true);
 		driverPane.validate();
 		driverPane.updateUI();
-		driverPane.repaint();
+		driverPane.setVisible(true);
 	}
 
+	private void setTextFieldEditable(boolean b){
+		name.setEditable(b);
+		id.setEditable(b);
+		gender.setEditable(b);
+		phone.setEditable(b);
+		bornD.setEditable(b);
+		bornM.setEditable(b);
+		bornY.setEditable(b);
+		licenseD.setEditable(b);
+		licenseM.setEditable(b);
+		licenseY.setEditable(b);
+	}
+	
+	private void setTextFieldEnabled(boolean b){
+		name.setEnabled(b);
+		num.setEnabled(b);
+		id.setEnabled(b);
+		gender.setEnabled(b);
+		phone.setEnabled(b);
+		status.setEnabled(b);
+		bornY.setEnabled(b);
+		bornM.setEnabled(b);
+		bornD.setEnabled(b);
+		licenseY.setEnabled(b);
+		licenseM.setEnabled(b);
+		licenseD.setEnabled(b);
+	}
+	
+	private void removeInfoInTextField(){
+		setTextFieldEnabled(true);
+		name.setText("");
+		num.setText("保存后生成");
+		status.setText("空闲");
+		id.setText("");
+		gender.setText("");
+		phone.setText("");
+		bornY.setText("");
+		bornM.setText("");
+		bornD.setText("");
+		licenseD.setText("");
+		licenseM.setText("");
+		licenseY.setText("");
+	}
+	
 	private void modifyButtonMouseClicked(MouseEvent e) {
-		name.setEditable(true);
-		id.setEditable(true);
-		gender.setEditable(true);
-		phone.setEditable(true);
-		bornD.setEditable(true);
-		bornM.setEditable(true);
-		bornY.setEditable(true);
-		licenseD.setEditable(true);
-		licenseM.setEditable(true);
-		licenseY.setEditable(true);
+		setTextFieldEditable(true);
+		setTextFieldEnabled(true);
 		modifyButton.setEnabled(false);// 只能点击一次，点击后失效
 		saveButton.setEnabled(true);// 点击修改后，保存按钮可用
 	}
@@ -159,20 +197,11 @@ public class DriverPanel extends JPanel {
 		cancelDialog.setVisible(false);
 		remove(driverPane);
 		add(driverListPane);
+		driverPane.setVisible(false);
 		driverListPane.validate();
 		driverListPane.updateUI();
 		driverListPane.setVisible(true);
-
-		name.setText("");
-		id.setText("");
-		gender.setText("");
-		phone.setText("");
-		bornY.setText("");
-		bornM.setText("");
-		bornD.setText("");
-		licenseD.setText("");
-		licenseM.setText("");
-		licenseY.setText("");
+		removeInfoInTextField();
 	}
 
 	private boolean checkAddInput() {
@@ -210,13 +239,16 @@ public class DriverPanel extends JPanel {
 			driver.IDCard = id.getText();
 			driver.gender = gender.getText();
 			driver.phoneNum = phone.getText();
-			driver.bornDate = bornY + "/" + bornM + "/" + bornD;
-			driver.timeLimit = licenseY + "/" + licenseM + "/" + licenseD;
+			
+			driver.bornDate = bornY.getText() + "/" + bornM.getText() + "/" + bornD.getText();
+			
+			driver.timeLimit = licenseY.getText() + "/" + licenseM.getText() + "/" + licenseD.getText();
 			ResultMessage result = ResultMessage.FAILED;
-			if (modifyButton.isEnabled()) {
+			if (modifyButton.isVisible()) {
 				result = driverManagement.modifyDriver(driver);
-			}else{
+			}else {
 				result = driverManagement.addDriver(driver);
+				System.out.println("adddriver");
 			}
 			if (result == ResultMessage.SUCCESS) {
 				JOptionPane.showMessageDialog(null, "保存成功", "提示",
@@ -245,6 +277,10 @@ public class DriverPanel extends JPanel {
 			model.removeRow(row);
 			driverTable.updateUI();
 			driverTable.repaint();
+			remove(driverPane);
+			add(driverListPane);
+			driverListPane.updateUI();
+			driverListPane.setVisible(true);
 		}else {
 			JOptionPane.showMessageDialog(null, "操作失败", "提示", JOptionPane.INFORMATION_MESSAGE);
 		}

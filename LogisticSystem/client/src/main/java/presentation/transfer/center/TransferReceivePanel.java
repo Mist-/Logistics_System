@@ -33,7 +33,7 @@ public class TransferReceivePanel extends JPanel {
 			return;
 		}
 		DefaultTableModel arriveListModel = new DefaultTableModel(
-				arrival.getOrderAndStatus(), arrival.getHeader());
+				arriveList.info, arriveList.header);
 		arriveListTabble.setModel(arriveListModel);
 
 		arriveListTabble.repaint();

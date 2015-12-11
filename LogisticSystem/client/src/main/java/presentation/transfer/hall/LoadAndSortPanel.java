@@ -3,14 +3,12 @@
  */
 
 package presentation.transfer.hall;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.rmi.RemoteException;
 import java.util.Vector;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import utils.Timestamper;
 import data.message.ResultMessage;
 import data.vo.BriefEntruckListVO;
 import data.vo.BriefOrderVO;
@@ -60,9 +58,9 @@ public class LoadAndSortPanel extends JPanel {
 			// 设置装车单 订单列表
 			DefaultTableModel model = new DefaultTableModel(entruck.info,
 					entruck.header);
+			entruckDate.setText(entruck.loadingDate);
 			entruckTable.setModel(model);
-			entruckDate.setText(Timestamper.getTimeByDate());
-			listID.setText(entruck.entruckListID);
+			listID.setText("保存后生成");
 			hallID.setText(entruck.fromID);
 			hallName.setText(entruck.fromName);
 			destID.setText(entruck.destID + "");
@@ -70,7 +68,6 @@ public class LoadAndSortPanel extends JPanel {
 			truckID.setText(entruck.vehicleID);
 			staffName.setText(entruck.monitorName);
 			driverName.setText(entruck.escortName);
-			fee.setText(entruck.fee);
 			entruckTable.validate();
 			entruckTable.updateUI();
 			remove(loadAndSortPane);
@@ -96,7 +93,6 @@ public class LoadAndSortPanel extends JPanel {
 		truckID.setEnabled(false);
 		staffName.setEnabled(false);
 		driverName.setEnabled(false);
-		fee.setEnabled(false);
 
 	}
 
@@ -166,9 +162,8 @@ public class LoadAndSortPanel extends JPanel {
 		for (int i = 0; i < v.size(); i++) {
 			Vector<String> in = v.get(i);
 			String[] ins = new String[in.size()];
-			for (int j = 0; j < in.size(); j++) {
-				ins[i] = in.get(j);
-			}
+			ins[0] = in.get(0);
+			ins[1] = in.get(1);
 			info[i] = ins;
 		}
 		try {
@@ -294,11 +289,9 @@ public class LoadAndSortPanel extends JPanel {
 		label10 = new JLabel();
 		label11 = new JLabel();
 		label12 = new JLabel();
-		label13 = new JLabel();
 		truckID = new JTextField();
 		staffName = new JTextField();
 		driverName = new JTextField();
-		fee = new JTextField();
 		label4 = new JLabel();
 		entruckDate = new JTextField();
 		errorDialog = new JDialog();
@@ -416,17 +409,19 @@ public class LoadAndSortPanel extends JPanel {
 					panel1Layout.createParallelGroup()
 						.addGroup(panel1Layout.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(label1, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(sortButton)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(removeOrder)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 405, Short.MAX_VALUE)
-							.addComponent(createEntruck)
+							.addGroup(panel1Layout.createParallelGroup()
+								.addGroup(panel1Layout.createSequentialGroup()
+									.addComponent(label1, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(sortButton)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(removeOrder)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 405, Short.MAX_VALUE)
+									.addComponent(createEntruck))
+								.addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE))
 							.addContainerGap())
-						.addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
 				);
 				panel1Layout.setVerticalGroup(
 					panel1Layout.createParallelGroup()
@@ -438,7 +433,7 @@ public class LoadAndSortPanel extends JPanel {
 								.addComponent(sortButton)
 								.addComponent(createEntruck)
 								.addComponent(removeOrder))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+							.addGap(10, 10, 10)
 							.addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE))
 				);
 			}
@@ -508,9 +503,6 @@ public class LoadAndSortPanel extends JPanel {
 				//---- label12 ----
 				label12.setText("\u62bc\u8fd0\u5458");
 
-				//---- label13 ----
-				label13.setText("\u8fd0\u8d39");
-
 				//---- label4 ----
 				label4.setText("\u88c5\u8f66\u65e5\u671f");
 
@@ -549,14 +541,12 @@ public class LoadAndSortPanel extends JPanel {
 									.addGroup(DeliveryListPanelLayout.createParallelGroup()
 										.addComponent(label10)
 										.addComponent(label11)
-										.addComponent(label12)
-										.addComponent(label13))
+										.addComponent(label12))
 									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 									.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
 										.addComponent(truckID, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
 										.addComponent(staffName, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-										.addComponent(driverName, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-										.addComponent(fee, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)))
+										.addComponent(driverName, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)))
 								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
 									.addComponent(label4)
 									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
@@ -609,8 +599,6 @@ public class LoadAndSortPanel extends JPanel {
 									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 									.addGroup(DeliveryListPanelLayout.createParallelGroup()
 										.addComponent(label7)
-										.addComponent(label13)
-										.addComponent(fee, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 										.addComponent(destName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE))
@@ -752,11 +740,9 @@ public class LoadAndSortPanel extends JPanel {
 	private JLabel label10;
 	private JLabel label11;
 	private JLabel label12;
-	private JLabel label13;
 	private JTextField truckID;
 	private JTextField staffName;
 	private JTextField driverName;
-	private JTextField fee;
 	private JLabel label4;
 	private JTextField entruckDate;
 	private JDialog errorDialog;

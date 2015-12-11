@@ -517,7 +517,7 @@ public class companyManage extends JFrame {
                     Vector<String> entruck = entrukModify.get(i);
                     entruckListVO.entruckListID = entruck.get(0);
                     entruckListVO.fromID = entruck.get(1);
-                    entruckListVO.destID = Long.valueOf(entruck.get(2));
+                    entruckListVO.destID =entruck.get(2);
                     entruckListVO.monitorName = entruck.get(3);
                     entruckListVO.escortName = entruck.get(4);
                     resultMessage = controller.modifyEntruck(entruckListVO);

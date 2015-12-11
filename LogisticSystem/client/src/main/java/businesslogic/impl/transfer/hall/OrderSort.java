@@ -85,9 +85,10 @@ public class OrderSort implements LoadAndSortService {
 		if(o != null){//如果正确搜索到订单
 			order = new ArrayList<OrderPO>();
 			for (OrderPO d : o) {
-				if (d.getNextDestination() == desID)
+				if (d.getNextDestination() == desID){
 					System.out.println(desName);
 					order.add(d);
+				}
 			}
 			
 			Vector<Vector<String>> info = new Vector<Vector<String>>();
@@ -124,9 +125,8 @@ public class OrderSort implements LoadAndSortService {
 		String driverID = driverNameAndID[0];
 		String driverName = driverNameAndID[1];
 		String vehicleID = trucks.getAvailableTruck() + "";
-
-		return entruckList.createEntruckList(orders, user, desName, driverID,
-				driverName, vehicleID);
+		return entruckList.createEntruckList(orders, user, desName, desID+"",
+				driverID, driverName, vehicleID);
 	}
 
 	@Override

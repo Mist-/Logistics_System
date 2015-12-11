@@ -2,10 +2,12 @@ package businesslogic.impl.transfer.hall;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+
 import businesslogic.impl.user.InstitutionInfo;
 import data.enums.DataType;
 import data.enums.POType;
 import utils.DataServiceFactory;
+import utils.Timestamper;
 import data.message.ResultMessage;
 import data.po.DataPO;
 import data.po.EntruckPO;
@@ -59,6 +61,7 @@ public class EntruckList {
 			throws RemoteException {
 		entruckList = transferData.getNewlyApprovedPO(POType.ENTRUCK,
 				institutionID);
+		
 		if (entruckList != null) {//获取成功则显示
 			String[][] info = new String[entruckList.size()][2];
 			for (int i = 0; i < entruckList.size(); i++) {
@@ -75,12 +78,10 @@ public class EntruckList {
 	public ResultMessage saveEntruckList(EntruckListVO entruckList)
 			throws RemoteException {
 		EntruckPO entruckPO = new EntruckPO();
-		entruckPO.setDestID(entruckList.destID);
+		entruckPO.setDestID(Long.parseLong(entruckList.destID));
 		entruckPO.setDestName(entruckList.destName);
-		entruckPO.setEntruckListID(Long.parseLong(entruckList.entruckListID));
 		entruckPO.setEscortID(entruckList.escortID);
 		entruckPO.setEscortName(entruckList.escortName);
-		entruckPO.setFee(Double.parseDouble(entruckList.fee));
 		entruckPO.setFrom(Long.parseLong(entruckList.fromID));
 		entruckPO.setLoadingDate(entruckList.loadingDate);
 		entruckPO.setMonitorName(entruckList.monitorName);
@@ -95,22 +96,23 @@ public class EntruckList {
 	}
 
 	public EntruckListVO createEntruckList(String[][] orders,
-			InstitutionInfo user, String desName, String driverID,
+			InstitutionInfo user, String desName, String destID,String driverID,
 			String driverName, String truckID) throws RemoteException {
 		EntruckListVO entruck = new EntruckListVO();
+		entruck.loadingDate = Timestamper.getTimeByDate();
+		System.out.println(entruck.loadingDate);
 		entruck.escortID = user.getStaffID();
 		entruck.info = orders;
 		entruck.destName = desName;
-		entruck.escortName = user.getStaffName();
+		entruck.destID = destID;
+		entruck.escortName = driverName;
 		entruck.fromID = user.getInstitutionID() + "";
 		entruck.fromName = user.getInstitutionName();
-		entruck.loadingDate = null;
-		entruck.fee = null;
 		entruck.monitorName = user.getStaffName();
 		entruck.driverID = driverID;
 		entruck.driverName = driverName;
 		entruck.vehicleID = truckID;
-
+		
 		return entruck;
 	}
 }
