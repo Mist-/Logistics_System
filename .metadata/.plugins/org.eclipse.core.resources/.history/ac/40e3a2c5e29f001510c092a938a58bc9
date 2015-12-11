@@ -86,7 +86,6 @@ public class OrderSort implements LoadAndSortService {
 			order = new ArrayList<OrderPO>();
 			for (OrderPO d : o) {
 				if (d.getNextDestination() == desID)
-					System.out.println(desName);
 					order.add(d);
 			}
 			

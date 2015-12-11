@@ -84,10 +84,10 @@ public class OrderSort implements LoadAndSortService {
 		ArrayList<OrderPO> o = orderData.getFreshOrder(user.getInstitutionID());//根据营业厅编号搜索新订单
 		if(o != null){//如果正确搜索到订单
 			order = new ArrayList<OrderPO>();
-			for (OrderPO d : o) {
-				if (d.getNextDestination() == desID)
-					System.out.println(desName);
-					order.add(d);
+			for (DataPO d : o) {
+				OrderPO or = (OrderPO) d;
+				if (or.getNextDestination() == desID)
+					order.add(or);
 			}
 			
 			Vector<Vector<String>> info = new Vector<Vector<String>>();
