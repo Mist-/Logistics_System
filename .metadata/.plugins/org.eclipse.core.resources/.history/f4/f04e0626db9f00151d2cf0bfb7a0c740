@@ -2,16 +2,13 @@ package businesslogic.impl.transfer.center;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-
 import businesslogic.impl.order.OrderBLController;
-import businesslogic.impl.order.OrderList;
 import businesslogic.impl.storage.StorageInfo;
 import businesslogic.impl.transfer.TransferInfo;
 import businesslogic.impl.user.CityInfo;
 import businesslogic.impl.user.InstitutionInfo;
 import businesslogic.service.Transfer.center.TransferLoadService;
 import businesslogic.service.order.OrderBLService;
-import businesslogic.service.order.OrderListService;
 import data.enums.DataType;
 import data.enums.StorageArea;
 import data.factory.DataServiceFactory;
@@ -89,7 +86,7 @@ public class TransferLoad implements TransferLoadService {
 		targetInstitutionName = desName + "中转中心";
 		StoragePositionAndOrderID positionAndOrderID = storageInfo
 				.getOrderID(transferType); // 固定区域搜索订单
-		OrderListService orderBL = new OrderList();
+		OrderBLService orderBL = new OrderBLController();
 		if (positionAndOrderID == null) {
 			return null;
 		}

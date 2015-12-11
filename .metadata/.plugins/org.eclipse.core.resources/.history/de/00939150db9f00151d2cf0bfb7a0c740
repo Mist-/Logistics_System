@@ -22,7 +22,6 @@ import businesslogic.impl.user.CityInfo;
 import businesslogic.impl.user.InstitutionInfo;
 import businesslogic.service.Transfer.hall.LoadAndSortService;
 import businesslogic.service.order.OrderBLService;
-import businesslogic.service.order.OrderListService;
 
 public class OrderSort implements LoadAndSortService {
 	InstitutionInfo user; // 构造时传入

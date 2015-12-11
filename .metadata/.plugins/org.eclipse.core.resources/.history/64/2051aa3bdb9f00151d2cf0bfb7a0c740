@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import businesslogic.impl.order.OrderBLController;
-import businesslogic.impl.order.OrderList;
 import businesslogic.impl.storage.StorageInfo;
 import businesslogic.impl.transfer.TransferInfo;
 import businesslogic.impl.user.CityInfo;
@@ -89,7 +88,14 @@ public class TransferLoad implements TransferLoadService {
 		targetInstitutionName = desName + "中转中心";
 		StoragePositionAndOrderID positionAndOrderID = storageInfo
 				.getOrderID(transferType); // 固定区域搜索订单
-		OrderListService orderBL = new OrderList();
+		OrderListService orderBL = new OrderListService() {
+			
+			@Override
+			public ArrayList<OrderPO> search(long[] order) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+		};();
 		if (positionAndOrderID == null) {
 			return null;
 		}

@@ -17,12 +17,10 @@ import data.vo.BriefEntruckListVO;
 import data.vo.BriefOrderVO;
 import data.vo.EntruckListVO;
 import businesslogic.impl.order.OrderBLController;
-import businesslogic.impl.order.OrderList;
 import businesslogic.impl.user.CityInfo;
 import businesslogic.impl.user.InstitutionInfo;
 import businesslogic.service.Transfer.hall.LoadAndSortService;
 import businesslogic.service.order.OrderBLService;
-import businesslogic.service.order.OrderListService;
 
 public class OrderSort implements LoadAndSortService {
 	InstitutionInfo user; // 构造时传入
@@ -33,7 +31,7 @@ public class OrderSort implements LoadAndSortService {
 
 	@Override
 	public ResultMessage doEntruck() {
-		OrderListService orderData = new OrderList();
+		OrderBLService orderData = new OrderBLController();
 		long[] order = entruckList.getOrder();
 		ArrayList<OrderPO> orderPOs = orderData.search(order);
 		// 修改订单物流信息
