@@ -52,7 +52,7 @@ public class TransferLoad implements TransferLoadService {
 		// 类型为空运或铁运，返回其他中转中心信息
 		if (type == StorageArea.PLANE || type == StorageArea.TRAIN) {
 			return city.getOtherCitys();
-		} else {// 返回本中转中心下属营业厅信息以及所有中转中心
+		} else {// 返回本中转中心下属营业厅信息 !!!!!!!!!!!!!!!!!!!!!!!!!!!!以及所有中转中心
 			ArrayList<String> dest = new ArrayList<String>();
 			ArrayList<String> otherCitys = city.getOtherCitys();
 			ArrayList<String> halls;

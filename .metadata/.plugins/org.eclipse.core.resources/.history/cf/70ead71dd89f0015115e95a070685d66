@@ -86,7 +86,7 @@ public class OrderSort implements LoadAndSortService {
 				.getDataServiceByType(DataType.OrderDataService);
 		try {
 			ArrayList<DataPO> o = orderData.searchByLoc(user
-					.getInstitutionName() + " *");//根据营业厅编号搜索新订单
+					.getInstitutionName() + " *");//根据目的地搜索订单
 			if(o != null){//如果正确搜索到订单
 				order = new ArrayList<OrderPO>();
 				for (DataPO d : o) {

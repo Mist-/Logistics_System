@@ -120,6 +120,7 @@ public class TransferReceive implements TransferReceiveService {
 		try {
 		order =  arrivalList.doArrive();
 		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return ResultMessage.FAILED;
 		}

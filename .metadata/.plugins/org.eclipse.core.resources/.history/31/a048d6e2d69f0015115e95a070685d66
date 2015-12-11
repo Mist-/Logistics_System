@@ -2,6 +2,9 @@ package businesslogic.impl.storage;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+
+import javax.swing.text.Position;
+
 import businesslogic.impl.transfer.center.StorageInfoService;
 import data.enums.DataType;
 import data.enums.POType;
@@ -17,7 +20,7 @@ import data.vo.StorageInVO;
 import data.vo.StorageOutVO;
 import data.vo.StoragePositionAndOrderID;
 
-public class StorageInfo implements StorageInfoService {
+public class StorageInfo implements StorageInfoService{
 	StorageDataService storageData;
 	StorageInfoPO storageInfo;
 
@@ -69,13 +72,14 @@ public class StorageInfo implements StorageInfoService {
 		return vo;
 	}
 
+
+	
 	/**
 	 * 判断仓库是否存在
-	 * 
 	 * @return
 	 */
-	public boolean isStorageExist() {
-		if (storageInfo == null)
+	public boolean isStorageExist(){
+		if(storageInfo == null)
 			return false;
 		else {
 			return true;
@@ -103,7 +107,8 @@ public class StorageInfo implements StorageInfoService {
 			for (int i = 0; i < order.size(); i++) {
 				OrderPO o = order.get(i);
 				StorageArea area = o.getTransferType();
-				String[] s = getPosition(area, o.getSerialNum()).split("-");
+				String[] s = getPosition(area, o.getSerialNum())
+						.split("-");
 
 				switch (s[1]) {
 				case "0":
@@ -264,18 +269,18 @@ public class StorageInfo implements StorageInfoService {
 		}
 
 		// 扩充区域搜索订单
+		if(storageInfo.getEnlargeArea() == transferType){
+		info = orders.get(3);
 		if (storageInfo.getEnlargeArea() == transferType) {
-			info = orders.get(3);
-			if (storageInfo.getEnlargeArea() == transferType) {
-				for (int r = 0; r < storageInfo.getFlexibleRow(); r++) {
-					for (int s = 0; s < storageInfo.getShelf(); s++) {
-						for (int n = 0; n < storageInfo.getNum(); n++) {
-							order.add(info[r][s][n]);
-							position.add("机动区" + "-" + r + "-" + s + "-" + n);
-						}
+			for (int r = 0; r < storageInfo.getFlexibleRow(); r++) {
+				for (int s = 0; s < storageInfo.getShelf(); s++) {
+					for (int n = 0; n < storageInfo.getNum(); n++) {
+						order.add(info[r][s][n]);
+						position.add("机动区" + "-" + r + "-" + s + "-" + n);
 					}
 				}
 			}
+		}
 		}
 
 		return new StoragePositionAndOrderID(position, order);
@@ -359,9 +364,9 @@ public class StorageInfo implements StorageInfoService {
 		return null;
 	}
 
+	
 	/**
 	 * 修改仓库信息
-	 * 
 	 * @param storageOut
 	 * @param institution
 	 * @return
@@ -372,8 +377,10 @@ public class StorageInfo implements StorageInfoService {
 		if (storageInfo == null)
 			return ResultMessage.FAILED;
 
+		
 		ArrayList<long[][][]> info = storageInfo.getStorage();
 		String[][] position = storageOut.getPosition();
+		
 
 		for (int i = 0; i < position.length; i++) {
 			int index = Integer.parseInt(position[i][0]);
@@ -387,6 +394,7 @@ public class StorageInfo implements StorageInfoService {
 		storageData.modify(storageInfo);
 		return ResultMessage.SUCCESS;
 	}
+	
 
 	public StorageInfo(StorageDataService storageData, long centerID)
 			throws RemoteException {
@@ -394,15 +402,13 @@ public class StorageInfo implements StorageInfoService {
 		storageInfo = (StorageInfoPO) storageData.search(POType.STORAGEINFO,
 				centerID);
 	}
-
-	public StorageInfo(long centerID) throws RemoteException {
-		this.storageData = (StorageDataService) DataServiceFactory
-				.getDataServiceByType(DataType.StorageDataService);
-		storageInfo = (StorageInfoPO) storageData.search(POType.STORAGEINFO,
-				centerID);
+	
+	public StorageInfo(long centerID) throws RemoteException{
+		this.storageData = (StorageDataService) DataServiceFactory.getDataServiceByType(DataType.StorageDataService);
+		storageInfo = (StorageInfoPO) storageData.search(POType.STORAGEINFO, centerID);
 	}
 
-	public StorageInfoPO getStorageInfoPO() {
+	public StorageInfoPO getStorageInfoPO(){
 		return storageInfo;
 	}
 }

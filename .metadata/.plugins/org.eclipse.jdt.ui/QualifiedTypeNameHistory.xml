@@ -29,7 +29,6 @@
 <fullyQualifiedTypeName name="businesslogic.impl.transfer.hall.DriverManagement"/>
 <fullyQualifiedTypeName name="businesslogic.impl.transfer.hall.TruckManagement"/>
 <fullyQualifiedTypeName name="javax.swing.DefaultComboBoxModel"/>
-<fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
 <fullyQualifiedTypeName name="businesslogic.impl.transfer.hall.ArrivalList"/>
 <fullyQualifiedTypeName name="businesslogic.impl.transfer.hall.EntruckList"/>
 <fullyQualifiedTypeName name="data.vo.EntruckListVO"/>
@@ -50,7 +49,6 @@
 <fullyQualifiedTypeName name="data.enums.POType"/>
 <fullyQualifiedTypeName name="java.security.Timestamp"/>
 <fullyQualifiedTypeName name="utils.Timestamper"/>
-<fullyQualifiedTypeName name="data.enums.StorageArea"/>
 <fullyQualifiedTypeName name="businesslogic.impl.user.InstitutionInfo"/>
 <fullyQualifiedTypeName name="data.message.ResultMessage"/>
 <fullyQualifiedTypeName name="data.vo.TransferListVO"/>
@@ -60,4 +58,6 @@
 <fullyQualifiedTypeName name="data.enums.StockStatus"/>
 <fullyQualifiedTypeName name="data.enums.DataState"/>
 <fullyQualifiedTypeName name="java.lang.Long"/>
+<fullyQualifiedTypeName name="data.enums.StorageArea"/>
+<fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
 </qualifiedTypeNameHistroy>
