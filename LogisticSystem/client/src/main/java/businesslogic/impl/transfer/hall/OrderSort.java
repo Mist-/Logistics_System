@@ -98,8 +98,11 @@ public class OrderSort implements LoadAndSortService {
 			e.printStackTrace();
 			return null;
 		}
-
-		String[] driverNameAndID = drivers.getAvailableDriver().split("-");
+		String s = drivers.getAvailableDriver();
+		if (s == null) {
+			return null;
+		}
+		String[] driverNameAndID = s.split("-");
 		if (driverNameAndID == null) {
 			return null;
 		}

@@ -61,7 +61,8 @@ public class EntruckList {
 			throws RemoteException {
 		entruckList = transferData.getNewlyApprovedPO(POType.ENTRUCK,
 				institutionID);
-		
+		System.out.println(institutionID);
+		System.out.println(entruckList.size());
 		if (entruckList != null) {//获取成功则显示
 			String[][] info = new String[entruckList.size()][2];
 			for (int i = 0; i < entruckList.size(); i++) {

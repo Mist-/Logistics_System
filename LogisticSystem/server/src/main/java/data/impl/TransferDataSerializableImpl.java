@@ -60,8 +60,9 @@ public class TransferDataSerializableImpl extends UnicastRemoteObject implements
 		if (all == null) {
 			return null;
 		}else{
+			System.out.println(all.size());
 			for(DataPO d: all){
-				long hall = d.getSerialNum()/1000;
+				long hall = d.getSerialNum()/10000;
 				System.out.println(hall);
 				if (hall == institutionID) {
 					drivers.add(d);
