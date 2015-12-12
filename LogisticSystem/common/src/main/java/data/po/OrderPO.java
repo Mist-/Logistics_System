@@ -19,19 +19,19 @@ public class OrderPO extends DataPO {
     boolean fresh = true;
 
     //新增：运输方式
-    StorageArea transferType;
+    StorageArea transferType = StorageArea.FLEXIBLE;
 
-    String sname, saddress, scompany, sphone,
-            rname, rcompany, rphone;
+    String sname = "", saddress = "", scompany = "", sphone = "",
+            rname = "", rcompany = "", rphone = "";
     /**
      * raadress的格式要求：
      * 城市-区-详细地址
      */
-    String raddress;
+    String raddress = "";
     /**
      * 物流路径。最多包含四站
      */
-    ArrayList<Long> routine;
+    ArrayList<Long> routine = new ArrayList<>();
 
     // 目标营业厅的编号
     long destID;
@@ -118,6 +118,7 @@ public class OrderPO extends DataPO {
      */
     public void updateRoutine() {
         routine.remove(0);
+        this.fresh = false;
     }
 
 
@@ -146,7 +147,6 @@ public class OrderPO extends DataPO {
      */
     public long getNextDestination() {
         long sn = routine.get(1);
-        fresh = false;
         return sn;
     }
 
