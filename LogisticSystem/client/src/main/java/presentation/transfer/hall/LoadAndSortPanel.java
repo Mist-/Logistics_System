@@ -168,6 +168,9 @@ public class LoadAndSortPanel extends JPanel {
 		}
 		try {
 			entruck = loadAndSort.createEntruckList(info);
+			if (entruck == null) {
+				JOptionPane.showMessageDialog(null, "请检查本营业厅是否有司机和车辆", "提示", JOptionPane.INFORMATION_MESSAGE);
+			}
 		} catch (RemoteException e1) {
 			e1.printStackTrace();
 			JOptionPane.showMessageDialog(null, "网络连接中断", "提示", JOptionPane.INFORMATION_MESSAGE);

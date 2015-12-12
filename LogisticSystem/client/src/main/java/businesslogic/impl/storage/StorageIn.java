@@ -122,7 +122,7 @@ public class StorageIn implements StorageInService{
 	 * 修改订单物流信息(未完)
 	 */
 	private void modifyOrder(ArrayList<Long> orderID) {
-		orderList.modifyOrder(orderID);
+		orderList.modifyOrder(orderID,"到达"+user.getInstitutionName());
 	}
 
 	/**

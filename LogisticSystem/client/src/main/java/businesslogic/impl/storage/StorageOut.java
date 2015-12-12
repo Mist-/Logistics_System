@@ -51,7 +51,7 @@ public class StorageOut implements StorageOutService{
 		for(int i = 0 ;i < o.length;i++){
 			order.add(o[i]);
 		}
-		orderList.modifyOrder(order);
+		orderList.modifyOrder(order,"µ½´ï"+user.getInstitutionName());
 		return ResultMessage.SUCCESS;
 	}
 	

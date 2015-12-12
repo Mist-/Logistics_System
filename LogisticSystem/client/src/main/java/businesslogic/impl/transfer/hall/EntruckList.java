@@ -78,6 +78,9 @@ public class EntruckList {
 	public ResultMessage saveEntruckList(EntruckListVO entruckList)
 			throws RemoteException {
 		EntruckPO entruckPO = new EntruckPO();
+		//装车单号格式：
+		long entruckID = Long.parseLong(entruckList.fromID)*100000+ entruckPO.getSerialNum();
+		entruckPO.setSerialNum(entruckID);
 		entruckPO.setDestID(Long.parseLong(entruckList.destID));
 		entruckPO.setDestName(entruckList.destName);
 		entruckPO.setEscortID(entruckList.escortID);

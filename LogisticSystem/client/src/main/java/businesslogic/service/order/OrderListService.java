@@ -1,6 +1,7 @@
 package businesslogic.service.order;
 
 import data.po.OrderPO;
+import data.vo.BriefOrderVO;
 
 import java.util.ArrayList;
 
@@ -8,7 +9,17 @@ import java.util.ArrayList;
  * Created by mist on 2015/12/11 0011.
  */
 public interface OrderListService {
-	public ArrayList<OrderPO> getFreshOrder(long institution) ;
+	/**
+	 * 获取新订单（营业厅）
+	 * @param institution 当前营业厅编号
+	 * @param destID 目标地编号
+	 * @return 订单列表
+	 */
+	public BriefOrderVO getFreshOrder(long institution,long destID) ;
+	
+	public void modifyOrder(ArrayList<Long> orderID,String info);
+	
+	public void modifyOrderPosition(ArrayList<Long> orderID);
 	
     ArrayList<OrderPO> search(long[] order);
 }

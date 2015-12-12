@@ -1,0 +1,15 @@
+package businesslogic.service.order;
+
+import data.po.OrderPO;
+import data.vo.BriefOrderVO;
+
+import java.util.ArrayList;
+
+/**
+ * Created by mist on 2015/12/11 0011.
+ */
+public interface OrderListService {
+	public BriefOrderVOs getFreshOrder(long institution) ;
+	
+    ArrayList<OrderPO> search(long[] order);
+}
