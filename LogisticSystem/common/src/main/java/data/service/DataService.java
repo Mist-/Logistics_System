@@ -238,9 +238,9 @@ public interface DataService extends Remote {
         for (int i = 0; i < getPOList(datapo.getPOType()).size(); ++i) {
             if (datapo.getSerialNum() == datapo.getSerialNum()) {
                 datapo.setState(DataState.APPROVED);
+                getNewlyApproved().add(datapo);
             }
         }
-        getNewlyApproved().add(datapo);
         modify(datapo);
         return ResultMessage.SUCCESS;
     }
