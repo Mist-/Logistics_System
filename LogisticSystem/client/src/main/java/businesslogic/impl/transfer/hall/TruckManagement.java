@@ -118,7 +118,7 @@ public class TruckManagement implements TruckManagementService {
 	@Override
 	public ResultMessage addTruck(TruckInfoVO newTruck) {
 		VehicleInfoPO truck = new VehicleInfoPO(newTruck);
-		long num = truck.getSerialNum()%100+ user.getInstitutionID()*1000;
+		long num = truck.getSerialNum()+ user.getInstitutionID()*10000;
 		truck.setSerialNum(num);
 		try {
 			return transferData.add(truck);

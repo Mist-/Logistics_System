@@ -12,6 +12,5 @@ public class Test {
             System.out.println(sn);
         }
 
-        new OrderList().getFreshOrder(1002100002);
     }
 }

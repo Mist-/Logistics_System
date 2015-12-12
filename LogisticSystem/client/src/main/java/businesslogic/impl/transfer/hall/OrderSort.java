@@ -24,11 +24,11 @@ public class OrderSort implements LoadAndSortService {
 	CityInfo city;// getDestination时new,城市相关服务
 	EntruckList entruckList;//装车单相关服务
 	String desName;//目的地名
+	OrderListService orderData;//z订单相关服务
 	long desID;//目的地ID
 
 	@Override
 	public ResultMessage doEntruck() {
-		OrderListService orderData = new OrderList();
 		long[] order = entruckList.getOrder();
 		ArrayList<OrderPO> orderPOs = orderData.search(order);
 		// 修改订单物流信息
@@ -80,31 +80,7 @@ public class OrderSort implements LoadAndSortService {
 		if (desID == -1) {
 			desID = user.getCenterID();
 		}
-		OrderListService orderData = new OrderList();
-		ArrayList<OrderPO> o = orderData.getFreshOrder(user.getInstitutionID());//根据营业厅编号搜索新订单
-		if(o != null){//如果正确搜索到订单
-			order = new ArrayList<OrderPO>();
-			for (OrderPO d : o) {
-				if (d.getNextDestination() == desID){
-					System.out.println(desName);
-					order.add(d);
-				}
-			}
-			
-			Vector<Vector<String>> info = new Vector<Vector<String>>();
-			for(int i = 0 ; i < order.size();i++){
-				Vector<String> row = new Vector<String>();
-				OrderPO oo = order.get(i);
-				row.add(oo.getSerialNum()+"");
-				row.add(oo.getWeight()+"");
-				info.add(row);
-			}
-			return new BriefOrderVO(info);
-		}else {//未能正确搜索到订单，返回空
-			return null;
-		}
-
-		
+		return orderData.getFreshOrder(user.getInstitutionID(),desID);//根据营业厅编号搜索新订单
 	}
 
 	@Override
@@ -122,23 +98,40 @@ public class OrderSort implements LoadAndSortService {
 		}
 
 		String[] driverNameAndID = drivers.getAvailableDriver().split("-");
+		if (driverNameAndID == null) {
+			return null;
+		}
 		String driverID = driverNameAndID[0];
 		String driverName = driverNameAndID[1];
-		String vehicleID = trucks.getAvailableTruck() + "";
-		return entruckList.createEntruckList(orders, user, desName, desID+"",
-				driverID, driverName, vehicleID);
+		long vehicle = trucks.getAvailableTruck();
+		if (vehicle == -1) {
+			return null;
+		}else {
+			String vehicleID = vehicle+"";
+			return entruckList.createEntruckList(orders, user, desName, desID+"",
+					driverID, driverName, vehicleID);
+		}
+		
 	}
 
 	@Override
 	//保存装车单
 	public ResultMessage saveEntruckList(EntruckListVO entruckList)
 			throws RemoteException {
+		ArrayList<Long> order = new ArrayList<Long>();
+		String[][] info = entruckList.info;
+		for(int i = 0 ; i < info.length;i++){
+			long id = Long.parseLong(info[i][0]);
+			order.add(id);
+		}
+		orderData.modifyOrderPosition(order);
 		return this.entruckList.saveEntruckList(entruckList);
 
 	}
 	
 	public OrderSort(InstitutionInfo user) {
 		entruckList = new EntruckList();
+		orderData = new OrderList();
 		this.user = user;
 	}
 
