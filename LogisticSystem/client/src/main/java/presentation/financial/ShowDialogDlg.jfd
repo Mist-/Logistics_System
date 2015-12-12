@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "5.2.2.2.228" Java: "1.8.0_51" encoding: "UTF-8"
+JFDML JFormDesigner: "5.2.2.0.199" Java: "1.8.0_45" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -9,8 +9,8 @@ new FormModel {
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq t {space :::p, comp tp::::637:x, space :::p}}"
-				"$verticalGroup": "par l {seq l {space :::p, comp tp::::364:x, space :::p}}"
+				"$horizontalGroup": "par l {seq t {space :::p, comp tp::::629:x, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :::p, comp tp::::356:x, space :::p}}"
 			} ) {
 				name: "panel1"
 				add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
@@ -18,15 +18,15 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane2"
 						add( new FormComponent( "javax.swing.JTable" ) {
-							name: "table4"
+							name: "tbInstitution"
 						} )
 					}, new FormLayoutConstraints( null ) {
-						"title": "机构人员表"
+						"title": "机构表"
 					} )
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane3"
 						add( new FormComponent( "javax.swing.JTable" ) {
-							name: "table5"
+							name: "tbVehicleInfo"
 						} )
 					}, new FormLayoutConstraints( null ) {
 						"title": "车辆信息表"
@@ -34,7 +34,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane4"
 						add( new FormComponent( "javax.swing.JTable" ) {
-							name: "table6"
+							name: "tbDriverInfo"
 						} )
 					}, new FormLayoutConstraints( null ) {
 						"title": "司机信息表"
@@ -42,7 +42,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane6"
 						add( new FormComponent( "javax.swing.JTable" ) {
-							name: "table7"
+							name: "tbStorageIn"
 						} )
 					}, new FormLayoutConstraints( null ) {
 						"title": "入库单"
@@ -50,7 +50,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane8"
 						add( new FormComponent( "javax.swing.JTable" ) {
-							name: "table8"
+							name: "tbStorageOut"
 						} )
 					}, new FormLayoutConstraints( null ) {
 						"title": "出库单"
@@ -58,7 +58,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane9"
 						add( new FormComponent( "javax.swing.JTable" ) {
-							name: "table9"
+							name: "tbPayment"
 						} )
 					}, new FormLayoutConstraints( null ) {
 						"title": "付款单"
@@ -66,7 +66,7 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane10"
 						add( new FormComponent( "javax.swing.JTable" ) {
-							name: "table10"
+							name: "tbReceipt"
 						} )
 					}, new FormLayoutConstraints( null ) {
 						"title": "收款单"
@@ -74,10 +74,18 @@ new FormModel {
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane11"
 						add( new FormComponent( "javax.swing.JTable" ) {
-							name: "table11"
+							name: "tbAccount"
 						} )
 					}, new FormLayoutConstraints( null ) {
 						"title": "账户信息表"
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane5"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "tbStaff"
+						} )
+					}, new FormLayoutConstraints( null ) {
+						"title": "人员表"
 					} )
 				} )
 			} )
