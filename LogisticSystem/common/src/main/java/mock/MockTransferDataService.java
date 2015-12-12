@@ -10,9 +10,7 @@ import data.message.ResultMessage;
 import data.po.ArrivalPO;
 import data.po.DataPO;
 import data.po.EntruckPO;
-import data.po.StorageOutListPO;
 import data.po.TransferListPO;
-import data.service.DataService;
 import data.service.TransferDataService;
 
 public class MockTransferDataService implements TransferDataService {
@@ -51,7 +49,7 @@ public class MockTransferDataService implements TransferDataService {
 	}
 
 	@Override
-	public ResultMessage getPOListFromFile(POType type, String version) throws RemoteException {
+	public ArrayList<DataPO> getPOListFromFile(POType type, String version) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}

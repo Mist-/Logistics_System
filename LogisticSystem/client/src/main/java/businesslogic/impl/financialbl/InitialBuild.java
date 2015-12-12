@@ -2,6 +2,7 @@ package businesslogic.impl.financialbl;
 
 import data.enums.DataType;
 import data.enums.POType;
+import data.po.DataPO;
 import utils.DataServiceFactory;
 import data.message.ResultMessage;
 import data.service.*;
@@ -10,6 +11,7 @@ import utils.Timestamper;
 import javax.swing.*;
 import java.io.File;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public class InitialBuild {
 	
@@ -35,13 +37,23 @@ public class InitialBuild {
 		return ResultMessage.SUCCESS;
 	}
 
-	private void initByType(POType type) {
+	public void initByType(POType type) {
 		DataService ds = DataServiceFactory.getDataServiceByPO(type);
 		try {
 			ds.delete(type);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public ArrayList<?> getHistoryDisplayData(POType type, String date) {
+		ArrayList<DataPO> dataPOs = null;
+		try {
+			 dataPOs = financialDataService.getPOListFromFile(type, date);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return dataPOs;
 	}
 
 	public ResultMessage buildStaffExcel(String info) {

@@ -48,7 +48,7 @@ public class MockCompanyDataService implements CompanyDataService {
 	}
 
 	@Override
-	public ResultMessage getPOListFromFile(POType type, String version)
+	public ArrayList<DataPO> getPOListFromFile(POType type, String version)
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;

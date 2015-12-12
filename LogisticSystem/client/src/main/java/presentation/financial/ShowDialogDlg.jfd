@@ -1,0 +1,89 @@
+JFDML JFormDesigner: "5.2.2.2.228" Java: "1.8.0_51" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp panel1::l:::x}"
+			"$verticalGroup": "par l {comp panel1::l:::x}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq t {space :::p, comp tp::::637:x, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :::p, comp tp::::364:x, space :::p}}"
+			} ) {
+				name: "panel1"
+				add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+					name: "tp"
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane2"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "table4"
+						} )
+					}, new FormLayoutConstraints( null ) {
+						"title": "机构人员表"
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane3"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "table5"
+						} )
+					}, new FormLayoutConstraints( null ) {
+						"title": "车辆信息表"
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane4"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "table6"
+						} )
+					}, new FormLayoutConstraints( null ) {
+						"title": "司机信息表"
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane6"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "table7"
+						} )
+					}, new FormLayoutConstraints( null ) {
+						"title": "入库单"
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane8"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "table8"
+						} )
+					}, new FormLayoutConstraints( null ) {
+						"title": "出库单"
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane9"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "table9"
+						} )
+					}, new FormLayoutConstraints( null ) {
+						"title": "付款单"
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane10"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "table10"
+						} )
+					}, new FormLayoutConstraints( null ) {
+						"title": "收款单"
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane11"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "table11"
+						} )
+					}, new FormLayoutConstraints( null ) {
+						"title": "账户信息表"
+					} )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 665, 415 )
+		} )
+	}
+}

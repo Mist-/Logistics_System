@@ -137,22 +137,22 @@ public interface DataService extends Remote {
      * 后置条件：无
      *
      * @param type 需要读取的PO类型
-     * @param version
+     * @param version 版本。current表示正在使用的版本，历史版本用 yyyy_mm_dd 表示。保存在相应的文件夹下
      * @return SUCCESS表示读取成功该
      */
-    default ResultMessage getPOListFromFile(POType type, String version) throws RemoteException {
+    default ArrayList<DataPO> getPOListFromFile(POType type, String version) throws RemoteException {
 
         if (getPOList(type) == null) {
-            return ResultMessage.FAILED;
+            return null;
         }
         ArrayList<DataPO> poListfromFile = (ArrayList<DataPO>) FileIOHelper.getFromFile(version + "/" + type.name() + ".DAT");
         if (poListfromFile == null) {
-            return ResultMessage.NOTEXIST;
+            return null;
         }
         ArrayList<DataPO> dest = getPOList(type);
         dest.addAll(poListfromFile.stream().collect(Collectors.toList()));
         System.out.println("从\"" + version + "/" + type.name() + ".DAT" + "\"中读取了" + dest.size() + "条记录 - " + Calendar.getInstance().getTime());
-        return ResultMessage.SUCCESS;
+        return poListfromFile;
     }
 
 
@@ -218,7 +218,12 @@ public interface DataService extends Remote {
      */
     default ArrayList<DataPO> getNewlyApproved(POType type) throws RemoteException {
         ArrayList<DataPO> result = getNewlyApproved().stream().filter(dataPO -> dataPO.getPOType() == type).collect(Collectors.toCollection(ArrayList::new));
-        getNewlyApproved().clear();
+        for (int i = 0; i < getNewlyApproved().size(); i++) {
+            if (getNewlyApproved().get(i).getPOType() == type) {
+                getNewlyApproved().remove(i);
+                --i;
+            }
+        }
         return result;
     }
 
@@ -237,7 +242,7 @@ public interface DataService extends Remote {
 
     /**
      * 禁止使用！
-     * @return 禁止使用！所以不告诉你反悔了什么。
+     * @return 禁止使用！所以不告诉你返回了什么。
      */
     HashMap<POType, ArrayList<DataPO>> getHashMap() throws RemoteException;
 

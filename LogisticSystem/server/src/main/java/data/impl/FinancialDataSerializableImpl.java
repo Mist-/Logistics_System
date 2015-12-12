@@ -7,6 +7,7 @@ import data.po.DataPO;
 import data.po.ReceiptPO;
 import data.service.FinancialDataService;
 import data.vo.AccountVO;
+import utils.FileIOHelper;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -95,17 +96,17 @@ public class FinancialDataSerializableImpl extends UnicastRemoteObject implement
 
 	@Override
 	public ResultMessage delete(long num) throws RemoteException {
-		 ArrayList<DataPO> list = getPOList(POType.ACCOUNT);
-	        for (DataPO dat: list) {
-	            if (dat.getSerialNum() == num) {
-	                list.remove(dat);
-	                return ResultMessage.SUCCESS;
-	            }
-	        }
-	        return ResultMessage.NOTEXIST;
-	    }
+        ArrayList<DataPO> list = getPOList(POType.ACCOUNT);
+        for (DataPO dat : list) {
+            if (dat.getSerialNum() == num) {
+                list.remove(dat);
+                return ResultMessage.SUCCESS;
+            }
+        }
+        return ResultMessage.NOTEXIST;
+    }
 
-	public ResultMessage modifyAccount(AccountVO accountVO) throws RemoteException {
+    public ResultMessage modifyAccount(AccountVO accountVO) throws RemoteException {
 		ArrayList<DataPO> list = getPOList(POType.ACCOUNT);
         for (int i = 0; i < list.size(); ++i) {
             if (list.get(i).getSerialNum() == accountVO.getAccountNum()) {

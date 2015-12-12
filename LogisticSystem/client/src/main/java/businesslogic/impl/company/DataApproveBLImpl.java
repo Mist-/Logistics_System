@@ -236,8 +236,4 @@ public class DataApproveBLImpl implements DataApproveBLService {
         return null;
     }
 
-    @Override
-    public void endApproveData() {
-    //TODO
-    }
 }
