@@ -193,8 +193,6 @@ public class LoadAndSortPanel extends JPanel {
 				orderTable.setModel(model);
 				remove(entruckVO);
 				add(loadAndSortPane, BorderLayout.CENTER);
-				loadAndSortPane.updateUI();
-				loadAndSortPane.setVisible(true);
 			}else {
 				JOptionPane.showMessageDialog(null, "²Ù×÷Ê§°Ü", "ÌáÊ¾", JOptionPane.INFORMATION_MESSAGE);
 			}

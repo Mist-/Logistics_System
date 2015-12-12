@@ -20,8 +20,6 @@ import businesslogic.service.Transfer.hall.LoadAndSortService;
 import businesslogic.service.order.OrderListService;
 
 public class OrderSort implements LoadAndSortService {
-	DriverManagement drivers;
-	TruckManagement trucks;
 	InstitutionInfo user; // 构造时传入
 	CityInfo city;// getDestination时new,城市相关服务
 	EntruckList entruckList;//装车单相关服务
@@ -88,8 +86,8 @@ public class OrderSort implements LoadAndSortService {
 	@Override
 	//生成装车单
 	public EntruckListVO createEntruckList(String[][] orders) throws RemoteException {
-		drivers= null;
-		trucks = null;
+		DriverManagement drivers= null;
+		TruckManagement trucks = null;
 		try {
 			drivers = new DriverManagement(user);
 			trucks = new TruckManagement(user);
@@ -126,8 +124,6 @@ public class OrderSort implements LoadAndSortService {
 			long id = Long.parseLong(info[i][0]);
 			order.add(id);
 		}
-		drivers.useDriver(Long.parseLong(entruckList.driverID));
-		trucks.useTruck(Long.parseLong(entruckList.vehicleID));
 		orderData.modifyOrderPosition(order);
 		return this.entruckList.saveEntruckList(entruckList);
 
