@@ -17,13 +17,11 @@ public class Test {
         DataService ds = DataServiceFactory.getDataServiceByPO(POType.ENTRUCK);
 
         try {
-            for (DataPO dataPO: ds.getUnapprovedPO(POType.ENTRUCK)) {
-                System.out.println(dataPO.getSerialNum());
-                ds.approveOf(dataPO);
-            }
-
-            for (DataPO dataPO: ds.getNewlyApproved()) {
-                System.out.println(dataPO.getSerialNum());
+            for (int i = 0; i < ds.getUnapprovedPO(POType.ENTRUCK).size(); ++i) {
+                System.out.println(ds.getPOList(POType.ENTRUCK).get(i).getSerialNum());
+                System.out.println(ds.getPOList(POType.ENTRUCK).get(i).getState());
+                ds.approveOf(ds.getPOList(POType.ENTRUCK).get(i));
+                System.out.println(ds.getPOList(POType.ENTRUCK).get(i).getState());
             }
         } catch (RemoteException e) {
             e.printStackTrace();

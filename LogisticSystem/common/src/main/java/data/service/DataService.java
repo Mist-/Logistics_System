@@ -235,8 +235,13 @@ public interface DataService extends Remote {
      * @param datapo 需要审批通过的单据
      */
     default ResultMessage approveOf(DataPO datapo) throws RemoteException {
-        datapo.setState(DataState.APPROVED);
-        getNewlyApproved().add(datapo);
+        for (int i = 0; i < getPOList(datapo.getPOType()).size(); ++i) {
+            if (datapo.getSerialNum() == datapo.getSerialNum()) {
+                datapo.setState(DataState.APPROVED);
+                getNewlyApproved().add(datapo);
+            }
+        }
+        modify(datapo);
         return ResultMessage.SUCCESS;
     }
 
