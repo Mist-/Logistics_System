@@ -75,14 +75,14 @@ public class DialogAddSalary extends JDialog{
 			resultMessage = controller.addSalary(stringInstitution, stringSalary, stringType);
 			//根据resultMessage类型对界面进行输出
 			if (resultMessage == ResultMessage.SUCCESS) {
-				company.labelSalarySuccess.setText("添加成功!");
+				company.getLabelSalarySuccess().setText("添加成功!");
 				company.initSalaryTable();
 				jdialog.dispose();
 			} else if (resultMessage == ResultMessage.EXIST) {
-				company.labelSalarySuccess.setText("");
+				company.getLabelSalarySuccess().setText("");
 				JOptionPane.showMessageDialog(null, "该工资类型已存在,请勿重复添加", "", JOptionPane.ERROR_MESSAGE);
 			} else if (resultMessage == ResultMessage.NOTCONNECTED) {
-				company.labelSalarySuccess.setText("");
+				company.getLabelSalarySuccess().setText("");
 				JOptionPane.showMessageDialog(null, "网络错误...", "", JOptionPane.ERROR_MESSAGE);
 			}
 		}

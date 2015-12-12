@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq t {space :::p, par t:::p {comp labelSalary::::110:x, comp buttonSalary::::110:x}, space s:::p, par l {seq l {comp buttonStaff:::p:110:p, space u:::p, comp buttonCity:::p:110:p, space u:::p, comp buttonApprove:::p:110:p, space u:::p, comp buttonCheck:::p:110:p}, seq l {comp labelInstitution:::p:110:p, space u:::p, comp labelCity:::p:110:p, space u:::p, comp labelApprove:::p:110:p, space u:::p, comp labelCheck:::p:110:p}}, space :::x, par l {comp id:::p:110:p, comp name:::p:110:p}, space :p:33:p}, seq t {space :::x, comp panelAll:::p::p, space :::p}}"
-			"$verticalGroup": "par l {seq l {space :::p, par b {comp buttonSalary::b:p:60:p, comp buttonStaff::b:p:60:p, comp buttonCity::b:p:60:p, comp buttonApprove::b:p:60:p, comp buttonCheck::b:p:60:p, comp id::b:p:50:p}, space :p:1:p, par b {comp labelSalary::b:p:41:p, comp labelInstitution::b:p:41:p, comp labelCity::b:p:41:p, comp labelApprove::b:p:41:p, comp labelCheck::b:p:41:p, comp name::b:p:42:p}, space s:::p, comp panelAll:::p::p, space :::x}}"
+			"$horizontalGroup": "par l {seq l {space :::p, par l {seq {comp panelAll:::::x, space :::p}, seq {par l {comp buttonSalary:::p:110:p, seq l {space :p:25:p, comp labelSalary:::p::p}}, space s:::p, par l {seq l {comp buttonStaff:::p:110:p, space u:::p, comp buttonCity:::p:110:p, space u:::p, comp buttonApprove:::p:110:p, space u:::p, comp buttonCheck:::p:110:p}, seq l {space :p:36:p, comp labelInstitution:::p::p, space :p:68:p, comp labelCity:::p::p, space :p:71:p, comp labelApprove:::p::p, space :p:79:p, comp labelCheck:::p::p}}, space ::71:x, par l {comp id:::p:110:p, comp name:::p:110:p}, space :p:33:p}}}}"
+			"$verticalGroup": "par l {seq l {space :::p, par b {comp buttonSalary::b:p:60:p, comp buttonStaff::b:p:60:p, comp buttonCity::b:p:60:p, comp buttonApprove::b:p:60:p, comp buttonCheck::b:p:60:p, comp id::b:p::p}, space :::p, par l {seq {par b {comp labelInstitution::b:p::p, comp labelSalary::b:p::p, comp labelCity::b:p::p, comp labelApprove::b:p::p, comp labelCheck::b:p::p}, space :p:26:p}, seq t {comp name:::p::p, space :p:31:p}}, comp panelAll:::::x, space :::p}}"
 		} ) {
 			name: "this"
 			add( new FormComponent( "javax.swing.JToggleButton" ) {
@@ -63,8 +63,8 @@ new FormModel {
 				"text": "姓名:彩笔"
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {space :0:786:x}"
-				"$verticalGroup": "par l {space :0:361:x}"
+				"$horizontalGroup": "par l {space :0:812:x}"
+				"$verticalGroup": "par l {space :0:407:x}"
 			} ) {
 				name: "panelAll"
 			} )
@@ -277,7 +277,7 @@ new FormModel {
 				name: "label1"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 710 )
+			"location": new java.awt.Point( 15, 710 )
 		} )
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 			"$horizontalGroup": "par l {seq l {comp tabbedPaneStaff:::p:621:p, space :p:30:p, par l {par l:::p {comp buttonExitStaff::l:::x, comp buttonMoveStaff::l:::x, comp buttonDeleteStaff::l:::x}, comp buttonAddStaff:::p::p, comp labelStaffSuccess:::p:129:p}, space :::x}}"

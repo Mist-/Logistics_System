@@ -126,8 +126,8 @@ public class DialogMoveStaff extends JDialog{
 		  resultMessage = controller.moveStaff(fromInstitution,toInstitution,ID,userRole);
 		  //根据resultMessage类型对界面进行输出
 		  if(resultMessage == ResultMessage.SUCCESS){
-			  company.labelStaffSuccess.setText("移动成功!");
-			  switch (company.tabbedPaneStaff.getSelectedIndex()){
+			  company.getLabelStaffSuccess().setText("移动成功!");
+			  switch (company.getTabbedPaneStaff().getSelectedIndex()){
 				  //重绘当前表格
 				  case 0:
 					  company.initDeliverTable();
@@ -153,11 +153,11 @@ public class DialogMoveStaff extends JDialog{
 			  }
 		  }
 		  else if(resultMessage == ResultMessage.EXIST){
-			  company.labelStaffSuccess.setText("");
+			  company.getLabelStaffSuccess().setText("");
 			  JOptionPane.showMessageDialog(null,"该员工已存在,请勿重复添加","",JOptionPane.ERROR_MESSAGE);
 		  }
 		  else if(resultMessage == ResultMessage.NOTCONNECTED){
-			  company.labelStaffSuccess.setText("");
+			  company.getLabelStaffSuccess().setText("");
 			  JOptionPane.showMessageDialog(null,"网络错误...","",JOptionPane.ERROR_MESSAGE);
 		  }
 		  jdialog.dispose();

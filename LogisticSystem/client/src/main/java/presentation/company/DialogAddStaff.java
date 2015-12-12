@@ -121,13 +121,13 @@ public class DialogAddStaff extends JDialog{
 			resultMessage = controller.addStaff(staffVO);
 			//判断是否成功添加
 			if (resultMessage == ResultMessage.SUCCESS) {
-				company.labelStaffSuccess.setText("添加成功!");
+				company.getLabelStaffSuccess().setText("添加成功!");
 				jdialog.dispose();
 			} else if (resultMessage == ResultMessage.EXIST) {
-				company.labelStaffSuccess.setText("");
+				company.getLabelStaffSuccess().setText("");
 				JOptionPane.showMessageDialog(null, "员工已存在!", "", JOptionPane.ERROR_MESSAGE);
 			} else if (resultMessage == ResultMessage.FAILED) {
-				company.labelStaffSuccess.setText("");
+				company.getLabelStaffSuccess().setText("");
 				JOptionPane.showMessageDialog(null, "网络错误...", "", JOptionPane.ERROR_MESSAGE);
 			}
 		}

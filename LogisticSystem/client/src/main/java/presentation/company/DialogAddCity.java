@@ -104,15 +104,15 @@ public class DialogAddCity extends JDialog{
 		    resultMessage = controller.addCityTransInfo(cityTransVO);
 		    //根据resultMessage类型对界面进行输出
 		    if(resultMessage == ResultMessage.SUCCESS){
-			company.labelCitySuccess.setText("添加成功!");
+			company.getLabelCitySuccess().setText("添加成功!");
 			jdialog.dispose();
 		    }
 		    else if(resultMessage == ResultMessage.EXIST){
-			company.labelCitySuccess.setText("");
+			company.getLabelCitySuccess().setText("");
 			JOptionPane.showMessageDialog(null,"城市信息已存在,请勿重复添加","",JOptionPane.ERROR_MESSAGE);
 		    }
 		    else if(resultMessage == ResultMessage.NOTCONNECTED){
-			company.labelCitySuccess.setText("");
+			company.getLabelCitySuccess().setText("");
 			JOptionPane.showMessageDialog(null,"网络错误...","",JOptionPane.ERROR_MESSAGE);
 		    }
 	    }

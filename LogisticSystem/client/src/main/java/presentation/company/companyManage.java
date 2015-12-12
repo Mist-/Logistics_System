@@ -898,7 +898,6 @@ public class companyManage extends JFrame {
         tableSFinancial.getTableHeader().setReorderingAllowed(false);
         tableSFinancial.getTableHeader().setPreferredSize(new Dimension(40,40));
         tableSFinancial.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        scrollPanelSFinancial.getViewport().add(tableSFinancial);
     }
 
     /*
@@ -1716,11 +1715,11 @@ public class companyManage extends JFrame {
             panelAll.setLayout(panelAllLayout);
             panelAllLayout.setHorizontalGroup(
                 panelAllLayout.createParallelGroup()
-                    .addGap(0, 786, Short.MAX_VALUE)
+                    .addGap(0, 812, Short.MAX_VALUE)
             );
             panelAllLayout.setVerticalGroup(
                 panelAllLayout.createParallelGroup()
-                    .addGap(0, 361, Short.MAX_VALUE)
+                    .addGap(0, 407, Short.MAX_VALUE)
             );
         }
 
@@ -1728,38 +1727,42 @@ public class companyManage extends JFrame {
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                .addGroup(contentPaneLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(labelSalary, GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                        .addComponent(buttonSalary, GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
-                    .addGap(18, 18, 18)
                     .addGroup(contentPaneLayout.createParallelGroup()
                         .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addComponent(buttonStaff, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(buttonCity, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(buttonApprove, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(buttonCheck, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(panelAll, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addContainerGap())
                         .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addComponent(labelInstitution, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(labelCity, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(labelApprove, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(labelCheck, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(contentPaneLayout.createParallelGroup()
-                        .addComponent(id, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(name, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
-                    .addGap(33, 33, 33))
-                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelAll, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap())
+                            .addGroup(contentPaneLayout.createParallelGroup()
+                                .addComponent(buttonSalary, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+                                .addGroup(contentPaneLayout.createSequentialGroup()
+                                    .addGap(25, 25, 25)
+                                    .addComponent(labelSalary)))
+                            .addGap(18, 18, 18)
+                            .addGroup(contentPaneLayout.createParallelGroup()
+                                .addGroup(contentPaneLayout.createSequentialGroup()
+                                    .addComponent(buttonStaff, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(buttonCity, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(buttonApprove, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(buttonCheck, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(contentPaneLayout.createSequentialGroup()
+                                    .addGap(36, 36, 36)
+                                    .addComponent(labelInstitution)
+                                    .addGap(68, 68, 68)
+                                    .addComponent(labelCity)
+                                    .addGap(71, 71, 71)
+                                    .addComponent(labelApprove)
+                                    .addGap(79, 79, 79)
+                                    .addComponent(labelCheck)))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                            .addGroup(contentPaneLayout.createParallelGroup()
+                                .addComponent(id, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(name, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
+                            .addGap(33, 33, 33))))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
@@ -1771,18 +1774,22 @@ public class companyManage extends JFrame {
                         .addComponent(buttonCity, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
                         .addComponent(buttonApprove, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
                         .addComponent(buttonCheck, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(id, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
-                    .addGap(1, 1, 1)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(labelSalary, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(labelInstitution, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(labelCity, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(labelApprove, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(labelCheck, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(name, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))
-                    .addGap(18, 18, 18)
-                    .addComponent(panelAll, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(id))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(contentPaneLayout.createParallelGroup()
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(labelInstitution)
+                                .addComponent(labelSalary)
+                                .addComponent(labelCity)
+                                .addComponent(labelApprove)
+                                .addComponent(labelCheck))
+                            .addGap(26, 26, 26))
+                        .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                            .addComponent(name)
+                            .addGap(31, 31, 31)))
+                    .addComponent(panelAll, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap())
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -2490,6 +2497,11 @@ public class companyManage extends JFrame {
     private JButton buttonExitStaff;
     private JLabel labelStaffSuccess;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
+
+    public JLabel getLabelCitySuccess() { return labelCitySuccess; }
+    public JLabel getLabelSalarySuccess() { return labelSalarySuccess; }
+    public JLabel getLabelStaffSuccess() { return labelStaffSuccess; }
+    public JTabbedPane getTabbedPaneStaff() { return tabbedPaneStaff; }
 }
 
 
