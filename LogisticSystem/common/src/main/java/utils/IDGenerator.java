@@ -12,11 +12,11 @@ public class IDGenerator {
 
     protected IDGenerator() { }
 
-    public static long getNextID(POType type) {
+    /*public static long getNextID(POType type) {
         // TODO: µÈ´ýÍê³É
         DataService ds = DataServiceFactory.getDataServiceByPO(type);
         if (ds == null) {
-            return new Random().nextInt(100) + 1000000000000L;
+            return new Random().nextInt(10000) + 1000000000000L;
         }
         ArrayList<DataPO> pos = null;
         try {
@@ -43,7 +43,10 @@ public class IDGenerator {
             }
         }
         return 1 + maxSN;
-    }
+    }*/
 
+    public static long getNextID(POType type) {
+        return new Random().nextInt(10000);
+    }
 
 }

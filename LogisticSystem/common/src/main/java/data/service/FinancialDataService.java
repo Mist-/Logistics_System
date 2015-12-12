@@ -24,5 +24,4 @@ public interface FinancialDataService extends DataService {
 	ResultMessage modifyAccount(AccountVO accountVO) throws RemoteException;
 
 	ResultMessage delete(long num) throws RemoteException;
-	
 }

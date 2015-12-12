@@ -1,20 +1,29 @@
 package main;
 
-import data.impl.OrderDataSerializableImpl;
+import data.enums.POType;
 import data.po.DataPO;
-import data.service.OrderDataService;
+import data.po.EntruckPO;
+import data.service.DataService;
+import utils.DataServiceFactory;
 
 import java.rmi.RemoteException;
 
 /**
+ *
  * Created by mist on 2015/12/11 0011.
  */
 public class Test {
     public static void main(String[] args) {
+        DataService ds = DataServiceFactory.getDataServiceByPO(POType.ENTRUCK);
+
         try {
-            OrderDataService orderDataService = new OrderDataSerializableImpl();
-            for (DataPO data: orderDataService.searchByLoc("南京市 上海市")) {
-                System.out.println(data.getSerialNum());
+            for (DataPO dataPO: ds.getUnapprovedPO(POType.ENTRUCK)) {
+                System.out.println(dataPO.getSerialNum());
+                ds.approveOf(dataPO);
+            }
+
+            for (DataPO dataPO: ds.getNewlyApproved()) {
+                System.out.println(dataPO.getSerialNum());
             }
         } catch (RemoteException e) {
             e.printStackTrace();

@@ -21,7 +21,7 @@ public class MockStorageDataService implements StorageDataService {
 	}
 
 	@Override
-	public ResultMessage getPOListFromFile(POType type, String version) throws RemoteException {
+	public ArrayList<DataPO> getPOListFromFile(POType type, String version) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
