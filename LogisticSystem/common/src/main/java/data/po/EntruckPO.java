@@ -30,7 +30,7 @@ public class EntruckPO extends DataPO{
             destID,     // 目标单位的编号
             vehicleID,  // 车辆编号
             escortID,   // 押运员ID//司机
-    		from;		//出发地ID
+    		fromID;		//出发地ID
     
     String 	monitorName,//监装员 同staff
     		escortName,//押运员 （司机）
@@ -184,12 +184,12 @@ public class EntruckPO extends DataPO{
         this.orderList.add(orderID);
     }
     
-    public long getFrom() {
-		return from;
+    public long getFromID() {
+		return fromID;
 	}
 
-	public void setFrom(long from) {
-		this.from = from;
+	public void setFromID(long fromID) {
+		this.fromID = fromID;
 	}
 
     public long[] getOrder(){

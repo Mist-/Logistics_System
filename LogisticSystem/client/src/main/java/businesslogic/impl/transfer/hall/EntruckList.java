@@ -85,7 +85,7 @@ public class EntruckList {
 		entruckPO.setDestName(entruckList.destName);
 		entruckPO.setEscortID(entruckList.escortID);
 		entruckPO.setEscortName(entruckList.escortName);
-		entruckPO.setFrom(Long.parseLong(entruckList.fromID));
+		entruckPO.setFromID(Long.parseLong(entruckList.fromID));
 		entruckPO.setLoadingDate(entruckList.loadingDate);
 		entruckPO.setMonitorName(entruckList.monitorName);
 		ArrayList<Long> order = new ArrayList<Long>();

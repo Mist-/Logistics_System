@@ -81,7 +81,7 @@ public class TransferDataSerializableImpl extends UnicastRemoteObject implements
             if (data.getPOType() == type) {
                 switch (type) {
                     case ARRIVAL:
-                        if (((ArrivalPO)data).getFrom() == institution) {
+                        if (((ArrivalPO)data).getDestID() == institution) {
                             result.add(data);
                         }
                         break;
@@ -91,7 +91,7 @@ public class TransferDataSerializableImpl extends UnicastRemoteObject implements
                         }
                         break;
                     case ENTRUCK:
-                        if (((EntruckPO)data).getTransID() == institution) {
+                        if (((EntruckPO)data).getFromID() == institution) {
                             result.add(data);
                         }
                         break;

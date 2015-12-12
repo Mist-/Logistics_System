@@ -1280,7 +1280,7 @@ public class companyManage extends JFrame {
             EntruckPO entruckPO = entruckPOs.get(i);
             entrukVO = new Vector<>();
             entrukVO.add(entruckPO.getSerialNum()+"");
-            entrukVO.add(entruckPO.getFrom()+"");
+            entrukVO.add(entruckPO.getFromID()+"");
             entrukVO.add(entruckPO.getDestID()+"");
             entrukVO.add(entruckPO.getMonitorName());
             entrukVO.add(entruckPO.getEscortName());

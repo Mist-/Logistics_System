@@ -93,7 +93,7 @@ public class StorageDataSerializableImpl extends UnicastRemoteObject implements 
 						}
 						break;
                     case STORAGEINFO:
-                        if (((StorageInfoPO)data).getTransferNum() == institution) {
+                        if (((StorageInfoPO)data).getTransferCenterNum() == institution) {
                             result.add(data);
                         }
                         break;

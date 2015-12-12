@@ -35,7 +35,7 @@ public class MockTransferDataService implements TransferDataService {
 			o.add(1002L);
 			o.add(1003L);
 			e.setOrderList(o);
-			e.setFrom(1000000L);
+			e.setFromID(1000000L);
 			return e;
 		}
 		

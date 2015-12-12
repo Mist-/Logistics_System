@@ -2,7 +2,6 @@ package data.po;
 import data.enums.POType;
 import data.enums.StockStatus;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -45,7 +44,7 @@ public class ArrivalPO extends DataPO {
 		for(int i = 0 ; i < order.size();i++){
 			stockStatus.add(StockStatus.ROUND);
 		}
-		from = entruck.getFrom();
+		from = entruck.getFromID();
 		isOperated = false;
 
 		//date
