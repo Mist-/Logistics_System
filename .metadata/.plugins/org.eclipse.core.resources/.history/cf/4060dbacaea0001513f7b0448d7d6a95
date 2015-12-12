@@ -61,8 +61,7 @@ public class EntruckList {
 			throws RemoteException {
 		entruckList = transferData.getNewlyApprovedPO(POType.ENTRUCK,
 				institutionID);
-		System.out.println(institutionID);
-		System.out.println(entruckList.size());
+		
 		if (entruckList != null) {//获取成功则显示
 			String[][] info = new String[entruckList.size()][2];
 			for (int i = 0; i < entruckList.size(); i++) {
@@ -86,7 +85,7 @@ public class EntruckList {
 		entruckPO.setDestName(entruckList.destName);
 		entruckPO.setEscortID(entruckList.escortID);
 		entruckPO.setEscortName(entruckList.escortName);
-		entruckPO.setFromID(Long.parseLong(entruckList.fromID));
+		entruckPO.setFrom(Long.parseLong(entruckList.fromID));
 		entruckPO.setLoadingDate(entruckList.loadingDate);
 		entruckPO.setMonitorName(entruckList.monitorName);
 		ArrayList<Long> order = new ArrayList<Long>();

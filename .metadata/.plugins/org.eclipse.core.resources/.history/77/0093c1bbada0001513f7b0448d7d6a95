@@ -56,11 +56,11 @@ public class TransferDataSerializableImpl extends UnicastRemoteObject implements
 	public ArrayList<DataPO> searchList(POType type, long institutionID)
 			throws RemoteException {//司机，车辆专用
 		ArrayList<DataPO> all = getPOList(type);
+		System.out.println(all.size());
 		ArrayList<DataPO> drivers = new ArrayList<DataPO>();
 		if (all == null) {
 			return null;
 		}else{
-			System.out.println(all.size());
 			for(DataPO d: all){
 				long hall = d.getSerialNum()/10000;
 				System.out.println(hall);
@@ -82,7 +82,7 @@ public class TransferDataSerializableImpl extends UnicastRemoteObject implements
             if (data.getPOType() == type) {
                 switch (type) {
                     case ARRIVAL:
-                        if (((ArrivalPO)data).getDestID() == institution) {
+                        if (((ArrivalPO)data).getFrom() == institution) {
                             result.add(data);
                         }
                         break;
@@ -92,7 +92,7 @@ public class TransferDataSerializableImpl extends UnicastRemoteObject implements
                         }
                         break;
                     case ENTRUCK:
-                        if (((EntruckPO)data).getFromID() == institution) {
+                        if (((EntruckPO)data).getTransID() == institution) {
                             result.add(data);
                         }
                         break;
