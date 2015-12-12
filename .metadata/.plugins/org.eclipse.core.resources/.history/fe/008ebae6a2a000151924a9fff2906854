@@ -186,18 +186,7 @@ public class LoadAndSortPanel extends JPanel {
 
 	private void saveEntruckMouseClicked(MouseEvent e) {
 		try {
-			ResultMessage result = loadAndSort.saveEntruckList(entruck);
-			if (result == ResultMessage.SUCCESS) {
-				JOptionPane.showMessageDialog(null, "保存成功", "提示", JOptionPane.INFORMATION_MESSAGE);
-				DefaultTableModel model = new DefaultTableModel();
-				orderTable.setModel(model);
-				remove(entruckVO);
-				add(loadAndSortPane, BorderLayout.CENTER);
-				loadAndSortPane.updateUI();
-				loadAndSortPane.setVisible(true);
-			}else {
-				JOptionPane.showMessageDialog(null, "操作失败", "提示", JOptionPane.INFORMATION_MESSAGE);
-			}
+			loadAndSort.saveEntruckList(entruck);
 		} catch (RemoteException e1) {
 			e1.printStackTrace();
 			errorDialog.setVisible(true);

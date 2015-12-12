@@ -126,8 +126,6 @@ public class OrderSort implements LoadAndSortService {
 			long id = Long.parseLong(info[i][0]);
 			order.add(id);
 		}
-		drivers.useDriver(Long.parseLong(entruckList.driverID));
-		trucks.useTruck(Long.parseLong(entruckList.vehicleID));
 		orderData.modifyOrderPosition(order);
 		return this.entruckList.saveEntruckList(entruckList);
 
