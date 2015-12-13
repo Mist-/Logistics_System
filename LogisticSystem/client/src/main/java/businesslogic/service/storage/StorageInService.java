@@ -1,5 +1,7 @@
 package businesslogic.service.storage;
 
+import java.rmi.RemoteException;
+
 import data.message.ResultMessage;
 import data.vo.ArrivalVO;
 import data.vo.BriefArrivalAndStorageInVO;
@@ -15,7 +17,7 @@ public interface StorageInService {
 
 	public StorageInVO sort(ArrivalVO arrival);
 
-	public ResultMessage doStorageIn(long storageInID);
+	public ResultMessage doStorageIn(long storageInID) throws RemoteException;
 
 	public ResultMessage saveStorageInList(StorageInVO vo);
 }

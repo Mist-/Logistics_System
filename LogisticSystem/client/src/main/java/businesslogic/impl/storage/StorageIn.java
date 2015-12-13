@@ -120,8 +120,9 @@ public class StorageIn implements StorageInService{
 
 	/**
 	 * 修改订单物流信息(未完)
+	 * @throws RemoteException 
 	 */
-	private void modifyOrder(ArrayList<Long> orderID) {
+	private void modifyOrder(ArrayList<Long> orderID) throws RemoteException {
 		orderList.modifyOrder(orderID,"到达"+user.getInstitutionName());
 	}
 
@@ -132,7 +133,7 @@ public class StorageIn implements StorageInService{
 	 * @return
 	 * @throws RemoteException
 	 */
-	public ResultMessage doStorageIn(long StorageInID){
+	public ResultMessage doStorageIn(long StorageInID) throws RemoteException{
 			StorageInListPO storageIn = null;
 			try {
 				storageIn = (StorageInListPO) storageInList.getStorageList(StorageInID);

@@ -219,7 +219,14 @@ public class LoadAndSortPanel extends JPanel {
 	}
 
 	private void doEntruckMouseClicked(MouseEvent e) {
-		ResultMessage result = loadAndSort.doEntruck();
+		ResultMessage result = ResultMessage.FAILED;
+		try {
+			result = loadAndSort.doEntruck();
+		
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if (result == ResultMessage.SUCCESS) {
 			JOptionPane.showMessageDialog(null, "操作成功", "提示",
 					JOptionPane.INFORMATION_MESSAGE);
@@ -463,6 +470,9 @@ public class LoadAndSortPanel extends JPanel {
 
 				//======== scrollPane2 ========
 				{
+
+					//---- entruckTable ----
+					entruckTable.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 					scrollPane2.setViewportView(entruckTable);
 				}
 

@@ -34,6 +34,9 @@ public class EntruckListVO extends DeliveryListVO {
     	
     }
 	public EntruckListVO(EntruckPO po){
+		entruckListID = po.getSerialNum()+"";
+		fromID = po.getFromID()+"";
+		fromName = po.getFromName();
 		destID = po.getDestID()+"";
 		escortID = po.getEscortID();
 		loadingDate = po.getLoadingDate();

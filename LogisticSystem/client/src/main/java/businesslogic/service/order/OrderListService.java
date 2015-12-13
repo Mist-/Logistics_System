@@ -3,6 +3,7 @@ package businesslogic.service.order;
 import data.po.OrderPO;
 import data.vo.BriefOrderVO;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 /**
@@ -17,7 +18,7 @@ public interface OrderListService {
 	 */
 	public BriefOrderVO getFreshOrder(long institution,long destID) ;
 	
-	public void modifyOrder(ArrayList<Long> orderID,String info);
+	public void modifyOrder(ArrayList<Long> orderID,String info) throws RemoteException;
 	
 	public void modifyOrderPosition(ArrayList<Long> orderID);
 	

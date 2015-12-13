@@ -50,6 +50,7 @@ public class EntruckList {
 	public EntruckListVO chooseEntruckList(long id) {
 		for (DataPO d : entruckList) {
 			if (d.getSerialNum() == id) {
+				choosedEntruck = (EntruckPO) d;
 				return new EntruckListVO((EntruckPO) d);
 			}
 		}
@@ -82,6 +83,8 @@ public class EntruckList {
 		//装车单号格式：
 		long entruckID = Long.parseLong(entruckList.fromID)*10000+ entruckPO.getSerialNum();
 		entruckPO.setSerialNum(entruckID);
+		entruckPO.setFromName(entruckList.fromName);
+		entruckPO.setVehicleID(Long.parseLong(entruckList.vehicleID));
 		entruckPO.setDestID(Long.parseLong(entruckList.destID));
 		entruckPO.setDestName(entruckList.destName);
 		entruckPO.setEscortID(entruckList.escortID);

@@ -34,9 +34,18 @@ public class EntruckPO extends DataPO{
     
     String 	monitorName,//监装员 同staff
     		escortName,//押运员 （司机）
-    		destName;
+    		destName,
+    		fromName;
     
-    double fee;
+    public String getFromName() {
+		return fromName;
+	}
+
+	public void setFromName(String fromName) {
+		this.fromName = fromName;
+	}
+
+	double fee;
     boolean iscounted;
     
     public String getMonitorName() {

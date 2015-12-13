@@ -109,4 +109,6 @@ public class ArrivalVO {
 	public void setDestName(String destName) {
 		this.destName = destName;
 	}
+	
+
 }

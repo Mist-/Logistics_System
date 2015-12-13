@@ -83,6 +83,7 @@ new FormModel {
 					name: "scrollPane2"
 					add( new FormComponent( "javax.swing.JTable" ) {
 						name: "entruckTable"
+						"selectionMode": 1
 					} )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {

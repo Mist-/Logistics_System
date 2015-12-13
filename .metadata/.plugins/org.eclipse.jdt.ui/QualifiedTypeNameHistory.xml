@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="data.vo.StorageOutVO"/>
-<fullyQualifiedTypeName name="data.vo.StorageListVO"/>
-<fullyQualifiedTypeName name="data.po.StorageInListPO"/>
-<fullyQualifiedTypeName name="java.rmi.RemoteException"/>
-<fullyQualifiedTypeName name="java.lang.Override"/>
 <fullyQualifiedTypeName name="java.lang.Iterable"/>
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
 <fullyQualifiedTypeName name="java.sql.Date"/>
@@ -20,10 +15,8 @@
 <fullyQualifiedTypeName name="data.service.StorageDataService"/>
 <fullyQualifiedTypeName name="businesslogic.impl.storage.ArrivalListService"/>
 <fullyQualifiedTypeName name="businesslogic.impl.user.CityInfo"/>
-<fullyQualifiedTypeName name="javax.swing.DefaultComboBoxModel"/>
 <fullyQualifiedTypeName name="businesslogic.impl.transfer.hall.ArrivalList"/>
 <fullyQualifiedTypeName name="businesslogic.impl.transfer.hall.EntruckList"/>
-<fullyQualifiedTypeName name="data.vo.EntruckListVO"/>
 <fullyQualifiedTypeName name="presentation.company.companyManage"/>
 <fullyQualifiedTypeName name="data.service.CompanyDataService"/>
 <fullyQualifiedTypeName name="businesslogic.impl.transfer.hall.Sender"/>
@@ -31,11 +24,9 @@
 <fullyQualifiedTypeName name="data.po.SenderPO"/>
 <fullyQualifiedTypeName name="data.vo.SendListVO"/>
 <fullyQualifiedTypeName name="data.service.DataService"/>
-<fullyQualifiedTypeName name="data.enums.DataType"/>
 <fullyQualifiedTypeName name="businesslogic.impl.storage.StorageInfo"/>
 <fullyQualifiedTypeName name="data.factory.DataServiceFactory"/>
 <fullyQualifiedTypeName name="businesslogic.impl.transfer.center.TransferList"/>
-<fullyQualifiedTypeName name="java.security.Timestamp"/>
 <fullyQualifiedTypeName name="businesslogic.impl.user.InstitutionInfo"/>
 <fullyQualifiedTypeName name="data.vo.TransferListVO"/>
 <fullyQualifiedTypeName name="data.po.TransferListPO"/>
@@ -43,21 +34,30 @@
 <fullyQualifiedTypeName name="data.enums.StockStatus"/>
 <fullyQualifiedTypeName name="data.enums.DataState"/>
 <fullyQualifiedTypeName name="data.enums.StorageArea"/>
-<fullyQualifiedTypeName name="data.enums.POType"/>
 <fullyQualifiedTypeName name="data.po.DriverInfoPO"/>
-<fullyQualifiedTypeName name="utils.Timestamper"/>
 <fullyQualifiedTypeName name="businesslogic.service.order.OrderListService"/>
-<fullyQualifiedTypeName name="businesslogic.impl.order.OrderList"/>
 <fullyQualifiedTypeName name="data.vo.BriefOrderVO"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="data.po.DataPO"/>
-<fullyQualifiedTypeName name="data.po.OrderPO"/>
-<fullyQualifiedTypeName name="data.message.ResultMessage"/>
-<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
-<fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
-<fullyQualifiedTypeName name="java.awt.BorderLayout"/>
 <fullyQualifiedTypeName name="businesslogic.impl.transfer.hall.DriverManagement"/>
 <fullyQualifiedTypeName name="businesslogic.impl.transfer.hall.TruckManagement"/>
 <fullyQualifiedTypeName name="java.lang.Long"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="data.po.LogisticInfoPO"/>
+<fullyQualifiedTypeName name="data.service.OrderDataService"/>
+<fullyQualifiedTypeName name="businesslogic.impl.order.OrderList"/>
+<fullyQualifiedTypeName name="utils.DataServiceFactory"/>
+<fullyQualifiedTypeName name="data.enums.DataType"/>
+<fullyQualifiedTypeName name="java.security.Timestamp"/>
+<fullyQualifiedTypeName name="utils.Timestamper"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="data.po.OrderPO"/>
+<fullyQualifiedTypeName name="businesslogic.impl.order.Order"/>
+<fullyQualifiedTypeName name="data.vo.EntruckListVO"/>
+<fullyQualifiedTypeName name="data.enums.POType"/>
+<fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
+<fullyQualifiedTypeName name="javax.swing.DefaultComboBoxModel"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="data.message.ResultMessage"/>
+<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+<fullyQualifiedTypeName name="java.awt.BorderLayout"/>
 </qualifiedTypeNameHistroy>

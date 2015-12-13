@@ -30,10 +30,16 @@ public class OrderSort implements LoadAndSortService {
 	long desID;//目的地ID
 
 	@Override
-	public ResultMessage doEntruck() {
+	public ResultMessage doEntruck() throws RemoteException {
 		long[] order = entruckList.getOrder();
-		ArrayList<OrderPO> orderPOs = orderData.search(order);
+		ArrayList<Long> o = new ArrayList<Long>();
+		for (int i = 0; i < order.length; i++) {
+			o.add(order[i]);
+		}
+		System.out.println("orderlist lenth:"+order.length);
 		// 修改订单物流信息
+		orderData.modifyOrder(o, "已从"+user.getInstitutionName()+"发出");//更新物流信息
+		orderData.modifyOrderPosition(o);//修改下一站
 		return ResultMessage.SUCCESS;
 	}
 

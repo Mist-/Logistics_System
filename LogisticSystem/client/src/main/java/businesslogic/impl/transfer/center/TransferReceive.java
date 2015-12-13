@@ -90,6 +90,8 @@ public class TransferReceive implements TransferReceiveService {
 		} else {
 			return arrivalList.createArrival((EntruckListVO) deliveryList);
 		}
+		
+		
 	}
 
 

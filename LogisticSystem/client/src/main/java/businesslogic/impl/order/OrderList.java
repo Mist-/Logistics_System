@@ -1,6 +1,7 @@
 package businesslogic.impl.order;
 
 import java.rmi.RemoteException;
+import java.security.Timestamp;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -8,20 +9,27 @@ import businesslogic.service.order.OrderListService;
 import data.enums.DataType;
 import data.enums.POType;
 import utils.DataServiceFactory;
+import utils.Timestamper;
 import data.po.DataPO;
+import data.po.LogisticInfoPO;
 import data.po.OrderPO;
 import data.service.OrderDataService;
 import data.vo.BriefOrderVO;
 
 public class OrderList implements OrderListService {
 	ArrayList<OrderPO> orders;
+	OrderDataService orderDataService;
 	
 	public ArrayList<OrderPO> getOrderList(long[] orderID) {
 		ArrayList<OrderPO> order = new Order().search(orderID);
 		return order;
 	}
+	
+	public OrderList(){
+		orderDataService = (OrderDataService) DataServiceFactory.getDataServiceByType(DataType.OrderDataService);
+	}
 
-	public void modifyOrder(ArrayList<Long> orderID,String info) {
+	public void modifyOrder(ArrayList<Long> orderID,String info) throws RemoteException {
 		ArrayList<Long> orderNum = orderID;
 		long[] orderNumL = new long[orderNum.size()];
 		for (int i = 0; i < orderNum.size(); i++) {
@@ -30,10 +38,17 @@ public class OrderList implements OrderListService {
 		ArrayList<OrderPO> order = new Order().search(orderNumL);
 		for (int i = 0; i < order.size(); i++) {
 			// 修改订单物流信息
+			LogisticInfoPO log = (LogisticInfoPO) orderDataService.search(POType.LOGISTICINFO, order.get(i).getSerialNum());
+			log.addInfo(Timestamper.getTimeByDate(), info);
 		}
 	}
 	
 	public void modifyOrderPosition(ArrayList<Long> orderID){
+		long[] id = new long[orderID.size()];
+		for (int i = 0; i < orderID.size(); i++) {
+			id[i] = orderID.get(i);
+		}
+		orders = new Order().search(id);
 		for (int i = 0; i < orderID.size(); i++) {
 			for (OrderPO o: orders) {
 				if (o.getSerialNum() == orderID.get(i)) {
@@ -45,7 +60,7 @@ public class OrderList implements OrderListService {
 
 	public BriefOrderVO getFreshOrder(long institution, long destID) {
 		orders = new ArrayList<>();
-		OrderDataService orderDataService = (OrderDataService) DataServiceFactory
+		orderDataService = (OrderDataService) DataServiceFactory
 				.getDataServiceByType(DataType.OrderDataService);
 		if (orderDataService == null)
 			return null;
@@ -57,13 +72,17 @@ public class OrderList implements OrderListService {
 					orders.add(order);
 				}
 			}
+			System.out.println("all order:"+ orders.size());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 
-		for (OrderPO d : orders) {
-			if (d.getNextDestination() != destID) {
-				orders.remove(d);
+		for (int i = 0 ; i < orders.size();i++) {
+			System.out.println(orders.get(i).getNextDestination());
+			System.out.println(destID);
+			if (orders.get(i).getNextDestination() != destID) {
+				System.out.println(orders.get(i).getNextDestination());
+				orders.remove(i);
 			}
 		}
 

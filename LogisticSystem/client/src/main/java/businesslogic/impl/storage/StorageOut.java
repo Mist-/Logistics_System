@@ -37,8 +37,9 @@ public class StorageOut implements StorageOutService{
 	/**
 	 * 对当前所有已审批出库单进行出库操作
 	 * @return
+	 * @throws RemoteException 
 	 */
-	public ResultMessage doStorageOut(long storageOutID){
+	public ResultMessage doStorageOut(long storageOutID) throws RemoteException{
 		StorageOutListPO out = null;
 		try {
 			out = (StorageOutListPO) storageOutList.getStorageList(storageOutID);

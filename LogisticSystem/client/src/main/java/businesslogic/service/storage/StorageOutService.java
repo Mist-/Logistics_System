@@ -1,5 +1,7 @@
 package businesslogic.service.storage;
 
+import java.rmi.RemoteException;
+
 import data.message.ResultMessage;
 import data.vo.BriefTransferAndStorageOutVO;
 import data.vo.StorageOutVO;
@@ -15,8 +17,9 @@ public interface StorageOutService {
 	 * 确认出库
 	 * @param storageOutID 出库单号
 	 * @return 操作结果
+	 * @throws RemoteException 
 	 */
-	public ResultMessage doStorageOut(long storageOutID);
+	public ResultMessage doStorageOut(long storageOutID) throws RemoteException;
 	
 	/**
 	 * 保存新生成的出库单

@@ -18,8 +18,9 @@ public interface LoadAndSortService {
 	/**
 	 * 总经理审批后确认装车，修改订单物流信息即可
 	 * @return 修改结果
+	 * @throws RemoteException 
 	 */
-	public ResultMessage doEntruck();
+	public ResultMessage doEntruck() throws RemoteException;
 	
 	
 	public EntruckListVO chooseEntruckList(long id);

@@ -124,6 +124,7 @@ public class ArrivalList {
 
 	public ArrivalVO createArrival(EntruckListVO entruck) {
 		ArrivalVO vo = new ArrivalVO();
+		
 		vo.setDate(entruck.loadingDate);
 		vo.setDeliveryListNum(entruck.entruckListID);
 		vo.setFromName(entruck.fromName);
