@@ -23,7 +23,7 @@ public class DataPO implements Serializable {
     }
 
     // 单据的审批状态
-    DataState state;
+    DataState state = DataState.APPROVING;
 
     Calendar genDate;
 

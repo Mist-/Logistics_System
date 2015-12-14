@@ -1,9 +1,8 @@
 package main;
 
+import data.enums.DataType;
 import data.enums.POType;
 import data.po.DataPO;
-import data.po.EntruckPO;
-import data.po.OrderPO;
 import data.service.DataService;
 import utils.DataServiceFactory;
 
@@ -15,16 +14,13 @@ import java.rmi.RemoteException;
  */
 public class Test {
     public static void main(String[] args) {
-        DataService ds = DataServiceFactory.getDataServiceByPO(POType.ORDER);
+        DataService ds = DataServiceFactory.getDataServiceByType(DataType.OrderDataService);
         try {
-            ds.add(new OrderPO());
-            ds.add(new OrderPO());
-            ds.add(new OrderPO());
-            ds.add(new OrderPO());
-            ds.add(new OrderPO());
-            ds.add(new OrderPO());
-            for (DataPO data: ds.getUnapprovedPO(POType.ORDER)) {
+            for (DataPO data: ds.getPOList(POType.ORDER)) {
                 System.out.println(data.getSerialNum());
+                System.out.println(data.getState());
+                ds.approveOf(data);
+                System.out.println(data.getState());
             }
         } catch (RemoteException e) {
             e.printStackTrace();

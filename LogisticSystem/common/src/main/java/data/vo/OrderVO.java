@@ -43,7 +43,7 @@ public class OrderVO {
     public ArrayList<Long> routine;
 
     // 单据的审批状态
-    public DataState dataState;
+    public DataState dataState = DataState.APPROVING;
 
     public long courier;
 
