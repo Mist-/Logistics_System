@@ -543,15 +543,32 @@ public class FINANCE extends JFrame {
         }
     }
 
+	private void miZJGLMouseReleased(MouseEvent e) {
+		tgZJGLMouseClicked(e);
+	}
+
+	private void miTJBBMouseReleased(MouseEvent e) {
+		tgTJBBMouseClicked(e);
+	}
+
+	private void miZHGLMouseReleased(MouseEvent e) {
+		tgZHGLMouseClicked(e);
+	}
+
+	private void miQCJZMouseReleased(MouseEvent e) {
+		tgQCJZMouseClicked(e);
+	}
+	
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
 		menuBar1 = new JMenuBar();
 		menu1 = new JMenu();
-		menuItem1 = new JMenuItem();
-		menuItem2 = new JMenuItem();
-		menuItem4 = new JMenuItem();
-		menuItem5 = new JMenuItem();
-		menuItem6 = new JMenuItem();
+		miZJGL = new JMenuItem();
+		miTJBB = new JMenuItem();
+		miZHGL = new JMenuItem();
+		miQCJZ = new JMenuItem();
+		miChange = new JMenuItem();
 		menu2 = new JMenu();
 		menuItem3 = new JMenuItem();
 		panel2 = new JPanel();
@@ -667,25 +684,49 @@ public class FINANCE extends JFrame {
 			{
 				menu1.setText("\u9009\u9879(O)");
 
-				//---- menuItem1 ----
-				menuItem1.setText("\u8d44\u91d1\u7ba1\u7406");
-				menu1.add(menuItem1);
+				//---- miZJGL ----
+				miZJGL.setText("\u8d44\u91d1\u7ba1\u7406");
+				miZJGL.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						miZJGLMouseReleased(e);
+					}
+				});
+				menu1.add(miZJGL);
 
-				//---- menuItem2 ----
-				menuItem2.setText("\u7edf\u8ba1\u62a5\u8868");
-				menu1.add(menuItem2);
+				//---- miTJBB ----
+				miTJBB.setText("\u7edf\u8ba1\u62a5\u8868");
+				miTJBB.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						miTJBBMouseReleased(e);
+					}
+				});
+				menu1.add(miTJBB);
 
-				//---- menuItem4 ----
-				menuItem4.setText("\u8d26\u6237\u7ba1\u7406");
-				menu1.add(menuItem4);
+				//---- miZHGL ----
+				miZHGL.setText("\u8d26\u6237\u7ba1\u7406");
+				miZHGL.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						miZHGLMouseReleased(e);
+					}
+				});
+				menu1.add(miZHGL);
 
-				//---- menuItem5 ----
-				menuItem5.setText("\u671f\u521d\u5efa\u8d26");
-				menu1.add(menuItem5);
+				//---- miQCJZ ----
+				miQCJZ.setText("\u671f\u521d\u5efa\u8d26");
+				miQCJZ.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						miQCJZMouseReleased(e);
+					}
+				});
+				menu1.add(miQCJZ);
 
-				//---- menuItem6 ----
-				menuItem6.setText("\u4fee\u6539\u5bc6\u7801");
-				menu1.add(menuItem6);
+				//---- miChange ----
+				miChange.setText("\u4fee\u6539\u5bc6\u7801");
+				menu1.add(miChange);
 			}
 			menuBar1.add(menu1);
 
@@ -991,14 +1032,14 @@ public class FINANCE extends JFrame {
 				pnZJGLLayout.createParallelGroup()
 					.addGroup(GroupLayout.Alignment.TRAILING, pnZJGLLayout.createSequentialGroup()
 						.addContainerGap()
-						.addComponent(tabbedPane4, GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
+						.addComponent(tabbedPane4)
 						.addContainerGap())
 			);
 			pnZJGLLayout.setVerticalGroup(
 				pnZJGLLayout.createParallelGroup()
 					.addGroup(pnZJGLLayout.createSequentialGroup()
 						.addContainerGap()
-						.addComponent(tabbedPane4, GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+						.addComponent(tabbedPane4)
 						.addGap(5, 5, 5))
 			);
 		}
@@ -1568,11 +1609,11 @@ public class FINANCE extends JFrame {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
 	private JMenuBar menuBar1;
 	private JMenu menu1;
-	private JMenuItem menuItem1;
-	private JMenuItem menuItem2;
-	private JMenuItem menuItem4;
-	private JMenuItem menuItem5;
-	private JMenuItem menuItem6;
+	private JMenuItem miZJGL;
+	private JMenuItem miTJBB;
+	private JMenuItem miZHGL;
+	private JMenuItem miQCJZ;
+	private JMenuItem miChange;
 	private JMenu menu2;
 	private JMenuItem menuItem3;
 	private JPanel panel2;
