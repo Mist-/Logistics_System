@@ -19,7 +19,7 @@ public class ConfigController {
     }
 
     // 从程序根目录下的server.cfg读取配置信息
-    public boolean readConfig() {
+    public Configuration readConfig() {
         configuration = new Configuration();
         File configPath = new File("server.cfg");
         Scanner scanner = null;
@@ -27,7 +27,7 @@ public class ConfigController {
             scanner = new Scanner(new BufferedInputStream(new FileInputStream(configPath)));
         } catch (FileNotFoundException e) {
             System.err.println("数据文件不存在，自动生成新配置文件");
-            return false;
+            return configuration = new Configuration();
         }
         while (scanner.hasNext()) {
             String line = scanner.nextLine();
@@ -46,7 +46,7 @@ public class ConfigController {
             }
         }
         scanner.close();
-        return true;
+        return configuration;
     }
 
     // 应用配置到数据层
@@ -56,7 +56,9 @@ public class ConfigController {
 
     // 获得配置信息
     public Configuration getConfigToDisplay() {
-        if (configuration == null) return new Configuration();
+        if (configuration == null) {
+            return readConfig();
+        }
         return configuration;
     }
 
@@ -66,9 +68,9 @@ public class ConfigController {
         PrintWriter writer = null;
         try {
             writer = new PrintWriter(new BufferedOutputStream(new FileOutputStream(new File("server.cfg"))));
-            writer.write("regPort = " + configuration.regPort);
-            writer.write("dataTransPort = " + configuration.dataTransPort);
-            writer.write("autoSavingFreq = " + configuration.autoSavingFreq);
+            writer.write("regPort = " + configuration.regPort + "\n");
+            writer.write("dataTransPort = " + configuration.dataTransPort + "\n");
+            writer.write("autoSavingFreq = " + configuration.autoSavingFreq + "\n");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } finally {

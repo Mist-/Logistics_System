@@ -4,41 +4,47 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :::p, comp tabbedPane1:::::x, space :::p}}"
-			"$verticalGroup": "par l {seq l {space :::p, comp tabbedPane1:::::x, space :::p}}"
+			"$horizontalGroup": "par l {comp panel1::l:::x}"
+			"$verticalGroup": "par l {comp panel1::l:::x}"
 		} ) {
 			name: "this"
 			"title": "服务监视器"
-			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
-				name: "tabbedPane1"
-				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :::p, par t {par l {seq l {comp label1:::p::p, space :::p, comp textRegPort:::p:89:p}, seq l {comp label2:::p::p, space :6:6:p, comp textTransPort:::p:89:p}}, seq {comp label3:::p::p, space :6:6:p, comp textFileUpdateFreq:::p:89:p}}, space ::565:x}}"
-					"$verticalGroup": "par l {seq l {space :::p, par b {comp label1::b:p::p, comp textRegPort::b:p::p}, space :::p, par l {seq l {space :4:4:p, comp label2:::p::p}, comp textTransPort:::p::p}, space :::p, par l {seq l {space :4:4:p, comp label3:::p::p}, comp textFileUpdateFreq:::p::p}, space ::394:x}}"
-				} ) {
-					name: "panel1"
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label1"
-						"text": "服务端口："
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :::p, comp tabbedPane1::::752:x, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :::p, comp tabbedPane1::::514:x, space :::p}}"
+			} ) {
+				name: "panel1"
+				add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+					name: "tabbedPane1"
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+						"$horizontalGroup": "par l {seq l {space :::p, par t {par l {seq l {comp label1:::p::p, space :::p, comp textRegPort:::p:89:p}, seq l {comp label2:::p::p, space :6:6:p, comp textTransPort:::p:89:p}}, seq {comp label3:::p::p, space :6:6:p, comp textFileUpdateFreq:::p:89:p}}, space :::x}}"
+						"$verticalGroup": "par l {seq l {space :::p, par b {comp label1::b:p::p, comp textRegPort::b:p::p}, space :::p, par l {seq l {space :4:4:p, comp label2:::p::p}, comp textTransPort:::p::p}, space :::p, par l {seq l {space :4:4:p, comp label3:::p::p}, comp textFileUpdateFreq:::p::p}, space :::x}}"
+					} ) {
+						name: "panel2"
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label1"
+							"text": "服务端口："
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "textRegPort"
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label2"
+							"text": "数据端口："
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "textTransPort"
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label3"
+							"text": "文件更新频率："
+						} )
+						add( new FormComponent( "javax.swing.JTextField" ) {
+							name: "textFileUpdateFreq"
+						} )
+					}, new FormLayoutConstraints( null ) {
+						"title": "连接设置"
 					} )
-					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textRegPort"
-					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label2"
-						"text": "数据端口："
-					} )
-					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textTransPort"
-					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label3"
-						"text": "文件更新频率："
-					} )
-					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textFileUpdateFreq"
-					} )
-				}, new FormLayoutConstraints( null ) {
-					"title": "连接设置"
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
