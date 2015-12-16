@@ -34,6 +34,7 @@ public class NewOrderDlg extends JDialog {
         setEditable(true);
         orderVO = new OrderVO();
         this.setVisible(true);
+        orderVO.courier = loginMessage.getUserSN();
         return orderVO;
     }
 

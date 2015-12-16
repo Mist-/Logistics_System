@@ -100,6 +100,23 @@ public class Order {
         return ResultMessage.SUCCESS;
     }
 
+    public StorageArea getTransportType(OrderVO orderVO) {
+        if (orderVO.saddress.substring(0, 3).equals(orderVO.raddress.substring(0, 3))) {
+            return StorageArea.TRUCK;
+        }
+        else {
+            switch (orderVO.serviceType) {
+                case 经济快递:
+                    return StorageArea.TRUCK;
+                case 标准快递:
+                    return StorageArea.TRAIN;
+                case 特快快递:
+                    return StorageArea.PLANE;
+            }
+        }
+        return StorageArea.TRUCK;
+    }
+
     /**
      * 获得显示数据
      *

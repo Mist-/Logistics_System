@@ -110,6 +110,7 @@ public class OrderPO extends DataPO {
         evaluatedTime = order.evaluatedTime;
         volume = order.volume;
         weight = order.weight;
+        courier = order.courier;
         setState(order.dataState);
     }
 
