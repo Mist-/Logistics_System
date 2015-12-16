@@ -9,6 +9,7 @@ import businesslogic.impl.user.InstitutionInfo;
 import businesslogic.service.storage.StorageOutService;
 import data.enums.DataType;
 import data.enums.POType;
+import data.message.LoginMessage;
 import utils.DataServiceFactory;
 import data.message.ResultMessage;
 import data.po.StorageOutListPO;
@@ -61,7 +62,6 @@ public class StorageOut implements StorageOutService{
 	/**
 	 * 修改仓库信息
 	 * @param storageOut
-	 * @param institution
 	 * @return
 	 * @throws RemoteException
 	 */
@@ -72,7 +72,6 @@ public class StorageOut implements StorageOutService{
 	/**
 	 * 保存出库单，修改仓库信息
 	 * @param vo
-	 * @param institution
 	 * @return
 	 * @throws RemoteException
 	 */
@@ -92,8 +91,7 @@ public class StorageOut implements StorageOutService{
 
 	/**
 	 * 查看中转单
-	 * 
-	 * @param listCode
+	 *
 	 * @return 中转单详细信息
 	 * @throws RemoteException
 	 */
@@ -102,7 +100,6 @@ public class StorageOut implements StorageOutService{
 	}
 	/**
 	 * 发起一次新的出库活动，显示新中转单
-	 * @param institutionCode
 	 * @return 装车单，中转单列表
 	 * @throws RemoteException 
 	 */
@@ -135,7 +132,7 @@ public class StorageOut implements StorageOutService{
 		TransferDataService transferData = (TransferDataService) DataServiceFactory.getDataServiceByType(DataType.TransferDataService);
 		this.storageData = storageData;
 		transferList = new TransferList(transferData);
-		orderList = new OrderList();
+		orderList = new OrderList(new LoginMessage(ResultMessage.SUCCESS));
 		this.storageInfo = storageInfo;
 		storageOutList = new StorageList(storageData, user.getCenterID(), POType.STORAGEOUTLIST);
 	}

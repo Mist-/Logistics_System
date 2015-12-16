@@ -8,6 +8,7 @@ import java.util.Vector;
 import businesslogic.service.order.OrderListService;
 import data.enums.DataType;
 import data.enums.POType;
+import data.message.LoginMessage;
 import utils.DataServiceFactory;
 import utils.Timestamper;
 import data.po.DataPO;
@@ -19,14 +20,16 @@ import data.vo.BriefOrderVO;
 public class OrderList implements OrderListService {
 	ArrayList<OrderPO> orders;
 	OrderDataService orderDataService;
+	LoginMessage loginMessage = null;
 	
 	public ArrayList<OrderPO> getOrderList(long[] orderID) {
-		ArrayList<OrderPO> order = new Order().search(orderID);
+		ArrayList<OrderPO> order = new Order(loginMessage).search(orderID);
 		return order;
 	}
 	
-	public OrderList(){
+	public OrderList(LoginMessage loginMessage){
 		orderDataService = (OrderDataService) DataServiceFactory.getDataServiceByType(DataType.OrderDataService);
+		this.loginMessage = loginMessage;
 	}
 
 	public void modifyOrder(ArrayList<Long> orderID,String info) throws RemoteException {
@@ -35,7 +38,7 @@ public class OrderList implements OrderListService {
 		for (int i = 0; i < orderNum.size(); i++) {
 			orderNumL[i] = orderNum.get(i);
 		}
-		ArrayList<OrderPO> order = new Order().search(orderNumL);
+		ArrayList<OrderPO> order = new Order(loginMessage).search(orderNumL);
 		for (int i = 0; i < order.size(); i++) {
 			// 修改订单物流信息
 			LogisticInfoPO log = (LogisticInfoPO) orderDataService.search(POType.LOGISTICINFO, order.get(i).getSerialNum());
@@ -48,7 +51,7 @@ public class OrderList implements OrderListService {
 		for (int i = 0; i < orderID.size(); i++) {
 			id[i] = orderID.get(i);
 		}
-		orders = new Order().search(id);
+		orders = new Order(loginMessage).search(id);
 		for (int i = 0; i < orderID.size(); i++) {
 			for (OrderPO o: orders) {
 				if (o.getSerialNum() == orderID.get(i)) {

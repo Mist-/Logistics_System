@@ -127,167 +127,185 @@ public class ModifyAccount extends JDialog {
 	
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-		panel1 = new JPanel();
-		lbName = new JLabel();
-		lbMoneyAdd = new JLabel();
-		tfName = new JTextField();
-		tfMoneyAdd = new JTextField();
-		btYes = new JButton();
-		lbMoneyDe = new JLabel();
-		tfMoneyDe = new JTextField();
-		label1 = new JLabel();
-		label2 = new JLabel();
-		labelMon = new JLabel();
-		lbMoney = new JLabel();
-		btRefresh = new JButton();
+        panel1 = new JPanel();
+        lbName = new JLabel();
+        lbMoneyAdd = new JLabel();
+        tfName = new JTextField();
+        tfMoneyAdd = new JTextField();
+        btYes = new JButton();
+        lbMoneyDe = new JLabel();
+        tfMoneyDe = new JTextField();
+        label1 = new JLabel();
+        label2 = new JLabel();
+        labelMon = new JLabel();
+        lbMoney = new JLabel();
+        btRefresh = new JButton();
 
-		//======== this ========
-		setTitle("\u4fee\u6539\u8d26\u6237");
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				thisWindowClosing(e);
-			}
-		});
-		Container contentPane = getContentPane();
+        //======== this ========
+        setTitle("\u4fee\u6539\u8d26\u6237");
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                thisWindowClosing(e);
+            }
+        });
+        Container contentPane = getContentPane();
 
-		//======== panel1 ========
-		{
+        //======== panel1 ========
+        {
 
-			//---- lbName ----
-			lbName.setText("\u8d26 \u6237 \u540d \u79f0  \uff1a");
+            //---- lbName ----
+            lbName.setText("\u8d26 \u6237 \u540d \u79f0  \uff1a");
+            lbName.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-			//---- lbMoneyAdd ----
-			lbMoneyAdd.setText("\u4f59\u989d\u589e\u52a0\uff08+\uff09\uff1a");
+            //---- lbMoneyAdd ----
+            lbMoneyAdd.setText("\u4f59\u989d\u589e\u52a0\uff08+\uff09\uff1a");
+            lbMoneyAdd.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-			//---- btYes ----
-			btYes.setText("\u786e\u8ba4");
-			btYes.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseReleased(MouseEvent e) {
-					btYesMouseReleased(e);
-				}
-			});
+            //---- tfName ----
+            tfName.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-			//---- lbMoneyDe ----
-			lbMoneyDe.setText("\u4f59\u989d\u51cf\u5c11\uff08-\uff09\uff1a");
+            //---- tfMoneyAdd ----
+            tfMoneyAdd.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-			//---- label1 ----
-			label1.setText("\u5143");
+            //---- btYes ----
+            btYes.setText("\u786e\u8ba4");
+            btYes.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+            btYes.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    btYesMouseReleased(e);
+                }
+            });
 
-			//---- label2 ----
-			label2.setText("\u5143");
+            //---- lbMoneyDe ----
+            lbMoneyDe.setText("\u4f59\u989d\u51cf\u5c11\uff08-\uff09\uff1a");
+            lbMoneyDe.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-			//---- labelMon ----
-			labelMon.setText("\u8d26 \u6237 \u4f59 \u989d  \uff1a");
+            //---- tfMoneyDe ----
+            tfMoneyDe.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-			//---- lbMoney ----
-			lbMoney.setText("text");
+            //---- label1 ----
+            label1.setText("\u5143");
+            label1.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-			//---- btRefresh ----
-			btRefresh.setText("\u5237\u65b0");
-			btRefresh.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseReleased(MouseEvent e) {
-					btRefreshMouseReleased(e);
-				}
-			});
+            //---- label2 ----
+            label2.setText("\u5143");
+            label2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-			GroupLayout panel1Layout = new GroupLayout(panel1);
-			panel1.setLayout(panel1Layout);
-			panel1Layout.setHorizontalGroup(
-				panel1Layout.createParallelGroup()
-					.addGroup(panel1Layout.createSequentialGroup()
-						.addGap(48, 48, 48)
-						.addGroup(panel1Layout.createParallelGroup()
-							.addComponent(labelMon)
-							.addGroup(panel1Layout.createSequentialGroup()
-								.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-									.addComponent(lbMoneyDe, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-									.addComponent(lbName, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-									.addComponent(lbMoneyAdd, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-									.addComponent(btRefresh, GroupLayout.Alignment.TRAILING))
-								.addGroup(panel1Layout.createParallelGroup()
-									.addGroup(panel1Layout.createParallelGroup()
-										.addGroup(panel1Layout.createSequentialGroup()
-											.addGap(18, 18, 18)
-											.addComponent(tfMoneyAdd, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
-										.addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-											.addGap(18, 18, 18)
-											.addComponent(tfName, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)))
-									.addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-										.addGap(18, 18, 18)
-										.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-											.addComponent(lbMoney, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-											.addComponent(tfMoneyDe, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-											.addComponent(btYes))))
-								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-								.addGroup(panel1Layout.createParallelGroup()
-									.addComponent(label1)
-									.addComponent(label2))))
-						.addContainerGap(96, Short.MAX_VALUE))
-			);
-			panel1Layout.setVerticalGroup(
-				panel1Layout.createParallelGroup()
-					.addGroup(panel1Layout.createSequentialGroup()
-						.addGap(34, 34, 34)
-						.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-							.addComponent(tfName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(lbName, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-						.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-							.addComponent(tfMoneyAdd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(label1)
-							.addComponent(lbMoneyAdd, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
-						.addGap(6, 6, 6)
-						.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-							.addComponent(label2)
-							.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(tfMoneyDe, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lbMoneyDe, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)))
-						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-						.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-							.addComponent(labelMon)
-							.addComponent(lbMoney))
-						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-						.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-							.addComponent(btYes)
-							.addComponent(btRefresh))
-						.addContainerGap(93, Short.MAX_VALUE))
-			);
-		}
+            //---- labelMon ----
+            labelMon.setText("\u8d26 \u6237 \u4f59 \u989d  \uff1a");
+            labelMon.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-		GroupLayout contentPaneLayout = new GroupLayout(contentPane);
-		contentPane.setLayout(contentPaneLayout);
-		contentPaneLayout.setHorizontalGroup(
-			contentPaneLayout.createParallelGroup()
-				.addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		contentPaneLayout.setVerticalGroup(
-			contentPaneLayout.createParallelGroup()
-				.addComponent(panel1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-		);
-		pack();
-		setLocationRelativeTo(getOwner());
+            //---- lbMoney ----
+            lbMoney.setText("text");
+            lbMoney.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+            //---- btRefresh ----
+            btRefresh.setText("\u5237\u65b0");
+            btRefresh.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+            btRefresh.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    btRefreshMouseReleased(e);
+                }
+            });
+
+            GroupLayout panel1Layout = new GroupLayout(panel1);
+            panel1.setLayout(panel1Layout);
+            panel1Layout.setHorizontalGroup(
+                panel1Layout.createParallelGroup()
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addGroup(panel1Layout.createParallelGroup()
+                            .addComponent(labelMon)
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lbMoneyDe, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbName, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btRefresh, GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lbMoneyAdd))
+                                .addGroup(panel1Layout.createParallelGroup()
+                                    .addGroup(panel1Layout.createParallelGroup()
+                                        .addGroup(panel1Layout.createSequentialGroup()
+                                            .addGap(18, 18, 18)
+                                            .addComponent(tfMoneyAdd, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                                            .addGap(11, 11, 11)
+                                            .addComponent(tfName, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                                        .addGap(11, 11, 11)
+                                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(lbMoney, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                                            .addComponent(tfMoneyDe, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                                            .addComponent(btYes))))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(panel1Layout.createParallelGroup()
+                                    .addComponent(label1)
+                                    .addComponent(label2))))
+                        .addContainerGap(93, Short.MAX_VALUE))
+            );
+            panel1Layout.setVerticalGroup(
+                panel1Layout.createParallelGroup()
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbName, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfMoneyAdd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label1)
+                            .addComponent(lbMoneyAdd, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6)
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                            .addComponent(label2)
+                            .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(tfMoneyDe, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lbMoneyDe, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelMon)
+                            .addComponent(lbMoney))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(btYes)
+                            .addComponent(btRefresh))
+                        .addContainerGap(83, Short.MAX_VALUE))
+            );
+        }
+
+        GroupLayout contentPaneLayout = new GroupLayout(contentPane);
+        contentPane.setLayout(contentPaneLayout);
+        contentPaneLayout.setHorizontalGroup(
+            contentPaneLayout.createParallelGroup()
+                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap())
+        );
+        contentPaneLayout.setVerticalGroup(
+            contentPaneLayout.createParallelGroup()
+                .addComponent(panel1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pack();
+        setLocationRelativeTo(getOwner());
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-	private JPanel panel1;
-	private JLabel lbName;
-	private JLabel lbMoneyAdd;
-	private JTextField tfName;
-	private JTextField tfMoneyAdd;
-	private JButton btYes;
-	private JLabel lbMoneyDe;
-	private JTextField tfMoneyDe;
-	private JLabel label1;
-	private JLabel label2;
-	private JLabel labelMon;
-	private JLabel lbMoney;
-	private JButton btRefresh;
+    private JPanel panel1;
+    private JLabel lbName;
+    private JLabel lbMoneyAdd;
+    private JTextField tfName;
+    private JTextField tfMoneyAdd;
+    private JButton btYes;
+    private JLabel lbMoneyDe;
+    private JTextField tfMoneyDe;
+    private JLabel label1;
+    private JLabel label2;
+    private JLabel labelMon;
+    private JLabel lbMoney;
+    private JButton btRefresh;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 }

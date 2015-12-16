@@ -2,6 +2,7 @@ package businesslogic.impl.order;
 
 import com.sun.istack.internal.NotNull;
 import data.enums.*;
+import data.message.LoginMessage;
 import utils.DataServiceFactory;
 import data.message.ResultMessage;
 import data.po.*;
@@ -21,7 +22,13 @@ import java.util.*;
  */
 public class Order {
 
+    LoginMessage loginMessage = null;
+
     OrderDataService orderDataService = (OrderDataService) DataServiceFactory.getDataServiceByType(DataType.OrderDataService);
+
+    public Order(LoginMessage loginMessage) {
+        this.loginMessage = loginMessage;
+    }
 
     public OrderPO search(long sn) {
         OrderPO result = null;
