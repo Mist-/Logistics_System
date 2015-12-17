@@ -103,7 +103,7 @@ public class DriverPanel extends JPanel {
 		if (driverTable.isEnabled()) {
 			deleteButton.setVisible(true);
 			modifyButton.setVisible(true);
-			saveButton.setVisible(false);
+			saveButton.setVisible(true);
 		int row = driverTable.getSelectedRow();
 		String id = (String) driverTable.getValueAt(row, driverList.getIDRow());
 		long idNum = Long.parseLong(id);
@@ -177,6 +177,7 @@ public class DriverPanel extends JPanel {
 	private void modifyButtonMouseClicked(MouseEvent e) {
 		setTextFieldEditable(true);
 		setTextFieldEnabled(true);
+		status.setEditable(true);
 		modifyButton.setEnabled(false);// 只能点击一次，点击后失效
 		saveButton.setEnabled(true);// 点击修改后，保存按钮可用
 	}
@@ -239,12 +240,12 @@ public class DriverPanel extends JPanel {
 			driver.IDCard = id.getText();
 			driver.gender = gender.getText();
 			driver.phoneNum = phone.getText();
-			
+			driver.engaged = status.getName();
 			driver.bornDate = bornY.getText() + "/" + bornM.getText() + "/" + bornD.getText();
-			
 			driver.timeLimit = licenseY.getText() + "/" + licenseM.getText() + "/" + licenseD.getText();
 			ResultMessage result = ResultMessage.FAILED;
 			if (modifyButton.isVisible()) {
+				System.out.println("保存修改");
 				result = driverManagement.modifyDriver(driver);
 			}else {
 				result = driverManagement.addDriver(driver);

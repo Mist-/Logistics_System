@@ -40,7 +40,7 @@ public class OrderSort implements LoadAndSortService {
 		System.out.println("orderlist lenth:"+order.length);
 		// 修改订单物流信息
 		orderData.modifyOrder(o, "已从"+user.getInstitutionName()+"发出");//更新物流信息
-		orderData.modifyOrderPosition(o);//修改下一站
+		//orderData.modifyOrderPosition(o);//修改下一站
 		return ResultMessage.SUCCESS;
 	}
 
@@ -84,8 +84,6 @@ public class OrderSort implements LoadAndSortService {
 	public BriefOrderVO chooseDestination(String des) {
 		desName = des;
 		desID = city.getHallID(des);
-		System.out.println(desID);
-		ArrayList<OrderPO> order;//符合目的地要求的订单
 		if (desID == -1) {
 			desID = user.getCenterID();
 		}

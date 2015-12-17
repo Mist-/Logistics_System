@@ -3,6 +3,7 @@ package data.vo;
 import data.po.VehicleInfoPO;
 
 public class TruckInfoVO {
+	   public long serialNum;
 	   public String ID;
 	   public String license;
 	    // Format: yyyy/mm/dd
@@ -17,6 +18,7 @@ public class TruckInfoVO {
 	    }
 	    
 	public TruckInfoVO(VehicleInfoPO po){
+		serialNum = po.getSerialNum();
 		ID = po.getSerialNum()+"";
 		license = po.getLicense();
 		dutyDate = po.getDutyDate();
