@@ -130,7 +130,7 @@ public class TruckManagement implements TruckManagementService {
 	@Override
 	public ResultMessage modifyTruck(TruckInfoVO truck) {
 		VehicleInfoPO d = new VehicleInfoPO(truck);
-		
+		d.setSerialNum(truck.serialNum);
 		try {
 			return transferData.modify(d);
 		} catch (RemoteException e) {

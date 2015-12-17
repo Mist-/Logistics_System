@@ -31,8 +31,8 @@ public class StorageInListPO extends StorageListPO {
     ArrayList<String> storagePosition;
 
     public StorageInListPO(StorageInVO storageInVO) {
-    	
         super(POType.STORAGEINLIST);
+        transferNum = storageInVO.centerID;
         order = new ArrayList<>();
         storagePosition = new ArrayList<>();
         String[] date = storageInVO.getDate().split("/");

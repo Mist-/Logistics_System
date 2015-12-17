@@ -8,6 +8,7 @@ import data.po.DriverInfoPO;
  *
  */
 public class DriverInfoVO {
+	public String[] statusArray = {"空闲","货运"};
 	public String driverID;//（城市编号（电话号码区号南京025）+营业厅编号（000三位数字）+000三位数字
     public String IDCard;
     public String name;
@@ -22,6 +23,14 @@ public class DriverInfoVO {
     public String licenseY;
     public String licenseM;
     public String licenseD;
+    
+    public String busy(){
+    	return statusArray[0];
+    }
+    
+    public String idle(){
+    	return statusArray[1];
+    }
 	public DriverInfoVO(DriverInfoPO po){
 		IDCard = po.getIDCard()+"";
 		name = po.getName();

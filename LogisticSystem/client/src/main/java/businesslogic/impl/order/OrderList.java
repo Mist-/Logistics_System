@@ -52,13 +52,11 @@ public class OrderList implements OrderListService {
 			id[i] = orderID.get(i);
 		}
 		orders = new Order(loginMessage).search(id);
-		for (int i = 0; i < orderID.size(); i++) {
-			for (OrderPO o: orders) {
-				if (o.getSerialNum() == orderID.get(i)) {
-					o.updateRoutine();
-				}
+			for (int i = 0;i< orderID.size();i++) {
+				System.out.println("modify next position");
+					orders.get(i).updateRoutine();
 			}
-		}
+		
 	}
 
 	public BriefOrderVO getFreshOrder(long institution, long destID) {
@@ -86,6 +84,7 @@ public class OrderList implements OrderListService {
 			if (orders.get(i).getNextDestination() != destID) {
 				System.out.println(orders.get(i).getNextDestination());
 				orders.remove(i);
+				--i;
 			}
 		}
 

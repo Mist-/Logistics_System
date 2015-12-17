@@ -300,15 +300,18 @@ public class StorageInfo implements StorageInfoService {
 		int num = 0;
 
 		switch (area) {
-		case PLANE:
+		case PLANE:{
 			a = 0;
 			break;
-		case TRAIN:
+		}
+		case TRAIN:{
 			a = 1;
 			break;
-		case TRUCK:
+		}
+		case TRUCK:{
 			a = 2;
 			break;
+		}
 		default:
 			break;
 		}
@@ -328,7 +331,7 @@ public class StorageInfo implements StorageInfoService {
 				while (num < storageInfo.getNum()) {
 					if (info[shelf][row][num] == 0) {
 						info[shelf][row][num] = order;
-						return a + "-" + shelf + "-" + row + "-" + num;
+						return order+"-"+ a + "-" + shelf + "-" + row + "-" + num;
 					}
 					num++;
 				}

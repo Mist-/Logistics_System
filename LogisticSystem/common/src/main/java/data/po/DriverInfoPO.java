@@ -30,6 +30,24 @@ public class DriverInfoPO extends DataPO {
 			return "ÄÐ";
 		}
     }
+    
+//    public void ModifyDriver(DriverInfoVO vo){
+//    	this.bornDate = vo.bornDate;
+//    	if (vo.engaged.equals(vo.busy())) {
+//			this.engaged = true;
+//		}else{
+//			this.engaged = false;
+//		}
+//    	if (vo.gender.equals("ÄÐ")) {
+//			this.gender = false;
+//		}else {
+//			this.gender = true;
+//		}
+//    	this.IDCard =Long.parseLong(vo.IDCard);
+//    	this.name = vo.name;
+//    	this.phoneNum = vo.phoneNum;
+//    	this.timeLimit = vo.timeLimit;
+//    }
 
     public DriverInfoPO(DriverInfoVO vo){
     	super(POType.DRIVERINFO);
@@ -40,7 +58,6 @@ public class DriverInfoPO extends DataPO {
 		}else {
 			this.gender = true;
 		}
-    	
     	this.IDCard =Long.parseLong(vo.IDCard);
     	this.name = vo.name;
     	this.phoneNum = vo.phoneNum;

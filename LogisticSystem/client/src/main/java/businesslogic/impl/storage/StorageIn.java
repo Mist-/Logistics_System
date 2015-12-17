@@ -10,6 +10,8 @@ import businesslogic.service.storage.StorageInService;
 import data.enums.DataType;
 import data.enums.POType;
 import utils.DataServiceFactory;
+import utils.Timestamper;
+import data.message.LoginMessage;
 import data.message.ResultMessage;
 import data.po.ArrivalPO;
 import data.po.OrderPO;
@@ -153,6 +155,7 @@ public class StorageIn implements StorageInService{
 	public ResultMessage saveStorageInList(StorageInVO vo){
 		modifyArriveListState();
 		try {
+			vo.centerID = user.getCenterID();
 			return storageInList.saveStorageInList(vo);
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -165,7 +168,7 @@ public class StorageIn implements StorageInService{
 				.getDataServiceByType(DataType.TransferDataService);
 		this.user = user;
 		this.storageInfo = storageInfo;
-		orderList = new OrderList();
+		orderList = new OrderList(new LoginMessage(ResultMessage.SUCCESS));
 		arrivalList = new ArrivalList(transferData);
 		storageInList = new StorageList(storageData, user.getCenterID(), POType.STORAGEINLIST);
 	}

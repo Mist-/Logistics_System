@@ -224,7 +224,6 @@ public class LoadAndSortPanel extends JPanel {
 			result = loadAndSort.doEntruck();
 		
 		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		if (result == ResultMessage.SUCCESS) {

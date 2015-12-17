@@ -132,6 +132,7 @@ public class DriverManagement implements DriverManagementService {
 	@Override
 	public ResultMessage modifyDriver(DriverInfoVO driver) {
 		DriverInfoPO d = new DriverInfoPO(driver);
+		d.setSerialNum(Long.parseLong(driver.driverID));
 		
 		try {
 			return transferData.modify(d);

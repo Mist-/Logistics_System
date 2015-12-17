@@ -11,6 +11,13 @@ import java.util.ArrayList;
  */
 public class StorageInVO {
 	
+	
+	String[] header = {"订单号","区域","排","架","位"};
+	String date = null;
+	String[][] info ;
+	public long id;
+	public long centerID;
+	
 	public String getDate() {
 		return date;
 	}
@@ -49,7 +56,7 @@ public class StorageInVO {
 			String[] in = {order.get(i)+"",pos[0],pos[1],pos[2],pos[3]};
 			info[i] = in;
 		}
-		
+		this.id = po.getSerialNum();
 		this.info = info;
 		
 	}
@@ -61,16 +68,7 @@ public class StorageInVO {
 		this.info = info;
 		this.date = date;
 	}
-	
-	String[] header = {"订单号","区域","排","架","位"};
 
-
-	String date = null;
-	
-	
-	String[][] info ;
-
-	long id;
 
 	public long getId() {
 		return id;

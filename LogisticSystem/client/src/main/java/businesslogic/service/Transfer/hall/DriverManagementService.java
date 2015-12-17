@@ -1,5 +1,7 @@
 package businesslogic.service.Transfer.hall;
 
+import java.rmi.RemoteException;
+
 import data.message.ResultMessage;
 import data.vo.DriverInfoVO;
 import data.vo.DriverListVO;
