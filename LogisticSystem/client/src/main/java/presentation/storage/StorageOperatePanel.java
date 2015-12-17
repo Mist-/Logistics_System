@@ -35,7 +35,9 @@ public class StorageOperatePanel extends JPanel {
 		setStorageInfoTable();
 		selectStorageListButton.setEnabled(false);
 		exportExcel.setEnabled(false);
-		this.repaint();
+		this.validate();
+		this.updateUI();
+		this.setVisible(true);
 	}
 
 	private void clearInitInput() {
@@ -65,7 +67,7 @@ public class StorageOperatePanel extends JPanel {
 			saveStorageCheck.setEnabled(false);
 			return ;
 		}
-		DefaultTableModel model = new DefaultTableModel(storage.orderAndPostition,storage.header);
+		DefaultTableModel model = new DefaultTableModel(storage.orderAndPostitionArray,storage.header);
 		storageInfoTable.setModel(model);
 		storageInfoTable.updateUI();
 	}

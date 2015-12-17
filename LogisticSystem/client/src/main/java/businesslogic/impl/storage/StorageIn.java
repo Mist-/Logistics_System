@@ -164,6 +164,7 @@ public class StorageIn implements StorageInService{
 		TransferDataService transferData = (TransferDataService) DataServiceFactory
 				.getDataServiceByType(DataType.TransferDataService);
 		this.user = user;
+		this.storageInfo = storageInfo;
 		orderList = new OrderList();
 		arrivalList = new ArrivalList(transferData);
 		storageInList = new StorageList(storageData, user.getCenterID(), POType.STORAGEINLIST);

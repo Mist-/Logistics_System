@@ -196,12 +196,11 @@ public class StorageInfoPO extends DataPO {
 		this.planeRow = planeR;
 		this.trainRow = trainR;
 		this.truckRow = truckR;
-		this.flexibleRow = row - planeR- trainR - truckR;
+		this.flexibleRow = flexibleR;
+		this.row = planeR+trainR+truckR+flexibleR;
 		this.alarmPercent = percent;
 		this.enlargeArea = StorageArea.FLEXIBLE;
-		int max = planeR;
-		if(trainR > max) max = trainR;
-		if(truckR > max) max = truckR;
+	
 		storage = new ArrayList<>();
 		long[][][] plane = new long[planeR][shelf][num];
 		long[][][] train = new long[trainR][shelf][num];

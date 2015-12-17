@@ -19,7 +19,17 @@ public class ArrivalVO {
     String fromName;//出发地
     String  fromNum;//出发地编号
 	String destName;//到达地
-    String[] header = {"订单编号","订单状态"};
+	String destID;
+    public String getDestID() {
+		return destID;
+	}
+
+
+	public void setDestID(String destID) {
+		this.destID = destID;
+	}
+
+	String[] header = {"订单编号","订单状态"};
 	long id;
 	long transferList;//中转中心编号
 	public ArrivalVO(){
@@ -38,7 +48,7 @@ public class ArrivalVO {
 			orderAndStatus[i] = info;
 		}
 		
-		fromName = null;
+		fromName = arrival.getFromName();
 		date = arrival.getDate();
 		fromNum = arrival.getFrom()+"";
 		

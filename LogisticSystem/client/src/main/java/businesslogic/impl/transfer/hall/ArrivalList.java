@@ -63,6 +63,7 @@ public class ArrivalList {
 			throws RemoteException {
 		checkedArrivals = transferData.getNewlyApprovedPO(POType.ARRIVAL,
 				institutionID);
+		System.out.println(checkedArrivals.size());
 		if(checkedArrivals != null){
 		String[][] info = new String[checkedArrivals.size()][2];
 		for (int i = 0; i < checkedArrivals.size(); i++) {
@@ -124,7 +125,9 @@ public class ArrivalList {
 
 	public ArrivalVO createArrival(EntruckListVO entruck) {
 		ArrivalVO vo = new ArrivalVO();
-		
+		vo.setDestName(entruck.destName);
+		vo.setDestID(entruck.destID);
+		System.out.println("目的地："+vo.getDestID());
 		vo.setDate(entruck.loadingDate);
 		vo.setDeliveryListNum(entruck.entruckListID);
 		vo.setFromName(entruck.fromName);
@@ -140,6 +143,8 @@ public class ArrivalList {
 
 	public ResultMessage saveArrival(ArrivalVO vo) throws RemoteException {
 		ArrivalPO arrivalPO = new ArrivalPO();
+		System.out.println("目的地2："+vo.getDestID());
+		arrivalPO.setDestID(Long.parseLong(vo.getDestID()));
 		arrivalPO.setDate(vo.getDate());
 		arrivalPO.setFrom(Long.parseLong(vo.getFromNum()));
 		arrivalPO.setFromName(vo.getFromName());

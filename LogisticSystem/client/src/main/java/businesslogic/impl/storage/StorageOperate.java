@@ -257,6 +257,7 @@ public class StorageOperate implements StorageOperateService {
 		}
 		storageInfoPO = new StorageInfoPO(center.getCenterID(), shelf, num,
 				planeR, trainR, truckR, flexibleR, alarmPercent);
+		storageInfoPO.setSerialNum(center.getCenterID());//仓库序列号为中转中心编号
 		try {
 			return storageData.add(storageInfoPO);
 		} catch (RemoteException e) {

@@ -11,12 +11,13 @@ import data.po.StorageInfoPO;
  *
  */
 public class StorageInfoVO {
-	public String[][] orderAndPostition;
+	public String[][] orderAndPostitionArray;
 	public String[] header = {"¶©µ¥ºÅ","ÇøºÅ","ÅÅºÅ","¼ÜºÅ","Î»ºÅ"};
 	public StorageInfoVO(StorageInfoPO po){
+		ArrayList<String[]> orderAndPostition = new ArrayList<String[]>();
 		int num = po.getFlexible()+po.getPlane()+po.getTrain()+po.getTruck();
+		System.out.println(num);
 		ArrayList<long[][][]> info = po.getStorage();
-		orderAndPostition = new String[num][5];
 		for(int i = 0 ;i< info.size();i++){
 			long[][][] pos = info.get(i);
 			int row = 0;
@@ -28,12 +29,18 @@ public class StorageInfoVO {
 				for(int k = 0 ; k < po.getShelf();k++){
 					for(int n = 0; n < po.getNum();n++){
 						String[] s = {pos[j][k][n]+"",i+"",j+"",k+"",n+""};
-						orderAndPostition[i] = s;
+						orderAndPostition.add(s);
 					}
 				}
 			}
 		}
+		orderAndPostitionArray = new String[orderAndPostition.size()][5];
+		for (int i = 0; i <orderAndPostition.size(); i++) {
+			orderAndPostitionArray[i] = orderAndPostition.get(i);
+			
+		}
 	}
+	
 	
 	
 }

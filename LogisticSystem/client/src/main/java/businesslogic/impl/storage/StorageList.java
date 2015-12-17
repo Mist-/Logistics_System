@@ -2,13 +2,14 @@ package businesslogic.impl.storage;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
+import utils.Timestamper;
 import data.enums.POType;
 import data.message.ResultMessage;
 import data.po.DataPO;
 import data.po.StorageInListPO;
 import data.po.StorageListPO;
-import data.po.StorageOutListPO;
 import data.service.StorageDataService;
 import data.vo.StorageInVO;
 
@@ -34,37 +35,28 @@ public class StorageList {
 
 	
 	public String[][] getBriefStorageList(){
-		if(storageListType == POType.STORAGEINLIST){
+		if (checkedstorageList == null) {
+			return null;
+		}
 		String[][] storageListInfo = new String[checkedstorageList.size()][2];
 		for (int i = 0; i < checkedstorageList.size(); i++) {
-			StorageInListPO s = (StorageInListPO) checkedstorageList.get(i);
+			DataPO s =  checkedstorageList.get(i);
 			String[] info = new String[2];
 			info[0] = s.getSerialNum() + "";
-			info[1] = s.getDate();
+			info[1] = Timestamper.getTimeByDate(s.getGenDate());
 			storageListInfo[i] = info;
 		}
 		return storageListInfo;
-		}else{
-			String[][] storageListInfo = new String[checkedstorageList.size()][2];
-			for (int i = 0; i < checkedstorageList.size(); i++) {
-				StorageOutListPO s = (StorageOutListPO) checkedstorageList.get(i);
-				String[] info = new String[2];
-				info[0] = s.getSerialNum() + "";
-				info[1] = s.getDate();
-				storageListInfo[i] = info;
-			}
-			return storageListInfo;
-		}
+
+			
+		
 	}
 	
 	
 	public StorageList(StorageDataService storageData, long centerID,POType storageListType) throws RemoteException {
 		this.storageData = storageData;
 		this.storageListType = storageListType;
-		if(storageListType == POType.STORAGEINLIST)
-		checkedstorageList = storageData.searchNewStorageInList(centerID);
-		else 
-			checkedstorageList = storageData.searchNewStorageOutList(centerID);
+		checkedstorageList = storageData.getNewlyApprovedPO(storageListType, centerID);
 	}
 
 

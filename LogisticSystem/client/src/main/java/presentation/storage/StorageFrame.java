@@ -135,7 +135,6 @@ public class StorageFrame extends JFrame {
 				JOptionPane.showMessageDialog(null, "网络连接中断","网络异常",JOptionPane.ERROR_MESSAGE);
 			}
 		}
-		
 		storageIn.setEnabled(true);
 		storageOut.setEnabled(true);
 		storageOperete.setEnabled(false);
@@ -150,12 +149,13 @@ public class StorageFrame extends JFrame {
 		container.remove(storageInVO);
 		if(storageOutVO != null)
 		container.remove(storageOutVO);
-		container.add(storageOperateVO,BorderLayout.CENTER);
-		
-		storageOperateVO.setVisible(true);
+		if (storageOperateVO != null) {
+			container.add(storageOperateVO,BorderLayout.CENTER);
+		}
+		container.repaint();
 		storageOperateVO.validate();
 		storageOperateVO.updateUI();
-		container.repaint();
+		storageOperateVO.setVisible(true);
 	}
 	
 
@@ -181,23 +181,23 @@ public class StorageFrame extends JFrame {
 		menuBar1 = new JMenuBar();
 		menu1 = new JMenu();
 		menu2 = new JMenu();
-		panel1 = new JPanel();
+		panel2 = new JPanel();
+		storageIn = new JToggleButton();
 		label1 = new JLabel();
-		storageOperete = new JToggleButton();
-		label3 = new JLabel();
 		storageOut = new JToggleButton();
 		label2 = new JLabel();
+		storageOperete = new JToggleButton();
+		label3 = new JLabel();
 		emptyPanel = new JPanel();
-		storageIn = new JToggleButton();
 		tabbedPane1 = new JTabbedPane();
-		panel2 = new JPanel();
+		panel3 = new JPanel();
 		label4 = new JLabel();
-		label5 = new JLabel();
 
 		//======== this ========
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("\u4e2d\u8f6c\u4e2d\u5fc3\u4ed3\u5e93\u7ba1\u7406");
 		Container contentPane = getContentPane();
+		contentPane.setLayout(new BorderLayout());
 
 		//======== menuBar1 ========
 		{
@@ -218,26 +218,22 @@ public class StorageFrame extends JFrame {
 		}
 		setJMenuBar(menuBar1);
 
-		//======== panel1 ========
+		//======== panel2 ========
 		{
+
+			//---- storageIn ----
+			storageIn.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+			storageIn.setIcon(new ImageIcon(getClass().getResource("/icons/storagein_72x72.png")));
+			storageIn.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					storageInMouseClicked(e);
+				}
+			});
 
 			//---- label1 ----
 			label1.setText("\u5165\u5e93");
 			label1.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-			//---- storageOperete ----
-			storageOperete.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-			storageOperete.setIcon(new ImageIcon(getClass().getResource("/icons/storage_72x72.png")));
-			storageOperete.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					storageOpereteMouseClicked(e);
-				}
-			});
-
-			//---- label3 ----
-			label3.setText("\u5e93\u5b58\u64cd\u4f5c");
-			label3.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 			//---- storageOut ----
 			storageOut.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
@@ -253,130 +249,93 @@ public class StorageFrame extends JFrame {
 			label2.setText("\u51fa\u5e93");
 			label2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-			//======== emptyPanel ========
-			{
-
-				GroupLayout emptyPanelLayout = new GroupLayout(emptyPanel);
-				emptyPanel.setLayout(emptyPanelLayout);
-				emptyPanelLayout.setHorizontalGroup(
-					emptyPanelLayout.createParallelGroup()
-						.addGap(0, 0, Short.MAX_VALUE)
-				);
-				emptyPanelLayout.setVerticalGroup(
-					emptyPanelLayout.createParallelGroup()
-						.addGap(0, 0, Short.MAX_VALUE)
-				);
-			}
-
-			//---- storageIn ----
-			storageIn.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-			storageIn.setIcon(new ImageIcon(getClass().getResource("/icons/storagein_72x72.png")));
-			storageIn.addMouseListener(new MouseAdapter() {
+			//---- storageOperete ----
+			storageOperete.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+			storageOperete.setIcon(new ImageIcon(getClass().getResource("/icons/storage_72x72.png")));
+			storageOperete.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					storageInMouseClicked(e);
+					storageOpereteMouseClicked(e);
 				}
 			});
 
-			//======== tabbedPane1 ========
-			{
-				tabbedPane1.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+			//---- label3 ----
+			label3.setText("\u5e93\u5b58\u64cd\u4f5c");
+			label3.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//======== panel2 ========
-				{
-					panel2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-					//---- label4 ----
-					label4.setText("\u4ed3\u5e93\u672a\u521d\u59cb\u5316");
-					label4.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-					//---- label5 ----
-					label5.setText("\u8bf7\u5148\u521d\u59cb\u5316\u4ed3\u5e93");
-					label5.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-					GroupLayout panel2Layout = new GroupLayout(panel2);
-					panel2.setLayout(panel2Layout);
-					panel2Layout.setHorizontalGroup(
-						panel2Layout.createParallelGroup()
-							.addGroup(panel2Layout.createSequentialGroup()
-								.addGap(296, 296, 296)
-								.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-									.addComponent(label4, GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
-									.addComponent(label5, GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE))
-								.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					);
-					panel2Layout.setVerticalGroup(
-						panel2Layout.createParallelGroup()
-							.addGroup(panel2Layout.createSequentialGroup()
-								.addGap(141, 141, 141)
-								.addComponent(label4)
-								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(label5)
-								.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					);
-				}
-				tabbedPane1.addTab("\u63d0\u793a", panel2);
-			}
-
-			GroupLayout panel1Layout = new GroupLayout(panel1);
-			panel1.setLayout(panel1Layout);
-			panel1Layout.setHorizontalGroup(
-				panel1Layout.createParallelGroup()
-					.addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-						.addGap(0, 0, Short.MAX_VALUE)
-						.addComponent(emptyPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGroup(panel1Layout.createSequentialGroup()
+			GroupLayout panel2Layout = new GroupLayout(panel2);
+			panel2.setLayout(panel2Layout);
+			panel2Layout.setHorizontalGroup(
+				panel2Layout.createParallelGroup()
+					.addGroup(panel2Layout.createSequentialGroup()
 						.addContainerGap()
-						.addGroup(panel1Layout.createParallelGroup()
-							.addGroup(panel1Layout.createSequentialGroup()
+						.addGroup(panel2Layout.createParallelGroup()
+							.addGroup(panel2Layout.createSequentialGroup()
 								.addComponent(storageIn)
-								.addGap(18, 18, 18)
-								.addComponent(storageOut))
-							.addGroup(panel1Layout.createSequentialGroup()
-								.addGap(35, 35, 35)
-								.addComponent(label1)
-								.addGap(84, 84, 84)
-								.addComponent(label2)))
-						.addGroup(panel1Layout.createParallelGroup()
-							.addGroup(panel1Layout.createSequentialGroup()
-								.addGap(18, 18, 18)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(storageOut)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 								.addComponent(storageOperete))
-							.addGroup(panel1Layout.createSequentialGroup()
-								.addGap(36, 36, 36)
+							.addGroup(panel2Layout.createSequentialGroup()
+								.addGap(32, 32, 32)
+								.addComponent(label1)
+								.addGap(86, 86, 86)
+								.addComponent(label2)
+								.addGap(74, 74, 74)
 								.addComponent(label3)))
-						.addContainerGap(436, Short.MAX_VALUE))
-					.addComponent(tabbedPane1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
+						.addContainerGap(447, Short.MAX_VALUE))
 			);
-			panel1Layout.setVerticalGroup(
-				panel1Layout.createParallelGroup()
-					.addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(panel1Layout.createParallelGroup()
+			panel2Layout.setVerticalGroup(
+				panel2Layout.createParallelGroup()
+					.addGroup(GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
+						.addGroup(panel2Layout.createParallelGroup()
 							.addComponent(storageIn)
 							.addComponent(storageOut)
 							.addComponent(storageOperete))
-						.addGap(6, 6, 6)
-						.addGroup(panel1Layout.createParallelGroup()
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addGroup(panel2Layout.createParallelGroup()
 							.addComponent(label1)
 							.addComponent(label2)
-							.addComponent(label3))
-						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(tabbedPane1, GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(emptyPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addComponent(label3)))
 			);
 		}
+		contentPane.add(panel2, BorderLayout.NORTH);
 
-		GroupLayout contentPaneLayout = new GroupLayout(contentPane);
-		contentPane.setLayout(contentPaneLayout);
-		contentPaneLayout.setHorizontalGroup(
-			contentPaneLayout.createParallelGroup()
-				.addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-		);
-		contentPaneLayout.setVerticalGroup(
-			contentPaneLayout.createParallelGroup()
-				.addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-		);
+		//======== emptyPanel ========
+		{
+			emptyPanel.setLayout(new BorderLayout());
+
+			//======== tabbedPane1 ========
+			{
+
+				//======== panel3 ========
+				{
+
+					//---- label4 ----
+					label4.setText("\u4ed3\u5e93\u672a\u521d\u59cb\u5316");
+
+					GroupLayout panel3Layout = new GroupLayout(panel3);
+					panel3.setLayout(panel3Layout);
+					panel3Layout.setHorizontalGroup(
+						panel3Layout.createParallelGroup()
+							.addGroup(panel3Layout.createSequentialGroup()
+								.addGap(303, 303, 303)
+								.addComponent(label4, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
+								.addContainerGap(332, Short.MAX_VALUE))
+					);
+					panel3Layout.setVerticalGroup(
+						panel3Layout.createParallelGroup()
+							.addGroup(panel3Layout.createSequentialGroup()
+								.addGap(113, 113, 113)
+								.addComponent(label4, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
+								.addContainerGap(136, Short.MAX_VALUE))
+					);
+				}
+				tabbedPane1.addTab("\u63d0\u793a", panel3);
+			}
+			emptyPanel.add(tabbedPane1, BorderLayout.CENTER);
+		}
+		contentPane.add(emptyPanel, BorderLayout.CENTER);
 		pack();
 		setLocationRelativeTo(getOwner());
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -386,17 +345,16 @@ public class StorageFrame extends JFrame {
 	private JMenuBar menuBar1;
 	private JMenu menu1;
 	private JMenu menu2;
-	private JPanel panel1;
+	private JPanel panel2;
+	private JToggleButton storageIn;
 	private JLabel label1;
-	private JToggleButton storageOperete;
-	private JLabel label3;
 	private JToggleButton storageOut;
 	private JLabel label2;
+	private JToggleButton storageOperete;
+	private JLabel label3;
 	private JPanel emptyPanel;
-	private JToggleButton storageIn;
 	private JTabbedPane tabbedPane1;
-	private JPanel panel2;
+	private JPanel panel3;
 	private JLabel label4;
-	private JLabel label5;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 }
