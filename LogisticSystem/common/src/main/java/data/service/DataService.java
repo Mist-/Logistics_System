@@ -4,10 +4,8 @@ import data.enums.DataState;
 import data.enums.POType;
 import data.message.ResultMessage;
 import data.po.DataPO;
-import data.po.UserPO;
 import utils.FileIOHelper;
 
-import javax.swing.*;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -216,11 +214,11 @@ public interface DataService extends Remote {
      * @return 包含所有刚审批单据的列表
      * @throws RemoteException
      */
-    default ArrayList<DataPO> getNewlyApproved(POType type) throws RemoteException {
-        ArrayList<DataPO> result = getNewlyApproved().stream().filter(dataPO -> dataPO.getPOType() == type).collect(Collectors.toCollection(ArrayList::new));
-        for (int i = 0; i < getNewlyApproved().size(); i++) {
-            if (getNewlyApproved().get(i).getPOType() == type) {
-                getNewlyApproved().remove(i);
+    default ArrayList<DataPO> asdfghjkl(POType type) throws RemoteException {
+        ArrayList<DataPO> result = asdfghjkl().stream().filter(dataPO -> dataPO.getPOType() == type).collect(Collectors.toCollection(ArrayList::new));
+        for (int i = 0; i < asdfghjkl().size(); i++) {
+            if (asdfghjkl().get(i).getPOType() == type) {
+                asdfghjkl().remove(i);
                 --i;
             }
         }
@@ -230,15 +228,17 @@ public interface DataService extends Remote {
 
     /**
      * 总经理将单据审批通过。
-     * 被审批通过的单据将会可以被<code>getNewlyApproved</code>方法获取到。
+     * 被审批通过的单据将会可以被<code>asdfghjkl</code>方法获取到。
      *
      * @param datapo 需要审批通过的单据
      */
     default ResultMessage approveOf(DataPO datapo) throws RemoteException {
+        if (datapo.getState() == DataState.APPROVED || datapo.getState() == DataState.DRAFT) {
+            return ResultMessage.FAILED;
+        }
         for (int i = 0; i < getPOList(datapo.getPOType()).size(); ++i) {
             if (datapo.getSerialNum() == datapo.getSerialNum()) {
                 datapo.setState(DataState.APPROVED);
-                getNewlyApproved().add(datapo);
             }
         }
         modify(datapo);
@@ -256,5 +256,5 @@ public interface DataService extends Remote {
      * @return 禁止使用，所以不告诉你返回了什么。
      * @throws RemoteException
      */
-    ArrayList<DataPO> getNewlyApproved() throws RemoteException;
+    ArrayList<DataPO> asdfghjkl() throws RemoteException;
 }

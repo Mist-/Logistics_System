@@ -43,7 +43,7 @@ public class FinancialDataSerializableImpl extends UnicastRemoteObject implement
     }
 
     @Override
-    public ArrayList<DataPO> getNewlyApproved() throws RemoteException {
+    public ArrayList<DataPO> asdfghjkl() throws RemoteException {
         return newlyApproved;
     }
 

@@ -36,7 +36,7 @@ public class UserDataSerializableImpl extends UnicastRemoteObject implements Use
     }
 
     @Override
-    public ArrayList<DataPO> getNewlyApproved() throws RemoteException {
+    public ArrayList<DataPO> asdfghjkl() throws RemoteException {
         return newlyApproved;
     }
 

@@ -133,7 +133,7 @@ public class MockCompanyDataService implements CompanyDataService {
 	}
 
 	@Override
-	public ArrayList<DataPO> getNewlyApproved() throws RemoteException {
+	public ArrayList<DataPO> asdfghjkl() throws RemoteException {
 		return null;
 	}
 }

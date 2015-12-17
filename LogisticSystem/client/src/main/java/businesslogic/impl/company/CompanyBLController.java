@@ -57,7 +57,8 @@ public class CompanyBLController {
      * @return  审批成功是SUCCESS,网络错误是NOTCONNECTED,表单不存在是NOTEXIST
      */
     public ResultMessage approveData(String dataType, String ID){
-        long id = Long.valueOf(ID);
+        System.out.println(ID);
+        long id = Long.parseLong(ID);
         for(int i=0;i<dataTypes.length;i++){
             if(dataType.equals(dataTypes[i])){
                 return data.approveData(poTypes[i],id);

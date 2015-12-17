@@ -94,7 +94,7 @@ public class CompanyDataSerializableImpl extends UnicastRemoteObject implements 
     }
 
     @Override
-    public ArrayList<DataPO> getNewlyApproved() throws RemoteException {
+    public ArrayList<DataPO> asdfghjkl() throws RemoteException {
         return newlyApproved;
     }
 }
