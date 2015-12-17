@@ -7,6 +7,7 @@ package presentation.order;
 import businesslogic.impl.order.Order;
 import data.enums.DataState;
 import data.enums.ServiceType;
+import data.message.LoginMessage;
 import data.vo.OrderVO;
 import utils.Timestamper;
 
@@ -21,6 +22,8 @@ import javax.swing.LayoutStyle;
  */
 public class NewOrderDlg extends JDialog {
 
+    LoginMessage loginMessage = null;
+
     boolean isEditing = true;
 
     OrderVO orderVO = null;
@@ -31,6 +34,7 @@ public class NewOrderDlg extends JDialog {
         setEditable(true);
         orderVO = new OrderVO();
         this.setVisible(true);
+        orderVO.courier = loginMessage.getUserSN();
         return orderVO;
     }
 
@@ -85,14 +89,16 @@ public class NewOrderDlg extends JDialog {
     }
 
 
-    public NewOrderDlg(Frame owner) {
+    public NewOrderDlg(Frame owner, LoginMessage loginMessage) {
         super(owner);
         initComponents();
+        this.loginMessage = loginMessage;
     }
 
     public NewOrderDlg(Dialog owner) {
         super(owner);
         initComponents();
+        this.loginMessage = loginMessage;
     }
 
     private void btOKMouseReleased(MouseEvent e) {
@@ -220,7 +226,7 @@ public class NewOrderDlg extends JDialog {
         orderVO.fee = Float.parseFloat(textFee.getText());
         orderVO.evaluatedTime = Integer.parseInt(textTimeEvaluated.getText());
 
-        orderVO.routine = new Order().getRoutine(orderVO.saddress, orderVO.raddress);
+        orderVO.routine = new Order(loginMessage).getRoutine(orderVO.saddress, orderVO.raddress);
 
         int DlgResult = JOptionPane.showConfirmDialog(null, "报价：" + textFee.getText() + "元\n" + "预计" + textTimeEvaluated.getText() + "天内送达\n" + "是否保存订单？", "LCS物流管理系统", JOptionPane.OK_CANCEL_OPTION);
         if (DlgResult == JOptionPane.YES_OPTION) {
@@ -234,7 +240,7 @@ public class NewOrderDlg extends JDialog {
         cboxSblock.addItem("请选择区");
         String cityName = cboxScity.getSelectedItem().toString();
         if (cityName.equals("请选择城市")) return;
-        for (String block: new Order().getBlockByCity(cityName)) {
+        for (String block: new Order(loginMessage).getBlockByCity(cityName)) {
             cboxSblock.addItem(block);
         }
         cboxSblock.updateUI();
@@ -245,7 +251,7 @@ public class NewOrderDlg extends JDialog {
         cboxRblock.addItem("请选择区");
         String cityName = cboxRcity.getSelectedItem().toString();
         if (cityName.equals("请选择城市")) return;
-        for (String block: new Order().getBlockByCity(cityName)) {
+        for (String block: new Order(loginMessage).getBlockByCity(cityName)) {
             cboxRblock.addItem(block);
         }
         cboxRblock.updateUI();
@@ -332,7 +338,7 @@ public class NewOrderDlg extends JDialog {
         float length = Float.parseFloat(textLength.getText());
         orderVO.volume = height * width * length;
         orderVO.weight = Float.parseFloat(textWeight.getText());
-        textFee.setText(String.valueOf(new Order().generateFee(orderVO)));
+        textFee.setText(String.valueOf(new Order(loginMessage).generateFee(orderVO)));
     }
 
 
@@ -392,7 +398,7 @@ public class NewOrderDlg extends JDialog {
         orderVO.saddress = cboxScity.getSelectedItem().toString() + "-" + cboxSblock.getSelectedItem().toString() + "-" + textSaddress.getText();
         orderVO.raddress = cboxRcity.getSelectedItem().toString() + "-" + cboxRblock.getSelectedItem().toString() + "-" + textRaddress.getText();
         orderVO.serviceType = (ServiceType) cboxServiceType.getSelectedItem();
-        textTimeEvaluated.setText(String.valueOf(new Order().evaluateTime(orderVO)));
+        textTimeEvaluated.setText(String.valueOf(new Order(loginMessage).evaluateTime(orderVO)));
     }
 
     private void initComponents() {
@@ -868,12 +874,12 @@ public class NewOrderDlg extends JDialog {
 
         cboxRblock.addItem("请选择区");
         cboxRcity.addItem("请选择城市");
-        for (String cityName: new Order().getCityList()) {
+        for (String cityName: new Order(loginMessage).getCityList()) {
             cboxRcity.addItem(cityName);
         }
         cboxSblock.addItem("请选择区");
         cboxScity.addItem("请选择城市");
-        for (String cityName: new Order().getCityList()) {
+        for (String cityName: new Order(loginMessage).getCityList()) {
             cboxScity.addItem(cityName);
         }
 

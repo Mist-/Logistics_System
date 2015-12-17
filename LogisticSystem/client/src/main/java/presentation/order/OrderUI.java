@@ -31,7 +31,7 @@ public class OrderUI extends JFrame {
 
     LoginMessage loginMessage = null;
 
-    NewOrderDlg newOrderDlg = new NewOrderDlg(this);
+    NewOrderDlg newOrderDlg = new NewOrderDlg(this, loginMessage);
 
     public OrderUI(LoginMessage loginMessage) {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -77,7 +77,7 @@ public class OrderUI extends JFrame {
      * @param e
      */
     private void miNewOrderMouseReleased(MouseEvent e) {
-        OrderVO newOrder = new NewOrderDlg(this).getNewOrderInfo();
+        OrderVO newOrder = new NewOrderDlg(this, loginMessage).getNewOrderInfo();
         if (newOrder == null) return;
         ResultMessage result = new OrderBLController().createOrder(newOrder);
         if (result == ResultMessage.SUCCESS) {
@@ -96,7 +96,7 @@ public class OrderUI extends JFrame {
     private void btDeleteMouseReleased(MouseEvent e) {
         int selected = tbOrderInfo.getSelectedRow();
         long orderSn = (long)((Vector<Object>) ((DefaultTableModel) tbOrderInfo.getModel()).getDataVector().get(selected)).get(0);
-        ResultMessage result = new Order().deleteOrder(orderSn);
+        ResultMessage result = new Order(loginMessage).deleteOrder(orderSn);
         if (result == ResultMessage.NOTEXIST) {
             JOptionPane.showMessageDialog(this, "订单删除失败！订单可能已经被删除。", "LCS物流管理系统", JOptionPane.WARNING_MESSAGE);
         } else if (result == ResultMessage.FAILED) {
@@ -112,10 +112,10 @@ public class OrderUI extends JFrame {
     private void btModifyMouseReleased(MouseEvent e) {
         int row = tbOrderInfo.getSelectedRow();
         long sn = (long) ((Vector<Object>) ((DefaultTableModel) tbOrderInfo.getModel()).getDataVector().get(row)).get(0);
-        OrderVO orderInfo = new OrderVO(new Order().search(sn));
+        OrderVO orderInfo = new OrderVO(new Order(loginMessage).search(sn));
         orderInfo = newOrderDlg.getModifiedOrderInfo(orderInfo);
         if (orderInfo == null) return;
-        new Order().modify(sn, orderInfo);
+        new Order(loginMessage).modify(sn, orderInfo);
         refresh();
     }
 
@@ -162,14 +162,14 @@ public class OrderUI extends JFrame {
         Vector<Object> row = (Vector<Object>) ((DefaultTableModel) tbOrderInfo.getModel()).getDataVector().get(rowSelected);
         long snSelected = (long)row.get(0);
         SignDlg signDlg = new SignDlg(this);
-        if (new Order().isSigned(snSelected)) {
+        if (new Order(loginMessage).isSigned(snSelected)) {
             signDlg.showSignInfo(snSelected);
             return;
         }
 
         SignVO signVO = signDlg.getSignInfo(snSelected);
 
-        ResultMessage result = new Order().sign(signVO);
+        ResultMessage result = new Order(loginMessage).sign(signVO);
         if (result == ResultMessage.FAILED) {
             return;
         }

@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "5.2.2.0.199" Java: "1.8.0_45" encoding: "UTF-8"
+JFDML JFormDesigner: "5.2.2.2.228" Java: "1.8.0_51" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -9,8 +9,8 @@ new FormModel {
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq t {space :::p, comp tp::::629:x, space :::p}}"
-				"$verticalGroup": "par l {seq l {space :::p, comp tp::::356:x, space :::p}}"
+				"$horizontalGroup": "par l {seq t {space :::p, comp tp::::637:x, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :::p, comp tp::::364:x, space :::p}}"
 			} ) {
 				name: "panel1"
 				add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
@@ -45,15 +45,7 @@ new FormModel {
 							name: "tbStorageIn"
 						} )
 					}, new FormLayoutConstraints( null ) {
-						"title": "入库单"
-					} )
-					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-						name: "scrollPane8"
-						add( new FormComponent( "javax.swing.JTable" ) {
-							name: "tbStorageOut"
-						} )
-					}, new FormLayoutConstraints( null ) {
-						"title": "出库单"
+						"title": "库存信息单"
 					} )
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane9"

@@ -2,6 +2,7 @@ package businesslogic.impl.order;
 
 import com.sun.istack.internal.NotNull;
 import data.enums.*;
+import data.message.LoginMessage;
 import utils.DataServiceFactory;
 import data.message.ResultMessage;
 import data.po.*;
@@ -21,7 +22,13 @@ import java.util.*;
  */
 public class Order {
 
+    LoginMessage loginMessage = null;
+
     OrderDataService orderDataService = (OrderDataService) DataServiceFactory.getDataServiceByType(DataType.OrderDataService);
+
+    public Order(LoginMessage loginMessage) {
+        this.loginMessage = loginMessage;
+    }
 
     public OrderPO search(long sn) {
         OrderPO result = null;
@@ -91,6 +98,23 @@ public class Order {
             return ResultMessage.FAILED;
         }
         return ResultMessage.SUCCESS;
+    }
+
+    public StorageArea getTransportType(OrderVO orderVO) {
+        if (orderVO.saddress.substring(0, 3).equals(orderVO.raddress.substring(0, 3))) {
+            return StorageArea.TRUCK;
+        }
+        else {
+            switch (orderVO.serviceType) {
+                case 经济快递:
+                    return StorageArea.TRUCK;
+                case 标准快递:
+                    return StorageArea.TRAIN;
+                case 特快快递:
+                    return StorageArea.PLANE;
+            }
+        }
+        return StorageArea.TRUCK;
     }
 
     /**

@@ -11,6 +11,7 @@ import businesslogic.impl.user.InstitutionInfo;
 import businesslogic.service.Transfer.center.TransferLoadService;
 import businesslogic.service.order.OrderListService;
 import data.enums.StorageArea;
+import data.message.LoginMessage;
 import data.message.ResultMessage;
 import data.po.OrderPO;
 import data.vo.StoragePositionAndOrderID;
@@ -72,8 +73,7 @@ public class TransferLoad implements TransferLoadService {
 
 	/**
 	 * 根据目的地获取订单列表
-	 * 
-	 * @param des
+	 *
 	 * @return
 	 * @throws RemoteException
 	 */
@@ -81,7 +81,7 @@ public class TransferLoad implements TransferLoadService {
 		targetInstitutionName = desName + "中转中心";
 		StoragePositionAndOrderID positionAndOrderID = storageInfo
 				.getOrderID(transferType); // 固定区域搜索订单
-		OrderListService orderBL = new OrderList();
+		OrderListService orderBL = new OrderList(new LoginMessage(ResultMessage.SUCCESS));
 		if (positionAndOrderID == null) {
 			return null;
 		}
@@ -183,8 +183,7 @@ public class TransferLoad implements TransferLoadService {
 
 	/**
 	 * 确认保存中转单
-	 * 
-	 * @param input
+	 *
 	 * @return
 	 * @throws RemoteException
 	 */

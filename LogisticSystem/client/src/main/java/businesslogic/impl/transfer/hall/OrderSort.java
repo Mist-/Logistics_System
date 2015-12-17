@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 import data.enums.DataType;
+import data.message.LoginMessage;
 import utils.DataServiceFactory;
 import data.message.ResultMessage;
 import data.po.DataPO;
@@ -144,7 +145,7 @@ public class OrderSort implements LoadAndSortService {
 	
 	public OrderSort(InstitutionInfo user) {
 		entruckList = new EntruckList();
-		orderData = new OrderList();
+		orderData = new OrderList(new LoginMessage(ResultMessage.SUCCESS));
 		this.user = user;
 	}
 

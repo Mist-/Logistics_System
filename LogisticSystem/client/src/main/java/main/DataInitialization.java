@@ -47,6 +47,7 @@ public class DataInitialization {
         city[3].addBusinessOffice(1002000004);
         city[3].setTransferCenter(10020);
 
+
         InstitutionPO[] institution = new InstitutionPO[24];
 
         // до╬╘

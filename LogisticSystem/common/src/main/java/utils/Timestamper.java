@@ -14,6 +14,13 @@ public class Timestamper {
         result += now.get(Calendar.YEAR) + "/" + (now.get(Calendar.MONTH)+1) + "/" + now.get(Calendar.DATE);
         return result;
     }
+    
+    public static String getDir() {
+    	Calendar now = Calendar.getInstance();
+        String result = "";
+        result += now.get(Calendar.YEAR) + "_" + now.get(Calendar.MONTH) + "_" + now.get(Calendar.DATE);
+        return result;
+    }
 
     public static String getTimeBySecond() {
         Calendar now = Calendar.getInstance();

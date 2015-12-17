@@ -4,26 +4,46 @@ package presentation.financial;
  * Created by JFormDesigner on Sat Oct 31 17:11:41 CST 2015
  */
 
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.Vector;
+
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.JToggleButton;
+import javax.swing.LayoutStyle;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+
+import utils.Timestamper;
 import businesslogic.impl.company.CompanyBLController;
-import businesslogic.impl.financialbl.AccountManage;
 import businesslogic.impl.financialbl.FinancialBLController;
+import businesslogic.impl.financialbl.InitialBuild;
 import businesslogic.service.Financial.FinancialBLService;
 import data.enums.POType;
 import data.vo.AccountVO;
 import data.vo.CostBenefitVO;
 import data.vo.PaymentVO;
 import data.vo.ReceiptVO;
-
-import java.awt.*;
-import java.awt.event.*;
-import java.util.ArrayList;
-import java.util.Vector;
-
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-
-import presentation.company.DialogAddSalary;
 
 /**
  * @author wh
@@ -146,7 +166,7 @@ public class FINANCE extends JFrame {
         panelMain.add(pnZHGL, BorderLayout.CENTER);
 
 
-        ArrayList<AccountVO> accounts = financialBL.searchAllAccounts();
+        ArrayList<AccountVO> accounts = financialBL.updateMoney();
         Vector data = ((DefaultTableModel) tableAccounts.getModel()).getDataVector();
         data.clear();
         for (AccountVO accountVO : accounts) {
@@ -300,7 +320,7 @@ public class FINANCE extends JFrame {
 
     //搜索所有的AccountPO并显示
     private void searchAccount() {
-        ArrayList<AccountVO> accounts = financialBL.searchAllAccounts();
+        ArrayList<AccountVO> accounts = financialBL.updateMoney();
         Vector data = ((DefaultTableModel) tableAccounts.getModel()).getDataVector();
 
         data.clear();
@@ -343,8 +363,8 @@ public class FINANCE extends JFrame {
             return;
         }
 
-        if (textDate.getText().charAt(4) != '\\' || textDate.getText().charAt(7) != '\\') {
-            JOptionPane.showMessageDialog(this, "日期之间请用'\'隔开");
+        if (textDate.getText().charAt(4) != '/' || textDate.getText().charAt(7) != '/') {
+            JOptionPane.showMessageDialog(this, "日期之间请用'/'隔开");
             textDate.requestFocus();
             return;
         }
@@ -473,9 +493,11 @@ public class FINANCE extends JFrame {
 
     //ZJGL 新建付款单
     private void button1MouseReleased(MouseEvent e) {
-        PaymentAdd dialogAddSalary = new PaymentAdd();
-        dialogAddSalary.setVisible(true);
-        refresh();
+    	if (!e.getSource().equals(btAccountInit)) {
+	        PaymentAdd dialogAddSalary = new PaymentAdd();
+	        dialogAddSalary.setVisible(true);
+	        refresh();
+    	}
     }
 
     //TJBB 导出经营情况表成Excel
@@ -514,35 +536,45 @@ public class FINANCE extends JFrame {
 
     private void btAccountInitMouseReleased(MouseEvent e) {
         ArrayList<POType> typesToInit = new ArrayList<>();
+        String result = "";
         if (chkAccount.isSelected()) {
             typesToInit.add(POType.ACCOUNT);
+            result += "银行账户信息\n";
         }
         if (chkDriverInfo.isSelected()) {
             typesToInit.add(POType.DRIVERINFO);
+            result += "司机信息\n";
         }
         if (chkInstitution.isSelected()) {
             typesToInit.add(POType.INSTITUTION);
+            result += "机构信息\n";
         }
         if (chkPayment.isSelected()) {
             typesToInit.add(POType.PAYMENT);
+            result += "付款单单信息\n";
         }
         if (chkReceipt.isSelected()) {
             typesToInit.add(POType.RECEIPT);
-        }
-        if (chkStorageIn.isSelected()) {
-            typesToInit.add(POType.STORAGEINLIST);
-        }
-        if (chkStorageOut.isSelected()) {
-            typesToInit.add(POType.STORAGEOUTLIST);
+            result += "收款单信息\n";
         }
         if (chkVehicle.isSelected()) {
             typesToInit.add(POType.VEHICLEINFO);
+            result += "车辆信息\n";
         }
         if (chkStaff.isSelected()) {
             typesToInit.add(POType.STAFF);
         }
+        for (POType type: typesToInit) {
+        	new InitialBuild().initAll(type);
+        }
+        JOptionPane.showMessageDialog(null, "以下账目完成期初建账。 " + Timestamper.getTimeByDate() + "\\ 文件夹下。\n" + result);
+        refreshUI();
     }
 
+    public void refreshUI() {
+    	
+    }
+    
 	private void miZJGLMouseReleased(MouseEvent e) {
 		tgZJGLMouseClicked(e);
 	}
@@ -633,20 +665,10 @@ public class FINANCE extends JFrame {
 		chkInstitution = new JCheckBox();
 		chkVehicle = new JCheckBox();
 		chkDriverInfo = new JCheckBox();
-		chkStorageIn = new JCheckBox();
-		chkStorageOut = new JCheckBox();
 		chkPayment = new JCheckBox();
 		chkReceipt = new JCheckBox();
 		chkStaff = new JCheckBox();
-		labelInstitution = new JLabel();
-		labelVehicle = new JLabel();
-		labelDriverInfo = new JLabel();
-		labelStorageIn = new JLabel();
-		labelStorageOut = new JLabel();
-		labelPayment = new JLabel();
-		labelReceipt = new JLabel();
-		labelAccount = new JLabel();
-		labelStaff = new JLabel();
+		chkStaff2 = new JCheckBox();
 		btAccountInit = new JButton();
 		pnZHGL = new JPanel();
 		button7 = new JButton();
@@ -667,8 +689,26 @@ public class FINANCE extends JFrame {
 		scrollPane20 = new JScrollPane();
 		tablePayment2 = new JTable();
 		btPExcel2 = new JButton();
+		tabbedPane6 = new JTabbedPane();
+		panel7 = new JPanel();
+		btAddP3 = new JButton();
+		scrollPane21 = new JScrollPane();
+		tablePayment3 = new JTable();
+		btPExcel3 = new JButton();
+		panel8 = new JPanel();
+		scrollPane22 = new JScrollPane();
+		tableReceipt2 = new JTable();
+		btDate2 = new JButton();
+		btAddress2 = new JButton();
+		textDate2 = new JTextField();
+		textAddress2 = new JTextField();
+		label16 = new JLabel();
+		lbTotal2 = new JLabel();
+		btRExcel2 = new JButton();
+		lbAll2 = new JLabel();
 
 		//======== this ========
+		setTitle("\u8d22\u52a1\u7ba1\u7406");
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent e) {
@@ -683,9 +723,11 @@ public class FINANCE extends JFrame {
 			//======== menu1 ========
 			{
 				menu1.setText("\u9009\u9879(O)");
+				menu1.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 				//---- miZJGL ----
 				miZJGL.setText("\u8d44\u91d1\u7ba1\u7406");
+				miZJGL.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 				miZJGL.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseReleased(MouseEvent e) {
@@ -696,6 +738,7 @@ public class FINANCE extends JFrame {
 
 				//---- miTJBB ----
 				miTJBB.setText("\u7edf\u8ba1\u62a5\u8868");
+				miTJBB.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 				miTJBB.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseReleased(MouseEvent e) {
@@ -706,6 +749,7 @@ public class FINANCE extends JFrame {
 
 				//---- miZHGL ----
 				miZHGL.setText("\u8d26\u6237\u7ba1\u7406");
+				miZHGL.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 				miZHGL.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseReleased(MouseEvent e) {
@@ -716,6 +760,7 @@ public class FINANCE extends JFrame {
 
 				//---- miQCJZ ----
 				miQCJZ.setText("\u671f\u521d\u5efa\u8d26");
+				miQCJZ.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 				miQCJZ.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseReleased(MouseEvent e) {
@@ -726,6 +771,7 @@ public class FINANCE extends JFrame {
 
 				//---- miChange ----
 				miChange.setText("\u4fee\u6539\u5bc6\u7801");
+				miChange.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 				menu1.add(miChange);
 			}
 			menuBar1.add(menu1);
@@ -733,9 +779,11 @@ public class FINANCE extends JFrame {
 			//======== menu2 ========
 			{
 				menu2.setText("\u5e2e\u52a9(H)");
+				menu2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 				//---- menuItem3 ----
 				menuItem3.setText("\u5173\u4e8e\u6211\u4eec");
+				menuItem3.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 				menuItem3.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseReleased(MouseEvent e) {
@@ -753,6 +801,7 @@ public class FINANCE extends JFrame {
 
 			//---- tgQCJZ ----
 			tgQCJZ.setIcon(new ImageIcon(getClass().getResource("/icons/createbill_72x72.png")));
+			tgQCJZ.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 			tgQCJZ.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -762,9 +811,11 @@ public class FINANCE extends JFrame {
 
 			//---- label4 ----
 			label4.setText("\u671f\u521d\u5efa\u8d26");
+			label4.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 			//---- tgTJBB ----
 			tgTJBB.setIcon(new ImageIcon(getClass().getResource("/icons/form_72x72.png")));
+			tgTJBB.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 			tgTJBB.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -774,9 +825,11 @@ public class FINANCE extends JFrame {
 
 			//---- label2 ----
 			label2.setText("\u7edf\u8ba1\u62a5\u8868");
+			label2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 			//---- tgZHGL ----
 			tgZHGL.setIcon(new ImageIcon(getClass().getResource("/icons/account_72x72.png")));
+			tgZHGL.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 			tgZHGL.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -786,9 +839,11 @@ public class FINANCE extends JFrame {
 
 			//---- label3 ----
 			label3.setText("\u8d26\u6237\u7ba1\u7406");
+			label3.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 			//---- tgZJGL ----
 			tgZJGL.setIcon(new ImageIcon(getClass().getResource("/icons/money_72x72.png")));
+			tgZJGL.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 			tgZJGL.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -798,6 +853,7 @@ public class FINANCE extends JFrame {
 
 			//---- label1 ----
 			label1.setText("\u8d44\u91d1\u7ba1\u7406");
+			label1.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 			//======== panelMain ========
 			{
@@ -812,21 +868,30 @@ public class FINANCE extends JFrame {
 						.addGroup(panel2Layout.createParallelGroup()
 							.addGroup(panel2Layout.createSequentialGroup()
 								.addContainerGap()
-								.addComponent(tgZJGL)
+								.addComponent(tgZJGL))
+							.addGroup(panel2Layout.createSequentialGroup()
+								.addGap(37, 37, 37)
+								.addComponent(label1)))
+						.addGroup(panel2Layout.createParallelGroup()
+							.addGroup(panel2Layout.createSequentialGroup()
 								.addGap(18, 18, 18)
 								.addComponent(tgZHGL)
-								.addGap(12, 12, 12)
-								.addComponent(tgTJBB)
+								.addGap(12, 12, 12))
+							.addGroup(GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(label3)
+								.addGap(35, 35, 35)))
+						.addGroup(panel2Layout.createParallelGroup()
+							.addComponent(tgTJBB)
+							.addGroup(panel2Layout.createSequentialGroup()
+								.addGap(22, 22, 22)
+								.addComponent(label2)))
+						.addGroup(panel2Layout.createParallelGroup()
+							.addGroup(panel2Layout.createSequentialGroup()
 								.addGap(18, 18, 18)
 								.addComponent(tgQCJZ))
 							.addGroup(panel2Layout.createSequentialGroup()
-								.addGap(33, 33, 33)
-								.addComponent(label1)
-								.addGap(76, 76, 76)
-								.addComponent(label3)
-								.addGap(60, 60, 60)
-								.addComponent(label2)
-								.addGap(75, 75, 75)
+								.addGap(41, 41, 41)
 								.addComponent(label4)))
 						.addContainerGap(311, Short.MAX_VALUE))
 					.addComponent(panelMain, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 789, Short.MAX_VALUE)
@@ -842,15 +907,13 @@ public class FINANCE extends JFrame {
 							.addComponent(tgQCJZ, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
 						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 						.addGroup(panel2Layout.createParallelGroup()
-							.addGroup(panel2Layout.createParallelGroup()
-								.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-									.addComponent(label2)
-									.addComponent(label4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-								.addComponent(label3))
-							.addGroup(panel2Layout.createSequentialGroup()
-								.addComponent(label1)
-								.addGap(7, 7, 7)))
-						.addComponent(panelMain, GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE))
+							.addComponent(label1)
+							.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(label3)
+								.addComponent(label2)
+								.addComponent(label4)))
+						.addGap(7, 7, 7)
+						.addComponent(panelMain, GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE))
 			);
 		}
 
@@ -907,11 +970,11 @@ public class FINANCE extends JFrame {
 						panel1Layout.createParallelGroup()
 							.addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
 								.addContainerGap()
-								.addComponent(scrollPane15, GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE)
+								.addComponent(scrollPane15, GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
 								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-									.addComponent(btPExcel, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
-									.addComponent(btAddP, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
+								.addGroup(panel1Layout.createParallelGroup()
+									.addComponent(btAddP, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+									.addComponent(btPExcel, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
 								.addGap(8, 8, 8))
 					);
 					panel1Layout.setVerticalGroup(
@@ -921,10 +984,10 @@ public class FINANCE extends JFrame {
 								.addGroup(panel1Layout.createParallelGroup()
 									.addGroup(panel1Layout.createSequentialGroup()
 										.addComponent(btAddP)
-										.addGap(12, 12, 12)
+										.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 										.addComponent(btPExcel)
-										.addGap(0, 0, Short.MAX_VALUE))
-									.addComponent(scrollPane15, GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
+										.addGap(0, 175, Short.MAX_VALUE))
+									.addComponent(scrollPane15, GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
 								.addContainerGap())
 					);
 				}
@@ -981,7 +1044,7 @@ public class FINANCE extends JFrame {
 						panel3Layout.createParallelGroup()
 							.addGroup(panel3Layout.createSequentialGroup()
 								.addContainerGap()
-								.addComponent(scrollPane16, GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
+								.addComponent(scrollPane16, GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
 								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 								.addGroup(panel3Layout.createParallelGroup()
 									.addComponent(textDate, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
@@ -1030,17 +1093,11 @@ public class FINANCE extends JFrame {
 			pnZJGL.setLayout(pnZJGLLayout);
 			pnZJGLLayout.setHorizontalGroup(
 				pnZJGLLayout.createParallelGroup()
-					.addGroup(GroupLayout.Alignment.TRAILING, pnZJGLLayout.createSequentialGroup()
-						.addContainerGap()
-						.addComponent(tabbedPane4)
-						.addContainerGap())
+					.addComponent(tabbedPane4)
 			);
 			pnZJGLLayout.setVerticalGroup(
 				pnZJGLLayout.createParallelGroup()
-					.addGroup(pnZJGLLayout.createSequentialGroup()
-						.addContainerGap()
-						.addComponent(tabbedPane4)
-						.addGap(5, 5, 5))
+					.addComponent(tabbedPane4)
 			);
 		}
 
@@ -1049,6 +1106,7 @@ public class FINANCE extends JFrame {
 
 			//======== tpCost ========
 			{
+				tpCost.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 				tpCost.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseReleased(MouseEvent e) {
@@ -1064,12 +1122,21 @@ public class FINANCE extends JFrame {
 
 						//---- label5 ----
 						label5.setText("\u5f00\u59cb\u65e5\u671f");
+						label5.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+						//---- textBeginYear ----
+						textBeginYear.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 						//---- label9 ----
 						label9.setText("\u7ed3\u675f\u65e5\u671f");
+						label9.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+						//---- textEndYear ----
+						textEndYear.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 						//---- btSearch2 ----
 						btSearch2.setIcon(new ImageIcon(getClass().getResource("/icons/search_16x16.png")));
+						btSearch2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 						btSearch2.addMouseListener(new MouseAdapter() {
 							@Override
 							public void mouseReleased(MouseEvent e) {
@@ -1082,9 +1149,13 @@ public class FINANCE extends JFrame {
 
 							//======== tabbedPane5 ========
 							{
+								tabbedPane5.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 								//======== scrollPane19 ========
 								{
+
+									//---- tablePay ----
+									tablePay.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 									scrollPane19.setViewportView(tablePay);
 								}
 								tabbedPane5.addTab("\u4ed8\u6b3e\u5355", scrollPane19);
@@ -1098,26 +1169,45 @@ public class FINANCE extends JFrame {
 							scrollPane17.setViewportView(tabbedPane5);
 						}
 
+						//---- textBeginMonth ----
+						textBeginMonth.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
 						//---- label8 ----
 						label8.setText("\u5e74");
+						label8.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 						//---- label10 ----
 						label10.setText("\u6708");
+						label10.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+						//---- textBeginDay ----
+						textBeginDay.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 						//---- label11 ----
 						label11.setText("\u65e5");
+						label11.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 						//---- label12 ----
 						label12.setText("\u5e74");
+						label12.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+						//---- textEndMonth ----
+						textEndMonth.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+						//---- textEndDay ----
+						textEndDay.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 						//---- label13 ----
 						label13.setText("\u6708");
+						label13.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 						//---- label14 ----
 						label14.setText("\u65e5");
+						label14.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 						//---- jbExcel ----
 						jbExcel.setText("\u5bfc\u51fa");
+						jbExcel.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 						jbExcel.addMouseListener(new MouseAdapter() {
 							@Override
 							public void mouseReleased(MouseEvent e) {
@@ -1161,9 +1251,9 @@ public class FINANCE extends JFrame {
 									.addComponent(btSearch2, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 									.addGap(40, 40, 40)
 									.addComponent(jbExcel)
-									.addGap(0, 177, Short.MAX_VALUE))
+									.addGap(0, 259, Short.MAX_VALUE))
 								.addGroup(panel4Layout.createSequentialGroup()
-									.addComponent(scrollPane17, GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
+									.addComponent(scrollPane17, GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
 									.addContainerGap())
 						);
 						panel4Layout.setVerticalGroup(
@@ -1209,7 +1299,7 @@ public class FINANCE extends JFrame {
 				pnTJBBLayout.createParallelGroup()
 					.addGroup(pnTJBBLayout.createSequentialGroup()
 						.addContainerGap()
-						.addComponent(tpCost, GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+						.addComponent(tpCost, GroupLayout.DEFAULT_SIZE, 825, Short.MAX_VALUE)
 						.addContainerGap())
 			);
 			pnTJBBLayout.setVerticalGroup(
@@ -1229,57 +1319,35 @@ public class FINANCE extends JFrame {
 
 				//---- chkAccount ----
 				chkAccount.setText("\u8d26\u6237\u4fe1\u606f\u8868");
+				chkAccount.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 				//---- chkInstitution ----
 				chkInstitution.setText("\u673a\u6784\u8868");
+				chkInstitution.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 				//---- chkVehicle ----
 				chkVehicle.setText("\u8f66\u8f86\u4fe1\u606f\u8868");
+				chkVehicle.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 				//---- chkDriverInfo ----
 				chkDriverInfo.setText("\u53f8\u673a\u4fe1\u606f\u8868");
-
-				//---- chkStorageIn ----
-				chkStorageIn.setText("\u5165\u5e93\u5355");
-
-				//---- chkStorageOut ----
-				chkStorageOut.setText("\u51fa\u5e93\u5355");
+				chkDriverInfo.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 				//---- chkPayment ----
 				chkPayment.setText("\u4ed8\u6b3e\u5355");
+				chkPayment.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 				//---- chkReceipt ----
 				chkReceipt.setText("\u6536\u6b3e\u5355");
+				chkReceipt.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 				//---- chkStaff ----
 				chkStaff.setText("\u4eba\u5458\u8868");
+				chkStaff.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- labelInstitution ----
-				labelInstitution.setText("\u5c1a\u672a\u8fdb\u884c\u8fc7\u671f\u521d\u5efa\u8d26");
-
-				//---- labelVehicle ----
-				labelVehicle.setText("\u5c1a\u672a\u8fdb\u884c\u8fc7\u671f\u521d\u5efa\u8d26");
-
-				//---- labelDriverInfo ----
-				labelDriverInfo.setText("\u5c1a\u672a\u8fdb\u884c\u8fc7\u671f\u521d\u5efa\u8d26");
-
-				//---- labelStorageIn ----
-				labelStorageIn.setText("\u5c1a\u672a\u8fdb\u884c\u8fc7\u671f\u521d\u5efa\u8d26");
-
-				//---- labelStorageOut ----
-				labelStorageOut.setText("\u5c1a\u672a\u8fdb\u884c\u8fc7\u671f\u521d\u5efa\u8d26");
-
-				//---- labelPayment ----
-				labelPayment.setText("\u5c1a\u672a\u8fdb\u884c\u8fc7\u671f\u521d\u5efa\u8d26");
-
-				//---- labelReceipt ----
-				labelReceipt.setText("\u5c1a\u672a\u8fdb\u884c\u8fc7\u671f\u521d\u5efa\u8d26");
-
-				//---- labelAccount ----
-				labelAccount.setText("\u5c1a\u672a\u8fdb\u884c\u8fc7\u671f\u521d\u5efa\u8d26");
-
-				//---- labelStaff ----
-				labelStaff.setText("\u5c1a\u672a\u8fdb\u884c\u8fc7\u671f\u521d\u5efa\u8d26");
+				//---- chkStaff2 ----
+				chkStaff2.setText("\u5e93\u5b58\u4fe1\u606f\u8868");
+				chkStaff2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 				GroupLayout panel6Layout = new GroupLayout(panel6);
 				panel6.setLayout(panel6Layout);
@@ -1290,69 +1358,38 @@ public class FINANCE extends JFrame {
 								.addComponent(chkInstitution)
 								.addComponent(chkVehicle)
 								.addComponent(chkDriverInfo)
-								.addComponent(chkStorageIn)
-								.addComponent(chkStorageOut)
 								.addComponent(chkPayment)
 								.addComponent(chkReceipt)
 								.addComponent(chkAccount)
-								.addComponent(chkStaff))
-							.addGap(42, 42, 42)
-							.addGroup(panel6Layout.createParallelGroup()
-								.addComponent(labelStaff)
-								.addComponent(labelAccount)
-								.addComponent(labelReceipt)
-								.addComponent(labelPayment)
-								.addComponent(labelStorageOut)
-								.addComponent(labelStorageIn)
-								.addComponent(labelDriverInfo)
-								.addComponent(labelVehicle)
-								.addComponent(labelInstitution))
-							.addGap(0, 200, Short.MAX_VALUE))
+								.addComponent(chkStaff)
+								.addComponent(chkStaff2))
+							.addGap(0, 548, Short.MAX_VALUE))
 				);
 				panel6Layout.setVerticalGroup(
 					panel6Layout.createParallelGroup()
 						.addGroup(panel6Layout.createSequentialGroup()
-							.addGroup(panel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(chkInstitution)
-								.addComponent(labelInstitution))
+							.addComponent(chkInstitution)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(panel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(chkVehicle)
-								.addComponent(labelVehicle))
+							.addComponent(chkVehicle)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(panel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(chkDriverInfo)
-								.addComponent(labelDriverInfo))
+							.addComponent(chkDriverInfo)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(panel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(chkStorageIn)
-								.addComponent(labelStorageIn))
+							.addComponent(chkPayment)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(panel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(chkStorageOut)
-								.addComponent(labelStorageOut))
+							.addComponent(chkReceipt)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(panel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(chkPayment)
-								.addComponent(labelPayment))
+							.addComponent(chkAccount)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(panel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(chkReceipt)
-								.addComponent(labelReceipt))
+							.addComponent(chkStaff)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(panel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(chkAccount)
-								.addComponent(labelAccount))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(panel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(chkStaff)
-								.addComponent(labelStaff))
-							.addGap(0, 88, Short.MAX_VALUE))
+							.addComponent(chkStaff2)
+							.addGap(0, 48, Short.MAX_VALUE))
 				);
 			}
 
 			//---- btAccountInit ----
 			btAccountInit.setText("\u671f\u521d\u5efa\u8d26");
+			btAccountInit.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 			btAccountInit.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseReleased(MouseEvent e) {
@@ -1368,8 +1405,8 @@ public class FINANCE extends JFrame {
 					.addGroup(pnQCJZLayout.createSequentialGroup()
 						.addGap(9, 9, 9)
 						.addComponent(panel6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-						.addComponent(btAccountInit)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						.addComponent(btAccountInit, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
 						.addContainerGap())
 			);
 			pnQCJZLayout.setVerticalGroup(
@@ -1377,10 +1414,10 @@ public class FINANCE extends JFrame {
 					.addGroup(pnQCJZLayout.createSequentialGroup()
 						.addContainerGap()
 						.addGroup(pnQCJZLayout.createParallelGroup()
+							.addComponent(panel6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addGroup(pnQCJZLayout.createSequentialGroup()
 								.addComponent(btAccountInit)
-								.addGap(0, 272, Short.MAX_VALUE))
-							.addComponent(panel6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+								.addGap(0, 251, Short.MAX_VALUE)))
 						.addContainerGap())
 			);
 		}
@@ -1394,6 +1431,7 @@ public class FINANCE extends JFrame {
 			//---- btAdd ----
 			btAdd.setText("\u6dfb\u52a0");
 			btAdd.setIcon(new ImageIcon(getClass().getResource("/icons/new_24x24.png")));
+			btAdd.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 			btAdd.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseReleased(MouseEvent e) {
@@ -1404,6 +1442,7 @@ public class FINANCE extends JFrame {
 			//---- btModify ----
 			btModify.setText("\u4fee\u6539");
 			btModify.setIcon(new ImageIcon(getClass().getResource("/icons/modify_24x24.png")));
+			btModify.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 			btModify.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseReleased(MouseEvent e) {
@@ -1414,8 +1453,12 @@ public class FINANCE extends JFrame {
 			//---- button8 ----
 			button8.setText("\u5220\u9664");
 
+			//---- textName ----
+			textName.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
 			//---- btSearch ----
 			btSearch.setIcon(new ImageIcon(getClass().getResource("/icons/search_16x16.png")));
+			btSearch.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 			btSearch.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseReleased(MouseEvent e) {
@@ -1425,10 +1468,12 @@ public class FINANCE extends JFrame {
 
 			//---- label6 ----
 			label6.setText("\u8d26\u6237\u540d\u79f0\uff1a");
+			label6.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 			//---- btDelete ----
 			btDelete.setText("\u5220\u9664");
 			btDelete.setIcon(new ImageIcon(getClass().getResource("/icons/delete_24x24.png")));
+			btDelete.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 			btDelete.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseReleased(MouseEvent e) {
@@ -1438,12 +1483,20 @@ public class FINANCE extends JFrame {
 
 			//---- label7 ----
 			label7.setText("\u8d26\u6237\u4f59\u989d\uff1a");
+			label7.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+			//---- textName2 ----
+			textName2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 			//======== tabbedPane3 ========
 			{
+				tabbedPane3.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 				//======== scrollPane13 ========
 				{
+
+					//---- tableAccounts ----
+					tableAccounts.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 					scrollPane13.setViewportView(tableAccounts);
 				}
 				tabbedPane3.addTab("\u8d26\u6237\u4f59\u989d", scrollPane13);
@@ -1471,9 +1524,9 @@ public class FINANCE extends JFrame {
 								.addComponent(tabbedPane3, GroupLayout.PREFERRED_SIZE, 560, GroupLayout.PREFERRED_SIZE)))
 						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 						.addGroup(pnZHGLLayout.createParallelGroup()
-							.addComponent(btAdd, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addComponent(btDelete, GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-							.addComponent(btModify, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
+							.addComponent(btAdd, GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+							.addComponent(btModify, GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
 						.addContainerGap())
 			);
 			pnZHGLLayout.setVerticalGroup(
@@ -1486,13 +1539,13 @@ public class FINANCE extends JFrame {
 							.addComponent(label7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addComponent(textName2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addComponent(btSearch, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-						.addGroup(pnZHGLLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addGroup(pnZHGLLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
 							.addGroup(pnZHGLLayout.createSequentialGroup()
 								.addComponent(btAdd)
 								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 								.addComponent(btModify)
-								.addGap(205, 205, 205)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addComponent(btDelete))
 							.addComponent(tabbedPane3, GroupLayout.PREFERRED_SIZE, 357, GroupLayout.PREFERRED_SIZE))
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1505,6 +1558,7 @@ public class FINANCE extends JFrame {
 			//---- btAddP2 ----
 			btAddP2.setIcon(new ImageIcon(getClass().getResource("/icons/new_24x24.png")));
 			btAddP2.setText("\u65b0\u5efa");
+			btAddP2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 			btAddP2.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseReleased(MouseEvent e) {
@@ -1514,12 +1568,16 @@ public class FINANCE extends JFrame {
 
 			//======== scrollPane20 ========
 			{
+
+				//---- tablePayment2 ----
+				tablePayment2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 				scrollPane20.setViewportView(tablePayment2);
 			}
 
 			//---- btPExcel2 ----
 			btPExcel2.setText("\u5bfc\u51fa");
 			btPExcel2.setIcon(new ImageIcon(getClass().getResource("/icons/export_24x24.png")));
+			btPExcel2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 			btPExcel2.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseReleased(MouseEvent e) {
@@ -1533,15 +1591,12 @@ public class FINANCE extends JFrame {
 				panel5Layout.createParallelGroup()
 					.addGroup(GroupLayout.Alignment.TRAILING, panel5Layout.createSequentialGroup()
 						.addContainerGap()
-						.addComponent(scrollPane20, GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
+						.addComponent(scrollPane20, GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
 						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 						.addGroup(panel5Layout.createParallelGroup()
-							.addGroup(panel5Layout.createSequentialGroup()
-								.addComponent(btPExcel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addContainerGap())
-							.addGroup(panel5Layout.createSequentialGroup()
-								.addComponent(btAddP2, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-								.addGap(8, 8, 8))))
+							.addComponent(btAddP2, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+							.addComponent(btPExcel2, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
+						.addContainerGap())
 			);
 			panel5Layout.setVerticalGroup(
 				panel5Layout.createParallelGroup()
@@ -1550,11 +1605,173 @@ public class FINANCE extends JFrame {
 						.addGroup(panel5Layout.createParallelGroup()
 							.addComponent(scrollPane20, GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
 							.addGroup(panel5Layout.createSequentialGroup()
-								.addComponent(btAddP2, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-								.addGap(18, 18, 18)
+								.addComponent(btAddP2)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 								.addComponent(btPExcel2)
-								.addContainerGap(194, Short.MAX_VALUE))))
+								.addContainerGap(213, Short.MAX_VALUE))))
 			);
+		}
+
+		//======== tabbedPane6 ========
+		{
+			tabbedPane6.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+			//======== panel7 ========
+			{
+
+				//---- btAddP3 ----
+				btAddP3.setIcon(new ImageIcon(getClass().getResource("/icons/new_24x24.png")));
+				btAddP3.setText("\u65b0\u5efa");
+				btAddP3.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				btAddP3.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						button1MouseReleased(e);
+					}
+				});
+
+				//======== scrollPane21 ========
+				{
+
+					//---- tablePayment3 ----
+					tablePayment3.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+					scrollPane21.setViewportView(tablePayment3);
+				}
+
+				//---- btPExcel3 ----
+				btPExcel3.setText("\u5bfc\u51fa");
+				btPExcel3.setIcon(new ImageIcon(getClass().getResource("/icons/export_24x24.png")));
+				btPExcel3.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				btPExcel3.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						btPExcelMouseReleased(e);
+					}
+				});
+
+				GroupLayout panel7Layout = new GroupLayout(panel7);
+				panel7.setLayout(panel7Layout);
+				panel7Layout.setHorizontalGroup(
+					panel7Layout.createParallelGroup()
+						.addGroup(GroupLayout.Alignment.TRAILING, panel7Layout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(scrollPane21, GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addGroup(panel7Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+								.addComponent(btPExcel3, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+								.addComponent(btAddP3, GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
+							.addGap(8, 8, 8))
+				);
+				panel7Layout.setVerticalGroup(
+					panel7Layout.createParallelGroup()
+						.addGroup(panel7Layout.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(panel7Layout.createParallelGroup()
+								.addGroup(panel7Layout.createSequentialGroup()
+									.addComponent(btAddP3)
+									.addGap(12, 12, 12)
+									.addComponent(btPExcel3)
+									.addGap(0, 158, Short.MAX_VALUE))
+								.addComponent(scrollPane21, GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
+							.addContainerGap())
+				);
+			}
+			tabbedPane6.addTab("\u4ed8\u6b3e\u5355", panel7);
+
+			//======== panel8 ========
+			{
+
+				//======== scrollPane22 ========
+				{
+					scrollPane22.setViewportView(tableReceipt2);
+				}
+
+				//---- btDate2 ----
+				btDate2.setText("\u6309\u5929\u67e5\u770b");
+				btDate2.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						btDateMouseReleased(e);
+					}
+				});
+
+				//---- btAddress2 ----
+				btAddress2.setText("\u6309\u8425\u4e1a\u5385\u67e5\u770b");
+				btAddress2.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						btAddressMouseReleased(e);
+					}
+				});
+
+				//---- label16 ----
+				label16.setText(" \u5982\uff1a2015/11/27");
+
+				//---- lbTotal2 ----
+				lbTotal2.setText("text");
+
+				//---- btRExcel2 ----
+				btRExcel2.setText("\u5bfc\u51fa");
+				btRExcel2.setIcon(new ImageIcon(getClass().getResource("/icons/export_24x24.png")));
+				btRExcel2.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						btRExcelMouseReleased(e);
+					}
+				});
+
+				//---- lbAll2 ----
+				lbAll2.setText("\u5408\u8ba1\uff1a");
+
+				GroupLayout panel8Layout = new GroupLayout(panel8);
+				panel8.setLayout(panel8Layout);
+				panel8Layout.setHorizontalGroup(
+					panel8Layout.createParallelGroup()
+						.addGroup(panel8Layout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(scrollPane22, GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addGroup(panel8Layout.createParallelGroup()
+								.addComponent(textDate2, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btDate2, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+								.addComponent(label16, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textAddress2, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btAddress2, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+								.addGroup(panel8Layout.createSequentialGroup()
+									.addComponent(lbAll2)
+									.addGap(9, 9, 9)
+									.addComponent(lbTotal2, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
+								.addComponent(btRExcel2, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE))
+							.addContainerGap())
+				);
+				panel8Layout.setVerticalGroup(
+					panel8Layout.createParallelGroup()
+						.addGroup(panel8Layout.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(panel8Layout.createParallelGroup()
+								.addComponent(scrollPane22, GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+								.addGroup(panel8Layout.createSequentialGroup()
+									.addComponent(textDate2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addGap(5, 5, 5)
+									.addComponent(btDate2)
+									.addGap(7, 7, 7)
+									.addComponent(label16, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+									.addGap(9, 9, 9)
+									.addComponent(textAddress2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addGap(5, 5, 5)
+									.addComponent(btAddress2)
+									.addGap(12, 12, 12)
+									.addGroup(panel8Layout.createParallelGroup()
+										.addComponent(lbAll2, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+										.addGroup(panel8Layout.createSequentialGroup()
+											.addGap(5, 5, 5)
+											.addComponent(lbTotal2)))
+									.addGap(6, 6, 6)
+									.addComponent(btRExcel2)
+									.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+				);
+			}
+			tabbedPane6.addTab("\u6536\u6b3e\u5355", panel8);
 		}
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
 
@@ -1678,20 +1895,10 @@ public class FINANCE extends JFrame {
 	private JCheckBox chkInstitution;
 	private JCheckBox chkVehicle;
 	private JCheckBox chkDriverInfo;
-	private JCheckBox chkStorageIn;
-	private JCheckBox chkStorageOut;
 	private JCheckBox chkPayment;
 	private JCheckBox chkReceipt;
 	private JCheckBox chkStaff;
-	private JLabel labelInstitution;
-	private JLabel labelVehicle;
-	private JLabel labelDriverInfo;
-	private JLabel labelStorageIn;
-	private JLabel labelStorageOut;
-	private JLabel labelPayment;
-	private JLabel labelReceipt;
-	private JLabel labelAccount;
-	private JLabel labelStaff;
+	private JCheckBox chkStaff2;
 	private JButton btAccountInit;
 	private JPanel pnZHGL;
 	private JButton button7;
@@ -1712,5 +1919,22 @@ public class FINANCE extends JFrame {
 	private JScrollPane scrollPane20;
 	private JTable tablePayment2;
 	private JButton btPExcel2;
+	private JTabbedPane tabbedPane6;
+	private JPanel panel7;
+	private JButton btAddP3;
+	private JScrollPane scrollPane21;
+	private JTable tablePayment3;
+	private JButton btPExcel3;
+	private JPanel panel8;
+	private JScrollPane scrollPane22;
+	private JTable tableReceipt2;
+	private JButton btDate2;
+	private JButton btAddress2;
+	private JTextField textDate2;
+	private JTextField textAddress2;
+	private JLabel label16;
+	private JLabel lbTotal2;
+	private JButton btRExcel2;
+	private JLabel lbAll2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

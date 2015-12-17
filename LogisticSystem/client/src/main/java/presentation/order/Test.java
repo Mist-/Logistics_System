@@ -1,5 +1,7 @@
 package presentation.order;
 
+import data.message.LoginMessage;
+import data.message.ResultMessage;
 import org.jb2011.lnf.windows2.Windows2LookAndFeel;
 
 import javax.swing.*;
@@ -21,7 +23,7 @@ public class Test extends JFrame {
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-        NewOrderDlg newOrderDlg = new NewOrderDlg(new Frame());
+        NewOrderDlg newOrderDlg = new NewOrderDlg(new Frame(), new LoginMessage(ResultMessage.SUCCESS, 10000));
         newOrderDlg.setVisible(true);
     }
 }
