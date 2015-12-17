@@ -84,6 +84,10 @@ public class FinancialBLController implements FinancialBLService {
 //		return accountManage.acIdentity(name, password);
 //	}
 	@Override
+	public ArrayList<AccountVO> updateMoney(){
+		return accountManage.updateMoney();
+	}
+	@Override
 	public ArrayList<AccountVO> searchAllAccounts() {
 		return accountManage.searchAllAccounts();
 	}

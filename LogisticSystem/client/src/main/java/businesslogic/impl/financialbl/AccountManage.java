@@ -11,22 +11,54 @@ import data.po.AccountPO;
 import data.po.DataPO;
 import data.service.FinancialDataService;
 import data.vo.AccountVO;
+import data.vo.PaymentVO;
+import data.vo.ReceiptVO;
 
 public class AccountManage {
 	private FinancialDataService financialDataService ;
 	private ArrayList<DataPO> pList ;
 	private AccountVO account ;
 	private ArrayList<AccountVO> accountVOList;
+	private ArrayList<PaymentVO> paymentVOList;
+	private ArrayList<ReceiptVO> receiptVOList;
+	private FundsManage fundsManage;
 	
 	public AccountManage(){
 	financialDataService = (FinancialDataService) DataServiceFactory.getDataServiceByType(DataType.FinancialDataService);
 	pList = new ArrayList<DataPO>();
-	
+	paymentVOList = new ArrayList<PaymentVO>();
+	receiptVOList = new ArrayList<ReceiptVO>();
+	fundsManage = new FundsManage();
 	}
 	
 	public ResultMessage acIdentity(String name, String password) {
 		
 		return ResultMessage.SUCCESS;
+	}
+	//更新余额
+	public ArrayList<AccountVO> updateMoney(){
+		accountVOList = searchAllAccounts();
+		paymentVOList = fundsManage.searchAllPayment();
+		receiptVOList = fundsManage.searchAllReceipt();
+		double money = 0;
+		for(AccountVO ac:accountVOList){
+			money = ac.getMoney();
+			for(PaymentVO pa:paymentVOList){
+				if(ac.getName().equals(pa.getAccount())){
+					money -= pa.getMoney();
+				}
+			}
+			for(ReceiptVO re:receiptVOList){
+				if(ac.getName().equals(re.getSender())){
+					money += re.getMoney();
+				}
+			}
+			if(money != ac.getMoney()){
+				ac.setMoney(money);
+				changeAccount(ac);
+			}
+		}
+		return 	accountVOList;
 	}
     public ArrayList<AccountVO> searchAllAccounts (){
     	accountVOList = new ArrayList<AccountVO>();
