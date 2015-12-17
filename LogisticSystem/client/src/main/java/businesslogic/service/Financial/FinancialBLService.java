@@ -39,6 +39,9 @@ public interface FinancialBLService {
     
 //Account    
 //    ResultMessage acIdentity(String name, String password);
+    
+    ArrayList<AccountVO> updateMoney();
+    
     ArrayList<AccountVO> searchAllAccounts();
     
     ArrayList<AccountVO> findAccount(String name);

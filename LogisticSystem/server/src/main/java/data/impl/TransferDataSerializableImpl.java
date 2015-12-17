@@ -78,6 +78,7 @@ public class TransferDataSerializableImpl extends UnicastRemoteObject implements
     @Override
     public ArrayList<DataPO> getNewlyApprovedPO(POType type, long institution) {
         ArrayList<DataPO> result = new ArrayList<>();
+        System.out.println(institution);
         for (DataPO data: newlyApproved) {
             if (data.getPOType() == type) {
                 switch (type) {

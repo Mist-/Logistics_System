@@ -3,7 +3,6 @@
 <fullyQualifiedTypeName name="java.lang.Iterable"/>
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
 <fullyQualifiedTypeName name="java.sql.Date"/>
-<fullyQualifiedTypeName name="java.util.Calendar"/>
 <fullyQualifiedTypeName name="java.text.ParseException"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="data.po.StorageInfoPO"/>
@@ -37,10 +36,8 @@
 <fullyQualifiedTypeName name="data.po.DriverInfoPO"/>
 <fullyQualifiedTypeName name="businesslogic.service.order.OrderListService"/>
 <fullyQualifiedTypeName name="data.vo.BriefOrderVO"/>
-<fullyQualifiedTypeName name="data.po.DataPO"/>
 <fullyQualifiedTypeName name="businesslogic.impl.transfer.hall.DriverManagement"/>
 <fullyQualifiedTypeName name="businesslogic.impl.transfer.hall.TruckManagement"/>
-<fullyQualifiedTypeName name="java.lang.Long"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="data.po.LogisticInfoPO"/>
 <fullyQualifiedTypeName name="data.service.OrderDataService"/>
@@ -48,16 +45,19 @@
 <fullyQualifiedTypeName name="utils.DataServiceFactory"/>
 <fullyQualifiedTypeName name="data.enums.DataType"/>
 <fullyQualifiedTypeName name="java.security.Timestamp"/>
-<fullyQualifiedTypeName name="utils.Timestamper"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="data.po.OrderPO"/>
 <fullyQualifiedTypeName name="businesslogic.impl.order.Order"/>
 <fullyQualifiedTypeName name="data.vo.EntruckListVO"/>
-<fullyQualifiedTypeName name="data.enums.POType"/>
 <fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
 <fullyQualifiedTypeName name="javax.swing.DefaultComboBoxModel"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="data.message.ResultMessage"/>
 <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 <fullyQualifiedTypeName name="java.awt.BorderLayout"/>
+<fullyQualifiedTypeName name="data.enums.POType"/>
+<fullyQualifiedTypeName name="data.po.DataPO"/>
+<fullyQualifiedTypeName name="java.util.Calendar"/>
+<fullyQualifiedTypeName name="utils.Timestamper"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="java.lang.Long"/>
 </qualifiedTypeNameHistroy>

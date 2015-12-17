@@ -9,7 +9,6 @@ import businesslogic.impl.user.InstitutionInfo;
 import businesslogic.service.storage.StorageInService;
 import data.enums.DataType;
 import data.enums.POType;
-import data.message.LoginMessage;
 import utils.DataServiceFactory;
 import data.message.ResultMessage;
 import data.po.ArrivalPO;
@@ -76,7 +75,8 @@ public class StorageIn implements StorageInService{
 	 * 
 	 *
 	 * 要求查看一个入库单信息
-	 *
+	 * 
+	 * @param storageInCode
 	 * @return 入库单显示信息
 	 * @throws RemoteException
 	 */
@@ -94,7 +94,8 @@ public class StorageIn implements StorageInService{
 	/**
 	 * 给订单分配入库位置
 	 * 
-	 *
+	 * 
+	 * @param institute
 	 * @return 入库单展示信息
 	 * @throws RemoteException
 	 */
@@ -163,7 +164,8 @@ public class StorageIn implements StorageInService{
 		TransferDataService transferData = (TransferDataService) DataServiceFactory
 				.getDataServiceByType(DataType.TransferDataService);
 		this.user = user;
-		orderList = new OrderList(new LoginMessage(ResultMessage.SUCCESS));
+		this.storageInfo = storageInfo;
+		orderList = new OrderList();
 		arrivalList = new ArrivalList(transferData);
 		storageInList = new StorageList(storageData, user.getCenterID(), POType.STORAGEINLIST);
 	}
