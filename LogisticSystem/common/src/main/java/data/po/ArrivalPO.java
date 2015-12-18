@@ -12,7 +12,36 @@ import java.util.ArrayList;
 public class ArrivalPO extends DataPO {
 
 	private static final long serialVersionUID = 2;
+
+
+
+
+
+	//到达单号
+	//中转中心编号
+	//订单号
+	//订单状态
+	//日期：yyyy-mm-dd
+	//出发机构编号
+    long destID;
+    String date;
+    String destName;
+	ArrayList<Long> order;
+    ArrayList<StockStatus> stockStatus;
+    long from;//ID
+    String fromName;
+    long deliveryListID;
+    
+    
 	
+	public long getDeliveryListID() {
+		return deliveryListID;
+	}
+
+	public void setDeliveryListID(long deliveryListID) {
+		this.deliveryListID = deliveryListID;
+	}
+
 	public ArrivalPO(TransferListPO transfer){
 		super(POType.ARRIVAL);
 		destID = transfer.getSerialNum();
@@ -25,6 +54,10 @@ public class ArrivalPO extends DataPO {
 		isOperated = false;
 	
 		//date
+	}
+	
+	public void setOperated(boolean isOperated) {
+		this.isOperated = isOperated;
 	}
 	
 	public String getFromName() {
@@ -56,25 +89,6 @@ public class ArrivalPO extends DataPO {
 		return isOperated;
 	}
 
-	public void setOperated(boolean isOperated) {
-		this.isOperated = isOperated;
-	}
-
-
-
-	//到达单号
-	//中转中心编号
-	//订单号
-	//订单状态
-	//日期：yyyy-mm-dd
-	//出发机构编号
-    long destID;
-    String date;
-    String destName;
-	ArrayList<Long> order;
-    ArrayList<StockStatus> stockStatus;
-    long from;//ID
-    String fromName;
 
     boolean isOperated = false;//是否入库（仓库），是否修改订单信息（营业厅，中转中心）
 

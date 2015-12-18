@@ -133,7 +133,7 @@ public class OrderSort implements LoadAndSortService {
 		}
 		drivers.useDriver(Long.parseLong(entruckList.driverID));
 		trucks.useTruck(Long.parseLong(entruckList.vehicleID));
-		orderData.modifyOrderPosition(order);
+		orderData.modifyOrderPosition(order);//修改订单位置信息
 		return this.entruckList.saveEntruckList(entruckList);
 
 	}

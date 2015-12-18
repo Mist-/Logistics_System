@@ -36,7 +36,7 @@ public class TransferDataSerializableImpl extends UnicastRemoteObject implements
     }
 
     @Override
-    public HashMap<POType, ArrayList<DataPO>> getHashMap() throws RemoteException {
+    public HashMap<POType, ArrayList<DataPO>> hkasfkjhkjash() throws RemoteException {
         return poLists;
     }
 
@@ -80,6 +80,7 @@ public class TransferDataSerializableImpl extends UnicastRemoteObject implements
         ArrayList<DataPO> result = new ArrayList<>();
         System.out.println(institution);
         for (DataPO data: newlyApproved) {
+        	System.out.println(data.getSerialNum());
             if (data.getPOType() == type) {
                 switch (type) {
                     case ARRIVAL:

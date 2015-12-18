@@ -6,6 +6,7 @@ package presentation.transfer.center;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.rmi.RemoteException;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -141,7 +142,25 @@ public class TransferReceivePanel extends JPanel {
 
 	private void doArriveMouseClicked(MouseEvent e) {
 		// 修改订单状态，，这个有问题，再确认一下
-		transferReceive.saveArriveList(arrival);
+		
+		try {
+			ResultMessage r = transferReceive.doArrive();
+			if(r == ResultMessage.SUCCESS){
+			JOptionPane.showMessageDialog(null, "保存成功", "提示", JOptionPane.INFORMATION_MESSAGE);
+			DefaultTableModel model = (DefaultTableModel) arriveListTabble.getModel();
+			model.removeRow(arriveListTabble.getSelectedRow());
+			arriveListTabble.updateUI();
+			remove(arrivalVO);
+			add(startPane,BorderLayout.CENTER);
+			startPane.setVisible(true);}
+			else{
+				JOptionPane.showMessageDialog(null, "操作失败", "提示", JOptionPane.INFORMATION_MESSAGE);
+			}
+			
+		} catch (RemoteException e1) {
+			JOptionPane.showMessageDialog(null, "网络连接中断，请稍后再试", "提示", JOptionPane.INFORMATION_MESSAGE);
+			e1.printStackTrace();
+		}
 	}
 
 	private void searchListMouseClicked(MouseEvent e) {

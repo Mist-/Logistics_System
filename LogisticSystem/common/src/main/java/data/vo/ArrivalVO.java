@@ -37,7 +37,7 @@ public class ArrivalVO {
 
 
 	public ArrivalVO(ArrivalPO arrival){
-		deliveryListNum = arrival.getTransferList()+"";
+		deliveryListNum = arrival.getDeliveryListID()+"";
 		long[] order = arrival.getOrder();
 		ArrayList<StockStatus> status = arrival.getStockStatus();
 		orderAndStatus = new String[order.length][2];

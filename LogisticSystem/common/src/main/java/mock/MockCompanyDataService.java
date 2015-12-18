@@ -127,7 +127,7 @@ public class MockCompanyDataService implements CompanyDataService {
 	}
 
 	@Override
-	public HashMap<POType, ArrayList<DataPO>> getHashMap()
+	public HashMap<POType, ArrayList<DataPO>> hkasfkjhkjash()
 			throws RemoteException {
 		return poLists;
 	}

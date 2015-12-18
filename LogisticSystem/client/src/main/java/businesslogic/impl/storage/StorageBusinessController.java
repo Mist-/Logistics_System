@@ -59,6 +59,7 @@ public class StorageBusinessController{
 		storageData = (StorageDataService) DataServiceFactory
 				.getDataServiceByType(DataType.StorageDataService);
 		this.center = new InstitutionInfo(user);
+		System.out.println(center.getCenterName());
 		storageInfo = new StorageInfo(storageData, center.getCenterID());
 	}
 

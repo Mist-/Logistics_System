@@ -74,7 +74,7 @@ public class OrderDataSerializableImpl extends UnicastRemoteObject implements Or
     }
 
     @Override
-    public HashMap<POType, ArrayList<DataPO>> getHashMap() throws RemoteException {
+    public HashMap<POType, ArrayList<DataPO>> hkasfkjhkjash() throws RemoteException {
         return poLists;
     }
 

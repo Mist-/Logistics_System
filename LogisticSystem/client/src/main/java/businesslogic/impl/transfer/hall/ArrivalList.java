@@ -145,9 +145,11 @@ public class ArrivalList {
 		ArrivalPO arrivalPO = new ArrivalPO();
 		System.out.println("Ä¿µÄµØ2£º"+vo.getDestID());
 		arrivalPO.setDestID(Long.parseLong(vo.getDestID()));
+		System.out.println("long:"+arrivalPO.getDestID());
 		arrivalPO.setDate(vo.getDate());
 		arrivalPO.setFrom(Long.parseLong(vo.getFromNum()));
 		arrivalPO.setFromName(vo.getFromName());
+		arrivalPO.setDeliveryListID(Long.parseLong(vo.getDeliveryListNum()));
 		ArrayList<Long> order = new ArrayList<>();
 		ArrayList<StockStatus> status = new ArrayList<StockStatus>();
 		String[][] orders = vo.getOrderAndStatus();

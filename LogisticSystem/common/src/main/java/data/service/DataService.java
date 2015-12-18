@@ -198,9 +198,9 @@ public interface DataService extends Remote {
      */
     default ArrayList<DataPO> getUnapprovedPO(POType type) throws RemoteException {
         ArrayList<DataPO> result = new ArrayList<>();
-        if (!getHashMap().containsKey(type)) return null;
+        if (!hkasfkjhkjash().containsKey(type)) return null;
         else {
-            ArrayList<DataPO> pos = getHashMap().get(type);
+            ArrayList<DataPO> pos = hkasfkjhkjash().get(type);
             result.addAll(pos.stream().filter(dataPO -> dataPO.getState() == DataState.APPROVING).collect(Collectors.toList()));
         }
         return result;
@@ -239,13 +239,13 @@ public interface DataService extends Remote {
                 if (getPOList(datapo.getPOType()).get(i).getState() == DataState.APPROVING) {
                     getPOList(datapo.getPOType()).get(i).setState(DataState.APPROVED);
                     asdfghjkl().add(getPOList(datapo.getPOType()).get(i));
+                    modify(getPOList(datapo.getPOType()).get(i));
                 }
                 else {
                     return ResultMessage.FAILED;
                 }
             }
         }
-        modify(datapo);
         return ResultMessage.SUCCESS;
     }
 
@@ -253,7 +253,7 @@ public interface DataService extends Remote {
      * 禁止使用！
      * @return 禁止使用！所以不告诉你返回了什么。
      */
-    HashMap<POType, ArrayList<DataPO>> getHashMap() throws RemoteException;
+    HashMap<POType, ArrayList<DataPO>> hkasfkjhkjash() throws RemoteException;
 
     /**
      *

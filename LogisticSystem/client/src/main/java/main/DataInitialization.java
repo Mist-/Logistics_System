@@ -169,14 +169,14 @@ public class DataInitialization {
         staff3.setSerialNum(10002);
         staff3.setName("孙九日");
         staff3.setGender(false);
-        staff3.setInstitution(10025);
+        staff3.setInstitution(10021);
         staff3.setUserRole(UserRole.中转中心业务员);
 
         StaffPO staff4 = new StaffPO();
         staff4.setSerialNum(10003);
         staff4.setName("孙九日");
         staff4.setGender(false);
-        staff4.setInstitution(10025);
+        staff4.setInstitution(10021);
         staff4.setUserRole(UserRole.仓库管理员);
 
         StaffPO staff5 = new StaffPO();
@@ -210,6 +210,7 @@ public class DataInitialization {
             companyDataService.add(staff7);
             companyDataService.add(staff8);
             companyDataService.add(staff9);
+
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -223,6 +224,6 @@ public class DataInitialization {
                 e.printStackTrace();
             }
         }
-        UserPO user = new UserPO(10008, "孙浩二笔", "123456", UserRole.营业厅业务员);
+      
     }
 }

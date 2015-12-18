@@ -166,6 +166,12 @@ public class StorageInPanel extends JPanel {
 		}
 	}
 
+	private void searchMouseReleased(MouseEvent e) {
+		long id = Long.parseLong(arrivalID.getText());
+		arrival = storageInService.getArriveList(id);
+		setArrival(arrival);
+	}
+
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
 		listPane = new JTabbedPane();
@@ -302,6 +308,12 @@ public class StorageInPanel extends JPanel {
 
 				//---- search ----
 				search.setText("search");
+				search.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						searchMouseReleased(e);
+					}
+				});
 
 				//---- selectArrival ----
 				selectArrival.setText("select");
