@@ -44,6 +44,7 @@ public class StorageIn implements StorageInService{
 		String[][] storageInListInfo = null;
 		storageInListInfo = storageInList.getBriefStorageList();
 		try {
+			System.out.println("�ֿ⣺"+user.getCenterID());
 			ArrivalListVO arrivals = arrivalList.getCheckedArrivals(user.getCenterID());
 			arrivelistInfo = arrivals.info;
 		} catch (RemoteException e) {
@@ -66,7 +67,11 @@ public class StorageIn implements StorageInService{
 	 */
 	public ArrivalVO getArriveList(long arriveListcode){
 		ArrivalPO a=  arrivalList.chooseArrival(arriveListcode);
+		if(a!= null)
 		return new ArrivalVO(a);
+		else {
+			return null;
+		}
 	}
 	
 	

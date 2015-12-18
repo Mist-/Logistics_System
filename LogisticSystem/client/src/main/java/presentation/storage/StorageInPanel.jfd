@@ -61,6 +61,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "search"
 						"text": "search"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "searchMouseReleased", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "selectArrival"
