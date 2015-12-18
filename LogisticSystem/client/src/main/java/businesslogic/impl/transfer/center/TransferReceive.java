@@ -2,12 +2,15 @@ package businesslogic.impl.transfer.center;
 
 import java.rmi.RemoteException;
 
+import businesslogic.impl.order.OrderList;
 import businesslogic.impl.transfer.hall.ArrivalList;
 import businesslogic.impl.user.InstitutionInfo;
 import businesslogic.service.Transfer.center.TransferReceiveService;
+import businesslogic.service.order.OrderListService;
 import data.enums.DataType;
 import data.enums.POType;
 import utils.DataServiceFactory;
+import data.message.LoginMessage;
 import data.message.ResultMessage;
 import data.po.ArrivalPO;
 import data.po.EntruckPO;
@@ -117,7 +120,7 @@ public class TransferReceive implements TransferReceiveService {
 		this.center = center;
 	}
 	
-	public ResultMessage doArrive(){//未完成
+	public ResultMessage doArrive() throws RemoteException{//未完成
 		long[] order = null;
 		try {
 		order =  arrivalList.doArrive();
@@ -126,8 +129,10 @@ public class TransferReceive implements TransferReceiveService {
 			return ResultMessage.FAILED;
 		}
 		//修改订单信息
-		
+		OrderListService orderList = new OrderList(new LoginMessage(ResultMessage.SUCCESS));
+		orderList.modifyOrder(order, "由"+center.getInstitutionName()+"接收");
 		return ResultMessage.SUCCESS;
+		
 	}
 
 }

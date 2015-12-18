@@ -32,12 +32,12 @@ public class OrderList implements OrderListService {
 		this.loginMessage = loginMessage;
 	}
 
-	public void modifyOrder(ArrayList<Long> orderID,String info) throws RemoteException {
-		ArrayList<Long> orderNum = orderID;
-		long[] orderNumL = new long[orderNum.size()];
-		for (int i = 0; i < orderNum.size(); i++) {
-			orderNumL[i] = orderNum.get(i);
-		}
+	public void modifyOrder(long[] orderNumL,String info) throws RemoteException {
+//		ArrayList<Long> orderNum = orderID;
+//		long[] orderNumL = new long[orderNum.size()];
+//		for (int i = 0; i < orderNum.size(); i++) {
+//			orderNumL[i] = orderNum.get(i);
+//		}
 		ArrayList<OrderPO> order = new Order(loginMessage).search(orderNumL);
 		for (int i = 0; i < order.size(); i++) {
 			// 修改订单物流信息
@@ -46,13 +46,13 @@ public class OrderList implements OrderListService {
 		}
 	}
 	
-	public void modifyOrderPosition(ArrayList<Long> orderID){
-		long[] id = new long[orderID.size()];
-		for (int i = 0; i < orderID.size(); i++) {
-			id[i] = orderID.get(i);
-		}
-		orders = new Order(loginMessage).search(id);
-			for (int i = 0;i< orderID.size();i++) {
+	public void modifyOrderPosition(long[] orderID){
+//		long[] id = new long[orderID.size()];
+//		for (int i = 0; i < orderID.size(); i++) {
+//			id[i] = orderID.get(i);
+//		}
+		orders = new Order(loginMessage).search(orderID);
+			for (int i = 0;i< orders.size();i++) {
 				System.out.println("modify next position");
 					orders.get(i).updateRoutine();
 			}

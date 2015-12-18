@@ -57,6 +57,8 @@ public class TransferReceivePanel extends JPanel {
 
 	private void selectArrivalMouseClicked(MouseEvent e) {
 		if (selectArrival.isEnabled()) {
+			saveArrival.setVisible(false);
+			doArrive.setVisible(true);
 			int row = arriveListTabble.getSelectedRow();
 			String info = (String) arriveListTabble.getValueAt(row, 0);
 			long id = Long.parseLong(info);
@@ -224,6 +226,7 @@ public class TransferReceivePanel extends JPanel {
 			arrival = transferReceive.createArriveList(POType.TRANSFERLIST, transferListVO);
 		}
 		
+		doArrive.setVisible(true);
 		setArrivalVO();
 	}
 
@@ -538,14 +541,11 @@ public class TransferReceivePanel extends JPanel {
 									.addComponent(modifyStatus, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE))
 								.addComponent(scrollPane1))
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(panel1Layout.createParallelGroup()
-								.addComponent(cancelArrival2, GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
-								.addGroup(panel1Layout.createSequentialGroup()
-									.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-										.addComponent(doArrive, GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-										.addComponent(saveArrival, GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
-									.addGap(0, 7, Short.MAX_VALUE)))
-							.addContainerGap())
+							.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+								.addComponent(doArrive, GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+								.addComponent(saveArrival, GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+								.addComponent(cancelArrival2, GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
+							.addContainerGap(17, Short.MAX_VALUE))
 				);
 				panel1Layout.setVerticalGroup(
 					panel1Layout.createParallelGroup()

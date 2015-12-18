@@ -1,5 +1,7 @@
 package businesslogic.service.Transfer.center;
 
+import java.rmi.RemoteException;
+
 import data.enums.POType;
 import data.message.ResultMessage;
 import data.vo.ArrivalListVO;
@@ -13,6 +15,8 @@ import data.vo.TransferListVO;
  *
  */
 public interface TransferReceiveService {
+	
+	public ResultMessage doArrive() throws RemoteException;
 	/**
 	 * 获取所有审批过的到达单
 	 * @return 到达单列表
