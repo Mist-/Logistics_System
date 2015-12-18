@@ -38,7 +38,7 @@ public class DataInitialization {
         city[2].addBusinessOffice(1001000002);
         city[2].addBusinessOffice(1001000003);
         city[2].addBusinessOffice(1001000004);
-        city[2].setTransferCenter(10021);
+        city[2].setTransferCenter(10010);
         city[3] = new CityInfoPO(020);
         city[3].setName("π„÷› –");
         city[3].addBusinessOffice(1002000001);
