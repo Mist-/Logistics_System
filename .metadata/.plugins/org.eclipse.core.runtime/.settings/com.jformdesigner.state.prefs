@@ -1,6 +1,6 @@
 designer/forms/paletteexpanded-1819101530=components,containers,windows
 designer/forms/paletteexpanded2016746974=components,containers
-designer/forms/selection-1141663014=createArrival
+designer/forms/selection-1141663014=doArrive
 designer/forms/selection-132376639=startPane
 designer/forms/selection-1345751664=saveStorageIn
 designer/forms/selection-177178625=doEntruck
@@ -18,6 +18,6 @@ designer/properties.expanded.events=true
 eclipse.preferences.version=1
 lookandfeel=com.sun.java.swing.plaf.windows.WindowsLookAndFeel
 updates.infoshown=true
-updates.lastchecked=1449818488581
+updates.lastchecked=1450444304926
 updates.lastcheckedversion=5.2.2.0.199
 updates.version.5.2.2.2.228=type\=free;message\=<html>An update for JFormDesigner Eclipse plug-in is available\: <b>5.2.2.2</b> (Build&nbsp\\;228). <a href\="http\://www.formdev.com/jformdesigner/changelog/52/?piwik_campaign\=check-for-updates\#5_2_2_2">Change&nbsp\\;Log</a>&nbsp\\;&nbsp\\;<a href\="http\://www.formdev.com/jformdesigner/download/?piwik_campaign\=check-for-updates">Download</a></html>

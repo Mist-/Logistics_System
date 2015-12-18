@@ -122,7 +122,11 @@ public class StorageIn implements StorageInService{
 	 * @throws RemoteException 
 	 */
 	private void modifyOrder(ArrayList<Long> orderID) throws RemoteException {
-		orderList.modifyOrder(orderID,"到达"+user.getInstitutionName());
+		long[] o = new long[orderID.size()];
+		for (int i = 0; i < o.length; i++) {
+			o[i] = orderID.get(i);
+		}
+		orderList.modifyOrder(o,"到达"+user.getInstitutionName());
 	}
 
 	/**

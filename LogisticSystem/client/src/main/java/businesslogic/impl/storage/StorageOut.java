@@ -49,11 +49,8 @@ public class StorageOut implements StorageOutService{
 			return ResultMessage.FAILED;
 		}
 		long[] o = out.getOrder();
-		ArrayList<Long> order = new ArrayList<>();
-		for(int i = 0 ;i < o.length;i++){
-			order.add(o[i]);
-		}
-		orderList.modifyOrder(order,"到达"+user.getInstitutionName());
+	
+		orderList.modifyOrder(o,"到达"+user.getInstitutionName());
 		return ResultMessage.SUCCESS;
 	}
 	

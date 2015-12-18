@@ -33,13 +33,10 @@ public class OrderSort implements LoadAndSortService {
 	@Override
 	public ResultMessage doEntruck() throws RemoteException {
 		long[] order = entruckList.getOrder();
-		ArrayList<Long> o = new ArrayList<Long>();
-		for (int i = 0; i < order.length; i++) {
-			o.add(order[i]);
-		}
+	
 		System.out.println("orderlist lenth:"+order.length);
 		// 修改订单物流信息
-		orderData.modifyOrder(o, "已从"+user.getInstitutionName()+"发出");//更新物流信息
+		orderData.modifyOrder(order, "已从"+user.getInstitutionName()+"发出");//更新物流信息
 		//orderData.modifyOrderPosition(o);//修改下一站
 		return ResultMessage.SUCCESS;
 	}
@@ -128,11 +125,11 @@ public class OrderSort implements LoadAndSortService {
 	//保存装车单
 	public ResultMessage saveEntruckList(EntruckListVO entruckList)
 			throws RemoteException {
-		ArrayList<Long> order = new ArrayList<Long>();
 		String[][] info = entruckList.info;
+		long[] order = new long[info.length];
 		for(int i = 0 ; i < info.length;i++){
 			long id = Long.parseLong(info[i][0]);
-			order.add(id);
+			order[i] = id;
 		}
 		drivers.useDriver(Long.parseLong(entruckList.driverID));
 		trucks.useTruck(Long.parseLong(entruckList.vehicleID));
