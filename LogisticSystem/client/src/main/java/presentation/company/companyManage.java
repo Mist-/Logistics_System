@@ -444,9 +444,12 @@ public class companyManage extends JFrame {
                 id = (String) sendModel.getValueAt(tableSend.getSelectedRow(),0);
                 break;
             case 6:
-                id = (String) storageInModel.getValueAt(tableStorageIn.getSelectedRow(),0);
+                id = (String) transferModel.getValueAt(tableTransfer.getSelectedRow(),0);
                 break;
             case 7:
+                id = (String) storageInModel.getValueAt(tableStorageIn.getSelectedRow(),0);
+                break;
+            case 8:
                 id = (String) orderModel.getValueAt(tableOrder.getSelectedRow(),0);
                 break;
             default:
@@ -456,15 +459,7 @@ public class companyManage extends JFrame {
         resultMessage = controller.approveData(dataType,id);
         if(resultMessage == ResultMessage.SUCCESS){
             labelApprove.setText("审批成功!");
-            this.initOrderTable();
-            this.initSendTable();
-            this.initPaymentTable();
-            this.initReceiptTable();
-            this.initEntruckTable();
-            this.initArrivalTable();
-            this.initStorageInTable();
-            this.initStorageOutTable();
-            this.initTransferTable();
+            initData();
         }
         else if(resultMessage == ResultMessage.FAILED){
             labelApprove.setText("审批失败!");
@@ -484,6 +479,7 @@ public class companyManage extends JFrame {
         ResultMessage resultMessage = controller.approveAll(dataType);
         if (resultMessage == ResultMessage.SUCCESS) {
             labelApprove.setText("全部完成审批!");
+            initData();
         }
         else if(resultMessage == ResultMessage.FAILED){
             labelApprove.setText("审批失败!");
@@ -492,6 +488,19 @@ public class companyManage extends JFrame {
             labelApprove.setText("");
             JOptionPane.showMessageDialog(null, "网络错误...", "", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    //初始化所有单据
+    private void initData(){
+        this.initOrderTable();
+        this.initSendTable();
+        this.initPaymentTable();
+        this.initReceiptTable();
+        this.initEntruckTable();
+        this.initArrivalTable();
+        this.initStorageInTable();
+        this.initStorageOutTable();
+        this.initTransferTable();
     }
 
     //确认修改单据的按钮
@@ -504,7 +513,7 @@ public class companyManage extends JFrame {
     //修改单据的方法
     private void modifyData(int index){
         int row,column;
-        ResultMessage resultMessage = null;
+        ResultMessage resultMessage;
         //根据单据的类型不同来修改单据
         switch (index) {
             case 0:
@@ -659,6 +668,7 @@ public class companyManage extends JFrame {
                     double weight = Double.valueOf(order.next());
                     double fee = Double.valueOf(order.next());
                     ServiceType serviceType = data.enums.ServiceType.valueOf(order.next());
+                    System.out.print(serviceType.toString());
                     OrderVO orderVO = new OrderVO(null,null,null,null,null,null,null,null,stockNum,weight,0,null,serviceType,fee,id);
                     resultMessage = controller.modifyOrder(orderVO);
                     this.isSuccess(resultMessage);
