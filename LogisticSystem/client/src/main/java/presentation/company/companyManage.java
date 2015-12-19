@@ -150,7 +150,7 @@ public class companyManage extends JFrame {
             Iterator<String> info = salaryModify.get(i).iterator();
             String institution = info.next();
             String salary = info.next();
-            if(controller.isNum(salary)) {
+            if(controller.isValidNum(salary)) {
                 ResultMessage resultmessage = controller.modifySalary(institution, salary);
                 if (resultmessage == ResultMessage.SUCCESS) {
                     labelSalarySuccess.setText("修改成功!");
@@ -205,7 +205,7 @@ public class companyManage extends JFrame {
             String strTrunkPrice = info.next();
             String strTrainPrice = info.next();
             String strPlanePrice = info.next();
-            if(controller.isNum(strDistance)&&controller.isNum(strTrunkPrice)&&controller.isNum(strTrainPrice)&&controller.isNum(strPlanePrice)) {
+            if(controller.isValidNum(strDistance)&&controller.isValidNum(strTrunkPrice)&&controller.isValidNum(strTrainPrice)&&controller.isValidNum(strPlanePrice)) {
                 double distance = Double.valueOf(strDistance);
                 double trunkPrice = Double.valueOf(strTrunkPrice);
                 double trainPrice = Double.valueOf(strTrainPrice);
@@ -664,16 +664,31 @@ public class companyManage extends JFrame {
                 for(int i=0;i<orderModify.size();i++){
                     Iterator<String> order = orderModify.get(i).iterator();
                     long id = Long.valueOf(order.next());
-                    int stockNum = Integer.valueOf(order.next());
-                    double weight = Double.valueOf(order.next());
-                    double fee = Double.valueOf(order.next());
-                    ServiceType serviceType = data.enums.ServiceType.valueOf(order.next());
-                    System.out.print(serviceType.toString());
-                    OrderVO orderVO = new OrderVO(null,null,null,null,null,null,null,null,stockNum,weight,0,null,serviceType,fee,id);
-                    resultMessage = controller.modifyOrder(orderVO);
-                    this.isSuccess(resultMessage);
-                    if(resultMessage!= ResultMessage.SUCCESS)
-                        break;
+                    String sStockNum = order.next();
+                    String sWeight = order.next();
+                    String sFee = order.next();
+                    String sServiceType = order.next();
+                    //判断修改后的数值是否符合规范
+                    if(controller.isValidNum(sStockNum)&&controller.isValidNum(sWeight)&&controller.isValidNum(sFee)) {
+                        //判断修改后的快递类型是否符合规范
+                        if(controller.isValidType(sServiceType)) {
+                            int stockNum = Integer.valueOf(sStockNum);
+                            double weight = Double.valueOf(sWeight);
+                            double fee = Double.valueOf(sFee);
+                            ServiceType serviceType = data.enums.ServiceType.valueOf(sServiceType);
+                            OrderVO orderVO = new OrderVO(null, null, null, null, null, null, null, null, stockNum, weight, 0, null, serviceType, fee, id);
+                            resultMessage = controller.modifyOrder(orderVO);
+                            this.isSuccess(resultMessage);
+                            if (resultMessage != ResultMessage.SUCCESS)
+                                break;
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(null,"请输入正确快递类型!","",JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null,"请输入正确数值!","",JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
     }

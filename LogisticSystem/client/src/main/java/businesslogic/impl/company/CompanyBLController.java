@@ -2,6 +2,7 @@ package businesslogic.impl.company;
 
 import businesslogic.service.company.*;
 import data.enums.POType;
+import data.enums.ServiceType;
 import data.enums.UserRole;
 import utils.DataServiceFactory;
 import data.message.ResultMessage;
@@ -623,13 +624,56 @@ public class CompanyBLController {
      * 判断输入是否是数字不是字符
      *
      * @param str  指定字符串
-     * @return  是否是int或者double型
+     * @return  是否是int或者double型并且>=0
      */
-    public boolean isNum(String str){
+    public boolean isValidNum(String str){
+        boolean isValid = true;
         for(int i=0;i<str.length();i++){
-            if((str.charAt(i)<='9'&&str.charAt(i)>='0')||str.charAt(i)=='.'){
-                return true;
+            if((str.charAt(i)<='9'&&str.charAt(i)>='0')||str.charAt(i)=='.'){}
+            else{
+                isValid = false;
+                break;
             }
+        }
+        if(isValid){
+            long num = Long.valueOf(str);
+            if(num <= 0)
+                isValid = false;
+        }
+        return isValid;
+    }
+
+    /**
+     * 判断身份证号码是否正确
+     *
+     * @param idCardNum
+     * @return  是否符合规范
+     */
+    public boolean isValidIdNum(String idCardNum){
+        boolean isValid = true;
+        for(int i=0;i<idCardNum.length()-1;i++){
+            if(idCardNum.charAt(i)<='9'&&idCardNum.charAt(i)>='0'){}
+            else{
+                return false;
+            }
+        }
+        if(idCardNum.charAt(idCardNum.length()-1)!='X'||idCardNum.charAt(idCardNum.length()-1)<'0'||idCardNum.charAt(idCardNum.length()-1)>'9'){
+            isValid = false;
+        }
+        return isValid;
+    }
+
+    /**
+     * 判断快递类型是否符合
+     *
+     * @param serviceType
+     * @return  是否符合规范
+     */
+    public boolean isValidType(String serviceType){
+        ServiceType [] servicesTypes = ServiceType.values();
+        for(int i=0;i<servicesTypes.length;i++){
+            if(serviceType.equals(servicesTypes[i].toString()))
+                return true;
         }
         return false;
     }
