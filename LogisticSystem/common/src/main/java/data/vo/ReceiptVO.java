@@ -11,6 +11,16 @@ public class ReceiptVO {
 	String people;
 	String institution;
 	String address;
+    boolean isCount;
+    String sender;
+    
+	public boolean isCount() {
+		return isCount;
+	}
+
+	public void setCount(boolean isCount) {
+		this.isCount = isCount;
+	}
 
 	public String getSender() {
 		return sender;
@@ -20,7 +30,6 @@ public class ReceiptVO {
 		this.sender = sender;
 	}
 
-	String sender;
 
 	public long getId() {
 		return id;

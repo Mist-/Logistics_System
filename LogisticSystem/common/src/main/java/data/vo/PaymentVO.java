@@ -12,8 +12,15 @@ public class PaymentVO {
     String account;
     String info;
     String exInfo;
+    boolean isCount;
 
-    public PaymentVO(){
+    public boolean isCount() {
+		return isCount;
+	}
+	public void setCount(boolean isCount) {
+		this.isCount = isCount;
+	}
+	public PaymentVO(){
     	
     }
     public String getDate() {

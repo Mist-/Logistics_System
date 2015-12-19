@@ -58,6 +58,8 @@ public class FundsManage {
 					paymentVO.setInfo(payment.getInfo());
 					paymentVO.setMoney(payment.getMoney());
 					paymentVO.setName(payment.getName());
+					paymentVO.setCount(payment.isCount());
+					paymentVO.setId(payment.getSerialNum());
 	                paymentVOList.add(paymentVO);
 	    			}
 			} catch (RemoteException e) {
@@ -78,6 +80,8 @@ public class FundsManage {
 					receiptVO.setInstitution(receipt.getInstitution());
 					receiptVO.setMoney(receipt.getMoney());
 					receiptVO.setSender(receipt.getSender());
+					receiptVO.setCount(receipt.isCount());
+					receiptVO.setId(receipt.getSerialNum());
 					receiptVOList.add(receiptVO);
 	    			}
 			} catch (RemoteException e) {
@@ -164,7 +168,15 @@ public class FundsManage {
 	    payment.setMoney(pay.getMoney());
 	    
 		financialDataService.add(payment);
-			
+		
+		//为了测试需要，新建一个收款单
+		ReceiptPO receipt = new ReceiptPO();
+		receipt.setDate(Timestamper.getTimeByDate());
+		receipt.setCount(false);
+		receipt.setInstitution("南京市鼓楼营业厅");
+		receipt.setMoney(88888);
+		receipt.setSender("王卉");
+		financialDataService.add(receipt);
 			
 			
 			return null;

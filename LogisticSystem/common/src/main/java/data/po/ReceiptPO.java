@@ -15,9 +15,15 @@ public class ReceiptPO extends DataPO {
 	private long courierID;
 	private String institution;
 	private long institutionID;
-    
+	private boolean isCount = false;
 
-    public String getSender() {
+    public boolean isCount() {
+		return isCount;
+	}
+	public void setCount(boolean isCount) {
+		this.isCount = isCount;
+	}
+	public String getSender() {
 		return sender;
 	}
 	public void setSender(String sender) {

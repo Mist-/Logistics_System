@@ -71,7 +71,7 @@ public class DialogAddSalary extends JDialog{
 		stringSalary = salary.getText();
 		stringInstitution = (String) institution.getSelectedItem();
 		stringType = (String) type.getSelectedItem();
-		if (controller.isNum(stringSalary)) {
+		if (controller.isValidNum(stringSalary)) {
 			resultMessage = controller.addSalary(stringInstitution, stringSalary, stringType);
 			//根据resultMessage类型对界面进行输出
 			if (resultMessage == ResultMessage.SUCCESS) {

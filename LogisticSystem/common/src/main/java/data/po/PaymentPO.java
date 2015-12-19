@@ -1,8 +1,6 @@
 package data.po;
 
 import data.enums.POType;
-//（付款日期、付款金额、付款人、付款账号、条目（租金（按年收）运费（按次计算）人员工资（按月统计）奖励（一次性）），
-//备注（租金年份、运单号、标注工资月份）。（快递员提成、司机计次、业务员月薪）
 public class PaymentPO extends DataPO {
 	private static final long serialVersionUID = 11;
 
@@ -15,8 +13,15 @@ public class PaymentPO extends DataPO {
 	private String account;
 	private String info;
 	private  String exInfo;
-    
-    public String getDate() {
+    private boolean isCount = false;
+	
+    public boolean isCount() {
+		return isCount;
+	}
+	public void setCount(boolean isCount) {
+		this.isCount = isCount;
+	}
+	public String getDate() {
 		return date;
 	}
 	public void setDate(String date) {

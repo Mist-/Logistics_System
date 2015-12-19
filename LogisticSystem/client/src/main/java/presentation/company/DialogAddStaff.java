@@ -24,7 +24,6 @@ public class DialogAddStaff extends JDialog{
 	 ButtonGroup bg = null;
 	 JLabel labelPhoneNum = null;
 	 JTextField phoneNum = null;
-	 JLabel labelDate = null;
 	 JButton finish = null;
 	 JLabel labelIdCardNum = null;
 	 JTextField idCardNum = null;
@@ -106,33 +105,43 @@ public class DialogAddStaff extends JDialog{
 		else {
 			gender = true;
 		}
-		if(controller.isNum(stringSerialNum)&&controller.isNum(stringPhoneNum)) {
-			//根据界面信息创建一个新的staffVO
-			StaffVO staffVO = new StaffVO();
-			staffVO.setId(Long.valueOf(stringSerialNum));
-			staffVO.setName(stringName);
-			staffVO.setInstitution(controller.longInstitution(instituion));
-			staffVO.setIdcardNum(stringIdCardNum);
-			staffVO.setGender(gender);
-			staffVO.setPhoneNum(stringPhoneNum);
-			if(userRole!=null) {
-				staffVO.setUserRole(UserRole.valueOf(userRole));
+		if(controller.isValidNum(stringSerialNum)) {
+			if (controller.isValidNum(stringPhoneNum)) {
+				if (controller.isValidIdNum(stringIdCardNum)) {
+					//根据界面信息创建一个新的staffVO
+					StaffVO staffVO = new StaffVO();
+					staffVO.setId(Long.valueOf(stringSerialNum));
+					staffVO.setName(stringName);
+					staffVO.setInstitution(controller.longInstitution(instituion));
+					staffVO.setIdcardNum(stringIdCardNum);
+					staffVO.setGender(gender);
+					staffVO.setPhoneNum(stringPhoneNum);
+					if (userRole != null) {
+						staffVO.setUserRole(UserRole.valueOf(userRole));
+					}
+					resultMessage = controller.addStaff(staffVO);
+					//判断是否成功添加
+					if (resultMessage == ResultMessage.SUCCESS) {
+						company.getLabelStaffSuccess().setText("添加成功!");
+						jdialog.dispose();
+					} else if (resultMessage == ResultMessage.EXIST) {
+						company.getLabelStaffSuccess().setText("");
+						JOptionPane.showMessageDialog(null, "员工已存在!", "", JOptionPane.ERROR_MESSAGE);
+					} else if (resultMessage == ResultMessage.FAILED) {
+						company.getLabelStaffSuccess().setText("");
+						JOptionPane.showMessageDialog(null, "网络错误...", "", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "请输入正确身份证号!", "", JOptionPane.ERROR_MESSAGE);
+				}
 			}
-			resultMessage = controller.addStaff(staffVO);
-			//判断是否成功添加
-			if (resultMessage == ResultMessage.SUCCESS) {
-				company.getLabelStaffSuccess().setText("添加成功!");
-				jdialog.dispose();
-			} else if (resultMessage == ResultMessage.EXIST) {
-				company.getLabelStaffSuccess().setText("");
-				JOptionPane.showMessageDialog(null, "员工已存在!", "", JOptionPane.ERROR_MESSAGE);
-			} else if (resultMessage == ResultMessage.FAILED) {
-				company.getLabelStaffSuccess().setText("");
-				JOptionPane.showMessageDialog(null, "网络错误...", "", JOptionPane.ERROR_MESSAGE);
+			else{
+				JOptionPane.showMessageDialog(null, "请输入正确手机号!", "", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		else{
-			JOptionPane.showMessageDialog(null, "请输入正确信息!", "", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "请输入正确员工号!", "", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }
