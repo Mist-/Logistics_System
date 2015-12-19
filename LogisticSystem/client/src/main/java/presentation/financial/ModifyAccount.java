@@ -94,6 +94,9 @@ public class ModifyAccount extends JDialog {
 //			tfMoneyDe.requestFocus();
 //			return;
 //		}
+		if(tfName.getText().equals("")){
+			return;
+		}
 		theName  = tfName.getText();
         theMoney = Double.valueOf(lbMoney.getText());
         AccountVO accountvo = new AccountVO();

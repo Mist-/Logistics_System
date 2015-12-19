@@ -110,7 +110,11 @@ public class FinancialBLController implements FinancialBLService {
 	public ResultMessage deleteAccount(long num) {
 		return accountManage.deleteAccount(num);
 	}
-
+	
+	@Override
+	public ResultMessage printAccount(ArrayList<AccountVO> accounts){
+		return accountManage.printAccount(accounts);
+	}
 //	@Override
 //	public ResultMessage recordPayDate(String info) {
 //		return fundsManage.recordPayDate(info);

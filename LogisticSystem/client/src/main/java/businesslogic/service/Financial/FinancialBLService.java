@@ -52,6 +52,7 @@ public interface FinancialBLService {
 
     ResultMessage deleteAccount(long num);
     
+    ResultMessage printAccount(ArrayList<AccountVO> accounts);
     
 //Funds
     
