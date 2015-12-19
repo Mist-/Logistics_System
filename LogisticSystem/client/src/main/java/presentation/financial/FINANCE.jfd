@@ -149,8 +149,8 @@ new FormModel {
 					"title": "付款单"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :::p, comp scrollPane16::::502:x, space :::p, par l {comp textDate:::p:157:p, comp btDate:::p:157:p, comp label15:::p:157:p, comp textAddress:::p:157:p, comp btAddress:::p:157:p, seq {comp lbAll:::p::p, space :9:9:p, comp lbTotal:::p:39:p}, comp btRExcel:::p:157:p}, space :::p}}"
-					"$verticalGroup": "par l {seq l {space :::p, par l {comp scrollPane16::::0:x, seq {comp textDate:::p::p, space :5:5:p, comp btDate:::p::p, space :7:7:p, comp label15:::p:26:p, space :9:9:p, comp textAddress:::p::p, space :5:5:p, comp btAddress:::p::p, space :12:12:p, par l {comp lbAll:::p:24:p, seq {space :5:5:p, comp lbTotal:::p::p}}, space :6:6:p, comp btRExcel:::p::p, space :::x}}}}"
+					"$horizontalGroup": "par l {seq l {space :::p, comp scrollPane16::::502:x, space :::p, par l:::p {comp textDate:::p:157:p, comp btDate:::p:157:p, comp label15:::p:157:p, comp textAddress:::p:157:p, comp btAddress:::p:157:p, seq {comp lbAll:::p::p, space :p:9:p, comp lbTotal:::::x}, comp btRExcel:::p:157:p}, space :::p}}"
+					"$verticalGroup": "par l {seq l {space :::p, par l {comp scrollPane16::::0:x, seq {comp textDate:::p::p, space :5:5:p, comp btDate:::p::p, space :7:7:p, comp label15:::p:26:p, space :9:9:p, comp textAddress:::p::p, space :5:5:p, comp btAddress:::p::p, space :12:12:p, par l {comp lbAll:::p:24:p, seq {space :5:5:p, comp lbTotal:::p::p}}, space :p:6:p, comp btRExcel:::p::p, space ::46:x}}}}"
 				} ) {
 					name: "panel3"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -340,8 +340,8 @@ new FormModel {
 		} ) {
 			name: "pnQCJZ"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {par l {comp chkInstitution::l:p::p, comp chkVehicle::l:p::p, comp chkDriverInfo::l:p::p, comp chkPayment::l:p::p, comp chkReceipt::l:p::p, comp chkAccount::l:p::p, comp chkStaff::l:p::p, comp chkStaff2::l:p::p, seq {comp chkAll:::p::p, space s:::p, comp chkNot:::p::p}}, space :0:505:x}}"
-				"$verticalGroup": "par l {seq l {comp chkInstitution:::p::p, space :::p, comp chkVehicle:::p::p, space :::p, comp chkDriverInfo:::p::p, space :::p, comp chkPayment:::p::p, space :::p, comp chkReceipt:::p::p, space :::p, comp chkAccount:::p::p, space :::p, comp chkStaff:::p::p, space :::p, comp chkStaff2:::p::p, space :::p, par b {comp chkAll::b:p::p, comp chkNot::b:p::p}, space :0:19:x}}"
+				"$horizontalGroup": "par l {seq {par l {comp chkInstitution::l:p::p, comp chkVehicle::l:p::p, comp chkDriverInfo::l:p::p, comp chkPayment::l:p::p, comp chkReceipt::l:p::p, comp chkAccount::l:p::p, comp chkStaff::l:p::p, comp chkStorage::l:p::p, seq {comp chkAll:::p::p, space s:::p, comp chkNot:::p::p}}, space :0:505:x}}"
+				"$verticalGroup": "par l {seq l {comp chkInstitution:::p::p, space :::p, comp chkVehicle:::p::p, space :::p, comp chkDriverInfo:::p::p, space :::p, comp chkPayment:::p::p, space :::p, comp chkReceipt:::p::p, space :::p, comp chkAccount:::p::p, space :::p, comp chkStaff:::p::p, space :::p, comp chkStorage:::p::p, space :::p, par b {comp chkAll::b:p::p, comp chkNot::b:p::p}, space :0:19:x}}"
 			} ) {
 				name: "panel6"
 				add( new FormComponent( "javax.swing.JCheckBox" ) {
@@ -380,7 +380,7 @@ new FormModel {
 					"font": #Font3
 				} )
 				add( new FormComponent( "javax.swing.JCheckBox" ) {
-					name: "chkStaff2"
+					name: "chkStorage"
 					"text": "库存信息表"
 					"font": #Font3
 				} )
@@ -399,7 +399,6 @@ new FormModel {
 				name: "btAccountInit"
 				"text": "期初建账"
 				"font": #Font3
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "button1MouseReleased", true ) )
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btAccountInitMouseReleased", true ) )
 			} )
 		}, new FormLayoutConstraints( null ) {
@@ -482,7 +481,6 @@ new FormModel {
 				"text": "导出"
 				"icon": #SwingIcon1
 				"font": &Font5 new java.awt.Font( "等线", 0, 14 )
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btPExcelMouseReleased", true ) )
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btAExcelMouseReleased", true ) )
 			} )
 		}, new FormLayoutConstraints( null ) {

@@ -14,6 +14,7 @@ import utils.DataServiceFactory;
 import data.message.ResultMessage;
 import data.po.AccountPO;
 import data.po.DataPO;
+import data.po.PaymentPO;
 import data.po.ReceiptPO;
 import data.service.FinancialDataService;
 import data.vo.AccountVO;
@@ -38,10 +39,10 @@ public class AccountManage {
 	}
 	
 	public ResultMessage acIdentity(String name, String password) {
-		
 		return ResultMessage.SUCCESS;
 	}
-	//更新余额
+	
+	//更新余额,有点问题，如何判断该付款单与收款单是被计算过的，还是未被计算的
 	public ArrayList<AccountVO> updateMoney(){
 		accountVOList = searchAllAccounts();
 		paymentVOList = fundsManage.searchAllPayment();
@@ -50,13 +51,40 @@ public class AccountManage {
 		for(AccountVO ac:accountVOList){
 			money = ac.getMoney();
 			for(PaymentVO pa:paymentVOList){
-				if(ac.getName().equals(pa.getAccount())){
-					money -= pa.getMoney();
+				if(ac.getName().equals(pa.getAccount()) && !pa.isCount()){
+					pa.setCount(true);
+					PaymentPO payPO;
+					try {
+						payPO = (PaymentPO) financialDataService.search(POType.PAYMENT, pa.getId());
+//					    payPO.setAccount(pa.getAccount());
+//					    payPO.setDate(pa.getDate());
+//					    payPO.setExInfo(pa.getExInfo());
+//					    payPO.setInfo(pa.getInfo());
+//					    payPO.setMoney(pa.getMoney());
+//					    payPO.setName(pa.getName());
+						payPO.setCount(true);
+					    money -= pa.getMoney();
+						financialDataService.modify(payPO);
+					} catch (RemoteException e) {
+						// TODO 自动生成的 catch 块
+						e.printStackTrace();
+					}
+					
 				}
 			}
 			for(ReceiptVO re:receiptVOList){
-				if(ac.getName().equals(re.getSender())){
-					money += re.getMoney();
+				if(ac.getName().equals(re.getSender()) && !re.isCount()){
+					re.setCount(true);
+					ReceiptPO recPO ;
+					try {
+						recPO = (ReceiptPO)financialDataService.search(POType.RECEIPT, re.getId());
+						money += re.getMoney();
+						recPO.setCount(true);
+						financialDataService.modify(recPO);
+					} catch (RemoteException e) {
+						// TODO 自动生成的 catch 块
+						e.printStackTrace();
+					}
 				}
 			}
 			if(money != ac.getMoney()){

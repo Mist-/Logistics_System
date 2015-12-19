@@ -30,7 +30,6 @@ public class ModifyAccount extends JDialog {
 	String name;
 	double money;
 	String theName;
-	double theMoney;
 	
 	public ModifyAccount(long accountNum, String name, double money) {
 		financialBL = new FinancialBLController();
@@ -98,11 +97,14 @@ public class ModifyAccount extends JDialog {
 			return;
 		}
 		theName  = tfName.getText();
-        theMoney = Double.valueOf(lbMoney.getText());
+		if(theName.equals(name)){
+			this.setVisible(false);
+		}
+
         AccountVO accountvo = new AccountVO();
         accountvo.setAccountNum(accountNum);
         accountvo.setName(theName);
-        accountvo.setMoney(theMoney);
+        accountvo.setMoney(money);
         
         ResultMessage a = financialBL.changeAccount(accountvo);
         if(a == ResultMessage.SUCCESS)
