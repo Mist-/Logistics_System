@@ -285,7 +285,7 @@ public class OrderUI extends JFrame {
             tfOrderInput.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
             //---- btSearch ----
-            btSearch.setIcon(new ImageIcon("D:\\DATA\\Project\\GUI\\resources\\search_16x16.png"));
+            btSearch.setIcon(new ImageIcon(getClass().getResource("/icons/search_16x16.png")));
             btSearch.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
             btSearch.setText("\u641c\u7d22");
             btSearch.addMouseListener(new MouseAdapter() {
@@ -380,13 +380,13 @@ public class OrderUI extends JFrame {
                             .addGroup(panel2Layout.createSequentialGroup()
                                 .addGroup(panel2Layout.createParallelGroup()
                                     .addGroup(panel2Layout.createSequentialGroup()
-                                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 830, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(panel2Layout.createParallelGroup()
-                                            .addComponent(btSign2, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btDelete, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btSign, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btModify, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 833, Short.MAX_VALUE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(btSign, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                                            .addComponent(btDelete, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                                            .addComponent(btModify, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                                            .addComponent(btSign2, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)))
                                     .addGroup(panel2Layout.createSequentialGroup()
                                         .addComponent(lbOrderNum)
                                         .addGap(6, 6, 6)
@@ -418,7 +418,6 @@ public class OrderUI extends JFrame {
                             .addComponent(btSearch, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panel2Layout.createParallelGroup()
-                            .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
                             .addGroup(panel2Layout.createSequentialGroup()
                                 .addComponent(btSign2, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -427,8 +426,8 @@ public class OrderUI extends JFrame {
                                 .addComponent(btDelete, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btModify, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)))
-                        .addContainerGap())
+                                .addGap(0, 231, Short.MAX_VALUE))
+                            .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)))
             );
         }
 

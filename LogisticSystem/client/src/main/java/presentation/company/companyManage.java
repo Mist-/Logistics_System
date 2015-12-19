@@ -28,6 +28,7 @@ import java.util.Vector;
  */
 public class companyManage extends JFrame {
 
+    LoginMessage loginMessage = null;
     DefaultTableModel centerModel = null;
     DefaultTableModel salaryModel = null;
     DefaultTableModel cityModel  = null;
@@ -60,76 +61,81 @@ public class companyManage extends JFrame {
     CompanyBLController controller = new CompanyBLController();
 
     public companyManage(LoginMessage loginMessage) {
+        this.loginMessage = loginMessage;
         initComponents(loginMessage);
         this.setVisible(true);
     }
 
     //显示工资管理界面
     private void buttonSalaryMouseClicked(MouseEvent e) {
-        buttonSalary.setSelected(false);
-        buttonCheck.setSelected(true);
-        buttonStaff.setSelected(true);
-        buttonApprove.setSelected(true);
-        buttonCity.setSelected(true);
+        buttonSalary.setSelected(true);
+        buttonCheck.setSelected(false);
+        buttonStaff.setSelected(false);
+        buttonApprove.setSelected(false);
+        buttonCity.setSelected(false);
         panelSalary.setBounds(0,0,792,360);
         panelSalary.setVisible(true);
         panelAll.remove(panelCity);
         panelAll.remove(panelApprove);
         panelAll.remove(panelStaff);
-        panelAll.add(panelSalary);
+        panelAll.add(panelSalary, BorderLayout.CENTER);
         panelAll.updateUI();
         panelAll.repaint();
     }
 
     //显示城市管理界面
     private void buttonCityMouseClicked(MouseEvent e) {
-        buttonSalary.setSelected(true);
-        buttonCheck.setSelected(true);
-        buttonStaff.setSelected(true);
-        buttonApprove.setSelected(true);
-        buttonCity.setSelected(false);
+        buttonSalary.setSelected(false);
+        buttonCheck.setSelected(false);
+        buttonStaff.setSelected(false);
+        buttonApprove.setSelected(false);
+        buttonCity.setSelected(true);
         panelCity.setBounds(0,0,792,360);
         panelAll.remove(panelSalary);
         panelAll.remove(panelStaff);
         panelAll.remove(panelApprove);
-        panelAll.add(panelCity);
+        panelAll.add(panelCity, BorderLayout.CENTER);
         panelAll.updateUI();
         panelAll.repaint();
     }
 
     //显示审批单据界面
     private void buttonApproveMouseClicked(MouseEvent e) {
-        buttonSalary.setSelected(true);
-        buttonCheck.setSelected(true);
-        buttonStaff.setSelected(true);
-        buttonApprove.setSelected(false);
-        buttonCity.setSelected(true);
+        buttonSalary.setSelected(false);
+        buttonCheck.setSelected(false);
+        buttonStaff.setSelected(false);
+        buttonApprove.setSelected(true);
+        buttonCity.setSelected(false);
         panelApprove.setBounds(0,0,792,360);
         panelAll.remove(panelSalary);
         panelAll.remove(panelStaff);
         panelAll.remove(panelCity);
-        panelAll.add(panelApprove);
+        panelAll.add(panelApprove, BorderLayout.CENTER);
         panelAll.updateUI();
         panelAll.repaint();
     }
 
     //显示查看统计报表界面
     private void buttonCheckMouseClicked(MouseEvent e) {
-        // TODO add your code here
+        buttonSalary.setSelected(false);
+        buttonCheck.setSelected(true);
+        buttonStaff.setSelected(false);
+        buttonApprove.setSelected(false);
+        buttonCity.setSelected(false);
     }
 
     //显示员工机构管理界面
     private void buttonStaffMouseClicked(MouseEvent e) {
-        buttonSalary.setSelected(true);
-        buttonCheck.setSelected(true);
-        buttonStaff.setSelected(false);
-        buttonApprove.setSelected(true);
-        buttonCheck.setSelected(true);
+        buttonSalary.setSelected(false);
+        buttonCheck.setSelected(false);
+        buttonStaff.setSelected(true);
+        buttonApprove.setSelected(false);
+        buttonCity.setSelected(false);
         panelStaff.setBounds(0,0,792,360);
         panelAll.remove(panelSalary);
         panelAll.remove(panelCity);
         panelAll.remove(panelApprove);
-        panelAll.add(panelStaff);
+        panelAll.add(panelStaff, BorderLayout.CENTER);
         panelAll.updateUI();
         panelAll.repaint();
     }
@@ -468,6 +474,7 @@ public class companyManage extends JFrame {
             labelApprove.setText("");
             JOptionPane.showMessageDialog(null, "网络错误...", "", JOptionPane.ERROR_MESSAGE);
         }
+        initComponents(loginMessage);
     }
 
     //审批同类型所有单据的按钮
@@ -488,6 +495,7 @@ public class companyManage extends JFrame {
             labelApprove.setText("");
             JOptionPane.showMessageDialog(null, "网络错误...", "", JOptionPane.ERROR_MESSAGE);
         }
+        initComponents(loginMessage);
     }
 
     //初始化所有单据
@@ -508,6 +516,7 @@ public class companyManage extends JFrame {
         boolean isSuccess = false;
         int index = tabbedPaneApprove.getSelectedIndex();
         this.modifyData(index);
+        initComponents(loginMessage);
     }
 
     //修改单据的方法
@@ -710,7 +719,8 @@ public class companyManage extends JFrame {
 
     //退出单据审批的按钮
     private void buttonExitApproveMouseClicked(MouseEvent e) {
-       this.dispose();
+        initComponents(loginMessage);
+        this.dispose();
     }
 	/*
 	 // 初始化表格的总方法
@@ -1554,19 +1564,20 @@ public class companyManage extends JFrame {
         menuBar = new JMenuBar();
         choice = new JMenu();
         help = new JMenu();
+        panel1 = new JPanel();
+        panelAll = new JPanel();
+        name = new JLabel();
+        id = new JLabel();
+        labelCheck = new JLabel();
+        labelApprove = new JLabel();
+        labelCity = new JLabel();
+        labelInstitution = new JLabel();
+        labelSalary = new JLabel();
         buttonSalary = new JToggleButton();
         buttonStaff = new JToggleButton();
         buttonCity = new JToggleButton();
         buttonApprove = new JToggleButton();
         buttonCheck = new JToggleButton();
-        labelSalary = new JLabel();
-        labelInstitution = new JLabel();
-        labelCity = new JLabel();
-        labelApprove = new JLabel();
-        labelCheck = new JLabel();
-        id = new JLabel();
-        name = new JLabel();
-        panelAll = new JPanel();
         panelSalary = new JPanel();
         scrollPanelSalary = new JScrollPane();
         tableSalary = new JTable();
@@ -1586,31 +1597,6 @@ public class companyManage extends JFrame {
         buttonModifyCity = new JButton();
         buttonExitCity = new JButton();
         labelCitySuccess = new JLabel();
-        panelApprove = new JPanel();
-        tabbedPaneApprove = new JTabbedPane();
-        scrollPanelEntruk = new JScrollPane();
-        tableEntruk = new JTable();
-        scrollPanelArrival = new JScrollPane();
-        tableArrival = new JTable();
-        scrollPanelReceipt = new JScrollPane();
-        tableReceipt = new JTable();
-        scrollPanelStorageOut = new JScrollPane();
-        tableStorageOut = new JTable();
-        scrollPanelPayment = new JScrollPane();
-        tablePayment = new JTable();
-        scrollPanelSend = new JScrollPane();
-        tableSend = new JTable();
-        scrollPanelTransfer = new JScrollPane();
-        tableTransfer = new JTable();
-        scrollPanelStorageIn = new JScrollPane();
-        tableStorageIn = new JTable();
-        scrollPanelOrder = new JScrollPane();
-        tableOrder = new JTable();
-        buttonApproveData = new JButton();
-        buttonModifyData = new JButton();
-        buttonApproveAll = new JButton();
-        buttonExitApprove = new JButton();
-        label1 = new JLabel();
         panelStaff = new JPanel();
         tabbedPaneStaff = new JTabbedPane();
         scrollPanelDeliver = new JScrollPane();
@@ -1645,6 +1631,30 @@ public class companyManage extends JFrame {
         buttonDeleteStaff = new JButton();
         buttonExitStaff = new JButton();
         labelStaffSuccess = new JLabel();
+        panelApprove = new JPanel();
+        tabbedPaneApprove = new JTabbedPane();
+        scrollPanelEntruk = new JScrollPane();
+        tableEntruk = new JTable();
+        scrollPanelArrival = new JScrollPane();
+        tableArrival = new JTable();
+        scrollPanelReceipt = new JScrollPane();
+        tableReceipt = new JTable();
+        scrollPanelStorageOut = new JScrollPane();
+        tableStorageOut = new JTable();
+        scrollPanelPayment = new JScrollPane();
+        tablePayment = new JTable();
+        scrollPanelSend = new JScrollPane();
+        tableSend = new JTable();
+        scrollPanelTransfer = new JScrollPane();
+        tableTransfer = new JTable();
+        scrollPanelStorageIn = new JScrollPane();
+        tableStorageIn = new JTable();
+        scrollPanelOrder = new JScrollPane();
+        tableOrder = new JTable();
+        buttonApproveData = new JButton();
+        buttonApproveAll = new JButton();
+        buttonModifyData = new JButton();
+        buttonExitApprove = new JButton();
 
         //======== this ========
         Container contentPane = getContentPane();
@@ -1666,85 +1676,150 @@ public class companyManage extends JFrame {
         }
         setJMenuBar(menuBar);
 
-        //---- buttonSalary ----
-        buttonSalary.setText("text");
-        buttonSalary.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                buttonSalaryMouseClicked(e);
-            }
-        });
-
-        //---- buttonStaff ----
-        buttonStaff.setText("text");
-        buttonStaff.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                buttonSalary2MouseClicked(e);
-                buttonStaffMouseClicked(e);
-            }
-        });
-
-        //---- buttonCity ----
-        buttonCity.setText("text");
-        buttonCity.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                buttonCityMouseClicked(e);
-            }
-        });
-
-        //---- buttonApprove ----
-        buttonApprove.setText("text");
-        buttonApprove.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                buttonApproveMouseClicked(e);
-            }
-        });
-
-        //---- buttonCheck ----
-        buttonCheck.setText("text");
-        buttonCheck.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                buttonCheckMouseClicked(e);
-            }
-        });
-
-        //---- labelSalary ----
-        labelSalary.setText("\u5de5\u8d44\u7ba1\u7406");
-
-        //---- labelInstitution ----
-        labelInstitution.setText("\u673a\u6784\u7ba1\u7406");
-
-        //---- labelCity ----
-        labelCity.setText("\u57ce\u5e02\u7ba1\u7406");
-
-        //---- labelApprove ----
-        labelApprove.setText("\u5ba1\u6279\u5355\u636e");
-
-        //---- labelCheck ----
-        labelCheck.setText("\u67e5\u770b\u62a5\u8868");
-
-        //---- id ----
-        id.setText("id:12345");
-
-        //---- name ----
-        name.setText("\u59d3\u540d:\u5f69\u7b14");
-
-        //======== panelAll ========
+        //======== panel1 ========
         {
 
-            GroupLayout panelAllLayout = new GroupLayout(panelAll);
-            panelAll.setLayout(panelAllLayout);
-            panelAllLayout.setHorizontalGroup(
-                panelAllLayout.createParallelGroup()
-                    .addGap(0, 812, Short.MAX_VALUE)
+            //======== panelAll ========
+            {
+                panelAll.setLayout(new BorderLayout());
+            }
+
+            //---- name ----
+            name.setText("\u59d3\u540d:\u5f69\u7b14");
+
+            //---- id ----
+            id.setText("id:12345");
+
+            //---- labelCheck ----
+            labelCheck.setText("\u67e5\u770b\u62a5\u8868");
+
+            //---- labelApprove ----
+            labelApprove.setText("\u5ba1\u6279\u5355\u636e");
+
+            //---- labelCity ----
+            labelCity.setText("\u57ce\u5e02\u7ba1\u7406");
+
+            //---- labelInstitution ----
+            labelInstitution.setText("\u673a\u6784\u7ba1\u7406");
+
+            //---- labelSalary ----
+            labelSalary.setText("\u5de5\u8d44\u7ba1\u7406");
+
+            //---- buttonSalary ----
+            buttonSalary.setIcon(new ImageIcon(getClass().getResource("/icons/salary_72x72.png")));
+            buttonSalary.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    buttonSalaryMouseClicked(e);
+                }
+            });
+
+            //---- buttonStaff ----
+            buttonStaff.setIcon(new ImageIcon(getClass().getResource("/icons/institution_72x72.png")));
+            buttonStaff.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    buttonSalary2MouseClicked(e);
+                    buttonStaffMouseClicked(e);
+                }
+            });
+
+            //---- buttonCity ----
+            buttonCity.setIcon(new ImageIcon(getClass().getResource("/icons/map_72x72.png")));
+            buttonCity.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    buttonCityMouseClicked(e);
+                }
+            });
+
+            //---- buttonApprove ----
+            buttonApprove.setIcon(new ImageIcon(getClass().getResource("/icons/approval_72x72.png")));
+            buttonApprove.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    buttonApproveMouseClicked(e);
+                }
+            });
+
+            //---- buttonCheck ----
+            buttonCheck.setIcon(new ImageIcon(getClass().getResource("/icons/Sales_report_72x72.png")));
+            buttonCheck.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    buttonCheckMouseClicked(e);
+                }
+            });
+
+            GroupLayout panel1Layout = new GroupLayout(panel1);
+            panel1.setLayout(panel1Layout);
+            panel1Layout.setHorizontalGroup(
+                panel1Layout.createParallelGroup()
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(labelSalary)
+                                .addGap(67, 67, 67)
+                                .addComponent(labelInstitution)
+                                .addGap(64, 64, 64)
+                                .addComponent(labelCity)
+                                .addGap(65, 65, 65)
+                                .addComponent(labelApprove)
+                                .addGap(66, 66, 66)
+                                .addComponent(labelCheck)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 262, Short.MAX_VALUE)
+                                .addComponent(name, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
+                            .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(panel1Layout.createParallelGroup()
+                                    .addComponent(panelAll, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addComponent(buttonSalary, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(buttonStaff, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(buttonCity, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(buttonApprove, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(buttonCheck, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
+                                        .addComponent(id, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap())
             );
-            panelAllLayout.setVerticalGroup(
-                panelAllLayout.createParallelGroup()
-                    .addGap(0, 407, Short.MAX_VALUE)
+            panel1Layout.setVerticalGroup(
+                panel1Layout.createParallelGroup()
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panel1Layout.createParallelGroup()
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addComponent(buttonSalary, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelSalary))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addComponent(buttonStaff, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelInstitution))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addComponent(buttonCity, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelCity))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addComponent(buttonApprove, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelApprove))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addGroup(panel1Layout.createParallelGroup()
+                                    .addComponent(buttonCheck, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(id))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(labelCheck)
+                                    .addComponent(name))))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panelAll, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
             );
         }
 
@@ -1752,69 +1827,11 @@ public class companyManage extends JFrame {
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(contentPaneLayout.createParallelGroup()
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addComponent(panelAll, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addContainerGap())
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGroup(contentPaneLayout.createParallelGroup()
-                                .addComponent(buttonSalary, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-                                .addGroup(contentPaneLayout.createSequentialGroup()
-                                    .addGap(25, 25, 25)
-                                    .addComponent(labelSalary)))
-                            .addGap(18, 18, 18)
-                            .addGroup(contentPaneLayout.createParallelGroup()
-                                .addGroup(contentPaneLayout.createSequentialGroup()
-                                    .addComponent(buttonStaff, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(buttonCity, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(buttonApprove, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(buttonCheck, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
-                                .addGroup(contentPaneLayout.createSequentialGroup()
-                                    .addGap(36, 36, 36)
-                                    .addComponent(labelInstitution)
-                                    .addGap(68, 68, 68)
-                                    .addComponent(labelCity)
-                                    .addGap(71, 71, 71)
-                                    .addComponent(labelApprove)
-                                    .addGap(79, 79, 79)
-                                    .addComponent(labelCheck)))
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                            .addGroup(contentPaneLayout.createParallelGroup()
-                                .addComponent(id, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(name, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
-                            .addGap(33, 33, 33))))
+                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
-                .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(buttonSalary, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(buttonStaff, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(buttonCity, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(buttonApprove, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(buttonCheck, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(id))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(contentPaneLayout.createParallelGroup()
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(labelInstitution)
-                                .addComponent(labelSalary)
-                                .addComponent(labelCity)
-                                .addComponent(labelApprove)
-                                .addComponent(labelCheck))
-                            .addGap(26, 26, 26))
-                        .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                            .addComponent(name)
-                            .addGap(31, 31, 31)))
-                    .addComponent(panelAll, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap())
+                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -1988,141 +2005,6 @@ public class companyManage extends JFrame {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(buttonExitCity, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(68, Short.MAX_VALUE))
-            );
-        }
-
-        //======== panelApprove ========
-        {
-
-            //======== tabbedPaneApprove ========
-            {
-
-                //======== scrollPanelEntruk ========
-                {
-                    scrollPanelEntruk.setViewportView(tableEntruk);
-                }
-                tabbedPaneApprove.addTab("\u88c5\u8f66\u5355", scrollPanelEntruk);
-
-                //======== scrollPanelArrival ========
-                {
-                    scrollPanelArrival.setViewportView(tableArrival);
-                }
-                tabbedPaneApprove.addTab("\u5230\u8fbe\u5355", scrollPanelArrival);
-
-                //======== scrollPanelReceipt ========
-                {
-                    scrollPanelReceipt.setViewportView(tableReceipt);
-                }
-                tabbedPaneApprove.addTab("\u6536\u6b3e\u5355", scrollPanelReceipt);
-
-                //======== scrollPanelStorageOut ========
-                {
-                    scrollPanelStorageOut.setViewportView(tableStorageOut);
-                }
-                tabbedPaneApprove.addTab("\u51fa\u5e93\u5355", scrollPanelStorageOut);
-
-                //======== scrollPanelPayment ========
-                {
-                    scrollPanelPayment.setViewportView(tablePayment);
-                }
-                tabbedPaneApprove.addTab("\u4ed8\u6b3e\u5355", scrollPanelPayment);
-
-                //======== scrollPanelSend ========
-                {
-                    scrollPanelSend.setViewportView(tableSend);
-                }
-                tabbedPaneApprove.addTab("\u6d3e\u4ef6\u5355", scrollPanelSend);
-
-                //======== scrollPanelTransfer ========
-                {
-                    scrollPanelTransfer.setViewportView(tableTransfer);
-                }
-                tabbedPaneApprove.addTab("\u4e2d\u8f6c\u5355", scrollPanelTransfer);
-
-                //======== scrollPanelStorageIn ========
-                {
-                    scrollPanelStorageIn.setViewportView(tableStorageIn);
-                }
-                tabbedPaneApprove.addTab("\u5165\u5e93\u5355", scrollPanelStorageIn);
-
-                //======== scrollPanelOrder ========
-                {
-                    scrollPanelOrder.setViewportView(tableOrder);
-                }
-                tabbedPaneApprove.addTab("\u5bc4\u4ef6\u5355", scrollPanelOrder);
-            }
-
-            //---- buttonApproveData ----
-            buttonApproveData.setText("\u5ba1\u6279\u5355\u636e");
-            buttonApproveData.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    buttonAddSalaryMouseClicked(e);
-                    buttonAddStaffMouseClicked(e);
-                    buttonApproveDataMouseClicked(e);
-                }
-            });
-
-            //---- buttonModifyData ----
-            buttonModifyData.setText("\u4fee\u6539\u5355\u636e");
-            buttonModifyData.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    buttonAddSalaryMouseClicked(e);
-                    buttonModifyDataMouseClicked(e);
-                }
-            });
-
-            //---- buttonApproveAll ----
-            buttonApproveAll.setText("\u5168\u90e8\u5ba1\u6279");
-            buttonApproveAll.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    buttonAddSalaryMouseClicked(e);
-                    buttonApproveAllMouseClicked(e);
-                }
-            });
-
-            //---- buttonExitApprove ----
-            buttonExitApprove.setText("\u9000\u51fa\u7cfb\u7edf");
-            buttonExitApprove.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    buttonAddSalaryMouseClicked(e);
-                    buttonExitApproveMouseClicked(e);
-                }
-            });
-
-            GroupLayout panelApproveLayout = new GroupLayout(panelApprove);
-            panelApprove.setLayout(panelApproveLayout);
-            panelApproveLayout.setHorizontalGroup(
-                panelApproveLayout.createParallelGroup()
-                    .addGroup(panelApproveLayout.createSequentialGroup()
-                        .addComponent(tabbedPaneApprove, GroupLayout.PREFERRED_SIZE, 621, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelApproveLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                            .addComponent(buttonModifyData, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buttonApproveAll, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buttonApproveData, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buttonExitApprove, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(label1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            );
-            panelApproveLayout.setVerticalGroup(
-                panelApproveLayout.createParallelGroup()
-                    .addGroup(panelApproveLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(label1, GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(buttonApproveData, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buttonApproveAll, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buttonModifyData, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buttonExitApprove, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13))
-                    .addComponent(tabbedPaneApprove, GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
             );
         }
 
@@ -2376,6 +2258,142 @@ public class companyManage extends JFrame {
                     .addComponent(tabbedPaneStaff, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
             );
         }
+
+        //======== panelApprove ========
+        {
+
+            //======== tabbedPaneApprove ========
+            {
+
+                //======== scrollPanelEntruk ========
+                {
+                    scrollPanelEntruk.setViewportView(tableEntruk);
+                }
+                tabbedPaneApprove.addTab("\u88c5\u8f66\u5355", scrollPanelEntruk);
+
+                //======== scrollPanelArrival ========
+                {
+                    scrollPanelArrival.setViewportView(tableArrival);
+                }
+                tabbedPaneApprove.addTab("\u5230\u8fbe\u5355", scrollPanelArrival);
+
+                //======== scrollPanelReceipt ========
+                {
+                    scrollPanelReceipt.setViewportView(tableReceipt);
+                }
+                tabbedPaneApprove.addTab("\u6536\u6b3e\u5355", scrollPanelReceipt);
+
+                //======== scrollPanelStorageOut ========
+                {
+                    scrollPanelStorageOut.setViewportView(tableStorageOut);
+                }
+                tabbedPaneApprove.addTab("\u51fa\u5e93\u5355", scrollPanelStorageOut);
+
+                //======== scrollPanelPayment ========
+                {
+                    scrollPanelPayment.setViewportView(tablePayment);
+                }
+                tabbedPaneApprove.addTab("\u4ed8\u6b3e\u5355", scrollPanelPayment);
+
+                //======== scrollPanelSend ========
+                {
+                    scrollPanelSend.setViewportView(tableSend);
+                }
+                tabbedPaneApprove.addTab("\u6d3e\u4ef6\u5355", scrollPanelSend);
+
+                //======== scrollPanelTransfer ========
+                {
+                    scrollPanelTransfer.setViewportView(tableTransfer);
+                }
+                tabbedPaneApprove.addTab("\u4e2d\u8f6c\u5355", scrollPanelTransfer);
+
+                //======== scrollPanelStorageIn ========
+                {
+                    scrollPanelStorageIn.setViewportView(tableStorageIn);
+                }
+                tabbedPaneApprove.addTab("\u5165\u5e93\u5355", scrollPanelStorageIn);
+
+                //======== scrollPanelOrder ========
+                {
+                    scrollPanelOrder.setViewportView(tableOrder);
+                }
+                tabbedPaneApprove.addTab("\u5bc4\u4ef6\u5355", scrollPanelOrder);
+            }
+
+            //---- buttonApproveData ----
+            buttonApproveData.setText("\u5ba1\u6279\u5355\u636e");
+            buttonApproveData.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    buttonAddSalaryMouseClicked(e);
+                    buttonAddStaffMouseClicked(e);
+                    buttonApproveDataMouseClicked(e);
+                }
+            });
+
+            //---- buttonApproveAll ----
+            buttonApproveAll.setText("\u5168\u90e8\u5ba1\u6279");
+            buttonApproveAll.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    buttonAddSalaryMouseClicked(e);
+                    buttonApproveAllMouseClicked(e);
+                }
+            });
+
+            //---- buttonModifyData ----
+            buttonModifyData.setText("\u4fee\u6539\u5355\u636e");
+            buttonModifyData.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    buttonAddSalaryMouseClicked(e);
+                    buttonModifyDataMouseClicked(e);
+                }
+            });
+
+            //---- buttonExitApprove ----
+            buttonExitApprove.setText("\u9000\u51fa\u7cfb\u7edf");
+            buttonExitApprove.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    buttonAddSalaryMouseClicked(e);
+                    buttonExitApproveMouseClicked(e);
+                }
+            });
+
+            GroupLayout panelApproveLayout = new GroupLayout(panelApprove);
+            panelApprove.setLayout(panelApproveLayout);
+            panelApproveLayout.setHorizontalGroup(
+                panelApproveLayout.createParallelGroup()
+                    .addGroup(panelApproveLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(tabbedPaneApprove, GroupLayout.DEFAULT_SIZE, 697, Short.MAX_VALUE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelApproveLayout.createParallelGroup()
+                            .addGroup(GroupLayout.Alignment.TRAILING, panelApproveLayout.createParallelGroup()
+                                .addComponent(buttonApproveData, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(buttonApproveAll, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(buttonModifyData, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(buttonExitApprove, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+            );
+            panelApproveLayout.setVerticalGroup(
+                panelApproveLayout.createParallelGroup()
+                    .addGroup(GroupLayout.Alignment.TRAILING, panelApproveLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panelApproveLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                            .addComponent(tabbedPaneApprove, GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+                            .addGroup(panelApproveLayout.createSequentialGroup()
+                                .addComponent(buttonApproveData)
+                                .addGap(7, 7, 7)
+                                .addComponent(buttonApproveAll)
+                                .addGap(7, 7, 7)
+                                .addComponent(buttonModifyData)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 267, Short.MAX_VALUE)
+                                .addComponent(buttonExitApprove)))
+                        .addContainerGap())
+            );
+        }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
         tabbedPaneStaff.addChangeListener(new ChangeListener() {
             @Override
@@ -2430,19 +2448,20 @@ public class companyManage extends JFrame {
     private JMenuBar menuBar;
     private JMenu choice;
     private JMenu help;
+    private JPanel panel1;
+    private JPanel panelAll;
+    private JLabel name;
+    private JLabel id;
+    private JLabel labelCheck;
+    private JLabel labelApprove;
+    private JLabel labelCity;
+    private JLabel labelInstitution;
+    private JLabel labelSalary;
     private JToggleButton buttonSalary;
     private JToggleButton buttonStaff;
     private JToggleButton buttonCity;
     private JToggleButton buttonApprove;
     private JToggleButton buttonCheck;
-    private JLabel labelSalary;
-    private JLabel labelInstitution;
-    private JLabel labelCity;
-    private JLabel labelApprove;
-    private JLabel labelCheck;
-    private JLabel id;
-    private JLabel name;
-    private JPanel panelAll;
     private JPanel panelSalary;
     private JScrollPane scrollPanelSalary;
     private JTable tableSalary;
@@ -2462,31 +2481,6 @@ public class companyManage extends JFrame {
     private JButton buttonModifyCity;
     private JButton buttonExitCity;
     private JLabel labelCitySuccess;
-    private JPanel panelApprove;
-    private JTabbedPane tabbedPaneApprove;
-    private JScrollPane scrollPanelEntruk;
-    private JTable tableEntruk;
-    private JScrollPane scrollPanelArrival;
-    private JTable tableArrival;
-    private JScrollPane scrollPanelReceipt;
-    private JTable tableReceipt;
-    private JScrollPane scrollPanelStorageOut;
-    private JTable tableStorageOut;
-    private JScrollPane scrollPanelPayment;
-    private JTable tablePayment;
-    private JScrollPane scrollPanelSend;
-    private JTable tableSend;
-    private JScrollPane scrollPanelTransfer;
-    private JTable tableTransfer;
-    private JScrollPane scrollPanelStorageIn;
-    private JTable tableStorageIn;
-    private JScrollPane scrollPanelOrder;
-    private JTable tableOrder;
-    private JButton buttonApproveData;
-    private JButton buttonModifyData;
-    private JButton buttonApproveAll;
-    private JButton buttonExitApprove;
-    private JLabel label1;
     private JPanel panelStaff;
     private JTabbedPane tabbedPaneStaff;
     private JScrollPane scrollPanelDeliver;
@@ -2521,6 +2515,30 @@ public class companyManage extends JFrame {
     private JButton buttonDeleteStaff;
     private JButton buttonExitStaff;
     private JLabel labelStaffSuccess;
+    private JPanel panelApprove;
+    private JTabbedPane tabbedPaneApprove;
+    private JScrollPane scrollPanelEntruk;
+    private JTable tableEntruk;
+    private JScrollPane scrollPanelArrival;
+    private JTable tableArrival;
+    private JScrollPane scrollPanelReceipt;
+    private JTable tableReceipt;
+    private JScrollPane scrollPanelStorageOut;
+    private JTable tableStorageOut;
+    private JScrollPane scrollPanelPayment;
+    private JTable tablePayment;
+    private JScrollPane scrollPanelSend;
+    private JTable tableSend;
+    private JScrollPane scrollPanelTransfer;
+    private JTable tableTransfer;
+    private JScrollPane scrollPanelStorageIn;
+    private JTable tableStorageIn;
+    private JScrollPane scrollPanelOrder;
+    private JTable tableOrder;
+    private JButton buttonApproveData;
+    private JButton buttonApproveAll;
+    private JButton buttonModifyData;
+    private JButton buttonExitApprove;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
     public JLabel getLabelCitySuccess() { return labelCitySuccess; }
