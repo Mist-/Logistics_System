@@ -42,11 +42,12 @@ public class OrderList implements OrderListService {
 		}
 	}
 	
-	public void modifyOrderPosition(long[] orderID){
+	public void modifyOrderPosition(long[] orderID) throws RemoteException{
 		orders = new Order(loginMessage).search(orderID);
 			for (int i = 0;i< orders.size();i++) {
 				System.out.println("modify next position");
 					orders.get(i).updateRoutine();
+					orderDataService.modify(orders.get(i));
 			}
 		
 	}

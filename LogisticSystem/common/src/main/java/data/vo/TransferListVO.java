@@ -12,10 +12,11 @@ public class TransferListVO extends DeliveryListVO {
 	public String transferListID;//中转单ID
     public String date;//日期
     public String staff;//监装员
+    public String driver;//汽运时，司机姓名
     public long staffID;
     public String transferCenter;//中转中心(from)
     public String transferCenterID;
-    public String vehicleCode;//班次
+    public String vehicleCode;//班次，汽运时为车辆代号
     public String target;//目标机构
     public String targetName;//目标机构名称
     public String[][] orderAndPosition;

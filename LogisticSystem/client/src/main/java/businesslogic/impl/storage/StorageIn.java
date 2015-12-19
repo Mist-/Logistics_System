@@ -11,6 +11,7 @@ import data.enums.DataType;
 import data.enums.POType;
 import data.message.LoginMessage;
 import utils.DataServiceFactory;
+import utils.Timestamper;
 import data.message.ResultMessage;
 import data.po.ArrivalPO;
 import data.po.OrderPO;
@@ -107,7 +108,10 @@ public class StorageIn implements StorageInService{
 		long[] orderID = arrivalList.getOrderID(arrival);
 		ArrayList<OrderPO> order = orderList.getOrderList(orderID);
 		try {
-			return storageInfo.allocateSpace(order);
+			StorageInVO s=  storageInfo.allocateSpace(order);
+			s.setDate(Timestamper.getTimeByDate());
+			s.centerID = user.getCenterID();
+			return s;
 		} catch (RemoteException e) {
 			System.out.println("Õ¯¬Á¡¨Ω”÷–∂œ");
 			e.printStackTrace();
@@ -161,6 +165,7 @@ public class StorageIn implements StorageInService{
 	public ResultMessage saveStorageInList(StorageInVO vo){
 		modifyArriveListState();
 		try {
+			storageInfo.saveStorageInfo();
 			return storageInList.saveStorageInList(vo);
 		} catch (RemoteException e) {
 			e.printStackTrace();

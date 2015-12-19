@@ -10,7 +10,7 @@ public class TransferLoadVO {
 	public void setOrderInfo(String[][] orderInfo) {
 		this.orderInfo = orderInfo;
 	}
-	public String[] header = {"订单号","区域","排好","架号", "位号","重量（kg）"};
+	public String[] header = {"订单号","区域","排号","架号", "位号","重量（kg）"};
 	public String[][] orderInfo;
 	
 	public TransferLoadVO(ArrayList<String> orderInfo){

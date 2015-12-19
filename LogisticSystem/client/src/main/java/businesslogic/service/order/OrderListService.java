@@ -20,7 +20,7 @@ public interface OrderListService {
 	
 	public void modifyOrder(long[] orderID,String info) throws RemoteException;
 	
-	public void modifyOrderPosition(long[] orderID);
+	public void modifyOrderPosition(long[] orderID) throws RemoteException;
 	
     ArrayList<OrderPO> search(long[] order);
 }

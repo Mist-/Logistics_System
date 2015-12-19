@@ -247,7 +247,7 @@ public class StorageInfo implements StorageInfoService {
 			area = 1;
 			row = storageInfo.getTrainRow();
 			areas = "铁运区";
-		} else {
+		} else if(transferType == StorageArea.TRUCK) {
 			area = 2;
 			row = storageInfo.getTruckRow();
 			areas = "汽运区";
@@ -257,8 +257,10 @@ public class StorageInfo implements StorageInfoService {
 		for (int r = 0; r < row; r++) {
 			for (int s = 0; s < storageInfo.getShelf(); s++) {
 				for (int n = 0; n < storageInfo.getNum(); n++) {
+					if(info[r][s][n] != 0){
 					order.add(info[r][s][n]);
-					position.add(areas + "-" + "-" + r + "-" + s + "-" + n);
+					position.add(areas + "-" + r + "-" + s + "-" + n);
+					}
 				}
 			}
 		}
@@ -270,8 +272,10 @@ public class StorageInfo implements StorageInfoService {
 				for (int r = 0; r < storageInfo.getFlexibleRow(); r++) {
 					for (int s = 0; s < storageInfo.getShelf(); s++) {
 						for (int n = 0; n < storageInfo.getNum(); n++) {
+							if(info[r][s][n]!=0){
 							order.add(info[r][s][n]);
 							position.add("机动区" + "-" + r + "-" + s + "-" + n);
+							}
 						}
 					}
 				}
@@ -279,6 +283,10 @@ public class StorageInfo implements StorageInfoService {
 		}
 
 		return new StoragePositionAndOrderID(position, order);
+	}
+	
+	public void saveStorageInfo() throws RemoteException{
+		storageData.modify(storageInfo);
 	}
 
 	/**
@@ -330,7 +338,7 @@ public class StorageInfo implements StorageInfoService {
 			while (row < storageInfo.getShelf()) {
 				while (num < storageInfo.getNum()) {
 					if (info[shelf][row][num] == 0) {
-						info[shelf][row][num] = order;
+						info[shelf][row][num] = order;//修改storage信息
 						return order+"-"+ a + "-" + shelf + "-" + row + "-" + num;
 					}
 					num++;

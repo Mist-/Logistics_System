@@ -46,7 +46,7 @@ public class CityInfo {
 			CityInfoPO c = (CityInfoPO) d;
 			allCitys.add(c);
 			if (c.getTransferCenterID() == centerID) {
-				city = c; break;
+				city = c;
 			}
 
 		}
@@ -62,9 +62,13 @@ public class CityInfo {
 	 */
 	public double getTransferFee(String targetCenterName,StorageArea transferType) throws RemoteException{
 		CityTransPO cityTrans = companyData.searchByCityName(city.getName(), targetCenterName);
+		if(cityTrans != null){
 		if(transferType == StorageArea.PLANE) return cityTrans.getPlanePrice();
 		else if(transferType == StorageArea.TRAIN) return cityTrans.getTrainPrice();
 		else return cityTrans.getTrunkPrice();
+		}else{
+			return 0;
+		}
 	}
 	
 	
@@ -84,7 +88,7 @@ public class CityInfo {
 	public ArrayList<String> getOtherCitys(){
 		ArrayList<String> center = new ArrayList<String>();
 		for(CityInfoPO c: allCitys){
-			if(c.getName() == city.getName()) continue;
+			if(c.getName().equals(city.getName())) continue;
 			else {
 				center.add(c.getName());
 			}

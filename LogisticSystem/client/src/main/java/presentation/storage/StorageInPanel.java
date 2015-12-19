@@ -26,6 +26,7 @@ public class StorageInPanel extends JPanel {
 	StorageInService storageInService;
 	ArrivalVO arrival;
 	StorageInVO storageIn;
+	boolean showOrStorageIn;//show = false,storageIn = true
 
 	
 	public StorageInPanel(StorageInService storageIn) {
@@ -77,7 +78,7 @@ public class StorageInPanel extends JPanel {
 		remove(listPane);
 		remove(arrivalVO);
 		add(storageInVO,BorderLayout.CENTER);
-		
+		storageInVO.updateUI();
 		storageInVO.setVisible(true);
 	}
 	
@@ -102,6 +103,7 @@ public class StorageInPanel extends JPanel {
 		String info = (String) storageInTable.getValueAt(row, 0);
 		long storageInID = Long.parseLong(info);
 		storageIn = storageInService.getStorageIn(storageInID);
+		saveStorageIn.setVisible(false);
 		setStorageIn();
 		
 
@@ -114,6 +116,9 @@ public class StorageInPanel extends JPanel {
 	}
 
 	private void selectArrivalMouseClicked(MouseEvent e) {
+		showOrStorageIn = false;
+		sureStorageIn.setVisible(true);
+		saveStorageIn.setVisible(true);
 		int row = arriveListTable.getSelectedRow();
 		String info = (String) arriveListTable.getValueAt(row, 0);
 		System.out.println(info);
@@ -125,6 +130,9 @@ public class StorageInPanel extends JPanel {
 	}
 
 	private void createStorageInMouseClicked(MouseEvent e) {
+		showOrStorageIn = true;
+		sureStorageIn.setVisible(false);
+		saveStorageIn.setVisible(true);
 		storageIn = storageInService.sort(arrival);
 		storageIn.setDate(Timestamper.getTimeByDate());
 		setStorageIn();		
@@ -138,8 +146,6 @@ public class StorageInPanel extends JPanel {
 		selectStorageIn.setEnabled(true);
 	}
 
-	private void doStorageInMouseClicked(MouseEvent e) {
-	}
 
 	private void cancelArrivalMouseClicked(MouseEvent e) {
 		remove(arrivalVO);
@@ -172,6 +178,24 @@ public class StorageInPanel extends JPanel {
 		setArrival(arrival);
 	}
 
+	private void cancelStorageInMouseReleased(MouseEvent e) {
+		remove(storageInVO);
+		add(listPane,BorderLayout.CENTER);
+		listPane.updateUI();
+		listPane.setVisible(true);
+	}
+
+	private void sureStorageInMouseReleased(MouseEvent e) {
+		JOptionPane.showMessageDialog(null, "入库完成", "提示", JOptionPane.INFORMATION_MESSAGE);
+		int row = storageInTable.getSelectedRow();
+		DefaultTableModel model = (DefaultTableModel) storageInTable.getModel();
+		model.removeRow(row);
+		storageInTable.updateUI();
+		remove(storageInVO);
+		add(listPane,BorderLayout.CENTER);
+		listPane.setVisible(true);
+	}
+
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
 		listPane = new JTabbedPane();
@@ -194,6 +218,7 @@ public class StorageInPanel extends JPanel {
 		storageDate = new JTextField();
 		cancelStorageIn = new JButton();
 		saveStorageIn = new JButton();
+		sureStorageIn = new JButton();
 		arrivalVO = new JTabbedPane();
 		panel1 = new JPanel();
 		scrollPane1 = new JScrollPane();
@@ -239,12 +264,6 @@ public class StorageInPanel extends JPanel {
 				doStorageIn.setText("\u5165\u5e93");
 				doStorageIn.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 				doStorageIn.setIcon(new ImageIcon(getClass().getResource("/icons/storagein_24x24.png")));
-				doStorageIn.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						doStorageInMouseClicked(e);
-					}
-				});
 
 				//---- selectStorageIn ----
 				selectStorageIn.setText("\u9009\u62e9");
@@ -253,8 +272,6 @@ public class StorageInPanel extends JPanel {
 				selectStorageIn.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						selectStorageInMouseClicked(e);
-						selectStorageInMouseClicked(e);
 						selectStorageInMouseClicked(e);
 					}
 				});
@@ -382,6 +399,12 @@ public class StorageInPanel extends JPanel {
 				cancelStorageIn.setText("\u53d6\u6d88");
 				cancelStorageIn.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 				cancelStorageIn.setIcon(new ImageIcon(getClass().getResource("/icons/cancel_24x24.png")));
+				cancelStorageIn.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						cancelStorageInMouseReleased(e);
+					}
+				});
 
 				//---- saveStorageIn ----
 				saveStorageIn.setText("\u4fdd\u5b58");
@@ -394,23 +417,32 @@ public class StorageInPanel extends JPanel {
 					}
 				});
 
+				//---- sureStorageIn ----
+				sureStorageIn.setText("\u786e\u8ba4\u5165\u5e93");
+				sureStorageIn.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						sureStorageInMouseReleased(e);
+					}
+				});
+
 				GroupLayout storageInPanelLayout = new GroupLayout(storageInPanel);
 				storageInPanel.setLayout(storageInPanelLayout);
 				storageInPanelLayout.setHorizontalGroup(
 					storageInPanelLayout.createParallelGroup()
 						.addGroup(storageInPanelLayout.createSequentialGroup()
 							.addContainerGap()
-							.addGroup(storageInPanelLayout.createParallelGroup()
-								.addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
-								.addGroup(storageInPanelLayout.createSequentialGroup()
-									.addComponent(label10)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(storageDate, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
-									.addGap(409, 409, 409)
-									.addComponent(saveStorageIn, GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(cancelStorageIn, GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-									.addContainerGap())))
+							.addComponent(label10)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(storageDate, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+							.addGap(331, 331, 331)
+							.addComponent(sureStorageIn, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(saveStorageIn, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+							.addGap(3, 3, 3)
+							.addComponent(cancelStorageIn)
+							.addGap(6, 6, 6))
+						.addComponent(scrollPane2, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
 				);
 				storageInPanelLayout.setVerticalGroup(
 					storageInPanelLayout.createParallelGroup()
@@ -423,7 +455,8 @@ public class StorageInPanel extends JPanel {
 										.addComponent(storageDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 								.addGroup(storageInPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 									.addComponent(cancelStorageIn)
-									.addComponent(saveStorageIn)))
+									.addComponent(saveStorageIn)
+									.addComponent(sureStorageIn, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)))
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
 							.addContainerGap())
@@ -585,6 +618,7 @@ public class StorageInPanel extends JPanel {
 	private JTextField storageDate;
 	private JButton cancelStorageIn;
 	private JButton saveStorageIn;
+	private JButton sureStorageIn;
 	private JTabbedPane arrivalVO;
 	private JPanel panel1;
 	private JScrollPane scrollPane1;

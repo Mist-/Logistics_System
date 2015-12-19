@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "5.2.2.2.228" Java: "1.8.0_51" encoding: "UTF-8"
+JFDML JFormDesigner: "5.2.2.0.199" Java: "1.8.0_31" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -10,7 +10,7 @@ new FormModel {
 				"font": &Font0 new java.awt.Font( "等线", 0, 14 )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 					"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp scrollPane1:::p:685:p, space :::p, par l {comp doStorageOut:::::x, comp selectStorageOut:::::x}}, seq {comp textField1:::p:136:p, space :::p, comp button3:::p:89:p, space :0:0:x}}, space :::p}}"
-					"$verticalGroup": "par l {seq t {space :::p, par b {comp button3::b::0:x, comp textField1::b:p::p}, space :::p, par t {seq {comp selectStorageOut:::p::p, space :::p, comp doStorageOut:::p::p, space :0:222:x}, comp scrollPane1::::307:x}, space :::p}}"
+					"$verticalGroup": "par l {seq t {space :::p, par b {comp textField1::b:p::p, comp button3::b::0:x}, space :::p, par t {seq {comp selectStorageOut:::p::p, space :::p, comp doStorageOut:::p::p, space :0:219:x}, comp scrollPane1::::289:x}, space :::p}}"
 				} ) {
 					name: "storageOutList"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -49,7 +49,7 @@ new FormModel {
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 					"$horizontalGroup": "par l {seq l {space :::p, par l {comp scrollPane2::l:p:685:p, seq l {comp textField2:::p:337:p, space :::p, comp searchTransfer:::p::p}}, space :p:2147482940:p, comp selectTransfer::::95:x, space :::p}}"
-					"$verticalGroup": "par l {seq l {space :::p, par b {comp textField2::b:p::p, comp searchTransfer::b:p:25:p}, space :p:14:p, par l {seq l {space :0:0:x, comp selectTransfer:::p:46:p}, comp scrollPane2::::298:x}, space :::p}}"
+					"$verticalGroup": "par l {seq l {space :::p, par b {comp textField2::b:p::p, comp searchTransfer::b:p:25:p}, space :p:14:p, par l {seq l {space :0:0:x, comp selectTransfer:::p:46:p}, comp scrollPane2::::281:x}, space :::p}}"
 				} ) {
 					name: "transferList"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -88,8 +88,8 @@ new FormModel {
 			name: "tabbedPane2"
 			"font": &Font2 new java.awt.Font( "等线", 0, 14 )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space :::p, comp scrollPane3:::p:679:p, space :::p, par l {comp createStorageOut::::101:x, comp transferCancel::::101:x}, space :::p}}"
-				"$verticalGroup": "par l {seq t {space :::p, par t {seq {comp createStorageOut:::p::p, space ::241:x, comp transferCancel:::p::p}, comp scrollPane3::::321:x}, space :::p}}"
+				"$horizontalGroup": "par l {seq {space :::p, comp scrollPane3:::p:679:p, space :::p, par l {comp createStorageOut::::90:x, comp transferCancel::::90:x}, space :::p}}"
+				"$verticalGroup": "par l {seq t {space :::p, par t {seq {comp createStorageOut:::p::p, space ::240:x, comp transferCancel:::p::p}, comp scrollPane3::::306:x}, space :::p}}"
 			} ) {
 				name: "transferVO"
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -122,8 +122,8 @@ new FormModel {
 			name: "tabbedPane3"
 			"font": &Font3 new java.awt.Font( "等线", 0, 14 )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp scrollPane4:::p:680:p, space :::p, par l {comp storageOutCancel::::100:x, comp storageOutSave::::100:x}}, seq {par l {seq l {comp label1:::p:70:p, space :5:5:p, comp textField3:::p:70:p, space :15:15:p, comp label4:::p:70:p, space :5:5:p, comp textField6:::p:70:p, space :15:15:p, comp label3:::p:70:p, space :5:5:p, comp textField5:::p:70:p}, seq l {comp label2:::p:70:p, space :5:5:p, comp textField4:::p:70:p, space :15:15:p, comp label5:::p:70:p, space :5:5:p, comp textField7:::p:70:p}, seq l {comp label7:::p:70:p, space :5:5:p, comp textField9:::p:70:p, space :15:15:p, comp label6:::p:70:p, space :5:5:p, comp textField8:::p:70:p}}, space :0:321:x}}, space :::p}}"
-				"$verticalGroup": "par l {seq t {space :::p, par l {comp label1:::p:25:p, comp textField3:::p::p, comp label4:::p:25:p, comp textField6:::p::p, comp label3:::p:25:p, comp textField5:::p::p}, space :10:10:p, par l {comp label2:::p:25:p, comp textField4:::p::p, comp label5:::p:25:p, comp textField7:::p::p}, space :10:10:p, par l {comp label7:::p:25:p, comp textField9:::p::p, comp label6:::p:25:p, comp textField8:::p::p}, space :::p, par l {seq {comp storageOutSave:::p::p, space ::140:x, comp storageOutCancel:::p::p}, comp scrollPane4::::220:x}, space :::p}}"
+				"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp scrollPane4:::p:680:p, space :::p, par l {comp storageOutCancel:::::x, comp storageOutSave:::::x}}, seq {par l {seq l {comp label1:::p:70:p, space :5:5:p, comp textField3:::p:70:p, space :15:15:p, comp label4:::p:70:p, space :5:5:p, comp textField6:::p:70:p, space :15:15:p, comp label3:::p:70:p, space :5:5:p, comp textField5:::p:70:p}, seq l {comp label2:::p:70:p, space :5:5:p, comp textField4:::p:70:p, space :15:15:p, comp label5:::p:70:p, space :5:5:p, comp textField7:::p:70:p}, seq l {comp label7:::p:70:p, space :5:5:p, comp textField9:::p:70:p, space :15:15:p, comp label6:::p:70:p, space :5:5:p, comp textField8:::p:70:p}}, space :0:0:x}}, space :::p}}"
+				"$verticalGroup": "par l {seq t {space :::p, par l {comp label1:::p:25:p, comp textField3:::p::p, comp label4:::p:25:p, comp textField6:::p::p, comp label3:::p:25:p, comp textField5:::p::p}, space :10:10:p, par l {comp label2:::p:25:p, comp textField4:::p::p, comp label5:::p:25:p, comp textField7:::p::p}, space :10:10:p, par l {comp label7:::p:25:p, comp textField9:::p::p, comp label6:::p:25:p, comp textField8:::p::p}, space :::p, par l {seq {comp storageOutSave:::p::p, space ::136:x, comp storageOutCancel:::p::p}, comp scrollPane4::::202:x}, space :::p}}"
 			} ) {
 				name: "storageOutVO"
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {

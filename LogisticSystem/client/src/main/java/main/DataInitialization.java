@@ -199,6 +199,14 @@ public class DataInitialization {
         staff7.setGender(false);
         staff7.setInstitution(10021);
         staff7.setUserRole(UserRole.系统管理员);
+        
+        StaffPO staff10 = new StaffPO();
+        staff7.setSerialNum(10010);
+        staff7.setName("基佬");
+        staff7.setGender(false);
+        staff7.setInstitution(10025);
+        staff7.setUserRole(UserRole.中转中心业务员);
+        
 
         try {
             companyDataService.add(staff1);
@@ -210,6 +218,10 @@ public class DataInitialization {
             companyDataService.add(staff7);
             companyDataService.add(staff8);
             companyDataService.add(staff9);
+            companyDataService.add(staff10);
+            
+            UserPO user10 = new UserPO(10010, "中转中心业务员", "123456"	, UserRole.中转中心业务员);
+            DataServiceFactory.getDataServiceByType(DataType.UserDataService).add(user10);
 
         } catch (RemoteException e) {
             e.printStackTrace();

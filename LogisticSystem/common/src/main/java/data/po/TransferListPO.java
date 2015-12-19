@@ -11,21 +11,7 @@ import data.enums.StorageArea;
  */
 public class TransferListPO extends DataPO {
 	private static final long serialVersionUID = 21;
-    public long getTransferListID() {
-		return transferListID;
-	}
 
-	public void setTransferListID(long transferListID) {
-		this.transferListID = transferListID;
-	}
-
-	public long getVehicleID() {
-		return vehicleID;
-	}
-
-	public void setVehicleID(long vehicleID) {
-		this.vehicleID = vehicleID;
-	}
 
 	String date;//日期
     long staff;//监装员
@@ -40,9 +26,28 @@ public class TransferListPO extends DataPO {
     long[] order;//订单号
     String[] storagePosition;//area-row-shelf-num
     StorageArea transferType;//装运类型
-    double fee;//费用
+    double fee = 0;//费用
     boolean isStorageOut;//是否完成出库
     boolean account;//是否结算过
+    
+    String driverName;//中转中心装车时有效
+    
+    public long getTransferListID() {
+		return transferListID;
+	}
+
+	public void setTransferListID(long transferListID) {
+		this.transferListID = transferListID;
+		serialNum = transferListID;
+	}
+
+	public long getVehicleID() {
+		return vehicleID;
+	}
+
+	public void setVehicleID(long vehicleID) {
+		this.vehicleID = vehicleID;
+	}
     
     
 //    public TransferListPO(TransferLoadVO vo, StorageArea transferType){
@@ -216,7 +221,15 @@ public class TransferListPO extends DataPO {
 
 
 
-    public boolean isAccount() {
+    public String getDriverName() {
+		return driverName;
+	}
+
+	public void setDriverName(String driverName) {
+		this.driverName = driverName;
+	}
+
+	public boolean isAccount() {
 		return account;
 	}
 

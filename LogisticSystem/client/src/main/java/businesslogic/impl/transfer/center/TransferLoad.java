@@ -34,6 +34,7 @@ public class TransferLoad implements TransferLoadService {
 	String targetInstitutionName;
 	long desID;
 	double transferFee;
+	
 
 	/**
 	 * 根据所选运输类型 确定目的地列表
@@ -69,6 +70,7 @@ public class TransferLoad implements TransferLoadService {
 		this.city = city;
 		storageInfo = new StorageInfo(user.getCenterID());
 		orders = new ArrayList<OrderPO>();
+		transferList = new TransferList();
 	}
 
 	/**
@@ -78,7 +80,7 @@ public class TransferLoad implements TransferLoadService {
 	 * @throws RemoteException
 	 */
 	public TransferLoadVO getOrder(String desName) {
-		targetInstitutionName = desName + "中转中心";
+		targetInstitutionName = desName;
 		StoragePositionAndOrderID positionAndOrderID = storageInfo
 				.getOrderID(transferType); // 固定区域搜索订单
 		OrderListService orderBL = new OrderList(new LoginMessage(ResultMessage.SUCCESS));
@@ -99,8 +101,8 @@ public class TransferLoad implements TransferLoadService {
 		int index = 0;
 		for (OrderPO o : order) {
 			if (o.getNextDestination() == desID) {
-				orderVO.add(o.getSerialNum() + "-" + positionInfo.get(index)
-						+ "-" + o.getWeight());
+				orderVO.add(o.getSerialNum() + "-" + positionInfo.get(index)+ "-" + o.getWeight());
+				System.out.println(orderVO.get(index));
 				index++;
 			}
 		}
@@ -177,8 +179,14 @@ public class TransferLoad implements TransferLoadService {
 			e.printStackTrace();
 			return null;
 		}
-		return transferList.createTransferList(load, center, transferFee, transferType);
-		
+		TransferListVO t =  transferList.createTransferList(load, transferType);
+		t.fee = transferFee+"";
+		t.staff = center.getStaffName();
+		t.transferCenter = center.getInstitutionName();
+		t.transferCenterID = center.getCenterID()+"";
+		t.target = desID+"";
+		t.targetName = targetInstitutionName;
+		return t;
 	}
 
 	/**
@@ -188,7 +196,7 @@ public class TransferLoad implements TransferLoadService {
 	 * @throws RemoteException
 	 */
 	public ResultMessage saveTransferList(TransferListVO vo) throws RemoteException {
-		return transferList.saveTransferList(vo);
+		return transferList.saveTransferList(vo,center.getCenterID());
 	}
 
 

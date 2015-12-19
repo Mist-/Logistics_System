@@ -20,15 +20,15 @@ public class StorageInListPO extends StorageListPO {
 	int month;
 	int day;
 	String date;
+	//∂©µ•∫≈
+	//ø‚¥ÊŒª÷√(area-row-shelf-num)
+	ArrayList<Long> order;
+    ArrayList<String> storagePosition;
 
 	public void setDate(String date) {
 		this.date = date;
 	}
 
-	//∂©µ•∫≈
-	//ø‚¥ÊŒª÷√(area-row-shelf-num)
-	ArrayList<Long> order;
-    ArrayList<String> storagePosition;
 
     public StorageInListPO(StorageInVO storageInVO) {
         super(POType.STORAGEINLIST);
@@ -39,7 +39,7 @@ public class StorageInListPO extends StorageListPO {
         year = Integer.parseInt(date[0]);
         month = Integer.parseInt(date[1]);
         day = Integer.parseInt(date[2]);
-        
+        this.date = storageInVO.getDate();
         String[][] info = storageInVO.getInfo();
         for(int i = 0 ; i <info.length;i++){
         	order.add(Long.parseLong(info[i][0]));

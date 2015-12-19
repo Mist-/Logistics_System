@@ -22,11 +22,20 @@ public class TransferList {
 	TransferDataService transferData;
 	ArrayList<DataPO> transferList;
 	
-	public ResultMessage saveTransferList(TransferListVO vo) throws RemoteException{
+	public ResultMessage saveTransferList(TransferListVO vo,long centerID) throws RemoteException{
+		transfer = new TransferListPO();
 		String[][] info = vo.orderAndPosition;
 		String[] position = new String[info.length];
 		long[] order = new long[info.length];
 		String area = "0";
+		transfer.setTransferType(StorageArea.PLANE);
+		if (vo.transferType.equals("铁运")) {
+			area = "1";
+			transfer.setTransferType(StorageArea.TRAIN);
+		}else if(vo.transferType.equals("汽运")){
+			area = "2";
+			transfer.setTransferType(StorageArea.TRUCK);
+		}
 		for (int i = 0; i < info.length; i++) {
 			order[i] = Long.parseLong(info[i][0]);
 			if (info[i][1].equals("机动区"))
@@ -34,7 +43,12 @@ public class TransferList {
 			position[i] = area + "-" + info[i][2] + "-" + info[i][3] + "-"
 					+ info[i][4];
 		}
-		transfer = new TransferListPO();
+		
+		
+		
+		transfer.setSerialNum(centerID*10000+transfer.getSerialNum());
+		transfer.setTransferListID(transfer.getSerialNum());
+		transfer.setDriverName(vo.driver);
 		transfer.setAccount(false);
 		transfer.setDate(vo.date);
 		transfer.setFee(Double.parseDouble(vo.fee));
@@ -49,31 +63,37 @@ public class TransferList {
 		transfer.setTargetCenterName(vo.targetName);
 		transfer.setTransferCenter(Long.parseLong(vo.transferCenterID));
 		transfer.setTransferCenterName(vo.transferCenter);
-		transfer.setTransferListID(-1);//有问题！！！！！！！！！！！！！
 		transfer.setVehicleCode(Long.parseLong(vo.vehicleCode));
+		
+		System.out.println(transfer.getSerialNum());
 		return transferData.add(transfer);
 	}
 	
 	public  TransferListVO createTransferList(TransferLoadVO load,
-			InstitutionInfo center,double fee,StorageArea transferType) {
+			StorageArea transferType) {
 		TransferListVO transferList = new TransferListVO();
 		transferList.date = Timestamper.getTimeByDate();
-		transferList.fee = fee+"";
-		transferList.staff = center.getStaffName();
-		transferList.transferCenter = center.getInstitutionName();
-		transferList.transferCenterID = center.getCenterID()+"";
+		
 		String[][] info = load.getOrderInfo();
 		long[] order = new long[info.length];
 		String[] position = new String[info.length];
 		String area = "0";
-		if (transferType == StorageArea.TRAIN)
+		transferList.transferType = "航运";
+		if (transferType == StorageArea.TRAIN){
 			area = "1";
-		else
+			transferList.transferType = "铁运";
+		}
+		else if(transferType == StorageArea.TRUCK){
 			area = "2";
+			transferList.transferType = "汽运";
+		}
 		for (int i = 0; i < info.length; i++) {
 			order[i] = Long.parseLong(info[i][0]);
-			if (info[i][1].equals("机动区"))
-				area = "3";
+			if (info[i][1].equals("机动区")){
+				position[i] = "3" + "-" + info[i][2] + "-" + info[i][3] + "-"
+						+ info[i][4];
+				continue;
+			}
 			position[i] = area + "-" + info[i][2] + "-" + info[i][3] + "-"
 					+ info[i][4];
 		}
