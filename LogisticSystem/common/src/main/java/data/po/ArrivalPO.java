@@ -1,4 +1,5 @@
 package data.po;
+import data.enums.DataState;
 import data.enums.POType;
 import data.enums.StockStatus;
 
@@ -126,13 +127,32 @@ public class ArrivalPO extends DataPO {
 
 
 
-    public long[] getOrder() {
-    	long[] result = new long[order.size()];
-    	for (int i = 0; i < result.length; ++i) {
-    		result[i] = order.get(i);
+    public long[] getOrder(StockStatus status) {
+    	ArrayList<Long> o = new ArrayList<Long>();
+    	for (int i = 0; i < order.size(); ++i) {
+    		if (stockStatus.get(i) == status) {
+    			o.add(order.get(i));
+			}
     	}
+    	long[] result = new long[o.size()];
+    	for (int i = 0; i < o.size(); i++) {
+			result[i] = o.get(i);
+		}
         return result;
     }
+    
+    public long[] getOrder(){
+    	long[] allOrders = new long[order.size()];
+    	for(int i = 0 ; i <allOrders.length;i++){
+    		allOrders[i] = order.get(i);
+    	}
+    	
+    	return allOrders;
+    }
+    
+    
+    
+ 
 
     public void setOrder(ArrayList<Long> order) {
         this.order = order;

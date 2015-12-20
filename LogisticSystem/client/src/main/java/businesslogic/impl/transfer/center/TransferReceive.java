@@ -1,5 +1,6 @@
 package businesslogic.impl.transfer.center;
 
+import java.lang.Thread.State;
 import java.rmi.RemoteException;
 
 import businesslogic.impl.order.OrderList;
@@ -9,6 +10,7 @@ import businesslogic.service.Transfer.center.TransferReceiveService;
 import businesslogic.service.order.OrderListService;
 import data.enums.DataType;
 import data.enums.POType;
+import data.enums.StockStatus;
 import utils.DataServiceFactory;
 import data.message.LoginMessage;
 import data.message.ResultMessage;
@@ -121,16 +123,20 @@ public class TransferReceive implements TransferReceiveService {
 	}
 	
 	public ResultMessage doArrive() throws RemoteException{//未完成
-		long[] order = null;
+		long[] roundOrder = null;
+		long[] lostOrder = null;
 		try {
-		order =  arrivalList.doArrive();
+		roundOrder =  arrivalList.getOrder(StockStatus.ROUND);
+		lostOrder = arrivalList.getOrder(StockStatus.LOST);
+		
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return ResultMessage.FAILED;
 		}
 		//修改订单信息
 		OrderListService orderList = new OrderList(new LoginMessage(ResultMessage.SUCCESS));
-		orderList.modifyOrder(order, "由"+center.getInstitutionName()+"接收");
+		orderList.modifyOrder(roundOrder, "由"+center.getInstitutionName()+"接收");
+		orderList.modifyOrder(lostOrder, "订单于"+center.getInstitutionName()+"丢失");
 		return ResultMessage.SUCCESS;
 		
 	}
