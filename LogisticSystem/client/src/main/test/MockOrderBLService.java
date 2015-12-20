@@ -58,6 +58,10 @@ public class MockOrderBLService implements OrderBLService {
 	}
 
 	@Override
+	public ArrayList<OrderVO> getDisplayData() {
+		return null;
+	}
+
 	public ArrayList<OrderPO> search(long[] order) {
 		// TODO Auto-generated method stub
 		ArrayList<OrderPO> orders = new ArrayList<OrderPO>();

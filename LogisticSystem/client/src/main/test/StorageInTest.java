@@ -13,15 +13,12 @@ public class StorageInTest {
 	@Test
 	public void test1() {
 		//获取一个到达单信息
-		StorageIn storageIn = new StorageIn();
+		StorageIn storageIn;
 		ArrivalPO a1 = new MockArrivalPO(100001);
 		ArrivalPO a2 = new MockArrivalPO(100002);
 		ArrayList<ArrivalPO> arrivals = new ArrayList<ArrivalPO>();
 		arrivals.add(a1);
 		arrivals.add(a2);
-		storageIn.setArriveList(arrivals);
-		ArriveListVO a = storageIn.getArriveList(100001);
-		assertEquals(100001,a.getArrivalCode());
 		
 	}
 	
