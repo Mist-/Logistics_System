@@ -118,6 +118,7 @@ public class DriverPanel extends JPanel {
 
 	private void addDriverButtonMouseClicked(MouseEvent e) {
 		setTextFieldEditable(true);
+		removeInfoInTextField();
 		driver = new DriverInfoVO();
 		deleteButton.setVisible(false);
 		modifyButton.setVisible(false);
@@ -227,7 +228,9 @@ public class DriverPanel extends JPanel {
 			checkResult = false;
 		}else if (licenseD.getText().equals("")) {
 			checkResult = false;
-		}else {
+		}else if((!status.getText().equals("空闲")) && (!status.getText().equals("货运"))){
+			checkResult = false;
+		}else{
 			;
 		}
 	
@@ -245,11 +248,9 @@ public class DriverPanel extends JPanel {
 			driver.timeLimit = licenseY.getText() + "/" + licenseM.getText() + "/" + licenseD.getText();
 			ResultMessage result = ResultMessage.FAILED;
 			if (modifyButton.isVisible()) {
-				System.out.println("保存修改");
 				result = driverManagement.modifyDriver(driver);
 			}else {
 				result = driverManagement.addDriver(driver);
-				System.out.println("adddriver");
 			}
 			if (result == ResultMessage.SUCCESS) {
 				JOptionPane.showMessageDialog(null, "保存成功", "提示",
@@ -260,7 +261,7 @@ public class DriverPanel extends JPanel {
 						JOptionPane.ERROR_MESSAGE);
 			}
 		}else{
-			JOptionPane.showMessageDialog(null, "输入不完整，请重新检查输入", "提示", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "输入有误或不完整，请重新检查输入", "提示", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 
@@ -328,6 +329,7 @@ public class DriverPanel extends JPanel {
 		licenseD = new JTextField();
 		label16 = new JLabel();
 		deleteButton = new JButton();
+		label17 = new JLabel();
 		cancelDialog = new JDialog();
 		panel = new JPanel();
 		label1 = new JLabel();
@@ -495,6 +497,9 @@ public class DriverPanel extends JPanel {
 					}
 				});
 
+				//---- label17 ----
+				label17.setText("\uff08\u7a7a\u95f2\u3001\u8d27\u8fd0\uff09");
+
 				GroupLayout panel2Layout = new GroupLayout(panel2);
 				panel2.setLayout(panel2Layout);
 				panel2Layout.setHorizontalGroup(
@@ -511,14 +516,17 @@ public class DriverPanel extends JPanel {
 								.addComponent(label9)
 								.addComponent(label10))
 							.addGap(36, 36, 36)
-							.addGroup(panel2Layout.createParallelGroup()
-								.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-									.addComponent(name, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-									.addComponent(num, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-									.addComponent(id, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-									.addComponent(gender, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-									.addComponent(phone, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-									.addComponent(status, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
+							.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+								.addGroup(panel2Layout.createSequentialGroup()
+									.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+										.addComponent(name, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+										.addComponent(num, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+										.addComponent(id, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+										.addComponent(gender, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+										.addComponent(phone, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+										.addComponent(status, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
+									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+									.addComponent(label17, GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
 								.addGroup(panel2Layout.createSequentialGroup()
 									.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
 										.addComponent(licenseY, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
@@ -583,7 +591,9 @@ public class DriverPanel extends JPanel {
 									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 									.addGroup(panel2Layout.createParallelGroup()
 										.addComponent(label8)
-										.addComponent(status, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+										.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+											.addComponent(status, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addComponent(label17)))
 									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 									.addGroup(panel2Layout.createParallelGroup()
 										.addComponent(label9)
@@ -731,6 +741,7 @@ public class DriverPanel extends JPanel {
 	private JTextField licenseD;
 	private JLabel label16;
 	private JButton deleteButton;
+	private JLabel label17;
 	private JDialog cancelDialog;
 	private JPanel panel;
 	private JLabel label1;

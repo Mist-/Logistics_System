@@ -125,6 +125,7 @@ new FormModel {
 					name: "modifyStatus"
 					"text": "修改状态"
 					"font": #Font2
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "modifyStatusMouseReleased", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "doArrive"

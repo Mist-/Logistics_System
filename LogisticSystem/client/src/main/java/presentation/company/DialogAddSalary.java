@@ -29,7 +29,7 @@ public class DialogAddSalary extends JDialog{
 		controller = new CompanyBLController();
 		this.company = company;
 		jdialog = new JDialog(company,"添加工资");
-		institutions = new String[]{"快递员","普通财务人员","营业厅业务员","中转中心业务员","仓库管理员","货车驾驶员"};
+		institutions = new String[]{"快递员","普通财务人员","高级财务人员","营业厅业务员","中转中心业务员","仓库管理员","货车驾驶员"};
 		institution = new JComboBox<String>(institutions);
 		institution.setBounds(65, 35, 100, 30);
 		types = new String[]{"计次","月付"};

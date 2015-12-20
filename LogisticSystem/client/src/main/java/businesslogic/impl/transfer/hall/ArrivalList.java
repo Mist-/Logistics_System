@@ -26,21 +26,24 @@ public class ArrivalList {
 	TransferDataService transferData;
 	ArrayList<DataPO> checkedArrivals;
 	ArrivalPO choosenArrival;
-	
-	
 
 	/**
 	 * 确认到达，修改到达单状态信息（待确认）
 	 * @return 该到达单单号列表
 	 * @throws RemoteException
 	 */
-	public long[]  doArrive() throws RemoteException{
+	public long[]  getOrder(StockStatus status) throws RemoteException{
 //		choosenArrival.setOperated(true);
 //		transferData.modify(choosenArrival);
-//		
-		return choosenArrival.getOrder();
+		return choosenArrival.getOrder(status);
 		
 	}
+	
+	public long[] getOrder(){
+		return choosenArrival.getOrder();
+	}
+	
+
 
 	/**
 	 * 修改到达单状态为已入库
@@ -85,13 +88,11 @@ public class ArrivalList {
 					return choosenArrival;
 				}
 			}
-			
 			return null;
 		}
-
-		else
+		else{
 			return null;
-
+		}
 	}
 
 	public long[] getOrderID(ArrivalVO vo){
@@ -100,7 +101,6 @@ public class ArrivalList {
 		for(int i = 0 ; i < info.length;i++){
 			id[i] = Long.parseLong(info[i][0]);
 		}
-		
 		return id;
 	}
 	

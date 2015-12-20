@@ -685,7 +685,7 @@ public class companyManage extends JFrame {
                             double weight = Double.valueOf(sWeight);
                             double fee = Double.valueOf(sFee);
                             ServiceType serviceType = data.enums.ServiceType.valueOf(sServiceType);
-                            OrderVO orderVO = new OrderVO(null, null, null, null, null, null, null, null, stockNum, weight, 0, null, serviceType, fee, id);
+                            OrderVO orderVO = new OrderVO(stockNum, weight,serviceType, fee, id);
                             resultMessage = controller.modifyOrder(orderVO);
                             this.isSuccess(resultMessage);
                             if (resultMessage != ResultMessage.SUCCESS)
@@ -1706,7 +1706,7 @@ public class companyManage extends JFrame {
             labelSalary.setText("\u5de5\u8d44\u7ba1\u7406");
 
             //---- buttonSalary ----
-            buttonSalary.setIcon(new ImageIcon(getClass().getResource("/icons/salary_72x72.png")));
+            //buttonSalary.setIcon(new ImageIcon(getClass().getResource("/icons/salary_72x72.png")));
             buttonSalary.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -1715,7 +1715,7 @@ public class companyManage extends JFrame {
             });
 
             //---- buttonStaff ----
-            buttonStaff.setIcon(new ImageIcon(getClass().getResource("/icons/institution_72x72.png")));
+            //buttonStaff.setIcon(new ImageIcon(getClass().getResource("/icons/institution_72x72.png")));
             buttonStaff.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -1725,7 +1725,7 @@ public class companyManage extends JFrame {
             });
 
             //---- buttonCity ----
-            buttonCity.setIcon(new ImageIcon(getClass().getResource("/icons/map_72x72.png")));
+            //buttonCity.setIcon(new ImageIcon(getClass().getResource("/icons/map_72x72.png")));
             buttonCity.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -1734,7 +1734,7 @@ public class companyManage extends JFrame {
             });
 
             //---- buttonApprove ----
-            buttonApprove.setIcon(new ImageIcon(getClass().getResource("/icons/approval_72x72.png")));
+            //buttonApprove.setIcon(new ImageIcon(getClass().getResource("/icons/approval_72x72.png")));
             buttonApprove.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -1743,7 +1743,7 @@ public class companyManage extends JFrame {
             });
 
             //---- buttonCheck ----
-            buttonCheck.setIcon(new ImageIcon(getClass().getResource("/icons/Sales_report_72x72.png")));
+            //buttonCheck.setIcon(new ImageIcon(getClass().getResource("/icons/Sales_report_72x72.png")));
             buttonCheck.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {

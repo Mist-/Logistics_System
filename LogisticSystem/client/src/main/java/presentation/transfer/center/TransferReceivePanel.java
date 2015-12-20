@@ -261,6 +261,22 @@ public class TransferReceivePanel extends JPanel {
 		}
 	}
 
+	private void modifyStatusMouseReleased(MouseEvent e) {
+		String status = (String) statusBox.getSelectedItem();
+		if(!status.equals("ÇëÑ¡Ôñ×´Ì¬")){
+			int[] items = arrivalTable.getSelectedRows();
+			String[][] info = arrival.getOrderAndStatus();
+			for(int i = 0; i < items.length;i++){
+				info[items[i]][1] = status;
+			}
+		}
+		
+		DefaultTableModel model = (DefaultTableModel) arrivalTable.getModel();
+		model.setDataVector(arrival.getOrderAndStatus(), arrival.getHeader());
+		arrivalTable.setModel(model);
+		arrivalTable.updateUI();
+	}
+
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY
 		// //GEN-BEGIN:initComponents
@@ -494,6 +510,12 @@ public class TransferReceivePanel extends JPanel {
 				//---- modifyStatus ----
 				modifyStatus.setText("\u4fee\u6539\u72b6\u6001");
 				modifyStatus.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				modifyStatus.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						modifyStatusMouseReleased(e);
+					}
+				});
 
 				//---- doArrive ----
 				doArrive.setText("\u786e\u8ba4\u5230\u8fbe");

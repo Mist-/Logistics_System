@@ -3,6 +3,8 @@ package businesslogic.impl.transfer.hall;
 import java.rmi.RemoteException;
 
 import data.enums.POType;
+import data.enums.StockStatus;
+import data.message.LoginMessage;
 import data.message.ResultMessage;
 import data.po.ArrivalPO;
 import data.vo.ArrivalListVO;
@@ -11,9 +13,11 @@ import data.vo.DeliveryListVO;
 import data.vo.EntruckListVO;
 import data.vo.SendListVO;
 import data.vo.TransferListVO;
+import businesslogic.impl.order.OrderList;
 import businesslogic.impl.transfer.center.TransferList;
 import businesslogic.impl.user.InstitutionInfo;
 import businesslogic.service.Transfer.hall.EntruckReceiveService;
+import businesslogic.service.order.OrderListService;
 
 /**
  * 营业厅接收
@@ -118,14 +122,21 @@ public class EntruckReceive implements EntruckReceiveService{
 	}
 
 	@Override
-	public ResultMessage doArrive() {
-	try {
-		long[] order = 	arrivalList.doArrive();
-		//修改订单物流信息
-	} catch (RemoteException e) {
-		e.printStackTrace();
-		return ResultMessage.FAILED;
-	}
+	public ResultMessage doArrive() throws RemoteException {
+		long[] roundOrder = null;
+		long[] lostOrder = null;
+		try {
+		roundOrder =  arrivalList.getOrder(StockStatus.ROUND);
+		lostOrder = arrivalList.getOrder(StockStatus.LOST);
+		
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return ResultMessage.FAILED;
+		}
+		//修改订单信息
+		OrderListService orderList = new OrderList(new LoginMessage(ResultMessage.SUCCESS));
+		orderList.modifyOrder(roundOrder, "由"+user.getInstitutionName()+"接收");
+		orderList.modifyOrder(lostOrder, "订单于"+user.getInstitutionName()+"丢失");
 		return ResultMessage.SUCCESS;
 	}
 	

@@ -221,9 +221,17 @@ public class EntruckReceivePanel extends JPanel {
 	}
 	
 	private void doArriveMouseClicked(MouseEvent e) {
-		ResultMessage result = entruckReceive.doArrive();
+		ResultMessage result = ResultMessage.FAILED;
+		try {
+			result = entruckReceive.doArrive();
+		} catch (RemoteException e1) {
+			JOptionPane.showMessageDialog(null, "网络连接中断", "提示", JOptionPane.INFORMATION_MESSAGE);
+			e1.printStackTrace();
+			return;
+		}
 		if (result == ResultMessage.FAILED) {
 			JOptionPane.showMessageDialog(null, "操作失败，请稍后再试", "提示", JOptionPane.ERROR_MESSAGE);
+			return;
 		}else{
 			JOptionPane.showMessageDialog(null, "操作成功", "提示", JOptionPane.INFORMATION_MESSAGE);
 			
