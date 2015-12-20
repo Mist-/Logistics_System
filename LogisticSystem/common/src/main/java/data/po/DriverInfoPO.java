@@ -79,7 +79,7 @@ public class DriverInfoPO extends DataPO {
     }
     
     public String getEngagedString() {
-		if(engaged) return "运货";
+		if(engaged) return "货运";
 		else return "空闲";
 	}
     

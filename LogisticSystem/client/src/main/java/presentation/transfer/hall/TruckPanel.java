@@ -122,6 +122,8 @@ public class TruckPanel extends JPanel {
 			result = false;
 		}else if(day.getText().equals("")){
 			result = false;
+		}else if((!status.getText().equals("空闲")) && (!status.getText().equals("货运"))){
+			result = false;
 		}else{
 			;
 		}
@@ -131,7 +133,7 @@ public class TruckPanel extends JPanel {
 
 	private void saveButtonMouseReleased(MouseEvent e) {
 		if(!checkAllInput()){
-			JOptionPane.showMessageDialog(null, "输入不完整，请重新检查输入", "提示", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "输入有误或不完整，请重新检查输入", "提示", JOptionPane.INFORMATION_MESSAGE);
 			return ;
 		}
 		truck.engaged = status.getText();
@@ -162,13 +164,19 @@ public class TruckPanel extends JPanel {
 		truckListPane.updateUI();
 		truckListPane.setVisible(true);
 		
-		id.setText("");
+		removeInfoInTextField();
+	}
+
+	private void removeInfoInTextField(){
+		
+		id.setText("保存后生成");
 		license.setText("");
 		year.setText("");
 		month.setText("");
 		day.setText("");
+		status.setText("空闲");
 	}
-
+	
 	private void cancelButtonMouseReleased(MouseEvent e) {
 		if(modifyButton.isVisible() || saveButton.isVisible()){
 			cancelDialog.setVisible(true);
@@ -186,6 +194,7 @@ public class TruckPanel extends JPanel {
 	}
 
 	private void addTruckButtonMouseClicked(MouseEvent e) {
+		removeInfoInTextField();
 		deleteButton.setVisible(false);
 		truck = new TruckInfoVO();
 		modifyButton.setVisible(false);
@@ -238,6 +247,7 @@ public class TruckPanel extends JPanel {
 		modifyButton = new JButton();
 		cancelButton = new JButton();
 		deleteButton = new JButton();
+		label10 = new JLabel();
 		cancelDialog = new JDialog();
 		panel = new JPanel();
 		label8 = new JLabel();
@@ -384,6 +394,9 @@ public class TruckPanel extends JPanel {
 					}
 				});
 
+				//---- label10 ----
+				label10.setText("\uff08\u7a7a\u95f2\u3001\u8d27\u8fd0\uff09");
+
 				GroupLayout panel2Layout = new GroupLayout(panel2);
 				panel2.setLayout(panel2Layout);
 				panel2Layout.setHorizontalGroup(
@@ -392,7 +405,7 @@ public class TruckPanel extends JPanel {
 							.addContainerGap()
 							.addGroup(panel2Layout.createParallelGroup()
 								.addGroup(panel2Layout.createSequentialGroup()
-									.addGroup(panel2Layout.createParallelGroup()
+									.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
 										.addGroup(panel2Layout.createSequentialGroup()
 											.addGroup(panel2Layout.createParallelGroup()
 												.addGroup(GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
@@ -414,14 +427,16 @@ public class TruckPanel extends JPanel {
 											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 											.addComponent(label5)
 											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-											.addComponent(day, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-											.addComponent(label6))
+											.addComponent(day, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
 										.addGroup(panel2Layout.createSequentialGroup()
 											.addComponent(label7)
 											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-											.addComponent(status, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)))
-									.addGap(0, 547, Short.MAX_VALUE))
+											.addComponent(status, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+											.addComponent(label10, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(label6)
+									.addGap(0, 545, Short.MAX_VALUE))
 								.addGroup(GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
 									.addGap(0, 718, Short.MAX_VALUE)
 									.addGroup(panel2Layout.createParallelGroup()
@@ -455,7 +470,8 @@ public class TruckPanel extends JPanel {
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 								.addComponent(label7)
-								.addComponent(status, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(status, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(label10))
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
 							.addComponent(deleteButton)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
@@ -570,6 +586,7 @@ public class TruckPanel extends JPanel {
 	private JButton modifyButton;
 	private JButton cancelButton;
 	private JButton deleteButton;
+	private JLabel label10;
 	private JDialog cancelDialog;
 	private JPanel panel;
 	private JLabel label8;
