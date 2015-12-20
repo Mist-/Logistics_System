@@ -685,7 +685,7 @@ public class companyManage extends JFrame {
                             double weight = Double.valueOf(sWeight);
                             double fee = Double.valueOf(sFee);
                             ServiceType serviceType = data.enums.ServiceType.valueOf(sServiceType);
-                            OrderVO orderVO = new OrderVO(null, null, null, null, null, null, null, null, stockNum, weight, 0, null, serviceType, fee, id);
+                            OrderVO orderVO = new OrderVO(stockNum, weight,serviceType, fee, id);
                             resultMessage = controller.modifyOrder(orderVO);
                             this.isSuccess(resultMessage);
                             if (resultMessage != ResultMessage.SUCCESS)

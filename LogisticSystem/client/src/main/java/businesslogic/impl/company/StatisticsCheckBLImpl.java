@@ -3,6 +3,7 @@ package businesslogic.impl.company;
 import businesslogic.service.company.StatisticsCheckBLService;
 import data.enums.DataType;
 import data.enums.POType;
+import data.service.FinancialDataService;
 import utils.DataServiceFactory;
 import data.message.ResultMessage;
 import data.po.CostBenefitPO;
@@ -24,18 +25,17 @@ import java.util.Calendar;
  */
 public class StatisticsCheckBLImpl implements StatisticsCheckBLService {
 
-    private CompanyDataService company = null;
+    private FinancialDataService financial = null;
     private ArrayList<DataPO> plist = null;
     private ReceiptPO receiptPO = null;
     private PaymentPO paymentPO = null;
     private ReceiptVO receiptVO = null;
     private PaymentVO paymentVO = null;
-    private CostBenefitPO costBenefitPO = null;
     private CostBenefitVO costBenefitVO = null;
 
     public StatisticsCheckBLImpl(){
-        company = (CompanyDataService) DataServiceFactory.getDataServiceByType(DataType.CompanyDataService);
-        plist = new ArrayList<DataPO>();
+        financial = (FinancialDataService) data.factory.DataServiceFactory.getDataServiceByType(DataType.FinancialDataService);
+        plist = new ArrayList<>();
     }
 
     @Override
@@ -43,12 +43,11 @@ public class StatisticsCheckBLImpl implements StatisticsCheckBLService {
                                                 String toYear, String toMonth, String toDay) {
         ArrayList<ReceiptVO> receiptList = new ArrayList<ReceiptVO>();
         //保存从每个ReceiptPO中获得的日期用来比较
-        String receiptDate = null;
+        String receiptDate;
         //保存分隔每个从ReceiptPO中获得的日期,以"年 月 日"形式保存
-        String [] receiptDates = new String[3];
+        String [] receiptDates;
         try {
-            plist.clear();
-            plist = company.getPOList(POType.RECEIPT);
+            plist = financial.getPOList(POType.RECEIPT);
             for(int i=0;i<plist.size();i++){
                 receiptPO = (ReceiptPO)plist.get(i);
                 receiptDate = receiptPO.getDate();
@@ -81,12 +80,11 @@ public class StatisticsCheckBLImpl implements StatisticsCheckBLService {
                                                 String toYear, String toMonth, String toDay) {
         ArrayList<PaymentVO> paymentList = new ArrayList<PaymentVO>();
         //保存从每个PaymentPO中获得的日期用来比较
-        String paymentDate = null;
+        String paymentDate;
         //保存分隔每个从PaymentPO中获得的日期,以"年 月 日"形式保存
-        String [] paymentDates = new String[3];
+        String [] paymentDates;
         try {
-            plist.clear();
-            plist= company.getPOList(POType.PAYMENT);
+            plist= financial.getPOList(POType.PAYMENT);
             for(int i=0;i<plist.size();i++) {
                 paymentPO = (PaymentPO) plist.get(i);
                 paymentDate = paymentPO.getDate();
@@ -111,7 +109,7 @@ public class StatisticsCheckBLImpl implements StatisticsCheckBLService {
         } catch (RemoteException e) {
             System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
         }
-
+        System.out.println(plist.size());
         return paymentList;
     }
 
@@ -120,12 +118,12 @@ public class StatisticsCheckBLImpl implements StatisticsCheckBLService {
         double allIn = 0,allOut = 0,allProfit = 0;
         try {
             //获得ReceiptPO和PaymentPO来计算总收入总支出
-            plist = company.getPOList(POType.RECEIPT);
+            plist = financial.getPOList(POType.RECEIPT);
             for(int i=0;i<plist.size();i++){
                 receiptPO = (ReceiptPO) plist.get(i);
                 allIn += receiptPO.getMoney();
             }
-            plist = company.getPOList(POType.PAYMENT);
+            plist = financial.getPOList(POType.PAYMENT);
             for(int i=0;i<plist.size();i++){
                 paymentPO = (PaymentPO) plist.get(i);
                 allOut += paymentPO.getMoney();
@@ -140,7 +138,7 @@ public class StatisticsCheckBLImpl implements StatisticsCheckBLService {
         } catch (RemoteException e) {
             System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
         }
-
+        System.out.println(plist.size());
         return costBenefitVO;
     }
 

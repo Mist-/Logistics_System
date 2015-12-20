@@ -89,4 +89,12 @@ public class OrderVO {
         this.courier =  orderPO.getCourier();
         this.routine = orderPO.getRoutine();
     }
+
+    public OrderVO(int stockNum, double weight,  ServiceType type, double fee, long id){
+        this.stockNum = stockNum;
+        this.weight = weight;
+        this.serviceType = type;
+        this.fee = fee;
+        this.id = id;
+    }
 }
