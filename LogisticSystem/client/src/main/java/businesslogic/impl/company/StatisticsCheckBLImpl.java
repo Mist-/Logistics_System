@@ -55,7 +55,7 @@ public class StatisticsCheckBLImpl implements StatisticsCheckBLService {
                 //判断所有ReceiptPO中的日期是否在指定日期之中
                 if((receiptDates[0].compareTo(toYear))<=0&&(receiptDates[0].compareTo(fromYear))>=0){
                     if((receiptDates[1].compareTo(toMonth))<=0&&(receiptDates[1].compareTo(fromMonth))>=0){
-                        if((receiptDates[1].compareTo(toDay))<=0&&(receiptDates[1].compareTo(fromDay))>=0){
+                        if((receiptDates[2].compareTo(toDay))<=0&&(receiptDates[2].compareTo(fromDay))>=0){
                             //创建一个新的ReceiptVO加到List中
                             receiptVO = new ReceiptVO();
                             receiptVO.setMoney(receiptPO.getMoney());

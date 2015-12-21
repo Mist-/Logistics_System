@@ -32,6 +32,6 @@ public class CostBenefitVO {
     }
 
     public void setAllProfit(double allProfit) {
-        this.allPay = allProfit;
+        this.allProfit = allProfit;
     }
 }

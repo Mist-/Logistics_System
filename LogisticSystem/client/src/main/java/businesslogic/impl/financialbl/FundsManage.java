@@ -169,14 +169,14 @@ public class FundsManage {
 	    
 		financialDataService.add(payment);
 		
-		//为了测试需要，新建一个收款单
-		ReceiptPO receipt = new ReceiptPO();
-		receipt.setDate(Timestamper.getTimeByDate());
-		receipt.setCount(false);
-		receipt.setInstitution("南京市鼓楼营业厅");
-		receipt.setMoney(88888);
-		receipt.setSender("王卉");
-		financialDataService.add(receipt);
+//		//为了测试需要，新建一个收款单
+//		ReceiptPO receipt = new ReceiptPO();
+//		receipt.setDate(Timestamper.getTimeByDate());
+//		receipt.setCount(false);
+//		receipt.setInstitution("上海市闵行营业厅");
+//		receipt.setMoney(177778.9);
+//		receipt.setSender("孙浩");
+//		financialDataService.add(receipt);
 			
 			
 			return null;
