@@ -55,7 +55,6 @@ public class TransferList {
 		transfer.setOrder(order);
 		transfer.setStaff(vo.staffID);
 		transfer.setStaffName(vo.staff);
-		transfer.setState(DataState.DRAFT);
 		transfer.setStorageOut(false);
 		transfer.setStorageOut(false);
 		transfer.setStoragePosition(position);

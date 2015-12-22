@@ -6,6 +6,7 @@ import businesslogic.impl.user.InstitutionInfo;
 import businesslogic.service.Transfer.hall.DriverManagementService;
 import businesslogic.service.Transfer.hall.EntruckReceiveService;
 import businesslogic.service.Transfer.hall.LoadAndSortService;
+import businesslogic.service.Transfer.hall.ReceiveMoneyService;
 import businesslogic.service.Transfer.hall.TransferHallService;
 import businesslogic.service.Transfer.hall.TruckManagementService;
 import data.message.LoginMessage;
@@ -46,6 +47,10 @@ public class TransferHallController implements TransferHallService {
 	@Override
 	public LoadAndSortService startOrderSort() {
 		return new OrderSort(user);
+	}
+	@Override
+	public ReceiveMoneyService startReceive() {
+		return new ReceiveMoney(user);
 	}
 	
 	

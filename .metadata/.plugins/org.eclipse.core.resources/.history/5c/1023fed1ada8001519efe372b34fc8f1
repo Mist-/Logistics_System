@@ -1,0 +1,60 @@
+JFDML JFormDesigner: "5.2.2.0.199" Java: "1.8.0_31" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp scrollPane1::l::800:x, seq l {space :::p, par t:::p {comp label2:::::x, comp label1:::::x}, space :::p, par l {comp senderBox:::p:93:p, seq {comp textField1:::p:50:p, space :::p, comp label3:::p::p, space u:::p, comp textField2:::p:25:p, space :::p, comp label4:::p::p, space :::p, comp textField3:::p:35:p, space :::p, comp label5:::p::p, space s:::p, comp getOrder:::p:67:p}}, space ::469:x}}"
+			"$verticalGroup": "par l {seq t {space :::p, par l:::p {comp senderBox:::p::p, comp label1::::23:x}, space u:::x, par b {comp label2::b:p::p, comp textField1::b:p::p, comp label3::b:p::p, comp textField2::b:p::p, comp label4::b:p::p, comp textField3::b:p::p, comp label5::b:p::p, comp getOrder::b:p::p}, space s:::p, comp scrollPane1:::p:300:p}}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table1"
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "司机姓名："
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "senderBox"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "senderBoxMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "getOrder"
+				"text": "确认"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "getOrderMouseReleased", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "日期："
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField1"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "年"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField2"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "月"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField3"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": "日"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 800, 375 )
+		} )
+	}
+}

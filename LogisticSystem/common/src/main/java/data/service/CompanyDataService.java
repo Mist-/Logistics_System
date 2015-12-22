@@ -6,6 +6,7 @@ import data.po.CityInfoPO;
 import data.po.CityTransPO;
 import data.po.DataPO;
 import data.po.SalaryPO;
+import data.po.StaffPO;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -17,6 +18,13 @@ import java.util.ArrayList;
  */
 public interface CompanyDataService extends DataService {
 
+	/**
+	 * 查找某营业厅所有快递员
+	 * @param institutionID 营业厅编号
+	 * @return 快递员POList
+	 */
+	ArrayList<StaffPO> searchSenders(long institutionID);
+	
     DataPO searchCity(String cityName) throws RemoteException;
 
     /**

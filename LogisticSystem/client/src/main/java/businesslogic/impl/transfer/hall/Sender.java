@@ -3,9 +3,14 @@ package businesslogic.impl.transfer.hall;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import presentation.company.companyManage;
+import utils.DataServiceFactory;
+import data.enums.DataType;
 import data.enums.POType;
 import data.po.DataPO;
 import data.po.SenderPO;
+import data.po.StaffPO;
+import data.service.CompanyDataService;
 import data.service.TransferDataService;
 
 /**
@@ -15,17 +20,47 @@ import data.service.TransferDataService;
  */
 public class Sender {
 	long hall;
-	TransferDataService transferData;
-	ArrayList<DataPO> sender;
-	public Sender(TransferDataService transferData ,long institutionID){
-		this.transferData = transferData;
+	CompanyDataService companyData;
+	ArrayList<StaffPO> sender;
+	StaffPO chosenSender;
+	public Sender(long institutionID){
+		companyData = (CompanyDataService) DataServiceFactory.getDataServiceByType(DataType.CompanyDataService);
 		this.hall = institutionID;
+	}
+	
+	public long getChosenSenderID(){
+		if (chosenSender != null) {
+			return chosenSender.getSerialNum();
+		}
+		
+		else return -1;
+	}
+	
+	public String getChosenSenderName(){
+		if (chosenSender != null) {
+			return chosenSender.getName();
+		}
+		
+		else return null;
+	}
+	
+	
+	public long chooseSender(String name){
+		long id = -1;
+		for (int i = 0; i < sender.size(); i++) {
+			if (sender.get(i).getName().equals(name)) {
+				chosenSender = sender.get(i);
+				id = chosenSender.getSerialNum();
+			}
+		}
+		
+		return id;
 	}
 	
 	public long getSenderID(String name){
 		for (int i = 0 ; i < sender.size();i++) {
-			SenderPO s = (SenderPO) sender.get(i);
-			if (s.name ==  name) {
+			StaffPO s = (StaffPO) sender.get(i);
+			if (s.getName().equals(name)) {
 				return s.getSerialNum();
 			}
 		}
@@ -33,11 +68,11 @@ public class Sender {
 	}
 	
 	public String[] getAvailableSender() throws RemoteException{
-		sender = transferData.searchList(POType.SENDER, hall);
+		sender = companyData.searchSenders( hall);
 		String[] name = new String[sender.size()];
 		for (int i = 0 ; i < sender.size();i++) {
-			SenderPO s = (SenderPO) sender.get(i);
-			name[i] = s.name;
+			StaffPO s = (StaffPO) sender.get(i);
+			name[i] = s.getName();
 		}
 		return name;
 	}

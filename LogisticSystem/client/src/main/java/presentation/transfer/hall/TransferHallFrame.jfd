@@ -46,6 +46,7 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "moneyButton"
 					"text": "text"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "moneyButtonMouseReleased", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label1"

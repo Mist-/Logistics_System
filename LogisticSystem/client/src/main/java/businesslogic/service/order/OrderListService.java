@@ -23,4 +23,6 @@ public interface OrderListService {
 	public void modifyOrderPosition(long[] orderID) throws RemoteException;
 	
     ArrayList<OrderPO> search(long[] order);
+    
+    public String[][] getOrderAndFee(long hallID,String date);
 }

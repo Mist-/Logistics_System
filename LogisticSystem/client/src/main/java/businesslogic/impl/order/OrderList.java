@@ -118,4 +118,17 @@ public class OrderList implements OrderListService {
 		return result;
 	}
 
+	@Override
+	public String[][] getOrderAndFee(long hallID, String date) {
+		String[][] info = null;
+		if (orders != null) {
+			info = new String[orders.size()][2];
+			for(int i = 0 ; i < orders.size();i++){
+				String[] s = {orders.get(i).getSerialNum()+"",orders.get(i).getFee()+""};
+				info[i] = s;
+			}
+		}
+		return info;
+	}
+
 }

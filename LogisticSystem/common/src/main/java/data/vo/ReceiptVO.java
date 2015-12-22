@@ -6,18 +6,37 @@ package data.vo;
 
 public class ReceiptVO {
 	long id;
+	long senderID;
+	long hallID;
 	double money;
 	String date;
 	String people;
 	String institution;
 	String address;
-    boolean isCount;
-    String sender;
-    
+	boolean isCount;
+	String sender;
+
 	public boolean isCount() {
 		return isCount;
 	}
 
+	
+
+	public long getSenderID() {
+		return senderID;
+	}
+
+	public void setSenderID(long senderID) {
+		this.senderID = senderID;
+	}
+
+	public long getHallID() {
+		return hallID;
+	}
+
+	public void setHallID(long hallID) {
+		this.hallID = hallID;
+	}
 	public void setCount(boolean isCount) {
 		this.isCount = isCount;
 	}
@@ -29,7 +48,6 @@ public class ReceiptVO {
 	public void setSender(String sender) {
 		this.sender = sender;
 	}
-
 
 	public long getId() {
 		return id;

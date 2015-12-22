@@ -1,12 +1,24 @@
 package data.po;
 
 import data.enums.POType;
+import data.vo.ReceiptVO;
 public class ReceiptPO extends DataPO {
 
 	private static final long serialVersionUID = 12;
 
     public ReceiptPO() {
         super(POType.RECEIPT);
+    }
+    
+    public ReceiptPO(ReceiptVO r){
+    	super(POType.RECEIPT);
+    	this.date = r.getDate();
+    	this.money =r.getMoney();
+    	this.sender = r.getSender();
+    	this.courierID = r.getSenderID();
+    	this.institution = r.getInstitution();
+    	this.institutionID =r.getHallID();
+    	
     }
 
 	private String date;

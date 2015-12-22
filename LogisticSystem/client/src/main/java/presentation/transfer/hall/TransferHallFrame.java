@@ -7,6 +7,8 @@ package presentation.transfer.hall;
 import java.awt.*;
 import java.awt.event.*;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.*;
 
@@ -26,7 +28,8 @@ public class TransferHallFrame extends JFrame {
 	LoadAndSortPanel loadAndSortPanel;// 分拣装车面板
 	DriverPanel driverPanel;// 司机信息管理面板
 	TruckPanel truckPanel;// 车辆信息管理面板
-	// 结算面板 未完成
+	ReceiveMoneyPanel receiveMoneyPanel;
+	ArrayList<JButton> buttons;
 
 	public TransferHallFrame(LoginMessage login) {
 		try {
@@ -35,7 +38,13 @@ public class TransferHallFrame extends JFrame {
 			e1.printStackTrace();
 		}
 		initComponents();
-
+		buttons = new ArrayList<JButton>();
+		buttons.add(receiveButton);
+		buttons.add(loadButton);
+		buttons.add(driverButton);
+		buttons.add(truckButton);
+		buttons.add(moneyButton);
+		
 		try {
 			transferHall = new TransferHallController(login);
 		} catch (Exception e) {
@@ -78,34 +87,29 @@ public class TransferHallFrame extends JFrame {
 	}
 
 	// ==============================监听=================================
+	
+	private void setButtons(int index){
+		for(int i = 0 ; i < buttons.size();i++){
+			JButton b = buttons.get(i);
+			if(i == index){
+				b.setSelected(true);
+				b.setEnabled(false);
+			}else{
+				b.setSelected(false);
+				b.setEnabled(true);
+			}
+		}
+	}
+	
+	
 	private void receiveButtonMouseClicked(MouseEvent e) {
-		receiveButton.setSelected(true);
-		loadButton.setSelected(false);
-		driverButton.setSelected(false);
-		truckButton.setSelected(false);
-		moneyButton.setSelected(false);
-
-		receiveButton.setEnabled(false);
-		loadButton.setEnabled(true);
-		driverButton.setEnabled(true);
-		truckButton.setEnabled(true);
-		moneyButton.setEnabled(true);
+		setButtons(0);
 
 		entruckReceiveStart();
 	}
 
 	private void loadButtonMouseClicked(MouseEvent e) {
-		receiveButton.setSelected(false);
-		loadButton.setSelected(true);
-		driverButton.setSelected(false);
-		truckButton.setSelected(false);
-		moneyButton.setSelected(false);
-
-		receiveButton.setEnabled(true);
-		loadButton.setEnabled(false);
-		driverButton.setEnabled(true);
-		truckButton.setEnabled(true);
-		moneyButton.setEnabled(true);
+		setButtons(1);
 
 		if (loadAndSortPanel == null)
 			try {
@@ -138,17 +142,7 @@ public class TransferHallFrame extends JFrame {
 	}
 
 	private void driverButtonMouseClicked(MouseEvent e) {
-		receiveButton.setSelected(false);
-		loadButton.setSelected(false);
-		driverButton.setSelected(true);
-		truckButton.setSelected(false);
-		moneyButton.setSelected(false);
-
-		receiveButton.setEnabled(true);
-		loadButton.setEnabled(true);
-		driverButton.setEnabled(false);
-		truckButton.setEnabled(true);
-		moneyButton.setEnabled(true);
+		setButtons(2);
 
 		if (driverPanel == null) {
 			driverPanel = new DriverPanel(transferHall.startDriverManagement());
@@ -170,17 +164,7 @@ public class TransferHallFrame extends JFrame {
 	}
 
 	private void truckButtonMouseClicked(MouseEvent e) {
-		receiveButton.setSelected(false);
-		loadButton.setSelected(false);
-		driverButton.setSelected(false);
-		truckButton.setSelected(true);
-		moneyButton.setSelected(false);
-
-		receiveButton.setEnabled(true);
-		loadButton.setEnabled(true);
-		driverButton.setEnabled(true);
-		truckButton.setEnabled(false);
-		moneyButton.setEnabled(true);
+		setButtons(3);
 
 		if (truckPanel == null) {
 			truckPanel = new TruckPanel(transferHall.startTruckManagement());
@@ -193,6 +177,11 @@ public class TransferHallFrame extends JFrame {
 			remove(driverPanel);
 		if (loadAndSortPanel != null)
 			remove(loadAndSortPanel);
+		if (entruckReceivePanel != null) 
+			remove(entruckReceivePanel);
+		if(receiveMoneyPanel != null)
+			remove(receiveMoneyPanel);
+		
 		container.add(truckPanel, BorderLayout.CENTER);
 		container.repaint();
 
@@ -200,6 +189,34 @@ public class TransferHallFrame extends JFrame {
 		truckPanel.updateUI();
 		truckPanel.setVisible(true);
 	}
+
+	private void moneyButtonMouseReleased(MouseEvent e) {
+		setButtons(4);
+		
+		if(receiveMoneyPanel == null){
+			receiveMoneyPanel = new ReceiveMoneyPanel(transferHall.startReceive());
+		}
+		
+		Container container = getContentPane();
+		container.remove(emptyPanel);
+		if(driverPanel != null){
+			container.remove(driverPanel);
+		}
+		if (truckPanel != null) {
+			container.remove(truckPanel);
+		}
+		if(loadAndSortPanel != null){
+			container.remove(loadAndSortPanel);
+		}
+		if(entruckReceivePanel != null){
+			container.remove(entruckReceivePanel);
+		}
+		container.add(receiveMoneyPanel,BorderLayout.CENTER);
+		receiveMoneyPanel.validate();
+		receiveMoneyPanel.updateUI();
+		receiveMoneyPanel.setVisible(true);
+		container.repaint();
+		}
 
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY
@@ -290,6 +307,12 @@ public class TransferHallFrame extends JFrame {
 
 			//---- moneyButton ----
 			moneyButton.setText("text");
+			moneyButton.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					moneyButtonMouseReleased(e);
+				}
+			});
 
 			//---- label1 ----
 			label1.setText("\u88c5\u8f66\u63a5\u6536");

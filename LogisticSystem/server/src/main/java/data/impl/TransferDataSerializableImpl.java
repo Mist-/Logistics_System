@@ -54,7 +54,7 @@ public class TransferDataSerializableImpl extends UnicastRemoteObject implements
 
 	@Override
 	public ArrayList<DataPO> searchList(POType type, long institutionID)
-			throws RemoteException {//司机，车辆专用
+			throws RemoteException {//司机，车辆，快递员专用
 		ArrayList<DataPO> all = getPOList(type);
 		ArrayList<DataPO> drivers = new ArrayList<DataPO>();
 		if (all == null) {

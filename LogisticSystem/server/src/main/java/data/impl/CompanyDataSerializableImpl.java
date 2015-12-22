@@ -97,4 +97,18 @@ public class CompanyDataSerializableImpl extends UnicastRemoteObject implements 
     public ArrayList<DataPO> asdfghjkl() throws RemoteException {
         return newlyApproved;
     }
+
+
+	@Override
+	public ArrayList<StaffPO> searchSenders(long institutionID) {
+		ArrayList<StaffPO> senders = new ArrayList<StaffPO>();
+		ArrayList<DataPO> all = getPOList(POType.SENDER);
+		for (int i = 0; i < all.size(); i++) {
+			StaffPO s = (StaffPO) all.get(i);
+			if (s.getInstitution() == institutionID) {
+				senders.add(s);
+			}
+		}
+		return senders;
+	}
 }

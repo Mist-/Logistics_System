@@ -15,7 +15,7 @@ public interface TransferHallService {
 	public DriverManagementService startDriverManagement();
 	public EntruckReceiveService startEntruckReceive() throws Exception;
 	public LoadAndSortService startOrderSort();
-	//Î´Íê
+	public ReceiveMoneyService startReceive();
 	
 //	public DeliveryListVO getTransferList(long transferListCode);
 //	public ResultMessage saveOrderArrival();

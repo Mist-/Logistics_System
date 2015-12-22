@@ -20,7 +20,7 @@ public class SendList {
 	long[] order;
 	public SendList(long institutionID) throws RemoteException {
 		transferData = (TransferDataService) DataServiceFactory.getDataServiceByType(DataType.TransferDataService);
-		sender = new Sender(transferData,institutionID);
+		sender = new Sender(institutionID);
 	}
 
 	public SendListVO createSendList(ArrivalPO arrival) throws RemoteException {

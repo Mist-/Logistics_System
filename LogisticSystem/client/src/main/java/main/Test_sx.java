@@ -9,6 +9,7 @@ import data.po.DataPO;
 import data.po.OrderPO;
 import data.service.DataService;
 import data.service.StorageDataService;
+import data.service.TransferDataService;
 import utils.DataServiceFactory;
 
 public class Test_sx {
@@ -51,12 +52,26 @@ public class Test_sx {
 //			e.printStackTrace();
 //		}
 		
-		StorageDataService d = (StorageDataService) DataServiceFactory.getDataServiceByType(DataType.StorageDataService);
+//		StorageDataService d = (StorageDataService) DataServiceFactory.getDataServiceByType(DataType.StorageDataService);
+//		try {
+//			ArrayList<DataPO> i = d.getNewlyApprovedPO(POType.STORAGEINLIST, 10021);
+//			for (int j = 0; j < i.size(); j++) {
+//			}
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//		}
+		
+		
+		
+		TransferDataService t = (TransferDataService) DataServiceFactory.getDataServiceByType(DataType.TransferDataService);
 		try {
-			ArrayList<DataPO> i = d.getNewlyApprovedPO(POType.STORAGEINLIST, 10021);
-			for (int j = 0; j < i.size(); j++) {
+			ArrayList<DataPO> a = t.getPOList(POType.TRANSFERLIST);
+			for (int i = 0; i < a.size(); i++) {
+				System.out.println(a.get(i).getSerialNum());
+				System.out.println(a.get(i).getState());
 			}
 		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
  	}
