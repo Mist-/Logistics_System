@@ -119,8 +119,7 @@ public class OrderList implements OrderListService {
 	}
 
 	@Override
-	public String[][] getOrderAndFee(long senderID, String date) {
-		getOrderByCourierAndDate(senderID, date);
+	public String[][] getOrderAndFee(long hallID, String date) {
 		String[][] info = null;
 		if (orders != null) {
 			info = new String[orders.size()][2];
@@ -130,23 +129,6 @@ public class OrderList implements OrderListService {
 			}
 		}
 		return info;
-	}
-	private void getOrderByCourierAndDate(long courier, String date) {
-		ArrayList<OrderPO> result = new ArrayList<>();
-		orderDataService = (OrderDataService) DataServiceFactory.getDataServiceByType(DataType.OrderDataService);
-		if (orderDataService == null) return;
-		ArrayList<DataPO> orders = null;
-		try {
-			orders = orderDataService.getPOList(POType.ORDER);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		for (DataPO data: orders) {
-			if (((OrderPO) data).getCourier() == courier && Timestamper.getTimeByDate(((OrderPO) data).getGenDate()).equals(date)) {
-				result.add((OrderPO) data);
-			}
-		}
-		this.orders = result;
 	}
 
 }
