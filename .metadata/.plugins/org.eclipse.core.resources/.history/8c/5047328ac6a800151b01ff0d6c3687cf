@@ -1,0 +1,33 @@
+package data.vo;
+
+import java.util.ArrayList;
+import java.util.Vector;
+
+public class TransferLoadVO {
+	public Vector<Vector<String>> getOrderInfo() {
+		return orderInfo;
+	}
+
+	public void setOrderInfo(Vector<Vector<String>> orderInfo) {
+		this.orderInfo = orderInfo;
+	}
+	public String[] header = {"订单号","区域","排号","架号", "位号","重量（kg）"};
+	public Vector<String>  headV;
+	public Vector<Vector<String>> orderInfo;
+	
+	public TransferLoadVO(ArrayList<String> orderInfo){
+		this.orderInfo = new Vector<Vector<String>>();
+		for(int i = 0 ; i < orderInfo.size();i++){
+			String[] s = orderInfo.get(i).split("-");
+			this.orderInfo[i] =s;
+		}
+		
+		headV = new Vector<String>();
+		headV.add("订单号");
+		headV.add("区域");
+		headV.add("排号");
+		headV.add("架号");
+		headV.add("位号");
+		headV.add("重量（kg）");
+	}
+}

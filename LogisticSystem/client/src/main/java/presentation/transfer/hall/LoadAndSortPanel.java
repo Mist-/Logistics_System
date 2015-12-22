@@ -263,7 +263,7 @@ public class LoadAndSortPanel extends JPanel {
 			return;
 		}
 		Vector<Vector<String>> v = briefOrder.info;
-		for (int i = 0; i < rows.length; i++) {
+		for (int i = (rows.length-1); i>= 0; i--) {
 			v.remove(rows[i]);
 		}
 		DefaultTableModel model = new DefaultTableModel(briefOrder.info,
@@ -370,10 +370,12 @@ public class LoadAndSortPanel extends JPanel {
 				entruckListPanelLayout.setVerticalGroup(
 					entruckListPanelLayout.createParallelGroup()
 						.addGroup(entruckListPanelLayout.createSequentialGroup()
-							.addGroup(entruckListPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-								.addComponent(selectEntruck)
-								.addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 346, GroupLayout.PREFERRED_SIZE))
+							.addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 346, GroupLayout.PREFERRED_SIZE)
 							.addGap(0, 0, Short.MAX_VALUE))
+						.addGroup(GroupLayout.Alignment.TRAILING, entruckListPanelLayout.createSequentialGroup()
+							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(selectEntruck)
+							.addContainerGap())
 				);
 			}
 			loadAndSortPane.addTab("\u5df2\u5ba1\u6279\u88c5\u8f66\u5355", entruckListPanel);

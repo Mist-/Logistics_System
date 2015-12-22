@@ -2,6 +2,7 @@ package businesslogic.impl.storage;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+
 import businesslogic.impl.transfer.center.StorageInfoService;
 import data.enums.DataType;
 import data.enums.POType;
@@ -16,6 +17,7 @@ import data.service.StorageDataService;
 import data.vo.StorageInVO;
 import data.vo.StorageOutVO;
 import data.vo.StoragePositionAndOrderID;
+import data.vo.TransferListVO;
 
 public class StorageInfo implements StorageInfoService {
 	StorageDataService storageData;
@@ -397,6 +399,30 @@ public class StorageInfo implements StorageInfoService {
 		storageInfo.setStorage(info);
 		storageData.modify(storageInfo);
 		return ResultMessage.SUCCESS;
+	}
+	
+	public ResultMessage modifyStorageInfo(TransferListVO transferList) throws RemoteException{
+		if (storageInfo == null)
+			return ResultMessage.FAILED;
+
+		ArrayList<long[][][]> info = storageInfo.getStorage();
+		
+		String[][] position = transferList.orderAndPosition;
+
+		for (int i = 0; i < position.length; i++) {
+			if(!position[i][0].equals("")){
+			int index = Integer.parseInt(position[i][1]);
+			int row = Integer.parseInt(position[i][2]);
+			int shelf = Integer.parseInt(position[i][3]);
+			int num = Integer.parseInt(position[i][4]);
+			long[][][] pos = info.get(index);
+			pos[row][shelf][num] = 0;
+			}
+		}
+		storageInfo.setStorage(info);
+		storageData.modify(storageInfo);
+		return ResultMessage.SUCCESS;
+		
 	}
 
 	public StorageInfo(StorageDataService storageData, long centerID)

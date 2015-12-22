@@ -2,6 +2,7 @@ package businesslogic.impl.transfer.center;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import businesslogic.impl.order.OrderList;
 import businesslogic.impl.storage.StorageInfo;
@@ -118,16 +119,14 @@ public class TransferLoad implements TransferLoadService {
 	public boolean checkCapacity(TransferLoadVO vo) {
 		double weight = 0;
 		int counter = 0;
-		String[][] order = vo.getOrderInfo();
-		for (int i = 0; i < order.length; i++) {
-			if (order[i][1] == "true") {
-				long orderID = Long.parseLong(order[i][0]);
+		Vector<Vector<String>> order = vo.getOrderInfo();
+		for (int i = 0; i < order.size(); i++) {
+				long orderID = Long.parseLong(order.get(i).get(0));
 				for (OrderPO o : orders) {
 					if (o.getSerialNum() == orderID)
 						counter++;
 					weight += o.getWeight();
 				}
-			}
 		}
 		// ¼ì²é¸öÊý
 		if (transferType == StorageArea.PLANE)
@@ -196,6 +195,7 @@ public class TransferLoad implements TransferLoadService {
 	 * @throws RemoteException
 	 */
 	public ResultMessage saveTransferList(TransferListVO vo) throws RemoteException {
+		storageInfo.modifyStorageInfo(vo);
 		return transferList.saveTransferList(vo,center.getCenterID());
 	}
 

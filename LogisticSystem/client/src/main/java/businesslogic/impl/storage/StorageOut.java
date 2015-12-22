@@ -77,7 +77,7 @@ public class StorageOut implements StorageOutService{
 		StorageOutListPO storageOut = new StorageOutListPO(vo);
 
 		try {
-			modifyStorageInfo(storageOut);
+			//modifyStorageInfo(storageOut);
 			return storageData.add(storageOut);
 		} catch (RemoteException e) {
 			e.printStackTrace();

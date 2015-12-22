@@ -8,8 +8,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Vector;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+
 import data.enums.StorageArea;
 import data.message.ResultMessage;
 import data.vo.TransferListVO;
@@ -81,6 +84,10 @@ public class TransferLoadPanel extends JPanel {
 	}
 
 	private void getOrderButtonMouseReleased(MouseEvent e) {
+		sort();
+	}
+	
+	private void sort(){
 		if (getOrderButton.isEnabled()) {
 			int item = destBox.getSelectedIndex();
 			if (item >= 0) {
@@ -106,12 +113,13 @@ public class TransferLoadPanel extends JPanel {
 						JOptionPane.INFORMATION_MESSAGE);
 				return;
 			}
-			String[][] info = order.getOrderInfo();
-			if (info.length == 0) {
-				JOptionPane.showMessageDialog(null, "仓库内订单为空，无法生成中转单", "提示",
+			Vector<Vector<String>> info = order.getOrderInfo();
+			if (info.size()== 0) {
+				JOptionPane.showMessageDialog(null, "订单列表为空，无法生成中转单", "提示",
 						JOptionPane.INFORMATION_MESSAGE);
 				return;
 			} else {
+		
 				transferList = transferLoad.createTransferList(order);
 				setTransferList();
 			}
@@ -172,6 +180,7 @@ public class TransferLoadPanel extends JPanel {
 		try {
 			ResultMessage result = transferLoad.saveTransferList(transferList);
 			if (result == ResultMessage.SUCCESS) {
+				sort();
 				JOptionPane.showMessageDialog(null, "保存成功", "提示", JOptionPane.INFORMATION_MESSAGE);
 				remove(transferListPane);
 				add(loadPane,BorderLayout.CENTER);
@@ -184,6 +193,20 @@ public class TransferLoadPanel extends JPanel {
 			JOptionPane.showMessageDialog(null, "网络连接中断", "提示", JOptionPane.INFORMATION_MESSAGE);
 			e1.printStackTrace();
 		}
+	}
+
+	private void removeOrderButtonMouseReleased(MouseEvent e) {
+		DefaultTableModel model = (DefaultTableModel) orderTable.getModel();
+		Vector<Vector<String>> info = order.getOrderInfo();
+		int[] rows = orderTable.getSelectedRows();
+		for(int i = (rows.length-1) ; i >= 0  ; i--){
+			System.out.println(rows[i]);
+			info.remove(rows[i]);
+		}
+		model.setDataVector(info, order.header);
+		orderTable.setModel(model);
+		orderTable.updateUI();
+		orderTable.repaint();
 	}
 
 	private void initComponents() {
@@ -283,6 +306,12 @@ public class TransferLoadPanel extends JPanel {
 				removeOrderButton.setText("\u79fb\u9664");
 				removeOrderButton.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 				removeOrderButton.setIcon(new ImageIcon(getClass().getResource("/icons/delete_24x24.png")));
+				removeOrderButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						removeOrderButtonMouseReleased(e);
+					}
+				});
 
 				GroupLayout loadPanelLayout = new GroupLayout(loadPanel);
 				loadPanel.setLayout(loadPanelLayout);

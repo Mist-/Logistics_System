@@ -2,6 +2,7 @@ package businesslogic.impl.transfer.center;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import businesslogic.impl.user.InstitutionInfo;
 import utils.Timestamper;
@@ -72,29 +73,24 @@ public class TransferList {
 			StorageArea transferType) {
 		TransferListVO transferList = new TransferListVO();
 		transferList.date = Timestamper.getTimeByDate();
-		
-		String[][] info = load.getOrderInfo();
-		long[] order = new long[info.length];
-		String[] position = new String[info.length];
-		String area = "0";
 		transferList.transferType = "航运";
+		String area = "0";
 		if (transferType == StorageArea.TRAIN){
-			area = "1";
 			transferList.transferType = "铁运";
+			area = "1";
 		}
 		else if(transferType == StorageArea.TRUCK){
-			area = "2";
 			transferList.transferType = "汽运";
+			area = "2";
 		}
-		for (int i = 0; i < info.length; i++) {
-			order[i] = Long.parseLong(info[i][0]);
-			if (info[i][1].equals("机动区")){
-				position[i] = "3" + "-" + info[i][2] + "-" + info[i][3] + "-"
-						+ info[i][4];
-				continue;
+		Vector<Vector<String>> v = load.getOrderInfo();
+		String[][] info = new String[v.size()][5];
+		for(int i = 0 ; i < v.size();i++){
+			Vector<String> vv = v.get(i);
+			for(int j = 0 ; j < 5;j++){
+				info[i][j] = vv.get(j);
 			}
-			position[i] = area + "-" + info[i][2] + "-" + info[i][3] + "-"
-					+ info[i][4];
+			info[i][1] = area;
 		}
 		transferList.orderAndPosition = info;
 
