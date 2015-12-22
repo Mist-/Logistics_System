@@ -118,4 +118,22 @@ public class OrderList implements OrderListService {
 		return result;
 	}
 
+	public void getOrderByCourierAndDate(long courier, String date) {
+		ArrayList<OrderPO> result = new ArrayList<>();
+		orderDataService = (OrderDataService) DataServiceFactory.getDataServiceByType(DataType.OrderDataService);
+		if (orderDataService == null) return;
+		ArrayList<DataPO> orders = null;
+		try {
+			orders = orderDataService.getPOList(POType.ORDER);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		for (DataPO data: orders) {
+			if (((OrderPO) data).getCourier() == courier && Timestamper.getTimeByDate(((OrderPO) data).getGenDate()).equals(date)) {
+				result.add((OrderPO) data);
+			}
+		}
+		this.orders = result;
+	}
+
 }
