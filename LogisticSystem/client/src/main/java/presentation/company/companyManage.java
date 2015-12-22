@@ -155,8 +155,10 @@ public class companyManage extends JFrame {
         //将最后一个被编辑的单元格设置停止编辑状态,加入到salaryModify中
         int row = tableSalary.getSelectedRow();
         int column = tableSalary.getSelectedColumn();
+        boolean isValid = true;
         tableSalary.getCellEditor(row, column).stopCellEditing();
         for(int i=0;i<salaryModify.size();i++){
+            System.out.println(salaryModify.size());
             //获取机构和工资的信息
             Iterator<String> info = salaryModify.get(i).iterator();
             String institution = info.next();
@@ -164,10 +166,9 @@ public class companyManage extends JFrame {
             if(controller.isValidNum(salary)) {
                 ResultMessage resultmessage = controller.modifySalary(institution, salary);
                 if (resultmessage == ResultMessage.SUCCESS) {
-                    labelSalarySuccess.setText("修改成功!");
                 } else if (resultmessage == ResultMessage.NOTCONNECTED) {
                     labelSalarySuccess.setText("");
-                    JOptionPane.showMessageDialog(null, "网络错误...", "", JComponent.ERROR);
+                    JOptionPane.showMessageDialog(null, "网络错误...", "", JOptionPane.ERROR_MESSAGE);
                     break;
                 } else {
                     labelSalarySuccess.setText("修改失败!");
@@ -175,9 +176,15 @@ public class companyManage extends JFrame {
                 }
             }
             else{
-                JOptionPane.showMessageDialog(null, "请输入正确工资数值!", "", JComponent.ERROR);
-                break;
+                isValid = false;
             }
+        }
+        if(isValid == false){
+            labelSalarySuccess.setText("");
+            JOptionPane.showMessageDialog(null, "请输入正确工资数值!", "", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            labelSalarySuccess.setText("修改成功!");
         }
     }
 
@@ -244,6 +251,37 @@ public class companyManage extends JFrame {
     //退出城市物流信息管理按钮
     private void buttonExitCityMouseClicked(MouseEvent e) {
         this.dispose();
+    }
+
+    //初始化员工表格
+    public void initStaff(){
+        String institution;
+        switch (tabbedPaneStaff.getSelectedIndex()){
+            case 0:
+                initDeliverTable();
+                break;
+            case 1:
+                initFinancialTable();
+                break;
+            case 2:
+                initSFinancialTable();
+                break;
+            case 3:
+                initTrunkTable();
+                break;
+            case 4:
+                institution = (String) comboBoxCenter.getSelectedItem();
+                initCenterTable(institution);
+                break;
+            case 5:
+                institution = (String) comboBoxBusinessNum.getSelectedItem();
+                initBusinessTable(institution);
+                break;
+            case 6:
+                institution = (String) comboBoxStorage.getSelectedItem();
+                initStorageTable(institution);
+                break;
+        }
     }
 
     //添加员工按钮
@@ -327,29 +365,7 @@ public class companyManage extends JFrame {
         if(resultMessage == ResultMessage.SUCCESS){
             labelStaffSuccess.setText("删除成功!");
             //重绘当前表格
-            switch (tabbedPaneStaff.getSelectedIndex()){
-                case 0:
-                    initDeliverTable();
-                    break;
-                case 1:
-                    initFinancialTable();
-                    break;
-                case 2:
-                    initSFinancialTable();
-                    break;
-                case 3:
-                    initTrunkTable();
-                    break;
-                case 4:
-                    initCenterTable(institution);
-                    break;
-                case 5:
-                   initBusinessTable(institution);
-                    break;
-                case 6:
-                    initStorageTable(institution);
-                    break;
-            }
+            this.initStaff();
         }
         else if(resultMessage == ResultMessage.NOTEXIST){
             labelStaffSuccess.setText("员工不存在!");
@@ -796,7 +812,7 @@ public class companyManage extends JFrame {
             private static final long serialVersionUid = 1L;
 
             public boolean isCellEditable(int row, int column){
-                if(column==1||column==2)
+                if(column==1)
                     return true;
                 else
                     return false;
@@ -938,6 +954,7 @@ public class companyManage extends JFrame {
         tableSFinancial.getTableHeader().setReorderingAllowed(false);
         tableSFinancial.getTableHeader().setPreferredSize(new Dimension(40,40));
         tableSFinancial.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        scrollSFinancial.getViewport().add(tableSFinancial);
     }
 
     /*
@@ -2049,7 +2066,6 @@ public class companyManage extends JFrame {
             buttonModifySalary.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    buttonModifySalaryMouseClicked(e);
                     buttonModifySalaryMouseClicked(e);
                 }
             });

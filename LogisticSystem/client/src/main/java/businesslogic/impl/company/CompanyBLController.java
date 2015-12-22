@@ -657,7 +657,7 @@ public class CompanyBLController {
                 return false;
             }
         }
-        if(idCardNum.charAt(idCardNum.length()-1)!='X'||idCardNum.charAt(idCardNum.length()-1)<'0'||idCardNum.charAt(idCardNum.length()-1)>'9'){
+        if(idCardNum.charAt(idCardNum.length()-1)!='X'&&idCardNum.charAt(idCardNum.length()-1)<'0'&&idCardNum.charAt(idCardNum.length()-1)>'9'){
             isValid = false;
         }
         return isValid;
