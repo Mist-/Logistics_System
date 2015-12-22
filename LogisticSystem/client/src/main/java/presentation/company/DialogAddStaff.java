@@ -123,6 +123,7 @@ public class DialogAddStaff extends JDialog{
 					//判断是否成功添加
 					if (resultMessage == ResultMessage.SUCCESS) {
 						company.getLabelStaffSuccess().setText("添加成功!");
+						company.initStaff();
 						jdialog.dispose();
 					} else if (resultMessage == ResultMessage.EXIST) {
 						company.getLabelStaffSuccess().setText("");

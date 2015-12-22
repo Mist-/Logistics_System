@@ -127,31 +127,8 @@ public class DialogMoveStaff extends JDialog{
 		  //根据resultMessage类型对界面进行输出
 		  if(resultMessage == ResultMessage.SUCCESS){
 			  company.getLabelStaffSuccess().setText("移动成功!");
-			  switch (company.getTabbedPaneStaff().getSelectedIndex()){
-				  //重绘当前表格
-				  case 0:
-					  company.initDeliverTable();
-					  break;
-				  case 1:
-					  company.initFinancialTable();
-					  break;
-				  case 2:
-					  company.initSFinancialTable();
-					  break;
-				  case 3:
-					  company.initTrunkTable();
-					  break;
-				  case 4:
-					  company.initCenterTable(fromInstitution);
-					  break;
-				  case 5:
-					  company.initBusinessTable(fromInstitution);
-					  break;
-				  case 6:
-					  company.initStorageTable(fromInstitution);
-					  break;
-			  }
-		  }
+			  company.initStaff();
+		   }
 		  else if(resultMessage == ResultMessage.EXIST){
 			  company.getLabelStaffSuccess().setText("");
 			  JOptionPane.showMessageDialog(null,"该员工已存在,请勿重复添加","",JOptionPane.ERROR_MESSAGE);
