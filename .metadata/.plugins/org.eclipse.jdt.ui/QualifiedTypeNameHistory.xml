@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="businesslogic.impl.transfer.hall.TruckManagement"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="data.po.LogisticInfoPO"/>
 <fullyQualifiedTypeName name="data.service.OrderDataService"/>
@@ -60,4 +59,5 @@
 <fullyQualifiedTypeName name="data.vo.ReceiptVO"/>
 <fullyQualifiedTypeName name="data.message.ResultMessage"/>
 <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+<fullyQualifiedTypeName name="java.rmi.RemoteException"/>
 </qualifiedTypeNameHistroy>

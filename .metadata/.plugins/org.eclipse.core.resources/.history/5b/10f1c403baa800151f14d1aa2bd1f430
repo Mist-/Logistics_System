@@ -23,7 +23,7 @@ public interface CompanyDataService extends DataService {
 	 * @param institutionID 营业厅编号
 	 * @return 快递员POList
 	 */
-	ArrayList<StaffPO> searchSenders(long institutionID)throws RemoteException;
+	ArrayList<StaffPO> searchSenders(long institutionID);
 	
     DataPO searchCity(String cityName) throws RemoteException;
 
