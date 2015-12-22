@@ -61,8 +61,6 @@ public class StatisticsCheckBLImpl implements StatisticsCheckBLService {
                             receiptVO.setMoney(receiptPO.getMoney());
                             receiptVO.setDate(receiptPO.getDate());
                             receiptVO.setInstitution(receiptPO.getInstitution());
-                            receiptVO.setAddress(receiptPO.getInstitution());
-                            receiptVO.setPeople(receiptPO.getSender());
                             receiptVO.setSender(receiptPO.getSender());
                             receiptList.add(receiptVO);
                         }

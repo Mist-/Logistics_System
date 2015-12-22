@@ -6,7 +6,6 @@ import data.po.CityInfoPO;
 import data.po.CityTransPO;
 import data.po.DataPO;
 import data.po.SalaryPO;
-import data.po.StaffPO;
 import data.service.CompanyDataService;
 
 import java.rmi.RemoteException;
@@ -135,12 +134,6 @@ public class MockCompanyDataService implements CompanyDataService {
 
 	@Override
 	public ArrayList<DataPO> asdfghjkl() throws RemoteException {
-		return null;
-	}
-
-	@Override
-	public ArrayList<StaffPO> searchSenders(long institutionID) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }
