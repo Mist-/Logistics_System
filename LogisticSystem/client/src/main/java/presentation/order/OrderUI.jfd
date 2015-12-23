@@ -12,8 +12,8 @@ new FormModel {
 			"title": "物流管理系统"
 			"font": &Font0 new java.awt.Font( "等线", 0, 14 )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :::p, par l {seq l {par l {seq {comp scrollPane1::::833:x, space :::p, par l:::p {comp btSign::t::113:x, comp btDelete::t::113:x, comp btModify::t::113:x, comp btSign2::::113:x}}, seq {comp lbOrderNum:::p::p, space :6:6:p, comp tfOrderInput:::p:361:p, space :p:12:p, comp btSearch:::p::p}}, space :::p}, seq l {par l {comp btOrderMng::l:p::p, seq l {space :25:25:p, comp label1:::p::p}}, space :116::x}}}}"
-				"$verticalGroup": "par l {seq l {space :p:6:p, comp btOrderMng:::p:96:p, space :6:6:p, comp label1:::p::p, space :6:6:p, par l {seq l {space :4:4:p, comp lbOrderNum:::p::p}, comp tfOrderInput:::p::p, comp btSearch:::p:25:p}, space :::p, par l {seq {comp btSign2:::p:38:p, space :p:18:p, comp btSign:::p:38:p, space s:::p, comp btDelete:::p:38:p, space s:::p, comp btModify:::p:38:p, space :0:231:x}, comp scrollPane1::::437:x}}}"
+				"$horizontalGroup": "par l {seq l {space :::p, par l {seq {comp scrollPane1::::833:x, space :::p, par l:::p {comp btSign::t::113:x, comp btDelete::t::113:x, comp btModify::t::113:x, comp btSign2::::113:x}}, seq {par l {seq {comp lbOrderNum:::p::p, space :6:6:p, comp tfOrderInput:::p:361:p, space :p:12:p, comp btSearch:::p::p}, seq l {space :25:25:p, comp label1:::p::p}}, space :0:0:x}, seq l {comp btOrderMng:::p::p, space ::829:x, comp labelUserInfo:::p::p}}, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :p:6:p, par l {comp btOrderMng:::p:96:p, comp labelUserInfo:::p::p}, space :p:6:p, comp label1:::p::p, space :6:6:p, par l {seq l {space :4:4:p, comp lbOrderNum:::p::p}, comp tfOrderInput:::p::p, comp btSearch:::p:25:p}, space :::p, par l {seq {comp btSign2:::p:38:p, space :p:18:p, comp btSign:::p:38:p, space s:::p, comp btDelete:::p:38:p, space s:::p, comp btModify:::p:38:p, space :0:231:x}, comp scrollPane1::::437:x}}}"
 			} ) {
 				name: "panel2"
 				add( new FormComponent( "javax.swing.JTextField" ) {
@@ -79,6 +79,10 @@ new FormModel {
 					"font": #Font0
 					"text": "新建"
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btSign2MouseReleased", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "labelUserInfo"
+					"text": "text"
 				} )
 			} )
 			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {

@@ -2,11 +2,15 @@ package presentation.order;
 
 import businesslogic.impl.order.Order;
 import businesslogic.impl.order.OrderBLController;
+import data.enums.DataType;
+import data.enums.POType;
 import data.message.LoginMessage;
 import data.message.ResultMessage;
 import data.po.OrderPO;
+import data.po.StaffPO;
 import data.vo.OrderVO;
 import data.vo.SignVO;
+import utils.DataServiceFactory;
 import utils.Timestamper;
 
 import javax.swing.*;
@@ -17,6 +21,7 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Vector;
 /*
@@ -202,6 +207,7 @@ public class OrderUI extends JFrame {
         btOrderMng = new JToggleButton();
         btModify = new JButton();
         btSign2 = new JButton();
+        labelUserInfo = new JLabel();
 
         //======== this ========
         setOpacity(0.0F);
@@ -370,6 +376,9 @@ public class OrderUI extends JFrame {
                 }
             });
 
+            //---- labelUserInfo ----
+            labelUserInfo.setText("text");
+
             GroupLayout panel2Layout = new GroupLayout(panel2);
             panel2.setLayout(panel2Layout);
             panel2Layout.setHorizontalGroup(
@@ -378,35 +387,38 @@ public class OrderUI extends JFrame {
                         .addContainerGap()
                         .addGroup(panel2Layout.createParallelGroup()
                             .addGroup(panel2Layout.createSequentialGroup()
+                                .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 833, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btSign, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                                    .addComponent(btDelete, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                                    .addComponent(btModify, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                                    .addComponent(btSign2, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)))
+                            .addGroup(panel2Layout.createSequentialGroup()
                                 .addGroup(panel2Layout.createParallelGroup()
-                                    .addGroup(panel2Layout.createSequentialGroup()
-                                        .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 833, Short.MAX_VALUE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(btSign, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                                            .addComponent(btDelete, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                                            .addComponent(btModify, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                                            .addComponent(btSign2, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)))
                                     .addGroup(panel2Layout.createSequentialGroup()
                                         .addComponent(lbOrderNum)
                                         .addGap(6, 6, 6)
                                         .addComponent(tfOrderInput, GroupLayout.PREFERRED_SIZE, 361, GroupLayout.PREFERRED_SIZE)
                                         .addGap(12, 12, 12)
-                                        .addComponent(btSearch)))
-                                .addContainerGap())
-                            .addGroup(panel2Layout.createSequentialGroup()
-                                .addGroup(panel2Layout.createParallelGroup()
-                                    .addComponent(btOrderMng)
+                                        .addComponent(btSearch))
                                     .addGroup(panel2Layout.createSequentialGroup()
                                         .addGap(25, 25, 25)
                                         .addComponent(label1)))
-                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(panel2Layout.createSequentialGroup()
+                                .addComponent(btOrderMng)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 829, Short.MAX_VALUE)
+                                .addComponent(labelUserInfo)))
+                        .addContainerGap())
             );
             panel2Layout.setVerticalGroup(
                 panel2Layout.createParallelGroup()
                     .addGroup(panel2Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(btOrderMng, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panel2Layout.createParallelGroup()
+                            .addComponent(btOrderMng, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelUserInfo))
                         .addGap(6, 6, 6)
                         .addComponent(label1)
                         .addGap(6, 6, 6)
@@ -501,6 +513,10 @@ public class OrderUI extends JFrame {
         mnFile.setMnemonic('F');
         mnEdit.setMnemonic('E');
 
+        String name = "";
+        
+        labelUserInfo.setText("ID: " + loginMessage.getUserSN() + " " + name + "\n" + loginMessage.getUserRole());
+
         refresh();
     }
 
@@ -526,5 +542,6 @@ public class OrderUI extends JFrame {
     private JToggleButton btOrderMng;
     private JButton btModify;
     private JButton btSign2;
+    private JLabel labelUserInfo;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
