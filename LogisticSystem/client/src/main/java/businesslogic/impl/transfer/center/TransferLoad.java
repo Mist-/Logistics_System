@@ -30,8 +30,6 @@ public class TransferLoad implements TransferLoadService {
 	StorageArea transferType;
 	StorageInfoService storageInfo;
 	TransferList transferList;
-	
-	ArrayList<OrderPO> orders;
 	String targetInstitutionName;
 	long desID;
 	double transferFee;
@@ -70,7 +68,6 @@ public class TransferLoad implements TransferLoadService {
 		this.center = user;
 		this.city = city;
 		storageInfo = new StorageInfo(user.getCenterID());
-		orders = new ArrayList<OrderPO>();
 		transferList = new TransferList();
 	}
 
@@ -120,14 +117,14 @@ public class TransferLoad implements TransferLoadService {
 		double weight = 0;
 		int counter = 0;
 		Vector<Vector<String>> order = vo.getOrderInfo();
-		for (int i = 0; i < order.size(); i++) {
-				long orderID = Long.parseLong(order.get(i).get(0));
-				for (OrderPO o : orders) {
-					if (o.getSerialNum() == orderID)
-						counter++;
-					weight += o.getWeight();
-				}
+		long[] id = new long[order.size()];
+		for(int i = 0; i < order.size();i++){
+			id[i] = Long.parseLong(order.get(i).get(0));
 		}
+		OrderList o = new OrderList(new LoginMessage(ResultMessage.SUCCESS));
+		weight = o.getWeight(id);
+		counter = o.getNum();
+
 		// ¼ì²é¸öÊý
 		if (transferType == StorageArea.PLANE)
 			if (counter > TransferInfo.planeCapacity)
@@ -178,6 +175,8 @@ public class TransferLoad implements TransferLoadService {
 			e.printStackTrace();
 			return null;
 		}
+		
+		if(checkCapacity(load)){
 		TransferListVO t =  transferList.createTransferList(load, transferType);
 		t.fee = transferFee+"";
 		t.staff = center.getStaffName();
@@ -186,6 +185,10 @@ public class TransferLoad implements TransferLoadService {
 		t.target = desID+"";
 		t.targetName = targetInstitutionName;
 		return t;
+		}
+		else{
+			return null;
+		}
 	}
 
 	/**

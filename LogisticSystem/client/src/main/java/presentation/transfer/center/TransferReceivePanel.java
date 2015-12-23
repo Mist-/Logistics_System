@@ -101,6 +101,20 @@ public class TransferReceivePanel extends JPanel {
 
 	private void setTransferListVO() {
 		// 设置中转单显示信息
+		listID.setText(transferListVO.transferListID);
+		fromName.setText(transferListVO.transferCenter);
+		destName.setText(transferListVO.targetName);
+		staffName.setText(transferListVO.staff);
+		loadDate.setText(transferListVO.date);
+		vehicleID.setText(transferListVO.vehicleCode);
+		transferType.setText(transferListVO.transferType);
+		DefaultTableModel model = new DefaultTableModel(transferListVO.orderAndPosition,transferListVO.header);
+		orderInfoTable.setModel(model);
+		orderInfoTable.updateUI();
+		fee.setVisible(true);
+		fee.setText(transferListVO.fee);
+		label14.setVisible(true);
+		setTextField(false);
 	}
 
 	private void setEntruckListVO() {

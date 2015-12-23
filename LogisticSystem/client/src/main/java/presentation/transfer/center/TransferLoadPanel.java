@@ -119,10 +119,13 @@ public class TransferLoadPanel extends JPanel {
 						JOptionPane.INFORMATION_MESSAGE);
 				return;
 			} else {
-		
 				transferList = transferLoad.createTransferList(order);
+				if(transferList != null){
 				setTransferList();
 				setDisabled();
+				}else{
+					JOptionPane.showMessageDialog(null, "超过单次装运数量或重量上限", "提示", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		}
 	}

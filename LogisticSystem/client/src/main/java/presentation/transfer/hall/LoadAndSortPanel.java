@@ -237,6 +237,11 @@ public class LoadAndSortPanel extends JPanel {
 			model.removeRow(row);
 			entruckListTable.updateUI();
 			entruckListTable.repaint();
+			
+			remove(entruckVO);
+			add(loadAndSortPane,BorderLayout.CENTER);
+			loadAndSortPane.updateUI();
+			loadAndSortPane.setVisible(true);
 		} else {
 			JOptionPane.showMessageDialog(null, "操作失败,请稍后再试", "提示",
 					JOptionPane.ERROR_MESSAGE);

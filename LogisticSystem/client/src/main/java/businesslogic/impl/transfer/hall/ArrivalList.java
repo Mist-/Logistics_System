@@ -116,7 +116,8 @@ public class ArrivalList {
 		vo.setDeliveryListNum(transferList.transferListID);
 		vo.setFromName(transferList.transferCenter);
 		vo.setFromNum(transferList.transferCenterID);
-
+		vo.setDestID(transferList.target);
+		vo.setDestName(transferList.targetName);
 		String[][] info = transferList.orderAndPosition;
 		String[][] orderAndStatus = new String[info.length][2];
 		for (int i = 0; i < info.length; i++) {

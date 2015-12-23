@@ -201,11 +201,18 @@ public class DataInitialization {
         staff7.setUserRole(UserRole.系统管理员);
         
         StaffPO staff10 = new StaffPO();
-        staff7.setSerialNum(10010);
-        staff7.setName("基佬");
-        staff7.setGender(false);
-        staff7.setInstitution(10025);
-        staff7.setUserRole(UserRole.中转中心业务员);
+        staff10.setSerialNum(10010);
+        staff10.setName("基佬");
+        staff10.setGender(false);
+        staff10.setInstitution(10025);
+        staff10.setUserRole(UserRole.中转中心业务员);
+        
+        StaffPO staff11 = new StaffPO();
+        staff11.setSerialNum(10011);
+        staff11.setName("我是傻逼");
+        staff11.setGender(false);
+        staff11.setInstitution(10025);
+        staff11.setUserRole(UserRole.仓库管理员);
         
 
         try {
@@ -219,10 +226,12 @@ public class DataInitialization {
             companyDataService.add(staff8);
             companyDataService.add(staff9);
             companyDataService.add(staff10);
+            companyDataService.add(staff11);
             
             UserPO user10 = new UserPO(10010, "中转中心业务员", "123456"	, UserRole.中转中心业务员);
+            UserPO user11 = new UserPO(10011, "中转中心业务员", "123456"	, UserRole.仓库管理员);
             DataServiceFactory.getDataServiceByType(DataType.UserDataService).add(user10);
-
+            DataServiceFactory.getDataServiceByType(DataType.UserDataService).add(user11);
         } catch (RemoteException e) {
             e.printStackTrace();
         }

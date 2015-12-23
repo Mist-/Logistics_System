@@ -27,6 +27,20 @@ public class OrderList implements OrderListService {
 		return order;
 	}
 	
+	public double getWeight(long[] orderID){
+		ArrayList<OrderPO> order = new Order(loginMessage).search(orderID);
+		orders = order;
+		double weight = 0;
+		for(int i = 0 ; i < order.size();i++){
+			weight+= order.get(i).getWeight();
+		}
+		return weight;
+	}
+	
+	public int getNum(){
+		return orders.size();
+	}
+	
 	public OrderList(LoginMessage loginMessage){
 		orderDataService = (OrderDataService) DataServiceFactory.getDataServiceByType(DataType.OrderDataService);
 		this.loginMessage = loginMessage;

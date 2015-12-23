@@ -43,7 +43,7 @@ new FormModel {
 					"title": "已审批出库单"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :::p, par l {seq {comp scrollPane2:::p:786:p, space :p:32644:p, comp selectTransfer::::95:x}, seq {comp textField2:::p:337:p, space :::p, comp searchTransfer:::p::p, space :p:261:p, comp getTransferButton:::p:85:p, space :0:0:x}}, space :::p}}"
+					"$horizontalGroup": "par l {seq l {space :::p, par l {seq {comp scrollPane2:::p:786:p, space :p:32644:p, comp selectTransfer::::95:x}, seq {comp textField2:::p:337:p, space :::p, comp searchTransfer:::p::p, space :p:261:p, comp getTransferButton:::p:99:p, space :0:0:x}}, space :::p}}"
 					"$verticalGroup": "par l {seq t {space :::p, par b {comp textField2::b:p::p, comp searchTransfer::b:p:25:p, comp getTransferButton::b:p:33:p}, space :::p, par l {seq {space :0:236:x, comp selectTransfer:::p:46:p}, comp scrollPane2::::282:x}, space :::p}}"
 				} ) {
 					name: "transferList"
@@ -88,8 +88,8 @@ new FormModel {
 			name: "storageOutPane"
 			"font": &Font2 new java.awt.Font( "等线", 0, 14 )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {par l {seq {space :::p, comp label1:::p:70:p, space :p:10:p, comp transferListID:::p:109:p, space u:::p, comp label3:::p:56:p, space :::p, comp transferType:::p:83:p, space u:::p, comp label6:::p::p, space :::p, comp outDate:::p:88:p, space :0:0:x}, seq {comp scrollPane4:::p:690:p, space :::p, par l {comp storageOutCancel:::::x, comp saveStorageOut:::::x, comp doStorageOut::l:::x}}}, space :::p}}"
-				"$verticalGroup": "par l {seq t {space :::p, par l {comp label1:::p:25:p, par b {comp transferListID::b:p::p, comp label3::b:p:25:p, comp transferType::b:p::p, comp label6::b:p:25:p, comp outDate::b:p::p}}, space ::8:x, par l {seq t {comp doStorageOut:::p::p, space :::p, comp saveStorageOut:::p::p, space :::p, comp storageOutCancel:::p::p, space :::p}, comp scrollPane4::t:p:282:p}}}"
+				"$horizontalGroup": "par l {seq {space :::p, comp label1:::p:70:p, space :p:10:p, comp transferListID:::p:109:p, space u:::p, comp label3:::p:56:p, space :::p, comp transferType:::p:83:p, space u:::p, comp label6:::p::p, space :::p, comp outDate:::p:88:p, space :p:18:p, comp doStorageOut::::92:x, space :::p, comp saveStorageOut::::92:x, space :::p, comp storageOutCancel::::93:x, space :p:6:p}, comp scrollPane4::l::795:x}"
+				"$verticalGroup": "par l {seq t {par l {seq {space :::p, par l {comp label1:::p:25:p, par b {comp transferListID::b:p::p, comp label3::b:p:25:p, comp transferType::b:p::p, comp label6::b:p:25:p, comp outDate::b:p::p}}, space :::x}, seq t {space :::x, par b {comp storageOutCancel::b:p::p, comp saveStorageOut::b:p::p, comp doStorageOut::b:p::p}, space u:::p}}, comp scrollPane4:::p:282:p}}"
 			} ) {
 				name: "storageOutVO"
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -158,8 +158,8 @@ new FormModel {
 			name: "transferListPane"
 			"font": &Font3 new java.awt.Font( "等线", 0, 14 )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp scrollPane5:::::x, space :::p}, seq l {par l {seq {comp label9:::p::p, space :p:32:p, comp listID:::p:80:p, space :p:135:p, comp label16:::p::p, space :10:10:p, comp date:::p:80:p}, seq l {par t:::p {seq {comp label10:::p::p, space :::x, comp destName:::p:82:p}, seq {comp label11:::p::p, space :::x, comp destID:::p:82:p}, seq {comp label12:::p::p, space :::x, comp centerName:::p:82:p}, seq {comp label8:::p::p, space s:::p, comp centerID:::p:82:p}}, space :p:135:p, par l:::p {seq l {comp label15::::40:x, space s:::p, comp driverName:::p:80:p}, seq {comp label14:::::x, space s:::p, comp staffName:::p:80:p}, comp label13:::p:48:p}}, seq l {space :p:365:p, comp vehicleID:::p:80:p}}, space :p:221:p}}, par l:::p {comp cancelLoad::::109:x, comp createStorageOut::::109:x}, space :::p}}"
-				"$verticalGroup": "par l {seq l {space :::x, comp createStorageOut:::p:37:p, space :::p, comp cancelLoad:::p:33:p, space :p:26:p}, seq t {space :::p, par l {par b {comp label9::b:p::p, comp listID::b:p::p}, seq {space :3:3:p, comp label16:::p::p}, comp date:::p::p}, par l {seq t {space :::p, comp vehicleID:::p::p}, seq {space :9:9:p, par l {par b {comp label8::b:p::p, comp centerID::b:p::p}, comp label13:::p::p}}}, par l {seq {space :p:6:p, par l {comp label12:::p::p, par b {comp staffName::b:p::p, comp label14::b:p::p}}}, seq l {space :::p, comp centerName:::p::p}}, space :p:12:p, par l {seq {space :3:3:p, par l {comp label11:::p::p, par b {comp driverName::b:p::p, comp label15::b:p::p}}}, comp destID::l:p::p}, space :::p, par l {comp label10:::p::p, comp destName:::p::p}, space :::x, comp scrollPane5:::p:173:p}}"
+				"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp label9:::p::p, space :p:32:p, comp listID:::p:80:p, space :p:135:p, comp label16:::p::p, space :10:10:p, comp date:::p:80:p}, seq l {space :p:365:p, comp vehicleID:::p:80:p}, seq l {par t {seq {comp label10:::p::p, space :::x, comp destName:::p:82:p}, seq {comp label11:::p::p, space :::x, comp destID:::p:82:p}, seq {comp label12:::p::p, space :::x, comp centerName:::p:82:p}, seq {space :0:0:x, comp label8:::p::p, space s:::p, comp centerID:::p:82:p}}, space :p:135:p, par l {seq l {comp label15:::p:40:p, space s:::p, comp driverName:::p:80:p}, seq t {comp label14:::p:40:p, space s:::p, comp staffName:::p:80:p}, comp label13:::p:48:p}, space :p:92:p, comp createStorageOut:::p:109:p, space s:::p, comp cancelLoad:::p:109:p}}, space ::12:x}, comp scrollPane5::l::795:x}"
+				"$verticalGroup": "par l {seq t {space :::p, par l {par b {comp label9::b:p::p, comp listID::b:p::p}, seq {space :3:3:p, comp label16:::p::p}, comp date:::p::p}, par l {seq t {space :::p, comp vehicleID:::p::p}, seq {space :9:9:p, par l {par b {comp label8::b:p::p, comp centerID::b:p::p}, comp label13:::p::p}}}, par l {seq {space :p:6:p, par b {comp staffName::b:p::p, comp label14::b:p::p}}, seq l {space :::p, comp centerName:::p::p}, seq t {space :::p, comp label12:::p::p}}, par l {seq {space :p:12:p, par l {seq {space :3:3:p, par l {comp label11:::p::p, par b {comp driverName::b:p::p, comp label15::b:p::p}}}, comp destID::l:p::p}, space :p:14:p, par l {comp label10:::p::p, comp destName:::p::p}}, seq t {space :::p, par b {comp createStorageOut::b:p:37:p, comp cancelLoad::b:p:33:p}}}, space :::p, comp scrollPane5::::151:x}}"
 			} ) {
 				name: "DeliveryListPanel"
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -167,6 +167,8 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JTable" ) {
 						name: "loadTable"
 						"font": #Font3
+						"selectionMode": 0
+						"enabled": false
 					} )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
@@ -198,18 +200,23 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "listID"
+					"editable": false
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "centerID"
+					"editable": false
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "centerName"
+					"editable": false
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "destID"
+					"editable": false
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "destName"
+					"editable": false
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label13"
@@ -225,12 +232,15 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "vehicleID"
+					"editable": false
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "staffName"
+					"editable": false
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "driverName"
+					"editable": false
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label16"
@@ -238,6 +248,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "date"
+					"editable": false
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "createStorageOut"
