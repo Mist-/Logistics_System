@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="javax.swing.border.Border"/>
 <fullyQualifiedTypeName name="data.po.ArrivalPO"/>
 <fullyQualifiedTypeName name="data.vo.StorageInVO"/>
 <fullyQualifiedTypeName name="data.po.UserPO"/>
@@ -15,10 +14,7 @@
 <fullyQualifiedTypeName name="presentation.company.companyManage"/>
 <fullyQualifiedTypeName name="data.service.CompanyDataService"/>
 <fullyQualifiedTypeName name="data.po.SenderPO"/>
-<fullyQualifiedTypeName name="data.po.StaffPO"/>
 <fullyQualifiedTypeName name="businesslogic.service.order.OrderListService"/>
-<fullyQualifiedTypeName name="businesslogic.impl.order.OrderList"/>
-<fullyQualifiedTypeName name="data.message.LoginMessage"/>
 <fullyQualifiedTypeName name="data.service.DataService"/>
 <fullyQualifiedTypeName name="java.lang.Double"/>
 <fullyQualifiedTypeName name="data.po.ReceiptPO"/>
@@ -41,7 +37,6 @@
 <fullyQualifiedTypeName name="data.vo.TransferListVO"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="data.enums.StockStatus"/>
-<fullyQualifiedTypeName name="java.lang.Long"/>
 <fullyQualifiedTypeName name="data.service.StorageDataService"/>
 <fullyQualifiedTypeName name="utils.DataServiceFactory"/>
 <fullyQualifiedTypeName name="data.enums.DataType"/>
@@ -55,9 +50,14 @@
 <fullyQualifiedTypeName name="data.po.StorageInListPO"/>
 <fullyQualifiedTypeName name="data.po.StorageOutListPO"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="data.po.StorageListPO"/>
+<fullyQualifiedTypeName name="java.awt.BorderLayout"/>
+<fullyQualifiedTypeName name="java.lang.Long"/>
+<fullyQualifiedTypeName name="businesslogic.impl.order.OrderList"/>
+<fullyQualifiedTypeName name="data.message.LoginMessage"/>
 <fullyQualifiedTypeName name="data.message.ResultMessage"/>
 <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 <fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
-<fullyQualifiedTypeName name="java.awt.BorderLayout"/>
-<fullyQualifiedTypeName name="data.po.StorageListPO"/>
+<fullyQualifiedTypeName name="data.po.StaffPO"/>
+<fullyQualifiedTypeName name="data.vo.SendListVO"/>
 </qualifiedTypeNameHistroy>

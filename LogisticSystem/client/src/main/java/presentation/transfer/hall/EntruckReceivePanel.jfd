@@ -136,7 +136,7 @@ new FormModel {
 				"title": "到达单"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 385 )
+			"location": new java.awt.Point( 35, 385 )
 			"size": new java.awt.Dimension( 800, 350 )
 		} )
 		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
@@ -260,7 +260,7 @@ new FormModel {
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "resultSureButtonMouseClicked", true ) )
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 820, 495 )
+			"location": new java.awt.Point( 865, 490 )
 			"size": new java.awt.Dimension( 320, 200 )
 		} )
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
@@ -314,7 +314,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"size": new java.awt.Dimension( 275, 200 )
-			"location": new java.awt.Point( 0, 1105 )
+			"location": new java.awt.Point( 820, 1080 )
 		} )
 	}
 }

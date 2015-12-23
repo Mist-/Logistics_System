@@ -37,11 +37,6 @@ public class StorageInPanel extends JPanel {
 		this.repaint();
 	}
 	
-	
-
-	
-	
-	
 	private void setList(){
 		selectArrival.setEnabled(false);
 		selectStorageIn.setEnabled(false);
@@ -76,8 +71,11 @@ public class StorageInPanel extends JPanel {
 		storageInVO.validate();
 		storageInVO.updateUI();
 		
+		if(listPane != null)
 		remove(listPane);
+		if(arrivalVO != null)
 		remove(arrivalVO);
+		
 		add(storageInVO,BorderLayout.CENTER);
 		storageInVO.updateUI();
 		storageInVO.setVisible(true);
@@ -86,15 +84,19 @@ public class StorageInPanel extends JPanel {
 	private void setArrival(ArrivalVO vo) {
 		DefaultTableModel model = new DefaultTableModel(vo.getOrderAndStatus(),vo.getHeader());
 		arrivalTable.setModel(model);
+		arrivalTable.setEnabled(false);
 		arrivalTable.updateUI();
 		transferID.setText(vo.getDeliveryListNum());
 		from.setText(vo.getFromName());
 		arrivalDate.setText(vo.getDate());
+		transferID.setEnabled(false);
+		from.setEnabled(false);
+		arrivalDate.setEnabled(false);
+		
 		remove(listPane);
 		remove(storageInVO);
 		add(arrivalVO);
 		
-		arrivalVO.validate();
 		arrivalVO.updateUI();
 		this.repaint();
 	}
@@ -166,12 +168,13 @@ public class StorageInPanel extends JPanel {
 		}
 		if (result == ResultMessage.SUCCESS) {
 			JOptionPane.showMessageDialog(null, "保存成功", "提示", JOptionPane.INFORMATION_MESSAGE);
-			DefaultTableModel model = (DefaultTableModel) arrivalTable.getModel();
+			DefaultTableModel model = (DefaultTableModel) arriveListTable.getModel();
 			model.removeRow(arriveListTable.getSelectedRow());
 			arriveListTable.setModel(model);
 			arriveListTable.updateUI();
 			arriveListTable.repaint();
 			remove(storageInVO);
+			remove(arrivalVO);
 			add(listPane,BorderLayout.CENTER);
 			listPane.updateUI();
 			listPane.setVisible(true);

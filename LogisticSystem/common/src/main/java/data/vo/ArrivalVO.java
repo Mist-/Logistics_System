@@ -20,6 +20,9 @@ public class ArrivalVO {
     String  fromNum;//出发地编号
 	String destName;//到达地
 	String destID;
+	String[] header = {"订单编号","订单状态"};
+	long id;
+	long transferList;//中转中心编号
     public String getDestID() {
 		return destID;
 	}
@@ -29,9 +32,7 @@ public class ArrivalVO {
 		this.destID = destID;
 	}
 
-	String[] header = {"订单编号","订单状态"};
-	long id;
-	long transferList;//中转中心编号
+
 	public ArrivalVO(){
 	}
 

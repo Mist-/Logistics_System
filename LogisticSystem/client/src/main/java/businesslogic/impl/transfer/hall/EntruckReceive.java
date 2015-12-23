@@ -136,6 +136,7 @@ public class EntruckReceive implements EntruckReceiveService{
 		OrderListService orderList = new OrderList(new LoginMessage(ResultMessage.SUCCESS));
 		orderList.modifyOrder(roundOrder, "由"+user.getInstitutionName()+"接收");
 		orderList.modifyOrder(lostOrder, "订单于"+user.getInstitutionName()+"丢失");
+		orderList.modifyOrderPosition(roundOrder);
 		return ResultMessage.SUCCESS;
 	}
 	

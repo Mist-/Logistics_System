@@ -16,6 +16,7 @@ import data.vo.ArrivalListVO;
 import data.vo.ArrivalVO;
 import data.vo.DeliveryListVO;
 import data.vo.EntruckListVO;
+import data.vo.SendListVO;
 import data.vo.TransferListVO;
 import businesslogic.service.Transfer.hall.EntruckReceiveService;
 
@@ -28,7 +29,7 @@ public class EntruckReceivePanel extends JPanel {
 	TransferListVO transferList;
 	EntruckListVO entruckList;
 	ArrivalListVO arrivalList;
-	
+	SendListVO sendList;
 	public EntruckReceivePanel(EntruckReceiveService entruckReceive) {
 		this.entruckReceive = entruckReceive;
 		initComponents();
@@ -224,6 +225,7 @@ public class EntruckReceivePanel extends JPanel {
 		ResultMessage result = ResultMessage.FAILED;
 		try {
 			result = entruckReceive.doArrive();
+			sendList = entruckReceive.createSendList(arrival.getId());
 		} catch (RemoteException e1) {
 			JOptionPane.showMessageDialog(null, "网络连接中断", "提示", JOptionPane.INFORMATION_MESSAGE);
 			e1.printStackTrace();

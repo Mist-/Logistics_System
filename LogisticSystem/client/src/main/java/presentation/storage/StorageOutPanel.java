@@ -151,11 +151,12 @@ public class StorageOutPanel extends JPanel {
 		 transferListVO =storageOut.getTransferList(id);
 		setTransferList(transferListVO);
 	}
+	
 
 	private void createStorageOutMouseReleased(MouseEvent e) {
 		out = storageOut.createStorageOutList();
-		setStorageOut();
 		setStorageOutDisabled();
+		setStorageOut();
 		remove(transferListPane);
 		add(storageOutPane,BorderLayout.CENTER);
 		storageOutPane.updateUI();
@@ -392,7 +393,7 @@ public class StorageOutPanel extends JPanel {
 									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 									.addComponent(searchTransfer)
 									.addGap(261, 261, 261)
-									.addComponent(getTransferButton, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+									.addComponent(getTransferButton, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
 									.addGap(0, 0, Short.MAX_VALUE)))
 							.addContainerGap())
 				);
@@ -489,52 +490,50 @@ public class StorageOutPanel extends JPanel {
 				storageOutVOLayout.setHorizontalGroup(
 					storageOutVOLayout.createParallelGroup()
 						.addGroup(storageOutVOLayout.createSequentialGroup()
-							.addGroup(storageOutVOLayout.createParallelGroup()
-								.addGroup(storageOutVOLayout.createSequentialGroup()
-									.addContainerGap()
-									.addComponent(label1, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-									.addGap(10, 10, 10)
-									.addComponent(transferListID, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-									.addComponent(label3, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(transferType, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-									.addComponent(label6)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(outDate, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
-									.addGap(0, 0, Short.MAX_VALUE))
-								.addGroup(storageOutVOLayout.createSequentialGroup()
-									.addComponent(scrollPane4, GroupLayout.PREFERRED_SIZE, 690, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addGroup(storageOutVOLayout.createParallelGroup()
-										.addComponent(storageOutCancel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(saveStorageOut, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(doStorageOut, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-							.addContainerGap())
+							.addContainerGap()
+							.addComponent(label1, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+							.addGap(10, 10, 10)
+							.addComponent(transferListID, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+							.addComponent(label3, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(transferType, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+							.addComponent(label6)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(outDate, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
+							.addGap(18, 18, 18)
+							.addComponent(doStorageOut, GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(saveStorageOut, GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(storageOutCancel, GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+							.addGap(6, 6, 6))
+						.addComponent(scrollPane4, GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
 				);
 				storageOutVOLayout.setVerticalGroup(
 					storageOutVOLayout.createParallelGroup()
 						.addGroup(GroupLayout.Alignment.TRAILING, storageOutVOLayout.createSequentialGroup()
-							.addContainerGap()
 							.addGroup(storageOutVOLayout.createParallelGroup()
-								.addComponent(label1, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-								.addGroup(storageOutVOLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-									.addComponent(transferListID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addComponent(label3, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-									.addComponent(transferType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addComponent(label6, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-									.addComponent(outDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-							.addGroup(storageOutVOLayout.createParallelGroup()
+								.addGroup(storageOutVOLayout.createSequentialGroup()
+									.addContainerGap()
+									.addGroup(storageOutVOLayout.createParallelGroup()
+										.addComponent(label1, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+										.addGroup(storageOutVOLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+											.addComponent(transferListID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addComponent(label3, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+											.addComponent(transferType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addComponent(label6, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+											.addComponent(outDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 								.addGroup(GroupLayout.Alignment.TRAILING, storageOutVOLayout.createSequentialGroup()
-									.addComponent(doStorageOut)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(saveStorageOut)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(storageOutCancel)
-									.addContainerGap())
-								.addComponent(scrollPane4, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE)))
+									.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addGroup(storageOutVOLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+										.addComponent(storageOutCancel)
+										.addComponent(saveStorageOut)
+										.addComponent(doStorageOut))
+									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)))
+							.addComponent(scrollPane4, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE))
 				);
 			}
 			storageOutPane.addTab("\u51fa\u5e93\u5355", storageOutVO);
@@ -552,6 +551,8 @@ public class StorageOutPanel extends JPanel {
 
 					//---- loadTable ----
 					loadTable.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+					loadTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+					loadTable.setEnabled(false);
 					scrollPane5.setViewportView(loadTable);
 				}
 
@@ -581,6 +582,21 @@ public class StorageOutPanel extends JPanel {
 				//---- label12 ----
 				label12.setText("\u4e2d\u8f6c\u4e2d\u5fc3");
 
+				//---- listID ----
+				listID.setEditable(false);
+
+				//---- centerID ----
+				centerID.setEditable(false);
+
+				//---- centerName ----
+				centerName.setEditable(false);
+
+				//---- destID ----
+				destID.setEditable(false);
+
+				//---- destName ----
+				destName.setEditable(false);
+
 				//---- label13 ----
 				label13.setText("\u73ed\u6b21  ");
 
@@ -590,8 +606,20 @@ public class StorageOutPanel extends JPanel {
 				//---- label15 ----
 				label15.setText("\u62bc\u8fd0\u5458");
 
+				//---- vehicleID ----
+				vehicleID.setEditable(false);
+
+				//---- staffName ----
+				staffName.setEditable(false);
+
+				//---- driverName ----
+				driverName.setEditable(false);
+
 				//---- label16 ----
 				label16.setText("\u88c5\u8fd0\u65e5\u671f");
+
+				//---- date ----
+				date.setEditable(false);
 
 				//---- createStorageOut ----
 				createStorageOut.setText("\u51fa\u5e93");
@@ -612,64 +640,55 @@ public class StorageOutPanel extends JPanel {
 							.addContainerGap()
 							.addGroup(DeliveryListPanelLayout.createParallelGroup()
 								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
-									.addComponent(scrollPane5)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED))
+									.addComponent(label9)
+									.addGap(32, 32, 32)
+									.addComponent(listID, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+									.addGap(135, 135, 135)
+									.addComponent(label16)
+									.addGap(10, 10, 10)
+									.addComponent(date, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
 								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+									.addGap(365, 365, 365)
+									.addComponent(vehicleID, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
+								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+									.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+											.addComponent(label10)
+											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addComponent(destName, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE))
+										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+											.addComponent(label11)
+											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addComponent(destID, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE))
+										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+											.addComponent(label12)
+											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addComponent(centerName, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE))
+										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+											.addGap(0, 0, Short.MAX_VALUE)
+											.addComponent(label8)
+											.addGap(18, 18, 18)
+											.addComponent(centerID, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)))
+									.addGap(135, 135, 135)
 									.addGroup(DeliveryListPanelLayout.createParallelGroup()
 										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
-											.addComponent(label9)
-											.addGap(32, 32, 32)
-											.addComponent(listID, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-											.addGap(135, 135, 135)
-											.addComponent(label16)
-											.addGap(10, 10, 10)
-											.addComponent(date, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
-										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
-											.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-												.addGroup(DeliveryListPanelLayout.createSequentialGroup()
-													.addComponent(label10)
-													.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-													.addComponent(destName, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE))
-												.addGroup(DeliveryListPanelLayout.createSequentialGroup()
-													.addComponent(label11)
-													.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-													.addComponent(destID, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE))
-												.addGroup(DeliveryListPanelLayout.createSequentialGroup()
-													.addComponent(label12)
-													.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-													.addComponent(centerName, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE))
-												.addGroup(DeliveryListPanelLayout.createSequentialGroup()
-													.addComponent(label8)
-													.addGap(18, 18, 18)
-													.addComponent(centerID, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)))
-											.addGap(135, 135, 135)
-											.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-												.addGroup(DeliveryListPanelLayout.createSequentialGroup()
-													.addComponent(label15, GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-													.addGap(18, 18, 18)
-													.addComponent(driverName, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
-												.addGroup(DeliveryListPanelLayout.createSequentialGroup()
-													.addComponent(label14, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-													.addGap(18, 18, 18)
-													.addComponent(staffName, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
-												.addComponent(label13, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)))
-										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
-											.addGap(365, 365, 365)
-											.addComponent(vehicleID, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)))
-									.addGap(221, 221, 221)))
-							.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-								.addComponent(cancelLoad, GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
-								.addComponent(createStorageOut, GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE))
-							.addContainerGap())
+											.addComponent(label15, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+											.addGap(18, 18, 18)
+											.addComponent(driverName, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
+										.addGroup(GroupLayout.Alignment.TRAILING, DeliveryListPanelLayout.createSequentialGroup()
+											.addComponent(label14, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+											.addGap(18, 18, 18)
+											.addComponent(staffName, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
+										.addComponent(label13, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
+									.addGap(92, 92, 92)
+									.addComponent(createStorageOut, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+									.addGap(18, 18, 18)
+									.addComponent(cancelLoad, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)))
+							.addContainerGap(12, Short.MAX_VALUE))
+						.addComponent(scrollPane5, GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
 				);
 				DeliveryListPanelLayout.setVerticalGroup(
 					DeliveryListPanelLayout.createParallelGroup()
-						.addGroup(DeliveryListPanelLayout.createSequentialGroup()
-							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(createStorageOut, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(cancelLoad, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-							.addGap(26, 26, 26))
 						.addGroup(GroupLayout.Alignment.TRAILING, DeliveryListPanelLayout.createSequentialGroup()
 							.addContainerGap()
 							.addGroup(DeliveryListPanelLayout.createParallelGroup()
@@ -694,30 +713,38 @@ public class StorageOutPanel extends JPanel {
 							.addGroup(DeliveryListPanelLayout.createParallelGroup()
 								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
 									.addGap(6, 6, 6)
-									.addGroup(DeliveryListPanelLayout.createParallelGroup()
-										.addComponent(label12)
-										.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-											.addComponent(staffName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addComponent(label14))))
+									.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+										.addComponent(staffName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(label14)))
 								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
 									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(centerName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-							.addGap(12, 12, 12)
+									.addComponent(centerName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addGroup(GroupLayout.Alignment.TRAILING, DeliveryListPanelLayout.createSequentialGroup()
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(label12)))
 							.addGroup(DeliveryListPanelLayout.createParallelGroup()
 								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
-									.addGap(3, 3, 3)
+									.addGap(12, 12, 12)
 									.addGroup(DeliveryListPanelLayout.createParallelGroup()
-										.addComponent(label11)
-										.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-											.addComponent(driverName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addComponent(label15))))
-								.addComponent(destID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+											.addGap(3, 3, 3)
+											.addGroup(DeliveryListPanelLayout.createParallelGroup()
+												.addComponent(label11)
+												.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+													.addComponent(driverName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+													.addComponent(label15))))
+										.addComponent(destID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+									.addGap(14, 14, 14)
+									.addGroup(DeliveryListPanelLayout.createParallelGroup()
+										.addComponent(label10)
+										.addComponent(destName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+								.addGroup(GroupLayout.Alignment.TRAILING, DeliveryListPanelLayout.createSequentialGroup()
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+										.addComponent(createStorageOut, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+										.addComponent(cancelLoad, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))))
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(DeliveryListPanelLayout.createParallelGroup()
-								.addComponent(label10)
-								.addComponent(destName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(scrollPane5, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE))
+							.addComponent(scrollPane5, GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
 				);
 			}
 			transferListPane.addTab("\u4e2d\u8f6c\u5355", DeliveryListPanel);
