@@ -1,5 +1,0 @@
-package businesslogic.service.Transfer.hall;
-
-public interface ReceiveMoneyService {
-	
-}

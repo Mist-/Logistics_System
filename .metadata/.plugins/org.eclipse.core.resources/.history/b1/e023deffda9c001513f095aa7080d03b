@@ -1,9 +1,0 @@
-package data.vo;
-
-public class StorageListVO {
-	String[][] ListInfo;
-	
-	public StorageListVO(String[][] ListInfo){
-	}
-	
-}

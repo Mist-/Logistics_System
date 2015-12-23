@@ -32,7 +32,7 @@ public class SimplifiedOrderUI extends JFrame {
 
     private void btSearchMouseReleased(MouseEvent e) {
 
-        if (!textOrderNum.getText().matches("[0-9]*") || textOrderNum.getText().length() != 10) {
+        if (!textOrderNum.getText().matches("[0-9]+")) {
             JOptionPane.showMessageDialog(this, "订单号必须是由0-9组成的10位数字", "LCS物流管理系统", JOptionPane.INFORMATION_MESSAGE);
             textOrderNum.requestFocus();
             return;

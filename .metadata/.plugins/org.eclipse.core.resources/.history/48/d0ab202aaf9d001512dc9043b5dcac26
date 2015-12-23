@@ -1,5 +1,0 @@
-package businesslogic.impl.storage;
-
-public interface ArrivalListService {
-
-}
