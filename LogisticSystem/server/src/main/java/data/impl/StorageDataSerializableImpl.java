@@ -79,22 +79,25 @@ public class StorageDataSerializableImpl extends UnicastRemoteObject implements 
 	@Override
 	public ArrayList<DataPO> getNewlyApprovedPO(POType type, long institution) {
 		ArrayList<DataPO> result = new ArrayList<>();
-		for (DataPO data: newlyApproved) {
-			if (data.getPOType() == type) {
+		for (int i = 0; i < newlyApproved.size(); ++i) {
+			if (newlyApproved.get(i).getPOType() == type) {
 				switch (type) {
 					case STORAGEINLIST:
-						if (((StorageInListPO)data).getTransferNum() == institution) {
-							result.add(data);
+						if (((StorageInListPO) newlyApproved.get(i)).getTransferNum() == institution) {
+							result.add(newlyApproved.get(i));
+							newlyApproved.remove(i);
 						}
 						break;
 					case STORAGEOUTLIST:
-						if (((StorageOutListPO)data).getTransferNum() == institution) {
-							result.add(data);
+						if (((StorageOutListPO) newlyApproved.get(i)).getTransferNum() == institution) {
+							result.add(newlyApproved.get(i));
+							newlyApproved.remove(i);
 						}
 						break;
                     case STORAGEINFO:
-                        if (((StorageInfoPO)data).getTransferCenterNum() == institution) {
-                            result.add(data);
+                        if (((StorageInfoPO) newlyApproved.get(i)).getTransferCenterNum() == institution) {
+                            result.add(newlyApproved.get(i));
+							newlyApproved.remove(i);
                         }
                         break;
 				}

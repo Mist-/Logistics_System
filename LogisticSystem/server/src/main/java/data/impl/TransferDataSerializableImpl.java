@@ -79,23 +79,26 @@ public class TransferDataSerializableImpl extends UnicastRemoteObject implements
     public ArrayList<DataPO> getNewlyApprovedPO(POType type, long institution) {
         ArrayList<DataPO> result = new ArrayList<>();
         System.out.println(institution);
-        for (DataPO data: newlyApproved) {
-        	System.out.println(data.getSerialNum());
-            if (data.getPOType() == type) {
+        for (int i = 0; i < newlyApproved.size(); ++i) {
+        	System.out.println(newlyApproved.get(i).getSerialNum());
+            if (newlyApproved.get(i).getPOType() == type) {
                 switch (type) {
                     case ARRIVAL:
-                        if (((ArrivalPO)data).getDestID() == institution) {
-                            result.add(data);
+                        if (((ArrivalPO)newlyApproved.get(i)).getDestID() == institution) {
+                            result.add(newlyApproved.get(i));
+                            newlyApproved.remove(i);
                         }
                         break;
                     case TRANSFERLIST:
-                        if (((TransferListPO)data).getTransferCenter() == institution) {
-                            result.add(data);
+                        if (((TransferListPO)newlyApproved.get(i)).getTransferCenter() == institution) {
+                            result.add(newlyApproved.get(i));
+                            newlyApproved.remove(i);
                         }
                         break;
                     case ENTRUCK:
-                        if (((EntruckPO)data).getFromID() == institution) {
-                            result.add(data);
+                        if (((EntruckPO)newlyApproved.get(i)).getFromID() == institution) {
+                            result.add(newlyApproved.get(i));
+                            newlyApproved.remove(i);
                         }
                         break;
                 }
