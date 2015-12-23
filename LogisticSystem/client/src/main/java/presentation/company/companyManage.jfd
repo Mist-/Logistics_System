@@ -108,29 +108,24 @@ new FormModel {
 							name: "buttonApproveData"
 							"text": "审批单据"
 							"font": #Font0
-							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonAddSalaryMouseClicked", true ) )
-							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonAddStaffMouseClicked", true ) )
 							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonApproveDataMouseClicked", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JButton" ) {
 							name: "buttonApproveAll"
 							"text": "全部审批"
 							"font": #Font0
-							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonAddSalaryMouseClicked", true ) )
 							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonApproveAllMouseClicked", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JButton" ) {
 							name: "buttonModifyData"
 							"text": "修改单据"
 							"font": #Font0
-							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonAddSalaryMouseClicked", true ) )
 							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonModifyDataMouseClicked", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JButton" ) {
 							name: "buttonExitApprove"
 							"text": "退出系统"
 							"font": #Font0
-							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonAddSalaryMouseClicked", true ) )
 							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonExitApproveMouseClicked", true ) )
 						} )
 					}, new FormLayoutConstraints( class java.lang.String ) {
@@ -180,7 +175,6 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JToggleButton" ) {
 					name: "buttonStaff"
 					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/institution_72x72.png" )
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonSalary2MouseClicked", true ) )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonStaffMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JToggleButton" ) {
@@ -217,8 +211,8 @@ new FormModel {
 			"size": new java.awt.Dimension( 925, 590 )
 		} )
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :::p, comp scrollPanelSalary:::p:615:p, space :::p, par l {comp buttonAddSalary::t::149:x, seq l {comp labelSalarySuccess:::p:144:p, space :0:5:x}, comp buttonModifySalary::::149:x, comp buttonExitSalary::t::149:x}, space :::p}}"
-			"$verticalGroup": "par l {seq l {space :::p, par l {comp scrollPanelSalary::::350:x, seq {comp labelSalarySuccess:::p:48:p, space :::p, comp buttonAddSalary:::p::p, space :::p, comp buttonModifySalary:::p::p, space ::194:x, comp buttonExitSalary:::p::p}}, space :::p}}"
+			"$horizontalGroup": "par l {seq l {space :::p, comp scrollPanelSalary::::631:x, space :::p, par l:::p {comp buttonModifySalary::t::133:x, comp buttonAddSalary::t::133:x, comp buttonExitSalary::t::133:x, comp labelSalarySuccess::t::133:x}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :::p, par l {seq {comp scrollPanelSalary::::350:x, space :::p}, seq {comp labelSalarySuccess:::p:48:p, space :::p, comp buttonAddSalary:::p::p, space :::p, comp buttonModifySalary:::p::p, space ::186:x, comp buttonExitSalary:::p::p, space :p:14:p}}}}"
 		} ) {
 			name: "panelSalary"
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -238,7 +232,6 @@ new FormModel {
 				name: "buttonModifySalary"
 				"text": "保存修改"
 				"font": #Font2
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonModifySalaryMouseClicked", true ) )
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonModifySalaryMouseClicked", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
@@ -441,28 +434,24 @@ new FormModel {
 				name: "buttonAddStaff"
 				"text": "添加员工"
 				"font": #Font4
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonAddSalaryMouseClicked", true ) )
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonAddStaffMouseClicked", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "buttonMoveStaff"
 				"text": "移动员工"
 				"font": #Font4
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonAddSalaryMouseClicked", true ) )
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonMoveStaffMouseClicked", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "buttonDeleteStaff"
 				"text": "删除员工"
 				"font": #Font4
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonAddSalaryMouseClicked", true ) )
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonDeleteStaffMouseClicked", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "buttonExitStaff"
 				"text": "退出系统"
 				"font": #Font4
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonAddSalaryMouseClicked", true ) )
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "buttonExitStaffMouseClicked", true ) )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {

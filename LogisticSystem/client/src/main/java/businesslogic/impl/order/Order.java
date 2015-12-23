@@ -89,6 +89,7 @@ public class Order {
         LogisticInfoPO logisticInfoPO =  new LogisticInfoPO(newOrder.getSerialNum());
         logisticInfoPO.addInfo(Timestamper.getTimeBySecond(), "快递员已揽件。");
         newOrder.setRoutine(getRoutine(order.saddress, order.raddress));
+        newOrder.setTransferType(getTransportType(order));
         // 提交订单
         try {
             orderDataService.add(newOrder);

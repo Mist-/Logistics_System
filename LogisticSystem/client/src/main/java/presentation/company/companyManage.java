@@ -1806,8 +1806,6 @@ public class companyManage extends JFrame {
                     buttonApproveData.addMouseListener(new MouseAdapter() {
                         @Override
                         public void mouseClicked(MouseEvent e) {
-                            buttonAddSalaryMouseClicked(e);
-                            buttonAddStaffMouseClicked(e);
                             buttonApproveDataMouseClicked(e);
                         }
                     });
@@ -1818,7 +1816,6 @@ public class companyManage extends JFrame {
                     buttonApproveAll.addMouseListener(new MouseAdapter() {
                         @Override
                         public void mouseClicked(MouseEvent e) {
-                            buttonAddSalaryMouseClicked(e);
                             buttonApproveAllMouseClicked(e);
                         }
                     });
@@ -1829,7 +1826,6 @@ public class companyManage extends JFrame {
                     buttonModifyData.addMouseListener(new MouseAdapter() {
                         @Override
                         public void mouseClicked(MouseEvent e) {
-                            buttonAddSalaryMouseClicked(e);
                             buttonModifyDataMouseClicked(e);
                         }
                     });
@@ -1840,7 +1836,6 @@ public class companyManage extends JFrame {
                     buttonExitApprove.addMouseListener(new MouseAdapter() {
                         @Override
                         public void mouseClicked(MouseEvent e) {
-                            buttonAddSalaryMouseClicked(e);
                             buttonExitApproveMouseClicked(e);
                         }
                     });
@@ -1923,7 +1918,6 @@ public class companyManage extends JFrame {
             buttonStaff.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    buttonSalary2MouseClicked(e);
                     buttonStaffMouseClicked(e);
                 }
             });
@@ -2086,15 +2080,13 @@ public class companyManage extends JFrame {
                 panelSalaryLayout.createParallelGroup()
                     .addGroup(panelSalaryLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(scrollPanelSalary, GroupLayout.PREFERRED_SIZE, 615, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(scrollPanelSalary, GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelSalaryLayout.createParallelGroup()
-                            .addComponent(buttonAddSalary, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                            .addGroup(panelSalaryLayout.createSequentialGroup()
-                                .addComponent(labelSalarySuccess, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 5, Short.MAX_VALUE))
-                            .addComponent(buttonModifySalary, GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                            .addComponent(buttonExitSalary, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
+                        .addGroup(panelSalaryLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addComponent(buttonModifySalary, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+                            .addComponent(buttonAddSalary, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+                            .addComponent(buttonExitSalary, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+                            .addComponent(labelSalarySuccess, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE))
                         .addContainerGap())
             );
             panelSalaryLayout.setVerticalGroup(
@@ -2102,16 +2094,18 @@ public class companyManage extends JFrame {
                     .addGroup(panelSalaryLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(panelSalaryLayout.createParallelGroup()
-                            .addComponent(scrollPanelSalary, GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                            .addGroup(panelSalaryLayout.createSequentialGroup()
+                                .addComponent(scrollPanelSalary, GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                                .addContainerGap())
                             .addGroup(panelSalaryLayout.createSequentialGroup()
                                 .addComponent(labelSalarySuccess, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(buttonAddSalary)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(buttonModifySalary)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
-                                .addComponent(buttonExitSalary)))
-                        .addContainerGap())
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
+                                .addComponent(buttonExitSalary)
+                                .addGap(14, 14, 14))))
             );
         }
 
@@ -2422,7 +2416,6 @@ public class companyManage extends JFrame {
             buttonAddStaff.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    buttonAddSalaryMouseClicked(e);
                     buttonAddStaffMouseClicked(e);
                 }
             });
@@ -2433,7 +2426,6 @@ public class companyManage extends JFrame {
             buttonMoveStaff.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    buttonAddSalaryMouseClicked(e);
                     buttonMoveStaffMouseClicked(e);
                 }
             });
@@ -2444,7 +2436,6 @@ public class companyManage extends JFrame {
             buttonDeleteStaff.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    buttonAddSalaryMouseClicked(e);
                     buttonDeleteStaffMouseClicked(e);
                 }
             });
@@ -2455,7 +2446,6 @@ public class companyManage extends JFrame {
             buttonExitStaff.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    buttonAddSalaryMouseClicked(e);
                     buttonExitStaffMouseClicked(e);
                 }
             });

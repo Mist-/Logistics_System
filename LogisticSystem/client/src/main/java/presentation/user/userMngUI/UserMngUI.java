@@ -298,7 +298,7 @@ public class UserMngUI extends JFrame {
                 tfOrderInput.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
                 //---- btSearch ----
-                btSearch.setIcon(new ImageIcon("D:\\DATA\\Project\\GUI\\resources\\search_16x16.png"));
+                btSearch.setIcon(new ImageIcon(getClass().getResource("/icons/search_16x16.png")));
                 btSearch.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
                 btSearch.addMouseListener(new MouseAdapter() {
                     @Override
@@ -342,6 +342,7 @@ public class UserMngUI extends JFrame {
                 //---- btDelete ----
                 btDelete.setIcon(new ImageIcon(getClass().getResource("/icons/delete_24x24.png")));
                 btDelete.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+                btDelete.setText("\u5220\u9664");
                 btDelete.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseReleased(MouseEvent e) {
@@ -352,6 +353,7 @@ public class UserMngUI extends JFrame {
                 //---- btAdd ----
                 btAdd.setIcon(new ImageIcon(getClass().getResource("/icons/new_24x24.png")));
                 btAdd.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+                btAdd.setText("\u65b0\u5efa");
                 btAdd.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseReleased(MouseEvent e) {
@@ -362,6 +364,7 @@ public class UserMngUI extends JFrame {
                 //---- btRe ----
                 btRe.setIcon(new ImageIcon(getClass().getResource("/icons/recover_24x24.png")));
                 btRe.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+                btRe.setText("\u6062\u590d");
                 btRe.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseReleased(MouseEvent e) {
@@ -377,13 +380,13 @@ public class UserMngUI extends JFrame {
                             .addContainerGap()
                             .addGroup(panel3Layout.createParallelGroup()
                                 .addGroup(panel3Layout.createSequentialGroup()
-                                    .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 860, Short.MAX_VALUE)
+                                    .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(panel3Layout.createParallelGroup()
-                                        .addComponent(btRe, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(panel3Layout.createParallelGroup()
-                                            .addComponent(btDelete, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btAdd, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))))
+                                        .addGroup(GroupLayout.Alignment.TRAILING, panel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(btAdd, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                                            .addComponent(btDelete, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
+                                        .addComponent(btRe, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(panel3Layout.createSequentialGroup()
                                     .addComponent(lbOrderNum)
                                     .addGap(6, 6, 6)
@@ -395,23 +398,24 @@ public class UserMngUI extends JFrame {
                 );
                 panel3Layout.setVerticalGroup(
                     panel3Layout.createParallelGroup()
-                        .addGroup(panel3Layout.createSequentialGroup()
-                            .addGap(55, 55, 55)
-                            .addComponent(btAdd, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btDelete, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 287, Short.MAX_VALUE)
-                            .addComponent(btRe, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-                            .addGap(15, 15, 15))
-                        .addGroup(panel3Layout.createSequentialGroup()
-                            .addGroup(panel3Layout.createParallelGroup()
+                        .addGroup(GroupLayout.Alignment.TRAILING, panel3Layout.createSequentialGroup()
+                            .addGroup(panel3Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                 .addGroup(panel3Layout.createSequentialGroup()
-                                    .addGap(4, 4, 4)
-                                    .addComponent(lbOrderNum))
-                                .addComponent(tfOrderInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btSearch, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                                    .addGap(55, 55, 55)
+                                    .addComponent(btAdd, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btDelete, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 296, Short.MAX_VALUE)
+                                    .addComponent(btRe, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panel3Layout.createSequentialGroup()
+                                    .addGroup(panel3Layout.createParallelGroup()
+                                        .addGroup(panel3Layout.createSequentialGroup()
+                                            .addGap(4, 4, 4)
+                                            .addComponent(lbOrderNum))
+                                        .addComponent(tfOrderInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btSearch, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)))
                             .addContainerGap())
                 );
             }
@@ -430,7 +434,7 @@ public class UserMngUI extends JFrame {
                             .addGroup(panel2Layout.createSequentialGroup()
                                 .addGap(32, 32, 32)
                                 .addComponent(label1)
-                                .addGap(69, 69, 69)
+                                .addGap(66, 66, 66)
                                 .addComponent(label2)))
                         .addContainerGap(691, Short.MAX_VALUE))
                     .addComponent(panel3, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -443,9 +447,9 @@ public class UserMngUI extends JFrame {
                             .addComponent(tbActive, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
                             .addComponent(tbDeleted, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE))
                         .addGap(6, 6, 6)
-                        .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(label2)
-                            .addComponent(label1))
+                        .addGroup(panel2Layout.createParallelGroup()
+                            .addComponent(label1)
+                            .addComponent(label2))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
@@ -472,7 +476,7 @@ public class UserMngUI extends JFrame {
             tbUserInfo.getColumnModel().getColumn(i).setHeaderValue(names[i]);
         }
 
-        tbUserInfo.setRowHeight(50);
+        tbUserInfo.setRowHeight(35);
 
         tbActive.setSelected(true);
 
