@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import businesslogic.impl.order.OrderList;
 import businesslogic.impl.transfer.hall.ArrivalList;
 import businesslogic.impl.user.InstitutionInfo;
+import businesslogic.service.order.OrderListService;
 import businesslogic.service.storage.StorageInService;
 import data.enums.DataType;
 import data.enums.POType;
+import data.enums.StockStatus;
 import data.message.LoginMessage;
 import utils.DataServiceFactory;
 import utils.Timestamper;
@@ -162,15 +164,11 @@ public class StorageIn implements StorageInService{
 	 * @return result
 	 * @throws RemoteException
 	 */
-	public ResultMessage saveStorageInList(StorageInVO vo){
-		modifyArriveListState();
-		try {
+	public ResultMessage saveStorageInList(StorageInVO vo) throws RemoteException{
+		//modifyArriveListState();
 			storageInfo.saveStorageInfo();
 			return storageInList.saveStorageInList(vo);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return ResultMessage.FAILED;
-		}
+
 	}
 
 	public StorageIn(InstitutionInfo user,StorageInfo storageInfo,StorageDataService storageData) throws RemoteException {
@@ -181,6 +179,26 @@ public class StorageIn implements StorageInService{
 		orderList = new OrderList(new LoginMessage(ResultMessage.FAILED));
 		arrivalList = new ArrivalList(transferData);
 		storageInList = new StorageList(storageData, user.getCenterID(), POType.STORAGEINLIST);
+	}
+
+	@Override
+	public ResultMessage doArrive() throws RemoteException{
+		long[] roundOrder = null;
+		long[] lostOrder = null;
+		try {
+		roundOrder =  arrivalList.getOrder(StockStatus.ROUND);
+		lostOrder = arrivalList.getOrder(StockStatus.LOST);
+		
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return ResultMessage.FAILED;
+		}
+		//修改订单信息
+		OrderListService orderList = new OrderList(new LoginMessage(ResultMessage.SUCCESS));
+		orderList.modifyOrder(roundOrder, "由"+user.getInstitutionName()+"接收");
+		orderList.modifyOrder(lostOrder, "订单于"+user.getInstitutionName()+"丢失");
+		return ResultMessage.SUCCESS;
+		
 	}
 
 

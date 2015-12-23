@@ -66,6 +66,7 @@ public class ReceiveMoney implements ReceiveMoneyService{
 	
 	public ReceiveMoney(InstitutionInfo user){
 		this.user = user;
+		sender = new Sender(user.getInstitutionID());
 		orders = new OrderList(new LoginMessage(ResultMessage.SUCCESS));
 	}
 }

@@ -9,6 +9,8 @@ import data.vo.StorageInVO;
 
 public interface StorageInService {
 	
+	public ResultMessage doArrive() throws RemoteException;
+	
 	public BriefArrivalAndStorageInVO newStorageIn();
 
 	public ArrivalVO getArriveList(long arrivalID);
@@ -19,5 +21,5 @@ public interface StorageInService {
 
 	public ResultMessage doStorageIn(long storageInID) throws RemoteException;
 
-	public ResultMessage saveStorageInList(StorageInVO vo);
+	public ResultMessage saveStorageInList(StorageInVO vo) throws RemoteException;
 }

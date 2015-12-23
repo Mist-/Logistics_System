@@ -45,7 +45,7 @@ public class TransferReceivePanel extends JPanel {
 	public TransferReceivePanel(TransferReceiveService transferReceive) {
 		this.transferReceive = transferReceive;
 		initComponents();
-		showArriveList();
+		//showArriveList(); 本panel不再查找新生成的到达单，改为入库时查找
 		selectArrival.setEnabled(false);
 		this.setVisible(true);
 	}
@@ -60,6 +60,8 @@ public class TransferReceivePanel extends JPanel {
 		if (selectArrival.isEnabled()) {
 			saveArrival.setVisible(false);
 			doArrive.setVisible(true);
+			modifyStatus.setEnabled(false);
+			statusBox.setEnabled(false);
 			int row = arriveListTabble.getSelectedRow();
 			String info = (String) arriveListTabble.getValueAt(row, 0);
 			long id = Long.parseLong(info);
@@ -86,7 +88,9 @@ public class TransferReceivePanel extends JPanel {
 		DefaultComboBoxModel<String> model1 = new DefaultComboBoxModel<String>(item);
 		statusBox.setModel(model1);
 		statusBox.updateUI();
-		
+		transferID.setEnabled(false);
+		from.setEnabled(false);
+		arrivalDate.setEnabled(false);
 		remove(startPane);
 		if(deliveryVO != null)
 		remove(deliveryVO);
@@ -101,7 +105,6 @@ public class TransferReceivePanel extends JPanel {
 
 	private void setEntruckListVO() {
 		// 设置装车单显示信息
-		
 		listID.setText(entruckListVO.entruckListID);
 		fromName.setText(entruckListVO.fromName);
 		destName.setText(entruckListVO.destName);
@@ -141,8 +144,6 @@ public class TransferReceivePanel extends JPanel {
 		
 
 	private void doArriveMouseClicked(MouseEvent e) {
-		// 修改订单状态，，这个有问题，再确认一下
-		
 		try {
 			ResultMessage r = transferReceive.doArrive();
 			if(r == ResultMessage.SUCCESS){
@@ -163,6 +164,11 @@ public class TransferReceivePanel extends JPanel {
 		}
 	}
 
+	
+	/**
+	 * 根据单号搜索装车单，到达单
+	 * @param e
+	 */
 	private void searchListMouseClicked(MouseEvent e) {
 		String input = deliveryID.getText();
 		long id = -1;
@@ -245,7 +251,10 @@ public class TransferReceivePanel extends JPanel {
 			arrival = transferReceive.createArriveList(POType.TRANSFERLIST, transferListVO);
 		}
 		
-		doArrive.setVisible(true);
+		doArrive.setVisible(false);
+		saveArrival.setVisible(true);
+		statusBox.setEnabled(true);
+		modifyStatus.setEnabled(true);
 		setArrivalVO();
 	}
 
@@ -261,6 +270,10 @@ public class TransferReceivePanel extends JPanel {
 		}
 	}
 
+	/**
+	 * 修改订单到达状态
+	 * @param e
+	 */
 	private void modifyStatusMouseReleased(MouseEvent e) {
 		String status = (String) statusBox.getSelectedItem();
 		if(!status.equals("请选择状态")){
@@ -281,10 +294,6 @@ public class TransferReceivePanel extends JPanel {
 		// JFormDesigner - Component initialization - DO NOT MODIFY
 		// //GEN-BEGIN:initComponents
 		startPane = new JTabbedPane();
-		arrivelistPanel = new JPanel();
-		scrollPane2 = new JScrollPane();
-		arriveListTabble = new JTable();
-		selectArrival = new JButton();
 		searchListPanel = new JPanel();
 		label5 = new JLabel();
 		deliveryID = new JTextField();
@@ -303,7 +312,6 @@ public class TransferReceivePanel extends JPanel {
 		arrivalDate = new JTextField();
 		statusBox = new JComboBox();
 		modifyStatus = new JButton();
-		doArrive = new JButton();
 		label4 = new JLabel();
 		cancelArrival2 = new JButton();
 		saveArrival = new JButton();
@@ -329,6 +337,11 @@ public class TransferReceivePanel extends JPanel {
 		label14 = new JLabel();
 		transferCancel = new JButton();
 		createArrival = new JButton();
+		arrivelistPanel = new JPanel();
+		scrollPane2 = new JScrollPane();
+		arriveListTabble = new JTable();
+		selectArrival = new JButton();
+		doArrive = new JButton();
 
 		//======== this ========
 		setLayout(new BorderLayout());
@@ -336,56 +349,6 @@ public class TransferReceivePanel extends JPanel {
 		//======== startPane ========
 		{
 			startPane.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-			//======== arrivelistPanel ========
-			{
-
-				//======== scrollPane2 ========
-				{
-
-					//---- arriveListTabble ----
-					arriveListTabble.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-					arriveListTabble.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-					arriveListTabble.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							arriveListTabbleMouseReleased(e);
-						}
-					});
-					scrollPane2.setViewportView(arriveListTabble);
-				}
-
-				//---- selectArrival ----
-				selectArrival.setText("\u67e5\u770b");
-				selectArrival.setIcon(new ImageIcon(getClass().getResource("/icons/see_24x24.png")));
-				selectArrival.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-				selectArrival.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						selectArrivalMouseClicked(e);
-					}
-				});
-
-				GroupLayout arrivelistPanelLayout = new GroupLayout(arrivelistPanel);
-				arrivelistPanel.setLayout(arrivelistPanelLayout);
-				arrivelistPanelLayout.setHorizontalGroup(
-					arrivelistPanelLayout.createParallelGroup()
-						.addGroup(arrivelistPanelLayout.createSequentialGroup()
-							.addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 684, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(selectArrival, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addContainerGap())
-				);
-				arrivelistPanelLayout.setVerticalGroup(
-					arrivelistPanelLayout.createParallelGroup()
-						.addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
-						.addGroup(arrivelistPanelLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(selectArrival)
-							.addContainerGap(275, Short.MAX_VALUE))
-				);
-			}
-			startPane.addTab("\u5230\u8fbe\u5355\u5217\u8868", arrivelistPanel);
 
 			//======== searchListPanel ========
 			{
@@ -517,17 +480,6 @@ public class TransferReceivePanel extends JPanel {
 					}
 				});
 
-				//---- doArrive ----
-				doArrive.setText("\u786e\u8ba4\u5230\u8fbe");
-				doArrive.setIcon(new ImageIcon(getClass().getResource("/icons/ok_24x24.png")));
-				doArrive.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-				doArrive.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						doArriveMouseClicked(e);
-					}
-				});
-
 				//---- label4 ----
 				label4.setText("\u51fa\u53d1\u5730\uff1a");
 				label4.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
@@ -583,9 +535,8 @@ public class TransferReceivePanel extends JPanel {
 								.addComponent(scrollPane1))
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-								.addComponent(doArrive, GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-								.addComponent(saveArrival, GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-								.addComponent(cancelArrival2, GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
+								.addComponent(cancelArrival2, GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+								.addComponent(saveArrival, GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
 							.addContainerGap(17, Short.MAX_VALUE))
 				);
 				panel1Layout.setVerticalGroup(
@@ -612,12 +563,11 @@ public class TransferReceivePanel extends JPanel {
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addGroup(panel1Layout.createParallelGroup()
 								.addGroup(panel1Layout.createSequentialGroup()
-									.addComponent(doArrive)
-									.addGap(18, 18, 18)
+									.addGap(0, 0, Short.MAX_VALUE)
 									.addComponent(saveArrival, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-									.addGap(18, 18, 18)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 									.addComponent(cancelArrival2)
-									.addContainerGap(124, Short.MAX_VALUE))
+									.addContainerGap())
 								.addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)))
 				);
 			}
@@ -794,16 +744,72 @@ public class TransferReceivePanel extends JPanel {
 			}
 			deliveryVO.addTab("\u8fd0\u8f93\u5355", transferVO);
 		}
+
+		//======== arrivelistPanel ========
+		{
+
+			//======== scrollPane2 ========
+			{
+
+				//---- arriveListTabble ----
+				arriveListTabble.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+				arriveListTabble.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				arriveListTabble.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						arriveListTabbleMouseReleased(e);
+					}
+				});
+				scrollPane2.setViewportView(arriveListTabble);
+			}
+
+			//---- selectArrival ----
+			selectArrival.setText("\u67e5\u770b");
+			selectArrival.setIcon(new ImageIcon(getClass().getResource("/icons/see_24x24.png")));
+			selectArrival.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+			selectArrival.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					selectArrivalMouseClicked(e);
+				}
+			});
+
+			GroupLayout arrivelistPanelLayout = new GroupLayout(arrivelistPanel);
+			arrivelistPanel.setLayout(arrivelistPanelLayout);
+			arrivelistPanelLayout.setHorizontalGroup(
+				arrivelistPanelLayout.createParallelGroup()
+					.addGroup(arrivelistPanelLayout.createSequentialGroup()
+						.addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 684, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						.addComponent(selectArrival, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addContainerGap())
+			);
+			arrivelistPanelLayout.setVerticalGroup(
+				arrivelistPanelLayout.createParallelGroup()
+					.addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+					.addGroup(arrivelistPanelLayout.createSequentialGroup()
+						.addContainerGap()
+						.addComponent(selectArrival)
+						.addContainerGap(275, Short.MAX_VALUE))
+			);
+		}
+
+		//---- doArrive ----
+		doArrive.setText("\u786e\u8ba4\u5230\u8fbe");
+		doArrive.setIcon(new ImageIcon(getClass().getResource("/icons/ok_24x24.png")));
+		doArrive.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+		doArrive.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				doArriveMouseClicked(e);
+			}
+		});
 		// //GEN-END:initComponents
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY
 	// //GEN-BEGIN:variables
 	private JTabbedPane startPane;
-	private JPanel arrivelistPanel;
-	private JScrollPane scrollPane2;
-	private JTable arriveListTabble;
-	private JButton selectArrival;
 	private JPanel searchListPanel;
 	private JLabel label5;
 	private JTextField deliveryID;
@@ -822,7 +828,6 @@ public class TransferReceivePanel extends JPanel {
 	private JTextField arrivalDate;
 	private JComboBox statusBox;
 	private JButton modifyStatus;
-	private JButton doArrive;
 	private JLabel label4;
 	private JButton cancelArrival2;
 	private JButton saveArrival;
@@ -848,5 +853,10 @@ public class TransferReceivePanel extends JPanel {
 	private JLabel label14;
 	private JButton transferCancel;
 	private JButton createArrival;
+	private JPanel arrivelistPanel;
+	private JScrollPane scrollPane2;
+	private JTable arriveListTabble;
+	private JButton selectArrival;
+	private JButton doArrive;
 	// JFormDesigner - End of variables declaration //GEN-END:variables
 }

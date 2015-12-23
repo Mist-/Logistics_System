@@ -6,11 +6,14 @@ package presentation.storage;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.rmi.RemoteException;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import data.message.ResultMessage;
 import data.vo.BriefTransferAndStorageOutVO;
+import data.vo.StorageOutVO;
 import data.vo.TransferListVO;
 import businesslogic.service.storage.StorageOutService;
 
@@ -20,12 +23,26 @@ import businesslogic.service.storage.StorageOutService;
 public class StorageOutPanel extends JPanel {
 	StorageOutService storageOut;
 	TransferListVO transferListVO;
+	StorageOutVO out;
 	BriefTransferAndStorageOutVO briefTransferAndStorageOutVO;
 	public StorageOutPanel(StorageOutService storageOut) {
 		this.storageOut	 = storageOut;
 		initComponents();
 		setList();
 		this.setVisible(true);
+	}
+	
+	private void setTransferListDisabled(){
+		listID.setEnabled(false);
+		centerID.setEnabled(false);
+		centerName.setEnabled(false);
+		destID.setEnabled(false);
+		destName.setEnabled(false);
+		date.setEnabled(false);
+		vehicleID.setEnabled(false);
+		staffName.setEnabled(false);
+		driverName.setEnabled(false);
+		loadTable.setEnabled(false);
 	}
 	
 	private void setTransferList(TransferListVO transferList){
@@ -49,13 +66,12 @@ public class StorageOutPanel extends JPanel {
 				label10.setText("车辆编号");
 			}else{
 			driverName.setText(transferList.fee);
-			label12.setText("费用");
-			label10.setText("班次");
+			label15.setText("费用");
+			label13.setText("班次");
 			}
 			DefaultTableModel model = new DefaultTableModel(transferList.orderAndPosition,transferList.header);
 			loadTable.setModel(model);
 			loadTable.updateUI();
-			
 			remove(startPane);
 			add(transferListPane,BorderLayout.CENTER);
 			transferListPane.updateUI();
@@ -74,9 +90,41 @@ public class StorageOutPanel extends JPanel {
 		storageOutList.repaint();
 		transferListTable.repaint();
 	}
+	
+	private void setStorageOut(){
+		if(out != null){
+			transferListID.setText(out.getTransferListNum());
+			outDate.setText(out.getDate());
+			transferType.setText(out.getTransferType());
+			DefaultTableModel model = new DefaultTableModel(out.getOrderAndPosition(),out.getHeader());
+			outTable.setModel(model);
+			outTable.updateUI();
+			outTable.repaint();
+
+		}
+		
+	}
 
 	private void doStorageOutMouseClicked(MouseEvent e) {
-		//storageBusiness.doAllStorageOut();
+		try {
+			ResultMessage result = storageOut.doStorageOut();
+			if(result == ResultMessage.SUCCESS){
+				JOptionPane.showMessageDialog(null, "出库完成", "提示", JOptionPane.INFORMATION_MESSAGE);
+				int row = storageOutTable.getSelectedRow();
+				DefaultTableModel model = (DefaultTableModel) storageOutTable.getModel();
+				model.removeRow(row);
+				storageOutTable.setModel(model);
+				storageOutTable.updateUI();
+				remove(storageOutPane);
+				add(startPane,BorderLayout.CENTER);
+				startPane.updateUI();
+				startPane.setVisible(true);
+			}else{
+				JOptionPane.showMessageDialog(null, "操作失败", "提示", JOptionPane.INFORMATION_MESSAGE);	
+			}
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		}
 	}
 
 	private void storageOutTableMouseClicked(MouseEvent e) {
@@ -88,10 +136,15 @@ public class StorageOutPanel extends JPanel {
 	}
 
 	private void cancelLoadMouseReleased(MouseEvent e) {
-		// TODO add your code here
+		remove(transferListPane);
+		add(startPane,BorderLayout.CENTER);
+		startPane.updateUI();
+		startPane.setVisible(true);
 	}
 
 	private void getTransferButtonMouseReleased(MouseEvent e) {
+		saveStorageOut.setVisible(true);
+		doStorageOut.setVisible(false);
 		int row = transferListTable.getSelectedRow();
 		String s = (String) transferListTable.getValueAt(row, 0);
 		long id = Long.parseLong(s);
@@ -100,7 +153,64 @@ public class StorageOutPanel extends JPanel {
 	}
 
 	private void createStorageOutMouseReleased(MouseEvent e) {
-		// TODO add your code here
+		out = storageOut.createStorageOutList();
+		setStorageOut();
+		setStorageOutDisabled();
+		remove(transferListPane);
+		add(storageOutPane,BorderLayout.CENTER);
+		storageOutPane.updateUI();
+		storageOutPane.setVisible(true);
+	}
+	
+	private void setStorageOutDisabled(){
+		transferListID.setEnabled(false);
+		transferType.setEnabled(false);
+		outDate.setEnabled(false);
+	}
+
+	private void storageOutCancelMouseReleased(MouseEvent e) {
+		remove(storageOutPane);
+		add(transferListPane,BorderLayout.CENTER);
+		transferListPane.setVisible(true);
+	}
+
+	private void selectStorageOutMouseReleased(MouseEvent e) {
+		if(selectStorageOut.isEnabled()){
+			saveStorageOut.setVisible(false);
+			storageOutCancel.setVisible(false);
+			int row = storageOutTable.getSelectedRow();
+			DefaultTableModel model = (DefaultTableModel)storageOutTable.getModel();
+			long id = Long.parseLong((String) model.getValueAt(row, 0));
+			try {
+				out = storageOut.getStorageOut(id);
+				setStorageOut();
+				setStorageOutDisabled();
+				remove(startPane);
+				add(storageOutPane,BorderLayout.CENTER);
+				storageOutPane.updateUI();
+				storageOutPane.setVisible(true);
+			} catch (RemoteException e1) {
+				e1.printStackTrace();
+				JOptionPane.showMessageDialog(null, "网络连接中断", "提示", JOptionPane.INFORMATION_MESSAGE);
+			}
+			
+		}
+	}
+
+	private void saveStorageOutMouseReleased(MouseEvent e) {
+		ResultMessage result = storageOut.saveStroageOut(out);
+		if (result == ResultMessage.SUCCESS) {
+			JOptionPane.showMessageDialog(null, "保存成功", "提示", JOptionPane.INFORMATION_MESSAGE);
+			int row = transferListTable.getSelectedRow();
+			DefaultTableModel model = (DefaultTableModel) transferListTable.getModel();
+			model.removeRow(row);
+			transferListTable.setModel(model);
+			transferListTable.updateUI();
+			remove(storageOutPane);
+			add(startPane,BorderLayout.CENTER);
+			startPane.updateUI();
+			startPane.setVisible(true);
+		}
 	}
 
 	private void initComponents() {
@@ -109,7 +219,6 @@ public class StorageOutPanel extends JPanel {
 		storageOutList = new JPanel();
 		scrollPane1 = new JScrollPane();
 		storageOutTable = new JTable();
-		doStorageOut = new JButton();
 		selectStorageOut = new JButton();
 		textField1 = new JTextField();
 		button3 = new JButton();
@@ -120,26 +229,19 @@ public class StorageOutPanel extends JPanel {
 		textField2 = new JTextField();
 		searchTransfer = new JButton();
 		getTransferButton = new JButton();
-		tabbedPane3 = new JTabbedPane();
+		storageOutPane = new JTabbedPane();
 		storageOutVO = new JPanel();
 		scrollPane4 = new JScrollPane();
-		table1 = new JTable();
+		outTable = new JTable();
 		storageOutCancel = new JButton();
-		storageOutSave = new JButton();
-		label5 = new JLabel();
-		textField7 = new JTextField();
+		saveStorageOut = new JButton();
 		label6 = new JLabel();
-		textField8 = new JTextField();
+		outDate = new JTextField();
 		label1 = new JLabel();
-		textField3 = new JTextField();
-		label2 = new JLabel();
-		textField4 = new JTextField();
+		transferListID = new JTextField();
 		label3 = new JLabel();
-		textField5 = new JTextField();
-		label7 = new JLabel();
-		textField9 = new JTextField();
-		textField6 = new JTextField();
-		label4 = new JLabel();
+		transferType = new JTextField();
+		doStorageOut = new JButton();
 		transferListPane = new JTabbedPane();
 		DeliveryListPanel = new JPanel();
 		scrollPane5 = new JScrollPane();
@@ -180,6 +282,7 @@ public class StorageOutPanel extends JPanel {
 
 					//---- storageOutTable ----
 					storageOutTable.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+					storageOutTable.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 					storageOutTable.addMouseListener(new MouseAdapter() {
 						@Override
 						public void mouseClicked(MouseEvent e) {
@@ -189,21 +292,16 @@ public class StorageOutPanel extends JPanel {
 					scrollPane1.setViewportView(storageOutTable);
 				}
 
-				//---- doStorageOut ----
-				doStorageOut.setText("\u51fa\u5e93");
-				doStorageOut.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-				doStorageOut.setIcon(new ImageIcon(getClass().getResource("/icons/storageout_24x24.png")));
-				doStorageOut.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						doStorageOutMouseClicked(e);
-					}
-				});
-
 				//---- selectStorageOut ----
 				selectStorageOut.setText("\u67e5\u770b");
 				selectStorageOut.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 				selectStorageOut.setIcon(new ImageIcon(getClass().getResource("/icons/see_24x24.png")));
+				selectStorageOut.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						selectStorageOutMouseReleased(e);
+					}
+				});
 
 				//---- textField1 ----
 				textField1.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
@@ -218,20 +316,14 @@ public class StorageOutPanel extends JPanel {
 				storageOutListLayout.setHorizontalGroup(
 					storageOutListLayout.createParallelGroup()
 						.addGroup(storageOutListLayout.createSequentialGroup()
-							.addGroup(storageOutListLayout.createParallelGroup()
-								.addGroup(storageOutListLayout.createSequentialGroup()
-									.addContainerGap()
-									.addComponent(textField1, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(button3, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
-									.addGap(0, 0, Short.MAX_VALUE))
-								.addGroup(storageOutListLayout.createSequentialGroup()
-									.addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 673, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addGroup(storageOutListLayout.createParallelGroup()
-										.addComponent(doStorageOut, GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-										.addComponent(selectStorageOut, GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))))
+							.addContainerGap()
+							.addComponent(textField1, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(button3, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+							.addGap(438, 438, 438)
+							.addComponent(selectStorageOut, GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
 							.addContainerGap())
+						.addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
 				);
 				storageOutListLayout.setVerticalGroup(
 					storageOutListLayout.createParallelGroup()
@@ -239,19 +331,13 @@ public class StorageOutPanel extends JPanel {
 							.addContainerGap()
 							.addGroup(storageOutListLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 								.addComponent(textField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(button3, GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
+								.addComponent(button3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(selectStorageOut))
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(storageOutListLayout.createParallelGroup()
-								.addGroup(storageOutListLayout.createSequentialGroup()
-									.addGap(0, 219, Short.MAX_VALUE)
-									.addComponent(selectStorageOut)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(doStorageOut)
-									.addContainerGap())
-								.addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)))
+							.addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE))
 				);
 			}
-			startPane.addTab("\u5df2\u5ba1\u6279\u5165\u5e93\u5355", storageOutList);
+			startPane.addTab("\u5df2\u5ba1\u6279\u51fa\u5e93\u5355", storageOutList);
 
 			//======== transferList ========
 			{
@@ -298,35 +384,32 @@ public class StorageOutPanel extends JPanel {
 							.addContainerGap()
 							.addGroup(transferListLayout.createParallelGroup()
 								.addGroup(transferListLayout.createSequentialGroup()
+									.addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 786, GroupLayout.PREFERRED_SIZE)
+									.addGap(32644, 32644, 32644)
+									.addComponent(selectTransfer, GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
+								.addGroup(transferListLayout.createSequentialGroup()
 									.addComponent(textField2, GroupLayout.PREFERRED_SIZE, 337, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(searchTransfer))
-								.addGroup(transferListLayout.createSequentialGroup()
-									.addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 685, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(getTransferButton, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)))
-							.addGap(32691, 32691, 32691)
-							.addComponent(selectTransfer, GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+									.addComponent(searchTransfer)
+									.addGap(261, 261, 261)
+									.addComponent(getTransferButton, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+									.addGap(0, 0, Short.MAX_VALUE)))
 							.addContainerGap())
 				);
 				transferListLayout.setVerticalGroup(
 					transferListLayout.createParallelGroup()
 						.addGroup(GroupLayout.Alignment.TRAILING, transferListLayout.createSequentialGroup()
 							.addContainerGap()
-							.addGroup(transferListLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+							.addGroup(transferListLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(textField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(searchTransfer, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+								.addComponent(getTransferButton, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addGroup(transferListLayout.createParallelGroup()
 								.addGroup(transferListLayout.createSequentialGroup()
-									.addGap(0, 288, Short.MAX_VALUE)
-									.addComponent(getTransferButton, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
-								.addGroup(transferListLayout.createSequentialGroup()
-									.addGroup(transferListLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-										.addComponent(textField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(searchTransfer, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-									.addGap(14, 14, 14)
-									.addGroup(transferListLayout.createParallelGroup()
-										.addGroup(transferListLayout.createSequentialGroup()
-											.addGap(0, 0, Short.MAX_VALUE)
-											.addComponent(selectTransfer, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE))
-										.addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE))))
+									.addGap(0, 236, Short.MAX_VALUE)
+									.addComponent(selectTransfer, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE))
+								.addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE))
 							.addContainerGap())
 				);
 			}
@@ -334,9 +417,9 @@ public class StorageOutPanel extends JPanel {
 		}
 		add(startPane, BorderLayout.CENTER);
 
-		//======== tabbedPane3 ========
+		//======== storageOutPane ========
 		{
-			tabbedPane3.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+			storageOutPane.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 			//======== storageOutVO ========
 			{
@@ -344,67 +427,62 @@ public class StorageOutPanel extends JPanel {
 				//======== scrollPane4 ========
 				{
 					scrollPane4.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-					scrollPane4.setViewportView(table1);
+					scrollPane4.setViewportView(outTable);
 				}
 
 				//---- storageOutCancel ----
 				storageOutCancel.setText("\u53d6\u6d88");
 				storageOutCancel.setIcon(new ImageIcon(getClass().getResource("/icons/cancel_24x24.png")));
 				storageOutCancel.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				storageOutCancel.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						storageOutCancelMouseReleased(e);
+					}
+				});
 
-				//---- storageOutSave ----
-				storageOutSave.setText("\u4fdd\u5b58");
-				storageOutSave.setIcon(new ImageIcon(getClass().getResource("/icons/save_24x24.png")));
-				storageOutSave.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-				//---- label5 ----
-				label5.setText("\u8d39\u7528");
-				label5.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-				//---- textField7 ----
-				textField7.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- saveStorageOut ----
+				saveStorageOut.setText("\u4fdd\u5b58");
+				saveStorageOut.setIcon(new ImageIcon(getClass().getResource("/icons/save_24x24.png")));
+				saveStorageOut.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				saveStorageOut.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						saveStorageOutMouseReleased(e);
+					}
+				});
 
 				//---- label6 ----
 				label6.setText("\u65e5\u671f");
 				label6.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- textField8 ----
-				textField8.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- outDate ----
+				outDate.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 				//---- label1 ----
-				label1.setText("\u4e2d\u8f6c\u4e2d\u5fc3");
+				label1.setText("\u4e2d\u8f6c\u5355\u7f16\u53f7");
 				label1.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- textField3 ----
-				textField3.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-				//---- label2 ----
-				label2.setText("\u76ee\u6807\u673a\u6784");
-				label2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-				//---- textField4 ----
-				textField4.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- transferListID ----
+				transferListID.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 				//---- label3 ----
 				label3.setText("\u8fd0\u8f93\u65b9\u5f0f");
 				label3.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- textField5 ----
-				textField5.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- transferType ----
+				transferType.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- label7 ----
-				label7.setText("\u73ed\u6b21");
-				label7.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-				//---- textField9 ----
-				textField9.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-				//---- textField6 ----
-				textField6.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-				//---- label4 ----
-				label4.setText("\u76d1\u88c5\u5458");
-				label4.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- doStorageOut ----
+				doStorageOut.setText("\u51fa\u5e93");
+				doStorageOut.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				doStorageOut.setIcon(new ImageIcon(getClass().getResource("/icons/storageout_24x24.png")));
+				doStorageOut.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						doStorageOutMouseClicked(e);
+					}
+				});
 
 				GroupLayout storageOutVOLayout = new GroupLayout(storageOutVO);
 				storageOutVO.setLayout(storageOutVOLayout);
@@ -414,42 +492,25 @@ public class StorageOutPanel extends JPanel {
 							.addGroup(storageOutVOLayout.createParallelGroup()
 								.addGroup(storageOutVOLayout.createSequentialGroup()
 									.addContainerGap()
-									.addGroup(storageOutVOLayout.createParallelGroup()
-										.addGroup(storageOutVOLayout.createSequentialGroup()
-											.addComponent(label1, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-											.addGap(5, 5, 5)
-											.addComponent(textField3, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-											.addGap(15, 15, 15)
-											.addComponent(label4, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-											.addGap(5, 5, 5)
-											.addComponent(textField6, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-											.addGap(15, 15, 15)
-											.addComponent(label3, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-											.addGap(5, 5, 5)
-											.addComponent(textField5, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
-										.addGroup(storageOutVOLayout.createSequentialGroup()
-											.addComponent(label2, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-											.addGap(5, 5, 5)
-											.addComponent(textField4, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-											.addGap(15, 15, 15)
-											.addComponent(label5, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-											.addGap(5, 5, 5)
-											.addComponent(textField7, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
-										.addGroup(storageOutVOLayout.createSequentialGroup()
-											.addComponent(label7, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-											.addGap(5, 5, 5)
-											.addComponent(textField9, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-											.addGap(15, 15, 15)
-											.addComponent(label6, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-											.addGap(5, 5, 5)
-											.addComponent(textField8, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)))
+									.addComponent(label1, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+									.addGap(10, 10, 10)
+									.addComponent(transferListID, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+									.addComponent(label3, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(transferType, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+									.addComponent(label6)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(outDate, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
 									.addGap(0, 0, Short.MAX_VALUE))
 								.addGroup(storageOutVOLayout.createSequentialGroup()
 									.addComponent(scrollPane4, GroupLayout.PREFERRED_SIZE, 690, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 									.addGroup(storageOutVOLayout.createParallelGroup()
 										.addComponent(storageOutCancel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(storageOutSave, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+										.addComponent(saveStorageOut, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(doStorageOut, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
 							.addContainerGap())
 				);
 				storageOutVOLayout.setVerticalGroup(
@@ -458,36 +519,25 @@ public class StorageOutPanel extends JPanel {
 							.addContainerGap()
 							.addGroup(storageOutVOLayout.createParallelGroup()
 								.addComponent(label1, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(label4, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(label3, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(10, 10, 10)
+								.addGroup(storageOutVOLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+									.addComponent(transferListID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(label3, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+									.addComponent(transferType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(label6, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+									.addComponent(outDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
 							.addGroup(storageOutVOLayout.createParallelGroup()
-								.addComponent(label2, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(label5, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(10, 10, 10)
-							.addGroup(storageOutVOLayout.createParallelGroup()
-								.addComponent(label7, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField9, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(label6, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGroup(storageOutVOLayout.createParallelGroup()
-								.addGroup(storageOutVOLayout.createSequentialGroup()
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
-									.addComponent(storageOutSave)
+								.addGroup(GroupLayout.Alignment.TRAILING, storageOutVOLayout.createSequentialGroup()
+									.addComponent(doStorageOut)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(saveStorageOut)
 									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 									.addComponent(storageOutCancel)
 									.addContainerGap())
-								.addGroup(storageOutVOLayout.createSequentialGroup()
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(scrollPane4, GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))))
+								.addComponent(scrollPane4, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE)))
 				);
 			}
-			tabbedPane3.addTab("\u51fa\u5e93\u5355", storageOutVO);
+			storageOutPane.addTab("\u51fa\u5e93\u5355", storageOutVO);
 		}
 
 		//======== transferListPane ========
@@ -544,7 +594,7 @@ public class StorageOutPanel extends JPanel {
 				label16.setText("\u88c5\u8fd0\u65e5\u671f");
 
 				//---- createStorageOut ----
-				createStorageOut.setText("\u65b0\u5efa");
+				createStorageOut.setText("\u51fa\u5e93");
 				createStorageOut.setIcon(new ImageIcon(getClass().getResource("/icons/new_24x24.png")));
 				createStorageOut.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 				createStorageOut.addMouseListener(new MouseAdapter() {
@@ -607,21 +657,19 @@ public class StorageOutPanel extends JPanel {
 											.addGap(365, 365, 365)
 											.addComponent(vehicleID, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)))
 									.addGap(221, 221, 221)))
-							.addGroup(DeliveryListPanelLayout.createParallelGroup()
-								.addComponent(createStorageOut, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
-									.addComponent(cancelLoad, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-									.addGap(0, 0, Short.MAX_VALUE)))
+							.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+								.addComponent(cancelLoad, GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+								.addComponent(createStorageOut, GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE))
 							.addContainerGap())
 				);
 				DeliveryListPanelLayout.setVerticalGroup(
 					DeliveryListPanelLayout.createParallelGroup()
 						.addGroup(DeliveryListPanelLayout.createSequentialGroup()
 							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(createStorageOut)
+							.addComponent(createStorageOut, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addComponent(cancelLoad, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())
+							.addGap(26, 26, 26))
 						.addGroup(GroupLayout.Alignment.TRAILING, DeliveryListPanelLayout.createSequentialGroup()
 							.addContainerGap()
 							.addGroup(DeliveryListPanelLayout.createParallelGroup()
@@ -682,7 +730,6 @@ public class StorageOutPanel extends JPanel {
 	private JPanel storageOutList;
 	private JScrollPane scrollPane1;
 	private JTable storageOutTable;
-	private JButton doStorageOut;
 	private JButton selectStorageOut;
 	private JTextField textField1;
 	private JButton button3;
@@ -693,26 +740,19 @@ public class StorageOutPanel extends JPanel {
 	private JTextField textField2;
 	private JButton searchTransfer;
 	private JButton getTransferButton;
-	private JTabbedPane tabbedPane3;
+	private JTabbedPane storageOutPane;
 	private JPanel storageOutVO;
 	private JScrollPane scrollPane4;
-	private JTable table1;
+	private JTable outTable;
 	private JButton storageOutCancel;
-	private JButton storageOutSave;
-	private JLabel label5;
-	private JTextField textField7;
+	private JButton saveStorageOut;
 	private JLabel label6;
-	private JTextField textField8;
+	private JTextField outDate;
 	private JLabel label1;
-	private JTextField textField3;
-	private JLabel label2;
-	private JTextField textField4;
+	private JTextField transferListID;
 	private JLabel label3;
-	private JTextField textField5;
-	private JLabel label7;
-	private JTextField textField9;
-	private JTextField textField6;
-	private JLabel label4;
+	private JTextField transferType;
+	private JButton doStorageOut;
 	private JTabbedPane transferListPane;
 	private JPanel DeliveryListPanel;
 	private JScrollPane scrollPane5;

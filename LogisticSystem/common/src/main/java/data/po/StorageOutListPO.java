@@ -78,7 +78,8 @@ public class StorageOutListPO extends StorageListPO {
 	public StorageOutListPO(StorageOutVO vo){
 		super(POType.STORAGEOUTLIST);
 		String s[] = vo.getDate().split("[/]");
-		
+		DeliveryListNum = Long.parseLong(vo.getTransferListNum());
+		transferNum = Long.parseLong(vo.getTransferNum());
 		transferType = vo.getTransferType();
 		year = Integer.parseInt(s[0]);
 		month = Integer.parseInt(s[1]);

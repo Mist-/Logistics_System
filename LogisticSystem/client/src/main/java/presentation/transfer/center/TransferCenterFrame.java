@@ -93,6 +93,19 @@ public class TransferCenterFrame extends JFrame {
 	private void loadMouseClicked(MouseEvent e) {
 		transferLoadStart();
 	}
+
+	private void button1MouseReleased(MouseEvent e) {
+		closeDialog.setVisible(false);
+	}
+
+	private void button2MouseReleased(MouseEvent e) {
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+	}
+
+	private void thisWindowClosed(WindowEvent e) {
+	closeDialog.setVisible(true);
+	closeDialog.repaint();
+	}
 	
 	
 	
@@ -111,9 +124,21 @@ public class TransferCenterFrame extends JFrame {
 		emptyPanel = new JPanel();
 		tabbedPane1 = new JTabbedPane();
 		label1 = new JLabel();
+		closeDialog = new JDialog();
+		panel3 = new JPanel();
+		label3 = new JLabel();
+		label10 = new JLabel();
+		button1 = new JButton();
+		button2 = new JButton();
 
 		//======== this ========
 		setTitle("\u4e2d\u8f6c\u4e2d\u5fc3");
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosed(WindowEvent e) {
+				thisWindowClosed(e);
+			}
+		});
 		Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 
@@ -185,7 +210,7 @@ public class TransferCenterFrame extends JFrame {
 							.addGroup(panel1Layout.createSequentialGroup()
 								.addGap(44, 44, 44)
 								.addComponent(label7)))
-						.addContainerGap(554, Short.MAX_VALUE))
+						.addContainerGap(547, Short.MAX_VALUE))
 			);
 			panel1Layout.setVerticalGroup(
 				panel1Layout.createParallelGroup()
@@ -221,18 +246,94 @@ public class TransferCenterFrame extends JFrame {
 				emptyPanelLayout.createParallelGroup()
 					.addGroup(emptyPanelLayout.createSequentialGroup()
 						.addContainerGap()
-						.addComponent(tabbedPane1, GroupLayout.DEFAULT_SIZE, 778, Short.MAX_VALUE))
+						.addComponent(tabbedPane1, GroupLayout.DEFAULT_SIZE, 774, Short.MAX_VALUE))
 			);
 			emptyPanelLayout.setVerticalGroup(
 				emptyPanelLayout.createParallelGroup()
 					.addGroup(GroupLayout.Alignment.TRAILING, emptyPanelLayout.createSequentialGroup()
 						.addContainerGap()
-						.addComponent(tabbedPane1, GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE))
+						.addComponent(tabbedPane1, GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE))
 			);
 		}
 		contentPane.add(emptyPanel, BorderLayout.CENTER);
 		pack();
 		setLocationRelativeTo(getOwner());
+
+		//======== closeDialog ========
+		{
+			closeDialog.setTitle("\u63d0\u793a");
+			Container closeDialogContentPane = closeDialog.getContentPane();
+			closeDialogContentPane.setLayout(new BorderLayout());
+
+			//======== panel3 ========
+			{
+
+				//---- label3 ----
+				label3.setText("\u8bf7\u68c0\u67e5\u662f\u5426\u5df2\u7ecf\u5904\u7406");
+
+				//---- label10 ----
+				label10.setText("\u5168\u90e8\u5df2\u5ba1\u6279\u4e2d\u8f6c\u5355\u548c\u5230\u8fbe\u5355");
+
+				//---- button1 ----
+				button1.setText("\u672a\u5904\u7406\u5b8c");
+				button1.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						button1MouseReleased(e);
+					}
+				});
+
+				//---- button2 ----
+				button2.setText("\u786e\u8ba4\u5173\u95ed");
+				button2.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						button2MouseReleased(e);
+					}
+				});
+
+				GroupLayout panel3Layout = new GroupLayout(panel3);
+				panel3.setLayout(panel3Layout);
+				panel3Layout.setHorizontalGroup(
+					panel3Layout.createParallelGroup()
+						.addGroup(GroupLayout.Alignment.TRAILING, panel3Layout.createSequentialGroup()
+							.addContainerGap(57, Short.MAX_VALUE)
+							.addGroup(panel3Layout.createParallelGroup()
+								.addGroup(panel3Layout.createSequentialGroup()
+									.addGap(10, 10, 10)
+									.addComponent(button1, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
+									.addContainerGap())
+								.addGroup(GroupLayout.Alignment.TRAILING, panel3Layout.createSequentialGroup()
+									.addComponent(label10, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
+									.addGap(50, 50, 50))))
+						.addGroup(panel3Layout.createSequentialGroup()
+							.addGroup(panel3Layout.createParallelGroup()
+								.addGroup(panel3Layout.createSequentialGroup()
+									.addGap(79, 79, 79)
+									.addComponent(label3))
+								.addGroup(panel3Layout.createSequentialGroup()
+									.addGap(94, 94, 94)
+									.addComponent(button2, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)))
+							.addContainerGap(82, Short.MAX_VALUE))
+				);
+				panel3Layout.setVerticalGroup(
+					panel3Layout.createParallelGroup()
+						.addGroup(panel3Layout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(label3, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(label10, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(button1, GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(button2, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
+				);
+			}
+			closeDialogContentPane.add(panel3, BorderLayout.CENTER);
+			closeDialog.pack();
+			closeDialog.setLocationRelativeTo(closeDialog.getOwner());
+		}
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}
 
@@ -248,5 +349,11 @@ public class TransferCenterFrame extends JFrame {
 	private JPanel emptyPanel;
 	private JTabbedPane tabbedPane1;
 	private JLabel label1;
+	private JDialog closeDialog;
+	private JPanel panel3;
+	private JLabel label3;
+	private JLabel label10;
+	private JButton button1;
+	private JButton button2;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 }

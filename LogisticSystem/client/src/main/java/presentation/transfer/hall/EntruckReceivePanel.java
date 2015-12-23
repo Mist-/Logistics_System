@@ -346,7 +346,8 @@ public class EntruckReceivePanel extends JPanel {
 			for(int i = 0;i < rows.length;i++){
 				info[rows[i]][1] = s;
 			}
-			
+			DefaultTableModel model = (DefaultTableModel) arrivalVOTable.getModel();
+			model.setDataVector(info, arrival.getHeader());
 			arrivalVOTable.updateUI();
 			arrivalVOTable.repaint();
 			}
@@ -650,8 +651,8 @@ public class EntruckReceivePanel extends JPanel {
 												.addComponent(label3, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 												.addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
 													.addGap(30, 30, 30)
-													.addComponent(label2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-												.addComponent(label1, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+													.addComponent(label2, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
+												.addComponent(label1, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE))
 											.addComponent(label4, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
 										.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 										.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)

@@ -7,9 +7,11 @@ import data.enums.DataType;
 import data.enums.POType;
 import data.po.DataPO;
 import data.po.OrderPO;
+import data.po.StorageOutListPO;
 import data.service.DataService;
 import data.service.StorageDataService;
 import data.service.TransferDataService;
+import data.vo.StorageOutVO;
 import utils.DataServiceFactory;
 
 public class Test_sx {
@@ -63,12 +65,26 @@ public class Test_sx {
 		
 		
 		
-		TransferDataService t = (TransferDataService) DataServiceFactory.getDataServiceByType(DataType.TransferDataService);
+//		TransferDataService t = (TransferDataService) DataServiceFactory.getDataServiceByType(DataType.TransferDataService);
+//		try {
+//			ArrayList<DataPO> a = t.getPOList(POType.TRANSFERLIST);
+//			for (int i = 0; i < a.size(); i++) {
+//				System.out.println(a.get(i).getSerialNum());
+//				System.out.println(a.get(i).getState());
+//			}
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		
+		StorageDataService s = (StorageDataService) DataServiceFactory.getDataServiceByType(DataType.StorageDataService);
 		try {
-			ArrayList<DataPO> a = t.getPOList(POType.TRANSFERLIST);
-			for (int i = 0; i < a.size(); i++) {
-				System.out.println(a.get(i).getSerialNum());
-				System.out.println(a.get(i).getState());
+			ArrayList<DataPO> a = s.getPOList(POType.STORAGEOUTLIST);
+			for(int i = 0 ; i < a.size();i++){
+				StorageOutListPO ss = (StorageOutListPO) a.get(i);
+				System.out.println(ss.getTransferNum());
+				System.out.println(ss.getState());
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

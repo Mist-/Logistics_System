@@ -11,7 +11,9 @@ import data.enums.DataType;
 import data.enums.POType;
 import data.message.LoginMessage;
 import utils.DataServiceFactory;
+import utils.Timestamper;
 import data.message.ResultMessage;
+import data.po.StorageListPO;
 import data.po.StorageOutListPO;
 import data.po.TransferListPO;
 import data.service.StorageDataService;
@@ -40,18 +42,10 @@ public class StorageOut implements StorageOutService{
 	 * @return
 	 * @throws RemoteException 
 	 */
-	public ResultMessage doStorageOut(long storageOutID) throws RemoteException{
-		StorageOutListPO out = null;
-		try {
-			out = (StorageOutListPO) storageOutList.getStorageList(storageOutID);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return ResultMessage.FAILED;
-		}
-		long[] o = out.getOrder();
-	
-		orderList.modifyOrder(o,"到达"+user.getInstitutionName());
-		orderList.modifyOrderPosition(o);
+	public ResultMessage doStorageOut() throws RemoteException{
+		long[] o = storageOutList.getOrderID();
+		orderList.modifyOrder(o,"从"+user.getInstitutionName()+"中转中心发出");
+		//orderList.modifyOrderPosition(o);
 		return ResultMessage.SUCCESS;
 	}
 	
@@ -75,9 +69,8 @@ public class StorageOut implements StorageOutService{
 	 */
 	public ResultMessage saveStroageOut(StorageOutVO vo){
 		StorageOutListPO storageOut = new StorageOutListPO(vo);
-
 		try {
-			//modifyStorageInfo(storageOut);
+			//modifyStorageInfo(storageOut);在中转中心装车时完成
 			return storageData.add(storageOut);
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -85,6 +78,14 @@ public class StorageOut implements StorageOutService{
 		}
 		
 		
+	}
+	
+	
+	public StorageOutVO getStorageOut(long id) throws RemoteException{
+		StorageListPO o =  storageOutList.getCheckedStorageList(id);
+		StorageOutVO s =  new StorageOutVO((StorageOutListPO) o);
+		s.setDate(Timestamper.getTimeByDate());
+		return s;
 	}
 
 	/**

@@ -7,6 +7,7 @@ new FormModel {
 			name: "this"
 			"title": "营业厅"
 			"$sizePolicy": 1
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosed", "thisWindowClosed", true ) )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 				"$horizontalGroup": "par l {seq l {comp menuBar1:::p:794:p, space :0:0:x}, seq l {space :::p, par l {comp receiveButton::l:p:72:p, seq l {space :10:10:p, comp label1:::p::p}}, space :::p, par l {comp loadButton::l:p:72:p, seq l {space :10:10:p, comp label2:::p::p}}, space :::p, par l {comp driverButton:::p:72:p, comp label4:::p:60:p}, space :::p, par l {comp truckButton::l:p:72:p, seq l {space :p:8:p, comp label5:::p::p}}, space :::p, par l {seq {space :10:10:p, comp label6:::p::p}, comp moneyButton:::p:72:p}, space ::390:x}}"
 				"$verticalGroup": "par l {seq l {comp menuBar1:::p:21:p, space :::p, par l:::p {comp receiveButton::::72:x, comp loadButton::::72:x, comp driverButton::::72:x, comp truckButton::l::72:x, comp moneyButton::::72:x}, space :::x, par b {comp label1::b:p::p, comp label2::b:p::p, comp label4::b:p::p, comp label5::b:p::p, comp label6::b:p::p}, space :::p}}"
@@ -121,11 +122,38 @@ new FormModel {
 			"location": new java.awt.Point( 805, 105 )
 			"size": new java.awt.Dimension( 290, 200 )
 		} )
-		add( new FormComponent( "javax.swing.JLabel" ) {
-			name: "label3"
-			"text": "对话框可以直接用 JOptionPane.showMessageDialog(null, \"网络连接中断，请稍后再试。\". \"LCS物流管理系统\", JOptionPane.INFORMATION_MESSAGE)"
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "closeDialog"
+			"title": "提示"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq t {space ::57:x, par l {seq l {space :10:10:p, comp button1:::p:132:p, space :::p}, seq t {comp label10:::p:162:p, space :p:50:p}}}, seq {par l {seq l {space :79:79:p, comp label3:::p::p}, seq l {space :p:94:p, comp button2:::p:80:p}}, space ::82:x}}"
+				"$verticalGroup": "par l {seq l {space :::p, comp label3:::p:28:p, space :::p, comp label10:::p:23:p, space :::p, comp button1::::39:x, space :::p, comp button2:::p:23:p, space :::p}}"
+			} ) {
+				name: "panel3"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "请检查是否已经处理"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label10"
+					"text": "全部已审批装车单和到达单"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button1"
+					"text": "未处理完"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "button1MouseReleased", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button2"
+					"text": "确认关闭"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "button2MouseReleased", true ) )
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 245, 555 )
+			"location": new java.awt.Point( 810, 325 )
+			"size": new java.awt.Dimension( 285, 190 )
 		} )
 	}
 }

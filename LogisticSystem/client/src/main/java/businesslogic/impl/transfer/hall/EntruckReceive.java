@@ -82,7 +82,6 @@ public class EntruckReceive implements EntruckReceiveService{
 		try {
 			return arrivalList.saveArrival(arrival);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return ResultMessage.FAILED;
 		}

@@ -9,8 +9,8 @@ new FormModel {
 				name: "listPane"
 				"font": &Font0 new java.awt.Font( "等线", 0, 14 )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :::p, comp scrollPane4:::p:638:p, space :::p, par l {comp selectStorageIn::::131:x, comp doStorageIn::t::131:x}, space :::p}}"
-					"$verticalGroup": "par l {seq l {space :::p, par l {comp scrollPane4::::306:x, seq {comp selectStorageIn:::p::p, space :::p, comp doStorageIn:::p::p, space :0:234:x}}, space :::p}}"
+					"$horizontalGroup": "par l {seq l {comp scrollPane4:::p:648:p, space :::p, par l {comp selectStorageIn::::131:x, comp doStorageIn::t::131:x}, space :::p}}"
+					"$verticalGroup": "par l {seq l {space :::p, comp selectStorageIn:::p::p, space :::p, comp doStorageIn:::p::p, space ::244:x}, comp scrollPane4::t::326:x}"
 				} ) {
 					name: "storageInList"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -39,7 +39,7 @@ new FormModel {
 					"title": "已审批入库单"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :::p, comp arrivalID:::p:101:p, space :::p, comp search:::p::p, space ::499:x, comp selectArrival:::p:100:p, space :::p}, comp scrollPane3::t::795:x}"
+					"$horizontalGroup": "par l {seq l {space :::p, comp arrivalID:::p:101:p, space :::p, comp search:::p::p, space ::511:x, comp selectArrival:::p:100:p, space :::p}, comp scrollPane3::t::795:x}"
 					"$verticalGroup": "par l {seq t {space :::p, par b {comp arrivalID::b:p::p, comp search::b:p::p, comp selectArrival::b:p::p}, space :::p, comp scrollPane3::::277:x, space :::p}}"
 				} ) {
 					name: "arriveList"
@@ -57,16 +57,16 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "search"
-						"text": "search"
+						"text": "搜索"
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "searchMouseReleased", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "selectArrival"
-						"text": "select"
+						"text": "查看"
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "selectArrivalMouseClicked", true ) )
 					} )
 				}, new FormLayoutConstraints( null ) {
-					"title": "到达单"
+					"title": "已审批到达单"
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"
@@ -129,8 +129,8 @@ new FormModel {
 		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 			name: "arrivalVO"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq t {par t {seq {space :::p, comp scrollPane1::::670:x}, seq {space ::16:x, par t {seq {space :p:138:p, comp label2:::::x}, seq {comp label1:::p::p, space u:::p, comp transferID:::p:70:p, space :::p, comp label4:::p::p, space :::p, comp from:::p:70:p, space :::p, comp label3:::p::p, space :::p, comp arrivalDate:::p:70:p, space :::x, comp status:::p:100:p, space :::p, comp modifyStatus:::p:134:p}}}}, space :::p, par l {comp cancelArrival:::p:99:p, comp createStorageIn::t:p:99:p}, space :::p}}"
-				"$verticalGroup": "par l {seq t {space :::p, par b {comp label1::b:p::p, comp transferID::b:p::p, comp label4::b:p::p, comp from::b:p::p, comp label3::b:p::p, comp arrivalDate::b:p::p, comp status::b:::x, comp modifyStatus::b::0:x}, space :::p, comp label2:::p::p, space :::p, par l {comp scrollPane1:::p:248:p, seq t {comp createStorageIn:::p::p, space :::p, comp cancelArrival:::p::p}}, space :::x}}"
+				"$horizontalGroup": "par l {seq t {par t {seq {space :::p, comp scrollPane1::::670:x}, seq {space ::16:x, par t {seq {space :p:138:p, comp label2:::::x}, seq t {comp label1:::p::p, space u:::p, comp transferID:::p:70:p, space :::p, comp label4:::p::p, space :::p, comp from:::p:70:p, space :::p, comp label3:::p::p, space :::p, comp arrivalDate:::p:70:p, space :140:246:x}}}}, space :::p, par l {comp cancelArrival:::p:99:p, comp createStorageIn::t:p:99:p}, space :::p}}"
+				"$verticalGroup": "par l {seq t {space :::p, par b {comp label1::b:p::p, comp transferID::b:p::p, comp label4::b:p::p, comp from::b:p::p, comp label3::b:p::p, comp arrivalDate::b:p::p}, space :::p, comp label2:::p::p, space :::p, par l {comp scrollPane1:::p:248:p, seq t {comp createStorageIn:::p::p, space :::p, comp cancelArrival:::p::p}}, space :::x}}"
 			} ) {
 				name: "panel1"
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -164,16 +164,6 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "arrivalDate"
 					"font": #Font0
-				} )
-				add( new FormComponent( "javax.swing.JComboBox" ) {
-					name: "status"
-					"font": #Font0
-				} )
-				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "modifyStatus"
-					"text": "修改状态"
-					"font": #Font0
-					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/search_16x16.png" )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label4"

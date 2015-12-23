@@ -122,8 +122,17 @@ public class TransferLoadPanel extends JPanel {
 		
 				transferList = transferLoad.createTransferList(order);
 				setTransferList();
+				setDisabled();
 			}
 		}
+	}
+	
+	private void setDisabled(){
+		listID.setEnabled(false);
+		centerID.setEnabled(false);
+		centerName.setEnabled(false);
+		destID.setEnabled(false);
+		destName.setEnabled(false);
 	}
 	
 	private void setTransferList(){
@@ -176,7 +185,10 @@ public class TransferLoadPanel extends JPanel {
 		}
 		transferList.date = date.getText();
 		transferList.vehicleCode = vehicleID.getText();
-		
+		if(transferList.fee.equals("") || transferList.fee.equals(0.0+"")|| transferList.vehicleCode.equals("请输入班次")|| transferList.vehicleCode.equals("")){
+			JOptionPane.showMessageDialog(null, "请正确输入运费和班次", "提示", JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
 		try {
 			ResultMessage result = transferLoad.saveTransferList(transferList);
 			if (result == ResultMessage.SUCCESS) {

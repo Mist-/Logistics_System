@@ -13,13 +13,15 @@ import data.vo.TransferListVO;
  *
  */
 public interface StorageOutService {
+	public StorageOutVO getStorageOut(long id) throws RemoteException;
+	
 	/**
 	 * 确认出库
 	 * @param storageOutID 出库单号
 	 * @return 操作结果
 	 * @throws RemoteException 
 	 */
-	public ResultMessage doStorageOut(long storageOutID) throws RemoteException;
+	public ResultMessage doStorageOut() throws RemoteException;
 	
 	/**
 	 * 保存新生成的出库单

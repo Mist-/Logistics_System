@@ -17,7 +17,7 @@ public class TransferListPO extends DataPO {
 	long transferListID;// 中转单编号
 	long transferCenter;// 中转中心编号
 	String transferCenterName;
-	long vehicleID;// 班次
+	String vehicleID;// 班次
 	long targetCenter;// 目标中转中心编号
 	String targetCenterName;
 	long[] order;// 订单号
@@ -38,11 +38,11 @@ public class TransferListPO extends DataPO {
 		serialNum = transferListID;
 	}
 
-	public long getVehicleID() {
+	public String getVehicleID() {
 		return vehicleID;
 	}
 
-	public void setVehicleID(long vehicleID) {
+	public void setVehicleID(String vehicleID) {
 		this.vehicleID = vehicleID;
 	}
 
@@ -172,11 +172,11 @@ public class TransferListPO extends DataPO {
 		this.transferCenter = transferCenter;
 	}
 
-	public long getVehicleCode() {
+	public String getVehicleCode() {
 		return vehicleID;
 	}
 
-	public void setVehicleCode(long vehicleCode) {
+	public void setVehicleCode(String vehicleCode) {
 		this.vehicleID = vehicleCode;
 	}
 

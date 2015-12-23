@@ -122,7 +122,7 @@ public class TransferReceive implements TransferReceiveService {
 		this.center = center;
 	}
 	
-	public ResultMessage doArrive() throws RemoteException{//Î´Íê³É
+	public ResultMessage doArrive() throws RemoteException{
 		long[] roundOrder = null;
 		long[] lostOrder = null;
 		try {

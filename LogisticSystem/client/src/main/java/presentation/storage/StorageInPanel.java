@@ -6,6 +6,7 @@ package presentation.storage;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.rmi.RemoteException;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -125,8 +126,6 @@ public class StorageInPanel extends JPanel {
 		long arrivalID = Long.parseLong(info);
 		arrival = storageInService.getArriveList(arrivalID);
 		setArrival(arrival);
-		
-
 	}
 
 	private void createStorageInMouseClicked(MouseEvent e) {
@@ -157,12 +156,21 @@ public class StorageInPanel extends JPanel {
 	}
 
 	private void saveStorageInMouseReleased(MouseEvent e) {
-		ResultMessage result = storageInService.saveStorageInList(storageIn);
+		ResultMessage result = ResultMessage.FAILED;
+		try {
+			result = storageInService.saveStorageInList(storageIn);
+			storageInService.doArrive();
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+			JOptionPane.showMessageDialog(null, "网络连接中断", "提示", JOptionPane.INFORMATION_MESSAGE);
+		}
 		if (result == ResultMessage.SUCCESS) {
 			JOptionPane.showMessageDialog(null, "保存成功", "提示", JOptionPane.INFORMATION_MESSAGE);
 			DefaultTableModel model = (DefaultTableModel) arrivalTable.getModel();
 			model.removeRow(arriveListTable.getSelectedRow());
+			arriveListTable.setModel(model);
 			arriveListTable.updateUI();
+			arriveListTable.repaint();
 			remove(storageInVO);
 			add(listPane,BorderLayout.CENTER);
 			listPane.updateUI();
@@ -229,8 +237,6 @@ public class StorageInPanel extends JPanel {
 		from = new JTextField();
 		label3 = new JLabel();
 		arrivalDate = new JTextField();
-		status = new JComboBox();
-		modifyStatus = new JButton();
 		label4 = new JLabel();
 		createStorageIn = new JButton();
 		cancelArrival = new JButton();
@@ -281,8 +287,7 @@ public class StorageInPanel extends JPanel {
 				storageInListLayout.setHorizontalGroup(
 					storageInListLayout.createParallelGroup()
 						.addGroup(storageInListLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(scrollPane4, GroupLayout.PREFERRED_SIZE, 638, GroupLayout.PREFERRED_SIZE)
+							.addComponent(scrollPane4, GroupLayout.PREFERRED_SIZE, 648, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addGroup(storageInListLayout.createParallelGroup()
 								.addComponent(selectStorageIn, GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
@@ -293,14 +298,11 @@ public class StorageInPanel extends JPanel {
 					storageInListLayout.createParallelGroup()
 						.addGroup(storageInListLayout.createSequentialGroup()
 							.addContainerGap()
-							.addGroup(storageInListLayout.createParallelGroup()
-								.addComponent(scrollPane4, GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
-								.addGroup(storageInListLayout.createSequentialGroup()
-									.addComponent(selectStorageIn)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(doStorageIn)
-									.addGap(0, 234, Short.MAX_VALUE)))
-							.addContainerGap())
+							.addComponent(selectStorageIn)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(doStorageIn)
+							.addContainerGap(244, Short.MAX_VALUE))
+						.addComponent(scrollPane4, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
 				);
 			}
 			listPane.addTab("\u5df2\u5ba1\u6279\u5165\u5e93\u5355", storageInList);
@@ -324,7 +326,7 @@ public class StorageInPanel extends JPanel {
 				}
 
 				//---- search ----
-				search.setText("search");
+				search.setText("\u641c\u7d22");
 				search.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseReleased(MouseEvent e) {
@@ -333,7 +335,7 @@ public class StorageInPanel extends JPanel {
 				});
 
 				//---- selectArrival ----
-				selectArrival.setText("select");
+				selectArrival.setText("\u67e5\u770b");
 				selectArrival.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
@@ -350,7 +352,7 @@ public class StorageInPanel extends JPanel {
 							.addComponent(arrivalID, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addComponent(search)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 499, Short.MAX_VALUE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 511, Short.MAX_VALUE)
 							.addComponent(selectArrival, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
 							.addContainerGap())
 						.addComponent(scrollPane3, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
@@ -368,7 +370,7 @@ public class StorageInPanel extends JPanel {
 							.addContainerGap())
 				);
 			}
-			listPane.addTab("\u5230\u8fbe\u5355", arriveList);
+			listPane.addTab("\u5df2\u5ba1\u6279\u5230\u8fbe\u5355", arriveList);
 		}
 		add(listPane, BorderLayout.CENTER);
 
@@ -496,14 +498,6 @@ public class StorageInPanel extends JPanel {
 				//---- arrivalDate ----
 				arrivalDate.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- status ----
-				status.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-				//---- modifyStatus ----
-				modifyStatus.setText("\u4fee\u6539\u72b6\u6001");
-				modifyStatus.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-				modifyStatus.setIcon(new ImageIcon(getClass().getResource("/icons/search_16x16.png")));
-
 				//---- label4 ----
 				label4.setText("\u51fa\u53d1\u5730\uff1a");
 				label4.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
@@ -557,10 +551,7 @@ public class StorageInPanel extends JPanel {
 											.addComponent(label3)
 											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 											.addComponent(arrivalDate, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-											.addComponent(status, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-											.addComponent(modifyStatus, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)))))
+											.addGap(140, 246, Short.MAX_VALUE)))))
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addGroup(panel1Layout.createParallelGroup()
 								.addComponent(cancelArrival, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
@@ -577,9 +568,7 @@ public class StorageInPanel extends JPanel {
 								.addComponent(label4)
 								.addComponent(from, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(label3)
-								.addComponent(arrivalDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(status)
-								.addComponent(modifyStatus, GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
+								.addComponent(arrivalDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addComponent(label2)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
@@ -629,8 +618,6 @@ public class StorageInPanel extends JPanel {
 	private JTextField from;
 	private JLabel label3;
 	private JTextField arrivalDate;
-	private JComboBox status;
-	private JButton modifyStatus;
 	private JLabel label4;
 	private JButton createStorageIn;
 	private JButton cancelArrival;

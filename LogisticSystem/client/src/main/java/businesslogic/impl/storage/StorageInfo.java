@@ -8,6 +8,7 @@ import data.enums.DataType;
 import data.enums.POType;
 import data.enums.StorageArea;
 import utils.DataServiceFactory;
+import utils.Timestamper;
 import data.message.ResultMessage;
 import data.po.OrderPO;
 import data.po.StorageInfoPO;
@@ -31,18 +32,22 @@ public class StorageInfo implements StorageInfoService {
 	 */
 	public StorageOutVO createStorageOutList(TransferListPO transfer) {
 		StorageOutVO vo = new StorageOutVO();
-		vo.setDate(transfer.getDate());
+		vo.setDate(Timestamper.getTimeByDate());
 		vo.setTransferListNum(transfer.getSerialNum() + "");
+		vo.setTransferNum(transfer.getTransferCenter()+"");
 		switch (transfer.getTransferType()) {
-		case PLANE:
+		case PLANE:{
 			vo.setTransferType("航运");
 			break;
-		case TRAIN:
+		}
+		case TRAIN:{
 			vo.setTransferType("铁运");
 			break;
-		default:
+		}
+		default:{
 			vo.setTransferType("汽运");
 			break;
+		}
 		}
 
 		long[] orderNum = transfer.getOrder();
@@ -52,15 +57,15 @@ public class StorageInfo implements StorageInfoService {
 		for (int i = 0; i < orderNum.length; i++) {
 			String[] pos = position[i].split("-");
 			switch (pos[0]) {
-			case "0":
+			case "0":{
 				pos[0] = "航运区";
-				break;
-			case "1":
+				break;}
+			case "1":{
 				pos[0] = "铁运区";
-				break;
-			case "2":
+				break;}
+			case "2":{
 				pos[0] = "汽运区";
-				break;
+				break;}
 			default:
 				pos[0] = "机动区";
 			}
@@ -68,6 +73,7 @@ public class StorageInfo implements StorageInfoService {
 			String[] in = { orderNum[i] + "", pos[0], pos[1], pos[2], pos[3] };
 			info[i] = in;
 		}
+		vo.setOrderAndPosition(info);
 		return vo;
 	}
 

@@ -223,7 +223,7 @@ public class DataApproveBLImpl implements DataApproveBLService {
         dataService = DataServiceFactory.getDataServiceByPO(POType.TRANSFERLIST);
         try {
             TransferListPO transferListPO = (TransferListPO)dataService.search(POType.TRANSFERLIST,Long.valueOf(transferListVO.transferListID));
-            transferListPO.setVehicleCode(Long.valueOf(transferListVO.vehicleCode));
+            transferListPO.setVehicleCode(transferListVO.vehicleCode);
             transferListPO.setFee(Double.valueOf(transferListVO.fee));
             transferListPO.setStaffName(transferListVO.staff);
             transferListPO.setTargetCenterName(transferListVO.targetName);

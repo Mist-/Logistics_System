@@ -93,7 +93,8 @@ public class LoadAndSortPanel extends JPanel {
 		truckID.setEnabled(false);
 		staffName.setEnabled(false);
 		driverName.setEnabled(false);
-
+		doEntruck.setVisible(true);
+		entruckDate.setEnabled(false);
 	}
 
 	// 设置显示装车单
@@ -216,6 +217,7 @@ public class LoadAndSortPanel extends JPanel {
 			saveEntruck.setEnabled(false);
 			setEntruck();
 			setDisabled();
+			entruckDate.setEnabled(false);
 		}
 	}
 
@@ -361,8 +363,7 @@ public class LoadAndSortPanel extends JPanel {
 				entruckListPanelLayout.setHorizontalGroup(
 					entruckListPanelLayout.createParallelGroup()
 						.addGroup(entruckListPanelLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 688, GroupLayout.PREFERRED_SIZE)
+							.addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 698, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addComponent(selectEntruck, GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
 							.addContainerGap())

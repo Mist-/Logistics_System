@@ -63,7 +63,7 @@ public class TransferList {
 		transfer.setTargetCenterName(vo.targetName);
 		transfer.setTransferCenter(Long.parseLong(vo.transferCenterID));
 		transfer.setTransferCenterName(vo.transferCenter);
-		transfer.setVehicleCode(Long.parseLong(vo.vehicleCode));
+		transfer.setVehicleCode(vo.vehicleCode);
 		
 		System.out.println(transfer.getSerialNum());
 		return transferData.add(transfer);
@@ -107,7 +107,6 @@ public class TransferList {
 	}
 	
 	public TransferListVO getCheckedTransferList(long listID){
-		TransferListPO transfer = null;
 		for(DataPO d : transferList){
 			if(d.getSerialNum() == listID){
 				transfer = (TransferListPO) d;
