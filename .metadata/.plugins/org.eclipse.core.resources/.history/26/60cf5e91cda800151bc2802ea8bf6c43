@@ -19,7 +19,7 @@ import businesslogic.service.storage.StorageOutService;
  */
 public class StorageOutPanel extends JPanel {
 	StorageOutService storageOut;
-	TransferListVO transferListVO;
+	TransferListVO transferList;
 	BriefTransferAndStorageOutVO briefTransferAndStorageOutVO;
 	public StorageOutPanel(StorageOutService storageOut) {
 		this.storageOut	 = storageOut;
@@ -95,12 +95,8 @@ public class StorageOutPanel extends JPanel {
 		int row = transferListTable.getSelectedRow();
 		String s = (String) transferListTable.getValueAt(row, 0);
 		long id = Long.parseLong(s);
-		 transferListVO =storageOut.getTransferList(id);
-		setTransferList(transferListVO);
-	}
-
-	private void createStorageOutMouseReleased(MouseEvent e) {
-		// TODO add your code here
+		 transferList =storageOut.getTransferList(id);
+		setTransferList(transferList);
 	}
 
 	private void initComponents() {
@@ -123,7 +119,6 @@ public class StorageOutPanel extends JPanel {
 		tabbedPane3 = new JTabbedPane();
 		storageOutVO = new JPanel();
 		scrollPane4 = new JScrollPane();
-		table1 = new JTable();
 		storageOutCancel = new JButton();
 		storageOutSave = new JButton();
 		label5 = new JLabel();
@@ -344,7 +339,6 @@ public class StorageOutPanel extends JPanel {
 				//======== scrollPane4 ========
 				{
 					scrollPane4.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-					scrollPane4.setViewportView(table1);
 				}
 
 				//---- storageOutCancel ----
@@ -411,9 +405,15 @@ public class StorageOutPanel extends JPanel {
 				storageOutVOLayout.setHorizontalGroup(
 					storageOutVOLayout.createParallelGroup()
 						.addGroup(storageOutVOLayout.createSequentialGroup()
+							.addContainerGap()
 							.addGroup(storageOutVOLayout.createParallelGroup()
 								.addGroup(storageOutVOLayout.createSequentialGroup()
-									.addContainerGap()
+									.addComponent(scrollPane4, GroupLayout.PREFERRED_SIZE, 680, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addGroup(storageOutVOLayout.createParallelGroup()
+										.addComponent(storageOutCancel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(storageOutSave, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+								.addGroup(storageOutVOLayout.createSequentialGroup()
 									.addGroup(storageOutVOLayout.createParallelGroup()
 										.addGroup(storageOutVOLayout.createSequentialGroup()
 											.addComponent(label1, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
@@ -443,13 +443,7 @@ public class StorageOutPanel extends JPanel {
 											.addComponent(label6, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
 											.addGap(5, 5, 5)
 											.addComponent(textField8, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)))
-									.addGap(0, 0, Short.MAX_VALUE))
-								.addGroup(storageOutVOLayout.createSequentialGroup()
-									.addComponent(scrollPane4, GroupLayout.PREFERRED_SIZE, 690, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addGroup(storageOutVOLayout.createParallelGroup()
-										.addComponent(storageOutCancel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(storageOutSave, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+									.addGap(0, 0, Short.MAX_VALUE)))
 							.addContainerGap())
 				);
 				storageOutVOLayout.setVerticalGroup(
@@ -475,16 +469,15 @@ public class StorageOutPanel extends JPanel {
 								.addComponent(textField9, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(label6, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
 								.addComponent(textField8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addGroup(storageOutVOLayout.createParallelGroup()
 								.addGroup(storageOutVOLayout.createSequentialGroup()
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+									.addGap(0, 0, Short.MAX_VALUE)
 									.addComponent(storageOutSave)
 									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(storageOutCancel)
-									.addContainerGap())
-								.addGroup(storageOutVOLayout.createSequentialGroup()
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(scrollPane4, GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))))
+									.addComponent(storageOutCancel))
+								.addComponent(scrollPane4, GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
+							.addContainerGap())
 				);
 			}
 			tabbedPane3.addTab("\u51fa\u5e93\u5355", storageOutVO);
@@ -547,12 +540,6 @@ public class StorageOutPanel extends JPanel {
 				createStorageOut.setText("\u65b0\u5efa");
 				createStorageOut.setIcon(new ImageIcon(getClass().getResource("/icons/new_24x24.png")));
 				createStorageOut.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-				createStorageOut.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseReleased(MouseEvent e) {
-						createStorageOutMouseReleased(e);
-					}
-				});
 
 				GroupLayout DeliveryListPanelLayout = new GroupLayout(DeliveryListPanel);
 				DeliveryListPanel.setLayout(DeliveryListPanelLayout);
@@ -608,10 +595,10 @@ public class StorageOutPanel extends JPanel {
 											.addComponent(vehicleID, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)))
 									.addGap(221, 221, 221)))
 							.addGroup(DeliveryListPanelLayout.createParallelGroup()
-								.addComponent(createStorageOut, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
 									.addComponent(cancelLoad, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-									.addGap(0, 0, Short.MAX_VALUE)))
+									.addGap(0, 0, Short.MAX_VALUE))
+								.addComponent(createStorageOut, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 							.addContainerGap())
 				);
 				DeliveryListPanelLayout.setVerticalGroup(
@@ -620,7 +607,7 @@ public class StorageOutPanel extends JPanel {
 							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addComponent(createStorageOut)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(cancelLoad, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+							.addComponent(cancelLoad)
 							.addContainerGap())
 						.addGroup(GroupLayout.Alignment.TRAILING, DeliveryListPanelLayout.createSequentialGroup()
 							.addContainerGap()
@@ -696,7 +683,6 @@ public class StorageOutPanel extends JPanel {
 	private JTabbedPane tabbedPane3;
 	private JPanel storageOutVO;
 	private JScrollPane scrollPane4;
-	private JTable table1;
 	private JButton storageOutCancel;
 	private JButton storageOutSave;
 	private JLabel label5;

@@ -54,10 +54,10 @@
 <fullyQualifiedTypeName name="java.rmi.RemoteException"/>
 <fullyQualifiedTypeName name="data.message.ResultMessage"/>
 <fullyQualifiedTypeName name="data.po.TransferListPO"/>
-<fullyQualifiedTypeName name="data.vo.TransferListVO"/>
 <fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
 <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.util.Vector"/>
 <fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="data.vo.TransferListVO"/>
 </qualifiedTypeNameHistroy>

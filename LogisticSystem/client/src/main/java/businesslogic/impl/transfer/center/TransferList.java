@@ -121,7 +121,7 @@ public class TransferList {
 	
 	public String[][] getBriefTranserList(long center) throws RemoteException{
 		transferList = transferData.getNewlyApprovedPO(POType.TRANSFERLIST, center);
-		String[][] transferInfo = new String[2][transferList.size()];
+		String[][] transferInfo = new String[transferList.size()][2];
 		for(int i = 0;i < transferList.size();i++){
 			TransferListPO transfer = (TransferListPO) transferList.get(i);
 			String[] in ={transfer.getSerialNum()+"",transfer.getDate()};
