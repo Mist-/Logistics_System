@@ -2,6 +2,7 @@ package businesslogic.impl.transfer.center;
 
 import java.lang.Thread.State;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import businesslogic.impl.order.OrderList;
 import businesslogic.impl.transfer.hall.ArrivalList;
@@ -11,11 +12,13 @@ import businesslogic.service.order.OrderListService;
 import data.enums.DataType;
 import data.enums.POType;
 import data.enums.StockStatus;
+import data.enums.StorageArea;
 import utils.DataServiceFactory;
 import data.message.LoginMessage;
 import data.message.ResultMessage;
 import data.po.ArrivalPO;
 import data.po.EntruckPO;
+import data.po.OrderPO;
 import data.po.TransferListPO;
 import data.service.TransferDataService;
 import data.vo.ArrivalListVO;
@@ -139,6 +142,17 @@ public class TransferReceive implements TransferReceiveService {
 		orderList.modifyOrder(lostOrder, "¶©µ¥ÓÚ"+center.getInstitutionName()+"¶ªÊ§");
 		return ResultMessage.SUCCESS;
 		
+	}
+
+	@Override
+	public ResultMessage modifyTransferType(ArrivalVO a) throws RemoteException {
+		String[][] info = a.getOrderAndStatus();
+		long[] id = new long[info.length];
+		for(int i = 0 ; i < info.length;i++){
+			id[i] = Long.parseLong(info[i][0]);
+		}
+		new OrderList(new LoginMessage(ResultMessage.SUCCESS)).modifyOrderTransferType(id, StorageArea.TRUCK);
+		return null;
 	}
 
 }

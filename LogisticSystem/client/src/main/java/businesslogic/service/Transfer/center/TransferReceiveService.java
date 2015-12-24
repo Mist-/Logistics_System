@@ -15,6 +15,7 @@ import data.vo.TransferListVO;
  *
  */
 public interface TransferReceiveService {
+	public ResultMessage modifyTransferType(ArrivalVO a) throws RemoteException;
 	
 	public ResultMessage doArrive() throws RemoteException;
 	/**

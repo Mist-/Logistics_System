@@ -263,6 +263,7 @@ public class TransferReceivePanel extends JPanel {
 			
 		}else{
 			arrival = transferReceive.createArriveList(POType.TRANSFERLIST, transferListVO);
+			
 		}
 		
 		doArrive.setVisible(false);
@@ -274,6 +275,11 @@ public class TransferReceivePanel extends JPanel {
 
 	private void saveArrivalMouseReleased(MouseEvent e) {
 		ResultMessage result = transferReceive.saveArriveList(arrival);
+		try {
+			transferReceive.modifyTransferType(arrival);
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		}
 		if (result == ResultMessage.SUCCESS) {
 			JOptionPane.showMessageDialog(null, "保存成功", "提示", JOptionPane.INFORMATION_MESSAGE);
 			remove(arrivalVO);
