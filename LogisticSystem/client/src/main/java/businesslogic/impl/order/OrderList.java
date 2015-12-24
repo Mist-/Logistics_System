@@ -48,6 +48,7 @@ public class OrderList implements OrderListService {
 		for(int i = 0 ; i < orders.size();i++){
 			orders.get(i).setTransferType(type);
 			orderDataService.modify(orders.get(i));
+			System.out.println("ÐÞ¸ÄÎª"+type);
 		}
 	}
 	

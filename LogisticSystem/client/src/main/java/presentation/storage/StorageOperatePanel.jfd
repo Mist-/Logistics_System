@@ -119,8 +119,8 @@ new FormModel {
 					"title": "库存查看"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq t {space ::531:x, comp refreshButton:::p::p, space :::p, comp saveStorageCheck:::p:115:p, space :::p, comp exportExcel:::p::p, space :::p}, comp scrollPane2::l::840:x}"
-					"$verticalGroup": "par l {seq l {space :::p, par l {par b {comp exportExcel::b:p::p, comp saveStorageCheck::b:p::p}, comp refreshButton::t:p::p}, space u:::p, comp scrollPane2::::453:x}}"
+					"$horizontalGroup": "par l {seq t {space ::496:x, comp refreshButton:::p:92:p, space :::p, comp saveStorageCheck:::p:115:p, space :::p, comp exportExcel:::p::p, space :::p}, comp scrollPane2::l::840:x}"
+					"$verticalGroup": "par l {seq l {space :::p, par l {seq {par b {comp exportExcel::b:p::p, comp saveStorageCheck::b:p::p}, space :0:1:x}, comp refreshButton:::::x}, space :::p, comp scrollPane2::::456:x}}"
 				} ) {
 					name: "checkPanel"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {

@@ -48,8 +48,8 @@ new FormModel {
 					"title": "已审批出库单"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {comp scrollPane2:::p:796:p, space :p:32644:p, comp selectTransfer:::::x, space :::p}, seq l {space :::p, comp textField2:::p:85:p, space :::p, comp searchTransfer:::p::p, space :p:454:p, comp refreshButton2:::p:61:p, space :::p, comp getTransferButton:::p:99:p, space :::x}}"
-					"$verticalGroup": "par l {seq {par t {par b {comp getTransferButton::b:p:33:p, comp refreshButton2::b:p::p}, par b {comp textField2::b:p::p, comp searchTransfer::b:p:25:p}}, space ::10:x, par l {seq t {comp selectTransfer:::p:46:p, space :::p}, seq t {comp scrollPane2:::p:274:p, space :p:24:p}}}}"
+					"$horizontalGroup": "par l {seq l {comp scrollPane2:::p:796:p, space :p:32644:p, comp selectTransfer:::::x, space :::p}, seq l {space :::p, comp textField2:::p:85:p, space :::p, comp searchTransfer:::p::p, space :p:439:p, comp refreshButton2:::p:76:p, space :::p, comp getTransferButton:::p:99:p, space :::x}}"
+					"$verticalGroup": "par l {seq {par t {par b {comp getTransferButton::b:p:33:p, comp refreshButton2::b:p:33:p}, par b {comp textField2::b:p::p, comp searchTransfer::b:p:25:p}}, space ::10:x, par l {seq t {comp selectTransfer:::p:46:p, space :::p}, seq t {comp scrollPane2:::p:274:p, space :p:24:p}}}}"
 				} ) {
 					name: "transferList"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -168,8 +168,8 @@ new FormModel {
 			name: "transferListPane"
 			"font": &Font3 new java.awt.Font( "等线", 0, 14 )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp label9:::p::p, space :p:32:p, comp listID:::p:80:p, space :p:135:p, comp label16:::p::p, space :10:10:p, comp date:::p:80:p}, seq l {space :p:365:p, comp vehicleID:::p:80:p}, seq l {par t {seq {comp label10:::p::p, space :::x, comp destName:::p:82:p}, seq {comp label11:::p::p, space :::x, comp destID:::p:82:p}, seq {comp label12:::p::p, space :::x, comp centerName:::p:82:p}, seq {space :0:0:x, comp label8:::p::p, space s:::p, comp centerID:::p:82:p}}, space :p:135:p, par l {seq l {comp label15:::p:40:p, space s:::p, comp driverName:::p:80:p}, seq t {comp label14:::p:40:p, space s:::p, comp staffName:::p:80:p}, comp label13:::p:48:p}, space :p:92:p, comp createStorageOut:::p:109:p, space s:::p, comp cancelLoad:::p:109:p}}, space ::12:x}, comp scrollPane5::l::795:x}"
-				"$verticalGroup": "par l {seq t {space :::p, par l {par b {comp label9::b:p::p, comp listID::b:p::p}, seq {space :3:3:p, comp label16:::p::p}, comp date:::p::p}, par l {seq t {space :::p, comp vehicleID:::p::p}, seq {space :9:9:p, par l {par b {comp label8::b:p::p, comp centerID::b:p::p}, comp label13:::p::p}}}, par l {seq {space :p:6:p, par b {comp staffName::b:p::p, comp label14::b:p::p}}, seq l {space :::p, comp centerName:::p::p}, seq t {space :::p, comp label12:::p::p}}, par l {seq {space :p:12:p, par l {seq {space :3:3:p, par l {comp label11:::p::p, par b {comp driverName::b:p::p, comp label15::b:p::p}}}, comp destID::l:p::p}, space :p:14:p, par l {comp label10:::p::p, comp destName:::p::p}}, seq t {space :::p, par b {comp createStorageOut::b:p:37:p, comp cancelLoad::b:p:33:p}}}, space :::p, comp scrollPane5::::151:x}}"
+				"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp label9:::p::p, space :p:32:p, comp listID:::p:80:p, space :p:135:p, comp label16:::p::p, space :10:10:p, comp date:::p:80:p}, seq l {space :p:365:p, comp vehicleID:::p:80:p}, seq l {par t {seq {comp label10:::p::p, space :::x, comp destName:::p:82:p}, seq {comp label11:::p::p, space :::x, comp destID:::p:82:p}, seq {comp label12:::p::p, space :::x, comp centerName:::p:82:p}, seq {space :0:0:x, comp label8:::p::p, space s:::p, comp centerID:::p:82:p}}, space :p:135:p, par l {seq l {comp label15:::p:40:p, space s:::p, comp fee:::p:80:p}, seq t {comp label14:::p:40:p, space s:::p, comp staffName:::p:80:p}, comp label13:::p:48:p}, space :p:92:p, comp createStorageOut:::p:109:p, space s:::p, comp cancelLoad:::p:109:p}}, space ::12:x}, comp scrollPane5::l::795:x}"
+				"$verticalGroup": "par l {seq t {space :::p, par l {par b {comp label9::b:p::p, comp listID::b:p::p}, seq {space :3:3:p, comp label16:::p::p}, comp date:::p::p}, par l {seq t {space :::p, comp vehicleID:::p::p}, seq {space :9:9:p, par l {par b {comp label8::b:p::p, comp centerID::b:p::p}, comp label13:::p::p}}}, par l {seq {space :p:6:p, par b {comp staffName::b:p::p, comp label14::b:p::p}}, seq l {space :::p, comp centerName:::p::p}, seq t {space :::p, comp label12:::p::p}}, par l {seq {space :p:12:p, par l {seq {space :3:3:p, par l {comp label11:::p::p, par b {comp fee::b:p::p, comp label15::b:p::p}}}, comp destID::l:p::p}, space :p:14:p, par l {comp label10:::p::p, comp destName:::p::p}}, seq t {space :::p, par b {comp createStorageOut::b:p:37:p, comp cancelLoad::b:p:33:p}}}, space :::p, comp scrollPane5::::151:x}}"
 			} ) {
 				name: "DeliveryListPanel"
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -238,7 +238,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label15"
-					"text": "押运员"
+					"text": "费用"
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "vehicleID"
@@ -249,7 +249,7 @@ new FormModel {
 					"editable": false
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "driverName"
+					name: "fee"
 					"editable": false
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {

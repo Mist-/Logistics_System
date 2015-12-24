@@ -9,10 +9,11 @@ new FormModel {
 			"$sizePolicy": 1
 			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosed", "thisWindowClosed", true ) )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {comp menuBar1:::p:794:p, space :0:0:x}, seq l {space :::p, par l {comp receiveButton::l:p:72:p, seq l {space :10:10:p, comp label1:::p::p}}, space :::p, par l {comp loadButton::l:p:72:p, seq l {space :10:10:p, comp label2:::p::p}}, space :::p, par l {comp driverButton:::p:72:p, comp label4:::p:60:p}, space :::p, par l {comp truckButton::l:p:72:p, seq l {space :p:8:p, comp label5:::p::p}}, space :::p, par l {seq {space :10:10:p, comp label6:::p::p}, comp moneyButton:::p:72:p}, space ::390:x}}"
-				"$verticalGroup": "par l {seq l {comp menuBar1:::p:21:p, space :::p, par l:::p {comp receiveButton::::72:x, comp loadButton::::72:x, comp driverButton::::72:x, comp truckButton::l::72:x, comp moneyButton::::72:x}, space :::x, par b {comp label1::b:p::p, comp label2::b:p::p, comp label4::b:p::p, comp label5::b:p::p, comp label6::b:p::p}, space :::p}}"
+				"$horizontalGroup": "par l {seq l {comp menuBar1:::p:794:p, space :0:0:x}, seq l {par t {seq t {space :::p, comp receiveButton:::p:95:p, space s:::p, comp loadButton:::p:95:p, space :p:10:p}, seq l {space :p:34:p, comp label1:::p::p, space :p:60:p, comp label2:::p::p}}, par l {seq l {space :p:35:p, comp label4:::p:60:p, space :p:48:p, comp label5:::p::p, space :p:77:p, comp label6:::p::p}, seq l {space :p:8:p, comp driverButton:::p:95:p, space s:::p, comp truckButton:::p:94:p, space s:::p, comp moneyButton:::p:95:p}}, space ::358:x}}"
+				"$verticalGroup": "par l {seq l {comp menuBar1:::p:21:p, space :::p, par l:::p {comp receiveButton::t::95:x, par b:t {comp loadButton::b::95:x, comp driverButton::b::95:x}, comp truckButton::l::95:x, comp moneyButton::l::95:x}, space :::p, par l {par b {comp label4::b:p::p, comp label5::b:p::p, comp label6::b:p::p}, par b:l {comp label1::b:p::p, comp label2::b:p::p}}, space :::p}}"
 			} ) {
 				name: "panel1"
+				"font": new java.awt.Font( "方正等线", 0, 14 )
 				add( new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
 					name: "menuBar1"
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
@@ -26,56 +27,64 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "receiveButton"
-					"text": "text"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/receive.png" )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "receiveButtonMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "loadButton"
-					"text": "text"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/load.png" )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "loadButtonMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "driverButton"
-					"text": "text"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/driver.png" )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "driverButtonMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "truckButton"
-					"text": "text"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/truck.png" )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "truckButtonMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "moneyButton"
-					"text": "text"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/money.png" )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "moneyButtonMouseReleased", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label1"
 					"text": "装车接收"
+					"font": new java.awt.Font( "宋体", 0, 14 )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label2"
 					"text": "分拣装车"
+					"font": new java.awt.Font( "宋体", 0, 14 )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label4"
 					"text": "司机信息"
+					"font": new java.awt.Font( "宋体", 0, 14 )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label5"
 					"text": "车辆信息"
+					"font": new java.awt.Font( "宋体", 0, 14 )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label6"
 					"text": "结算"
+					"font": new java.awt.Font( "宋体", 0, 14 )
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "North"
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 				name: "emptyPanel"
+				"maximumSize": new java.awt.Dimension( 1280, 720 )
+				"font": new java.awt.Font( "宋体", 2, 14 )
 				add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 					name: "tabbedPane1"
+					"font": new java.awt.Font( "宋体", 0, 14 )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label7"
 						"text": "text"
@@ -90,7 +99,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 800, 500 )
+			"size": new java.awt.Dimension( 930, 590 )
 		} )
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 			name: "errorDialog"
@@ -119,7 +128,7 @@ new FormModel {
 				"value": "Center"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 805, 105 )
+			"location": new java.awt.Point( 1010, 110 )
 			"size": new java.awt.Dimension( 290, 200 )
 		} )
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
@@ -152,7 +161,7 @@ new FormModel {
 				"value": "Center"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 810, 325 )
+			"location": new java.awt.Point( 1010, 325 )
 			"size": new java.awt.Dimension( 285, 190 )
 		} )
 	}

@@ -103,7 +103,7 @@ public class StorageOut implements StorageOutService{
 	 * @return 装车单，中转单列表
 	 * @throws RemoteException 
 	 */
-	public BriefTransferAndStorageOutVO  newStorageOut() {
+	public BriefTransferAndStorageOutVO  newStorageOut() throws RemoteException {
 		String[][] transferInfo;
 		try {
 			transferInfo = transferList.getBriefTranserList(user.getCenterID());

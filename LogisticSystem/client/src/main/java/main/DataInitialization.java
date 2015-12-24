@@ -1,6 +1,7 @@
 package main;
 
 import data.enums.DataType;
+import data.enums.POType;
 import data.enums.UserRole;
 import utils.DataServiceFactory;
 import data.po.CityInfoPO;
@@ -162,8 +163,16 @@ public class DataInitialization {
         staff9.setSerialNum(10008);
         staff9.setName("孙九日");
         staff9.setGender(false);
-        staff9.setInstitution(1002100003);
+        staff9.setInstitution(1002500001);
         staff9.setUserRole(UserRole.营业厅业务员);
+        
+        UserPO user9 = new UserPO(10008, "sb", "123456", UserRole.营业厅业务员);
+        try {
+			DataServiceFactory.getDataServiceByPO(POType.USER).add(user9);
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
         StaffPO staff3 = new StaffPO();
         staff3.setSerialNum(10002);
@@ -209,7 +218,7 @@ public class DataInitialization {
         
         StaffPO staff11 = new StaffPO();
         staff11.setSerialNum(10011);
-        staff11.setName("我是傻逼");
+        staff11.setName("ADB");
         staff11.setGender(false);
         staff11.setInstitution(10025);
         staff11.setUserRole(UserRole.仓库管理员);

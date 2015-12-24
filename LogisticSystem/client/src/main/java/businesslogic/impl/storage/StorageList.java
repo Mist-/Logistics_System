@@ -15,6 +15,7 @@ import data.service.StorageDataService;
 import data.vo.StorageInVO;
 
 public class StorageList {
+	long centerID;
 	StorageDataService storageData;
 	ArrayList<DataPO> checkedstorageList;
 	POType storageListType;
@@ -37,10 +38,9 @@ public class StorageList {
 	
 
 	
-	public String[][] getBriefStorageList(){
-		if (checkedstorageList == null) {
-			return null;
-		}
+	public String[][] getBriefStorageList() throws RemoteException{
+		checkedstorageList = storageData.getNewlyApprovedPO(storageListType, centerID);
+		if(checkedstorageList == null) return null;
 		System.out.println("入库单数量："+checkedstorageList.size());
 		String[][] storageListInfo = new String[checkedstorageList.size()][2];
 		for (int i = 0; i < checkedstorageList.size(); i++) {
@@ -60,7 +60,7 @@ public class StorageList {
 	public StorageList(StorageDataService storageData, long centerID,POType storageListType) throws RemoteException {
 		this.storageData = storageData;
 		this.storageListType = storageListType;
-		checkedstorageList = storageData.getNewlyApprovedPO(storageListType, centerID);
+		this.centerID = centerID;
 	}
 	
 	public long[] getOrderID(){

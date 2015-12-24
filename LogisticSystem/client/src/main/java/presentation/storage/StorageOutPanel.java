@@ -52,12 +52,15 @@ public class StorageOutPanel extends JPanel {
 		date.setEnabled(false);
 		vehicleID.setEnabled(false);
 		staffName.setEnabled(false);
-		driverName.setEnabled(false);
+		fee.setEnabled(false);
 		loadTable.setEnabled(false);
 	}
+	
+
 
 	private void setTransferList(TransferListVO transferList) {
 		if (transferList != null) {
+			setTransferListDisabled();
 			if (transferList.transferListID != null) {
 				listID.setText(transferList.transferListID);
 			} else {
@@ -70,15 +73,7 @@ public class StorageOutPanel extends JPanel {
 			date.setText(transferList.date);
 			vehicleID.setText(transferList.vehicleCode);
 			staffName.setText(transferList.staff);
-			if (transferList.transferType.equals("汽运")) {
-				driverName.setText(transferList.driver);
-				label12.setText("押运员");
-				label10.setText("车辆编号");
-			} else {
-				driverName.setText(transferList.fee);
-				label15.setText("费用");
-				label13.setText("班次");
-			}
+			fee.setText(transferList.fee);
 			DefaultTableModel model = new DefaultTableModel(
 					transferList.orderAndPosition, transferList.header);
 			loadTable.setModel(model);
@@ -93,7 +88,11 @@ public class StorageOutPanel extends JPanel {
 	private void setList() {
 		selectStorageOut.setEnabled(false);
 		selectTransfer.setEnabled(false);
-		briefTransferAndStorageOutVO = storageOut.newStorageOut();
+		try {
+			briefTransferAndStorageOutVO = storageOut.newStorageOut();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		DefaultTableModel storageOutModel = new DefaultTableModel(
 				briefTransferAndStorageOutVO.getStorageOutList(),
 				briefTransferAndStorageOutVO.getStorageOutListHeader());
@@ -304,7 +303,7 @@ public class StorageOutPanel extends JPanel {
 		label15 = new JLabel();
 		vehicleID = new JTextField();
 		staffName = new JTextField();
-		driverName = new JTextField();
+		fee = new JTextField();
 		label16 = new JLabel();
 		date = new JTextField();
 		createStorageOut = new JButton();
@@ -456,8 +455,8 @@ public class StorageOutPanel extends JPanel {
 							.addComponent(textField2, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addComponent(searchTransfer)
-							.addGap(454, 454, 454)
-							.addComponent(refreshButton2, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
+							.addGap(439, 439, 439)
+							.addComponent(refreshButton2, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addComponent(getTransferButton, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
 							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -468,7 +467,7 @@ public class StorageOutPanel extends JPanel {
 							.addGroup(transferListLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
 								.addGroup(transferListLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 									.addComponent(getTransferButton, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-									.addComponent(refreshButton2))
+									.addComponent(refreshButton2, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
 								.addGroup(transferListLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 									.addComponent(textField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 									.addComponent(searchTransfer, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)))
@@ -672,7 +671,7 @@ public class StorageOutPanel extends JPanel {
 				label14.setText("\u76d1\u88c5\u5458");
 
 				//---- label15 ----
-				label15.setText("\u62bc\u8fd0\u5458");
+				label15.setText("\u8d39\u7528");
 
 				//---- vehicleID ----
 				vehicleID.setEditable(false);
@@ -680,8 +679,8 @@ public class StorageOutPanel extends JPanel {
 				//---- staffName ----
 				staffName.setEditable(false);
 
-				//---- driverName ----
-				driverName.setEditable(false);
+				//---- fee ----
+				fee.setEditable(false);
 
 				//---- label16 ----
 				label16.setText("\u88c5\u8fd0\u65e5\u671f");
@@ -742,7 +741,7 @@ public class StorageOutPanel extends JPanel {
 										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
 											.addComponent(label15, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 											.addGap(18, 18, 18)
-											.addComponent(driverName, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
+											.addComponent(fee, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
 										.addGroup(GroupLayout.Alignment.TRAILING, DeliveryListPanelLayout.createSequentialGroup()
 											.addComponent(label14, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
 											.addGap(18, 18, 18)
@@ -799,7 +798,7 @@ public class StorageOutPanel extends JPanel {
 											.addGroup(DeliveryListPanelLayout.createParallelGroup()
 												.addComponent(label11)
 												.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-													.addComponent(driverName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+													.addComponent(fee, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 													.addComponent(label15))))
 										.addComponent(destID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 									.addGap(14, 14, 14)
@@ -871,7 +870,7 @@ public class StorageOutPanel extends JPanel {
 	private JLabel label15;
 	private JTextField vehicleID;
 	private JTextField staffName;
-	private JTextField driverName;
+	private JTextField fee;
 	private JLabel label16;
 	private JTextField date;
 	private JButton createStorageOut;

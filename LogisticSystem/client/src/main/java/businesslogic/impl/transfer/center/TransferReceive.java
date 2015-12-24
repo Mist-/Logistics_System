@@ -152,7 +152,7 @@ public class TransferReceive implements TransferReceiveService {
 			id[i] = Long.parseLong(info[i][0]);
 		}
 		new OrderList(new LoginMessage(ResultMessage.SUCCESS)).modifyOrderTransferType(id, StorageArea.TRUCK);
-		return null;
+		return ResultMessage.SUCCESS;
 	}
 
 }

@@ -3,72 +3,82 @@ JFDML JFormDesigner: "5.2.2.0.199" Java: "1.8.0_31" encoding: "UTF-8"
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
-		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :::p, par t:::p {comp label2:::::x, comp label1:::::x}, space :::p, par l {seq l {comp year:::p:50:p, space :::p, comp label3:::p::p, space u:::p, comp month:::p:25:p, space :::p, comp label4:::p::p, space :::p, comp day:::p:35:p, space :::p, comp label5:::p::p, space s:::p, comp getOrder:::p:67:p, space ::209:x, comp label6:::p::p, space :::p, comp fee:::p:60:p, space s:::p, comp saveButton:::p::p, space :p:85:p}, seq l {comp senderBox:::p:93:p, space :140:633:x}}}, comp scrollPane1::l::800:x}"
-			"$verticalGroup": "par l {seq t {space :::p, par l:::p {comp senderBox:::p::p, comp label1::::23:x}, space u:::x, par b {comp label2::b:p::p, comp year::b:p::p, comp label3::b:p::p, comp month::b:p::p, comp label4::b:p::p, comp day::b:p::p, comp label5::b:p::p, comp getOrder::b:p::p, comp label6::b:p::p, comp fee::b:p::p, comp saveButton::b:p::p}, space s:::p, comp scrollPane1:::p:291:p}}"
-		} ) {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 			name: "this"
-			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-				name: "scrollPane1"
-				add( new FormComponent( "javax.swing.JTable" ) {
-					name: "table"
-					"selectionMode": 0
-					"rowSelectionAllowed": false
+			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+				name: "tabbedPane1"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq {space :p:20:p, par l {seq l {comp label1:::p::p, space :3:3:p, comp senderBox:::p:92:p}, seq l {comp label2:::p:72:p, space :3:3:p, comp year:::p:50:p, space :5:5:p, comp label3:::p::p, space :13:13:p, comp month:::p:50:p, space :0:0:p, comp label4:::p::p, space :8:8:p, comp day:::p:50:p, space :0:0:p, comp label5:::p::p, space :18:18:p, comp getOrder:::p:67:p, space :p:272:p, comp label6:::p:50:p, space :::p, comp fee:::p:60:p, space :::p, comp saveButton:::p:96:p}}, space :254:30:x}, comp scrollPane1::l::910:x}"
+					"$verticalGroup": "par l {seq l {par l {comp label1:::p:23:p, comp senderBox:::p::p}, space :11:11:p, par l {comp year:::p::p, comp month:::p::p, comp day:::p::p, comp getOrder:::p::p, par b {comp label6::b:p::p, comp fee::b:p::p, comp saveButton::b:p::p}, seq l {space :5:5:p, par l {comp label2:::p::p, comp label3:::p::p, comp label4:::p::p, comp label5:::p::p}}}, space :p:7:p, comp scrollPane1::::287:x}}"
+				} ) {
+					name: "panel1"
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane1"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "table"
+							"selectionMode": 0
+							"rowSelectionAllowed": false
+						} )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label1"
+						"text": "快递员姓名："
+					} )
+					add( new FormComponent( "javax.swing.JComboBox" ) {
+						name: "senderBox"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "senderBoxMouseClicked", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "getOrder"
+						"text": "确认"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "getOrderMouseReleased", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label2"
+						"text": "日期："
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "year"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label3"
+						"text": "年"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "month"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label4"
+						"text": "月"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "day"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label5"
+						"text": "日"
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "fee"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label6"
+						"text": "费用："
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "saveButton"
+						"text": "结算"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "saveButtonMouseReleased", true ) )
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "结算管理"
 				} )
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label1"
-				"text": "快递员姓名："
-			} )
-			add( new FormComponent( "javax.swing.JComboBox" ) {
-				name: "senderBox"
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "senderBoxMouseClicked", true ) )
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "getOrder"
-				"text": "确认"
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "getOrderMouseReleased", true ) )
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label2"
-				"text": "日期："
-			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "year"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label3"
-				"text": "年"
-			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "month"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label4"
-				"text": "月"
-			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "day"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label5"
-				"text": "日"
-			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "fee"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label6"
-				"text": "费用："
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "saveButton"
-				"text": "结算"
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "saveButtonMouseReleased", true ) )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 10, 0 )
-			"size": new java.awt.Dimension( 800, 375 )
+			"location": new java.awt.Point( 5, 15 )
+			"size": new java.awt.Dimension( 915, 380 )
 		} )
 	}
 }
