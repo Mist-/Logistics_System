@@ -4,6 +4,7 @@ import businesslogic.impl.company.CompanyBLController;
 import data.message.ResultMessage;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -11,6 +12,7 @@ import java.awt.event.MouseEvent;
  * 添加员工工资时的临时界面
  */
 public class DialogAddSalary extends JDialog{
+	JPanel jPanel = null;
 	JDialog jdialog = null;
 	String  [] institutions = null;
 	JComboBox<String> institution = null;
@@ -27,13 +29,14 @@ public class DialogAddSalary extends JDialog{
 	CompanyBLController controller = null;
 	public DialogAddSalary(companyManage company){
 		controller = new CompanyBLController();
+		jPanel = new JPanel();
 		this.company = company;
 		jdialog = new JDialog(company,"添加工资");
 		institutions = new String[]{"快递员","普通财务人员","高级财务人员","营业厅业务员","中转中心业务员","仓库管理员","货车驾驶员"};
-		institution = new JComboBox<String>(institutions);
+		institution = new JComboBox<>(institutions);
 		institution.setBounds(65, 35, 100, 30);
 		types = new String[]{"计次","月付"};
-		type = new JComboBox<String>(types);
+		type = new JComboBox<>(types);
 		type.setBounds(330, 35, 55, 30);
 		salary = new JTextField();
 		salary.setBounds(205, 35, 60, 30);
@@ -47,16 +50,17 @@ public class DialogAddSalary extends JDialog{
 		labelType.setBounds(270, 25, 60, 50);
 		// 将所有控件添加到JDialog中
 		jdialog.setSize(410, 200);
-		jdialog.add(labelInstituion);
-		jdialog.add(institution);
-		jdialog.add(labelSalary);
-		jdialog.add(salary);
-		jdialog.add(labelType);
-		jdialog.add(type);
-		jdialog.add(finish);
+		jdialog.add(jPanel, BorderLayout.CENTER);
+		jPanel.add(labelInstituion);
+		jPanel.add(institution);
+		jPanel.add(labelSalary);
+		jPanel.add(salary);
+		jPanel.add(labelType);
+		jPanel.add(type);
+		jPanel.add(finish);
+		jPanel.setLayout(null);
 		jdialog.setModal(true);
 		jdialog.setLocationRelativeTo(null);
-		jdialog.setLayout(null);
 		jdialog.setResizable(false);
 		finish.addMouseListener(new MouseAdapter() {
 			@Override

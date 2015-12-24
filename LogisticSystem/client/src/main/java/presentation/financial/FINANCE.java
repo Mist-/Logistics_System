@@ -45,6 +45,10 @@ public class FINANCE extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
+    public JPanel getPanelCheck(){
+        return this.pnTJBB;
+    }
+
     private void setNot() {
         if (tablePayment.getRowCount() == 0) {
             btPExcel.setEnabled(false);

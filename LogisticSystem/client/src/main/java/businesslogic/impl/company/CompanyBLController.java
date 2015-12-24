@@ -636,7 +636,7 @@ public class CompanyBLController {
             }
         }
         if(isValid){
-            long num = Long.valueOf(str);
+            Double num = Double.valueOf(str);
             if(num <= 0)
                 isValid = false;
         }

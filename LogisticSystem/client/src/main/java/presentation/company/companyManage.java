@@ -7,6 +7,7 @@ import data.message.LoginMessage;
 import data.message.ResultMessage;
 import data.po.*;
 import data.vo.*;
+import presentation.financial.FINANCE;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -48,17 +49,17 @@ public class companyManage extends JFrame {
     DefaultTableModel storageOutModel = null;
     DefaultTableModel transferModel = null;
     DefaultTableModel sFinancialModel = null;
-    Vector<Vector<String>> salaryModify = new Vector<Vector<String>>();
-    Vector<Vector<String>> cityModify = new Vector<Vector<String>>();
-    Vector<Vector<String>> sendModify = new Vector<Vector<String>>();
-    Vector<Vector<String>> paymentModify = new Vector<Vector<String>>();
-    Vector<Vector<String>> receiptModify = new Vector<Vector<String>>();
-    Vector<Vector<String>> entrukModify = new Vector<Vector<String>>();
-    Vector<Vector<String>> arrivalModify = new Vector<Vector<String>>();
-    Vector<Vector<String>> storageInModify = new Vector<Vector<String>>();
-    Vector<Vector<String>> storageOutModify = new Vector<Vector<String>>();
-    Vector<Vector<String>> transferModify = new Vector<Vector<String>>();
-    Vector<Vector<String>> orderModify = new Vector<Vector<String>>();
+    Vector<Vector<String>> salaryModify = new Vector<>();
+    Vector<Vector<String>> cityModify = new Vector<>();
+    Vector<Vector<String>> sendModify = new Vector<>();
+    Vector<Vector<String>> paymentModify = new Vector<>();
+    Vector<Vector<String>> receiptModify = new Vector<>();
+    Vector<Vector<String>> entrukModify = new Vector<>();
+    Vector<Vector<String>> arrivalModify = new Vector<>();
+    Vector<Vector<String>> storageInModify = new Vector<>();
+    Vector<Vector<String>> storageOutModify = new Vector<>();
+    Vector<Vector<String>> transferModify = new Vector<>();
+    Vector<Vector<String>> orderModify = new Vector<>();
     CompanyBLController controller = new CompanyBLController();
 
     public companyManage(LoginMessage loginMessage) {
@@ -121,11 +122,21 @@ public class companyManage extends JFrame {
 
     //显示查看统计报表界面
     private void buttonCheckMouseClicked(MouseEvent e) {
+        FINANCE finance = new FINANCE();
+        finance.setVisible(false);
+        JPanel panelCheck = finance.getPanelCheck();
         buttonSalary.setSelected(false);
         buttonCheck.setSelected(true);
         buttonStaff.setSelected(false);
         buttonApprove.setSelected(false);
         buttonCity.setSelected(false);
+        panelAll.remove(panelCity);
+        panelAll.remove(panelSalary);
+        panelAll.remove(panelApprove);
+        panelAll.remove(panelStaff);
+        panelAll.add(panelCheck,BorderLayout.CENTER);
+        panelAll.updateUI();
+        panelAll.repaint();
     }
 
     //显示员工机构管理界面
@@ -169,7 +180,7 @@ public class companyManage extends JFrame {
                 } else if (resultmessage == ResultMessage.NOTCONNECTED) {
                     labelSalarySuccess.setText("");
                     JOptionPane.showMessageDialog(null, "网络错误...", "", JOptionPane.ERROR_MESSAGE);
-                    break;
+                    return;
                 } else {
                     labelSalarySuccess.setText("修改失败!");
                     break;
@@ -179,8 +190,11 @@ public class companyManage extends JFrame {
                 isValid = false;
             }
         }
+        //清空已经被修改过的工资
+        salaryModify.clear();
         if(isValid == false){
             labelSalarySuccess.setText("");
+            this.initSalaryTable();
             JOptionPane.showMessageDialog(null, "请输入正确工资数值!", "", JOptionPane.ERROR_MESSAGE);
         }
         else{
@@ -190,7 +204,7 @@ public class companyManage extends JFrame {
 
     //退出工资管理按钮
     private void buttonExitSalaryMouseClicked(MouseEvent e) {
-        this.dispose();
+        new DialogExit(this);
     }
 
     //确认选择城市按钮,随后显示城市之间物流信息
@@ -250,7 +264,7 @@ public class companyManage extends JFrame {
 
     //退出城市物流信息管理按钮
     private void buttonExitCityMouseClicked(MouseEvent e) {
-        this.dispose();
+        new DialogExit(this);
     }
 
     //初始化员工表格
@@ -325,42 +339,55 @@ public class companyManage extends JFrame {
     //删除员工按钮
     private void buttonDeleteStaffMouseClicked(MouseEvent e) {
         //根据机构的不同来选择不同的方式生成机构名称
-        String institution,id;
+        String institution,id,name;
         int index= tabbedPaneStaff.getSelectedIndex();
         if(index==0){
             institution = tabbedPaneStaff.getTitleAt(index);
             id = (String) deliverModel.getValueAt(tableDeliver.getSelectedRow(),0);
+            name = (String) deliverModel.getValueAt(tableDeliver.getSelectedRow(),1);
         }
         else if(index==1){
             institution = tabbedPaneStaff.getTitleAt(index);
             id = (String) financialModel.getValueAt(tableFinancial.getSelectedRow(),0);
+            name = (String) financialModel.getValueAt(tableFinancial.getSelectedRow(),1);
         }
         else if(index==2){
             institution = tabbedPaneStaff.getTitleAt(index);
             id = (String) sFinancialModel.getValueAt(tableSFinancial.getSelectedRow(),0);
+            name = (String) sFinancialModel.getValueAt(tableSFinancial.getSelectedRow(),1);
         }
         else if(index==3){
             institution = tabbedPaneStaff.getTitleAt(index);
             id = (String) trunkModel.getValueAt(tableTrunk.getSelectedRow(),0);
+            name = (String) trunkModel.getValueAt(tableTrunk.getSelectedRow(),1);
         }
         else if(index==4){
             institution = (String) comboBoxCenter.getSelectedItem();
             id = (String) centerModel.getValueAt(tableCenter.getSelectedRow(),0);
+            name = (String) centerModel.getValueAt(tableCenter.getSelectedRow(),1);
         }
         else if(index==5){
             institution = (String) comboBoxBusinessNum.getSelectedItem();
             id = (String) businessModel.getValueAt(tableBusiness.getSelectedRow(),0);
+            name = (String) businessModel.getValueAt(tableBusiness.getSelectedRow(),1);
         }
         else if(index==6){
             institution = (String) comboBoxStorage.getSelectedItem();
             id = (String) storageModel.getValueAt(tableStorage.getSelectedRow(),0);
+            name = (String) storageModel.getValueAt(tableStorage.getSelectedRow(),1);
         }
         else{
             institution = null;
             id = null;
+            name = null;
             JOptionPane.showMessageDialog(null,"请选择机构","",JOptionPane.ERROR_MESSAGE);
         }
-        //删除员工操作
+        //确认删除员工界面
+        DialogDeleteStaff dialogDeleteStaff = new DialogDeleteStaff(this,institution,id,name);
+    }
+
+    //删除员工操作
+    public void buttonEnsureDeleteStaff(String institution,String id,MouseEvent e){
         ResultMessage resultMessage = controller.deleteStaff(institution,id);
         if(resultMessage == ResultMessage.SUCCESS){
             labelStaffSuccess.setText("删除成功!");
@@ -441,7 +468,7 @@ public class companyManage extends JFrame {
 
     //退出员工机构管理的按钮
     private void buttonExitStaffMouseClicked(MouseEvent e) {
-        this.dispose();
+        new DialogExit(this);
     }
 
     //审批单条单据的按钮
@@ -534,16 +561,15 @@ public class companyManage extends JFrame {
 
     //确认修改单据的按钮
     private void buttonModifyDataMouseClicked(MouseEvent e) {
-        boolean isSuccess = false;
         int index = tabbedPaneApprove.getSelectedIndex();
         this.modifyData(index);
-        initComponents(loginMessage);
     }
 
     //修改单据的方法
     private void modifyData(int index){
         int row,column;
         ResultMessage resultMessage;
+        boolean isValidNum = true,isValidServicetype = true;
         //根据单据的类型不同来修改单据
         switch (index) {
             case 0:
@@ -672,7 +698,7 @@ public class companyManage extends JFrame {
                         break;
                 }
             case 7:
-                //将最后一个被编辑的单元格设置停止编辑状态,加入到salaryModify中
+                //将最后一个被编辑的单元格设置停止编辑状态,加入到storageInModify中
                 row = tableStorageIn.getSelectedRow();
                 column = tableStorageIn.getSelectedColumn();
                 tableStorageIn.getCellEditor(row, column).stopCellEditing();
@@ -687,7 +713,7 @@ public class companyManage extends JFrame {
                         break;
                 }
             case 8:
-                //将最后一个被编辑的单元格设置停止编辑状态,加入到salaryModify中
+                //将最后一个被编辑的单元格设置停止编辑状态,加入到orderModify中
                 row = tableOrder.getSelectedRow();
                 column = tableOrder.getSelectedColumn();
                 tableOrder.getCellEditor(row, column).stopCellEditing();
@@ -713,13 +739,22 @@ public class companyManage extends JFrame {
                                 break;
                         }
                         else{
-                            JOptionPane.showMessageDialog(null,"请输入正确快递类型!","",JOptionPane.ERROR_MESSAGE);
+                            isValidServicetype = false;
                         }
                     }
                     else{
-                        JOptionPane.showMessageDialog(null,"请输入正确数值!","",JOptionPane.ERROR_MESSAGE);
+                        isValidNum = false;
                     }
                 }
+                if(!isValidNum){
+                    JOptionPane.showMessageDialog(null,"请输入正确数值!","",JOptionPane.ERROR_MESSAGE);
+                    initOrderTable();
+                }
+                if(!isValidServicetype){
+                    JOptionPane.showMessageDialog(null,"请输入正确快递类型!","",JOptionPane.ERROR_MESSAGE);
+                    initOrderTable();
+                }
+                orderModify.clear();
             }
     }
 
@@ -740,8 +775,7 @@ public class companyManage extends JFrame {
 
     //退出单据审批的按钮
     private void buttonExitApproveMouseClicked(MouseEvent e) {
-        initComponents(loginMessage);
-        this.dispose();
+        new DialogExit(this);
     }
 	/*
 	 // 初始化表格的总方法
@@ -1203,7 +1237,7 @@ public class companyManage extends JFrame {
             private static final long serialVersionUid = 1L;
 
             public boolean isCellEditable(int row, int column){
-                return true;}
+                return false;}
         };
         tableSend.getTableHeader().setReorderingAllowed(false);
         tableSend.getTableHeader().setPreferredSize(new Dimension(30,30));
@@ -1525,7 +1559,6 @@ public class companyManage extends JFrame {
         //表头
         Vector<String> transferColumns = new Vector<>();
         transferColumns.add("中转单编号");
-        transferColumns.add("快递编号");
         transferColumns.add("目的地(营业厅)");
         transferColumns.add("车辆/飞机编号");
         transferColumns.add("监装员");
@@ -1571,10 +1604,6 @@ public class companyManage extends JFrame {
         tableTransfer.getTableHeader().setPreferredSize(new Dimension(30,30));
         tableTransfer.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scrollPanelTransfer.getViewport().add(tableTransfer);
-    }
-
-    private void buttonSalary2MouseClicked(MouseEvent e) {
-        // TODO add your code here
     }
 
     private void thisWindowOpened(WindowEvent e) {
