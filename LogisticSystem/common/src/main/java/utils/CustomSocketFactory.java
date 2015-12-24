@@ -1,4 +1,6 @@
-package data.factory;
+package utils;
+
+import data.Configuration;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -12,7 +14,7 @@ import java.rmi.server.RMISocketFactory;
  */
 public class CustomSocketFactory extends RMISocketFactory {
 
-    int port = 0;
+    int port = Configuration.getInstance().dataTransPort;
 
     @Override
     public Socket createSocket(String host, int port) throws IOException {

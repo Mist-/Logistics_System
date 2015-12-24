@@ -2,6 +2,7 @@ package main;
 
 import javax.swing.*;
 
+import businesslogic.controller.ClientConfigurationController;
 import data.enums.UserRole;
 
 import org.jb2011.lnf.windows2.Windows2LookAndFeel;
@@ -47,6 +48,11 @@ public class LCSClient extends JFrame{
         // 显示登录界面
         LoginDlg loginDlg = new LoginDlg(simplifiedOrderUI, loginMessage);
         loginDlg.setVisible(true);
+
+        ClientConfigurationController configurationController = new ClientConfigurationController();
+        configurationController.readConfig();
+        configurationController.applyConfig();
+
 
         // 以下是，登录动作完成后的界面跳转。
         if (loginMessage.getResult() == ResultMessage.FAILED || loginMessage.getResult() == ResultMessage.NOTEXIST) System.exit(1);

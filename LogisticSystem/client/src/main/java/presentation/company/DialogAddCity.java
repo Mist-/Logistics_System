@@ -5,6 +5,7 @@ import data.message.ResultMessage;
 import data.vo.CityTransVO;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -12,7 +13,8 @@ import java.awt.event.MouseEvent;
  * 添加城市信息时的临时界面
  */
 public class DialogAddCity extends JDialog{
-	JDialog jdialog = null;
+	JPanel jPanel = null;
+	JDialog jDialog = null;
 	String [] citys = null;
 	JComboBox<String> boxFromCity = null;
 	JComboBox<String> boxToCity = null;
@@ -34,8 +36,9 @@ public class DialogAddCity extends JDialog{
 	ResultMessage resultMessage = null;
 	public DialogAddCity(companyManage company){
 		this.company = company;
+		jPanel = new JPanel();
 		controller = new CompanyBLController();
-		jdialog = new JDialog(company,"添加城市信息");
+		jDialog = new JDialog(company,"添加城市信息");
 		citys = controller.getCitys();
 		boxFromCity = new JComboBox<String>(citys);
 		boxToCity = new JComboBox<String>(citys);
@@ -64,31 +67,32 @@ public class DialogAddCity extends JDialog{
 		distances.setBounds(360, 50, 35, 30);;
 		finish.setBounds(175,95,60,30);
 		// 将所有控件添加到JDialog中
-		jdialog.setSize(425, 195);
-		jdialog.add(labelFromCity);
-		jdialog.add(boxFromCity);
-		jdialog.add(labelToCity);
-		jdialog.add(boxToCity);
-		jdialog.add(labelTrunk);
-		jdialog.add(labelTrain);
-		jdialog.add(labelPlane);
-		jdialog.add(labelDistance);
-		jdialog.add(trunk);
-		jdialog.add(train);
-		jdialog.add(plane);
-		jdialog.add(distances);
-		jdialog.add(finish);
-		jdialog.setModal(true);
-		jdialog.setLayout(null);
-		jdialog.setLocationRelativeTo(null);
-		jdialog.setResizable(false);
+		jDialog.setSize(425, 195);
+		jDialog.add(jPanel, BorderLayout.CENTER);
+		jPanel.add(labelFromCity);
+		jPanel.add(boxFromCity);
+		jPanel.add(labelToCity);
+		jPanel.add(boxToCity);
+		jPanel.add(labelTrunk);
+		jPanel.add(labelTrain);
+		jPanel.add(labelPlane);
+		jPanel.add(labelDistance);
+		jPanel.add(trunk);
+		jPanel.add(train);
+		jPanel.add(plane);
+		jPanel.add(distances);
+		jPanel.add(finish);
+		jPanel.setLayout(null);
+		jDialog.setModal(true);
+		jDialog.setLocationRelativeTo(null);
+		jDialog.setResizable(false);
 		finish.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				buttonEnsure(e);
 			}
 		});
-		jdialog.setVisible(true);
+		jDialog.setVisible(true);
 	}
 
 	private void buttonEnsure(MouseEvent e){
@@ -106,7 +110,7 @@ public class DialogAddCity extends JDialog{
 				//根据resultMessage类型对界面进行输出
 				if (resultMessage == ResultMessage.SUCCESS) {
 					company.getLabelCitySuccess().setText("添加成功!");
-					jdialog.dispose();
+					jDialog.dispose();
 				} else if (resultMessage == ResultMessage.EXIST) {
 					company.getLabelCitySuccess().setText("");
 					JOptionPane.showMessageDialog(null, "城市信息已存在,请勿重复添加", "", JOptionPane.ERROR_MESSAGE);

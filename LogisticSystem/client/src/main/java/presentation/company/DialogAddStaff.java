@@ -6,6 +6,7 @@ import data.message.ResultMessage;
 import data.vo.StaffVO;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -13,7 +14,8 @@ import java.awt.event.MouseEvent;
  * 添加员工时的临时界面
  */
 public class DialogAddStaff extends JDialog{
-	 JDialog jdialog = null;
+	 JDialog jDialog = null;
+	 JPanel jPanel = null;
 	 JLabel labelName = null;
 	 JTextField name = null;
 	 JLabel labelSerialNum = null;
@@ -39,8 +41,9 @@ public class DialogAddStaff extends JDialog{
 		this.instituion = institution;
 		this.userRole = userRole;
 		controller =  new CompanyBLController();
+		jPanel = new JPanel();
 		finish = new JButton("确认");
-		jdialog = new JDialog(this,"添加员工");
+		jDialog = new JDialog(this,"添加员工");
 		labelName = new JLabel("姓名:");
 		labelSerialNum = new JLabel("员工号码:");
 		labelGender = new JLabel("性别:");
@@ -67,31 +70,32 @@ public class DialogAddStaff extends JDialog{
 		finish.setBounds(110, 230, 60, 35);
 		bg.add(man);
 		bg.add(woman);
-        // 将所有控件添加到JDialog中
-		jdialog.setSize(280, 350);
-		jdialog.add(labelName);
-		jdialog.add(name);
-		jdialog.add(labelSerialNum);
-		jdialog.add(serialNum);
-		jdialog.add(labelGender);
-		jdialog.add(man);
-		jdialog.add(woman);
-		jdialog.add(labelPhoneNum);
-		jdialog.add(phoneNum);
-		jdialog.add(labelIdCardNum);
-		jdialog.add(idCardNum);
-		jdialog.add(finish);
-		jdialog.setModal(true);
-		jdialog.setLayout(null);
-		jdialog.setLocationRelativeTo(null);
-		jdialog.setResizable(false);
+        // 将所有控件添加到jDialog中
+		jDialog.setSize(280, 350);
+		jDialog.add(jPanel, BorderLayout.CENTER);
+		jPanel.add(labelName);
+		jPanel.add(name);
+		jPanel.add(labelSerialNum);
+		jPanel.add(serialNum);
+		jPanel.add(labelGender);
+		jPanel.add(man);
+		jPanel.add(woman);
+		jPanel.add(labelPhoneNum);
+		jPanel.add(phoneNum);
+		jPanel.add(labelIdCardNum);
+		jPanel.add(idCardNum);
+		jPanel.add(finish);
+		jPanel.setLayout(null);
+		jDialog.setModal(true);
+		jDialog.setLocationRelativeTo(null);
+		jDialog.setResizable(false);
 		finish.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				buttonEnsure(e);
 			}
 		});
-		jdialog.setVisible(true);
+		jDialog.setVisible(true);
 	}
 	
 	private void buttonEnsure(MouseEvent e){
@@ -124,7 +128,7 @@ public class DialogAddStaff extends JDialog{
 					if (resultMessage == ResultMessage.SUCCESS) {
 						company.getLabelStaffSuccess().setText("添加成功!");
 						company.initStaff();
-						jdialog.dispose();
+						jDialog.dispose();
 					} else if (resultMessage == ResultMessage.EXIST) {
 						company.getLabelStaffSuccess().setText("");
 						JOptionPane.showMessageDialog(null, "员工已存在!", "", JOptionPane.ERROR_MESSAGE);
