@@ -32,7 +32,7 @@ public class TransferReceivePanel extends JPanel {
 
 	public void showArriveList() {
 		arriveList = transferReceive.getCheckedArrivalList();
-		if(arriveList == null){//如果没有成功获取，则跳过后面步骤
+		if (arriveList == null) {// 如果没有成功获取，则跳过后面步骤
 			return;
 		}
 		DefaultTableModel arriveListModel = new DefaultTableModel(
@@ -45,16 +45,14 @@ public class TransferReceivePanel extends JPanel {
 	public TransferReceivePanel(TransferReceiveService transferReceive) {
 		this.transferReceive = transferReceive;
 		initComponents();
-		//showArriveList(); 本panel不再查找新生成的到达单，改为入库时查找
+		// showArriveList(); 本panel不再查找新生成的到达单，改为入库时查找
 		selectArrival.setEnabled(false);
 		this.setVisible(true);
 	}
 
 	private void createStorageInMouseClicked(MouseEvent e) {
-		
+
 	}
-
-
 
 	private void selectArrivalMouseClicked(MouseEvent e) {
 		if (selectArrival.isEnabled()) {
@@ -81,20 +79,22 @@ public class TransferReceivePanel extends JPanel {
 		transferID.setText(arrival.getDeliveryListNum());
 		from.setText(arrival.getFromName());
 		arrivalDate.setText(arrival.getDate());
-		DefaultTableModel model = new DefaultTableModel(arrival.getOrderAndStatus(),arrival.getHeader());
+		DefaultTableModel model = new DefaultTableModel(
+				arrival.getOrderAndStatus(), arrival.getHeader());
 		arrivalTable.setModel(model);
 		arrivalTable.updateUI();
-		String[] item = {"请选择状态","完整","破损","丢失"};
-		DefaultComboBoxModel<String> model1 = new DefaultComboBoxModel<String>(item);
+		String[] item = { "请选择状态", "完整", "破损", "丢失" };
+		DefaultComboBoxModel<String> model1 = new DefaultComboBoxModel<String>(
+				item);
 		statusBox.setModel(model1);
 		statusBox.updateUI();
 		transferID.setEnabled(false);
 		from.setEnabled(false);
 		arrivalDate.setEnabled(false);
 		remove(startPane);
-		if(deliveryVO != null)
-		remove(deliveryVO);
-		add(arrivalVO,BorderLayout.CENTER);
+		if (deliveryVO != null)
+			remove(deliveryVO);
+		add(arrivalVO, BorderLayout.CENTER);
 		arrivalVO.updateUI();
 		arrivalVO.setVisible(true);
 	}
@@ -108,7 +108,8 @@ public class TransferReceivePanel extends JPanel {
 		loadDate.setText(transferListVO.date);
 		vehicleID.setText(transferListVO.vehicleCode);
 		transferType.setText(transferListVO.transferType);
-		DefaultTableModel model = new DefaultTableModel(transferListVO.orderAndPosition,transferListVO.header);
+		DefaultTableModel model = new DefaultTableModel(
+				transferListVO.orderAndPosition, transferListVO.header);
 		orderInfoTable.setModel(model);
 		orderInfoTable.updateUI();
 		fee.setVisible(true);
@@ -126,15 +127,16 @@ public class TransferReceivePanel extends JPanel {
 		loadDate.setText(entruckListVO.loadingDate);
 		vehicleID.setText(entruckListVO.vehicleID);
 		transferType.setText("汽运");
-		DefaultTableModel model = new DefaultTableModel(entruckListVO.info,entruckListVO.header);
+		DefaultTableModel model = new DefaultTableModel(entruckListVO.info,
+				entruckListVO.header);
 		orderInfoTable.setModel(model);
 		orderInfoTable.updateUI();
 		fee.setVisible(false);
 		label14.setVisible(false);
 		setTextField(false);
 	}
-	
-	private void setTextField(boolean b){
+
+	private void setTextField(boolean b) {
 		listID.setEditable(b);
 		fromName.setEditable(b);
 		destName.setEditable(b);
@@ -153,34 +155,35 @@ public class TransferReceivePanel extends JPanel {
 		transferType.setEnabled(b);
 		fee.setEnabled(b);
 	}
-	
-	
-		
 
 	private void doArriveMouseClicked(MouseEvent e) {
 		try {
 			ResultMessage r = transferReceive.doArrive();
-			if(r == ResultMessage.SUCCESS){
-			JOptionPane.showMessageDialog(null, "保存成功", "提示", JOptionPane.INFORMATION_MESSAGE);
-			DefaultTableModel model = (DefaultTableModel) arriveListTabble.getModel();
-			model.removeRow(arriveListTabble.getSelectedRow());
-			arriveListTabble.updateUI();
-			remove(arrivalVO);
-			add(startPane,BorderLayout.CENTER);
-			startPane.setVisible(true);}
-			else{
-				JOptionPane.showMessageDialog(null, "操作失败", "提示", JOptionPane.INFORMATION_MESSAGE);
+			if (r == ResultMessage.SUCCESS) {
+				JOptionPane.showMessageDialog(null, "保存成功", "提示",
+						JOptionPane.INFORMATION_MESSAGE);
+				DefaultTableModel model = (DefaultTableModel) arriveListTabble
+						.getModel();
+				model.removeRow(arriveListTabble.getSelectedRow());
+				arriveListTabble.updateUI();
+				remove(arrivalVO);
+				add(startPane, BorderLayout.CENTER);
+				startPane.setVisible(true);
+			} else {
+				JOptionPane.showMessageDialog(null, "操作失败", "提示",
+						JOptionPane.INFORMATION_MESSAGE);
 			}
-			
+
 		} catch (RemoteException e1) {
-			JOptionPane.showMessageDialog(null, "网络连接中断，请稍后再试", "提示", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "网络连接中断，请稍后再试", "提示",
+					JOptionPane.INFORMATION_MESSAGE);
 			e1.printStackTrace();
 		}
 	}
 
-	
 	/**
 	 * 根据单号搜索装车单，到达单
+	 * 
 	 * @param e
 	 */
 	private void searchListMouseClicked(MouseEvent e) {
@@ -197,7 +200,7 @@ public class TransferReceivePanel extends JPanel {
 			if (transferListVO == null) {
 				deliveryID.setText("单号不存在");
 				return;
-			}else{
+			} else {
 				setTransferListVO();
 			}
 		} else {
@@ -205,7 +208,7 @@ public class TransferReceivePanel extends JPanel {
 			if (entruckListVO == null) {
 				deliveryID.setText("单号不存在");
 				return;
-			}else{
+			} else {
 				setEntruckListVO();
 			}
 		}
@@ -218,8 +221,6 @@ public class TransferReceivePanel extends JPanel {
 		deliveryVO.setVisible(true);
 		this.repaint();
 	}
-
-
 
 	private void cancelArrivalMouseClicked(MouseEvent e) {
 		remove(arrivalVO);
@@ -259,13 +260,15 @@ public class TransferReceivePanel extends JPanel {
 
 	private void createArrivalMouseReleased(MouseEvent e) {
 		if (entruck.isSelected()) {
-			arrival = transferReceive.createArriveList(POType.ENTRUCK, entruckListVO);
-			
-		}else{
-			arrival = transferReceive.createArriveList(POType.TRANSFERLIST, transferListVO);
-			
+			arrival = transferReceive.createArriveList(POType.ENTRUCK,
+					entruckListVO);
+
+		} else {
+			arrival = transferReceive.createArriveList(POType.TRANSFERLIST,
+					transferListVO);
+
 		}
-		
+
 		doArrive.setVisible(false);
 		saveArrival.setVisible(true);
 		statusBox.setEnabled(true);
@@ -276,14 +279,17 @@ public class TransferReceivePanel extends JPanel {
 	private void saveArrivalMouseReleased(MouseEvent e) {
 		ResultMessage result = transferReceive.saveArriveList(arrival);
 		try {
-			transferReceive.modifyTransferType(arrival);
+			if (transfer.isSelected()) {
+				transferReceive.modifyTransferType(arrival);
+			}
 		} catch (RemoteException e1) {
 			e1.printStackTrace();
 		}
 		if (result == ResultMessage.SUCCESS) {
-			JOptionPane.showMessageDialog(null, "保存成功", "提示", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "保存成功", "提示",
+					JOptionPane.INFORMATION_MESSAGE);
 			remove(arrivalVO);
-			add(startPane,BorderLayout.CENTER);
+			add(startPane, BorderLayout.CENTER);
 			deliveryID.setText("");
 			startPane.updateUI();
 			startPane.setVisible(true);
@@ -292,18 +298,19 @@ public class TransferReceivePanel extends JPanel {
 
 	/**
 	 * 修改订单到达状态
+	 * 
 	 * @param e
 	 */
 	private void modifyStatusMouseReleased(MouseEvent e) {
 		String status = (String) statusBox.getSelectedItem();
-		if(!status.equals("请选择状态")){
+		if (!status.equals("请选择状态")) {
 			int[] items = arrivalTable.getSelectedRows();
 			String[][] info = arrival.getOrderAndStatus();
-			for(int i = 0; i < items.length;i++){
+			for (int i = 0; i < items.length; i++) {
 				info[items[i]][1] = status;
 			}
 		}
-		
+
 		DefaultTableModel model = (DefaultTableModel) arrivalTable.getModel();
 		model.setDataVector(arrival.getOrderAndStatus(), arrival.getHeader());
 		arrivalTable.setModel(model);
