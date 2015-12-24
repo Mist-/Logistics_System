@@ -1617,6 +1617,7 @@ public class companyManage extends JFrame {
 
     private void buttonModifyData2MouseReleased(MouseEvent e) {
         initData();
+        tabbedPaneApprove.updateUI();
     }
 
     private void initComponents(LoginMessage loginMessage) {
