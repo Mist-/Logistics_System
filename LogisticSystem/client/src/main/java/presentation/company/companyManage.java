@@ -523,7 +523,6 @@ public class companyManage extends JFrame {
             labelApprove.setText("");
             JOptionPane.showMessageDialog(null, "网络错误...", "", JOptionPane.ERROR_MESSAGE);
         }
-        initComponents(loginMessage);
     }
 
     //审批同类型所有单据的按钮
@@ -544,7 +543,6 @@ public class companyManage extends JFrame {
             labelApprove.setText("");
             JOptionPane.showMessageDialog(null, "网络错误...", "", JOptionPane.ERROR_MESSAGE);
         }
-        initComponents(loginMessage);
     }
 
     //初始化所有单据
@@ -732,7 +730,7 @@ public class companyManage extends JFrame {
                             int stockNum = Integer.valueOf(sStockNum);
                             double weight = Double.valueOf(sWeight);
                             double fee = Double.valueOf(sFee);
-                            ServiceType serviceType = data.enums.ServiceType.valueOf(sServiceType);
+                            ServiceType serviceType = ServiceType.valueOf(sServiceType);
                             OrderVO orderVO = new OrderVO(stockNum, weight,serviceType, fee, id);
                             resultMessage = controller.modifyOrder(orderVO);
                             this.isSuccess(resultMessage);
@@ -1612,7 +1610,7 @@ public class companyManage extends JFrame {
     }
 
     private void buttonApproveAllMouseReleased(MouseEvent e) {
-        initComponents(loginMessage);
+
     }
 
     private void buttonModifyData2MouseReleased(MouseEvent e) {
@@ -1924,7 +1922,7 @@ public class companyManage extends JFrame {
                                         .addComponent(buttonApproveAll)
                                         .addGap(7, 7, 7)
                                         .addComponent(buttonModifyData)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(buttonModifyData2)
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
                                         .addComponent(buttonExitApprove)))

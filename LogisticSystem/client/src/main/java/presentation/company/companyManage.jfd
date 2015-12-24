@@ -18,7 +18,7 @@ new FormModel {
 					name: "panelAll"
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 						"$horizontalGroup": "par l {seq l {space :::p, comp tabbedPaneApprove::::779:x, space :::p, par l {par l {par l:t {comp buttonApproveData:::p:100:p, comp buttonApproveAll:::p:100:p, comp buttonModifyData:::p:100:p}, comp buttonExitApprove::t:p:100:p}, comp buttonModifyData2::t:p:100:p}, space :::p}}"
-						"$verticalGroup": "par l {seq t {space :::p, par t {comp tabbedPaneApprove::::381:x, seq {comp buttonApproveData:::p::p, space :7:7:p, comp buttonApproveAll:::p::p, space :7:7:p, comp buttonModifyData:::p::p, space :::p, comp buttonModifyData2:::p::p, space ::201:x, comp buttonExitApprove:::p::p}}, space :::p}}"
+						"$verticalGroup": "par l {seq t {space :::p, par t {comp tabbedPaneApprove::::381:x, seq {comp buttonApproveData:::p::p, space :7:7:p, comp buttonApproveAll:::p::p, space :7:7:p, comp buttonModifyData:::p::p, space :::x, comp buttonModifyData2:::p::p, space ::201:x, comp buttonExitApprove:::p::p}}, space :::p}}"
 					} ) {
 						name: "panelApprove"
 						add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
