@@ -24,12 +24,22 @@ public class StorageOutPanel extends JPanel {
 	StorageOutService storageOut;
 	TransferListVO transferListVO;
 	StorageOutVO out;
+	int storageOutCounter=0;
+	int transferListCounter = 0;
 	BriefTransferAndStorageOutVO briefTransferAndStorageOutVO;
 	public StorageOutPanel(StorageOutService storageOut) {
 		this.storageOut	 = storageOut;
 		initComponents();
 		setList();
 		this.setVisible(true);
+	}
+	
+	public boolean isClear(){
+		if(storageOutCounter >0 || transferListCounter >0){
+			return false;
+		}else {
+			return true;
+		}
 	}
 	
 	private void setTransferListDisabled(){
@@ -85,6 +95,8 @@ public class StorageOutPanel extends JPanel {
 		briefTransferAndStorageOutVO = storageOut.newStorageOut();
 		DefaultTableModel storageOutModel  = new DefaultTableModel(briefTransferAndStorageOutVO.getStorageOutList(),briefTransferAndStorageOutVO.getStorageOutListHeader());
 		DefaultTableModel transferListModel = new DefaultTableModel(briefTransferAndStorageOutVO.getTransferList(),briefTransferAndStorageOutVO.getTransferListHeader());
+		storageOutCounter = briefTransferAndStorageOutVO.getStorageOutList().length;
+		transferListCounter = briefTransferAndStorageOutVO.getTransferList().length;
 		storageOutTable.setModel(storageOutModel);
 		transferListTable.setModel(transferListModel);
 		storageOutList.repaint();
@@ -113,6 +125,7 @@ public class StorageOutPanel extends JPanel {
 				int row = storageOutTable.getSelectedRow();
 				DefaultTableModel model = (DefaultTableModel) storageOutTable.getModel();
 				model.removeRow(row);
+				storageOutCounter--;
 				storageOutTable.setModel(model);
 				storageOutTable.updateUI();
 				remove(storageOutPane);
@@ -205,6 +218,7 @@ public class StorageOutPanel extends JPanel {
 			int row = transferListTable.getSelectedRow();
 			DefaultTableModel model = (DefaultTableModel) transferListTable.getModel();
 			model.removeRow(row);
+			transferListCounter--;
 			transferListTable.setModel(model);
 			transferListTable.updateUI();
 			remove(storageOutPane);

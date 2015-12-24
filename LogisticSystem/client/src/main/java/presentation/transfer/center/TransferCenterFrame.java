@@ -41,6 +41,15 @@ public class TransferCenterFrame extends JFrame {
 			JOptionPane.showMessageDialog(null, "网络连接中断", "LCS物流管理系统", JOptionPane.INFORMATION_MESSAGE);
 		}
 		initComponents();
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+				closeDialog.setVisible(true);
+               }
+		});
+		
+		
 		transferReceiveStart();//默认显示中转接收界面
 		this.setVisible(true);
 	}
@@ -99,7 +108,7 @@ public class TransferCenterFrame extends JFrame {
 	}
 
 	private void button2MouseReleased(MouseEvent e) {
-		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		System.exit(DISPOSE_ON_CLOSE);
 	}
 
 	private void thisWindowClosed(WindowEvent e) {

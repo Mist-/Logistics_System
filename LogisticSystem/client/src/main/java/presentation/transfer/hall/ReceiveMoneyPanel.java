@@ -21,6 +21,7 @@ import businesslogic.service.Transfer.hall.ReceiveMoneyService;
 public class ReceiveMoneyPanel extends JPanel {
 	ReceiveMoneyService receiveMoney;
 	ReceiptVO receiptVO;
+	
 	public ReceiveMoneyPanel(ReceiveMoneyService receiveMoneyService) {
 		receiveMoney =receiveMoneyService;
 		initComponents();
@@ -32,6 +33,10 @@ public class ReceiveMoneyPanel extends JPanel {
 	private void setSenders(){
 		try {
 			String[] senders = receiveMoney.getSenders();
+			if(senders == null){
+				JOptionPane.showMessageDialog(null, "快递员列表获取失败", "提示", JOptionPane.INFORMATION_MESSAGE);
+				return;
+			}
 			DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>(senders);
 			senderBox.setModel(model);
 			senderBox.updateUI();
@@ -132,7 +137,7 @@ public class ReceiveMoneyPanel extends JPanel {
 		}
 
 		//---- label1 ----
-		label1.setText("\u53f8\u673a\u59d3\u540d\uff1a");
+		label1.setText("\u5feb\u9012\u5458\u59d3\u540d\uff1a");
 
 		//---- senderBox ----
 		senderBox.addMouseListener(new MouseAdapter() {

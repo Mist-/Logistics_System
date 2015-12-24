@@ -30,6 +30,16 @@ public class EntruckReceivePanel extends JPanel {
 	EntruckListVO entruckList;
 	ArrivalListVO arrivalList;
 	SendListVO sendList;
+	int arrivalCounter = 0;
+	
+	public boolean isClear(){
+		if(arrivalCounter > 0){
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
 	public EntruckReceivePanel(EntruckReceiveService entruckReceive) {
 		this.entruckReceive = entruckReceive;
 		initComponents();
@@ -71,6 +81,7 @@ public class EntruckReceivePanel extends JPanel {
 		}
 		DefaultTableModel arrivalListModel = new DefaultTableModel(
 				arrivalList.info, arrivalList.header);
+		arrivalCounter = arrivalList.info.length;
 		arrivalTable.setModel(arrivalListModel);
 		selectArrival.setEnabled(false);
 	}
@@ -239,6 +250,7 @@ public class EntruckReceivePanel extends JPanel {
 			
 			int row = arrivalTable.getSelectedRow();
 			deleteRow(row);
+			arrivalCounter--;
 			setArrivalList();
 		}
 	}
@@ -483,7 +495,7 @@ public class EntruckReceivePanel extends JPanel {
 							.addContainerGap())
 				);
 			}
-			startPane.addTab("\u5230\u8fbe\u5355\u5217\u8868", arrivalListPanel);
+			startPane.addTab("\u5df2\u5ba1\u6279\u5230\u8fbe\u5355", arrivalListPanel);
 
 			//======== searchListPanel ========
 			{

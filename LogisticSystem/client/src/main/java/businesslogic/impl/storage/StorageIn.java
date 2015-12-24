@@ -185,10 +185,11 @@ public class StorageIn implements StorageInService{
 	public ResultMessage doArrive() throws RemoteException{
 		long[] roundOrder = null;
 		long[] lostOrder = null;
+		long[] damagedOrder = null;
 		try {
 		roundOrder =  arrivalList.getOrder(StockStatus.ROUND);
 		lostOrder = arrivalList.getOrder(StockStatus.LOST);
-		
+		damagedOrder = arrivalList.getOrder(StockStatus.DAMAGED);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return ResultMessage.FAILED;
@@ -197,7 +198,9 @@ public class StorageIn implements StorageInService{
 		OrderListService orderList = new OrderList(new LoginMessage(ResultMessage.SUCCESS));
 		orderList.modifyOrder(roundOrder, "由"+user.getInstitutionName()+"接收");
 		orderList.modifyOrder(lostOrder, "订单于"+user.getInstitutionName()+"丢失");
+		orderList.modifyOrder(damagedOrder, "货物于"+user.getInstitutionName()+"破损");
 		orderList.modifyOrderPosition(roundOrder);
+		orderList.modifyOrderPosition(damagedOrder);
 		return ResultMessage.SUCCESS;
 		
 	}

@@ -44,6 +44,7 @@ public class StorageOut implements StorageOutService{
 	 */
 	public ResultMessage doStorageOut() throws RemoteException{
 		long[] o = storageOutList.getOrderID();
+		System.out.println("修改物流信息 订单数："+o.length);
 		orderList.modifyOrder(o,"从"+user.getInstitutionName()+"中转中心发出");
 		//orderList.modifyOrderPosition(o);
 		return ResultMessage.SUCCESS;

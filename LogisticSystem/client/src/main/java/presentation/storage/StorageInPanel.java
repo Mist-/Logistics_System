@@ -27,8 +27,18 @@ public class StorageInPanel extends JPanel {
 	StorageInService storageInService;
 	ArrivalVO arrival;
 	StorageInVO storageIn;
+	int storageInCounter = 0;
+	int arrivalCounter = 0;
 	boolean showOrStorageIn;//show = false,storageIn = true
 
+	
+	public boolean isClear(){
+		if(arrivalCounter >0 || storageInCounter>0){
+			return false;
+		}else {
+			return true;
+		}
+	}
 	
 	public StorageInPanel(StorageInService storageIn) {
 		this.storageInService = storageIn;
@@ -43,7 +53,9 @@ public class StorageInPanel extends JPanel {
 		briefArrivalAndStorageInVO = storageInService.newStorageIn();
 		DefaultTableModel storageInModel = new DefaultTableModel(briefArrivalAndStorageInVO.getStorageInListInfo(), briefArrivalAndStorageInVO.getStorageInTittle());
 		storageInTable.setModel(storageInModel);
+		storageInCounter = briefArrivalAndStorageInVO.getStorageInListInfo().length;
 		DefaultTableModel arrivalModel = new DefaultTableModel(briefArrivalAndStorageInVO.getArrivalListInfo(),briefArrivalAndStorageInVO.getArrivalTittle());
+		arrivalCounter = briefArrivalAndStorageInVO.getArrivalListInfo().length;
 		storageInTable.setModel(storageInModel);
 		arriveListTable.setModel(arrivalModel);
 		
@@ -170,6 +182,7 @@ public class StorageInPanel extends JPanel {
 			JOptionPane.showMessageDialog(null, "保存成功", "提示", JOptionPane.INFORMATION_MESSAGE);
 			DefaultTableModel model = (DefaultTableModel) arriveListTable.getModel();
 			model.removeRow(arriveListTable.getSelectedRow());
+			arrivalCounter--;
 			arriveListTable.setModel(model);
 			arriveListTable.updateUI();
 			arriveListTable.repaint();
@@ -198,6 +211,7 @@ public class StorageInPanel extends JPanel {
 
 	private void sureStorageInMouseReleased(MouseEvent e) {
 		JOptionPane.showMessageDialog(null, "入库完成", "提示", JOptionPane.INFORMATION_MESSAGE);
+		storageInCounter--;
 		int row = storageInTable.getSelectedRow();
 		DefaultTableModel model = (DefaultTableModel) storageInTable.getModel();
 		model.removeRow(row);

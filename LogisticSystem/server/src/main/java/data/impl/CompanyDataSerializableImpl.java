@@ -102,7 +102,7 @@ public class CompanyDataSerializableImpl extends UnicastRemoteObject implements 
 	@Override
 	public ArrayList<StaffPO> searchSenders(long institutionID) {
 		ArrayList<StaffPO> senders = new ArrayList<StaffPO>();
-		ArrayList<DataPO> all = getPOList(POType.SENDER);
+		ArrayList<DataPO> all = getPOList(POType.STAFF);
 		for (int i = 0; i < all.size(); i++) {
 			StaffPO s = (StaffPO) all.get(i);
 			if (s.getInstitution() == institutionID) {

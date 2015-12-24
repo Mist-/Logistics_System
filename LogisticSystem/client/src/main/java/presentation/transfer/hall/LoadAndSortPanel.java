@@ -23,6 +23,16 @@ public class LoadAndSortPanel extends JPanel {
 	BriefOrderVO briefOrder;
 	BriefEntruckListVO briefEntruckList;
 	EntruckListVO entruck;
+	int entruckListCounter = 0;
+	
+	
+	public boolean isClear(){
+		if(entruckListCounter>0){
+			return false;
+		}else{
+			return true;
+		}
+	}
 
 	public LoadAndSortPanel(LoadAndSortService loadAndSort)
 			throws RemoteException {
@@ -109,6 +119,7 @@ public class LoadAndSortPanel extends JPanel {
 		if (briefEntruckList != null) {// 为空则获取失败
 			DefaultTableModel model = new DefaultTableModel(
 					briefEntruckList.info, briefEntruckList.header);
+			entruckListCounter = briefEntruckList.info.length;
 			entruckListTable.setModel(model);
 			entruckListTable.validate();
 			entruckListTable.updateUI();
@@ -235,6 +246,7 @@ public class LoadAndSortPanel extends JPanel {
 			int row = entruckListTable.getSelectedRow();
 			DefaultTableModel model = (DefaultTableModel) entruckListTable.getModel();
 			model.removeRow(row);
+			entruckListCounter--;
 			entruckListTable.updateUI();
 			entruckListTable.repaint();
 			

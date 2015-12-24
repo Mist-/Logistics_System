@@ -25,7 +25,7 @@ new FormModel {
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "selectArrivalMouseClicked", true ) )
 					} )
 				}, new FormLayoutConstraints( null ) {
-					"title": "到达单列表"
+					"title": "已审批到达单"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 					"$horizontalGroup": "par l {seq l {space :p:128:p, comp label5:::p:105:p, space :::p, par l:::p {seq {comp entruck:::p::p, space :::x, comp transfer:::p::p}, comp deliveryID:::p:157:p}, space s:::p, comp searchList:::p:69:p, space ::314:x}}"
