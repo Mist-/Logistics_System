@@ -35,24 +35,25 @@ public class ClientConfigurationController {
         System.out.println("------------------------------------\nreading configuration:");
         while (scanner.hasNext()) {
             String line = scanner.nextLine();
-            System.out.println(line);
             String conf[] = line.split("[ ]+");
             if (conf[0].equals("regPort") && conf[1].equals("=")) {
                 if (!conf[2].matches("[0-9]+") && conf.length < 4 && conf.length > 6) continue;
                 configuration.regPort = Integer.parseInt(conf[2]);
+                System.out.println("regPort = " + configuration.regPort);
             }
             if (conf[0].equals("dataTransPort") && conf[1].equals("=")) {
                 if (!conf[2].matches("[0-9]+") && conf.length < 4 && conf.length > 6) continue;
                 configuration.dataTransPort = Integer.parseInt(conf[2]);
+                System.out.println("dataTransPort = " + configuration.dataTransPort);
             }
             if (conf[0].equals("autoSavingFreq") && conf[1].equals("=")) {
                 if (!conf[2].matches("[0-9]+") && conf.length > 2) continue;
                 configuration.autoSavingFreq = Integer.parseInt(conf[2]);
+                System.out.println("autoSavingFreq = " + configuration.autoSavingFreq);
             }
             if (conf[0].equals("ip") && conf[1].equals("=")) {
-                if (!conf[2].matches("[0-9]+") && conf.length > 2) continue;
-                if (conf[2].matches("[0-9]+[.][0-9]+[.][0-9]+[.][0-9]+"))
-                    configuration.ip = conf[2];
+                configuration.ip = conf[2];
+                System.out.println("ip = " + configuration.ip);
             }
         }
         System.out.println("------------------------------------");
