@@ -75,6 +75,9 @@ public class SalaryManageBLImpl implements SalaryManageBLService {
                 salaryPO = new SalaryPO(salary,institution,type);
                 resultMessage = company.add(salaryPO);
             }
+            else{
+                resultMessage = ResultMessage.EXIST;
+            }
         } catch (RemoteException e) {
             System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
             resultMessage = ResultMessage.NOTCONNECTED;

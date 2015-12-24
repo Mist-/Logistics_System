@@ -23,6 +23,16 @@ public class LoadAndSortPanel extends JPanel {
 	BriefOrderVO briefOrder;
 	BriefEntruckListVO briefEntruckList;
 	EntruckListVO entruck;
+	int entruckListCounter = 0;
+	
+	
+	public boolean isClear(){
+		if(entruckListCounter>0){
+			return false;
+		}else{
+			return true;
+		}
+	}
 
 	public LoadAndSortPanel(LoadAndSortService loadAndSort)
 			throws RemoteException {
@@ -109,6 +119,7 @@ public class LoadAndSortPanel extends JPanel {
 		if (briefEntruckList != null) {// 为空则获取失败
 			DefaultTableModel model = new DefaultTableModel(
 					briefEntruckList.info, briefEntruckList.header);
+			entruckListCounter = briefEntruckList.info.length;
 			entruckListTable.setModel(model);
 			entruckListTable.validate();
 			entruckListTable.updateUI();
@@ -235,6 +246,7 @@ public class LoadAndSortPanel extends JPanel {
 			int row = entruckListTable.getSelectedRow();
 			DefaultTableModel model = (DefaultTableModel) entruckListTable.getModel();
 			model.removeRow(row);
+			entruckListCounter--;
 			entruckListTable.updateUI();
 			entruckListTable.repaint();
 			
@@ -281,6 +293,15 @@ public class LoadAndSortPanel extends JPanel {
 		}
 	}
 
+	private void refreshButtonMouseReleased(MouseEvent e) {
+		if(entruckListCounter <= 0){
+			briefEntruckList = null;
+			setEntruckList();
+		}
+	}
+
+
+
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY
 		// //GEN-BEGIN:initComponents
@@ -289,6 +310,7 @@ public class LoadAndSortPanel extends JPanel {
 		selectEntruck = new JButton();
 		scrollPane3 = new JScrollPane();
 		entruckListTable = new JTable();
+		refreshButton = new JButton();
 		panel1 = new JPanel();
 		scrollPane1 = new JScrollPane();
 		orderTable = new JTable();
@@ -363,6 +385,15 @@ public class LoadAndSortPanel extends JPanel {
 					scrollPane3.setViewportView(entruckListTable);
 				}
 
+				//---- refreshButton ----
+				refreshButton.setText("\u5237\u65b0");
+				refreshButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						refreshButtonMouseReleased(e);
+					}
+				});
+
 				GroupLayout entruckListPanelLayout = new GroupLayout(entruckListPanel);
 				entruckListPanel.setLayout(entruckListPanelLayout);
 				entruckListPanelLayout.setHorizontalGroup(
@@ -370,7 +401,9 @@ public class LoadAndSortPanel extends JPanel {
 						.addGroup(entruckListPanelLayout.createSequentialGroup()
 							.addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 698, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(selectEntruck, GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+							.addGroup(entruckListPanelLayout.createParallelGroup()
+								.addComponent(selectEntruck, GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+								.addComponent(refreshButton, GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE))
 							.addContainerGap())
 				);
 				entruckListPanelLayout.setVerticalGroup(
@@ -380,6 +413,8 @@ public class LoadAndSortPanel extends JPanel {
 							.addGap(0, 0, Short.MAX_VALUE))
 						.addGroup(GroupLayout.Alignment.TRAILING, entruckListPanelLayout.createSequentialGroup()
 							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(refreshButton)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addComponent(selectEntruck)
 							.addContainerGap())
 				);
@@ -744,6 +779,7 @@ public class LoadAndSortPanel extends JPanel {
 	private JButton selectEntruck;
 	private JScrollPane scrollPane3;
 	private JTable entruckListTable;
+	private JButton refreshButton;
 	private JPanel panel1;
 	private JScrollPane scrollPane1;
 	private JTable orderTable;

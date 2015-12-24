@@ -90,55 +90,53 @@ public class FundsManage {
 	    		return 	receiptVOList;
 		}
 	
-	 //this four methord need write!!!!
-	public PaymentVO buildPaymentFromEntruck(PaymentVO pay,long institution) throws RemoteException {
-		// if each , then not use all; else , use all to add continue
-		
-		ArrayList<DataPO> entruckList = transferDataService.searchUncountedList(POType.ENTRUCK, institution);
-		
-        payment = new PaymentPO();
-        double sum = 0;
-		for(DataPO po1: entruckList){
-			
-			//成本管理（付款日期、付款金额、付款人、付款账号、条目(运费（按次计算）)、备注(运单号)
-			EntruckPO en = (EntruckPO) po1;
-			double fee = en.getFee();
-			en.setIscounted(true);
-			transferDataService.modify(en);
-			sum = sum + fee ; 
-			
-			
-		}
-		payment.setMoney(sum);
-		//continue add the element
-		payment.setDate(pay.getDate());
-	    payment.setAccount(pay.getAccount());
-	    payment.setExInfo(pay.getExInfo());
-	    payment.setInfo(pay.getInfo());
-	    payment.setName(pay.getName());
-	    
-		financialDataService.add(payment);
-		
-		paymentVO = pay;
-		paymentVO.setMoney(sum);
-		
-		return paymentVO;
-	}
+//	 //this four methord need write!!!!
+//	public PaymentVO buildPaymentFromEntruck(PaymentVO pay,long institution) throws RemoteException {
+//		// if each , then not use all; else , use all to add continue
+//		
+//		ArrayList<DataPO> entruckList = transferDataService.searchUncountedList(POType.ENTRUCK, institution);
+//		
+//        payment = new PaymentPO();
+//        double sum = 0;
+//		for(DataPO po1: entruckList){
+//			
+//			//成本管理（付款日期、付款金额、付款人、付款账号、条目(运费（按次计算）)、备注(运单号)
+//			EntruckPO en = (EntruckPO) po1;
+//			double fee = en.getFee();
+//			en.setIscounted(true);
+//			transferDataService.modify(en);
+//			sum = sum + fee ; 
+//			
+//			
+//		}
+//		payment.setMoney(sum);
+//		//continue add the element
+//		payment.setDate(pay.getDate());
+//	    payment.setAccount(pay.getAccount());
+//	    payment.setExInfo(pay.getExInfo());
+//	    payment.setInfo(pay.getInfo());
+//	    payment.setName(pay.getName());
+//	    
+//		financialDataService.add(payment);
+//		
+//		paymentVO = pay;
+//		paymentVO.setMoney(sum);
+//		
+//		return paymentVO;
+//	}
 	public PaymentVO buildPaymentFromTransfer(PaymentVO pay,long institution) throws RemoteException {
 		// if each , then not use all; else , use all to add continue
-		ArrayList<DataPO> TransferList = transferDataService.searchUncountedList(POType.TRANSFERLIST, institution);
+		ArrayList<TransferListPO> TransferList = transferDataService.searchUncountedList(POType.TRANSFERLIST, institution);
 		
 		double sum = 0;
         payment = new PaymentPO();
-		for(DataPO po1: TransferList){
+		for(TransferListPO po1: TransferList){
 			
 			//成本管理（付款日期、付款金额、付款人、付款账号、条目(运费（按次计算）)、备注(运单号)
-			TransferListPO tr = (TransferListPO) po1;
-			double fee = tr.getFee();
-			tr.setAccount(true);
-			transferDataService.modify(tr);
+			double fee = po1.getFee();
+			po1.setAccount(true);
+			transferDataService.modify(po1);
 			sum = sum + fee ; 
-			
 			
 		}
 		payment.setMoney(sum);

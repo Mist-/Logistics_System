@@ -38,6 +38,31 @@ public class TransferHallFrame extends JFrame {
 			e1.printStackTrace();
 		}
 		initComponents();
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e){
+			//	closeDialog.setVisible(true);
+				boolean loadClear = true;
+				boolean entruckClear = true;
+				if (loadAndSortPanel != null) {
+					if (!loadAndSortPanel.isClear()) {
+						loadClear = false;
+					}
+				}
+				
+				if(entruckReceivePanel != null){
+					if(!entruckReceivePanel.isClear()){
+						entruckClear = false;
+					}
+				}
+				if(loadClear && entruckClear){
+					System.exit(DISPOSE_ON_CLOSE);
+				}else{
+					JOptionPane.showMessageDialog(null, "有已审批到达单或装车单未处理,请处理完后再退出", "提示", JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+		});
 		buttons = new ArrayList<JButton>();
 		buttons.add(receiveButton);
 		buttons.add(loadButton);
@@ -227,7 +252,7 @@ public class TransferHallFrame extends JFrame {
 		}
 
 		private void button2MouseReleased(MouseEvent e) {
-			setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+			System.exit(DISPOSE_ON_CLOSE);
 		}
 
 

@@ -73,8 +73,8 @@ new FormModel {
 			name: "transferListPane"
 			"font": #Font0
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space :::p, par l {seq t {comp scrollPane2::::660:x, space :::p, par l:::p {comp cancelLoad::::109:x, comp saveList::l::109:x}}, seq {par l {seq {comp label6:::p::p, space :p:32:p, comp listID:::p:80:p, space :p:135:p, comp label4:::p::p, space :10:10:p, comp date:::p:80:p}, seq l {par t:::p {seq {comp label7:::p::p, space :::x, comp destName:::p:82:p}, seq {comp label8:::p::p, space :::x, comp destID:::p:82:p}, seq {comp label9:::p::p, space :::x, comp centerName:::p:82:p}, seq {comp label5:::p::p, space s:::p, comp centerID:::p:82:p}}, space :p:135:p, par l:::p {seq l {comp label12::::40:x, space s:::p, comp driverName:::p:80:p}, seq {comp label11:::::x, space s:::p, comp staffName:::p:80:p}, comp label10:::p:48:p}}, seq l {space :p:365:p, comp vehicleID:::p:80:p}}, space :0:330:x}}, space :::p}}"
-				"$verticalGroup": "par l {seq l {space :::x, comp saveList:::p::p, space :::p, comp cancelLoad:::p::p, space :::p}, seq t {space :::p, par l {par b {comp label6::b:p::p, comp listID::b:p::p}, seq {space :3:3:p, comp label4:::p::p}, comp date:::p::p}, par l {seq t {space :::p, comp vehicleID:::p::p}, seq {space :9:9:p, par l {par b {comp label5::b:p::p, comp centerID::b:p::p}, comp label10:::p::p}}}, par l {seq {space :p:6:p, par l {comp label9:::p::p, par b {comp staffName::b:p::p, comp label11::b:p::p}}}, seq l {space :::p, comp centerName:::p::p}}, space :::p, par l {seq {space :3:3:p, par l {comp label8:::p::p, par b {comp driverName::b:p::p, comp label12::b:p::p}}}, comp destID::l:p::p}, space :::p, par l {comp label7:::p::p, comp destName:::p::p}, space :::x, comp scrollPane2:::p:173:p}}"
+				"$horizontalGroup": "par l {seq {space :::p, par l {seq t {comp scrollPane2::::660:x, space :::p, par l:::p {comp cancelLoad::::109:x, comp saveList::l::109:x}}, seq {par l {seq {comp label6:::p::p, space :p:32:p, comp listID:::p:80:p, space :p:135:p, comp label4:::p::p, space :10:10:p, comp date:::p:80:p}, seq l {par t:::p {seq {comp label7:::p::p, space :::x, comp destName:::p:82:p}, seq {comp label8:::p::p, space :::x, comp destID:::p:82:p}, seq {comp label9:::p::p, space :::x, comp centerName:::p:82:p}, seq {comp label5:::p::p, space s:::p, comp centerID:::p:82:p}}, space :p:135:p, par l:::p {seq l {comp label12::::40:x, space s:::p, comp fee:::p:80:p}, seq {comp label11:::::x, space s:::p, comp staffName:::p:80:p}, comp label10:::p:48:p}}, seq l {space :p:365:p, comp vehicleID:::p:80:p}}, space :0:330:x}}, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :::x, comp saveList:::p::p, space :::p, comp cancelLoad:::p::p, space :::p}, seq t {space :::p, par l {par b {comp label6::b:p::p, comp listID::b:p::p}, seq {space :3:3:p, comp label4:::p::p}, comp date:::p::p}, par l {seq t {space :::p, comp vehicleID:::p::p}, seq {space :9:9:p, par l {par b {comp label5::b:p::p, comp centerID::b:p::p}, comp label10:::p::p}}}, par l {seq {space :p:6:p, par l {comp label9:::p::p, par b {comp staffName::b:p::p, comp label11::b:p::p}}}, seq l {space :::p, comp centerName:::p::p}}, space :::p, par l {seq {space :3:3:p, par l {comp label8:::p::p, par b {comp fee::b:p::p, comp label12::b:p::p}}}, comp destID::l:p::p}, space :::p, par l {comp label7:::p::p, comp destName:::p::p}, space :::x, comp scrollPane2:::p:173:p}}"
 			} ) {
 				name: "DeliveryListPanel"
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -143,7 +143,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label12"
-					"text": "押运员"
+					"text": "费用"
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "vehicleID"
@@ -152,7 +152,7 @@ new FormModel {
 					name: "staffName"
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "driverName"
+					name: "fee"
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label4"

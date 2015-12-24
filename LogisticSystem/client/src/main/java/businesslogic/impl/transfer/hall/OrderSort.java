@@ -33,10 +33,9 @@ public class OrderSort implements LoadAndSortService {
 	@Override
 	public ResultMessage doEntruck() throws RemoteException {
 		long[] order = entruckList.getOrder();
-	
 		System.out.println("orderlist lenth:"+order.length);
 		// 修改订单物流信息
-		orderData.modifyOrder(order, "已从"+user.getInstitutionName()+"发出");//更新物流信息
+		orderData.modifyOrder(order, "已从"+user.getInstitutionName()+"营业厅"+"发出");//更新物流信息
 		//orderData.modifyOrderPosition(o);//修改下一站
 		return ResultMessage.SUCCESS;
 	}

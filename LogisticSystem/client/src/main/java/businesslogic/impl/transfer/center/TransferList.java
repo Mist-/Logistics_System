@@ -52,7 +52,11 @@ public class TransferList {
 		transfer.setDriverName(vo.driver);
 		transfer.setAccount(false);
 		transfer.setDate(vo.date);
+		if(transfer.getTransferType() == StorageArea.TRUCK){
+			transfer.setDriverName(vo.fee);
+		}else{
 		transfer.setFee(Double.parseDouble(vo.fee));
+		}
 		transfer.setOrder(order);
 		transfer.setStaff(vo.staffID);
 		transfer.setStaffName(vo.staff);

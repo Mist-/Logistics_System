@@ -8,8 +8,8 @@ new FormModel {
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 				name: "loadAndSortPane"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {comp scrollPane3:::p:698:p, space :::p, comp selectEntruck::::81:x, space :::p}}"
-					"$verticalGroup": "par l {seq l {comp scrollPane3:::p:346:p, space :0:0:x}, seq t {space :::x, comp selectEntruck:::p::p, space :::p}}"
+					"$horizontalGroup": "par l {seq {comp scrollPane3:::p:698:p, space :::p, par l {comp selectEntruck::::81:x, comp refreshButton::l::81:x}, space :::p}}"
+					"$verticalGroup": "par l {seq l {comp scrollPane3:::p:346:p, space :0:0:x}, seq t {space :::x, comp refreshButton:::p::p, space :::p, comp selectEntruck:::p::p, space :::p}}"
 				} ) {
 					name: "entruckListPanel"
 					add( new FormComponent( "javax.swing.JButton" ) {
@@ -24,6 +24,11 @@ new FormModel {
 							"selectionMode": 1
 							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "entruckListTableMouseReleased", true ) )
 						} )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "refreshButton"
+						"text": "刷新"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "refreshButtonMouseReleased", true ) )
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "已审批装车单"

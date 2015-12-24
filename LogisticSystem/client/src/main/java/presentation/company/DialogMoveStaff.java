@@ -4,6 +4,7 @@ import businesslogic.impl.company.CompanyBLController;
 import data.message.ResultMessage;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
@@ -12,16 +13,17 @@ import java.util.ArrayList;
 
 
 public class DialogMoveStaff extends JDialog{
-	public JDialog jdialog = null;
-	public JButton finish = null;
-	public JComboBox<String> institution = null;
+	JPanel jPanel = null;
+	JDialog jdialog = null;
+	JButton finish = null;
+	JComboBox<String> institution = null;
 	String institutions[];
-	public JComboBox<String> city = null;
+	JComboBox<String> city = null;
 	String citys[];
-	public JComboBox<String> businessOffice = null;
+	JComboBox<String> businessOffice = null;
     ArrayList<String> businessOffices = null;
-	public JLabel choose = null;
-	public companyManage company = null;
+	JLabel choose = null;
+	companyManage company = null;
 	CompanyBLController controller = null;
 	ResultMessage resultMessage = null;
 	String fromInstitution,toInstitution,ID,userRole;
@@ -31,6 +33,7 @@ public class DialogMoveStaff extends JDialog{
 		this.fromInstitution = fromInstitution;
 		this.ID = ID;
 		controller = new CompanyBLController();
+		jPanel = new JPanel();
 		jdialog = new JDialog(company,"移动员工");
 		choose = new JLabel("请选择部门:");
 		finish = new JButton("确认");
@@ -103,13 +106,14 @@ public class DialogMoveStaff extends JDialog{
 		city.setBounds(215, 30, 70, 30);
 		businessOffice.setBounds(285, 30, 70, 30);
 		jdialog.setSize(410,200);
-		jdialog.add(choose);
-		jdialog.add(institution);
-		jdialog.add(city);
-		jdialog.add(businessOffice);
-		jdialog.add(finish);
+		jdialog.add(jPanel, BorderLayout.CENTER);
+		jPanel.add(choose);
+		jPanel.add(institution);
+		jPanel.add(city);
+		jPanel.add(businessOffice);
+		jPanel.add(finish);
+		jPanel.setLayout(null);
 		jdialog.setModal(true);
-		jdialog.setLayout(null);
 		jdialog.setLocationRelativeTo(null);
 		jdialog.setResizable(false);
 		finish.setBounds(180, 90, 60, 30);

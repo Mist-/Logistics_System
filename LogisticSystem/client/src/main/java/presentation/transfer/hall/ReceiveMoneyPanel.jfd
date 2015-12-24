@@ -18,7 +18,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
-				"text": "司机姓名："
+				"text": "快递员姓名："
 			} )
 			add( new FormComponent( "javax.swing.JComboBox" ) {
 				name: "senderBox"

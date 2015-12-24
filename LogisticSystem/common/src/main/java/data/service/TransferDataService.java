@@ -11,7 +11,7 @@ import data.po.TransferListPO;
 public interface TransferDataService extends DataService {
 	
 	
-	ArrayList<DataPO> searchUncountedList(POType type, long institution) throws RemoteException;
+	ArrayList<TransferListPO> searchUncountedList(POType type, long institution) throws RemoteException;
 	/**
 	 * 按机构搜索一批已经生效的PO
 	 * @param type
