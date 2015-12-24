@@ -97,7 +97,7 @@ public class MockTransferDataService implements TransferDataService {
 	}
 
 	@Override
-	public ArrayList<DataPO> searchUncountedList(POType type, long institution)
+	public ArrayList<TransferListPO> searchUncountedList(POType type, long institution)
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;

@@ -135,11 +135,11 @@ public class FinancialBLController implements FinancialBLService {
 	}
 	@Override
 	public PaymentVO buildPaymentFromEntruck(PaymentVO pay,long institution) {
-		try {
-			return fundsManage.buildPaymentFromEntruck(pay,institution);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			return fundsManage.buildPaymentFromEntruck(pay,institution);
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//		}
 		return null;
 	}
 

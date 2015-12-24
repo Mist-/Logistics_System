@@ -1,6 +1,7 @@
 package data.impl;
 
 import data.enums.POType;
+import data.message.ResultMessage;
 import data.po.*;
 import data.service.TransferDataService;
 
@@ -47,10 +48,19 @@ public class TransferDataSerializableImpl extends UnicastRemoteObject implements
 
 
     @Override
-	public ArrayList<DataPO> searchUncountedList(POType type, long institution) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<TransferListPO> searchUncountedList(POType type, long institution) throws RemoteException {
+		ArrayList<DataPO> list = getPOList(POType.TRANSFERLIST);
+		ArrayList<TransferListPO> result = new ArrayList<TransferListPO>();
+		for(int i = 0 ; i < list.size();i++){
+			TransferListPO t = (TransferListPO) list.get(i);
+			if(t.getTransferCenter() == institution && t.isAccount()== false){
+				result.add(t);
+			}
+		}
+		return result;
 	}
+    
+
 
 	@Override
 	public ArrayList<DataPO> searchList(POType type, long institutionID)

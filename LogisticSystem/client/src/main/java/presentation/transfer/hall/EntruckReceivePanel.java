@@ -52,6 +52,23 @@ public class EntruckReceivePanel extends JPanel {
 		this.setVisible(true);
 	}
 	
+	private void setSendList(){
+		if(sendList != null){
+			DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>(sendList.senders);
+			senderBox.setModel(model);
+			DefaultTableModel model2 = new DefaultTableModel(arrival.getOrderAndStatus(),arrival.getHeader());
+			sendTable.setModel(model2);
+			sendData.setText(sendList.date);
+			senderBox.updateUI();
+			sendTable.updateUI();
+		}
+		
+		remove(arrivalVO);
+		add(sendListPane,BorderLayout.CENTER);
+		sendListPane.updateUI();
+		sendListPane.setVisible(true);
+	}
+	
 	private void setArrivalList(){
 		arrivalTable.validate();
 		arrivalTable.updateUI();
@@ -251,7 +268,8 @@ public class EntruckReceivePanel extends JPanel {
 			int row = arrivalTable.getSelectedRow();
 			deleteRow(row);
 			arrivalCounter--;
-			setArrivalList();
+			//setArrivalList();
+			
 		}
 	}
 
@@ -379,6 +397,22 @@ public class EntruckReceivePanel extends JPanel {
 		setArrivalList();
 		}
 	}
+	
+	private void getSendList(){
+		String sender = (String) senderBox.getSelectedItem();
+		sendList.senderName = sender;
+	}
+
+	private void saveSendListButtonMouseReleased(MouseEvent e) {
+		getSendList();
+		ResultMessage result = entruckReceive.saveSendList(sendList);
+		if(result == ResultMessage.SUCCESS){
+			JOptionPane.showMessageDialog(null, "保存成功","提示" ,JOptionPane.INFORMATION_MESSAGE );
+			setArrivalList();
+		}else{
+			JOptionPane.showMessageDialog(null, "操作失败", "提示", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
 //==============================监听=================================
 
 	private void initComponents() {
@@ -452,6 +486,15 @@ public class EntruckReceivePanel extends JPanel {
 		label9 = new JLabel();
 		cancelSureButton = new JButton();
 		notCancelButton = new JButton();
+		sendListPane = new JTabbedPane();
+		panel3 = new JPanel();
+		scrollPane4 = new JScrollPane();
+		sendTable = new JTable();
+		label16 = new JLabel();
+		senderBox = new JComboBox();
+		label17 = new JLabel();
+		sendData = new JTextField();
+		saveSendListButton = new JButton();
 
 		//======== this ========
 		setLayout(new BorderLayout());
@@ -1067,6 +1110,67 @@ public class EntruckReceivePanel extends JPanel {
 			cancelDialog.pack();
 			cancelDialog.setLocationRelativeTo(cancelDialog.getOwner());
 		}
+
+		//======== sendListPane ========
+		{
+
+			//======== panel3 ========
+			{
+
+				//======== scrollPane4 ========
+				{
+					scrollPane4.setViewportView(sendTable);
+				}
+
+				//---- label16 ----
+				label16.setText("\u5feb\u9012\u5458");
+
+				//---- label17 ----
+				label17.setText("\u65e5\u671f");
+
+				//---- saveSendListButton ----
+				saveSendListButton.setText("\u4fdd\u5b58");
+				saveSendListButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						saveSendListButtonMouseReleased(e);
+					}
+				});
+
+				GroupLayout panel3Layout = new GroupLayout(panel3);
+				panel3.setLayout(panel3Layout);
+				panel3Layout.setHorizontalGroup(
+					panel3Layout.createParallelGroup()
+						.addGroup(panel3Layout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(label16)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+							.addComponent(senderBox, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+							.addGap(18, 18, 18)
+							.addComponent(label17)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(sendData, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 377, Short.MAX_VALUE)
+							.addComponent(saveSendListButton, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+							.addGap(31, 31, 31))
+						.addComponent(scrollPane4, GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
+				);
+				panel3Layout.setVerticalGroup(
+					panel3Layout.createParallelGroup()
+						.addGroup(GroupLayout.Alignment.TRAILING, panel3Layout.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(panel3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(label16)
+								.addComponent(senderBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(label17)
+								.addComponent(sendData, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(saveSendListButton))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+							.addComponent(scrollPane4, GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))
+				);
+			}
+			sendListPane.addTab("\u6d3e\u4ef6\u5355", panel3);
+		}
 		// //GEN-END:initComponents
 	}
 
@@ -1140,5 +1244,14 @@ public class EntruckReceivePanel extends JPanel {
 	private JLabel label9;
 	private JButton cancelSureButton;
 	private JButton notCancelButton;
+	private JTabbedPane sendListPane;
+	private JPanel panel3;
+	private JScrollPane scrollPane4;
+	private JTable sendTable;
+	private JLabel label16;
+	private JComboBox senderBox;
+	private JLabel label17;
+	private JTextField sendData;
+	private JButton saveSendListButton;
 	// JFormDesigner - End of variables declaration //GEN-END:variables
 }

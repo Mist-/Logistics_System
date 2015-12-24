@@ -18,6 +18,7 @@ import data.message.ResultMessage;
 import data.vo.TransferListVO;
 import data.vo.TransferLoadVO;
 import businesslogic.impl.transfer.TransferInfo;
+import businesslogic.impl.transfer.center.TransferList;
 import businesslogic.service.Transfer.center.TransferLoadService;
 
 /**
@@ -153,15 +154,15 @@ public class TransferLoadPanel extends JPanel {
 			date.setText(transferList.date);
 			vehicleID.setText("请输入班次");
 			staffName.setText(transferList.staff);
-			if (transferList.transferType.equals("汽运")) {
-				driverName.setText("请输入司机姓名");
-				label12.setText("押运员");
-				label10.setText("车辆编号");
-			}else{
-			driverName.setText(transferList.fee);
-			label12.setText("费用");
-			label10.setText("班次");
-			}
+//			if (transferList.transferType.equals("汽运")) {
+//				fee.setText("请输入司机姓名");
+//				label12.setText("押运员");
+//				label10.setText("车辆编号");
+//			}else{
+			fee.setText(transferList.fee);
+//			label12.setText("费用");
+//			label10.setText("班次");
+//			}
 			DefaultTableModel model = new DefaultTableModel(transferList.orderAndPosition,transferList.header);
 			loadTable.setModel(model);
 			loadTable.updateUI();
@@ -181,13 +182,15 @@ public class TransferLoadPanel extends JPanel {
 	}
 
 	private void saveListMouseReleased(MouseEvent e) {
-		if(transferList.transferType.equals("汽运")){
-			transferList.driver = driverName.getText();
-		}else{
-			transferList.fee = driverName.getText();
-		}
+//		if(transferList.transferType.equals("汽运")){
+//			transferList.fee = fee.getText();
+//		}else{
+			transferList.fee = fee.getText();
+//		}
 		transferList.date = date.getText();
 		transferList.vehicleCode = vehicleID.getText();
+		System.out.println(transferList.fee);
+		System.out.println(transferList.vehicleCode);
 		if(transferList.fee.equals("") || transferList.fee.equals(0.0+"")|| transferList.vehicleCode.equals("请输入班次")|| transferList.vehicleCode.equals("")){
 			JOptionPane.showMessageDialog(null, "请正确输入运费和班次", "提示", JOptionPane.INFORMATION_MESSAGE);
 			return;
@@ -259,7 +262,7 @@ public class TransferLoadPanel extends JPanel {
 		label12 = new JLabel();
 		vehicleID = new JTextField();
 		staffName = new JTextField();
-		driverName = new JTextField();
+		fee = new JTextField();
 		label4 = new JLabel();
 		date = new JTextField();
 
@@ -436,7 +439,7 @@ public class TransferLoadPanel extends JPanel {
 				label11.setText("\u76d1\u88c5\u5458");
 
 				//---- label12 ----
-				label12.setText("\u62bc\u8fd0\u5458");
+				label12.setText("\u8d39\u7528");
 
 				//---- label4 ----
 				label4.setText("\u88c5\u8fd0\u65e5\u671f");
@@ -487,7 +490,7 @@ public class TransferLoadPanel extends JPanel {
 												.addGroup(DeliveryListPanelLayout.createSequentialGroup()
 													.addComponent(label12, GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
 													.addGap(18, 18, 18)
-													.addComponent(driverName, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
+													.addComponent(fee, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
 												.addGroup(DeliveryListPanelLayout.createSequentialGroup()
 													.addComponent(label11, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 													.addGap(18, 18, 18)
@@ -546,7 +549,7 @@ public class TransferLoadPanel extends JPanel {
 									.addGroup(DeliveryListPanelLayout.createParallelGroup()
 										.addComponent(label8)
 										.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-											.addComponent(driverName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addComponent(fee, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 											.addComponent(label12))))
 								.addComponent(destID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
@@ -596,7 +599,7 @@ public class TransferLoadPanel extends JPanel {
 	private JLabel label12;
 	private JTextField vehicleID;
 	private JTextField staffName;
-	private JTextField driverName;
+	private JTextField fee;
 	private JLabel label4;
 	private JTextField date;
 	// JFormDesigner - End of variables declaration //GEN-END:variables
