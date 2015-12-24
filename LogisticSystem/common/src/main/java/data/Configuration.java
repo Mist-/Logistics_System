@@ -14,4 +14,14 @@ public class Configuration {
 
     // 每分钟自动保存内存信息的次数   0 - 按需 默认值 - 12
     public int autoSavingFreq = 12;
+
+    public String ip = "127.0.0.1";
+
+    protected static Configuration instance = new Configuration();
+
+    private Configuration() {}
+
+    public static Configuration getInstance() {
+        return instance;
+    }
 }

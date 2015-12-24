@@ -87,18 +87,21 @@ public class TransferDataSerializableImpl extends UnicastRemoteObject implements
                         if (((ArrivalPO)newlyApproved.get(i)).getDestID() == institution) {
                             result.add(newlyApproved.get(i));
                             newlyApproved.remove(i);
+                            --i;
                         }
                         break;
                     case TRANSFERLIST:
                         if (((TransferListPO)newlyApproved.get(i)).getTransferCenter() == institution) {
                             result.add(newlyApproved.get(i));
                             newlyApproved.remove(i);
+                            --i;
                         }
                         break;
                     case ENTRUCK:
                         if (((EntruckPO)newlyApproved.get(i)).getFromID() == institution) {
                             result.add(newlyApproved.get(i));
                             newlyApproved.remove(i);
+                            --i;
                         }
                         break;
                 }

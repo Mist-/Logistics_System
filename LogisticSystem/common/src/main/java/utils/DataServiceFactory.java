@@ -1,17 +1,16 @@
 package utils;
 
-import com.sun.istack.internal.NotNull;
+import data.Configuration;
 import data.enums.DataType;
 import data.enums.POType;
 import data.service.DataService;
-import utils.Connection;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-/**
+ /**
  *
  * Created by mist on 2015/11/12 0012.
  */
@@ -23,10 +22,10 @@ public class DataServiceFactory {
 	 * @param type 希望获得的数据服务类型
 	 * @return
      */
-	public static DataService getDataServiceByType(@NotNull DataType type) {
+	public static DataService getDataServiceByType(DataType type) {
 		Connection.startConnectionCheck();
 		try {
-			DataService ds = (DataService) Naming.lookup("rmi://127.0.0.1:32000/" + type.name());
+			DataService ds = (DataService) Naming.lookup("rmi://" + Configuration.getInstance().ip + ":" + Configuration.getInstance().regPort + "/" + type.name());
 			return ds;
 		} catch (MalformedURLException e) {
 			/* 假设这不会发生！ */
@@ -49,7 +48,7 @@ public class DataServiceFactory {
 	 * @param type 希望获得的数据层服务下管理的某种持久化数据类型
 	 * @return
      */
-	public static DataService getDataServiceByPO(@NotNull POType type) {
+	public static DataService getDataServiceByPO(POType type) {
 		switch (type) {
 			case SALARY:
 			case STAFF:

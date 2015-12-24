@@ -1,7 +1,11 @@
 package utils;
 
+import data.Configuration;
 import data.service.DataService;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -36,12 +40,31 @@ public class FileSaver implements Runnable {
         this.dataServices.add(dataService);
     }
 
+    boolean isServerRunning() {
+        try {
+            SayHelloService hello = (SayHelloService) Naming.lookup("rmi://127.0.0.1:" + Configuration.getInstance().regPort + "/" + "hello");
+        } catch (NotBoundException e) {
+            e.printStackTrace();
+            return false;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            return false;
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
     /**
      * 持续自动写入文件。
      */
     @Override
     public void run() {
         while (true) {
+            if (!isServerRunning()) {
+                return;
+            }
             for (DataService ds : dataServices) {
                 try {
                     ds.finish();
@@ -54,6 +77,7 @@ public class FileSaver implements Runnable {
             } catch (InterruptedException e) {
                 System.err.println("服务器被关闭 - " + Calendar.getInstance().getTime());
             }
+
         }
     }
 }

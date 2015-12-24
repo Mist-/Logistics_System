@@ -86,18 +86,21 @@ public class StorageDataSerializableImpl extends UnicastRemoteObject implements 
 						if (((StorageInListPO) newlyApproved.get(i)).getTransferNum() == institution) {
 							result.add(newlyApproved.get(i));
 							newlyApproved.remove(i);
+							--i;
 						}
 						break;
 					case STORAGEOUTLIST:
 						if (((StorageOutListPO) newlyApproved.get(i)).getTransferNum() == institution) {
 							result.add(newlyApproved.get(i));
 							newlyApproved.remove(i);
+							--i;
 						}
 						break;
                     case STORAGEINFO:
                         if (((StorageInfoPO) newlyApproved.get(i)).getTransferCenterNum() == institution) {
                             result.add(newlyApproved.get(i));
 							newlyApproved.remove(i);
+							--i;
                         }
                         break;
 				}

@@ -449,6 +449,7 @@ public class companyManage extends JFrame {
         //单据的类型和单号
         String dataType,id;
         int index = tabbedPaneApprove.getSelectedIndex();
+        System.out.println(index);
         dataType = tabbedPaneApprove.getTitleAt(index);
         ResultMessage resultMessage ;
         switch(index){
@@ -1581,6 +1582,14 @@ public class companyManage extends JFrame {
         this.panelAll.add(panelApprove, BorderLayout.CENTER);
     }
 
+    private void buttonApproveAllMouseReleased(MouseEvent e) {
+        initComponents(loginMessage);
+    }
+
+    private void buttonModifyData2MouseReleased(MouseEvent e) {
+        initData();
+    }
+
     private void initComponents(LoginMessage loginMessage) {
         String [] citys = controller.getCitys();
         if(citys==null){
@@ -1616,6 +1625,7 @@ public class companyManage extends JFrame {
         buttonApproveAll = new JButton();
         buttonModifyData = new JButton();
         buttonExitApprove = new JButton();
+        buttonModifyData2 = new JButton();
         name = new JLabel();
         id = new JLabel();
         labelCheck = new JLabel();
@@ -1818,6 +1828,10 @@ public class companyManage extends JFrame {
                         public void mouseClicked(MouseEvent e) {
                             buttonApproveAllMouseClicked(e);
                         }
+                        @Override
+                        public void mouseReleased(MouseEvent e) {
+                            buttonApproveAllMouseReleased(e);
+                        }
                     });
 
                     //---- buttonModifyData ----
@@ -1840,6 +1854,16 @@ public class companyManage extends JFrame {
                         }
                     });
 
+                    //---- buttonModifyData2 ----
+                    buttonModifyData2.setText("\u5237\u65b0");
+                    buttonModifyData2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+                    buttonModifyData2.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseReleased(MouseEvent e) {
+                            buttonModifyData2MouseReleased(e);
+                        }
+                    });
+
                     GroupLayout panelApproveLayout = new GroupLayout(panelApprove);
                     panelApprove.setLayout(panelApproveLayout);
                     panelApproveLayout.setHorizontalGroup(
@@ -1849,11 +1873,13 @@ public class companyManage extends JFrame {
                                 .addComponent(tabbedPaneApprove, GroupLayout.DEFAULT_SIZE, 779, Short.MAX_VALUE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(panelApproveLayout.createParallelGroup()
-                                    .addGroup(GroupLayout.Alignment.TRAILING, panelApproveLayout.createParallelGroup()
-                                        .addComponent(buttonApproveData, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(buttonApproveAll, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(buttonModifyData, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(buttonExitApprove, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panelApproveLayout.createParallelGroup()
+                                        .addGroup(GroupLayout.Alignment.TRAILING, panelApproveLayout.createParallelGroup()
+                                            .addComponent(buttonApproveData, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(buttonApproveAll, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(buttonModifyData, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(buttonExitApprove, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(buttonModifyData2, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap())
                     );
                     panelApproveLayout.setVerticalGroup(
@@ -1868,7 +1894,9 @@ public class companyManage extends JFrame {
                                         .addComponent(buttonApproveAll)
                                         .addGap(7, 7, 7)
                                         .addComponent(buttonModifyData)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 239, Short.MAX_VALUE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(buttonModifyData2)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
                                         .addComponent(buttonExitApprove)))
                                 .addContainerGap())
                     );
@@ -2566,6 +2594,7 @@ public class companyManage extends JFrame {
     private JButton buttonApproveAll;
     private JButton buttonModifyData;
     private JButton buttonExitApprove;
+    private JButton buttonModifyData2;
     private JLabel name;
     private JLabel id;
     private JLabel labelCheck;
