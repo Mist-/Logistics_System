@@ -63,10 +63,10 @@ public class StorageInPanel extends JPanel {
 		arriveListTable.updateUI();
 		storageInTable.repaint();
 		arriveListTable.repaint();
-		if(storageInVO != null)
-		remove(storageInVO);
-		if(arrivalVO != null)
-		remove(arrivalVO);
+//		if(storageInVO != null)
+//		remove(storageInVO);
+//		if(arrivalVO != null)
+//		remove(arrivalVO);
 		add(listPane,BorderLayout.CENTER);
 		
 		listPane.validate();
@@ -119,6 +119,7 @@ public class StorageInPanel extends JPanel {
 		long storageInID = Long.parseLong(info);
 		storageIn = storageInService.getStorageIn(storageInID);
 		saveStorageIn.setVisible(false);
+		sureStorageIn.setVisible(true);
 		setStorageIn();
 		
 
@@ -149,7 +150,6 @@ public class StorageInPanel extends JPanel {
 		storageIn = storageInService.sort(arrival);
 		storageIn.setDate(Timestamper.getTimeByDate());
 		setStorageIn();		
-		
 		storageInVO.validate();
 		storageInVO.updateUI();
 		this.setVisible(true);

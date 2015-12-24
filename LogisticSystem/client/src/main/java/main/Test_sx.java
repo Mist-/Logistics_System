@@ -16,32 +16,32 @@ import utils.DataServiceFactory;
 
 public class Test_sx {
 	public static void main(String[] args) {
-		ArrayList<DataPO> order = null;
-		DataService d =  DataServiceFactory.getDataServiceByType(DataType.OrderDataService);
-			try {
-				order = d.getPOList(POType.ORDER);
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		for (int i = 0; i < order.size(); i++) {
-			OrderPO o = (OrderPO) order.get(i);
-			System.out.println(o.getNextDestination());
-			o.updateRoutine();
-		
-		}
-		
-		try {
-			order = d.getPOList(POType.ORDER);
-			for (int i = 0; i < order.size(); i++) {
-				OrderPO o = (OrderPO) order.get(i);
-				System.out.println(o.getNextDestination());
-			}
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		ArrayList<DataPO> order = null;
+//		DataService d =  DataServiceFactory.getDataServiceByType(DataType.OrderDataService);
+//			try {
+//				order = d.getPOList(POType.ORDER);
+//			} catch (RemoteException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		for (int i = 0; i < order.size(); i++) {
+//			OrderPO o = (OrderPO) order.get(i);
+//			System.out.println(o.getNextDestination());
+//			o.updateRoutine();
 //		
+//		}
+//		
+//		try {
+//			order = d.getPOList(POType.ORDER);
+//			for (int i = 0; i < order.size(); i++) {
+//				OrderPO o = (OrderPO) order.get(i);
+//				System.out.println(o.getNextDestination());
+//			}
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+////		
 //		
 //		
 //		try {
@@ -64,18 +64,18 @@ public class Test_sx {
 //		}
 		
 //		
-//		
-//		TransferDataService t = (TransferDataService) DataServiceFactory.getDataServiceByType(DataType.TransferDataService);
-//		try {
-//			ArrayList<DataPO> a = t.getPOList(POType.TRANSFERLIST);
-//			for (int i = 0; i < a.size(); i++) {
-//				System.out.println(a.get(i).getSerialNum());
-//				System.out.println(a.get(i).getState());
-//			}
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		
+		TransferDataService t = (TransferDataService) DataServiceFactory.getDataServiceByType(DataType.TransferDataService);
+		try {
+			ArrayList<DataPO> a = t.getPOList(POType.ENTRUCK);
+			for (int i = 0; i < a.size(); i++) {
+				System.out.println(a.get(i).getSerialNum());
+				System.out.println(a.get(i).getState());
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 //		
 //		
 //		StorageDataService s = (StorageDataService) DataServiceFactory.getDataServiceByType(DataType.StorageDataService);

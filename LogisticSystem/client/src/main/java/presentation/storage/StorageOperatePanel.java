@@ -109,7 +109,7 @@ public class StorageOperatePanel extends JPanel {
 		if (InitSureButton.isEnabled()) {
 			boolean r = setInitInput();
 			if (r) {
-				JOptionPane.showMessageDialog(null, "初始化成功", "提示信息",
+				JOptionPane.showMessageDialog(null, "初始化成功,请重启系统", "提示信息",
 						JOptionPane.INFORMATION_MESSAGE);
 				numInput.setEditable(false);//当前界面所有控件失效
 				shelfInput.setEditable(false);
@@ -234,6 +234,7 @@ public class StorageOperatePanel extends JPanel {
 		setStorageInfoTable();
 		setPercent();
 	}
+
 
 
  	private void initComponents() {

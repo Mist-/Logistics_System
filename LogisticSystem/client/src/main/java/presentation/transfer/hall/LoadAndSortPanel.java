@@ -294,8 +294,10 @@ public class LoadAndSortPanel extends JPanel {
 	}
 
 	private void refreshButtonMouseReleased(MouseEvent e) {
-		if(entruckListCounter <= 0)
-		setEntruckList();
+		if(entruckListCounter <= 0){
+			briefEntruckList = null;
+			setEntruckList();
+		}
 	}
 
 
@@ -410,9 +412,9 @@ public class LoadAndSortPanel extends JPanel {
 							.addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 346, GroupLayout.PREFERRED_SIZE)
 							.addGap(0, 0, Short.MAX_VALUE))
 						.addGroup(GroupLayout.Alignment.TRAILING, entruckListPanelLayout.createSequentialGroup()
-							.addGap(119, 119, 119)
+							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addComponent(refreshButton)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addComponent(selectEntruck)
 							.addContainerGap())
 				);
