@@ -8,8 +8,8 @@ new FormModel {
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 				name: "truckListPane"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {comp scrollPane1:::p:693:p, space :::p, par l {comp addTruckButton::::86:x, comp showTruckButton::::86:x}, space :::p}}"
-					"$verticalGroup": "par l {comp scrollPane1::::346:x, seq t {space ::284:x, comp showTruckButton:::p::p, space :::p, comp addTruckButton:::p::p, space :::p}}"
+					"$horizontalGroup": "par l {seq {space :::p, comp showTruckButton:::p:88:p, space :::p, comp addTruckButton:::p:88:p, space ::713:x}, comp scrollPane1::l::905:x}"
+					"$verticalGroup": "par l {seq l {space :::p, par b {comp showTruckButton::b:p::p, comp addTruckButton::b:p::p}, space :::p, comp scrollPane1::::320:x}}"
 				} ) {
 					name: "panel1"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -38,13 +38,13 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 800, 375 )
+			"size": new java.awt.Dimension( 910, 400 )
 		} )
 		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 			name: "truckPane"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space :::p, par l {seq {par l:::p {seq {par l {seq t {comp label1:::p::p, space :::p, comp id:::p:100:p}, seq l {comp label2:::p::p, space s:::p, comp license:::p:98:p}, seq l {comp label3:::p::p, space :::p, comp year:::p:40:p, space :::p, comp label4:::p::p, space :::p, comp month:::p:40:p}}, space :::p, comp label5:::p::p, space :::p, comp day:::p:40:p}, seq l {comp label7:::p::p, space :::p, comp status:::p:53:p, space :::p, comp label10:::::x}}, space :::p, comp label6:::p::p, space :0:545:x}, seq t {space :0:718:x, par l {comp deleteButton:::p::p, par l {comp cancelButton::t:p::p, comp modifyButton::t:p::p, comp saveButton::t:p::p}}}}, space :::p}}"
-				"$verticalGroup": "par l {seq l {space :::p, par b {comp label1::b:p::p, comp id::b:p::p}, space :::p, par b {comp label2::b:p::p, comp license::b:p::p}, space :::p, par b {comp label3::b:p::p, comp label4::b:p::p, comp month::b:p::p, comp label5::b:p::p, comp day::b:p::p, comp label6::b:p::p, comp year::b:p::p}, space :::p, par b {comp label7::b:p::p, comp status::b:p::p, comp label10::b:p::p}, space ::36:x, comp deleteButton:::p::p, space :::p, comp saveButton:::p::p, space :::p, comp modifyButton:::p::p, space :::p, comp cancelButton:::p::p, space :p:13:p}}"
+				"$horizontalGroup": "par l {seq {space :::p, par l {seq {par l:::p {seq {par l {seq t {comp label1:::p::p, space :::p, comp id:::p:100:p}, seq l {comp label2:::p::p, space s:::p, comp license:::p:98:p}, seq l {comp label3:::p::p, space :::p, comp year:::p:40:p, space :::p, comp label4:::p::p, space :::p, comp month:::p:40:p}}, space :::p, comp label5:::p::p, space :::p, comp day:::p:40:p}, seq l {comp label7:::p::p, space :::p, comp status:::p:53:p, space :::p, comp label10:::::x}}, space :::p, comp label6:::p::p, space :0:660:x}, seq t {space :0:833:x, par l {comp deleteButton:::p::p, par l {comp cancelButton::t:p::p, comp modifyButton::t:p::p, comp saveButton::t:p::p}}}}, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :::p, par b {comp label1::b:p::p, comp id::b:p::p}, space :::p, par b {comp label2::b:p::p, comp license::b:p::p}, space :::p, par b {comp label3::b:p::p, comp label4::b:p::p, comp month::b:p::p, comp label5::b:p::p, comp day::b:p::p, comp label6::b:p::p, comp year::b:p::p}, space :::p, par b {comp label7::b:p::p, comp status::b:p::p, comp label10::b:p::p}, space ::86:x, comp deleteButton:::p::p, space :::p, comp saveButton:::p::p, space :::p, comp modifyButton:::p::p, space :::p, comp cancelButton:::p::p, space :p:13:p}}"
 			} ) {
 				name: "panel2"
 				add( new FormComponent( "javax.swing.JLabel" ) {
@@ -125,8 +125,8 @@ new FormModel {
 				"title": "车辆详细信息"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 385 )
-			"size": new java.awt.Dimension( 800, 300 )
+			"location": new java.awt.Point( 5, 435 )
+			"size": new java.awt.Dimension( 915, 350 )
 		} )
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 			name: "cancelDialog"
@@ -159,7 +159,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"size": new java.awt.Dimension( 275, 200 )
-			"location": new java.awt.Point( 15, 730 )
+			"location": new java.awt.Point( 35, 885 )
 		} )
 	}
 }

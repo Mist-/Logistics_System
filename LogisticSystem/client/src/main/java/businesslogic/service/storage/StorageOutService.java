@@ -40,8 +40,9 @@ public interface StorageOutService {
 	/**
 	 * 发起一次新的出库操作
 	 * @return 审批过的中转单和出库单
+	 * @throws RemoteException 
 	 */
-	public BriefTransferAndStorageOutVO  newStorageOut();
+	public BriefTransferAndStorageOutVO  newStorageOut() throws RemoteException;
 	
 	/**
 	 * 生成新的出库单

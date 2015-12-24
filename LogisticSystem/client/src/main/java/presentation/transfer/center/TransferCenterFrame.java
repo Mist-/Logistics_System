@@ -220,7 +220,7 @@ public class TransferCenterFrame extends JFrame {
 							.addGroup(panel1Layout.createSequentialGroup()
 								.addGap(44, 44, 44)
 								.addComponent(label7)))
-						.addContainerGap(547, Short.MAX_VALUE))
+						.addContainerGap(662, Short.MAX_VALUE))
 			);
 			panel1Layout.setVerticalGroup(
 				panel1Layout.createParallelGroup()
@@ -256,13 +256,13 @@ public class TransferCenterFrame extends JFrame {
 				emptyPanelLayout.createParallelGroup()
 					.addGroup(emptyPanelLayout.createSequentialGroup()
 						.addContainerGap()
-						.addComponent(tabbedPane1, GroupLayout.DEFAULT_SIZE, 774, Short.MAX_VALUE))
+						.addComponent(tabbedPane1, GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE))
 			);
 			emptyPanelLayout.setVerticalGroup(
 				emptyPanelLayout.createParallelGroup()
 					.addGroup(GroupLayout.Alignment.TRAILING, emptyPanelLayout.createSequentialGroup()
 						.addContainerGap()
-						.addComponent(tabbedPane1, GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE))
+						.addComponent(tabbedPane1, GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE))
 			);
 		}
 		contentPane.add(emptyPanel, BorderLayout.CENTER);

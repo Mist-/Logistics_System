@@ -546,8 +546,8 @@ public class StorageOperatePanel extends JPanel {
 				checkPanelLayout.setHorizontalGroup(
 					checkPanelLayout.createParallelGroup()
 						.addGroup(GroupLayout.Alignment.TRAILING, checkPanelLayout.createSequentialGroup()
-							.addContainerGap(531, Short.MAX_VALUE)
-							.addComponent(refreshButton)
+							.addContainerGap(496, Short.MAX_VALUE)
+							.addComponent(refreshButton, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addComponent(saveStorageCheck, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
@@ -560,12 +560,14 @@ public class StorageOperatePanel extends JPanel {
 						.addGroup(checkPanelLayout.createSequentialGroup()
 							.addContainerGap()
 							.addGroup(checkPanelLayout.createParallelGroup()
-								.addGroup(checkPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-									.addComponent(exportExcel)
-									.addComponent(saveStorageCheck))
-								.addComponent(refreshButton, GroupLayout.Alignment.TRAILING))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-							.addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE))
+								.addGroup(checkPanelLayout.createSequentialGroup()
+									.addGroup(checkPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+										.addComponent(exportExcel)
+										.addComponent(saveStorageCheck))
+									.addGap(0, 1, Short.MAX_VALUE))
+								.addComponent(refreshButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE))
 				);
 			}
 			operatePane.addTab("\u5e93\u5b58\u76d8\u70b9", checkPanel);

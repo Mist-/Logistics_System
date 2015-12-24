@@ -8,8 +8,8 @@ new FormModel {
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 				name: "startPane"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {comp scrollPane2:::p:686:p, space :::p, par l {comp selectArrival::::93:x, comp refreshButton::::93:x}, space :::p}}"
-					"$verticalGroup": "par l {comp scrollPane2::t::346:x, seq t {space ::275:x, comp refreshButton:::p::p, space :::p, comp selectArrival:::p:32:p, space :::p}}"
+					"$horizontalGroup": "par l {seq {space :::p, comp selectArrival:::p:112:p, space s:::p, comp refreshButton:::p:95:p, space ::670:x}, comp scrollPane2::l::905:x}"
+					"$verticalGroup": "par l {seq t {space :0:4:x, par l {comp refreshButton:::p:36:p, comp selectArrival:::::x}, space :::p, comp scrollPane2:::p:325:p}}"
 				} ) {
 					name: "arrivalListPanel"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -22,44 +22,52 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "selectArrival"
 						"text": "查看"
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/see_24x24.png" )
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "selectArrivalMouseClicked", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "refreshButton"
 						"text": "刷新"
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/refresh.png" )
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "refreshButtonMouseReleased", true ) )
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "已审批到达单"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :p:128:p, comp label5:::p:105:p, space :::p, par l:::p {seq {comp entruck:::p::p, space :::x, comp transfer:::p::p}, comp deliveryID:::p:157:p}, space s:::p, comp searchList:::p:69:p, space ::314:x}}"
-					"$verticalGroup": "par l {seq l {space :p:95:p, par b {comp label5::b:p::p, comp deliveryID::b:p::p, comp searchList::b:p::p}, space s:::p, par l {comp transfer:::p::p, comp entruck::l:p::p}, space ::187:x}}"
+					"$horizontalGroup": "par l {seq l {space :p:236:p, comp label5:::p:105:p, space :::p, par l:::p {seq l {comp entruck:::p::p, space :::x, comp transfer:::p::p}, comp deliveryID:::p:157:p}, space s:::p, comp searchList:::p::p, space ::296:x}}"
+					"$verticalGroup": "par l {seq l {space :p:95:p, par b {comp label5::b:p::p, comp deliveryID::b:p::p, comp searchList::b:p::p}, space s:::p, par l {comp transfer:::p::p, comp entruck::l:p::p}, space ::200:x}}"
 				} ) {
 					name: "searchListPanel"
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label5"
 						"text": "请输入运输单号"
+						"font": &Font0 new java.awt.Font( "宋体", 0, 14 )
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "deliveryID"
+						"font": #Font0
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "deliveryIDMouseClicked", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JRadioButton" ) {
 						name: "entruck"
 						"text": "装车单"
 						"selected": true
+						"font": #Font0
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "entruckMouseClicked", true ) )
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "entruckMouseClicked", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JRadioButton" ) {
 						name: "transfer"
 						"text": "中转单"
+						"font": #Font0
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "transferMouseClicked", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "searchList"
 						"text": "查找"
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/search_24x24.png" )
+						"font": #Font0
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "searchListMouseClicked", true ) )
 					} )
 				}, new FormLayoutConstraints( null ) {
@@ -69,14 +77,14 @@ new FormModel {
 				"value": "Center"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 800, 375 )
+			"location": new java.awt.Point( 5, 0 )
+			"size": new java.awt.Dimension( 910, 400 )
 		} )
 		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 			name: "arrivalVO"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :::x, par t {seq t {comp label15:::p::p, space u:::p, comp status:::p:117:p, space u:::p, comp modifyStatus:::p:105:p}, par l {comp scrollPane1:::p:671:p, seq l {par l {par t:::p {comp label3::l:::x, seq l {space :p:30:p, comp label2::::70:x}, comp label1::l:p:68:p}, comp label4::l:p:80:p}, space u:::p, par l:::p {comp transferID::::70:x, comp from::::70:x, comp arrivalDate::l::70:x}}}}, space :::p, par l:::p {comp cancelArrival::::98:x, comp doArrive::::98:x, comp saveArrival::::98:x}, space :::x}}"
-				"$verticalGroup": "par l {seq t {space :::p, par t {seq {space :0:168:x, comp saveArrival:::p:50:p, space :::p, comp doArrive:::p:48:p, space :::p, comp cancelArrival:::p::p}, seq {par b {comp transferID::b:p::p, comp label1::b:p::p}, space :::p, par b {comp label2::b:p::p, comp from::b:p::p, comp label4::b:p::p}, space :::p, par b {comp label3::b:p::p, comp arrivalDate::b:p::p}, space :p:11:p, par b {comp status::b:p::p, comp modifyStatus::b:p::p, comp label15::b:p::p}, space :::p, comp scrollPane1::::186:x}}, space :::p}}"
+				"$horizontalGroup": "par l {seq {par l {seq {space :p:20:p, par l:::p {seq t {comp label2:::p:70:p, space :p:337:p}, seq l {comp label4:::p:80:p, space u:::p, par l:::p {comp transferID:::::x, comp from:::::x, comp arrivalDate::l:p:70:p}, space :p:334:p}, seq {par t:::p {comp label3::l:::x, comp label1::l:p:68:p}, space :::x, comp label15:::p::p, space u:::p}}, comp status:::p:117:p, space :::p, comp modifyStatus:::p:105:p}, seq l {space :::p, comp scrollPane1:::p:784:p}}, space :::p, par l:::p {comp cancelArrival:::::x, comp doArrive:::::x, comp saveArrival::l:::x}, space ::3:x}}"
+				"$verticalGroup": "par t {seq {par t {seq {space :::x, comp saveArrival:::p:42:p, space :::p, comp doArrive:::p:48:p, space :::p, comp cancelArrival:::p::p}, seq {par b {comp transferID::b:p::p, comp label1::b:p::p}, space :::p, par b {comp from::b:p::p, comp label4::b:p::p}, space :::p, par t {seq {par b {comp label3::b:p::p, comp arrivalDate::b:p::p}, space :::p, comp label2:::p::p}, par b {comp status::b:p::p, comp label15::b:p::p, comp modifyStatus::b:p::p}}, space :::x, comp scrollPane1:::p:279:p}}, space :::p}}"
 			} ) {
 				name: "panel1"
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -117,11 +125,13 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "cancelArrival"
 					"text": "取消"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/cancel_24x24.png" )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "cancelArrivalMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "doArrive"
 					"text": "确认到达"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/sign_24x24.png" )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "doArriveMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
@@ -131,6 +141,7 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "saveArrival"
 					"text": "保存"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/new_24x24.png" )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "saveArrivalMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
@@ -141,14 +152,14 @@ new FormModel {
 				"title": "到达单"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 35, 385 )
-			"size": new java.awt.Dimension( 800, 350 )
+			"location": new java.awt.Point( 0, 440 )
+			"size": new java.awt.Dimension( 915, 400 )
 		} )
 		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 			name: "entruckVO"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space :::p, par l {seq l {comp scrollPane3:::p:676:p, space :::p, par l {comp cancelLoad:::::x, seq l {comp createArrival:::p::p, space :0:0:x}}}, seq l {par t {seq {comp label13:::p::p, space s:::p, comp destName:::p:66:p}, seq {par l {seq t {par l {comp label10::l:p::p, comp label11::l:p::p}, space :::p}, seq l {comp label12:::p::p, space :p:16:p}}, par t:::p {comp fromName::::68:x, comp listType::l::68:x, comp listID::l::68:x}}}, space :p:45:p, par t {seq {par l:::p {comp label14:::::x, comp vehicleLabel:::::x, seq {comp label19:::p::p, space :::p, comp staffLabel:::::x}}, space :::p, par l:::p {comp date::::70:x, comp vehicleID::::70:x, comp staff::l::70:x}}, seq {comp driverLabel:::p::p, space s:::p, comp driverName:::p:68:p}}, space :p:37:p, par t {seq {comp label18:::p::p, space u:::p, comp fee:::p:73:p}, seq {comp transferTypeLabel:::p::p, space :::p, comp transferType:::p:69:p}}, space :0:0:x}}, space :::p}}"
-				"$verticalGroup": "par l {seq {space :::p, par b {comp label10::b:p::p, comp listType::b:p::p, comp label14::b:p::p, comp date::b:p::p}, space :::p, par b {comp label11::b:p::p, comp listID::b:p::p, comp vehicleLabel::b:p::p, comp vehicleID::b:p::p}, space :::p, par b {comp label12::b:p::p, comp fromName::b:p::p, comp staffLabel::b:p::p, comp staff::b:p::p, comp label19::b:p::p, comp transferTypeLabel::b:p::p, comp transferType::b:p::p}, space :::p, par b {comp label13::b:p::p, comp destName::b:p::p, comp driverLabel::b:p::p, comp label18::b:p::p, comp fee::b:p::p, comp driverName::b:p::p}, space ::23:x, par l {seq t {comp createArrival:::p:32:p, space u:::p, comp cancelLoad:::p::p, space :::p}, comp scrollPane3::t:p:186:p}}}"
+				"$horizontalGroup": "par l {seq {space :::p, par l {seq l {comp scrollPane3:::p:780:p, space :::p, par l {comp cancelLoad::::104:x, comp createArrival::::104:x}}, seq l {par t {seq {comp label13:::p::p, space s:::p, comp destName:::p:66:p}, seq {par l {seq t {par l {comp label10::l:p::p, comp label11::l:p::p}, space :::p}, seq l {comp label12:::p::p, space :p:16:p}}, par t:::p {comp fromName::::68:x, comp listType::l::68:x, comp listID::l::68:x}}}, space :p:45:p, par t {seq {par l:::p {comp label14:::::x, comp vehicleLabel:::::x, seq {comp label19:::p::p, space :::p, comp staffLabel:::::x}}, space :::p, par l:::p {comp date::::70:x, comp vehicleID::::70:x, comp staff::l::70:x}}, seq {comp driverLabel:::p::p, space s:::p, comp driverName:::p:68:p}}, space :p:37:p, par t {seq {comp label18:::p::p, space u:::p, comp fee:::p:73:p}, seq {comp transferTypeLabel:::p::p, space :::p, comp transferType:::p:69:p}}, space :0:0:x}}, space :::p}}"
+				"$verticalGroup": "par l {seq {space :::p, par b {comp label10::b:p::p, comp listType::b:p::p, comp label14::b:p::p, comp date::b:p::p}, space :::p, par b {comp label11::b:p::p, comp listID::b:p::p, comp vehicleLabel::b:p::p, comp vehicleID::b:p::p}, space :::p, par b {comp label12::b:p::p, comp fromName::b:p::p, comp staffLabel::b:p::p, comp staff::b:p::p, comp label19::b:p::p, comp transferTypeLabel::b:p::p, comp transferType::b:p::p}, space :::p, par b {comp label13::b:p::p, comp destName::b:p::p, comp driverLabel::b:p::p, comp label18::b:p::p, comp fee::b:p::p, comp driverName::b:p::p}, par l {seq {space ::159:x, comp createArrival:::p:32:p, space u:::p, comp cancelLoad:::p::p, space :::p}, seq {space :::p, comp scrollPane3::::238:x}}}}"
 			} ) {
 				name: "DeliveryListPanel"
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -160,11 +171,13 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "cancelLoad"
 					"text": "取消"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/cancel_24x24.png" )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "cancelLoadMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "createArrival"
-					"text": "生成到达单"
+					"text": "到达"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/sign_24x24.png" )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "createArrivalMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
@@ -244,8 +257,8 @@ new FormModel {
 				"title": "运转单"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 745 )
-			"size": new java.awt.Dimension( 800, 350 )
+			"location": new java.awt.Point( 5, 875 )
+			"size": new java.awt.Dimension( 915, 385 )
 		} )
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 			"$horizontalGroup": "par l {seq l {space :p:118:p, par l {comp resultSureButton:::p::p, comp label6:::p:63:p}, space ::123:x}}"
@@ -265,7 +278,7 @@ new FormModel {
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "resultSureButtonMouseClicked", true ) )
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 865, 490 )
+			"location": new java.awt.Point( 990, 485 )
 			"size": new java.awt.Dimension( 320, 200 )
 		} )
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
@@ -285,7 +298,7 @@ new FormModel {
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "errorSureMouseClicked", true ) )
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 850, 70 )
+			"location": new java.awt.Point( 950, 80 )
 			"size": new java.awt.Dimension( 280, 200 )
 		} )
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
@@ -319,13 +332,13 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"size": new java.awt.Dimension( 275, 200 )
-			"location": new java.awt.Point( 820, 1080 )
+			"location": new java.awt.Point( 1010, 1130 )
 		} )
 		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 			name: "sendListPane"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :::p, comp label16:::p::p, space u:::p, comp senderBox:::p:96:p, space s:::p, comp label17:::p::p, space :::p, comp sendData:::p:93:p, space ::377:x, comp saveSendListButton:::p:96:p, space :p:31:p}, comp scrollPane4::l::795:x}"
-				"$verticalGroup": "par l {seq t {space :::p, par b {comp label16::b:p::p, comp senderBox::b:p::p, comp label17::b:p::p, comp sendData::b:p::p, comp saveSendListButton::b:p::p}, space u:::p, comp scrollPane4::::278:x}}"
+				"$horizontalGroup": "par l {seq l {space :::p, comp label16:::p::p, space u:::p, comp senderBox:::p:96:p, space s:::p, comp label17:::p::p, space :::p, comp sendData:::p:93:p, space ::492:x, comp saveSendListButton:::p:96:p, space :p:31:p}, comp scrollPane4::l::910:x}"
+				"$verticalGroup": "par l {seq t {space :::p, par b {comp label16::b:p::p, comp senderBox::b:p::p, comp label17::b:p::p, comp sendData::b:p::p, comp saveSendListButton::b:p::p}, space u:::p, comp scrollPane4::::308:x}}"
 			} ) {
 				name: "panel3"
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -357,8 +370,8 @@ new FormModel {
 				"title": "派件单"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 5, 1115 )
-			"size": new java.awt.Dimension( 800, 350 )
+			"location": new java.awt.Point( 20, 1280 )
+			"size": new java.awt.Dimension( 915, 380 )
 		} )
 	}
 }

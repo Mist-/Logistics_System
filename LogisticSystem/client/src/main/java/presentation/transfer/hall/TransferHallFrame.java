@@ -302,6 +302,7 @@ public class TransferHallFrame extends JFrame {
 
 		//======== panel1 ========
 		{
+			panel1.setFont(new Font("\u65b9\u6b63\u7b49\u7ebf", Font.PLAIN, 14));
 
 			//======== menuBar1 ========
 			{
@@ -320,7 +321,7 @@ public class TransferHallFrame extends JFrame {
 			}
 
 			//---- receiveButton ----
-			receiveButton.setText("text");
+			receiveButton.setIcon(new ImageIcon(getClass().getResource("/icons/receive.png")));
 			receiveButton.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -329,7 +330,7 @@ public class TransferHallFrame extends JFrame {
 			});
 
 			//---- loadButton ----
-			loadButton.setText("text");
+			loadButton.setIcon(new ImageIcon(getClass().getResource("/icons/load.png")));
 			loadButton.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -338,7 +339,7 @@ public class TransferHallFrame extends JFrame {
 			});
 
 			//---- driverButton ----
-			driverButton.setText("text");
+			driverButton.setIcon(new ImageIcon(getClass().getResource("/icons/driver.png")));
 			driverButton.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -347,7 +348,7 @@ public class TransferHallFrame extends JFrame {
 			});
 
 			//---- truckButton ----
-			truckButton.setText("text");
+			truckButton.setIcon(new ImageIcon(getClass().getResource("/icons/truck.png")));
 			truckButton.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -356,7 +357,7 @@ public class TransferHallFrame extends JFrame {
 			});
 
 			//---- moneyButton ----
-			moneyButton.setText("text");
+			moneyButton.setIcon(new ImageIcon(getClass().getResource("/icons/money.png")));
 			moneyButton.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseReleased(MouseEvent e) {
@@ -366,18 +367,23 @@ public class TransferHallFrame extends JFrame {
 
 			//---- label1 ----
 			label1.setText("\u88c5\u8f66\u63a5\u6536");
+			label1.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
 
 			//---- label2 ----
 			label2.setText("\u5206\u62e3\u88c5\u8f66");
+			label2.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
 
 			//---- label4 ----
 			label4.setText("\u53f8\u673a\u4fe1\u606f");
+			label4.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
 
 			//---- label5 ----
 			label5.setText("\u8f66\u8f86\u4fe1\u606f");
+			label5.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
 
 			//---- label6 ----
 			label6.setText("\u7ed3\u7b97");
+			label6.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
 
 			GroupLayout panel1Layout = new GroupLayout(panel1);
 			panel1.setLayout(panel1Layout);
@@ -387,35 +393,34 @@ public class TransferHallFrame extends JFrame {
 						.addComponent(menuBar1, GroupLayout.PREFERRED_SIZE, 794, GroupLayout.PREFERRED_SIZE)
 						.addGap(0, 0, Short.MAX_VALUE))
 					.addGroup(panel1Layout.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(panel1Layout.createParallelGroup()
-							.addComponent(receiveButton, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+						.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
 							.addGroup(panel1Layout.createSequentialGroup()
-								.addGap(10, 10, 10)
-								.addComponent(label1)))
-						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-						.addGroup(panel1Layout.createParallelGroup()
-							.addComponent(loadButton, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
-							.addGroup(panel1Layout.createSequentialGroup()
-								.addGap(10, 10, 10)
+								.addContainerGap()
+								.addComponent(receiveButton, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+								.addGap(18, 18, 18)
+								.addComponent(loadButton, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+								.addGap(10, 10, 10))
+							.addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
+								.addGap(34, 34, 34)
+								.addComponent(label1)
+								.addGap(60, 60, 60)
 								.addComponent(label2)))
-						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 						.addGroup(panel1Layout.createParallelGroup()
-							.addComponent(driverButton, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
-							.addComponent(label4, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-						.addGroup(panel1Layout.createParallelGroup()
-							.addComponent(truckButton, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+							.addGroup(panel1Layout.createSequentialGroup()
+								.addGap(35, 35, 35)
+								.addComponent(label4, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+								.addGap(48, 48, 48)
+								.addComponent(label5)
+								.addGap(77, 77, 77)
+								.addComponent(label6))
 							.addGroup(panel1Layout.createSequentialGroup()
 								.addGap(8, 8, 8)
-								.addComponent(label5)))
-						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-						.addGroup(panel1Layout.createParallelGroup()
-							.addGroup(panel1Layout.createSequentialGroup()
-								.addGap(10, 10, 10)
-								.addComponent(label6))
-							.addComponent(moneyButton, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE))
-						.addContainerGap(390, Short.MAX_VALUE))
+								.addComponent(driverButton, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+								.addGap(18, 18, 18)
+								.addComponent(truckButton, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
+								.addGap(18, 18, 18)
+								.addComponent(moneyButton, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)))
+						.addContainerGap(358, Short.MAX_VALUE))
 			);
 			panel1Layout.setVerticalGroup(
 				panel1Layout.createParallelGroup()
@@ -423,18 +428,21 @@ public class TransferHallFrame extends JFrame {
 						.addComponent(menuBar1, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 						.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-							.addComponent(receiveButton, GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-							.addComponent(loadButton, GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-							.addComponent(driverButton, GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-							.addComponent(truckButton, GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-							.addComponent(moneyButton, GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE))
-						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-							.addComponent(label1)
-							.addComponent(label2)
-							.addComponent(label4)
-							.addComponent(label5)
-							.addComponent(label6))
+							.addComponent(receiveButton, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+							.addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(loadButton, GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+								.addComponent(driverButton, GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
+							.addComponent(truckButton, GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+							.addComponent(moneyButton, GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						.addGroup(panel1Layout.createParallelGroup()
+							.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(label4)
+								.addComponent(label5)
+								.addComponent(label6))
+							.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(label1)
+								.addComponent(label2)))
 						.addContainerGap())
 			);
 		}
@@ -442,10 +450,13 @@ public class TransferHallFrame extends JFrame {
 
 		//======== emptyPanel ========
 		{
+			emptyPanel.setMaximumSize(new Dimension(1280, 720));
+			emptyPanel.setFont(new Font("\u5b8b\u4f53", Font.ITALIC, 14));
 			emptyPanel.setLayout(new BorderLayout());
 
 			//======== tabbedPane1 ========
 			{
+				tabbedPane1.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
 
 				//---- label7 ----
 				label7.setText("text");
@@ -454,7 +465,7 @@ public class TransferHallFrame extends JFrame {
 			emptyPanel.add(tabbedPane1, BorderLayout.CENTER);
 		}
 		contentPane.add(emptyPanel, BorderLayout.CENTER);
-		setSize(800, 500);
+		setSize(930, 590);
 		setLocationRelativeTo(getOwner());
 
 		//======== errorDialog ========

@@ -4,6 +4,7 @@
 
 package presentation.transfer.hall;
 
+import java.awt.*;
 import java.awt.event.*;
 import java.rmi.RemoteException;
 import java.text.DecimalFormat;
@@ -27,6 +28,7 @@ public class ReceiveMoneyPanel extends JPanel {
 		initComponents();
 		getOrder.setEnabled(false);
 		saveButton.setEnabled(false);
+		fee.setEnabled(false);
 		setSenders();
 	}
 	
@@ -109,6 +111,8 @@ public class ReceiveMoneyPanel extends JPanel {
 
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
+		tabbedPane1 = new JTabbedPane();
+		panel1 = new JPanel();
 		scrollPane1 = new JScrollPane();
 		table = new JTable();
 		label1 = new JLabel();
@@ -126,124 +130,139 @@ public class ReceiveMoneyPanel extends JPanel {
 		saveButton = new JButton();
 
 		//======== this ========
+		setLayout(new BorderLayout());
 
-		//======== scrollPane1 ========
+		//======== tabbedPane1 ========
 		{
 
-			//---- table ----
-			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			table.setRowSelectionAllowed(false);
-			scrollPane1.setViewportView(table);
+			//======== panel1 ========
+			{
+
+				//======== scrollPane1 ========
+				{
+
+					//---- table ----
+					table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+					table.setRowSelectionAllowed(false);
+					scrollPane1.setViewportView(table);
+				}
+
+				//---- label1 ----
+				label1.setText("\u5feb\u9012\u5458\u59d3\u540d\uff1a");
+
+				//---- senderBox ----
+				senderBox.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						senderBoxMouseClicked(e);
+					}
+				});
+
+				//---- getOrder ----
+				getOrder.setText("\u786e\u8ba4");
+				getOrder.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						getOrderMouseReleased(e);
+					}
+				});
+
+				//---- label2 ----
+				label2.setText("\u65e5\u671f\uff1a");
+
+				//---- label3 ----
+				label3.setText("\u5e74");
+
+				//---- label4 ----
+				label4.setText("\u6708");
+
+				//---- label5 ----
+				label5.setText("\u65e5");
+
+				//---- label6 ----
+				label6.setText("\u8d39\u7528\uff1a");
+
+				//---- saveButton ----
+				saveButton.setText("\u7ed3\u7b97");
+				saveButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						saveButtonMouseReleased(e);
+					}
+				});
+
+				GroupLayout panel1Layout = new GroupLayout(panel1);
+				panel1.setLayout(panel1Layout);
+				panel1Layout.setHorizontalGroup(
+					panel1Layout.createParallelGroup()
+						.addGroup(panel1Layout.createSequentialGroup()
+							.addGap(20, 20, 20)
+							.addGroup(panel1Layout.createParallelGroup()
+								.addGroup(panel1Layout.createSequentialGroup()
+									.addComponent(label1)
+									.addGap(3, 3, 3)
+									.addComponent(senderBox, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE))
+								.addGroup(panel1Layout.createSequentialGroup()
+									.addComponent(label2, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+									.addGap(3, 3, 3)
+									.addComponent(year, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+									.addGap(5, 5, 5)
+									.addComponent(label3)
+									.addGap(13, 13, 13)
+									.addComponent(month, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+									.addGap(0, 0, 0)
+									.addComponent(label4)
+									.addGap(8, 8, 8)
+									.addComponent(day, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+									.addGap(0, 0, 0)
+									.addComponent(label5)
+									.addGap(18, 18, 18)
+									.addComponent(getOrder, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
+									.addGap(272, 272, 272)
+									.addComponent(label6, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(fee, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(saveButton, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)))
+							.addGap(30, 30, Short.MAX_VALUE))
+						.addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 910, Short.MAX_VALUE)
+				);
+				panel1Layout.setVerticalGroup(
+					panel1Layout.createParallelGroup()
+						.addGroup(panel1Layout.createSequentialGroup()
+							.addGroup(panel1Layout.createParallelGroup()
+								.addComponent(label1, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+								.addComponent(senderBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(11, 11, 11)
+							.addGroup(panel1Layout.createParallelGroup()
+								.addComponent(year, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(month, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(day, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(getOrder)
+								.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+									.addComponent(label6)
+									.addComponent(fee, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(saveButton))
+								.addGroup(panel1Layout.createSequentialGroup()
+									.addGap(5, 5, 5)
+									.addGroup(panel1Layout.createParallelGroup()
+										.addComponent(label2)
+										.addComponent(label3)
+										.addComponent(label4)
+										.addComponent(label5))))
+							.addGap(7, 7, 7)
+							.addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE))
+				);
+			}
+			tabbedPane1.addTab("\u7ed3\u7b97\u7ba1\u7406", panel1);
 		}
-
-		//---- label1 ----
-		label1.setText("\u5feb\u9012\u5458\u59d3\u540d\uff1a");
-
-		//---- senderBox ----
-		senderBox.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				senderBoxMouseClicked(e);
-			}
-		});
-
-		//---- getOrder ----
-		getOrder.setText("\u786e\u8ba4");
-		getOrder.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				getOrderMouseReleased(e);
-			}
-		});
-
-		//---- label2 ----
-		label2.setText("\u65e5\u671f\uff1a");
-
-		//---- label3 ----
-		label3.setText("\u5e74");
-
-		//---- label4 ----
-		label4.setText("\u6708");
-
-		//---- label5 ----
-		label5.setText("\u65e5");
-
-		//---- label6 ----
-		label6.setText("\u8d39\u7528\uff1a");
-
-		//---- saveButton ----
-		saveButton.setText("\u7ed3\u7b97");
-		saveButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				saveButtonMouseReleased(e);
-			}
-		});
-
-		GroupLayout layout = new GroupLayout(this);
-		setLayout(layout);
-		layout.setHorizontalGroup(
-			layout.createParallelGroup()
-				.addGroup(layout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-						.addComponent(label2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(label1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-					.addGroup(layout.createParallelGroup()
-						.addGroup(layout.createSequentialGroup()
-							.addComponent(year, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(label3)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-							.addComponent(month, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(label4)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(day, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(label5)
-							.addGap(18, 18, 18)
-							.addComponent(getOrder, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
-							.addComponent(label6)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(fee, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-							.addGap(18, 18, 18)
-							.addComponent(saveButton)
-							.addGap(85, 85, 85))
-						.addGroup(layout.createSequentialGroup()
-							.addComponent(senderBox, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
-							.addGap(140, 633, Short.MAX_VALUE))))
-				.addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
-		);
-		layout.setVerticalGroup(
-			layout.createParallelGroup()
-				.addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-						.addComponent(senderBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label1, GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
-					.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-						.addComponent(label2)
-						.addComponent(year, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label3)
-						.addComponent(month, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label4)
-						.addComponent(day, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label5)
-						.addComponent(getOrder)
-						.addComponent(label6)
-						.addComponent(fee, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(saveButton))
-					.addGap(18, 18, 18)
-					.addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 291, GroupLayout.PREFERRED_SIZE))
-		);
+		add(tabbedPane1, BorderLayout.CENTER);
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+	private JTabbedPane tabbedPane1;
+	private JPanel panel1;
 	private JScrollPane scrollPane1;
 	private JTable table;
 	private JLabel label1;

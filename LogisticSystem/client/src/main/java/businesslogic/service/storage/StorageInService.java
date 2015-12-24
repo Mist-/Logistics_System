@@ -11,7 +11,7 @@ public interface StorageInService {
 	
 	public ResultMessage doArrive() throws RemoteException;
 	
-	public BriefArrivalAndStorageInVO newStorageIn();
+	public BriefArrivalAndStorageInVO newStorageIn() throws RemoteException;
 
 	public ArrivalVO getArriveList(long arrivalID);
 

@@ -9,7 +9,7 @@ new FormModel {
 			"defaultCloseOperation": 3
 			"title": "中转中心仓库管理"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :::p, par l {seq l {comp storageIn:::p::p, space :::p, comp storageOut:::p::p, space :::p, comp storageOperete:::p::p}, seq l {space :p:32:p, comp label1:::p::p, space :p:86:p, comp label2:::p::p, space :p:74:p, comp label3:::p::p}}, space ::447:x}}"
+				"$horizontalGroup": "par l {seq l {space :::p, par l {seq l {comp storageIn:::p::p, space :::p, comp storageOut:::p::p, space :::p, comp storageOperete:::p::p}, seq l {space :p:32:p, comp label1:::p::p, space :p:86:p, comp label2:::p::p, space :p:74:p, comp label3:::p::p}}, space ::562:x}}"
 				"$verticalGroup": "par l {seq t {par l {comp storageIn::l:p::p, comp storageOut::l:p::p, comp storageOperete::l:p::p}, space :::x, par l {comp label1::l:p::p, comp label2::l:p::p, comp label3::l:p::p}}}"
 			} ) {
 				name: "panel2"
@@ -54,8 +54,8 @@ new FormModel {
 				add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 					name: "tabbedPane1"
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq l {space :p:303:p, comp label4:::p:144:p, space ::332:x}}"
-						"$verticalGroup": "par l {seq l {space :p:113:p, comp label4:::p:54:p, space ::136:x}}"
+						"$horizontalGroup": "par l {seq l {space :p:358:p, comp label4:::p:144:p, space ::392:x}}"
+						"$verticalGroup": "par l {seq l {space :p:136:p, comp label4:::p:54:p, space ::203:x}}"
 					} ) {
 						name: "panel3"
 						add( new FormComponent( "javax.swing.JLabel" ) {
@@ -86,7 +86,7 @@ new FormModel {
 			}
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 800, 500 )
+			"size": new java.awt.Dimension( 915, 590 )
 		} )
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 			name: "closeDialog"
@@ -119,7 +119,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"size": new java.awt.Dimension( 285, 190 )
-			"location": new java.awt.Point( 0, 510 )
+			"location": new java.awt.Point( 30, 625 )
 		} )
 	}
 }

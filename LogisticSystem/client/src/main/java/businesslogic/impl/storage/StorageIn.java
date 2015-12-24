@@ -40,21 +40,17 @@ public class StorageIn implements StorageInService{
 	 * 
 	 * 一次新的入库活动，1.新建一个入库单，2.完成所有已审批入库单的入库操作
 	 * @return 到达单列表，已审批的入库单列表
+	 * @throws RemoteException 
 	 */
-	public BriefArrivalAndStorageInVO newStorageIn() {
+	public BriefArrivalAndStorageInVO newStorageIn() throws RemoteException {
 		// listID+date
 		String[][] arrivelistInfo = null;
 		String[][] storageInListInfo = null;
-		storageInListInfo = storageInList.getBriefStorageList();
-		try {
+			storageInListInfo = storageInList.getBriefStorageList();
 			System.out.println("仓库："+user.getCenterID());
 			ArrivalListVO arrivals = arrivalList.getCheckedArrivals(user.getCenterID());
 			arrivelistInfo = arrivals.info;
-		} catch (RemoteException e) {
 			System.out.println("网络连接中断");
-			e.printStackTrace();
-			return null;
-		}
 
 		return new BriefArrivalAndStorageInVO(arrivelistInfo, storageInListInfo);
 
