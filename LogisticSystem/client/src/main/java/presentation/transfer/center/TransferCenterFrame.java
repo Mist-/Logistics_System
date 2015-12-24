@@ -45,7 +45,8 @@ public class TransferCenterFrame extends JFrame {
 		this.addWindowListener(new WindowAdapter() {
 			@Override
             public void windowClosing(java.awt.event.WindowEvent evt) {
-				closeDialog.setVisible(true);
+				//closeDialog.setVisible(true);
+				System.exit(DISPOSE_ON_CLOSE);
                }
 		});
 		

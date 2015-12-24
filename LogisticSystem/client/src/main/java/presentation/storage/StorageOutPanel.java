@@ -24,25 +24,26 @@ public class StorageOutPanel extends JPanel {
 	StorageOutService storageOut;
 	TransferListVO transferListVO;
 	StorageOutVO out;
-	int storageOutCounter=0;
+	int storageOutCounter = 0;
 	int transferListCounter = 0;
 	BriefTransferAndStorageOutVO briefTransferAndStorageOutVO;
+
 	public StorageOutPanel(StorageOutService storageOut) {
-		this.storageOut	 = storageOut;
+		this.storageOut = storageOut;
 		initComponents();
 		setList();
 		this.setVisible(true);
 	}
-	
-	public boolean isClear(){
-		if(storageOutCounter >0 || transferListCounter >0){
+
+	public boolean isClear() {
+		if (storageOutCounter > 0 || transferListCounter > 0) {
 			return false;
-		}else {
+		} else {
 			return true;
 		}
 	}
-	
-	private void setTransferListDisabled(){
+
+	private void setTransferListDisabled() {
 		listID.setEnabled(false);
 		centerID.setEnabled(false);
 		centerName.setEnabled(false);
@@ -54,13 +55,12 @@ public class StorageOutPanel extends JPanel {
 		driverName.setEnabled(false);
 		loadTable.setEnabled(false);
 	}
-	
-	private void setTransferList(TransferListVO transferList){
+
+	private void setTransferList(TransferListVO transferList) {
 		if (transferList != null) {
-			if(transferList.transferListID != null){
-			listID.setText(transferList.transferListID);
-			}
-			else {
+			if (transferList.transferListID != null) {
+				listID.setText(transferList.transferListID);
+			} else {
 				listID.setText("保存后生成");
 			}
 			centerID.setText(transferList.transferCenterID);
@@ -74,27 +74,32 @@ public class StorageOutPanel extends JPanel {
 				driverName.setText(transferList.driver);
 				label12.setText("押运员");
 				label10.setText("车辆编号");
-			}else{
-			driverName.setText(transferList.fee);
-			label15.setText("费用");
-			label13.setText("班次");
+			} else {
+				driverName.setText(transferList.fee);
+				label15.setText("费用");
+				label13.setText("班次");
 			}
-			DefaultTableModel model = new DefaultTableModel(transferList.orderAndPosition,transferList.header);
+			DefaultTableModel model = new DefaultTableModel(
+					transferList.orderAndPosition, transferList.header);
 			loadTable.setModel(model);
 			loadTable.updateUI();
 			remove(startPane);
-			add(transferListPane,BorderLayout.CENTER);
+			add(transferListPane, BorderLayout.CENTER);
 			transferListPane.updateUI();
 			transferListPane.setVisible(true);
 		}
 	}
-	
-	private void setList(){
+
+	private void setList() {
 		selectStorageOut.setEnabled(false);
 		selectTransfer.setEnabled(false);
 		briefTransferAndStorageOutVO = storageOut.newStorageOut();
-		DefaultTableModel storageOutModel  = new DefaultTableModel(briefTransferAndStorageOutVO.getStorageOutList(),briefTransferAndStorageOutVO.getStorageOutListHeader());
-		DefaultTableModel transferListModel = new DefaultTableModel(briefTransferAndStorageOutVO.getTransferList(),briefTransferAndStorageOutVO.getTransferListHeader());
+		DefaultTableModel storageOutModel = new DefaultTableModel(
+				briefTransferAndStorageOutVO.getStorageOutList(),
+				briefTransferAndStorageOutVO.getStorageOutListHeader());
+		DefaultTableModel transferListModel = new DefaultTableModel(
+				briefTransferAndStorageOutVO.getTransferList(),
+				briefTransferAndStorageOutVO.getTransferListHeader());
 		storageOutCounter = briefTransferAndStorageOutVO.getStorageOutList().length;
 		transferListCounter = briefTransferAndStorageOutVO.getTransferList().length;
 		storageOutTable.setModel(storageOutModel);
@@ -102,38 +107,42 @@ public class StorageOutPanel extends JPanel {
 		storageOutList.repaint();
 		transferListTable.repaint();
 	}
-	
-	private void setStorageOut(){
-		if(out != null){
+
+	private void setStorageOut() {
+		if (out != null) {
 			transferListID.setText(out.getTransferListNum());
 			outDate.setText(out.getDate());
 			transferType.setText(out.getTransferType());
-			DefaultTableModel model = new DefaultTableModel(out.getOrderAndPosition(),out.getHeader());
+			DefaultTableModel model = new DefaultTableModel(
+					out.getOrderAndPosition(), out.getHeader());
 			outTable.setModel(model);
 			outTable.updateUI();
 			outTable.repaint();
 
 		}
-		
+
 	}
 
 	private void doStorageOutMouseClicked(MouseEvent e) {
 		try {
 			ResultMessage result = storageOut.doStorageOut();
-			if(result == ResultMessage.SUCCESS){
-				JOptionPane.showMessageDialog(null, "出库完成", "提示", JOptionPane.INFORMATION_MESSAGE);
+			if (result == ResultMessage.SUCCESS) {
+				JOptionPane.showMessageDialog(null, "出库完成", "提示",
+						JOptionPane.INFORMATION_MESSAGE);
 				int row = storageOutTable.getSelectedRow();
-				DefaultTableModel model = (DefaultTableModel) storageOutTable.getModel();
+				DefaultTableModel model = (DefaultTableModel) storageOutTable
+						.getModel();
 				model.removeRow(row);
 				storageOutCounter--;
 				storageOutTable.setModel(model);
 				storageOutTable.updateUI();
 				remove(storageOutPane);
-				add(startPane,BorderLayout.CENTER);
+				add(startPane, BorderLayout.CENTER);
 				startPane.updateUI();
 				startPane.setVisible(true);
-			}else{
-				JOptionPane.showMessageDialog(null, "操作失败", "提示", JOptionPane.INFORMATION_MESSAGE);	
+			} else {
+				JOptionPane.showMessageDialog(null, "操作失败", "提示",
+						JOptionPane.INFORMATION_MESSAGE);
 			}
 		} catch (RemoteException e1) {
 			e1.printStackTrace();
@@ -150,7 +159,7 @@ public class StorageOutPanel extends JPanel {
 
 	private void cancelLoadMouseReleased(MouseEvent e) {
 		remove(transferListPane);
-		add(startPane,BorderLayout.CENTER);
+		add(startPane, BorderLayout.CENTER);
 		startPane.updateUI();
 		startPane.setVisible(true);
 	}
@@ -161,22 +170,21 @@ public class StorageOutPanel extends JPanel {
 		int row = transferListTable.getSelectedRow();
 		String s = (String) transferListTable.getValueAt(row, 0);
 		long id = Long.parseLong(s);
-		 transferListVO =storageOut.getTransferList(id);
+		transferListVO = storageOut.getTransferList(id);
 		setTransferList(transferListVO);
 	}
-	
 
 	private void createStorageOutMouseReleased(MouseEvent e) {
 		out = storageOut.createStorageOutList();
 		setStorageOutDisabled();
 		setStorageOut();
 		remove(transferListPane);
-		add(storageOutPane,BorderLayout.CENTER);
+		add(storageOutPane, BorderLayout.CENTER);
 		storageOutPane.updateUI();
 		storageOutPane.setVisible(true);
 	}
-	
-	private void setStorageOutDisabled(){
+
+	private void setStorageOutDisabled() {
 		transferListID.setEnabled(false);
 		transferType.setEnabled(false);
 		outDate.setEnabled(false);
@@ -184,52 +192,69 @@ public class StorageOutPanel extends JPanel {
 
 	private void storageOutCancelMouseReleased(MouseEvent e) {
 		remove(storageOutPane);
-		add(transferListPane,BorderLayout.CENTER);
+		add(transferListPane, BorderLayout.CENTER);
 		transferListPane.setVisible(true);
 	}
 
 	private void selectStorageOutMouseReleased(MouseEvent e) {
-		if(selectStorageOut.isEnabled()){
+		if (selectStorageOut.isEnabled()) {
 			saveStorageOut.setVisible(false);
 			storageOutCancel.setVisible(false);
 			int row = storageOutTable.getSelectedRow();
-			DefaultTableModel model = (DefaultTableModel)storageOutTable.getModel();
+			DefaultTableModel model = (DefaultTableModel) storageOutTable
+					.getModel();
 			long id = Long.parseLong((String) model.getValueAt(row, 0));
 			try {
 				out = storageOut.getStorageOut(id);
 				setStorageOut();
 				setStorageOutDisabled();
 				remove(startPane);
-				add(storageOutPane,BorderLayout.CENTER);
+				add(storageOutPane, BorderLayout.CENTER);
 				storageOutPane.updateUI();
 				storageOutPane.setVisible(true);
 			} catch (RemoteException e1) {
 				e1.printStackTrace();
-				JOptionPane.showMessageDialog(null, "网络连接中断", "提示", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "网络连接中断", "提示",
+						JOptionPane.INFORMATION_MESSAGE);
 			}
-			
+
 		}
 	}
 
 	private void saveStorageOutMouseReleased(MouseEvent e) {
 		ResultMessage result = storageOut.saveStroageOut(out);
 		if (result == ResultMessage.SUCCESS) {
-			JOptionPane.showMessageDialog(null, "保存成功", "提示", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "保存成功", "提示",
+					JOptionPane.INFORMATION_MESSAGE);
 			int row = transferListTable.getSelectedRow();
-			DefaultTableModel model = (DefaultTableModel) transferListTable.getModel();
+			DefaultTableModel model = (DefaultTableModel) transferListTable
+					.getModel();
 			model.removeRow(row);
 			transferListCounter--;
 			transferListTable.setModel(model);
 			transferListTable.updateUI();
 			remove(storageOutPane);
-			add(startPane,BorderLayout.CENTER);
+			add(startPane, BorderLayout.CENTER);
 			startPane.updateUI();
 			startPane.setVisible(true);
 		}
 	}
 
+	private void refreshButtonMouseReleased(MouseEvent e) {
+		if (storageOutCounter <= 0 || transferListCounter <= 0) {
+			setList();
+		}
+	}
+
+	private void refreshButton2MouseReleased(MouseEvent e) {
+		if (storageOutCounter <= 0 || transferListCounter <= 0) {
+			setList();
+		}
+	}
+
 	private void initComponents() {
-		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
+		// JFormDesigner - Component initialization - DO NOT MODIFY
+		// //GEN-BEGIN:initComponents
 		startPane = new JTabbedPane();
 		storageOutList = new JPanel();
 		scrollPane1 = new JScrollPane();
@@ -237,13 +262,15 @@ public class StorageOutPanel extends JPanel {
 		selectStorageOut = new JButton();
 		textField1 = new JTextField();
 		button3 = new JButton();
+		refreshButton = new JButton();
 		transferList = new JPanel();
 		scrollPane2 = new JScrollPane();
 		transferListTable = new JTable();
 		selectTransfer = new JButton();
+		getTransferButton = new JButton();
 		textField2 = new JTextField();
 		searchTransfer = new JButton();
-		getTransferButton = new JButton();
+		refreshButton2 = new JButton();
 		storageOutPane = new JTabbedPane();
 		storageOutVO = new JPanel();
 		scrollPane4 = new JScrollPane();
@@ -326,6 +353,15 @@ public class StorageOutPanel extends JPanel {
 				button3.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 				button3.setIcon(new ImageIcon(getClass().getResource("/icons/search_16x16.png")));
 
+				//---- refreshButton ----
+				refreshButton.setText("\u5237\u65b0");
+				refreshButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						refreshButtonMouseReleased(e);
+					}
+				});
+
 				GroupLayout storageOutListLayout = new GroupLayout(storageOutList);
 				storageOutList.setLayout(storageOutListLayout);
 				storageOutListLayout.setHorizontalGroup(
@@ -335,21 +371,27 @@ public class StorageOutPanel extends JPanel {
 							.addComponent(textField1, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addComponent(button3, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
-							.addGap(438, 438, 438)
-							.addComponent(selectStorageOut, GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+							.addGap(392, 392, 392)
+							.addComponent(refreshButton)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(selectStorageOut, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addContainerGap())
-						.addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
+						.addComponent(scrollPane1)
 				);
 				storageOutListLayout.setVerticalGroup(
 					storageOutListLayout.createParallelGroup()
 						.addGroup(GroupLayout.Alignment.TRAILING, storageOutListLayout.createSequentialGroup()
 							.addContainerGap()
-							.addGroup(storageOutListLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(textField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(button3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(selectStorageOut))
+							.addGroup(storageOutListLayout.createParallelGroup()
+								.addGroup(storageOutListLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+									.addComponent(textField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(button3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(selectStorageOut))
+								.addGroup(storageOutListLayout.createSequentialGroup()
+									.addComponent(refreshButton)
+									.addGap(0, 0, Short.MAX_VALUE)))
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE))
+							.addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE))
 				);
 			}
 			startPane.addTab("\u5df2\u5ba1\u6279\u51fa\u5e93\u5355", storageOutList);
@@ -374,14 +416,6 @@ public class StorageOutPanel extends JPanel {
 				//---- selectTransfer ----
 				selectTransfer.setText("select");
 
-				//---- textField2 ----
-				textField2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-				//---- searchTransfer ----
-				searchTransfer.setText("\u641c\u7d22");
-				searchTransfer.setIcon(new ImageIcon(getClass().getResource("/icons/search_16x16.png")));
-				searchTransfer.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
 				//---- getTransferButton ----
 				getTransferButton.setText("\u67e5\u770b");
 				getTransferButton.addMouseListener(new MouseAdapter() {
@@ -391,41 +425,61 @@ public class StorageOutPanel extends JPanel {
 					}
 				});
 
+				//---- textField2 ----
+				textField2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+				//---- searchTransfer ----
+				searchTransfer.setText("\u641c\u7d22");
+				searchTransfer.setIcon(new ImageIcon(getClass().getResource("/icons/search_16x16.png")));
+				searchTransfer.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+				//---- refreshButton2 ----
+				refreshButton2.setText("\u5237\u65b0");
+				refreshButton2.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						refreshButton2MouseReleased(e);
+					}
+				});
+
 				GroupLayout transferListLayout = new GroupLayout(transferList);
 				transferList.setLayout(transferListLayout);
 				transferListLayout.setHorizontalGroup(
 					transferListLayout.createParallelGroup()
 						.addGroup(transferListLayout.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(transferListLayout.createParallelGroup()
-								.addGroup(transferListLayout.createSequentialGroup()
-									.addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 786, GroupLayout.PREFERRED_SIZE)
-									.addGap(32644, 32644, 32644)
-									.addComponent(selectTransfer, GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
-								.addGroup(transferListLayout.createSequentialGroup()
-									.addComponent(textField2, GroupLayout.PREFERRED_SIZE, 337, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(searchTransfer)
-									.addGap(261, 261, 261)
-									.addComponent(getTransferButton, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
-									.addGap(0, 0, Short.MAX_VALUE)))
+							.addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 796, GroupLayout.PREFERRED_SIZE)
+							.addGap(32644, 32644, 32644)
+							.addComponent(selectTransfer, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addContainerGap())
+						.addGroup(transferListLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(textField2, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(searchTransfer)
+							.addGap(454, 454, 454)
+							.addComponent(refreshButton2, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(getTransferButton, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 				);
 				transferListLayout.setVerticalGroup(
 					transferListLayout.createParallelGroup()
-						.addGroup(GroupLayout.Alignment.TRAILING, transferListLayout.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(transferListLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(textField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(searchTransfer, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-								.addComponent(getTransferButton, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						.addGroup(transferListLayout.createSequentialGroup()
+							.addGroup(transferListLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+								.addGroup(transferListLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+									.addComponent(getTransferButton, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+									.addComponent(refreshButton2))
+								.addGroup(transferListLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+									.addComponent(textField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(searchTransfer, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
 							.addGroup(transferListLayout.createParallelGroup()
-								.addGroup(transferListLayout.createSequentialGroup()
-									.addGap(0, 236, Short.MAX_VALUE)
-									.addComponent(selectTransfer, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE))
-								.addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE))
-							.addContainerGap())
+								.addGroup(GroupLayout.Alignment.TRAILING, transferListLayout.createSequentialGroup()
+									.addComponent(selectTransfer, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
+									.addContainerGap())
+								.addGroup(GroupLayout.Alignment.TRAILING, transferListLayout.createSequentialGroup()
+									.addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
+									.addGap(24, 24, 24))))
 				);
 			}
 			startPane.addTab("\u5df2\u5ba1\u6279\u4e2d\u8f6c\u5355", transferList);
@@ -763,10 +817,11 @@ public class StorageOutPanel extends JPanel {
 			}
 			transferListPane.addTab("\u4e2d\u8f6c\u5355", DeliveryListPanel);
 		}
-		// JFormDesigner - End of component initialization  //GEN-END:initComponents
+		// //GEN-END:initComponents
 	}
 
-	// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+	// JFormDesigner - Variables declaration - DO NOT MODIFY
+	// //GEN-BEGIN:variables
 	private JTabbedPane startPane;
 	private JPanel storageOutList;
 	private JScrollPane scrollPane1;
@@ -774,13 +829,15 @@ public class StorageOutPanel extends JPanel {
 	private JButton selectStorageOut;
 	private JTextField textField1;
 	private JButton button3;
+	private JButton refreshButton;
 	private JPanel transferList;
 	private JScrollPane scrollPane2;
 	private JTable transferListTable;
 	private JButton selectTransfer;
+	private JButton getTransferButton;
 	private JTextField textField2;
 	private JButton searchTransfer;
-	private JButton getTransferButton;
+	private JButton refreshButton2;
 	private JTabbedPane storageOutPane;
 	private JPanel storageOutVO;
 	private JScrollPane scrollPane4;
@@ -818,5 +875,5 @@ public class StorageOutPanel extends JPanel {
 	private JLabel label16;
 	private JTextField date;
 	private JButton createStorageOut;
-	// JFormDesigner - End of variables declaration  //GEN-END:variables
+	// JFormDesigner - End of variables declaration //GEN-END:variables
 }

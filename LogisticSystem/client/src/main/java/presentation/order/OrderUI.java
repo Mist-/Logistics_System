@@ -515,7 +515,7 @@ public class OrderUI extends JFrame {
 
         String name = "";
         
-        labelUserInfo.setText("ID: " + loginMessage.getUserSN() + " " + name + "\n" + loginMessage.getUserRole());
+    //    labelUserInfo.setText("ID: " + loginMessage.getUserSN() + " " + name + "\n" + loginMessage.getUserRole());
 
         refresh();
     }

@@ -43,7 +43,20 @@ public class TransferHallFrame extends JFrame {
 			@Override
 			public void windowClosing(WindowEvent e){
 			//	closeDialog.setVisible(true);
-				if(loadAndSortPanel.isClear() && entruckReceivePanel.isClear()){
+				boolean loadClear = true;
+				boolean entruckClear = true;
+				if (loadAndSortPanel != null) {
+					if (!loadAndSortPanel.isClear()) {
+						loadClear = false;
+					}
+				}
+				
+				if(entruckReceivePanel != null){
+					if(!entruckReceivePanel.isClear()){
+						entruckClear = false;
+					}
+				}
+				if(loadClear && entruckClear){
 					System.exit(DISPOSE_ON_CLOSE);
 				}else{
 					JOptionPane.showMessageDialog(null, "有已审批到达单或装车单未处理,请处理完后再退出", "提示", JOptionPane.INFORMATION_MESSAGE);

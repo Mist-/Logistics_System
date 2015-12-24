@@ -8,8 +8,8 @@ new FormModel {
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 				name: "startPane"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {comp scrollPane2:::p:686:p, space :::p, comp selectArrival::::93:x, space :::p}}"
-					"$verticalGroup": "par l {comp scrollPane2::t::346:x, seq t {space ::304:x, comp selectArrival:::p:32:p, space :::p}}"
+					"$horizontalGroup": "par l {seq l {comp scrollPane2:::p:686:p, space :::p, par l {comp selectArrival::::93:x, comp refreshButton::::93:x}, space :::p}}"
+					"$verticalGroup": "par l {comp scrollPane2::t::346:x, seq t {space ::275:x, comp refreshButton:::p::p, space :::p, comp selectArrival:::p:32:p, space :::p}}"
 				} ) {
 					name: "arrivalListPanel"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -23,6 +23,11 @@ new FormModel {
 						name: "selectArrival"
 						"text": "查看"
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "selectArrivalMouseClicked", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "refreshButton"
+						"text": "刷新"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "refreshButtonMouseReleased", true ) )
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "已审批到达单"

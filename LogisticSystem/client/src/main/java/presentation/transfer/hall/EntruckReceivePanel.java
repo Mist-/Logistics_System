@@ -372,6 +372,13 @@ public class EntruckReceivePanel extends JPanel {
 		status.setEnabled(true);
 		modifyStatus.setEnabled(true);
 	}
+
+	private void refreshButtonMouseReleased(MouseEvent e) {
+		if(arrivalCounter <= 0){
+		getArrivalList();
+		setArrivalList();
+		}
+	}
 //==============================¼àÌý=================================
 
 	private void initComponents() {
@@ -382,6 +389,7 @@ public class EntruckReceivePanel extends JPanel {
 		scrollPane2 = new JScrollPane();
 		arrivalTable = new JTable();
 		selectArrival = new JButton();
+		refreshButton = new JButton();
 		searchListPanel = new JPanel();
 		label5 = new JLabel();
 		deliveryID = new JTextField();
@@ -476,6 +484,15 @@ public class EntruckReceivePanel extends JPanel {
 					}
 				});
 
+				//---- refreshButton ----
+				refreshButton.setText("\u5237\u65b0");
+				refreshButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						refreshButtonMouseReleased(e);
+					}
+				});
+
 				GroupLayout arrivalListPanelLayout = new GroupLayout(arrivalListPanel);
 				arrivalListPanel.setLayout(arrivalListPanelLayout);
 				arrivalListPanelLayout.setHorizontalGroup(
@@ -483,14 +500,18 @@ public class EntruckReceivePanel extends JPanel {
 						.addGroup(arrivalListPanelLayout.createSequentialGroup()
 							.addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 686, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(selectArrival, GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+							.addGroup(arrivalListPanelLayout.createParallelGroup()
+								.addComponent(selectArrival, GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+								.addComponent(refreshButton, GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE))
 							.addContainerGap())
 				);
 				arrivalListPanelLayout.setVerticalGroup(
 					arrivalListPanelLayout.createParallelGroup()
 						.addComponent(scrollPane2, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
 						.addGroup(GroupLayout.Alignment.TRAILING, arrivalListPanelLayout.createSequentialGroup()
-							.addContainerGap(304, Short.MAX_VALUE)
+							.addContainerGap(275, Short.MAX_VALUE)
+							.addComponent(refreshButton)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addComponent(selectArrival, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
 							.addContainerGap())
 				);
@@ -1056,6 +1077,7 @@ public class EntruckReceivePanel extends JPanel {
 	private JScrollPane scrollPane2;
 	private JTable arrivalTable;
 	private JButton selectArrival;
+	private JButton refreshButton;
 	private JPanel searchListPanel;
 	private JLabel label5;
 	private JTextField deliveryID;

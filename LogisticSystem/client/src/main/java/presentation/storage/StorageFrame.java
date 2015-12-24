@@ -36,7 +36,20 @@ public class StorageFrame extends JFrame {
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e){
 				//closeDialog.setVisible(true);
-				if(storageOutVO.isClear()){
+				boolean outIsClear = true;
+				boolean inIsClear = true;
+				if(storageOutVO != null){
+					if(!storageOutVO.isClear()){
+						outIsClear = false;
+					}
+				}
+				
+				if(storageInVO != null){
+					if(!storageInVO.isClear()){
+						inIsClear = false;
+					}
+				}
+				if(inIsClear && outIsClear){
 					System.exit(DISPOSE_ON_CLOSE);
 				}else{
 					JOptionPane.showMessageDialog(null, "有已审批出库单或中转单未处理，请处理完后再退出", "提示", JOptionPane.INFORMATION_MESSAGE);
