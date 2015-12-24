@@ -8,7 +8,9 @@ import java.util.Vector;
 import businesslogic.service.order.OrderListService;
 import data.enums.DataType;
 import data.enums.POType;
+import data.enums.StorageArea;
 import data.message.LoginMessage;
+import data.message.ResultMessage;
 import utils.DataServiceFactory;
 import utils.Timestamper;
 import data.po.DataPO;
@@ -39,6 +41,14 @@ public class OrderList implements OrderListService {
 	
 	public int getNum(){
 		return orders.size();
+	}
+	
+	public void modifyOrderTransferType(long[] id,StorageArea type) throws RemoteException{
+		orders = getOrderList(id);
+		for(int i = 0 ; i < orders.size();i++){
+			orders.get(i).setTransferType(type);
+			orderDataService.modify(orders.get(i));
+		}
 	}
 	
 	public OrderList(LoginMessage loginMessage){
