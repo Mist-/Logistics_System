@@ -8,7 +8,7 @@ new FormModel {
 			"title": "中转中心"
 			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosed", "thisWindowClosed", true ) )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :::p, par l {comp receive:::p:104:p, seq l {space :p:24:p, comp label6:::p:56:p}}, par l {seq {space s:::p, comp load:::p::p}, seq l {space :p:44:p, comp label7:::p::p}}, space ::547:x}}"
+				"$horizontalGroup": "par l {seq l {space :::p, par l {comp receive:::p:104:p, seq l {space :p:24:p, comp label6:::p:56:p}}, par l {seq {space s:::p, comp load:::p::p}, seq l {space :p:44:p, comp label7:::p::p}}, space ::662:x}}"
 				"$verticalGroup": "par l {seq l {space :::p, par l {comp receive:::::x, comp load:::::x}, space :::p, par b {comp label6::b:p:17:p, comp label7::b:p::p}, space :p:6:p}}"
 			} ) {
 				name: "panel1"
@@ -38,8 +38,8 @@ new FormModel {
 				"value": "North"
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :::p, comp tabbedPane1::::774:x}}"
-				"$verticalGroup": "par l {seq t {space :::p, comp tabbedPane1::::306:x}}"
+				"$horizontalGroup": "par l {seq l {space :::p, comp tabbedPane1::::889:x}}"
+				"$verticalGroup": "par l {seq t {space :::p, comp tabbedPane1::::341:x}}"
 			} ) {
 				name: "emptyPanel"
 				add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
@@ -70,7 +70,7 @@ new FormModel {
 			}
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 800, 500 )
+			"size": new java.awt.Dimension( 915, 590 )
 		} )
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 			name: "closeDialog"
@@ -103,7 +103,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"size": new java.awt.Dimension( 285, 190 )
-			"location": new java.awt.Point( 0, 510 )
+			"location": new java.awt.Point( 15, 715 )
 		} )
 	}
 }

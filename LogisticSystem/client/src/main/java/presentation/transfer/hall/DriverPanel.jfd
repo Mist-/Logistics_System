@@ -8,8 +8,8 @@ new FormModel {
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 				name: "driverListPane"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {comp scrollPane1:::p:688:p, space :::p, par l {comp addDriverButton::::91:x, comp showDriverButton::::91:x}, space :::p}}"
-					"$verticalGroup": "par l {comp scrollPane1::::346:x, seq t {space ::284:x, comp showDriverButton:::p::p, space :::p, comp addDriverButton:::p::p, space :::p}}"
+					"$horizontalGroup": "par l {seq l {space :::p, par l {comp scrollPane1::::900:x, seq {comp showDriverButton:::p:100:p, space s:::p, comp addDriverButton:::p:100:p, space ::682:x}}}}"
+					"$verticalGroup": "par l {seq t {space :::p, par l {comp showDriverButton::::30:x, comp addDriverButton:::::x}, space u:::p, comp scrollPane1:::p:321:p}}"
 				} ) {
 					name: "panel1"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -38,13 +38,13 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 800, 375 )
+			"size": new java.awt.Dimension( 915, 400 )
 		} )
 		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 			name: "driverPane"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space :::p, par l {comp label3::l:p::p, comp label4::l:p::p, comp label5::l:p::p, comp label6::l:p::p, comp label7::l:p::p, comp label8::l:p::p, comp label9::l:p::p, comp label10::l:p::p}, space :p:36:p, par l:::p {seq l {par l:::p {comp name::::85:x, comp num::::85:x, comp id::::85:x, comp gender::::85:x, comp phone::::85:x, comp status::::85:x}, space u:::p, comp label17::::106:x}, seq l {par t:::p {comp licenseY::l::45:x, comp bornY::l::45:x}, space u:::p, par l:::p {seq {comp label11:::p::p, space u:::p, comp bornM:::p:40:p}, seq {comp label14:::p::p, space u:::p, comp licenseM:::::x}}, space u:::p, par l:::p {seq {comp label12:::p::p, space :::p, comp bornD:::p:42:p}, seq {comp label15:::p::p, space :::p, comp licenseD:::::x}}, space :::p, par l {comp label13:::p::p, comp label16:::p::p}}}, space ::408:x, par l {comp cancelButton::t:p:70:p, comp modifyButton::t:p:70:p, comp saveButton::t:p:70:p, comp deleteButton::t:p:70:p}, space :::p}}"
-				"$verticalGroup": "par l {seq t {space :::p, par b {comp label3::b:p::p, comp name::b:p::p}, space :::p, par b {comp label4::b:p::p, comp num::b:p::p}, space :::p, par b {comp label5::b:p::p, comp id::b:p::p}, space :::p, par b {comp label6::b:p::p, comp gender::b:p::p}, par l {seq l {space :::p, par b {comp label7::b:p::p, comp phone::b:p::p}, space :::p, par l {comp label8:::p::p, par b {comp status::b:p::p, comp label17::b:p::p}}, space :::p, par l {comp label9:::p::p, par b {comp bornY::b:p::p, comp label11::b:p::p, comp bornM::b:p::p, comp label12::b:p::p, comp bornD::b:p::p, comp label13::b:p::p}}, space :::p, par b {comp label10::b:p::p, comp licenseY::b:p::p, comp label14::b:p::p, comp licenseM::b:p::p, comp label15::b:p::p, comp licenseD::b:p::p, comp label16::b:p::p}}, seq l {space :p:1:p, comp deleteButton:::p::p, space :::p, comp saveButton:::p::p, space :::p, comp modifyButton:::p::p, space :::p, comp cancelButton:::p::p}}, space ::33:x}}"
+				"$horizontalGroup": "par l {seq {space :::p, par l {seq {par l {comp label3::l:p::p, comp label4::l:p::p, comp label5::l:p::p, comp label6::l:p::p, comp label7::l:p::p, comp label8::l:p::p, comp label9::l:p::p, comp label10::l:p::p}, space :p:36:p, par l:::p {seq l {par t:::p {comp licenseY::l::45:x, comp bornY::l::45:x}, space u:::p, par l:::p {seq {comp label11:::p::p, space u:::p, comp bornM:::p:40:p}, seq {comp label14:::p::p, space u:::p, comp licenseM:::::x}}, space u:::p, par l:::p {seq {comp label12:::p::p, space :::p, comp bornD:::p:42:p}, seq {comp label15:::p::p, space :::p, comp licenseD:::::x}}, space :::p, par l {comp label13:::p::p, comp label16:::p::p}}, seq l {par t:::p {comp name::l::85:x, comp num::l::85:x, comp id::l::85:x, comp gender::l::85:x, comp phone::l::85:x, comp status::l::85:x}, space u:::p, comp label17::::106:x}}, space ::523:x, comp deleteButton:::p:70:p}, seq t {space :0:820:x, par l {comp cancelButton::t:p:70:p, comp modifyButton::t:p:70:p, comp saveButton::t:p:70:p}}}, space :::p}}"
+				"$verticalGroup": "par l {seq t {space :::p, par b {comp label3::b:p::p, comp name::b:p::p}, space :::p, par b {comp label4::b:p::p, comp num::b:p::p}, space :::p, par b {comp label5::b:p::p, comp id::b:p::p}, space :::p, par b {comp label6::b:p::p, comp gender::b:p::p}, space :::p, par b {comp label7::b:p::p, comp phone::b:p::p}, space :::p, par l {comp label8:::p::p, par b {comp status::b:p::p, comp label17::b:p::p}}, space :::p, par l {comp label9:::p::p, par b {comp bornY::b:p::p, comp label11::b:p::p, comp bornM::b:p::p, comp label12::b:p::p, comp bornD::b:p::p, comp label13::b:p::p}}, space :::p, par b {comp label10::b:p::p, comp licenseY::b:p::p, comp label14::b:p::p, comp licenseM::b:p::p, comp label15::b:p::p, comp licenseD::b:p::p, comp label16::b:p::p, comp deleteButton::b:p::p}, space ::58:x, comp saveButton:::p::p, space :::p, comp modifyButton:::p::p, space :::p, comp cancelButton:::p::p, space :::p}}"
 			} ) {
 				name: "panel2"
 				add( new FormComponent( "javax.swing.JButton" ) {
@@ -171,8 +171,8 @@ new FormModel {
 				"title": "司机详细信息"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 385 )
-			"size": new java.awt.Dimension( 800, 285 )
+			"location": new java.awt.Point( 10, 505 )
+			"size": new java.awt.Dimension( 915, 400 )
 		} )
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 			name: "cancelDialog"
@@ -204,7 +204,7 @@ new FormModel {
 				"value": "Center"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 400, 710 )
+			"location": new java.awt.Point( 385, 910 )
 			"size": new java.awt.Dimension( 275, 200 )
 		} )
 	}

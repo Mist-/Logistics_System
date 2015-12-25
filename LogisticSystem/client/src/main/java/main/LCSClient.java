@@ -36,6 +36,10 @@ public class LCSClient extends JFrame{
             e1.printStackTrace();
         }
 
+        ClientConfigurationController configurationController = new ClientConfigurationController();
+        configurationController.readConfig();
+        configurationController.applyConfig();
+
         // 启动一个连接检查线程
         Connection.startConnectionCheck();
 
@@ -49,9 +53,7 @@ public class LCSClient extends JFrame{
         LoginDlg loginDlg = new LoginDlg(simplifiedOrderUI, loginMessage);
         loginDlg.setVisible(true);
 
-        ClientConfigurationController configurationController = new ClientConfigurationController();
-        configurationController.readConfig();
-        configurationController.applyConfig();
+
 
 
         // 以下是，登录动作完成后的界面跳转。

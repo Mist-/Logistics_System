@@ -9,8 +9,8 @@ new FormModel {
 				name: "loadPane"
 				"font": &Font0 new java.awt.Font( "等线", 0, 14 )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {par l {seq {comp label1:::p::p, space :::p, comp transferTypeBox:::p:88:p, space :::p, comp label2:::p::p, space :::p, comp destBox:::p:88:p, space :::p, comp getOrderButton:::p:108:p, space :0:243:x}, comp scrollPane1::::671:x}, space :::p, par l:::p {comp removeOrderButton::::108:x, comp createTransferButton::::108:x}, space :::p}}"
-					"$verticalGroup": "par l {seq t {space :::p, par l {comp label1:::p:26:p, comp transferTypeBox:::::x, comp label2::l:::x, par l:l::p {comp destBox:::::x, comp getOrderButton::::0:x}}, space :::p, par l {seq {comp createTransferButton:::p::p, space :::p, comp removeOrderButton:::p::p}, comp scrollPane1:::p:305:p}, space :::x}}"
+					"$horizontalGroup": "par l {seq {par l {seq {comp label1:::p::p, space :::p, comp transferTypeBox:::p:88:p, space :::p, comp label2:::p::p, space :::p, comp destBox:::p:88:p, space :p:36:p, comp getOrderButton:::p:108:p, space ::220:x, comp removeOrderButton:::p:108:p, space :::p, comp createTransferButton:::p:108:p}, comp scrollPane1::t::900:x}, space :::p}}"
+					"$verticalGroup": "par l {seq t {space :::p, par l {comp label1:::p:26:p, comp transferTypeBox:::::x, comp label2::l:::x, par b {comp destBox::b:p::p, comp getOrderButton::b::0:x, comp removeOrderButton::b:p::p, comp createTransferButton::b:p::p}}, space s:::p, comp scrollPane1:::p:295:p, space :::x}}"
 				} ) {
 					name: "loadPanel"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -67,14 +67,14 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 800, 375 )
+			"size": new java.awt.Dimension( 915, 380 )
 		} )
 		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 			name: "transferListPane"
 			"font": #Font0
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space :::p, par l {seq t {comp scrollPane2::::660:x, space :::p, par l:::p {comp cancelLoad::::109:x, comp saveList::l::109:x}}, seq {par l {seq {comp label6:::p::p, space :p:32:p, comp listID:::p:80:p, space :p:135:p, comp label4:::p::p, space :10:10:p, comp date:::p:80:p}, seq l {par t:::p {seq {comp label7:::p::p, space :::x, comp destName:::p:82:p}, seq {comp label8:::p::p, space :::x, comp destID:::p:82:p}, seq {comp label9:::p::p, space :::x, comp centerName:::p:82:p}, seq {comp label5:::p::p, space s:::p, comp centerID:::p:82:p}}, space :p:135:p, par l:::p {seq l {comp label12::::40:x, space s:::p, comp fee:::p:80:p}, seq {comp label11:::::x, space s:::p, comp staffName:::p:80:p}, comp label10:::p:48:p}}, seq l {space :p:365:p, comp vehicleID:::p:80:p}}, space :0:330:x}}, space :::p}}"
-				"$verticalGroup": "par l {seq l {space :::x, comp saveList:::p::p, space :::p, comp cancelLoad:::p::p, space :::p}, seq t {space :::p, par l {par b {comp label6::b:p::p, comp listID::b:p::p}, seq {space :3:3:p, comp label4:::p::p}, comp date:::p::p}, par l {seq t {space :::p, comp vehicleID:::p::p}, seq {space :9:9:p, par l {par b {comp label5::b:p::p, comp centerID::b:p::p}, comp label10:::p::p}}}, par l {seq {space :p:6:p, par l {comp label9:::p::p, par b {comp staffName::b:p::p, comp label11::b:p::p}}}, seq l {space :::p, comp centerName:::p::p}}, space :::p, par l {seq {space :3:3:p, par l {comp label8:::p::p, par b {comp fee::b:p::p, comp label12::b:p::p}}}, comp destID::l:p::p}, space :::p, par l {comp label7:::p::p, comp destName:::p::p}, space :::x, comp scrollPane2:::p:173:p}}"
+				"$horizontalGroup": "par l {seq l {space :::p, par l {seq {par l {seq {comp label6:::p::p, space :p:32:p, comp listID:::p:80:p, space :p:135:p, comp label4:::p::p, space :10:10:p, comp date:::p:80:p}, seq l {space :p:365:p, comp vehicleID:::p:80:p}}, space :0:445:x}, seq t {par t:::p {seq {comp label7:::p::p, space :::x, comp destName:::p:82:p}, seq {comp label8:::p::p, space :::x, comp destID:::p:82:p}, seq {comp label9:::p::p, space :::x, comp centerName:::p:82:p}, seq {comp label5:::p::p, space s:::p, comp centerID:::p:82:p}}, par l {seq {space :p:135:p, par l:::p {seq l {comp label12::::40:x, space s:::p, comp fee:::p:80:p}, seq {comp label11:::::x, space s:::p, comp staffName:::p:80:p}, comp label10:::p:48:p}}, seq t {space ::494:x, comp saveList:::p:109:p}}, space :::p, comp cancelLoad:::p:109:p}}, space :::p}, comp scrollPane2::t::910:x}"
+				"$verticalGroup": "par l {seq t {space :::p, par l {par b {comp label6::b:p::p, comp listID::b:p::p}, seq {space :3:3:p, comp label4:::p::p}, comp date:::p::p}, par l {seq t {space :::p, comp vehicleID:::p::p}, seq {space :9:9:p, par l {par b {comp label5::b:p::p, comp centerID::b:p::p}, comp label10:::p::p}}}, par l {seq {space :p:6:p, par l {comp label9:::p::p, par b {comp staffName::b:p::p, comp label11::b:p::p}}}, seq l {space :::p, comp centerName:::p::p}}, space :::p, par l {seq {space :3:3:p, par l {comp label8:::p::p, par b {comp fee::b:p::p, comp label12::b:p::p}}}, comp destID::l:p::p}, space :::p, par l {comp label7:::p::p, par b {comp destName::b:p::p, comp saveList::b:p::p, comp cancelLoad::b:p::p}}, space s:::p, comp scrollPane2::::171:x}}"
 			} ) {
 				name: "DeliveryListPanel"
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -166,7 +166,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 385 )
-			"size": new java.awt.Dimension( 800, 350 )
+			"size": new java.awt.Dimension( 915, 380 )
 		} )
 	}
 }

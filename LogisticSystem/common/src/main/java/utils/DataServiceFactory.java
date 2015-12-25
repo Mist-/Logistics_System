@@ -25,6 +25,7 @@ public class DataServiceFactory {
 	public static DataService getDataServiceByType(DataType type) {
 		Connection.startConnectionCheck();
 		try {
+			System.out.println("fetching data service @ " + "rmi://" + Configuration.getInstance().ip + ":" + Configuration.getInstance().regPort + "/");
 			DataService ds = (DataService) Naming.lookup("rmi://" + Configuration.getInstance().ip + ":" + Configuration.getInstance().regPort + "/" + type.name());
 			return ds;
 		} catch (MalformedURLException e) {

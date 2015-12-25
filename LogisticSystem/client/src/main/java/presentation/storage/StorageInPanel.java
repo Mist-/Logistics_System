@@ -50,7 +50,11 @@ public class StorageInPanel extends JPanel {
 	private void setList(){
 		selectArrival.setEnabled(false);
 		selectStorageIn.setEnabled(false);
-		briefArrivalAndStorageInVO = storageInService.newStorageIn();
+		try {
+			briefArrivalAndStorageInVO = storageInService.newStorageIn();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		DefaultTableModel storageInModel = new DefaultTableModel(briefArrivalAndStorageInVO.getStorageInListInfo(), briefArrivalAndStorageInVO.getStorageInTittle());
 		storageInTable.setModel(storageInModel);
 		storageInCounter = briefArrivalAndStorageInVO.getStorageInListInfo().length;
@@ -225,12 +229,14 @@ public class StorageInPanel extends JPanel {
 
 	private void refreshButtonMouseReleased(MouseEvent e) {
 		if(storageInCounter <= 0 && arrivalCounter <= 0){
+			System.out.println("入库刷新");
 			setList();
 		}
 	}
 
 	private void refreshButton2MouseReleased(MouseEvent e) {
 		if(storageInCounter <= 0 && arrivalCounter <= 0){
+			System.out.println("入库刷新");
 			setList();
 		}
 	}
@@ -246,10 +252,10 @@ public class StorageInPanel extends JPanel {
 		arriveList = new JPanel();
 		scrollPane3 = new JScrollPane();
 		arriveListTable = new JTable();
-		arrivalID = new JTextField();
-		search = new JButton();
 		selectArrival = new JButton();
 		refreshButton2 = new JButton();
+		arrivalID = new JTextField();
+		search = new JButton();
 		storageInVO = new JTabbedPane();
 		storageInPanel = new JPanel();
 		scrollPane2 = new JScrollPane();
@@ -322,23 +328,23 @@ public class StorageInPanel extends JPanel {
 				storageInList.setLayout(storageInListLayout);
 				storageInListLayout.setHorizontalGroup(
 					storageInListLayout.createParallelGroup()
-						.addGroup(storageInListLayout.createSequentialGroup()
-							.addComponent(scrollPane4, GroupLayout.PREFERRED_SIZE, 648, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(storageInListLayout.createParallelGroup()
-								.addComponent(selectStorageIn, GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
-								.addComponent(refreshButton, GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))
-							.addContainerGap())
+						.addGroup(GroupLayout.Alignment.TRAILING, storageInListLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(selectStorageIn, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+							.addGap(18, 18, 18)
+							.addComponent(refreshButton, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
+							.addGap(613, 613, 613))
+						.addComponent(scrollPane4, GroupLayout.DEFAULT_SIZE, 915, Short.MAX_VALUE)
 				);
 				storageInListLayout.setVerticalGroup(
 					storageInListLayout.createParallelGroup()
 						.addGroup(storageInListLayout.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(selectStorageIn)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-							.addComponent(refreshButton)
-							.addContainerGap(250, Short.MAX_VALUE))
-						.addComponent(scrollPane4, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+							.addGroup(storageInListLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(selectStorageIn, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(refreshButton, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(scrollPane4, GroupLayout.PREFERRED_SIZE, 302, GroupLayout.PREFERRED_SIZE))
 				);
 			}
 			listPane.addTab("\u5df2\u5ba1\u6279\u5165\u5e93\u5355", storageInList);
@@ -361,15 +367,6 @@ public class StorageInPanel extends JPanel {
 					scrollPane3.setViewportView(arriveListTable);
 				}
 
-				//---- search ----
-				search.setText("\u641c\u7d22");
-				search.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseReleased(MouseEvent e) {
-						searchMouseReleased(e);
-					}
-				});
-
 				//---- selectArrival ----
 				selectArrival.setText("\u67e5\u770b");
 				selectArrival.addMouseListener(new MouseAdapter() {
@@ -388,33 +385,43 @@ public class StorageInPanel extends JPanel {
 					}
 				});
 
+				//---- search ----
+				search.setText("\u641c\u7d22");
+				search.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						searchMouseReleased(e);
+					}
+				});
+
 				GroupLayout arriveListLayout = new GroupLayout(arriveList);
 				arriveList.setLayout(arriveListLayout);
 				arriveListLayout.setHorizontalGroup(
 					arriveListLayout.createParallelGroup()
 						.addGroup(arriveListLayout.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(arrivalID, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+							.addComponent(selectArrival, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
+							.addGap(18, 18, 18)
+							.addComponent(refreshButton2, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 425, Short.MAX_VALUE)
+							.addComponent(arrivalID, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addComponent(search)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 448, Short.MAX_VALUE)
-							.addComponent(refreshButton2)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(selectArrival, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
 							.addContainerGap())
-						.addComponent(scrollPane3, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
+						.addComponent(scrollPane3, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 915, Short.MAX_VALUE)
 				);
 				arriveListLayout.setVerticalGroup(
 					arriveListLayout.createParallelGroup()
 						.addGroup(GroupLayout.Alignment.TRAILING, arriveListLayout.createSequentialGroup()
 							.addContainerGap()
-							.addGroup(arriveListLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(arrivalID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(search)
-								.addComponent(selectArrival)
-								.addComponent(refreshButton2))
+							.addGroup(arriveListLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+								.addGroup(arriveListLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+									.addComponent(selectArrival, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+									.addComponent(refreshButton2, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
+								.addComponent(arrivalID)
+								.addComponent(search, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(scrollPane3, GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+							.addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 290, GroupLayout.PREFERRED_SIZE)
 							.addContainerGap())
 				);
 			}
@@ -488,11 +495,11 @@ public class StorageInPanel extends JPanel {
 							.addGap(331, 331, 331)
 							.addComponent(sureStorageIn, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(saveStorageIn, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+							.addComponent(saveStorageIn, GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
 							.addGap(3, 3, 3)
 							.addComponent(cancelStorageIn)
 							.addGap(6, 6, 6))
-						.addComponent(scrollPane2, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
+						.addComponent(scrollPane2, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 910, Short.MAX_VALUE)
 				);
 				storageInPanelLayout.setVerticalGroup(
 					storageInPanelLayout.createParallelGroup()
@@ -508,8 +515,7 @@ public class StorageInPanel extends JPanel {
 									.addComponent(saveStorageIn)
 									.addComponent(sureStorageIn, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)))
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
-							.addContainerGap())
+							.addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
 				);
 			}
 			storageInVO.addTab("\u5165\u5e93\u5355", storageInPanel);
@@ -579,38 +585,35 @@ public class StorageInPanel extends JPanel {
 						.addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
 							.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
 								.addGroup(panel1Layout.createSequentialGroup()
-									.addContainerGap()
-									.addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE))
+									.addContainerGap(794, Short.MAX_VALUE)
+									.addComponent(label2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 								.addGroup(panel1Layout.createSequentialGroup()
-									.addContainerGap(16, Short.MAX_VALUE)
-									.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-										.addGroup(panel1Layout.createSequentialGroup()
-											.addGap(138, 138, 138)
-											.addComponent(label2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-										.addGroup(panel1Layout.createSequentialGroup()
-											.addComponent(label1)
-											.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-											.addComponent(transferID, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-											.addComponent(label4)
-											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-											.addComponent(from, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-											.addComponent(label3)
-											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-											.addComponent(arrivalDate, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-											.addGap(140, 246, Short.MAX_VALUE)))))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(panel1Layout.createParallelGroup()
-								.addComponent(cancelArrival, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
-								.addComponent(createStorageIn, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE))
-							.addContainerGap())
+									.addContainerGap()
+									.addComponent(label1)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(transferID, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+									.addGap(18, 18, 18)
+									.addComponent(label4)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(from, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+									.addComponent(label3)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(arrivalDate, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
+									.addComponent(createStorageIn, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+							.addComponent(cancelArrival, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+							.addGap(6, 6, 6))
+						.addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 910, Short.MAX_VALUE)
 				);
 				panel1Layout.setVerticalGroup(
 					panel1Layout.createParallelGroup()
 						.addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
 							.addContainerGap()
 							.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(createStorageIn)
+								.addComponent(cancelArrival)
 								.addComponent(label1)
 								.addComponent(transferID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(label4)
@@ -619,14 +622,9 @@ public class StorageInPanel extends JPanel {
 								.addComponent(arrivalDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addComponent(label2)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(panel1Layout.createParallelGroup()
-								.addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 248, GroupLayout.PREFERRED_SIZE)
-								.addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-									.addComponent(createStorageIn)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(cancelArrival)))
-							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 301, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
 				);
 			}
 			arrivalVO.addTab("\u5230\u8fbe\u5355", panel1);
@@ -644,10 +642,10 @@ public class StorageInPanel extends JPanel {
 	private JPanel arriveList;
 	private JScrollPane scrollPane3;
 	private JTable arriveListTable;
-	private JTextField arrivalID;
-	private JButton search;
 	private JButton selectArrival;
 	private JButton refreshButton2;
+	private JTextField arrivalID;
+	private JButton search;
 	private JTabbedPane storageInVO;
 	private JPanel storageInPanel;
 	private JScrollPane scrollPane2;
