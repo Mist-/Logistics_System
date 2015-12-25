@@ -30,7 +30,6 @@ public class PaymentAdd extends JDialog {
 	
 	String [] infos ;
 	String [] occupation;
-	String [] list;
     PaymentVO payment = new PaymentVO();
 	
 	private void hiahia(){
@@ -38,9 +37,8 @@ public class PaymentAdd extends JDialog {
 	for (String name: infos) {
 		cbInfo.addItem(name);
 	}
-	occupation = new String[] {"快递员","普通财务人员","货车驾驶","营业厅业务员","中转中心业务员"};
+	occupation = new String[] {"快递员","普通财务人员","高级财务人员","货车驾驶员","仓库管理员","营业厅业务员","中转中心业务员"};
 	
-	list = new String[] {"装车单","中转单"};
 	lbInstitution.setVisible(false);
 	tfInstitution.setVisible(false);
 	cbOccupatiom.setVisible(false);
@@ -61,11 +59,7 @@ public class PaymentAdd extends JDialog {
 				tfInstitution.setVisible(false);
 		}
 			else if(cbInfo.getSelectedIndex()==1){
-				cbOccupatiom.setVisible(true);
-				cbOccupatiom.removeAllItems();
-				for(int i=0;i<list.length;i++){
-					cbOccupatiom.addItem(list[i]);
-				}
+				cbOccupatiom.setVisible(false);
 				lbMoney.setVisible(false);
 				tfMoney.setVisible(false);
 				lbInstitution.setVisible(true);
@@ -127,23 +121,14 @@ public class PaymentAdd extends JDialog {
 		}
 		//运费
 		else if(cbInfo.getSelectedIndex()==1){
-			info = infos[1];
-			
+			info = infos[1] + "中转单";
 			payment.setMoney(0);
 			long institution = Long.valueOf(tfInstitution.getText());
-			if(cbOccupatiom.getSelectedIndex()==0){
-			 info = info + ":" + list[0];
 			 payment.setInfo(info);
-			 payment = financialBL.buildPaymentFromEntruck(payment, institution);
-			}
-			else if(cbOccupatiom.getSelectedIndex()==1){
-			 info = info + ":" + list[1];
-			 payment.setInfo(info);
-				this.setVisible(false);
+			this.setVisible(false);
 
 			payment = financialBL.buildPaymentFromTransfer(payment, institution);
 			}
-		}
 		//人员工资
 		else if(cbInfo.getSelectedIndex()==2){
 			String ins = (String) cbOccupatiom.getSelectedItem();
@@ -151,9 +136,7 @@ public class PaymentAdd extends JDialog {
 			payment.setInfo(info);
 			payment.setMoney(0);
 			this.setVisible(false);
-
-			payment = financialBL.buildPaymentFromWages(payment, ins);
-			
+			payment = financialBL.buildPaymentFromWages(payment, ins);			
 		}
 		
 		this.setVisible(false);
