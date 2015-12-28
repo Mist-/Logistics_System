@@ -17,15 +17,6 @@ public interface FinancialBLService {
 //Initial
     ResultMessage buildStaffExcel(String info);
 
-    ResultMessage buildInstitutionExcel(String info);
-
-    ResultMessage buildVehicleInfoExcel(String info);
-
-    ResultMessage buildStorageInfoExcel(String info);
-
-    //Account
-    ResultMessage buildBankAccountExcel(String info, String[] name, double[] money);
-
     
 //Statement    
     ResultMessage businessConditionExcel(String dateStartYear, String dateStartMonth, String dateStartDay, String dateEndYear, String dateEndMonth, String dateEndDay);
@@ -63,8 +54,6 @@ public interface FinancialBLService {
     ArrayList<PaymentVO> searchAllPayment();
     
     ArrayList<ReceiptVO> searchAllReceipt();
-    
-    PaymentVO buildPaymentFromEntruck(PaymentVO pay, long institution);
     
     PaymentVO buildPaymentFromTransfer(PaymentVO pay, long institution);
     
