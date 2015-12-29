@@ -9,6 +9,8 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import utils.Timestamper;
+
 /**
  *
  *
@@ -43,24 +45,23 @@ public class StorageDataSerializableImpl extends UnicastRemoteObject implements 
 		return newlyApproved;
 	}
 
-	@Override
-	public ArrayList<DataPO> searchNewStorageInList(long institution) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<DataPO> searchNewStorageOutList(long institution) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 
 	@Override
-	public DataPO searchByDate(POType type, String date) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<DataPO> searchByDate(POType type, ArrayList<String> date) throws RemoteException {
+		ArrayList<DataPO> list = getPOList(type);
+		ArrayList<DataPO> result = new ArrayList<DataPO>();
+		for(int i = 0 ; i < date.size();i++){
+			for(int j = 0 ; j < list.size(); j++){
+				String d = Timestamper.getTimeByDate(list.get(j).getGenDate());
+				if(d.equals(date.get(i))){
+					result.add(list.get(j));
+				}
+				
+			}
+		}
+		return result;
 	}
 
 
@@ -108,5 +109,7 @@ public class StorageDataSerializableImpl extends UnicastRemoteObject implements 
 		}
 		return result;
 	}
+
+
 
 }

@@ -107,6 +107,9 @@ public class StorageIn implements StorageInService{
 		ArrayList<OrderPO> order = orderList.getOrderList(orderID);
 		try {
 			StorageInVO s=  storageInfo.allocateSpace(order);
+			if(s == null){
+				return null;
+			}
 			s.setDate(Timestamper.getTimeByDate());
 			s.centerID = user.getCenterID();
 			return s;

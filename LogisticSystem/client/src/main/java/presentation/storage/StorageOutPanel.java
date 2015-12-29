@@ -87,7 +87,7 @@ public class StorageOutPanel extends JPanel {
 
 	private void setList() {
 		selectStorageOut.setEnabled(false);
-		selectTransfer.setEnabled(false);
+		//selectTransfer.setEnabled(false);
 		try {
 			briefTransferAndStorageOutVO = storageOut.newStorageOut();
 		} catch (RemoteException e) {
@@ -153,7 +153,7 @@ public class StorageOutPanel extends JPanel {
 	}
 
 	private void transferListTableMouseClicked(MouseEvent e) {
-		selectTransfer.setEnabled(true);
+	//	selectTransfer.setEnabled(true);
 	}
 
 	private void cancelLoadMouseReleased(MouseEvent e) {
@@ -265,7 +265,6 @@ public class StorageOutPanel extends JPanel {
 		transferList = new JPanel();
 		scrollPane2 = new JScrollPane();
 		transferListTable = new JTable();
-		selectTransfer = new JButton();
 		getTransferButton = new JButton();
 		textField2 = new JTextField();
 		searchTransfer = new JButton();
@@ -354,6 +353,8 @@ public class StorageOutPanel extends JPanel {
 
 				//---- refreshButton ----
 				refreshButton.setText("\u5237\u65b0");
+				refreshButton.setIcon(new ImageIcon(getClass().getResource("/icons/refresh.png")));
+				refreshButton.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
 				refreshButton.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseReleased(MouseEvent e) {
@@ -365,15 +366,15 @@ public class StorageOutPanel extends JPanel {
 				storageOutList.setLayout(storageOutListLayout);
 				storageOutListLayout.setHorizontalGroup(
 					storageOutListLayout.createParallelGroup()
-						.addGroup(storageOutListLayout.createSequentialGroup()
+						.addGroup(GroupLayout.Alignment.TRAILING, storageOutListLayout.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(textField1, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addComponent(button3, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
-							.addGap(392, 392, 392)
-							.addComponent(refreshButton)
+							.addGap(338, 338, 338)
+							.addComponent(refreshButton, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(selectStorageOut, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(selectStorageOut, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
 							.addContainerGap())
 						.addComponent(scrollPane1)
 				);
@@ -383,14 +384,13 @@ public class StorageOutPanel extends JPanel {
 							.addContainerGap()
 							.addGroup(storageOutListLayout.createParallelGroup()
 								.addGroup(storageOutListLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-									.addComponent(textField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addComponent(button3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(selectStorageOut))
-								.addGroup(storageOutListLayout.createSequentialGroup()
-									.addComponent(refreshButton)
-									.addGap(0, 0, Short.MAX_VALUE)))
+									.addComponent(refreshButton, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+									.addComponent(selectStorageOut, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
+								.addGroup(storageOutListLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+									.addComponent(button3, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+									.addComponent(textField1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)))
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE))
+							.addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE))
 				);
 			}
 			startPane.addTab("\u5df2\u5ba1\u6279\u51fa\u5e93\u5355", storageOutList);
@@ -412,11 +412,10 @@ public class StorageOutPanel extends JPanel {
 					scrollPane2.setViewportView(transferListTable);
 				}
 
-				//---- selectTransfer ----
-				selectTransfer.setText("select");
-
 				//---- getTransferButton ----
 				getTransferButton.setText("\u67e5\u770b");
+				getTransferButton.setIcon(new ImageIcon(getClass().getResource("/icons/see_24x24.png")));
+				getTransferButton.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
 				getTransferButton.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseReleased(MouseEvent e) {
@@ -434,6 +433,8 @@ public class StorageOutPanel extends JPanel {
 
 				//---- refreshButton2 ----
 				refreshButton2.setText("\u5237\u65b0");
+				refreshButton2.setIcon(new ImageIcon(getClass().getResource("/icons/refresh.png")));
+				refreshButton2.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
 				refreshButton2.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseReleased(MouseEvent e) {
@@ -446,39 +447,28 @@ public class StorageOutPanel extends JPanel {
 				transferListLayout.setHorizontalGroup(
 					transferListLayout.createParallelGroup()
 						.addGroup(transferListLayout.createSequentialGroup()
-							.addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 796, GroupLayout.PREFERRED_SIZE)
-							.addGap(32644, 32644, 32644)
-							.addComponent(selectTransfer, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addContainerGap())
-						.addGroup(transferListLayout.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(textField2, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+							.addComponent(textField2, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addComponent(searchTransfer)
-							.addGap(439, 439, 439)
-							.addComponent(refreshButton2, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 344, Short.MAX_VALUE)
+							.addComponent(refreshButton2, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(getTransferButton, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addComponent(getTransferButton, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
+						.addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
 				);
 				transferListLayout.setVerticalGroup(
 					transferListLayout.createParallelGroup()
 						.addGroup(transferListLayout.createSequentialGroup()
-							.addGroup(transferListLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-								.addGroup(transferListLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-									.addComponent(getTransferButton, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-									.addComponent(refreshButton2, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
-								.addGroup(transferListLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-									.addComponent(textField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addComponent(searchTransfer, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-							.addGroup(transferListLayout.createParallelGroup()
-								.addGroup(GroupLayout.Alignment.TRAILING, transferListLayout.createSequentialGroup()
-									.addComponent(selectTransfer, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-									.addContainerGap())
-								.addGroup(GroupLayout.Alignment.TRAILING, transferListLayout.createSequentialGroup()
-									.addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
-									.addGap(24, 24, 24))))
+							.addContainerGap()
+							.addGroup(transferListLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(textField2, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+								.addComponent(searchTransfer, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+								.addComponent(getTransferButton, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+								.addComponent(refreshButton2, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE))
 				);
 			}
 			startPane.addTab("\u5df2\u5ba1\u6279\u4e2d\u8f6c\u5355", transferList);
@@ -495,6 +485,9 @@ public class StorageOutPanel extends JPanel {
 				//======== scrollPane4 ========
 				{
 					scrollPane4.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+					//---- outTable ----
+					outTable.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
 					scrollPane4.setViewportView(outTable);
 				}
 
@@ -636,18 +629,23 @@ public class StorageOutPanel extends JPanel {
 
 				//---- label8 ----
 				label8.setText("\u4e2d\u8f6c\u4e2d\u5fc3\u7f16\u53f7");
+				label8.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
 
 				//---- label9 ----
 				label9.setText("\u4e2d\u8f6c\u5355\u7f16\u53f7");
+				label9.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
 
 				//---- label10 ----
 				label10.setText("\u76ee\u7684\u5730");
+				label10.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
 
 				//---- label11 ----
 				label11.setText("\u76ee\u7684\u5730\u7f16\u53f7");
+				label11.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
 
 				//---- label12 ----
 				label12.setText("\u4e2d\u8f6c\u4e2d\u5fc3");
+				label12.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
 
 				//---- listID ----
 				listID.setEditable(false);
@@ -666,12 +664,15 @@ public class StorageOutPanel extends JPanel {
 
 				//---- label13 ----
 				label13.setText("\u73ed\u6b21  ");
+				label13.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
 
 				//---- label14 ----
 				label14.setText("\u76d1\u88c5\u5458");
+				label14.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
 
 				//---- label15 ----
 				label15.setText("\u8d39\u7528");
+				label15.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
 
 				//---- vehicleID ----
 				vehicleID.setEditable(false);
@@ -684,6 +685,7 @@ public class StorageOutPanel extends JPanel {
 
 				//---- label16 ----
 				label16.setText("\u88c5\u8fd0\u65e5\u671f");
+				label16.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
 
 				//---- date ----
 				date.setEditable(false);
@@ -715,9 +717,6 @@ public class StorageOutPanel extends JPanel {
 									.addGap(10, 10, 10)
 									.addComponent(date, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
 								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
-									.addGap(365, 365, 365)
-									.addComponent(vehicleID, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
-								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
 									.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
 										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
 											.addComponent(label10)
@@ -739,20 +738,25 @@ public class StorageOutPanel extends JPanel {
 									.addGap(135, 135, 135)
 									.addGroup(DeliveryListPanelLayout.createParallelGroup()
 										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
-											.addComponent(label15, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+											.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+												.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+													.addComponent(label14, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+													.addGap(18, 18, 18)
+													.addComponent(staffName, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
+												.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+													.addComponent(label15, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+													.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+													.addComponent(fee, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)))
+											.addGap(84, 84, 84)
+											.addComponent(createStorageOut, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
 											.addGap(18, 18, 18)
-											.addComponent(fee, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
-										.addGroup(GroupLayout.Alignment.TRAILING, DeliveryListPanelLayout.createSequentialGroup()
-											.addComponent(label14, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+											.addComponent(cancelLoad, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE))
+										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+											.addComponent(label13, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
 											.addGap(18, 18, 18)
-											.addComponent(staffName, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
-										.addComponent(label13, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
-									.addGap(92, 92, 92)
-									.addComponent(createStorageOut, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-									.addGap(18, 18, 18)
-									.addComponent(cancelLoad, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)))
-							.addContainerGap(12, Short.MAX_VALUE))
-						.addComponent(scrollPane5, GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
+											.addComponent(vehicleID, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)))))
+							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addComponent(scrollPane5)
 				);
 				DeliveryListPanelLayout.setVerticalGroup(
 					DeliveryListPanelLayout.createParallelGroup()
@@ -766,23 +770,20 @@ public class StorageOutPanel extends JPanel {
 									.addGap(3, 3, 3)
 									.addComponent(label16))
 								.addComponent(date, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(7, 7, 7)
 							.addGroup(DeliveryListPanelLayout.createParallelGroup()
-								.addGroup(GroupLayout.Alignment.TRAILING, DeliveryListPanelLayout.createSequentialGroup()
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(vehicleID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
-									.addGap(9, 9, 9)
-									.addGroup(DeliveryListPanelLayout.createParallelGroup()
-										.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-											.addComponent(label8)
-											.addComponent(centerID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-										.addComponent(label13))))
+								.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+									.addComponent(label8)
+									.addComponent(centerID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+									.addComponent(label13)
+									.addComponent(vehicleID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 							.addGroup(DeliveryListPanelLayout.createParallelGroup()
 								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
 									.addGap(6, 6, 6)
 									.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-										.addComponent(staffName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(label14)))
+										.addComponent(label14)
+										.addComponent(staffName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
 									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 									.addComponent(centerName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -798,8 +799,8 @@ public class StorageOutPanel extends JPanel {
 											.addGroup(DeliveryListPanelLayout.createParallelGroup()
 												.addComponent(label11)
 												.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-													.addComponent(fee, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-													.addComponent(label15))))
+													.addComponent(label15)
+													.addComponent(fee, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
 										.addComponent(destID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 									.addGap(14, 14, 14)
 									.addGroup(DeliveryListPanelLayout.createParallelGroup()
@@ -811,7 +812,7 @@ public class StorageOutPanel extends JPanel {
 										.addComponent(createStorageOut, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 										.addComponent(cancelLoad, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))))
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(scrollPane5, GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
+							.addComponent(scrollPane5, GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
 				);
 			}
 			transferListPane.addTab("\u4e2d\u8f6c\u5355", DeliveryListPanel);
@@ -832,7 +833,6 @@ public class StorageOutPanel extends JPanel {
 	private JPanel transferList;
 	private JScrollPane scrollPane2;
 	private JTable transferListTable;
-	private JButton selectTransfer;
 	private JButton getTransferButton;
 	private JTextField textField2;
 	private JButton searchTransfer;

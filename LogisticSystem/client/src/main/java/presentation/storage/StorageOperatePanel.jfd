@@ -12,8 +12,8 @@ new FormModel {
 				name: "operatePane"
 				"font": &Font0 new java.awt.Font( "等线", 0, 14 )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :::p, par l {comp scrollPane1:::::x, seq {par l {comp label10:::p::p, comp label9::::173:x}, space :p:13:p, par l {seq l {comp endY:::p:49:p, space :::p, comp label14:::p:20:p, space :5:5:p, comp endM:::p:50:p, space :5:5:p, comp label15:::p:20:p, space :5:5:p, comp endD:::p:55:p, space :::p, comp label16:::p::p}, seq l {comp startY:::p:49:p, space :::p, comp label11:::p:20:p, space :5:5:p, comp startM:::p:50:p, space :5:5:p, comp label12:::p:20:p, space :5:5:p, comp startD:::p:55:p, space :::p, comp label13:::p::p}}, space :p:53:p, par l:::p {comp storageIn:::::x, comp searchListButton:::::x}, space s:::p, par l {comp storageOut:::p::p, comp selectStorageListButton:::p:67:p}, space :0:198:x}}, space :::p}}"
-					"$verticalGroup": "par l {seq t {space :::p, par l {seq l {par l:::p {comp startY:::::x, comp label9:::::x, par l:t {comp label11:::p:25:p, comp startM:::p::p, comp label12:::p:25:p, par b {comp startD::b:p::p, comp label13::b:p:25:p}}}, space :::p, par t {par b {comp endY::b:p::p, comp label10::b:p:20:p}, par l {comp label14:::p:25:p, comp endM:::p::p, comp label15:::p:25:p, par b {comp endD::b:p::p, comp label16::b:p:25:p, comp searchListButton::b:p:26:p, comp selectStorageListButton::b:p:26:p}}}}, par b:l {comp storageIn::b:p:22:p, comp storageOut::b:p:22:p}}, space :::p, comp scrollPane1::::422:x, space :::p}}"
+					"$horizontalGroup": "par l {seq l {space :::p, par l {comp scrollPane1::::820:x, seq {par l {comp label10:::p::p, comp label9:::p:90:p}, space u:::p, par l {seq l {comp startY:::p:49:p, space :::p, comp label11:::p:20:p, space :5:5:p, comp startM:::p:50:p, space :5:5:p, comp label12:::p:20:p, space :5:5:p, comp startD:::p:55:p, space :::p, comp label13:::p::p, space :p:53:p, comp storageIn:::p::p}, seq l {comp endY:::p:49:p, space :::p, comp label14:::p:20:p, space :5:5:p, comp endM:::p:50:p, space :5:5:p, comp label15:::p:20:p, space :5:5:p, comp endD:::p:55:p, space :::p, comp label16:::p::p, space :p:53:p, comp storageOut:::p::p, space s:::p, comp searchListButton:::p:67:p, space :p:94:p, comp label3:::p::p, space :::p, comp addAll:::p:82:p}}, space :0:60:x}}, space :::p}}"
+					"$verticalGroup": "par l {seq t {space :::p, par l {seq {comp label9:::p:26:p, space :p:9:p, comp label10:::p:20:p}, seq l {par l:::p {comp startY:::::x, par l:t {comp label11:::p:25:p, comp startM:::p::p, comp label12:::p:25:p, par b:l {comp startD::b:p::p, comp label13::b:p:25:p}}}, space :::p, par t:::p {comp endY::t:::x, comp label14::l:p:25:p, comp endM::t:::x, comp label15::l:p:25:p, par b:l {comp endD::b:p::p, comp label16::b:p:25:p, comp storageOut::b:p:22:p, comp searchListButton::b:p:26:p, comp label3::b:p::p, comp addAll::b:p::p}}}, comp storageIn::l:p:22:p}, space :::p, comp scrollPane1::::422:x, space :::p}}"
 				} ) {
 					name: "showPanel"
 					"font": #Font0
@@ -41,12 +41,6 @@ new FormModel {
 						"font": #Font0
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "searchListButtonMouseReleased", true ) )
 					} )
-					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "selectStorageListButton"
-						"text": "查看"
-						"font": #Font0
-						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "selectStorageListButtonMouseReleased", true ) )
-					} )
 					add( new FormComponent( "javax.swing.JRadioButton" ) {
 						name: "storageIn"
 						"text": "入库单"
@@ -66,7 +60,6 @@ new FormModel {
 							name: "listTable"
 							"selectionMode": 1
 							"font": #Font0
-							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "listTableMouseClicked", true ) )
 						} )
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
@@ -115,12 +108,22 @@ new FormModel {
 						"text": "日"
 						"font": #Font0
 					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label3"
+						"text": "合计："
+						"font": new java.awt.Font( "宋体", 0, 14 )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "addAll"
+						"text": "未搜索"
+						"font": new java.awt.Font( "宋体", 0, 14 )
+					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "库存查看"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq t {space ::496:x, comp refreshButton:::p:92:p, space :::p, comp saveStorageCheck:::p:115:p, space :::p, comp exportExcel:::p::p, space :::p}, comp scrollPane2::l::840:x}"
-					"$verticalGroup": "par l {seq l {space :::p, par l {seq {par b {comp exportExcel::b:p::p, comp saveStorageCheck::b:p::p}, space :0:1:x}, comp refreshButton:::::x}, space :::p, comp scrollPane2::::456:x}}"
+					"$horizontalGroup": "par l {seq t {space :::p, comp refreshButton:::p:116:p, space ::468:x, comp saveStorageCheck:::p:115:p, space :::p, comp exportExcel:::p:115:p, space :::p}, comp scrollPane2::l::840:x}"
+					"$verticalGroup": "par l {seq l {space :::p, par l {par b {comp saveStorageCheck::b:p:34:p, comp exportExcel:::p:34:p}, comp refreshButton:::p:30:p}, comp scrollPane2::::462:x}}"
 				} ) {
 					name: "checkPanel"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -144,71 +147,17 @@ new FormModel {
 						"text": "导出excel"
 						"font": #Font1
 						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/excel_24x24.png" )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "exportExcelMouseReleased", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "refreshButton"
 						"text": "刷新"
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/refresh_16x16.png" )
+						"font": new java.awt.Font( "宋体", 0, 14 )
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "refreshButtonMouseClicked", true ) )
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "库存盘点"
-				} )
-				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :::p, par l:::p {comp label17:::::x, comp label18:::::x, comp label19:::p::p}, space :::p, par l:::p {comp planePercent:::::x, comp trainPercent:::::x, comp truckPercent:::p:115:p}, space :::p, par l {comp enlargePlane:::p::p, comp enlargeTrain:::p::p, comp enlargeTruck::l:p::p}, space ::588:x}}"
-					"$verticalGroup": "par l {seq l {space :::p, par b {comp label17::b:p:27:p, comp planePercent::b:p::p, comp enlargePlane::b:p::p}, space :::p, par b {comp label18::b:p:26:p, comp trainPercent::b:p::p, comp enlargeTrain::b:p::p}, space :::p, par b {comp label19::b:p:28:p, comp truckPercent::b:p::p, comp enlargeTruck::b:p::p}, space ::397:x}}"
-				} ) {
-					name: "adjustPanel"
-					"font": &Font2 new java.awt.Font( "等线", 0, 14 )
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label17"
-						"text": "航运区："
-						"font": #Font2
-					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label18"
-						"text": "铁运区："
-						"font": #Font2
-					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label19"
-						"text": "汽运区："
-						"font": #Font2
-					} )
-					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "planePercent"
-						"editable": false
-						"enabled": false
-						"font": #Font2
-					} )
-					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "trainPercent"
-						"editable": false
-						"enabled": false
-						"font": #Font2
-					} )
-					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "truckPercent"
-						"editable": false
-						"enabled": false
-						"font": #Font2
-					} )
-					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "enlargePlane"
-						"text": "扩充"
-						"font": #Font2
-					} )
-					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "enlargeTrain"
-						"text": "扩充"
-						"font": #Font2
-					} )
-					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "enlargeTruck"
-						"text": "扩充"
-						"font": #Font2
-					} )
-				}, new FormLayoutConstraints( null ) {
-					"title": "库存调整"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 					"$horizontalGroup": "par l {seq l {space :::p, par l {seq l {comp label1:::p:61:p, space :55:55:p, comp textField1:::p:70:p, space :19:19:p, comp label5:::p::p, space :6:6:p, comp planeInput:::p:70:p}, seq l {comp label2:::p::p, space :18:18:p, comp numInput:::p:70:p, space :19:19:p, comp label6:::p::p, space :6:6:p, comp trainInput:::p:70:p}, seq l {comp label4:::p::p, space :18:18:p, comp shelfInput:::p:71:p, space :18:18:p, comp label7:::p::p, space :6:6:p, comp truckInput:::p:70:p}, seq l {comp label20:::p::p, space :9:9:p, comp alarmPercentInput:::p:72:p, space :18:18:p, comp label8:::p::p, space :6:6:p, comp flexibleInput:::p:70:p}, seq l {space :p:81:p, comp InitSureButton:::p:84:p, space :p:68:p, comp reInputButton:::p:116:p}}, space ::463:x}}"
@@ -218,96 +167,205 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label1"
 						"text": "区域数量"
-						"font": &Font3 new java.awt.Font( "等线", 0, 14 )
+						"font": &Font2 new java.awt.Font( "等线", 0, 14 )
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "textField1"
 						"text": "4"
 						"editable": false
-						"font": #Font3
+						"font": #Font2
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label2"
 						"text": "货架规格（位）"
-						"font": #Font3
+						"font": #Font2
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "numInput"
-						"font": #Font3
+						"font": #Font2
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label4"
 						"text": "每排架数（架）"
-						"font": #Font3
+						"font": #Font2
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "shelfInput"
-						"font": #Font3
+						"font": #Font2
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label5"
 						"text": "航运区（排）"
-						"font": #Font3
+						"font": #Font2
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label6"
 						"text": "铁运区（排）"
-						"font": #Font3
+						"font": #Font2
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label7"
 						"text": "汽运区（排）"
-						"font": #Font3
+						"font": #Font2
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label8"
 						"text": "机动区（排）"
-						"font": #Font3
+						"font": #Font2
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "planeInput"
-						"font": #Font3
+						"font": #Font2
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "trainInput"
-						"font": #Font3
+						"font": #Font2
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "truckInput"
-						"font": #Font3
+						"font": #Font2
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "flexibleInput"
-						"font": #Font3
+						"font": #Font2
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "InitSureButton"
 						"text": "确认"
-						"font": #Font3
+						"font": #Font2
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "InitSureButtonMouseClicked", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "reInputButton"
 						"text": "重新输入"
-						"font": #Font3
+						"font": #Font2
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "reInputButtonMouseClicked", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label20"
 						"text": "报警比例（0.xx）"
-						"font": #Font3
+						"font": #Font2
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "alarmPercentInput"
-						"font": #Font3
+						"font": #Font2
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "初始化"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq {par l {seq {space :p:276:p, par l {comp scrollPane3:::::x, seq l {par l:::p {comp label17:::::x, comp label18:::::x, comp label19:::p::p}, space :::p, par l:::p {comp planePercent:::::x, comp trainPercent:::::x, comp truckPercent:::p:115:p}, space s:::p, par l {comp enlargeTruck:::p::p, comp enlargePlane::l:p::p, comp enlargeTrain::l:p::p}}}}, seq l {space :p:358:p, comp label23:::p::p}}, space :p:310:p}}"
+					"$verticalGroup": "par l {seq l {space :::p, par b {comp label17::b:p:27:p, comp planePercent::b:p::p, comp enlargePlane::b:p::p}, space :::p, par b {comp label18::b:p:26:p, comp trainPercent::b:p::p, comp enlargeTrain::b:p::p}, space :::p, par b {comp label19::b:p:28:p, comp truckPercent::b:p::p, comp enlargeTruck::b:p::p}, space :p:37:p, comp label23:::p::p, space :::p, comp scrollPane3:::p:160:p, space ::178:x}}"
+				} ) {
+					name: "adjustPanel"
+					"font": &Font3 new java.awt.Font( "等线", 0, 14 )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label17"
+						"text": "航运区："
+						"font": #Font3
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label18"
+						"text": "铁运区："
+						"font": #Font3
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label19"
+						"text": "汽运区："
+						"font": #Font3
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "planePercent"
+						"editable": false
+						"enabled": false
+						"font": #Font3
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "trainPercent"
+						"editable": false
+						"enabled": false
+						"font": #Font3
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "truckPercent"
+						"editable": false
+						"enabled": false
+						"font": #Font3
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "enlargePlane"
+						"text": "扩充"
+						"font": #Font3
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "enlargePlaneMouseReleased", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "enlargeTrain"
+						"text": "扩充"
+						"font": #Font3
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "enlargeTrainMouseReleased", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "enlargeTruck"
+						"text": "扩充"
+						"font": #Font3
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "enlargeTruckMouseReleased", true ) )
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane3"
+						add( new FormComponent( "javax.swing.JTextArea" ) {
+							name: "alarmArea"
+							"font": new java.awt.Font( "方正等线", 0, 14 )
+							"editable": false
+							"enabled": false
+						} )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label23"
+						"text": "仓库情况"
+						"font": new java.awt.Font( "宋体", 0, 14 )
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "库存调整"
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
 			"size": new java.awt.Dimension( 855, 540 )
+		} )
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "sureDialog"
+			"title": "警告"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq t {space ::38:x, par l {par l {seq t {comp label21:::p::p, space :p:18:p}, seq t {comp label22:::p::p, space :p:56:p}}, seq t {comp sureButton:::p::p, space :::p, comp cancelButton:::p::p, space :p:45:p}}}}"
+				"$verticalGroup": "par l {seq l {space :p:30:p, comp label21:::p::p, space u:::p, comp label22:::p::p, space s:::p, par b {comp sureButton::b:p::p, comp cancelButton::b:p::p}, space ::48:x}}"
+			} ) {
+				name: "panel1"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label21"
+					"text": "初始化后库存信息将被清空"
+					"font": new java.awt.Font( "宋体", 0, 14 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label22"
+					"text": "是否确认操作？"
+					"font": new java.awt.Font( "宋体", 0, 14 )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "sureButton"
+					"text": "确认"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "sureButtonMouseReleased", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "cancelButton"
+					"text": "取消"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "cancelButtonMouseReleased", true ) )
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 860, 170 )
+			"size": new java.awt.Dimension( 240, 200 )
 		} )
 	}
 }

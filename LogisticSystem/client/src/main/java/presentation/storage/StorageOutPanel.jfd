@@ -9,8 +9,8 @@ new FormModel {
 				name: "startPane"
 				"font": &Font0 new java.awt.Font( "等线", 0, 14 )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {space :::p, comp textField1:::p:136:p, space :::p, comp button3:::p:89:p, space :p:392:p, comp refreshButton:::p::p, space :::p, comp selectStorageOut:::::x, space :::p}, comp scrollPane1::l:::x}"
-					"$verticalGroup": "par l {seq t {space :::p, par l {par b {comp textField1::b:p::p, comp button3::b:::x, comp selectStorageOut::b:p::p}, seq l {comp refreshButton:::p::p, space :0:0:x}}, space :::p, comp scrollPane1::::299:x}}"
+					"$horizontalGroup": "par l {seq t {space :::p, comp textField1:::p:136:p, space :::p, comp button3:::p:89:p, space :p:338:p, comp refreshButton:::p:100:p, space :::p, comp selectStorageOut::::100:x, space :::p}, comp scrollPane1::l:::x}"
+					"$verticalGroup": "par l {seq t {space :::p, par l {par b:l {comp refreshButton::b:p:33:p, comp selectStorageOut::b:p:33:p}, par b {comp button3::b:p:30:p, comp textField1::b:p:30:p}}, space :::p, comp scrollPane1::::292:x}}"
 				} ) {
 					name: "storageOutList"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -42,14 +42,16 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "refreshButton"
 						"text": "刷新"
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/refresh.png" )
+						"font": new java.awt.Font( "宋体", 0, 14 )
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "refreshButtonMouseReleased", true ) )
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "已审批出库单"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {comp scrollPane2:::p:796:p, space :p:32644:p, comp selectTransfer:::::x, space :::p}, seq l {space :::p, comp textField2:::p:85:p, space :::p, comp searchTransfer:::p::p, space :p:439:p, comp refreshButton2:::p:76:p, space :::p, comp getTransferButton:::p:99:p, space :::x}}"
-					"$verticalGroup": "par l {seq {par t {par b {comp getTransferButton::b:p:33:p, comp refreshButton2::b:p:33:p}, par b {comp textField2::b:p::p, comp searchTransfer::b:p:25:p}}, space ::10:x, par l {seq t {comp selectTransfer:::p:46:p, space :::p}, seq t {comp scrollPane2:::p:274:p, space :p:24:p}}}}"
+					"$horizontalGroup": "par l {seq l {space :::p, comp textField2:::p:138:p, space :::p, comp searchTransfer:::p::p, space ::344:x, comp refreshButton2:::p:100:p, space :::p, comp getTransferButton:::p:100:p, space :::p}, comp scrollPane2::l::795:x}"
+					"$verticalGroup": "par l {seq {space :::p, par b {comp textField2::b:p:33:p, comp searchTransfer::b:p:33:p, comp getTransferButton::b:p:33:p, comp refreshButton2::b:p:33:p}, space :::p, comp scrollPane2::::292:x}}"
 				} ) {
 					name: "transferList"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -61,12 +63,10 @@ new FormModel {
 						} )
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "selectTransfer"
-						"text": "select"
-					} )
-					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "getTransferButton"
 						"text": "查看"
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/see_24x24.png" )
+						"font": new java.awt.Font( "宋体", 0, 14 )
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "getTransferButtonMouseReleased", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
@@ -82,6 +82,8 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "refreshButton2"
 						"text": "刷新"
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/refresh.png" )
+						"font": new java.awt.Font( "宋体", 0, 14 )
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "refreshButton2MouseReleased", true ) )
 					} )
 				}, new FormLayoutConstraints( null ) {
@@ -107,6 +109,7 @@ new FormModel {
 					"font": #Font2
 					add( new FormComponent( "javax.swing.JTable" ) {
 						name: "outTable"
+						"font": &Font3 new java.awt.Font( "宋体", 0, 14 )
 					} )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
@@ -166,17 +169,17 @@ new FormModel {
 		} )
 		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 			name: "transferListPane"
-			"font": &Font3 new java.awt.Font( "等线", 0, 14 )
+			"font": &Font4 new java.awt.Font( "等线", 0, 14 )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp label9:::p::p, space :p:32:p, comp listID:::p:80:p, space :p:135:p, comp label16:::p::p, space :10:10:p, comp date:::p:80:p}, seq l {space :p:365:p, comp vehicleID:::p:80:p}, seq l {par t {seq {comp label10:::p::p, space :::x, comp destName:::p:82:p}, seq {comp label11:::p::p, space :::x, comp destID:::p:82:p}, seq {comp label12:::p::p, space :::x, comp centerName:::p:82:p}, seq {space :0:0:x, comp label8:::p::p, space s:::p, comp centerID:::p:82:p}}, space :p:135:p, par l {seq l {comp label15:::p:40:p, space s:::p, comp fee:::p:80:p}, seq t {comp label14:::p:40:p, space s:::p, comp staffName:::p:80:p}, comp label13:::p:48:p}, space :p:92:p, comp createStorageOut:::p:109:p, space s:::p, comp cancelLoad:::p:109:p}}, space ::12:x}, comp scrollPane5::l::795:x}"
-				"$verticalGroup": "par l {seq t {space :::p, par l {par b {comp label9::b:p::p, comp listID::b:p::p}, seq {space :3:3:p, comp label16:::p::p}, comp date:::p::p}, par l {seq t {space :::p, comp vehicleID:::p::p}, seq {space :9:9:p, par l {par b {comp label8::b:p::p, comp centerID::b:p::p}, comp label13:::p::p}}}, par l {seq {space :p:6:p, par b {comp staffName::b:p::p, comp label14::b:p::p}}, seq l {space :::p, comp centerName:::p::p}, seq t {space :::p, comp label12:::p::p}}, par l {seq {space :p:12:p, par l {seq {space :3:3:p, par l {comp label11:::p::p, par b {comp fee::b:p::p, comp label15::b:p::p}}}, comp destID::l:p::p}, space :p:14:p, par l {comp label10:::p::p, comp destName:::p::p}}, seq t {space :::p, par b {comp createStorageOut::b:p:37:p, comp cancelLoad::b:p:33:p}}}, space :::p, comp scrollPane5::::151:x}}"
+				"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp label9:::p::p, space :p:32:p, comp listID:::p:80:p, space :p:135:p, comp label16:::p::p, space :10:10:p, comp date:::p:80:p}, seq l {par t {seq {comp label10:::p::p, space :::x, comp destName:::p:82:p}, seq {comp label11:::p::p, space :::x, comp destID:::p:82:p}, seq {comp label12:::p::p, space :::x, comp centerName:::p:82:p}, seq {space :0:0:x, comp label8:::p::p, space s:::p, comp centerID:::p:82:p}}, space :p:135:p, par l {seq l {par t:::p {seq {comp label14:::p:48:p, space s:::p, comp staffName:::p:80:p}, seq {comp label15:::p:40:p, space :::x, comp fee:::p:80:p}}, space :p:84:p, comp createStorageOut:::p:109:p, space s:::p, comp cancelLoad:::p:109:p}, seq l {comp label13:::p:48:p, space s:::p, comp vehicleID:::p:80:p}}}}, space :::x}, comp scrollPane5::l:::x}"
+				"$verticalGroup": "par l {seq t {space :::p, par l {par b {comp label9::b:p::p, comp listID::b:p::p}, seq {space :3:3:p, comp label16:::p::p}, comp date:::p::p}, space :7:7:p, par l {par b {comp label8::b:p::p, comp centerID::b:p::p}, par b {comp label13::b:p::p, comp vehicleID::b:p::p}}, par l {seq {space :p:6:p, par b {comp label14::b:p::p, comp staffName::b:p::p}}, seq l {space :::p, comp centerName:::p::p}, seq t {space :::p, comp label12:::p::p}}, par l {seq {space :p:12:p, par l {seq {space :3:3:p, par l {comp label11:::p::p, par b {comp label15::b:p::p, comp fee::b:p::p}}}, comp destID::l:p::p}, space :p:14:p, par l {comp label10:::p::p, comp destName:::p::p}}, seq t {space :::p, par b {comp createStorageOut::b:p:37:p, comp cancelLoad::b:p:33:p}}}, space :::p, comp scrollPane5::::153:x}}"
 			} ) {
 				name: "DeliveryListPanel"
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 					name: "scrollPane5"
 					add( new FormComponent( "javax.swing.JTable" ) {
 						name: "loadTable"
-						"font": #Font3
+						"font": #Font4
 						"selectionMode": 0
 						"enabled": false
 					} )
@@ -184,29 +187,34 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "cancelLoad"
 					"text": "取消"
-					"font": #Font3
+					"font": #Font4
 					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/cancel_24x24.png" )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "cancelLoadMouseReleased", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label8"
 					"text": "中转中心编号"
+					"font": #Font3
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label9"
 					"text": "中转单编号"
+					"font": #Font3
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label10"
 					"text": "目的地"
+					"font": #Font3
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label11"
 					"text": "目的地编号"
+					"font": #Font3
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label12"
 					"text": "中转中心"
+					"font": #Font3
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "listID"
@@ -231,14 +239,17 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label13"
 					"text": "班次  "
+					"font": #Font3
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label14"
 					"text": "监装员"
+					"font": #Font3
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label15"
 					"text": "费用"
+					"font": #Font3
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "vehicleID"
@@ -255,6 +266,7 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label16"
 					"text": "装运日期"
+					"font": #Font3
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "date"

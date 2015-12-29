@@ -42,35 +42,35 @@ public class MockStorageDataService implements StorageDataService {
 		return null;
 	}
 
+//
+//	@Override
+//	public ArrayList<DataPO> searchNewStorageInList(long institution) {
+//		// TODO Auto-generated method stub
+//		
+//		StorageInListPO s1 = new StorageInListPO();
+//		StorageInListPO s2 = new StorageInListPO();
+//		ArrayList<DataPO> s = new ArrayList<DataPO>();
+//		s.add(s1);
+//		s.add(s2);
+//		return s;
+//	}
+//
+//	@Override
+//	public ArrayList<DataPO> searchNewStorageOutList(long institution) {
+//		
+//			StorageOutListPO s1 = new StorageOutListPO();
+//			StorageOutListPO s2 = new StorageOutListPO();
+//			ArrayList<DataPO> a = new ArrayList<>();
+//			a.add(s1);
+//			a.add(s2);
+//			return a;
+//	}
 
-	@Override
-	public ArrayList<DataPO> searchNewStorageInList(long institution) {
-		// TODO Auto-generated method stub
-		
-		StorageInListPO s1 = new StorageInListPO();
-		StorageInListPO s2 = new StorageInListPO();
-		ArrayList<DataPO> s = new ArrayList<DataPO>();
-		s.add(s1);
-		s.add(s2);
-		return s;
-	}
-
-	@Override
-	public ArrayList<DataPO> searchNewStorageOutList(long institution) {
-		
-			StorageOutListPO s1 = new StorageOutListPO();
-			StorageOutListPO s2 = new StorageOutListPO();
-			ArrayList<DataPO> a = new ArrayList<>();
-			a.add(s1);
-			a.add(s2);
-			return a;
-	}
-
-	@Override
-	public DataPO searchByDate(POType type, String date) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public DataPO searchByDate(POType type, String date) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 	@Override
 	public DataPO searchStorageInfo(String date) {
@@ -95,6 +95,13 @@ public class MockStorageDataService implements StorageDataService {
 	public DataPO search(POType type, long key) throws RemoteException {
 		// TODO Auto-generated method stub
 		return new StorageInfoPO();
+	}
+
+	@Override
+	public ArrayList<DataPO> searchByDate(POType type, ArrayList<String> date)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

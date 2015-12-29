@@ -10,9 +10,13 @@ import data.vo.StorageInfoVO;
 import data.vo.StorageListVO;
 import data.vo.StorageOutVO;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.util.ArrayList;
+
+import jxl.write.WriteException;
+import jxl.write.biff.RowsExceededException;
 
 public interface StorageOperateService {
 	//ø‚¥Ê±®æØ
@@ -24,19 +28,18 @@ public interface StorageOperateService {
 	
 	
 	//ø‚¥Ê≤Èø¥
-	StorageListVO getStorageInList(String startTime, String endTime, POType type) throws RemoteException, ParseException;	
+	StorageListVO getStorageList(String startTime, String endTime, POType type) throws RemoteException, ParseException;	
 
 	//ø‚¥Ê≈Ãµ„
 	public StorageInfoVO storageCheck();
 	public ResultMessage saveStorageInfo() throws RemoteException;
-	public void storageCheckOutput(StorageInfoPO info);//excel 
+	public void storageCheckOutput(StorageInfoVO info) throws IOException, RowsExceededException, WriteException;//excel 
 	
 	//ø‚¥Ê≥ı ºªØ
 	public ResultMessage inputStorageInitInfo(int num, int shelf, int planeR, int trainR, int truckR, int flexibleR, double alarmPercent);
 	
-	public StorageInVO getStorageIn(long id);
-
-	public StorageOutVO getStorageOut(long id);
+	//¿©»›
+	public ResultMessage enlarge(StorageArea area);
 
 
 	

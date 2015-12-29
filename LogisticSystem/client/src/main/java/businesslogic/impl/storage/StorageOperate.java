@@ -1,11 +1,22 @@
 package businesslogic.impl.storage;
 
+import java.awt.print.Book;
+import java.io.File;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+
+import utils.Timestamper;
+import jxl.Workbook;
+import jxl.write.Label;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
+import jxl.write.biff.RowsExceededException;
 import data.enums.POType;
 import data.enums.StorageArea;
 import data.message.ResultMessage;
@@ -43,14 +54,21 @@ public class StorageOperate implements StorageOperateService {
 		if (planeRate >= storageInfoPO.getAlarmPercent()
 				&& enlargeArea != StorageArea.PLANE)
 			result.add("航空区库存已超过警戒比例!");
-		else if (trainRate >= storageInfoPO.getAlarmPercent()
+		else {
+			result.add("航空区库存充足！");
+		}
+		if (trainRate >= storageInfoPO.getAlarmPercent()
 				&& enlargeArea != StorageArea.TRAIN)
 			result.add("铁运区库存已超过警戒比例！");
-		else if (truckRate >= storageInfoPO.getAlarmPercent()
+		else {
+			result.add("铁运区库存充足！");
+		}
+		if (truckRate >= storageInfoPO.getAlarmPercent()
 				&& enlargeArea != StorageArea.TRUCK)
 			result.add("汽运区库存已超过警戒比例！");
-		else
-			;
+		else {
+			result.add("汽运区库存充足！");
+		}
 
 		return result;
 	}
@@ -62,7 +80,7 @@ public class StorageOperate implements StorageOperateService {
 		int plane = 0;
 		int train = 0;
 		int truck = 0;
-		if(storageInfoPO == null){
+		if (storageInfoPO == null) {
 			return null;
 		}
 		ArrayList<long[][][]> storageInfo = storageInfoPO.getStorage();
@@ -94,8 +112,8 @@ public class StorageOperate implements StorageOperateService {
 		double planeRate = ((double) plane) / storageInfoPO.getPlane();
 		double trainRate = ((double) train) / storageInfoPO.getTrain();
 		double truckRate = ((double) truck) / storageInfoPO.getTruck();
-
-		double[] result = { planeRate, trainRate, truckRate };
+		double percent = storageInfoPO.getAlarmPercent();
+		double[] result = { planeRate, trainRate, truckRate, percent };
 		actualRate = result;
 		return result;
 	}
@@ -114,61 +132,71 @@ public class StorageOperate implements StorageOperateService {
 
 	/**
 	 * 输入查看时间范围内所有入库单，出库单
-	 * @throws ParseException 
+	 * 
+	 * @throws ParseException
 	 * 
 	 * @throws RemoteException
 	 */
 	@Override
-	public StorageListVO getStorageInList(String startTime, String endTime,
+	public StorageListVO getStorageList(String startTime, String endTime,
 			POType type) throws ParseException, RemoteException {
 		ArrayList<String> date = getTime(startTime, endTime);
 		if (date == null) {
 			return null;
 		}
-		for(String d:date){
-			DataPO i = storageData.searchByDate(type,d);
-			if (i != null) {
-				storageList.add(i);
-			}
-		}
+		storageList = storageData.searchByDate(type, date);
 		int all = 0;
 		String[][] List = new String[storageList.size()][2];
 		for (int i = 0; i < List.length; i++) {
-			StorageInListPO in = (StorageInListPO) storageList.get(i);
-			all += in.getOrderNum();
-			String[] s = { in.getSerialNum() + "", in.getDate() };
-			List[i] = s;
+			if (type == POType.STORAGEINLIST) {
+				StorageInListPO in = (StorageInListPO) storageList.get(i);
+				all += in.getOrderNum();
+				String[] s = { in.getSerialNum() + "", in.getDate(),
+						in.getOrderNum() + "" };
+				List[i] = s;
+			} else {
+				StorageOutListPO out = (StorageOutListPO) storageList.get(i);
+				all += out.getOrderNum();
+				String[] s = { out.getSerialNum() + "", out.getDate(),
+						out.getOrderNum() + "" };
+				List[i] = s;
+			}
 		}
 		return new StorageListVO(List, all);
 	}
 
 	/**
 	 * 获取时间段内所有日期
-	 * @param start 起始
-	 * @param end 终止
+	 * 
+	 * @param start
+	 *            起始
+	 * @param end
+	 *            终止
 	 * @return 所有日期
 	 * @throws ParseException
 	 */
-	private ArrayList<String> getTime(String start, String end){
+	private ArrayList<String> getTime(String start, String end) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		ArrayList<String> date = new ArrayList<String>();
 		try {
 			Date s = sdf.parse(start);
 			Date e = sdf.parse(end);
 			date.add(sdf.format(s));
+			System.out.println(sdf.format(s));
 			Calendar begin = Calendar.getInstance();
 			begin.setTime(s);
 			Calendar over = Calendar.getInstance();
 			over.setTime(e);
-			if (begin.after(end)) {
+			if (begin.after(over)) {
 				return null;
 			}
-			while (over.after(begin.getTime())) {
+			while (over.after(begin)) {
 				begin.add(Calendar.DAY_OF_MONTH, 1);
-				date.add(sdf.format(begin));
+				System.out.println(sdf.format(begin.getTime()));
+				date.add(sdf.format(begin.getTime()));
 			}
 			return date;
-			
+
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 			return null;
@@ -213,7 +241,7 @@ public class StorageOperate implements StorageOperateService {
 	public StorageInfoVO storageCheck() {
 		if (storageInfoPO != null) {
 			return new StorageInfoVO(storageInfoPO);
-		}else{
+		} else {
 			return null;
 		}
 	}
@@ -223,22 +251,49 @@ public class StorageOperate implements StorageOperateService {
 	 * 
 	 * @throws RemoteException
 	 */
-	public ResultMessage saveStorageInfo()
-			throws RemoteException {
-		if(storageInfoPO != null){
-		storageInfoPO.setPoType(POType.STORAGECHECK);
-		return storageData.add(storageInfoPO);
-		}else{
+	public ResultMessage saveStorageInfo() throws RemoteException {
+		if (storageInfoPO != null) {
+			storageInfoPO.setPoType(POType.STORAGECHECK);
+			return storageData.add(storageInfoPO);
+		} else {
 			return ResultMessage.FAILED;
 		}
 	}
 
 	/**
 	 * 导出库存快照到excel
+	 * @throws IOException 
+	 * @throws WriteException 
+	 * @throws RowsExceededException 
 	 */
-	public void storageCheckOutput(StorageInfoPO info) {
-		// TODO Auto-generated method stub
-
+	public void storageCheckOutput(StorageInfoVO info) throws IOException, RowsExceededException, WriteException {
+		String fileName = "库存信息.xls";
+		WritableWorkbook workbook = Workbook.createWorkbook(new File(fileName));
+		WritableSheet sheet = workbook.createSheet("库存信息", 0);
+		//设置表头
+		Label l1 = new Label(0,0,"订单号");
+		sheet.addCell(l1);
+		Label l2 = new Label(1,0,"区域");
+		sheet.addCell(l2);
+		Label l3 = new Label(2,0,"排号");
+		sheet.addCell(l3);
+		Label l4 = new Label(3,0,"架号");
+		sheet.addCell(l4);
+		Label l5 = new Label(4,0,"位号");
+		sheet.addCell(l5);
+		//设置内容
+		String[][] in = info.orderAndPostitionArray;
+		for(int i = 0 ; i < in.length;i++){
+			String[] line = in[i];
+			for(int j = 0 ; j <line.length;i++){
+				Label x = new Label(j,i+1,line[j]);
+				sheet.addCell(x);
+			}
+		}
+		
+		workbook.write();
+		workbook.close();
+		
 	}
 
 	/**
@@ -257,7 +312,7 @@ public class StorageOperate implements StorageOperateService {
 		}
 		storageInfoPO = new StorageInfoPO(center.getCenterID(), shelf, num,
 				planeR, trainR, truckR, flexibleR, alarmPercent);
-		storageInfoPO.setSerialNum(center.getCenterID());//仓库序列号为中转中心编号
+		storageInfoPO.setSerialNum(center.getCenterID());// 仓库序列号为中转中心编号
 		try {
 			return storageData.add(storageInfoPO);
 		} catch (RemoteException e) {
@@ -275,6 +330,12 @@ public class StorageOperate implements StorageOperateService {
 		this.storageInfo = storageInfo;
 		storageInfoPO = storageInfo.getStorageInfoPO();
 		storageList = new ArrayList<DataPO>();
+	}
+
+	@Override
+	public ResultMessage enlarge(StorageArea area) {
+		storageInfoPO.setEnlargeArea(area);
+		return ResultMessage.SUCCESS;
 	}
 
 }

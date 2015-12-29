@@ -2,8 +2,6 @@ package businesslogic.impl.storage;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Calendar;
-
 import utils.Timestamper;
 import data.enums.POType;
 import data.message.ResultMessage;
@@ -20,6 +18,7 @@ public class StorageList {
 	ArrayList<DataPO> checkedstorageList;
 	POType storageListType;
 	StorageListPO chosenStorageList;
+	
 	public StorageListPO getCheckedStorageList(long listID) throws RemoteException{
 		for(DataPO s : checkedstorageList){
 			if(s.getSerialNum() == listID){
@@ -30,13 +29,10 @@ public class StorageList {
 		return null;
 	}
 	
-	
 	public ResultMessage saveStorageInList(StorageInVO vo) throws RemoteException {
 		StorageInListPO storageInPO = new StorageInListPO(vo);
 		return storageData.add(storageInPO);
 	}
-	
-
 	
 	public String[][] getBriefStorageList() throws RemoteException{
 		checkedstorageList = storageData.getNewlyApprovedPO(storageListType, centerID);
@@ -56,7 +52,6 @@ public class StorageList {
 		
 	}
 	
-	
 	public StorageList(StorageDataService storageData, long centerID,POType storageListType) throws RemoteException {
 		this.storageData = storageData;
 		this.storageListType = storageListType;
@@ -72,14 +67,12 @@ public class StorageList {
 			for(int i = 0 ; i < ids.length;i++){
 				ids[i] = id.get(i);
 			}
-			
 			return ids;
 		}else{
 			StorageOutListPO out = (StorageOutListPO) chosenStorageList;
 			return out.getOrder();
 		}
 	}
-
 
 	public StorageListPO getStorageList(long storageListID) throws RemoteException {
 		if(storageListType == POType.STORAGEINLIST){
