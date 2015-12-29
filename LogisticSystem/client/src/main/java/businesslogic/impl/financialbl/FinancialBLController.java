@@ -37,26 +37,7 @@ public class FinancialBLController implements FinancialBLService {
 		return initialBuild.buildStaffExcel(info);
 	}
 
-	@Override
-	public ResultMessage buildInstitutionExcel(String info) {
-		return initialBuild.buildInstitutionExcel(info);
-	}
-
-	@Override
-	public ResultMessage buildVehicleInfoExcel(String info) {
-		return initialBuild.buildVehicleInfoExcel(info);
-	}
-
-	@Override
-	public ResultMessage buildStorageInfoExcel(String info) {
-		return initialBuild.buildStorageInfoExcel(info);
-	}
-
-	@Override
-	public ResultMessage buildBankAccountExcel(String info, String[] name,
-			double[] money) {
-		return initialBuild.buildBankAccountExcel(info, name, money);
-	}
+	
 
 	@Override
 	public ResultMessage businessConditionExcel(String dateStartYear,String dateStartMonth,String dateStartDay, String dateEndYear,String dateEndMonth,String dateEndDay) {
@@ -133,15 +114,6 @@ public class FinancialBLController implements FinancialBLService {
 	public ArrayList<ReceiptVO> searchAllReceipt() {
 		return fundsManage.searchAllReceipt();
 	}
-	@Override
-	public PaymentVO buildPaymentFromEntruck(PaymentVO pay,long institution) {
-//		try {
-//			return fundsManage.buildPaymentFromEntruck(pay,institution);
-//		} catch (RemoteException e) {
-//			e.printStackTrace();
-//		}
-		return null;
-	}
 
 	@Override
 	public PaymentVO buildPaymentFromTransfer(PaymentVO pay,long institution) {
@@ -211,4 +183,5 @@ public class FinancialBLController implements FinancialBLService {
 	public void endFinancial() {
 		
 	}
+
 }

@@ -145,10 +145,8 @@ public class FundsManage {
 		payment.setAccount(pay.getAccount());
 	    payment.setExInfo(pay.getExInfo());
 	    payment.setInfo(pay.getInfo());
-	    payment.setName(pay.getName());
-		
-		financialDataService.add(payment);
-		
+	    payment.setName(pay.getName());		
+		financialDataService.add(payment);		
 		paymentVO = pay;
 		paymentVO.setMoney(sum);
 		
