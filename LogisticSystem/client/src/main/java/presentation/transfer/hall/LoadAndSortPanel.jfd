@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "5.2.2.0.199" Java: "1.8.0_31" encoding: "UTF-8"
+JFDML JFormDesigner: "5.2.2.2.228" Java: "1.8.0_51" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -7,16 +7,17 @@ new FormModel {
 			name: "this"
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 				name: "loadAndSortPane"
+				"font": &Font0 new java.awt.Font( "等线", 0, 14 )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :::p, comp selectEntruck:::p:102:p, space u:::p, comp refreshButton:::p:102:p, space ::686:x}, comp scrollPane3::l::910:x}"
-					"$verticalGroup": "par l {seq t {space :::p, par l:::p {comp refreshButton::::0:x, comp selectEntruck:::::x}, space u:::p, comp scrollPane3::::300:x}}"
+					"$horizontalGroup": "par l {seq l {space :::p, comp selectEntruck:::p:102:p, space u:::p, comp refreshButton:::p:102:p, space ::691:x}, comp scrollPane3::l::913:x}"
+					"$verticalGroup": "par l {seq t {space :::p, par l:::p {comp refreshButton::::0:x, comp selectEntruck:::::x}, space u:::p, comp scrollPane3::::297:x}}"
 				} ) {
 					name: "entruckListPanel"
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "selectEntruck"
 						"text": "查看"
 						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/see_24x24.png" )
-						"font": new java.awt.Font( "宋体", 0, 14 )
+						"font": #Font0
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "selectEntruckMouseClicked", true ) )
 					} )
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -24,6 +25,7 @@ new FormModel {
 						add( new FormComponent( "javax.swing.JTable" ) {
 							name: "entruckListTable"
 							"selectionMode": 1
+							"font": #Font0
 							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "entruckListTableMouseReleased", true ) )
 						} )
 					} )
@@ -31,15 +33,15 @@ new FormModel {
 						name: "refreshButton"
 						"text": "刷新"
 						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/refresh.png" )
-						"font": new java.awt.Font( "宋体", 0, 14 )
+						"font": #Font0
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "refreshButtonMouseReleased", true ) )
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "已审批装车单"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :::p, comp label1:::p:50:p, space :::p, comp comboBox1:::p:97:p, space :::p, comp sortButton:::p:89:p, space :::p, comp removeOrder:::p::p, space ::457:x, comp createEntruck:::p:96:p, space :::p}, comp scrollPane1::t::910:x}"
-					"$verticalGroup": "par l {seq t {space :::p, par l {par b {comp label1::b:p::p, comp comboBox1::b::30:x, comp sortButton::b::38:x, comp removeOrder::b::36:x}, seq t {space :0:0:x, comp createEntruck:::p:37:p}}, space u:::p, comp scrollPane1::::293:x}}"
+					"$horizontalGroup": "par l {seq l {space :::p, comp label1:::p:50:p, space :::p, comp comboBox1:::p:97:p, space :::p, comp sortButton:::p:89:p, space :::p, comp removeOrder:::p::p, space ::469:x, comp createEntruck:::p:96:p, space :::p}, comp scrollPane1::t::913:x}"
+					"$verticalGroup": "par l {seq t {space :::p, par l {par b {comp label1::b:p::p, comp comboBox1::b::41:x, comp sortButton::b:::x, comp removeOrder::b::36:x}, seq t {space :0:0:x, comp createEntruck:::p:37:p}}, space u:::p, comp scrollPane1::::295:x}}"
 				} ) {
 					name: "panel1"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -87,9 +89,10 @@ new FormModel {
 		} )
 		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 			name: "entruckVO"
+			"font": &Font1 new java.awt.Font( "等线", 0, 14 )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {comp scrollPane2::t::905:x, seq {space :::p, par l {seq l {par l {comp label8::l:p::p, comp label7::l:p::p}, space s:::p, par l:::p {comp destID:::::x, comp destName:::p:110:p}}, seq l {comp label9:::p::p, space :p:30:p, comp hallName:::p:110:p}, seq l {par l {comp label5:::p::p, comp label6::l:p::p}, space s:::p, par l:::p {comp hallID:::::x, comp listID:::p:110:p}}}, space :p:54:p, par l {seq l {par l {comp label11::l:p::p, comp label12::l:p::p}, space :p:22:p, par l {comp staffName:::::x, comp driverName:::::x}}, par t:l::p {seq t {comp label10:::p::p, space u:::p, comp truckID:::::x}, seq l {comp label4:::p::p, space u:::p, comp entruckDate:::p:110:p}}}, space :p:397:p, par l:::p {comp cancelLoad::::78:x, comp saveEntruck::::78:x, comp doEntruck::l::78:x}, space :::p}}"
-				"$verticalGroup": "par l {seq t {par l {seq {space :p:75:p, comp doEntruck:::p:32:p, space :::p, comp saveEntruck:::p::p, space :::p, comp cancelLoad:::p::p}, seq l {space :::p, par b {comp listID::b:p::p, comp label6::b:p::p, comp label4::b:p::p, comp entruckDate::b:p::p}, space :::p, par l {comp label5::t:p::p, par b:t {comp hallID::b:p::p, comp label10::b:p::p, comp truckID::b:p::p}}, space u:::p, par b {comp label9::b:p::p, comp hallName::b:p::p, comp label11::b:p::p, comp staffName::b:p::p}, space :::p, par b {comp label8::b:p::p, comp destID::b:p::p, comp label12::b:p::p, comp driverName::b:p::p}, space :::p, par l {comp label7:::p::p, comp destName:::p::p}}}, space :::x, comp scrollPane2:::p:186:p}}"
+				"$horizontalGroup": "par l {seq l {space :::p, par l {seq {comp scrollPane2:::p:804:p, space :::p, par l {comp doEntruck::l:::x, comp saveEntruck::t:::x, comp cancelLoad::t:::x}, space :::p}, seq {par l {seq l {comp label6:::p:70:p, space :::p, comp listID:::p:110:p}, seq l {par t:::p {comp label9:::::x, comp label5:::p::p}, space :::p, par l {comp hallName:::p:110:p, comp hallID:::p:110:p}}}, space :::p, par l:::p {comp label4:::::x, comp label8:::::x, comp label7:::p:70:p}, space :::p, par l {comp destID:::::x, comp destName:::::x, comp entruckDate:::::x}, space :::p, par l {seq l {comp label10:::p::p, space :::p, comp truckID:::p:107:p}, seq l {comp label11:::p:56:p, space :::p, comp staffName:::p:107:p}, seq l {comp label12:::p:56:p, space :::p, comp driverName:::p:107:p}}, space :p:349:p}}}}"
+				"$verticalGroup": "par l {seq t {space :::p, par l {seq {par l {seq l {par l {comp listID:::p::p, comp label6:::p:24:p}, space :::p, par b {comp label5::b:p:24:p, comp hallID::b:p::p}}, seq l {par b {comp label8::b:p:24:p, comp destID::b:::x}, space :::p, par l {comp destName:::p::p, comp label7:::p:24:p}}}, space :::p, par l {par b:l {comp label9::b:p::p, comp hallName::b:p::p}, par b:l {comp label4::b:p::p, comp entruckDate::b:p::p}}}, seq {par l:::p {comp truckID:::::x, comp label10:::p:24:p}, space :::p, par l:::p {comp staffName:::::x, comp label11:::p:24:p}, space :::p, par l:::p {comp driverName:::::x, comp label12:::p:24:p}}}, space :::p, par l {seq {comp doEntruck:::p::p, space :::p, comp saveEntruck:::p::p, space :::x, comp cancelLoad:::p::p}, seq {comp scrollPane2:::p:256:p, space :0:0:x}}, space :p:2:p}}"
 			} ) {
 				name: "DeliveryListPanel"
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -97,88 +100,110 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JTable" ) {
 						name: "entruckTable"
 						"selectionMode": 1
+						"font": #Font1
 					} )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "cancelLoad"
 					"text": "取消"
 					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/cancel_16x16.png" )
+					"font": #Font1
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "cancelLoadMouseClicked", true ) )
-				} )
-				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "saveEntruck"
-					"text": "保存"
-					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/new_24x24.png" )
-					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "saveEntruckMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "doEntruck"
 					"text": "装车"
 					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/logout_24x24.png" )
+					"font": #Font1
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "doEntruckMouseClicked", true ) )
-				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label5"
-					"text": "营业厅编号"
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label6"
 					"text": "汽运编号"
+					"font": #Font1
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label7"
-					"text": "目的地"
+					name: "label5"
+					"text": "营业厅编号"
+					"font": #Font1
 				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label8"
-					"text": "目的地编号"
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "listID"
+					"font": #Font1
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "hallID"
+					"font": #Font1
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label9"
 					"text": "营业厅名"
-				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "listID"
-				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "hallID"
+					"font": #Font1
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "hallName"
+					"font": #Font1
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "destID"
+					"font": #Font1
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label8"
+					"text": "目的地编号"
+					"font": #Font1
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label7"
+					"text": "目的地"
+					"font": #Font1
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "destName"
-				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label10"
-					"text": "车辆代号"
-				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label11"
-					"text": "监装员"
-				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label12"
-					"text": "押运员"
+					"font": #Font1
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "truckID"
-				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "staffName"
-				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "driverName"
+					name: "entruckDate"
+					"font": #Font1
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label4"
 					"text": "装车日期"
+					"font": #Font1
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label10"
+					"text": "车辆代号"
+					"font": #Font1
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label11"
+					"text": "监装员"
+					"font": #Font1
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label12"
+					"text": "押运员"
+					"font": #Font1
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "entruckDate"
+					name: "truckID"
+					"font": #Font1
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "staffName"
+					"font": #Font1
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "driverName"
+					"font": #Font1
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "saveEntruck"
+					"text": "保存"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/new_24x24.png" )
+					"font": #Font1
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "saveEntruckMouseClicked", true ) )
 				} )
 			}, new FormLayoutConstraints( null ) {
 				"title": "装车单"
@@ -194,16 +219,18 @@ new FormModel {
 			"title": "网络异常"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 				"$horizontalGroup": "par l {seq {space ::80:x, par l {seq t {comp label2:::p:96:p, space :p:68:p}, seq t {comp errorSure:::p::p, space :p:86:p}}}}"
-				"$verticalGroup": "par l {seq l {space :p:47:p, comp label2:::p::p, space s:::p, comp errorSure:::p::p, space ::58:x}}"
+				"$verticalGroup": "par l {seq l {space :p:47:p, comp label2:::p::p, space s:::p, comp errorSure:::p::p, space ::48:x}}"
 			} ) {
 				name: "panel2"
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label2"
 					"text": "网络连接中断"
+					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "errorSure"
 					"text": "确定"
+					"font": #Font0
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "errorSureMouseClicked", true ) )
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
@@ -216,17 +243,19 @@ new FormModel {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 			name: "resultDialog"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :p:89:p, par t {comp resultSure:::p::p, comp label3:::p::p}, space ::98:x}}"
-				"$verticalGroup": "par l {seq l {space :p:59:p, comp label3:::p::p, space :p:26:p, comp resultSure:::p::p, space ::38:x}}"
+				"$horizontalGroup": "par l {seq l {space :p:89:p, par t {comp resultSure:::p::p, comp label3:::p::p}, space ::97:x}}"
+				"$verticalGroup": "par l {seq l {space :p:59:p, comp label3:::p::p, space :p:26:p, comp resultSure:::p::p, space ::28:x}}"
 			} ) {
 				name: "panel3"
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label3"
 					"text": "操作成功"
+					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "resultSure"
 					"text": "确定"
+					"font": #Font0
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "resultSureMouseClicked", true ) )
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {

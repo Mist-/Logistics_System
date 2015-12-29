@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "5.2.2.0.199" Java: "1.8.0_31" encoding: "UTF-8"
+JFDML JFormDesigner: "5.2.2.2.228" Java: "1.8.0_51" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -9,71 +9,79 @@ new FormModel {
 			"$sizePolicy": 1
 			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosed", "thisWindowClosed", true ) )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {comp menuBar1:::p:794:p, space :0:0:x}, seq l {par t {seq t {space :::p, comp receiveButton:::p:95:p, space s:::p, comp loadButton:::p:95:p, space :p:10:p}, seq l {space :p:34:p, comp label1:::p::p, space :p:60:p, comp label2:::p::p}}, par l {seq l {space :p:35:p, comp label4:::p:60:p, space :p:48:p, comp label5:::p::p, space :p:77:p, comp label6:::p::p}, seq l {space :p:8:p, comp driverButton:::p:95:p, space s:::p, comp truckButton:::p:94:p, space s:::p, comp moneyButton:::p:95:p}}, space ::358:x}}"
+				"$horizontalGroup": "par l {seq l {par t {seq t {space :::p, comp receiveButton:::p:95:p, space s:::p, comp loadButton:::p:95:p, space :p:10:p}, seq l {space :p:34:p, comp label1:::p::p, space :p:60:p, comp label2:::p::p}}, par l {seq l {space :p:35:p, comp label4:::p:60:p, space :p:48:p, comp label5:::p::p, space :p:77:p, comp label6:::p::p}, seq l {space :p:8:p, comp driverButton:::p:95:p, space s:::p, comp truckButton:::p:94:p, space s:::p, comp moneyButton:::p:100:p}}, space ::357:x}, comp menuBar1::l::914:x}"
 				"$verticalGroup": "par l {seq l {comp menuBar1:::p:21:p, space :::p, par l:::p {comp receiveButton::t::95:x, par b:t {comp loadButton::b::95:x, comp driverButton::b::95:x}, comp truckButton::l::95:x, comp moneyButton::l::95:x}, space :::p, par l {par b {comp label4::b:p::p, comp label5::b:p::p, comp label6::b:p::p}, par b:l {comp label1::b:p::p, comp label2::b:p::p}}, space :::p}}"
 			} ) {
 				name: "panel1"
 				"font": new java.awt.Font( "方正等线", 0, 14 )
 				add( new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
 					name: "menuBar1"
+					"font": &Font0 new java.awt.Font( "等线", 0, 14 )
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "option"
 						"text": "选项"
+						"font": #Font0
 					} )
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "help"
 						"text": "帮助"
+						"font": #Font0
 					} )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "receiveButton"
 					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/receive.png" )
+					"font": #Font0
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "receiveButtonMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "loadButton"
 					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/load.png" )
+					"font": #Font0
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "loadButtonMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "driverButton"
 					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/driver.png" )
+					"font": #Font0
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "driverButtonMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "truckButton"
 					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/truck.png" )
+					"font": #Font0
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "truckButtonMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "moneyButton"
 					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/money.png" )
+					"font": #Font0
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "moneyButtonMouseReleased", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label1"
 					"text": "装车接收"
-					"font": new java.awt.Font( "宋体", 0, 14 )
+					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label2"
 					"text": "分拣装车"
-					"font": new java.awt.Font( "宋体", 0, 14 )
+					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label4"
 					"text": "司机信息"
-					"font": new java.awt.Font( "宋体", 0, 14 )
+					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label5"
 					"text": "车辆信息"
-					"font": new java.awt.Font( "宋体", 0, 14 )
+					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label6"
 					"text": "结算"
-					"font": new java.awt.Font( "宋体", 0, 14 )
+					"font": #Font0
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "North"
@@ -84,10 +92,11 @@ new FormModel {
 				"font": new java.awt.Font( "宋体", 2, 14 )
 				add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 					name: "tabbedPane1"
-					"font": new java.awt.Font( "宋体", 0, 14 )
+					"font": #Font0
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label7"
 						"text": "text"
+						"font": #Font0
 					}, new FormLayoutConstraints( null ) {
 						"title": "text"
 					} )
@@ -108,20 +117,23 @@ new FormModel {
 			"$sizePolicy": 1
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 				"$horizontalGroup": "par l {seq {par l {seq l {space :p:88:p, par l {seq {space :10:10:p, comp label9:::p:61:p}, comp label8:::p:98:p}}, seq l {space :p:109:p, comp errorSure:::p::p}}, space ::88:x}}"
-				"$verticalGroup": "par l {seq l {space :p:46:p, comp label8:::p::p, space u:::p, comp label9:::p::p, space s:::p, comp errorSure:::p::p, space ::34:x}}"
+				"$verticalGroup": "par l {seq l {space :p:46:p, comp label8:::p::p, space u:::p, comp label9:::p::p, space s:::p, comp errorSure:::p::p, space ::21:x}}"
 			} ) {
 				name: "panel2"
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label8"
 					"text": "网络连接中断"
+					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label9"
 					"text": "请稍后再试"
+					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "errorSure"
 					"text": "确定"
+					"font": #Font0
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "errorSureMouseClicked", true ) )
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
@@ -135,26 +147,30 @@ new FormModel {
 			name: "closeDialog"
 			"title": "提示"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq t {space ::57:x, par l {seq l {space :10:10:p, comp button1:::p:132:p, space :::p}, seq t {comp label10:::p:162:p, space :p:50:p}}}, seq {par l {seq l {space :79:79:p, comp label3:::p::p}, seq l {space :p:94:p, comp button2:::p:80:p}}, space ::82:x}}"
-				"$verticalGroup": "par l {seq l {space :::p, comp label3:::p:28:p, space :::p, comp label10:::p:23:p, space :::p, comp button1::::39:x, space :::p, comp button2:::p:23:p, space :::p}}"
+				"$horizontalGroup": "par l {seq t {space ::57:x, par l {seq l {space :10:10:p, comp button1:::p:132:p, space :::p}, seq t {comp label10:::p:162:p, space :p:50:p}}}, seq {par l {seq l {space :79:79:p, comp label3:::p::p}, seq l {space :p:94:p, comp button2:::p:80:p}}, space ::64:x}}"
+				"$verticalGroup": "par l {seq l {space :::p, comp label3:::p:28:p, space :::p, comp label10:::p:23:p, space :::p, comp button1::::47:x, space :::p, comp button2:::p:23:p, space :::p}}"
 			} ) {
 				name: "panel3"
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label3"
 					"text": "请检查是否已经处理"
+					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label10"
 					"text": "全部已审批装车单和到达单"
+					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "button1"
 					"text": "未处理完"
+					"font": #Font0
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "button1MouseReleased", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "button2"
 					"text": "确认关闭"
+					"font": #Font0
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "button2MouseReleased", true ) )
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {

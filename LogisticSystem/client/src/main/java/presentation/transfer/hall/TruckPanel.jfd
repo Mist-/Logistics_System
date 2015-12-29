@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "5.2.2.0.199" Java: "1.8.0_31" encoding: "UTF-8"
+JFDML JFormDesigner: "5.2.2.2.228" Java: "1.8.0_51" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -7,9 +7,10 @@ new FormModel {
 			name: "this"
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 				name: "truckListPane"
+				"font": &Font0 new java.awt.Font( "等线", 0, 14 )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {space :::p, comp showTruckButton:::p:88:p, space :::p, comp addTruckButton:::p:88:p, space ::713:x}, comp scrollPane1::l::905:x}"
-					"$verticalGroup": "par l {seq l {space :::p, par b {comp showTruckButton::b:p::p, comp addTruckButton::b:p::p}, space :::p, comp scrollPane1::::320:x}}"
+					"$horizontalGroup": "par l {seq {space :::p, comp showTruckButton:::p:88:p, space :::p, comp addTruckButton:::p:88:p, space ::720:x}, comp scrollPane1::l::908:x}"
+					"$verticalGroup": "par l {seq l {space :::p, par b {comp showTruckButton::b:p::p, comp addTruckButton::b:p::p}, space :::p, comp scrollPane1::::330:x}}"
 				} ) {
 					name: "panel1"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -17,17 +18,20 @@ new FormModel {
 						add( new FormComponent( "javax.swing.JTable" ) {
 							name: "truckTable"
 							"selectionMode": 1
+							"font": #Font0
 							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "truckTableMouseClicked", true ) )
 						} )
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "addTruckButton"
 						"text": "添加"
+						"font": #Font0
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "addTruckButtonMouseClicked", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "showTruckButton"
 						"text": "查看"
+						"font": #Font0
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "showTruckButtonMouseClicked", true ) )
 					} )
 				}, new FormLayoutConstraints( null ) {
@@ -42,84 +46,107 @@ new FormModel {
 		} )
 		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 			name: "truckPane"
+			"font": #Font0
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space :::p, par l {seq {par l:::p {seq {par l {seq t {comp label1:::p::p, space :::p, comp id:::p:100:p}, seq l {comp label2:::p::p, space s:::p, comp license:::p:98:p}, seq l {comp label3:::p::p, space :::p, comp year:::p:40:p, space :::p, comp label4:::p::p, space :::p, comp month:::p:40:p}}, space :::p, comp label5:::p::p, space :::p, comp day:::p:40:p}, seq l {comp label7:::p::p, space :::p, comp status:::p:53:p, space :::p, comp label10:::::x}}, space :::p, comp label6:::p::p, space :0:660:x}, seq t {space :0:833:x, par l {comp deleteButton:::p::p, par l {comp cancelButton::t:p::p, comp modifyButton::t:p::p, comp saveButton::t:p::p}}}}, space :::p}}"
-				"$verticalGroup": "par l {seq l {space :::p, par b {comp label1::b:p::p, comp id::b:p::p}, space :::p, par b {comp label2::b:p::p, comp license::b:p::p}, space :::p, par b {comp label3::b:p::p, comp label4::b:p::p, comp month::b:p::p, comp label5::b:p::p, comp day::b:p::p, comp label6::b:p::p, comp year::b:p::p}, space :::p, par b {comp label7::b:p::p, comp status::b:p::p, comp label10::b:p::p}, space ::86:x, comp deleteButton:::p::p, space :::p, comp saveButton:::p::p, space :::p, comp modifyButton:::p::p, space :::p, comp cancelButton:::p::p, space :p:13:p}}"
+				"$horizontalGroup": "par l {seq {space :::p, par l {seq {par l {seq l {par t:::p {comp label1::l::62:x, comp label2::l:::x, comp label3::l::62:x}, space :::p, par l {comp license:::p:90:p, comp id:::p:100:p, seq {comp year:::p:40:p, space :::p, comp label4:::p::p, space :::p, comp month:::p:40:p, space :::p, comp label5:::p::p, space :::p, comp day:::p:40:p, space :::p, comp label6:::p::p}}}, seq l {comp label7:::p::p, space :::p, comp status:::p:53:p, space :::p, comp label10:::p:113:p}}, space :p:550:p, par l {comp saveButton::::91:x, comp modifyButton::::91:x, comp deleteButton::::91:x}}, seq t {space :0:810:x, comp cancelButton:::p:91:p}}, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :::p, par l {seq {comp deleteButton:::p::p, space :::p, comp saveButton:::p::p, space :::p, comp modifyButton:::p::p}, seq {par b {comp id::b:p::p, comp label1::b:p::p}, space :::p, par b {comp license::b:p::p, comp label2::b:p::p}, space :::p, par l:::p {par b {comp label4::b:p::p, comp month::b:p::p, comp label5::b:p::p, comp day::b:p::p, comp label6::b:p::p, comp year::b:p::p}, comp label3:::::x}, space :::p, par b {comp label7::b:p::p, comp status::b:p::p, comp label10::b:p::p}}}, space ::166:x, comp cancelButton:::p::p, space :::p}}"
 			} ) {
 				name: "panel2"
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label1"
 					"text": "车辆编号"
+					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label2"
 					"text": "车牌号"
+					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label3"
 					"text": "服役时间"
+					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "year"
+					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label4"
 					"text": "年"
+					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "month"
+					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label5"
 					"text": "月"
+					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "day"
+					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label6"
 					"text": "日"
+					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "license"
+					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "id"
 					"editable": false
 					"text": "保存时生成"
+					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label7"
 					"text": "工作状态"
+					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "status"
 					"editable": false
 					"text": "空闲"
+					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "saveButton"
 					"text": "保存"
+					"font": #Font0
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/save_24x24.png" )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "saveButtonMouseReleased", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "modifyButton"
 					"text": "修改"
+					"font": #Font0
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/modify_24x24.png" )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "modifyButtonMouseReleased", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "cancelButton"
 					"text": "取消"
+					"font": #Font0
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/cancel_24x24.png" )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "cancelButtonMouseReleased", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "deleteButton"
 					"text": "删除"
+					"font": #Font0
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/delete_24x24.png" )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "deleteButtonMouseReleased", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label10"
 					"text": "（空闲、货运）"
+					"font": #Font0
 				} )
 			}, new FormLayoutConstraints( null ) {
 				"title": "车辆详细信息"
@@ -133,7 +160,7 @@ new FormModel {
 			"title": "提示"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 				"$horizontalGroup": "par l {seq t {space :0:88:x, comp label9:::p::p, space :p:87:p}, seq {par l {seq {space :p:55:p, comp label8:::p::p}, seq l {space :p:70:p, comp cancelSureButton:::p::p, space s:::p, comp notCancelButton:::p::p}}, space ::60:x}}"
-				"$verticalGroup": "par l {seq l {space :p:42:p, comp label8:::p:26:p, space :::p, comp label9:::p::p, space u:::p, par b {comp cancelSureButton::b:p::p, comp notCancelButton::b:p::p}, space ::39:x}}"
+				"$verticalGroup": "par l {seq l {space :p:42:p, comp label8:::p:26:p, space :::p, comp label9:::p::p, space u:::p, par b {comp cancelSureButton::b:p::p, comp notCancelButton::b:p::p}, space ::25:x}}"
 			} ) {
 				name: "panel"
 				add( new FormComponent( "javax.swing.JLabel" ) {
