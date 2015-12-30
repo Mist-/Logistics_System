@@ -25,7 +25,7 @@ public class MockCompanyDataService implements CompanyDataService {
 		else if (type == POType.STAFF)
 			return new MockStaffPO(1000, 1000);
 		else if (type == POType.CITYTRANS)
-			return new MockCityTransPO("ÄÏ¾©", "ÉÏº£", 100, 10, 20, 30);
+			return new MockCityTransPO("ï¿½Ï¾ï¿½", "ï¿½Ïºï¿½", 100, 10, 20, 30);
 		else if (type == POType.ARRIVAL)
 			return new MockDataPO(POType.RECEIPT);
 		else
@@ -38,10 +38,10 @@ public class MockCompanyDataService implements CompanyDataService {
 			System.out.println("mockcity");
 			ArrayList<DataPO> city = new ArrayList<>();
 			CityInfoPO c1 = new CityInfoPO(1001);
-			c1.setName("±±¾©");
+			c1.setName("ï¿½ï¿½ï¿½ï¿½");
 			city.add(c1);
 			CityInfoPO c2 = new CityInfoPO(1002);
-			c2.setName("ÄÏ¾©");
+			c2.setName("ï¿½Ï¾ï¿½");
 			city.add(c2);
 			return city;
 		}
@@ -65,7 +65,7 @@ public class MockCompanyDataService implements CompanyDataService {
 	public ArrayList<DataPO> searchAll(POType type) {
 		ArrayList<DataPO> dlist = null;
 		if (type == POType.SALARY)
-			dlist.add(new MockSalaryPO(10, "¿ìµÝÔ±", "¼Æ´Î"));
+			dlist.add(new MockSalaryPO(10, "ï¿½ï¿½ï¿½Ô±", "ï¿½Æ´ï¿½"));
 		else if (type == POType.STAFF)
 			dlist.add(new MockStaffPO(1000, 1000));
 		else if (type == POType.COSTBENEFIT)
@@ -95,11 +95,6 @@ public class MockCompanyDataService implements CompanyDataService {
 		return null;
 	}
 
-	@Override
-	public long searchBusinessOffice(String boName) throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public SalaryPO searchByInstitution(String department)

@@ -23,7 +23,7 @@ public class TransferList {
 	TransferDataService transferData;
 	ArrayList<DataPO> transferList;
 	
-	public ResultMessage saveTransferList(TransferListVO vo,long centerID) throws RemoteException{
+	public long  saveTransferList(TransferListVO vo,long centerID) throws RemoteException{
 		transfer = new TransferListPO();
 		String[][] info = vo.orderAndPosition;
 		String[] position = new String[info.length];
@@ -52,11 +52,7 @@ public class TransferList {
 		transfer.setDriverName(vo.driver);
 		transfer.setAccount(false);
 		transfer.setDate(vo.date);
-		if(transfer.getTransferType() == StorageArea.TRUCK){
-			transfer.setDriverName(vo.fee);
-		}else{
 		transfer.setFee(Double.parseDouble(vo.fee));
-		}
 		transfer.setOrder(order);
 		transfer.setStaff(vo.staffID);
 		transfer.setStaffName(vo.staff);
@@ -69,8 +65,11 @@ public class TransferList {
 		transfer.setTransferCenterName(vo.transferCenter);
 		transfer.setVehicleCode(vo.vehicleCode);
 		
-		System.out.println(transfer.getSerialNum());
-		return transferData.add(transfer);
+	
+		 ResultMessage r = transferData.add(transfer);
+		 if(r == ResultMessage.FAILED)
+			 return -1;
+		 return transfer.getSerialNum();
 	}
 	
 	public  TransferListVO createTransferList(TransferLoadVO load,
@@ -103,6 +102,9 @@ public class TransferList {
 	
 	public TransferListVO searchTransferList(long listID) throws RemoteException{
 		transfer =  (TransferListPO) transferData.search(POType.TRANSFERLIST, listID);
+		if(transfer == null){
+			return null;
+		}
 		return new TransferListVO(transfer);
 	}
 	

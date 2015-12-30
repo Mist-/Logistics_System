@@ -182,11 +182,7 @@ public class TransferLoadPanel extends JPanel {
 	}
 
 	private void saveListMouseReleased(MouseEvent e) {
-//		if(transferList.transferType.equals("汽运")){
-//			transferList.fee = fee.getText();
-//		}else{
-			transferList.fee = fee.getText();
-//		}
+		transferList.fee = fee.getText();
 		transferList.date = date.getText();
 		transferList.vehicleCode = vehicleID.getText();
 		System.out.println(transferList.fee);
@@ -196,10 +192,10 @@ public class TransferLoadPanel extends JPanel {
 			return;
 		}
 		try {
-			ResultMessage result = transferLoad.saveTransferList(transferList);
-			if (result == ResultMessage.SUCCESS) {
+			long result = transferLoad.saveTransferList(transferList);
+			if (result != -1) {
 				sort();
-				JOptionPane.showMessageDialog(null, "保存成功", "提示", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "保存成功！单号："+result, "提示", JOptionPane.INFORMATION_MESSAGE);
 				remove(transferListPane);
 				add(loadPane,BorderLayout.CENTER);
 				loadPane.updateUI();
@@ -227,6 +223,14 @@ public class TransferLoadPanel extends JPanel {
 		orderTable.repaint();
 	}
 
+	private void button1MouseReleased(MouseEvent e) {
+		try {
+			transferLoad.refreshStorageInfo();
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		}
+	}
+
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY
 		// //GEN-BEGIN:initComponents
@@ -238,9 +242,10 @@ public class TransferLoadPanel extends JPanel {
 		transferTypeBox = new JComboBox();
 		label2 = new JLabel();
 		destBox = new JComboBox();
-		getOrderButton = new JButton();
 		createTransferButton = new JButton();
 		removeOrderButton = new JButton();
+		getOrderButton = new JButton();
+		button1 = new JButton();
 		transferListPane = new JTabbedPane();
 		DeliveryListPanel = new JPanel();
 		scrollPane2 = new JScrollPane();
@@ -298,19 +303,8 @@ public class TransferLoadPanel extends JPanel {
 				//---- destBox ----
 				destBox.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- getOrderButton ----
-				getOrderButton.setText("\u641c\u7d22\u5e93\u5b58");
-				getOrderButton.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-				getOrderButton.setIcon(new ImageIcon(getClass().getResource("/icons/search_16x16.png")));
-				getOrderButton.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseReleased(MouseEvent e) {
-						getOrderButtonMouseReleased(e);
-					}
-				});
-
 				//---- createTransferButton ----
-				createTransferButton.setText("\u751f\u6210");
+				createTransferButton.setText("\u88c5\u8fd0");
 				createTransferButton.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 				createTransferButton.setIcon(new ImageIcon(getClass().getResource("/icons/new_24x24.png")));
 				createTransferButton.addMouseListener(new MouseAdapter() {
@@ -331,45 +325,71 @@ public class TransferLoadPanel extends JPanel {
 					}
 				});
 
+				//---- getOrderButton ----
+				getOrderButton.setText("\u641c\u7d22\u5e93\u5b58");
+				getOrderButton.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				getOrderButton.setIcon(new ImageIcon(getClass().getResource("/icons/search_16x16.png")));
+				getOrderButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						getOrderButtonMouseReleased(e);
+					}
+				});
+
+				//---- button1 ----
+				button1.setText("\u5237\u65b0");
+				button1.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						button1MouseReleased(e);
+					}
+				});
+
 				GroupLayout loadPanelLayout = new GroupLayout(loadPanel);
 				loadPanel.setLayout(loadPanelLayout);
 				loadPanelLayout.setHorizontalGroup(
 					loadPanelLayout.createParallelGroup()
 						.addGroup(loadPanelLayout.createSequentialGroup()
-							.addGroup(loadPanelLayout.createParallelGroup()
-								.addGroup(loadPanelLayout.createSequentialGroup()
-									.addComponent(label1)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(transferTypeBox, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(label2)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(destBox, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
-									.addGap(36, 36, 36)
-									.addComponent(getOrderButton, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE)
-									.addComponent(removeOrderButton, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(createTransferButton, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE))
-								.addComponent(scrollPane1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE))
+							.addComponent(label1)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(transferTypeBox, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(label2)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(destBox, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
+							.addGap(18, 18, 18)
+							.addComponent(getOrderButton, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
+							.addGap(18, 18, 18)
+							.addComponent(button1)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
+							.addComponent(removeOrderButton, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(createTransferButton, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
 							.addContainerGap())
+						.addGroup(loadPanelLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE))
 				);
 				loadPanelLayout.setVerticalGroup(
 					loadPanelLayout.createParallelGroup()
 						.addGroup(GroupLayout.Alignment.TRAILING, loadPanelLayout.createSequentialGroup()
 							.addContainerGap()
 							.addGroup(loadPanelLayout.createParallelGroup()
-								.addComponent(label1, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-								.addComponent(transferTypeBox)
-								.addComponent(label2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addGroup(loadPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-									.addComponent(destBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addComponent(getOrderButton, GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
-									.addComponent(removeOrderButton)
-									.addComponent(createTransferButton)))
-							.addGap(18, 18, 18)
-							.addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 295, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+								.addGroup(loadPanelLayout.createSequentialGroup()
+									.addGroup(loadPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+										.addComponent(removeOrderButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(createTransferButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(getOrderButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(label1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(destBox)
+										.addComponent(button1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE))
+								.addGroup(loadPanelLayout.createSequentialGroup()
+									.addGroup(loadPanelLayout.createParallelGroup()
+										.addComponent(transferTypeBox, GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+										.addComponent(label2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+									.addGap(8, 8, 8)))
+							.addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 295, GroupLayout.PREFERRED_SIZE))
 				);
 			}
 			loadPane.addTab("\u4e2d\u8f6c\u88c5\u8fd0", loadPanel);
@@ -570,9 +590,10 @@ public class TransferLoadPanel extends JPanel {
 	private JComboBox transferTypeBox;
 	private JLabel label2;
 	private JComboBox destBox;
-	private JButton getOrderButton;
 	private JButton createTransferButton;
 	private JButton removeOrderButton;
+	private JButton getOrderButton;
+	private JButton button1;
 	private JTabbedPane transferListPane;
 	private JPanel DeliveryListPanel;
 	private JScrollPane scrollPane2;

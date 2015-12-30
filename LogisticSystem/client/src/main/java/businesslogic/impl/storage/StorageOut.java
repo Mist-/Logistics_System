@@ -1,7 +1,6 @@
 package businesslogic.impl.storage;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 
 import businesslogic.impl.order.OrderList;
 import businesslogic.impl.transfer.center.TransferList;
@@ -28,7 +27,6 @@ import data.vo.TransferListVO;
  *
  */
 public class StorageOut implements StorageOutService{
-	TransferDataService transferData;
 	StorageDataService storageData ;
 	
 	InstitutionInfo user;
@@ -77,7 +75,6 @@ public class StorageOut implements StorageOutService{
 			e.printStackTrace();
 			return ResultMessage.FAILED;
 		}
-		
 		
 	}
 	

@@ -100,8 +100,8 @@ new FormModel {
 			name: "storageOutPane"
 			"font": &Font2 new java.awt.Font( "等线", 0, 14 )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space :::p, comp label1:::p:70:p, space :p:10:p, comp transferListID:::p:109:p, space u:::p, comp label3:::p:56:p, space :::p, comp transferType:::p:83:p, space u:::p, comp label6:::p::p, space :::p, comp outDate:::p:88:p, space :p:18:p, comp doStorageOut::::92:x, space :::p, comp saveStorageOut::::92:x, space :::p, comp storageOutCancel::::93:x, space :p:6:p}, comp scrollPane4::l::795:x}"
-				"$verticalGroup": "par l {seq t {par l {seq {space :::p, par l {comp label1:::p:25:p, par b {comp transferListID::b:p::p, comp label3::b:p:25:p, comp transferType::b:p::p, comp label6::b:p:25:p, comp outDate::b:p::p}}, space :::x}, seq t {space :::x, par b {comp storageOutCancel::b:p::p, comp saveStorageOut::b:p::p, comp doStorageOut::b:p::p}, space u:::p}}, comp scrollPane4:::p:282:p}}"
+				"$horizontalGroup": "par l {seq t {par t {comp scrollPane4:::::x, seq {space :::p, comp label1:::p:70:p, space :p:10:p, comp transferListID:::p:109:p, space u:::p, comp label3:::p:56:p, space :::p, comp transferType:::p:83:p, space u:::p, comp label6:::p::p, space :::p, comp outDate:::p:88:p, space u:::p, comp doStorageOut::::93:x, space :::p, comp saveStorageOut:::p:97:p, space :::p, comp storageOutCancel:::p:91:p}}, space :::p}}"
+				"$verticalGroup": "par l {seq t {space :::p, par l {comp label1:::p:25:p, par b {comp transferListID::b:p::p, comp label3::b:p:25:p, comp transferType::b:p::p, comp label6::b:p:25:p, comp outDate::b:p::p, comp saveStorageOut::b:p:30:p, comp storageOutCancel::b:p:30:p, comp doStorageOut::b:p:30:p}}, space u:::p, comp scrollPane4::::276:x}}"
 			} ) {
 				name: "storageOutVO"
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {

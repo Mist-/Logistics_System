@@ -31,5 +31,4 @@ public interface CityManageBLService {
      */
     ResultMessage addCityTransInfo(CityTransVO cityTransVO);
 
-    void endCityManage();
 }

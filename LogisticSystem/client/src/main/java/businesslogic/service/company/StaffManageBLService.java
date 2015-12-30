@@ -31,7 +31,7 @@ public interface StaffManageBLService {
      * @param staffVO  该员工所有信息
      * @return  网络错误是NOTCONNECTED,其余情况由数据层决定
      */
-    ResultMessage addStaff(StaffVO staffVO, long id);
+    ResultMessage addStaff(StaffVO staffVO);
 
     /**
      * 删除单个员工
@@ -52,5 +52,4 @@ public interface StaffManageBLService {
      */
     ResultMessage moveStaff(long fromInstitution, long toInstitution, long id, UserRole userRole);
 
-    void endstaffmanage();
 }

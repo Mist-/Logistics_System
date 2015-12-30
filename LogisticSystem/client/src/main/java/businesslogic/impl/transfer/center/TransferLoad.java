@@ -197,7 +197,7 @@ public class TransferLoad implements TransferLoadService {
 	 * @return
 	 * @throws RemoteException
 	 */
-	public ResultMessage saveTransferList(TransferListVO vo) throws RemoteException {
+	public long saveTransferList(TransferListVO vo) throws RemoteException {
 		storageInfo.modifyStorageInfo(vo);
 		OrderListService order = new OrderList(new LoginMessage(ResultMessage.SUCCESS));
 		String[][] info = vo.orderAndPosition;
@@ -208,6 +208,12 @@ public class TransferLoad implements TransferLoadService {
 		System.out.println("修改订单位置信息 数量："+id.length);
 		order.modifyOrderPosition(id);//第二次，第三次修改位置信息
 		return transferList.saveTransferList(vo,center.getCenterID());
+	}
+
+	@Override
+	public void refreshStorageInfo() throws RemoteException {
+		storageInfo.refreshStorageInfo();
+		
 	}
 
 

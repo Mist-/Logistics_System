@@ -32,8 +32,8 @@ public class StaffManageBLImpl implements StaffManageBLService {
 
     @Override
     public ArrayList<StaffVO> getStaffByInstitution(long institution) {
-        ArrayList<StaffVO> vlist = new ArrayList<StaffVO>();
-        ArrayList<DataPO> plist = null;
+        ArrayList<StaffVO> vlist = new ArrayList<>();
+        ArrayList<DataPO> plist;
         try {
             plist = company.getPOList(POType.STAFF);
             for(int i=0;i<plist.size();i++){
@@ -78,9 +78,9 @@ public class StaffManageBLImpl implements StaffManageBLService {
     }
 
     @Override
-    public ResultMessage addStaff(StaffVO staffVO, long id) {
+    public ResultMessage addStaff(StaffVO staffVO) {
         try {
-            staffPO = (StaffPO) company.search(POType.STAFF,id);
+            staffPO = (StaffPO) company.search(POType.STAFF,staffVO.getId());
             if(staffPO==null){
                 staffPO = new StaffPO();
                 staffPO.setInstitution(staffVO.getInstitution());
@@ -107,8 +107,8 @@ public class StaffManageBLImpl implements StaffManageBLService {
     @Override
     public ResultMessage deleteStaff(long institution, long id) {
         try {
-            staffPO = (StaffPO) company.search(POType.STAFF, id);
-            if (staffPO != null) {
+            staffPO = (StaffPO) company.search(POType.STAFF,staffVO.getId());
+            if(staffPO==null){
                 resultMessage = company.delete(staffPO);
                 return resultMessage;
             } else {
@@ -135,7 +135,7 @@ public class StaffManageBLImpl implements StaffManageBLService {
                 staffVO.setIdcardNum(staff.getIdcardNum());
                 staffVO.setName(staff.getName());
                 staffVO.setUserRole(userRole);
-                resultMessage = this.addStaff(staffVO,staffVO.getId());
+                resultMessage = this.addStaff(staffVO);
                 return resultMessage;
             }
                 return ResultMessage.SUCCESS;
@@ -146,8 +146,4 @@ public class StaffManageBLImpl implements StaffManageBLService {
         return ResultMessage.NOTCONNECTED;
     }
 
-    @Override
-    public void endstaffmanage() {
-      //TODO
-    }
 }
