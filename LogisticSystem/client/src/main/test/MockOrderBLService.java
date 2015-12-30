@@ -1,3 +1,5 @@
+package businesslogic.impl.storage;
+
 import java.util.ArrayList;
 
 import mock.MockOrderPO;
@@ -57,11 +59,6 @@ public class MockOrderBLService implements OrderBLService {
 		return null;
 	}
 
-	@Override
-	public ArrayList<OrderVO> getDisplayData() {
-		return null;
-	}
-
 	public ArrayList<OrderPO> search(long[] order) {
 		// TODO Auto-generated method stub
 		ArrayList<OrderPO> orders = new ArrayList<OrderPO>();
@@ -70,7 +67,11 @@ public class MockOrderBLService implements OrderBLService {
 		}
 		return orders;
 	}
-	
+
+	@Override
+	public ArrayList<OrderVO> getDisplayData() {
+		return null;
+	}
 
 
 	@Override

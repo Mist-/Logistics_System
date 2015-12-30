@@ -5,6 +5,7 @@ import data.po.DataPO;
 import data.po.OrderPO;
 import data.po.SignPO;
 import data.service.OrderDataService;
+import utils.Log;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -29,6 +30,7 @@ public class OrderDataSerializableImpl extends UnicastRemoteObject implements Or
 
 
     public ArrayList<DataPO> searchByLoc(String key) throws RemoteException {
+        Log.log("调用" + this.getClass().getSimpleName());
         String locs[] = key.split("[ ]");
         ArrayList<DataPO> result = new ArrayList<>();
         for (DataPO dataPO : poLists.get(POType.ORDER)) {
@@ -50,6 +52,7 @@ public class OrderDataSerializableImpl extends UnicastRemoteObject implements Or
 
     @Override
     public DataPO searchSignInfo(long ordersn) throws RemoteException {
+        Log.log("调用" + this.getClass().getSimpleName());
         for (DataPO dataPO : poLists.get(POType.SIGN)) {
             SignPO signPO = (SignPO) dataPO;
             if (signPO.getOrder() == ordersn) return signPO;
@@ -59,6 +62,7 @@ public class OrderDataSerializableImpl extends UnicastRemoteObject implements Or
 
     @Override
     public ArrayList<DataPO> searchByCourier(long sn, String date) {
+        Log.log("调用" + this.getClass().getSimpleName());
         ArrayList<DataPO> result = new ArrayList<>();
         for (DataPO dataPO: poLists.get(POType.ORDER)) {
             if (((OrderPO) dataPO).getCourier() == sn) {

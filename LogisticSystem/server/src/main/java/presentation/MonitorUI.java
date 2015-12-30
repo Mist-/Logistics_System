@@ -11,6 +11,7 @@ import data.enums.DataType;
 import data.factory.DataImplFactory;
 import data.service.DataService;
 import utils.FileSaver;
+import utils.Log;
 import utils.SayHelloImpl;
 import utils.SayHelloService;
 
@@ -47,12 +48,14 @@ public class MonitorUI extends JFrame {
         reg = startServer();
         if (reg == null) {
             JOptionPane.showMessageDialog(null, "启动服务失败。请检查端口设置。");
+            return;
         }
         buttonStartServer.setEnabled(false);
         buttonStopServer.setEnabled(true);
     }
 
     private void buttonStopServerMouseReleased(MouseEvent e) {
+        Log.log("正在停止服务…");
         System.out.println("正在停止服务 - " + Calendar.getInstance().getTime());
         for (DataType dataType: DataType.values()) {
             try {
@@ -249,12 +252,13 @@ public class MonitorUI extends JFrame {
         textFileUpdateFreq.setText(String.valueOf(configuration.autoSavingFreq));
         buttonStartServer.setEnabled(true);
         buttonStopServer.setEnabled(false);
+        Log.register(textConsole);
     }
 
 
 
     public Registry startServer() {
-
+        Log.log("正在启动服务……");
         SayHelloService hello = null;
 
         try {
@@ -273,6 +277,7 @@ public class MonitorUI extends JFrame {
             } catch (RemoteException e) {
                 e.printStackTrace();
                 System.err.println("端口注册失败，可能已经被注册 - " + Calendar.getInstance().getTime());
+                Log.log("启动服务失败。");
             }
         }
 
@@ -288,10 +293,12 @@ public class MonitorUI extends JFrame {
         } catch (AccessException e) {
             e.printStackTrace();
             System.err.println("服务器初始化失败 - " + Calendar.getInstance().getTime());
+            Log.log("启动服务失败。");
             return null;
         } catch (RemoteException e) {
             e.printStackTrace();
             System.err.println("服务器初始化失败 - " + Calendar.getInstance().getTime());
+            Log.log("启动服务失败。");
             return null;
         }
 
@@ -308,6 +315,7 @@ public class MonitorUI extends JFrame {
         fileAutoSaver.start();
         System.out.println("开启自动保存功能");
         System.out.println("服务器初始化成功 - " + Calendar.getInstance().getTime());
+        Log.log("已成功创建服务。");
         return reg;
     }
 

@@ -7,6 +7,7 @@ public class SayHelloImpl extends UnicastRemoteObject implements SayHelloService
 
 	public SayHelloImpl() throws RemoteException {
 		super();
+		Log.log("µ÷ÓÃ" + this.getClass().getSimpleName());
 	}
 
 }

@@ -73,7 +73,7 @@ public class Order {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        orderToModify.fastModify(orderInfo);
+        orderToModify.modify(orderInfo);
         try {
             orderDataService.modify(orderToModify);
         } catch (RemoteException e) {
@@ -102,7 +102,7 @@ public class Order {
     }
 
     public StorageArea getTransportType(OrderVO orderVO) {
-        if (orderVO.saddress.substring(0, 3).equals(orderVO.raddress.substring(0, 3))) {
+        if (orderVO.saddress.split("[-]")[0].equals(orderVO.raddress.split("[-]")[0])) {
             return StorageArea.TRUCK;
         }
         else {
@@ -229,7 +229,7 @@ public class Order {
             return 0;
         }
         try {
-            orders = orderDataService.searchByLoc(orderVO.saddress.substring(0, 2) + " " + orderVO.raddress.substring(0, 2));
+            orders = orderDataService.searchByLoc(orderVO.saddress + " " + orderVO.raddress);
         } catch (RemoteException e) {
             System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
             return 0;

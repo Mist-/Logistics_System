@@ -347,7 +347,7 @@ public class OrderPO extends DataPO {
         this.raddress = raddress;
     }
 
-    public void fastModify(OrderVO order) {
+    public void modify(OrderVO order) {
         saddress = order.saddress;
         sname = order.sname;
         scompany = order.scompany;

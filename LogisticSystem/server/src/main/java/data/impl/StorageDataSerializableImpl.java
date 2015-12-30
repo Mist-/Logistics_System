@@ -9,6 +9,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import utils.Log;
 import utils.Timestamper;
 
 /**
@@ -50,6 +51,7 @@ public class StorageDataSerializableImpl extends UnicastRemoteObject implements 
 
 	@Override
 	public ArrayList<DataPO> searchByDate(POType type, ArrayList<String> date) throws RemoteException {
+		Log.log("调用" + this.getClass().getSimpleName());
 		ArrayList<DataPO> list = getPOList(type);
 		ArrayList<DataPO> result = new ArrayList<DataPO>();
 		for(int i = 0 ; i < date.size();i++){
@@ -68,6 +70,7 @@ public class StorageDataSerializableImpl extends UnicastRemoteObject implements 
 
 	@Override
 	public DataPO searchStorageInfo(String date) throws RemoteException {
+		Log.log("调用" + this.getClass().getSimpleName());
 		ArrayList<DataPO> result = getPOList(POType.STORAGEINFO);
 		if (result == null) return null;
 		for (DataPO dataPO: result) {
@@ -79,6 +82,7 @@ public class StorageDataSerializableImpl extends UnicastRemoteObject implements 
 
 	@Override
 	public ArrayList<DataPO> getNewlyApprovedPO(POType type, long institution) {
+		Log.log("调用" + this.getClass().getSimpleName());
 		ArrayList<DataPO> result = new ArrayList<>();
 		for (int i = 0; i < newlyApproved.size(); ++i) {
 			if (newlyApproved.get(i).getPOType() == type) {

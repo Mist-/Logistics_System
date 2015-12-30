@@ -5,6 +5,7 @@ import data.enums.POType;
 import data.message.ResultMessage;
 import data.po.DataPO;
 import utils.FileIOHelper;
+import utils.Log;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -31,6 +32,7 @@ public interface DataService extends Remote {
      * @return 返回这个PO的引用。在使用时根据实际情况使用强制类型转换. null表示没有找到相关数据
      */
     default DataPO search(POType type, long key) throws RemoteException {
+        Log.log("调用" + this.getClass().getSimpleName());
         ArrayList<DataPO> list = getPOList(type);
         for (DataPO data: list) {
             if (data.getSerialNum() == key) return data;
@@ -48,6 +50,7 @@ public interface DataService extends Remote {
      * @return <code>SUCCESS</code>表示修改成功，NOTEXIST表示将要修改的PO项目不存在
      */
     default ResultMessage modify(DataPO data) throws RemoteException {
+        Log.log("调用" + this.getClass().getSimpleName());
         ArrayList<DataPO> list = getPOList(data.getPOType());
         DataPO dataToModift = null;
         for (DataPO dat: list) {
@@ -76,6 +79,7 @@ public interface DataService extends Remote {
      * @return EXIST表示存在相同序列号的项，添加失败；SUCCESS表示添加成功
      */
     default ResultMessage add(DataPO data) throws RemoteException {
+        Log.log("调用" + this.getClass().getSimpleName());
         ArrayList<DataPO> list = getPOList(data.getPOType());
         if (list == null) return ResultMessage.FAILED;
         for (DataPO dat: list) {
@@ -97,6 +101,7 @@ public interface DataService extends Remote {
      * @return NOTEXIST表示要删除的项目不再表中。SUCCESS表示删除成功
      */
     default ResultMessage delete(DataPO data) throws RemoteException {
+        Log.log("调用" + this.getClass().getSimpleName());
         ArrayList<DataPO> list = getPOList(data.getPOType());
         boolean contains = false;
 
@@ -113,6 +118,7 @@ public interface DataService extends Remote {
     }
 
     default ResultMessage delete(POType type) throws RemoteException {
+        Log.log("调用" + this.getClass().getSimpleName());
         getPOList(type).clear();
         return ResultMessage.SUCCESS;
     }
@@ -197,6 +203,7 @@ public interface DataService extends Remote {
      * @throws RemoteException
      */
     default ArrayList<DataPO> getUnapprovedPO(POType type) throws RemoteException {
+        Log.log("调用" + this.getClass().getSimpleName());
         ArrayList<DataPO> result = new ArrayList<>();
         if (!hkasfkjhkjash().containsKey(type)) return null;
         else {
@@ -215,6 +222,7 @@ public interface DataService extends Remote {
      * @throws RemoteException
      */
     default ArrayList<DataPO> getNewlyApproved(POType type) throws RemoteException {
+        Log.log("调用" + this.getClass().getSimpleName());
         ArrayList<DataPO> result = asdfghjkl().stream().filter(dataPO -> dataPO.getPOType() == type).collect(Collectors.toCollection(ArrayList::new));
         for (int i = 0; i < asdfghjkl().size(); i++) {
             if (asdfghjkl().get(i).getPOType() == type) {
@@ -233,7 +241,7 @@ public interface DataService extends Remote {
      * @param datapo 需要审批通过的单据
      */
     default ResultMessage approveOf(DataPO datapo) throws RemoteException {
-
+        Log.log("调用" + this.getClass().getSimpleName());
         for (int i = 0; i < getPOList(datapo.getPOType()).size(); ++i) {
             if (datapo.getSerialNum() == getPOList(datapo.getPOType()).get(i).getSerialNum()) {
                 if (getPOList(datapo.getPOType()).get(i).getState() == DataState.APPROVING) {

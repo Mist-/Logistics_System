@@ -4,6 +4,7 @@ import data.enums.POType;
 import data.po.DataPO;
 import data.po.UserPO;
 import data.service.UserDataService;
+import utils.Log;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -42,6 +43,7 @@ public class UserDataSerializableImpl extends UnicastRemoteObject implements Use
 
     @Override
     public ArrayList<DataPO> search(POType type, String key) {
+        Log.log("调用" + this.getClass().getSimpleName());
         ArrayList<DataPO> result = new ArrayList<>();
         if (type == POType.USER) {
             for (DataPO user: poLists.get(POType.USER)) {
@@ -54,6 +56,7 @@ public class UserDataSerializableImpl extends UnicastRemoteObject implements Use
 
     @Override
     public DataPO search(POType type, long staffsn) {
+        Log.log("调用" + this.getClass().getSimpleName());
         ArrayList<DataPO> users = poLists.get(POType.USER);
         for (DataPO data: users) {
             if (((UserPO) data).getStaffsn() == staffsn) return data;

@@ -4,6 +4,7 @@ import data.enums.POType;
 import data.message.ResultMessage;
 import data.po.*;
 import data.service.TransferDataService;
+import utils.Log;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -49,7 +50,8 @@ public class TransferDataSerializableImpl extends UnicastRemoteObject implements
 
     @Override
 	public ArrayList<TransferListPO> searchUncountedList(POType type, long institution) throws RemoteException {
-		ArrayList<DataPO> list = getPOList(POType.TRANSFERLIST);
+        Log.log("调用" + this.getClass().getSimpleName());
+        ArrayList<DataPO> list = getPOList(POType.TRANSFERLIST);
 		ArrayList<TransferListPO> result = new ArrayList<TransferListPO>();
 		for(int i = 0 ; i < list.size();i++){
 			TransferListPO t = (TransferListPO) list.get(i);
@@ -65,7 +67,8 @@ public class TransferDataSerializableImpl extends UnicastRemoteObject implements
 	@Override
 	public ArrayList<DataPO> searchList(POType type, long institutionID)
 			throws RemoteException {//司机，车辆，快递员专用
-		ArrayList<DataPO> all = getPOList(type);
+        Log.log("调用" + this.getClass().getSimpleName());
+        ArrayList<DataPO> all = getPOList(type);
 		ArrayList<DataPO> drivers = new ArrayList<DataPO>();
 		if (all == null) {
 			return null;
@@ -87,6 +90,7 @@ public class TransferDataSerializableImpl extends UnicastRemoteObject implements
 
     @Override
     public ArrayList<DataPO> getNewlyApprovedPO(POType type, long institution) {
+        Log.log("调用" + this.getClass().getSimpleName());
         ArrayList<DataPO> result = new ArrayList<>();
         System.out.println(institution);
         for (int i = 0; i < newlyApproved.size(); ++i) {

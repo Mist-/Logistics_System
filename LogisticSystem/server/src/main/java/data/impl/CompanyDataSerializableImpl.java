@@ -3,6 +3,7 @@ package data.impl;
 import data.enums.POType;
 import data.po.*;
 import data.service.CompanyDataService;
+import utils.Log;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -37,6 +38,7 @@ public class CompanyDataSerializableImpl extends UnicastRemoteObject implements 
 
     @Override
     public DataPO searchCity(String cityName) {
+        Log.log("调用" + this.getClass().getSimpleName());
         for (DataPO city: poLists.get(POType.CITYINFO)) {
             if (((CityInfoPO)city).getName().equals(cityName)) {
                 return city;
@@ -47,6 +49,7 @@ public class CompanyDataSerializableImpl extends UnicastRemoteObject implements 
 
     @Override
     public long searchBusinessOffice(String boName) throws RemoteException {
+        Log.log("调用" + this.getClass().getSimpleName());
         for (DataPO institution: poLists.get(POType.INSTITUTION)) {
             if (((InstitutionPO)institution).getName().equals(boName)) {
                 return institution.getSerialNum();
@@ -58,6 +61,7 @@ public class CompanyDataSerializableImpl extends UnicastRemoteObject implements 
 
     @Override
     public SalaryPO searchByInstitution(String institution) throws RemoteException {
+        Log.log("调用" + this.getClass().getSimpleName());
         SalaryPO salaryPO;
         for (DataPO data: poLists.get(POType.SALARY)) {
             salaryPO = (SalaryPO) data;
@@ -68,6 +72,7 @@ public class CompanyDataSerializableImpl extends UnicastRemoteObject implements 
 
     @Override
     public CityTransPO searchByCityName(String fromCity, String toCity) throws RemoteException {
+        Log.log("调用" + this.getClass().getSimpleName());
         CityTransPO cityTransPO;
         for (DataPO dataPO: poLists.get(POType.CITYTRANS)) {
             cityTransPO = (CityTransPO) dataPO;
@@ -79,6 +84,7 @@ public class CompanyDataSerializableImpl extends UnicastRemoteObject implements 
 
     @Override
     public ArrayList<DataPO> getUnapprovedPO(POType type) {
+        Log.log("调用" + this.getClass().getSimpleName());
         ArrayList<DataPO> result = new ArrayList<>();
         for (DataPO data: unapproved) {
             if (data.getPOType() == type) {

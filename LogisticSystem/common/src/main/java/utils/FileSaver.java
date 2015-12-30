@@ -65,6 +65,7 @@ public class FileSaver implements Runnable {
             if (!isServerRunning()) {
                 return;
             }
+            Log.log("将内存中的改动写入到文件。");
             for (DataService ds : dataServices) {
                 try {
                     ds.finish();

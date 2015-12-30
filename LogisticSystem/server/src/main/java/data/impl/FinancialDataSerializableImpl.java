@@ -8,6 +8,7 @@ import data.po.ReceiptPO;
 import data.service.FinancialDataService;
 import data.vo.AccountVO;
 import utils.FileIOHelper;
+import utils.Log;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -49,6 +50,7 @@ public class FinancialDataSerializableImpl extends UnicastRemoteObject implement
 
     @Override
     public ArrayList<DataPO> search(String name) {
+        Log.log("调用" + this.getClass().getSimpleName());
         ArrayList<DataPO> result = new ArrayList<>();
         for (DataPO account: poLists.get(POType.ACCOUNT)) {
             if (((AccountPO)account).getName().equals(name)) {
@@ -61,6 +63,7 @@ public class FinancialDataSerializableImpl extends UnicastRemoteObject implement
 
     @Override
     public ArrayList<DataPO> searchReceipt(String begin, String end) throws RemoteException {
+        Log.log("调用" + this.getClass().getSimpleName());
         ArrayList<DataPO> result = new ArrayList<>();
         for (DataPO receipt: poLists.get(POType.RECEIPT)) {
             if (begin.compareTo(((ReceiptPO)receipt).getDate()) <= 0 && ((ReceiptPO)receipt).getDate().compareTo(end) <= 0) {
@@ -73,7 +76,8 @@ public class FinancialDataSerializableImpl extends UnicastRemoteObject implement
 	@Override
 	public ArrayList<DataPO> searchRecFromAddress(String info)
 			throws RemoteException {
-		  ArrayList<DataPO> result = new ArrayList<>();
+        Log.log("调用" + this.getClass().getSimpleName());
+        ArrayList<DataPO> result = new ArrayList<>();
 	        for (DataPO receipt: poLists.get(POType.RECEIPT)) {
 	            if (((ReceiptPO)receipt).getInstitution().equals(info)) {
 	                result.add(receipt);
@@ -85,7 +89,8 @@ public class FinancialDataSerializableImpl extends UnicastRemoteObject implement
 	@Override
 	public ArrayList<DataPO> searchRecFromDate(String info)
 			throws RemoteException {
-		ArrayList<DataPO> result = new ArrayList<>();
+        Log.log("调用" + this.getClass().getSimpleName());
+        ArrayList<DataPO> result = new ArrayList<>();
         for (DataPO receipt: poLists.get(POType.RECEIPT)) {
             if (((ReceiptPO)receipt).getDate().equals(info)) {
                 result.add(receipt);
@@ -96,6 +101,7 @@ public class FinancialDataSerializableImpl extends UnicastRemoteObject implement
 
 	@Override
 	public ResultMessage delete(long num) throws RemoteException {
+        Log.log("调用" + this.getClass().getSimpleName());
         ArrayList<DataPO> list = getPOList(POType.ACCOUNT);
         for (DataPO dat : list) {
             if (dat.getSerialNum() == num) {
@@ -107,7 +113,8 @@ public class FinancialDataSerializableImpl extends UnicastRemoteObject implement
     }
 
     public ResultMessage modifyAccount(AccountVO accountVO) throws RemoteException {
-		ArrayList<DataPO> list = getPOList(POType.ACCOUNT);
+        Log.log("调用" + this.getClass().getSimpleName());
+        ArrayList<DataPO> list = getPOList(POType.ACCOUNT);
         for (int i = 0; i < list.size(); ++i) {
             if (list.get(i).getSerialNum() == accountVO.getAccountNum()) {
             	
