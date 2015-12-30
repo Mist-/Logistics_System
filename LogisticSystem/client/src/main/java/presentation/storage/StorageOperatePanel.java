@@ -9,7 +9,9 @@ import java.awt.event.*;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -178,7 +180,18 @@ public class StorageOperatePanel extends JPanel {
 				+ String.format("%02d", sm) + "/" + String.format("%02d", sd);
 		String end = String.format("%04d", ey) + "/"
 				+ String.format("%02d", em) + "/" + String.format("%02d", ed);
-
+		SimpleDateFormat ss = new SimpleDateFormat("yyyy/MM/dd");
+		
+		try {
+			Date d = ss.parse(start);
+			d = ss.parse(end);
+			JOptionPane.showMessageDialog(null, "时间输入有误", "提示",
+					JOptionPane.INFORMATION_MESSAGE);
+			return;
+		} catch (ParseException e2) {
+			
+			e2.printStackTrace();
+		}
 		try {
 			if (storageIn.isSelected()) {
 				storageList = storageOperate.getStorageList(start, end,

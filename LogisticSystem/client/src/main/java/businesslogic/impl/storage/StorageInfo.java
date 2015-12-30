@@ -23,7 +23,7 @@ import data.vo.TransferListVO;
 public class StorageInfo implements StorageInfoService {
 	StorageDataService storageData;
 	StorageInfoPO storageInfo;
-
+	long center;
 	/**
 	 * 根据中转单生成出库单
 	 * 
@@ -434,6 +434,7 @@ public class StorageInfo implements StorageInfoService {
 	public StorageInfo(StorageDataService storageData, long centerID)
 			throws RemoteException {
 		this.storageData = storageData;
+		this.center = centerID;
 		storageInfo = (StorageInfoPO) storageData.search(POType.STORAGEINFO,
 				centerID);
 	}
@@ -443,9 +444,16 @@ public class StorageInfo implements StorageInfoService {
 				.getDataServiceByType(DataType.StorageDataService);
 		storageInfo = (StorageInfoPO) storageData.search(POType.STORAGEINFO,
 				centerID);
+		this.center = centerID;
 	}
 
 	public StorageInfoPO getStorageInfoPO() {
 		return storageInfo;
+	}
+
+	@Override
+	public void refreshStorageInfo() throws RemoteException {
+		storageInfo = (StorageInfoPO) storageData.search(POType.STORAGEINFO, center);
+		
 	}
 }

@@ -119,6 +119,7 @@ public class EntruckReceivePanel extends JPanel {
 		from.setText(arrival.getFromName());
 		arrivalDate.setText(arrival.getDate());
 		remove(startPane);
+		remove(entruckVO);
 		add(arrivalVO, BorderLayout.CENTER);
 		arrivalVO.validate();
 		arrivalVO.updateUI();
@@ -164,6 +165,7 @@ public class EntruckReceivePanel extends JPanel {
 
 	//设置装车单
 	private void setEntruckList() {
+		deliveryID.setText("请输入单号");
 		DefaultTableModel model = new DefaultTableModel(entruckList.info,
 				entruckList.header);
 		listType.setText("装车单");
@@ -173,7 +175,6 @@ public class EntruckReceivePanel extends JPanel {
 		destName.setText(entruckList.destName);
 		vehicleID.setText(entruckList.vehicleID);
 		staff.setText(entruckList.monitorName);
-		driverName.setText(entruckList.driverName);
 		fee.setText(entruckList.fee);
 		transferType.setText("汽运");
 		deliveryTable.setModel(model);
@@ -194,7 +195,6 @@ public class EntruckReceivePanel extends JPanel {
 		date.setText(transferList.date);
 		vehicleID.setText(transferList.vehicleCode);
 		staff.setText(transferList.staff);
-		driverName.setText("");
 		fee.setText(transferList.fee);
 		transferType.setText(transferList.transferType);
 		deliveryTable.validate();
@@ -466,9 +466,7 @@ public class EntruckReceivePanel extends JPanel {
 		vehicleLabel = new JLabel();
 		vehicleID = new JTextField();
 		staffLabel = new JLabel();
-		driverLabel = new JLabel();
 		staff = new JTextField();
-		driverName = new JTextField();
 		label18 = new JLabel();
 		fee = new JTextField();
 		label19 = new JLabel();
@@ -550,8 +548,8 @@ public class EntruckReceivePanel extends JPanel {
 							.addContainerGap()
 							.addComponent(selectArrival, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
 							.addGap(18, 18, 18)
-							.addComponent(refreshButton, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(657, Short.MAX_VALUE))
+							.addComponent(refreshButton, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap(647, Short.MAX_VALUE))
 						.addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 905, Short.MAX_VALUE)
 				);
 				arrivalListPanelLayout.setVerticalGroup(
@@ -715,7 +713,7 @@ public class EntruckReceivePanel extends JPanel {
 				});
 
 				//---- doArrive ----
-				doArrive.setText("\u786e\u8ba4\u5230\u8fbe");
+				doArrive.setText("\u786e\u8ba4");
 				doArrive.setIcon(new ImageIcon(getClass().getResource("/icons/sign_24x24.png")));
 				doArrive.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 				doArrive.addMouseListener(new MouseAdapter() {
@@ -775,10 +773,10 @@ public class EntruckReceivePanel extends JPanel {
 							.addContainerGap()
 							.addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 783, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-								.addComponent(cancelArrival, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(doArrive, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(saveArrival, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE))
+							.addGroup(panel1Layout.createParallelGroup()
+								.addComponent(cancelArrival, GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+								.addComponent(doArrive, GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+								.addComponent(saveArrival, GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))
 							.addContainerGap())
 				);
 				panel1Layout.setVerticalGroup(
@@ -897,15 +895,8 @@ public class EntruckReceivePanel extends JPanel {
 				//---- vehicleID ----
 				vehicleID.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-				//---- driverLabel ----
-				driverLabel.setText("\u62bc\u8fd0\u5458");
-				driverLabel.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
 				//---- staff ----
 				staff.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-				//---- driverName ----
-				driverName.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
 				//---- label18 ----
 				label18.setText("\u8fd0\u8d39");
@@ -930,15 +921,9 @@ public class EntruckReceivePanel extends JPanel {
 				DeliveryListPanelLayout.setHorizontalGroup(
 					DeliveryListPanelLayout.createParallelGroup()
 						.addGroup(DeliveryListPanelLayout.createSequentialGroup()
-							.addContainerGap()
 							.addGroup(DeliveryListPanelLayout.createParallelGroup()
 								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
-									.addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 780, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addGroup(DeliveryListPanelLayout.createParallelGroup()
-										.addComponent(cancelLoad, GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-										.addComponent(createArrival, GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)))
-								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+									.addContainerGap()
 									.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
 										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
 											.addComponent(label13)
@@ -958,8 +943,8 @@ public class EntruckReceivePanel extends JPanel {
 												.addComponent(fromName, GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
 												.addComponent(listType, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
 												.addComponent(listID, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))))
-									.addGap(45, 45, 45)
-									.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+									.addGap(47, 47, 47)
+									.addGroup(DeliveryListPanelLayout.createParallelGroup()
 										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
 											.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
 												.addComponent(label14, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -974,65 +959,57 @@ public class EntruckReceivePanel extends JPanel {
 												.addComponent(vehicleID, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
 												.addComponent(staff, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)))
 										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
-											.addComponent(driverLabel, GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-											.addGap(18, 18, 18)
-											.addComponent(driverName, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)))
-									.addGap(37, 37, 37)
-									.addGroup(DeliveryListPanelLayout.createParallelGroup()
-										.addGroup(GroupLayout.Alignment.TRAILING, DeliveryListPanelLayout.createSequentialGroup()
 											.addComponent(transferTypeLabel)
-											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED))
-										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
-											.addComponent(label18)
-											.addGap(16, 16, 16)))
-									.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-										.addComponent(fee, GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
-										.addComponent(transferType, GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
-									.addGap(0, 0, Short.MAX_VALUE)))
+											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+											.addComponent(transferType, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)))
+									.addGap(37, 37, 37)
+									.addComponent(label18)
+									.addGap(32, 32, 32)
+									.addComponent(fee, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
+									.addGap(205, 205, 205)
+									.addComponent(createArrival, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+								.addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 790, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(cancelLoad, GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
 							.addContainerGap())
 				);
 				DeliveryListPanelLayout.setVerticalGroup(
 					DeliveryListPanelLayout.createParallelGroup()
 						.addGroup(DeliveryListPanelLayout.createSequentialGroup()
 							.addContainerGap()
-							.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(label10)
-								.addComponent(listType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(label14)
-								.addComponent(date, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(label11)
-								.addComponent(listID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(vehicleLabel)
-								.addComponent(vehicleID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(label12)
-								.addComponent(fromName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(staffLabel)
-								.addComponent(staff, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(label19)
-								.addComponent(transferTypeLabel)
-								.addComponent(transferType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(label13)
-								.addComponent(destName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(label18)
-								.addComponent(driverName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(fee, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(driverLabel))
 							.addGroup(DeliveryListPanelLayout.createParallelGroup()
 								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
-									.addComponent(createArrival, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-									.addComponent(cancelLoad)
-									.addContainerGap())
-								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+									.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+										.addComponent(label10)
+										.addComponent(listType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(label14)
+										.addComponent(date, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-									.addComponent(scrollPane3, GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))))
+									.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+										.addComponent(label11)
+										.addComponent(listID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(vehicleLabel)
+										.addComponent(vehicleID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+										.addComponent(label12)
+										.addComponent(fromName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(staffLabel)
+										.addComponent(staff, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(label19))
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+										.addComponent(label13)
+										.addComponent(destName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(label18)
+										.addComponent(fee, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(transferTypeLabel)
+										.addComponent(transferType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+								.addGroup(GroupLayout.Alignment.TRAILING, DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+									.addComponent(createArrival, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+									.addComponent(cancelLoad)))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(scrollPane3, GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
 				);
 			}
 			entruckVO.addTab("\u8fd0\u8f6c\u5355", DeliveryListPanel);
@@ -1332,9 +1309,7 @@ public class EntruckReceivePanel extends JPanel {
 	private JLabel vehicleLabel;
 	private JTextField vehicleID;
 	private JLabel staffLabel;
-	private JLabel driverLabel;
 	private JTextField staff;
-	private JTextField driverName;
 	private JLabel label18;
 	private JTextField fee;
 	private JLabel label19;

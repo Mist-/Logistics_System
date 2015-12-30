@@ -166,6 +166,7 @@ public class StorageOutPanel extends JPanel {
 	private void getTransferButtonMouseReleased(MouseEvent e) {
 		saveStorageOut.setVisible(true);
 		doStorageOut.setVisible(false);
+		storageOutCancel.setVisible(true);
 		int row = transferListTable.getSelectedRow();
 		String s = (String) transferListTable.getValueAt(row, 0);
 		long id = Long.parseLong(s);
@@ -199,6 +200,7 @@ public class StorageOutPanel extends JPanel {
 		if (selectStorageOut.isEnabled()) {
 			saveStorageOut.setVisible(false);
 			storageOutCancel.setVisible(false);
+			doStorageOut.setVisible(true);
 			int row = storageOutTable.getSelectedRow();
 			DefaultTableModel model = (DefaultTableModel) storageOutTable
 					.getModel();
@@ -549,51 +551,47 @@ public class StorageOutPanel extends JPanel {
 				storageOutVO.setLayout(storageOutVOLayout);
 				storageOutVOLayout.setHorizontalGroup(
 					storageOutVOLayout.createParallelGroup()
-						.addGroup(storageOutVOLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(label1, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-							.addGap(10, 10, 10)
-							.addComponent(transferListID, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-							.addComponent(label3, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(transferType, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-							.addComponent(label6)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(outDate, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
-							.addGap(18, 18, 18)
-							.addComponent(doStorageOut, GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(saveStorageOut, GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(storageOutCancel, GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-							.addGap(6, 6, 6))
-						.addComponent(scrollPane4, GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
+						.addGroup(GroupLayout.Alignment.TRAILING, storageOutVOLayout.createSequentialGroup()
+							.addGroup(storageOutVOLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+								.addComponent(scrollPane4)
+								.addGroup(storageOutVOLayout.createSequentialGroup()
+									.addContainerGap()
+									.addComponent(label1, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+									.addGap(10, 10, 10)
+									.addComponent(transferListID, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+									.addComponent(label3, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(transferType, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+									.addComponent(label6)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(outDate, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+									.addComponent(doStorageOut, GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(saveStorageOut, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(storageOutCancel, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)))
+							.addContainerGap())
 				);
 				storageOutVOLayout.setVerticalGroup(
 					storageOutVOLayout.createParallelGroup()
 						.addGroup(GroupLayout.Alignment.TRAILING, storageOutVOLayout.createSequentialGroup()
+							.addContainerGap()
 							.addGroup(storageOutVOLayout.createParallelGroup()
-								.addGroup(storageOutVOLayout.createSequentialGroup()
-									.addContainerGap()
-									.addGroup(storageOutVOLayout.createParallelGroup()
-										.addComponent(label1, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-										.addGroup(storageOutVOLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-											.addComponent(transferListID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addComponent(label3, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-											.addComponent(transferType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addComponent(label6, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-											.addComponent(outDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-								.addGroup(GroupLayout.Alignment.TRAILING, storageOutVOLayout.createSequentialGroup()
-									.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addGroup(storageOutVOLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-										.addComponent(storageOutCancel)
-										.addComponent(saveStorageOut)
-										.addComponent(doStorageOut))
-									.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)))
-							.addComponent(scrollPane4, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE))
+								.addComponent(label1, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+								.addGroup(storageOutVOLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+									.addComponent(transferListID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(label3, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+									.addComponent(transferType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(label6, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+									.addComponent(outDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(saveStorageOut, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+									.addComponent(storageOutCancel, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+									.addComponent(doStorageOut, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+							.addComponent(scrollPane4, GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE))
 				);
 			}
 			storageOutPane.addTab("\u51fa\u5e93\u5355", storageOutVO);

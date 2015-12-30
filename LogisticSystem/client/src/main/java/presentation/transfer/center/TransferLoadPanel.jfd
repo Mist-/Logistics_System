@@ -9,8 +9,8 @@ new FormModel {
 				name: "loadPane"
 				"font": &Font0 new java.awt.Font( "等线", 0, 14 )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {par l {seq {comp label1:::p::p, space :::p, comp transferTypeBox:::p:88:p, space :::p, comp label2:::p::p, space :::p, comp destBox:::p:88:p, space :p:36:p, comp getOrderButton:::p:108:p, space ::220:x, comp removeOrderButton:::p:108:p, space :::p, comp createTransferButton:::p:108:p}, comp scrollPane1::t::900:x}, space :::p}}"
-					"$verticalGroup": "par l {seq t {space :::p, par l {comp label1:::p:26:p, comp transferTypeBox:::::x, comp label2::l:::x, par b {comp destBox::b:p::p, comp getOrderButton::b::0:x, comp removeOrderButton::b:p::p, comp createTransferButton::b:p::p}}, space s:::p, comp scrollPane1:::p:295:p, space :::x}}"
+					"$horizontalGroup": "par l {seq {comp label1:::p::p, space :::p, comp transferTypeBox:::p:88:p, space :::p, comp label2:::p::p, space :::p, comp destBox:::p:88:p, space s:::p, comp getOrderButton:::p:108:p, space s:::p, comp button1:::p::p, space ::163:x, comp removeOrderButton:::p:108:p, space :::p, comp createTransferButton:::p:108:p, space :::p}, seq l {space :::p, comp scrollPane1::::900:x}}"
+					"$verticalGroup": "par l {seq t {space :::p, par l {seq {par l:::p {comp removeOrderButton::l:::x, comp createTransferButton::l:::x, comp getOrderButton::l:::x, comp label1::l:::x, comp destBox::l:::x, comp button1::l:::x}, space ::8:x}, seq {par l {comp transferTypeBox::::33:x, comp label2:::::x}, space :8:8:p}}, comp scrollPane1:::p:295:p}}"
 				} ) {
 					name: "loadPanel"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -39,15 +39,8 @@ new FormModel {
 						"font": #Font0
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
-						name: "getOrderButton"
-						"text": "搜索库存"
-						"font": #Font0
-						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/search_16x16.png" )
-						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "getOrderButtonMouseReleased", true ) )
-					} )
-					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "createTransferButton"
-						"text": "生成"
+						"text": "装运"
 						"font": #Font0
 						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/new_24x24.png" )
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "createTransferButtonMouseReleased", true ) )
@@ -59,6 +52,18 @@ new FormModel {
 						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/delete_24x24.png" )
 						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "removeOrderButtonMouseReleased", true ) )
 					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "getOrderButton"
+						"text": "搜索库存"
+						"font": #Font0
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/search_16x16.png" )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "getOrderButtonMouseReleased", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button1"
+						"text": "刷新"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "button1MouseReleased", true ) )
+					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "中转装运"
 				} )
@@ -66,7 +71,7 @@ new FormModel {
 				"value": "Center"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 0 )
+			"location": new java.awt.Point( 0, 20 )
 			"size": new java.awt.Dimension( 915, 380 )
 		} )
 		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
@@ -165,7 +170,7 @@ new FormModel {
 				"title": "中转单"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 385 )
+			"location": new java.awt.Point( 0, 405 )
 			"size": new java.awt.Dimension( 915, 380 )
 		} )
 	}

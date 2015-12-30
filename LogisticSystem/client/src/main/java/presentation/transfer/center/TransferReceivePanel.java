@@ -120,6 +120,7 @@ public class TransferReceivePanel extends JPanel {
 
 	private void setEntruckListVO() {
 		// 设置装车单显示信息
+		deliveryID.setText("请输入单号");
 		listID.setText(entruckListVO.entruckListID);
 		fromName.setText(entruckListVO.fromName);
 		destName.setText(entruckListVO.destName);

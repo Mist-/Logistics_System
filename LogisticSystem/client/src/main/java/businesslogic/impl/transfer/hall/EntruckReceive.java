@@ -44,9 +44,12 @@ public class EntruckReceive implements EntruckReceiveService{
 	
 	public ArrivalVO chooseArrival(long arrivalID){
 		ArrivalPO  a = arrivalList.chooseArrival(arrivalID);
-		if(a != null)
+		if(a != null){
 		return new ArrivalVO(a);
-		else return null;
+		}
+		else {
+			return null;
+		}
 	}
 	
 

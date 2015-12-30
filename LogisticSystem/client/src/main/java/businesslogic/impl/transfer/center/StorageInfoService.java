@@ -13,6 +13,7 @@ import data.vo.TransferListVO;
  *
  */
 public interface StorageInfoService {
+	public void refreshStorageInfo() throws RemoteException;
 	public StoragePositionAndOrderID getOrderID(StorageArea transferType) ;
 	public ResultMessage modifyStorageInfo(TransferListVO transferList) throws RemoteException;
 }
