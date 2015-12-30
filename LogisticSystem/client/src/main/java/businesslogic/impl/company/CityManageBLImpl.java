@@ -86,7 +86,4 @@ public class CityManageBLImpl implements CityManageBLService {
         return resultMessage;
     }
 
-    public void endCityManage() {
-        //TODO
-    }
 }

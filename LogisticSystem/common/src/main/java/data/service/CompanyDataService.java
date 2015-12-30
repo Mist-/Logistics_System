@@ -43,6 +43,5 @@ public interface CompanyDataService extends DataService {
      * @throws RemoteException
      */
     CityTransPO searchByCityName(String fromCity, String toCity) throws RemoteException;
-    
-    long searchBusinessOffice(String boName) throws RemoteException;
+
 }

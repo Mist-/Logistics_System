@@ -46,17 +46,6 @@ public class CompanyDataSerializableImpl extends UnicastRemoteObject implements 
     }
 
     @Override
-    public long searchBusinessOffice(String boName) throws RemoteException {
-        for (DataPO institution: poLists.get(POType.INSTITUTION)) {
-            if (((InstitutionPO)institution).getName().equals(boName)) {
-                return institution.getSerialNum();
-            }
-        }
-        return 0;
-    }
-
-
-    @Override
     public SalaryPO searchByInstitution(String institution) throws RemoteException {
         SalaryPO salaryPO;
         for (DataPO data: poLists.get(POType.SALARY)) {

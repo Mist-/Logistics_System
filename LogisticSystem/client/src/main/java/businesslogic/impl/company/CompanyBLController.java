@@ -465,7 +465,7 @@ public class CompanyBLController {
      * @return  添加成功是SUCCESS,网络错误是NOTCONNECTED,员工id已经存在是EXIST
      */
     public ResultMessage addStaff(StaffVO staffVO){
-        return staff.addStaff(staffVO,staffVO.getId());
+        return staff.addStaff(staffVO);
     }
 
     /**
