@@ -60,7 +60,8 @@ public class CompanyDataSerializableImpl extends UnicastRemoteObject implements 
         CityTransPO cityTransPO;
         for (DataPO dataPO: poLists.get(POType.CITYTRANS)) {
             cityTransPO = (CityTransPO) dataPO;
-            if(cityTransPO.getFromCity().equals(fromCity) && cityTransPO.getToCity().equals(toCity))
+            if((cityTransPO.getFromCity().equals(fromCity) && cityTransPO.getToCity().equals(toCity))||
+                    (cityTransPO.getFromCity().equals(toCity) && cityTransPO.getToCity().equals(fromCity)) )
                 return cityTransPO;
         }
         return null;

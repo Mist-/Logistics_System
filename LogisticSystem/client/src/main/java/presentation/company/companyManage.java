@@ -257,7 +257,9 @@ public class companyManage extends JFrame {
                 }
             }
             else{
-                JOptionPane.showMessageDialog(null, "网络错误...", "", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "请输入正确信息!", "", JOptionPane.ERROR_MESSAGE);
+                //重绘表格
+                buttonEnsureCityMouseClicked(null);
             }
         }
     }

@@ -94,7 +94,7 @@ public class MockCompanyDataService implements CompanyDataService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 
 	@Override
 	public SalaryPO searchByInstitution(String department)
