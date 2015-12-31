@@ -89,6 +89,7 @@ public class Order {
         LogisticInfoPO logisticInfoPO =  new LogisticInfoPO(newOrder.getSerialNum());
         logisticInfoPO.addInfo(Timestamper.getTimeBySecond(), "快递员已揽件。");
         newOrder.setRoutine(getRoutine(order.saddress, order.raddress));
+        newOrder.setFee(generateFee(order));
         newOrder.setTransferType(getTransportType(order));
         // 提交订单
         try {
@@ -236,7 +237,7 @@ public class Order {
         }
 
         if (orders.size() == 0) return 0;
-
+        int amount = 0;
         for (DataPO data : orders) {
             OrderPO orderPO = (OrderPO) data;
             Calendar sendDate = orderPO.getGenDate();
@@ -250,14 +251,16 @@ public class Order {
             if (signPO == null) continue;
             Calendar signDate = signPO.getGenDate();
             time += (signDate.getTimeInMillis() - sendDate.getTimeInMillis()) / 1000.0f / 60.0f / 60.0f / 24.0f;
+            ++amount;
         }
-        time /= orders.size();
+        if (amount == 0) return 0;
+        time /= amount;
         time *= 10;
 
         // 四舍五入
         if ((int) time % 10 >= 5) time = ((int) time) / 10 * 10 + 10;
         else time = ((int) time) / 10 * 10;
-        return (int) time;
+        return (int) time / 10;
     }
 
     /**
@@ -267,6 +270,34 @@ public class Order {
      * @return 计算出的费用
      */
     public double generateFee(OrderVO orderVO) {
+        CompanyDataService ds = (CompanyDataService) DataServiceFactory.getDataServiceByType(DataType.CompanyDataService);
+        if (ds == null) return 0;
+        ArrayList<DataPO> dataPOs = null;
+        try {
+            dataPOs = ds.getPOList(POType.CITYTRANS);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        if (dataPOs == null) return 0;
+        for (DataPO dataPO: dataPOs) {
+            CityTransPO cityTransPO = (CityTransPO) dataPO;
+            if (cityTransPO.getFromCity().equals(orderVO.saddress.split("[-]")[0]) &&
+                    cityTransPO.getToCity().equals(orderVO.raddress.split("[-]")[0])) {
+                double distance = cityTransPO.getDistance(), price = 0;
+                switch (orderVO.serviceType) {
+                    case 经济快递:
+                        price = cityTransPO.getTrunkPrice();
+                        break;
+                    case 标准快递:
+                        price = cityTransPO.getTrainPrice();
+                        break;
+                    case 特快快递:
+                        price = cityTransPO.getPlanePrice();
+                        break;
+                }
+                double result = distance * price * orderVO.weight;
+            }
+        }
         return 0;
     }
 

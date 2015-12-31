@@ -1,0 +1,28 @@
+JFDML JFormDesigner: "5.2.2.2.228" Java: "1.8.0_51" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {space :::x, comp labelUserID:::p::p, space :::p, comp labelUserName:::p::p, space :::p, comp btModifyPswd:::p::p, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :::p, par b {comp btModifyPswd::b:p::p, comp labelUserName::b:p:33:p, comp labelUserID::b:p:33:p}, space ::91:x}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btModifyPswd"
+				"text": "修改密码"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "labelUserName"
+				"text": "text"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "labelUserID"
+				"text": "text"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 75, 25 )
+			"size": new java.awt.Dimension( 170, 130 )
+		} )
+	}
+}

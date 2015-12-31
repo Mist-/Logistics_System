@@ -17,12 +17,34 @@ public interface OrderListService {
 	 * @return 订单列表
 	 */
 	public BriefOrderVO getFreshOrder(long institution,long destID) ;
-	
+
+	/**
+	 * 修改订单
+	 * @param orderID
+	 * @param info
+	 * @throws RemoteException
+     */
 	public void modifyOrder(long[] orderID,String info) throws RemoteException;
-	
+
+	/**
+	 * 修改订单位置
+	 * @param orderID
+	 * @throws RemoteException
+     */
 	public void modifyOrderPosition(long[] orderID) throws RemoteException;
-	
+
+	/**
+	 * 搜索订单
+	 * @param order
+	 * @return
+     */
     ArrayList<OrderPO> search(long[] order);
-    
+
+    /**
+	 * 获取订单和报价
+	 * @param hallID
+	 * @param date
+	 * @return
+     */
     public String[][] getOrderAndFee(long hallID,String date);
 }

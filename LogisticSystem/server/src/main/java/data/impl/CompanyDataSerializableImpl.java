@@ -47,7 +47,6 @@ public class CompanyDataSerializableImpl extends UnicastRemoteObject implements 
         return null;
     }
 
-    @Override
     public long searchBusinessOffice(String boName) throws RemoteException {
         Log.log("µ÷ÓÃ" + this.getClass().getSimpleName());
         for (DataPO institution: poLists.get(POType.INSTITUTION)) {

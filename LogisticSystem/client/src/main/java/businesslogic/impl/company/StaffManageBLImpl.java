@@ -57,7 +57,6 @@ public class StaffManageBLImpl implements StaffManageBLService {
         return vlist;
     }
 
-
     @Override
     public StaffVO getstaffByID(long id) {
         try {
@@ -75,6 +74,20 @@ public class StaffManageBLImpl implements StaffManageBLService {
             return staffVO;
         }
         return null;
+    }
+
+    public StaffVO getStaff(long sn) {
+
+        StaffPO staffPO = null;
+        try {
+            staffPO = (StaffPO) company.search(POType.STAFF,staffVO.getId());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        StaffVO staffVO = new StaffVO();
+        staffVO.setName(staffPO.getName());
+        staffVO.setUserRole(staffPO.getUserRole());
+        return staffVO;
     }
 
     @Override

@@ -24,7 +24,13 @@ public interface CompanyDataService extends DataService {
 	 * @return 快递员POList
 	 */
 	ArrayList<StaffPO> searchSenders(long institutionID)throws RemoteException;
-	
+
+	/**
+	 * 根据城市名称搜索城市信息。
+	 * @param cityName 城市名称
+	 * @return 如果搜索成功则返回该项数据。否则返回null
+	 * @throws RemoteException
+     */
     DataPO searchCity(String cityName) throws RemoteException;
 
     /**
