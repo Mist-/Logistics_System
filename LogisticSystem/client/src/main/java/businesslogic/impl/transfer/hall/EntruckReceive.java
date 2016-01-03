@@ -83,7 +83,7 @@ public class EntruckReceive implements EntruckReceiveService{
 	public ResultMessage saveArrival(ArrivalVO arrival) {
 		
 		try {
-			return arrivalList.saveArrival(arrival);
+			return arrivalList.saveArrival(arrival,user.getInstitutionID());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return ResultMessage.FAILED;
@@ -127,19 +127,21 @@ public class EntruckReceive implements EntruckReceiveService{
 	public ResultMessage doArrive() throws RemoteException {
 		long[] roundOrder = null;
 		long[] lostOrder = null;
+		long[] damageOrder = null;
 		try {
 		roundOrder =  arrivalList.getOrder(StockStatus.ROUND);
 		lostOrder = arrivalList.getOrder(StockStatus.LOST);
-		
+		damageOrder = arrivalList.getOrder(StockStatus.DAMAGED);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return ResultMessage.FAILED;
 		}
 		//修改订单信息
 		OrderListService orderList = new OrderList(new LoginMessage(ResultMessage.SUCCESS));
-		orderList.modifyOrder(roundOrder, "由"+user.getInstitutionName()+"接收");
-		orderList.modifyOrder(lostOrder, "订单于"+user.getInstitutionName()+"丢失");
-		orderList.modifyOrderPosition(roundOrder);
+		orderList.modifyOrder(damageOrder, "订单于"+user.getInstitutionName()+"营业厅丢失");
+		orderList.modifyOrder(roundOrder, "由"+user.getInstitutionName()+"营业厅接收");
+		orderList.modifyOrder(lostOrder, "订单于"+user.getInstitutionName()+"营业厅丢失");
+		//orderList.modifyOrderPosition(roundOrder);
 		return ResultMessage.SUCCESS;
 	}
 	

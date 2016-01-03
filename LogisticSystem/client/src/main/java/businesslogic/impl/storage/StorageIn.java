@@ -165,8 +165,9 @@ public class StorageIn implements StorageInService{
 	 */
 	public ResultMessage saveStorageInList(StorageInVO vo) throws RemoteException{
 		//modifyArriveListState();
+			storageInfo.modifyStorageInfo(vo);
 			storageInfo.saveStorageInfo();
-			return storageInList.saveStorageInList(vo);
+			return storageInList.saveStorageInList(vo,user.getInstitutionID());
 
 	}
 
@@ -195,6 +196,7 @@ public class StorageIn implements StorageInService{
 		}
 		//修改订单信息
 		OrderListService orderList = new OrderList(new LoginMessage(ResultMessage.SUCCESS));
+		orderList.modifyOrder(roundOrder, "订单到达"+user.getInstitutionName()+"中转中心");
 		orderList.modifyOrder(lostOrder, "订单于"+user.getInstitutionName()+"丢失");
 		orderList.modifyOrder(damagedOrder, "货物于"+user.getInstitutionName()+"破损");
 		//orderList.modifyOrderPosition(roundOrder);

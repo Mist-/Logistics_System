@@ -7,6 +7,13 @@ import java.util.Calendar;
  * Created by mist on 2015/11/16 0016.
  */
 public class Timestamper {
+	
+	public static String getTime(){
+		Calendar now = Calendar.getInstance();
+		String result =""+ now.get(Calendar.YEAR) + (now.get(Calendar.MONTH)+1)+now.get(Calendar.DATE);
+		return result;
+	
+	}
 
     public static String getTimeByDate() {
         Calendar now = Calendar.getInstance();

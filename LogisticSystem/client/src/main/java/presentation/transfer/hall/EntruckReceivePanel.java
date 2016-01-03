@@ -73,6 +73,8 @@ public class EntruckReceivePanel extends JPanel {
 		arrivalTable.validate();
 		arrivalTable.updateUI();
 		arrivalTable.repaint();
+		if(sendListPane != null)
+			remove(sendListPane);
 		if(arrivalVO != null)
 			remove(arrivalVO);
 		if(entruckVO != null)
@@ -156,7 +158,7 @@ public class EntruckReceivePanel extends JPanel {
 		if (arrivalVO != null)
 			remove(arrivalVO);
 		add(entruckVO, BorderLayout.CENTER);
-
+		deliveryID.setText("请输入单号");
 		entruckVO.validate();
 		entruckVO.updateUI();
 		entruckVO.setVisible(true);
@@ -266,10 +268,13 @@ public class EntruckReceivePanel extends JPanel {
 			JOptionPane.showMessageDialog(null, "操作成功", "提示", JOptionPane.INFORMATION_MESSAGE);
 			
 			int row = arrivalTable.getSelectedRow();
-			deleteRow(row);
+			DefaultTableModel model = (DefaultTableModel) arrivalTable.getModel();
+			model.removeRow(row);
+			arrivalTable.setModel(model);
+			arrivalTable.updateUI();
 			arrivalCounter--;
 			//setArrivalList();
-			
+			setSendList();
 		}
 	}
 
@@ -473,9 +478,11 @@ public class EntruckReceivePanel extends JPanel {
 		transferTypeLabel = new JLabel();
 		transferType = new JTextField();
 		resultDialog = new JDialog();
+		panel2 = new JPanel();
 		label6 = new JLabel();
 		resultSureButton = new JButton();
 		errorDialog = new JDialog();
+		panel4 = new JPanel();
 		label7 = new JLabel();
 		errorSure = new JButton();
 		cancelDialog = new JDialog();
@@ -1019,41 +1026,47 @@ public class EntruckReceivePanel extends JPanel {
 		{
 			resultDialog.setTitle("\u64cd\u4f5c\u7ed3\u679c");
 			Container resultDialogContentPane = resultDialog.getContentPane();
+			resultDialogContentPane.setLayout(new BorderLayout());
 
-			//---- label6 ----
-			label6.setText("\u64cd\u4f5c\u6210\u529f");
-			label6.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+			//======== panel2 ========
+			{
 
-			//---- resultSureButton ----
-			resultSureButton.setText("\u786e\u5b9a");
-			resultSureButton.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-			resultSureButton.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					resultSureButtonMouseClicked(e);
-				}
-			});
+				//---- label6 ----
+				label6.setText("\u64cd\u4f5c\u6210\u529f");
+				label6.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-			GroupLayout resultDialogContentPaneLayout = new GroupLayout(resultDialogContentPane);
-			resultDialogContentPane.setLayout(resultDialogContentPaneLayout);
-			resultDialogContentPaneLayout.setHorizontalGroup(
-				resultDialogContentPaneLayout.createParallelGroup()
-					.addGroup(resultDialogContentPaneLayout.createSequentialGroup()
-						.addGap(118, 118, 118)
-						.addGroup(resultDialogContentPaneLayout.createParallelGroup()
+				//---- resultSureButton ----
+				resultSureButton.setText("\u786e\u5b9a");
+				resultSureButton.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				resultSureButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						resultSureButtonMouseClicked(e);
+					}
+				});
+
+				GroupLayout panel2Layout = new GroupLayout(panel2);
+				panel2.setLayout(panel2Layout);
+				panel2Layout.setHorizontalGroup(
+					panel2Layout.createParallelGroup()
+						.addGroup(panel2Layout.createSequentialGroup()
+							.addGap(118, 118, 118)
+							.addGroup(panel2Layout.createParallelGroup()
+								.addComponent(label6, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
+								.addComponent(resultSureButton))
+							.addContainerGap(123, Short.MAX_VALUE))
+				);
+				panel2Layout.setVerticalGroup(
+					panel2Layout.createParallelGroup()
+						.addGroup(GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
+							.addContainerGap(44, Short.MAX_VALUE)
+							.addComponent(label6)
+							.addGap(25, 25, 25)
 							.addComponent(resultSureButton)
-							.addComponent(label6, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE))
-						.addContainerGap(123, Short.MAX_VALUE))
-			);
-			resultDialogContentPaneLayout.setVerticalGroup(
-				resultDialogContentPaneLayout.createParallelGroup()
-					.addGroup(resultDialogContentPaneLayout.createSequentialGroup()
-						.addGap(51, 51, 51)
-						.addComponent(label6)
-						.addGap(28, 28, 28)
-						.addComponent(resultSureButton)
-						.addContainerGap(33, Short.MAX_VALUE))
-			);
+							.addGap(43, 43, 43))
+				);
+			}
+			resultDialogContentPane.add(panel2, BorderLayout.CENTER);
 			resultDialog.setSize(320, 200);
 			resultDialog.setLocationRelativeTo(null);
 		}
@@ -1062,45 +1075,50 @@ public class EntruckReceivePanel extends JPanel {
 		{
 			errorDialog.setTitle("\u5f02\u5e38");
 			Container errorDialogContentPane = errorDialog.getContentPane();
+			errorDialogContentPane.setLayout(new BorderLayout());
 
-			//---- label7 ----
-			label7.setText("\u7f51\u7edc\u8fde\u63a5\u4e2d\u65ad");
-			label7.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+			//======== panel4 ========
+			{
 
-			//---- errorSure ----
-			errorSure.setText("\u786e\u5b9a");
-			errorSure.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-			errorSure.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					button1MouseClicked(e);
-					errorSureMouseClicked(e);
-				}
-			});
+				//---- label7 ----
+				label7.setText("\u7f51\u7edc\u8fde\u63a5\u4e2d\u65ad");
+				label7.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-			GroupLayout errorDialogContentPaneLayout = new GroupLayout(errorDialogContentPane);
-			errorDialogContentPane.setLayout(errorDialogContentPaneLayout);
-			errorDialogContentPaneLayout.setHorizontalGroup(
-				errorDialogContentPaneLayout.createParallelGroup()
-					.addGroup(errorDialogContentPaneLayout.createSequentialGroup()
-						.addContainerGap(92, Short.MAX_VALUE)
-						.addGroup(errorDialogContentPaneLayout.createParallelGroup()
-							.addGroup(GroupLayout.Alignment.TRAILING, errorDialogContentPaneLayout.createSequentialGroup()
+				//---- errorSure ----
+				errorSure.setText("\u786e\u5b9a");
+				errorSure.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				errorSure.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						button1MouseClicked(e);
+						errorSureMouseClicked(e);
+					}
+				});
+
+				GroupLayout panel4Layout = new GroupLayout(panel4);
+				panel4.setLayout(panel4Layout);
+				panel4Layout.setHorizontalGroup(
+					panel4Layout.createParallelGroup()
+						.addGroup(panel4Layout.createSequentialGroup()
+							.addGap(81, 81, 81)
+							.addGroup(panel4Layout.createParallelGroup()
 								.addComponent(label7, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
-								.addGap(80, 80, 80))
-							.addGroup(GroupLayout.Alignment.TRAILING, errorDialogContentPaneLayout.createSequentialGroup()
-								.addComponent(errorSure)
-								.addGap(111, 111, 111))))
-			);
-			errorDialogContentPaneLayout.setVerticalGroup(
-				errorDialogContentPaneLayout.createParallelGroup()
-					.addGroup(errorDialogContentPaneLayout.createSequentialGroup()
-						.addGap(41, 41, 41)
-						.addComponent(label7)
-						.addGap(36, 36, 36)
-						.addComponent(errorSure)
-						.addContainerGap(35, Short.MAX_VALUE))
-			);
+								.addGroup(panel4Layout.createSequentialGroup()
+									.addGap(15, 15, 15)
+									.addComponent(errorSure)))
+							.addContainerGap(94, Short.MAX_VALUE))
+				);
+				panel4Layout.setVerticalGroup(
+					panel4Layout.createParallelGroup()
+						.addGroup(GroupLayout.Alignment.TRAILING, panel4Layout.createSequentialGroup()
+							.addContainerGap(49, Short.MAX_VALUE)
+							.addComponent(label7)
+							.addGap(20, 20, 20)
+							.addComponent(errorSure)
+							.addGap(43, 43, 43))
+				);
+			}
+			errorDialogContentPane.add(panel4, BorderLayout.CENTER);
 			errorDialog.pack();
 			errorDialog.setLocationRelativeTo(errorDialog.getOwner());
 		}
@@ -1147,36 +1165,34 @@ public class EntruckReceivePanel extends JPanel {
 				panelLayout.setHorizontalGroup(
 					panelLayout.createParallelGroup()
 						.addGroup(GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-							.addGap(0, 74, Short.MAX_VALUE)
-							.addComponent(label9)
-							.addGap(87, 87, 87))
+							.addContainerGap(51, Short.MAX_VALUE)
+							.addComponent(label8)
+							.addGap(40, 40, 40))
 						.addGroup(panelLayout.createSequentialGroup()
-							.addGroup(panelLayout.createParallelGroup()
+							.addGap(76, 76, 76)
+							.addGroup(panelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+								.addComponent(label9)
 								.addGroup(panelLayout.createSequentialGroup()
-									.addGap(55, 55, 55)
-									.addComponent(label8))
-								.addGroup(panelLayout.createSequentialGroup()
-									.addGap(76, 76, 76)
 									.addComponent(cancelSureButton)
 									.addGap(18, 18, 18)
 									.addComponent(notCancelButton)))
-							.addContainerGap(36, Short.MAX_VALUE))
+							.addContainerGap(71, Short.MAX_VALUE))
 				);
 				panelLayout.setVerticalGroup(
 					panelLayout.createParallelGroup()
 						.addGroup(panelLayout.createSequentialGroup()
-							.addGap(42, 42, 42)
+							.addGap(30, 30, 30)
 							.addComponent(label8, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addComponent(label9)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addGap(18, 18, 18)
 							.addGroup(panelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 								.addComponent(cancelSureButton)
 								.addComponent(notCancelButton))
 							.addContainerGap(32, Short.MAX_VALUE))
 				);
 			}
-			cancelDialogContentPane.add(panel, BorderLayout.CENTER);
+			cancelDialogContentPane.add(panel, BorderLayout.SOUTH);
 			cancelDialog.pack();
 			cancelDialog.setLocationRelativeTo(cancelDialog.getOwner());
 		}
@@ -1316,9 +1332,11 @@ public class EntruckReceivePanel extends JPanel {
 	private JLabel transferTypeLabel;
 	private JTextField transferType;
 	private JDialog resultDialog;
+	private JPanel panel2;
 	private JLabel label6;
 	private JButton resultSureButton;
 	private JDialog errorDialog;
+	private JPanel panel4;
 	private JLabel label7;
 	private JButton errorSure;
 	private JDialog cancelDialog;

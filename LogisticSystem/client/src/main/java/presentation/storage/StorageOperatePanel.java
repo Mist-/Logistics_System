@@ -137,12 +137,16 @@ public class StorageOperatePanel extends JPanel {
 	}
 
 	private void InitSureButtonMouseClicked(MouseEvent e) {
+		if(InitSureButton.isEnabled()){
 		sureDialog.validate();
 		sureDialog.setVisible(true);
+		}
 	}
 
 	private void reInputButtonMouseClicked(MouseEvent e) {
-		clearInitInput();
+		if(reInputButton.isEnabled()){
+			clearInitInput();
+		}
 	}
 
 	// private void listTableMouseClicked(MouseEvent e) {
@@ -185,12 +189,12 @@ public class StorageOperatePanel extends JPanel {
 		try {
 			Date d = ss.parse(start);
 			d = ss.parse(end);
+		
+		} catch (ParseException e2) {
 			JOptionPane.showMessageDialog(null, "时间输入有误", "提示",
 					JOptionPane.INFORMATION_MESSAGE);
-			return;
-		} catch (ParseException e2) {
-			
 			e2.printStackTrace();
+			return;
 		}
 		try {
 			if (storageIn.isSelected()) {

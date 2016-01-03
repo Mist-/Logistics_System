@@ -104,7 +104,7 @@ public class StorageInfo implements StorageInfoService {
 
 		ArrayList<OrderPO> order = orders;
 		String[][] sortResult = new String[order.size()][5];
-
+		int flexible = 0;
 		if (checkSpace(order) == false)
 			return null;
 		else {
@@ -112,7 +112,7 @@ public class StorageInfo implements StorageInfoService {
 				OrderPO o = order.get(i);
 				StorageArea area = o.getTransferType();
 				String[] s = getPosition(area, o.getSerialNum()).split("-");
-
+				
 				switch (s[1]) {
 				case "0":
 					s[1] = "航运区";
@@ -125,10 +125,14 @@ public class StorageInfo implements StorageInfoService {
 					break;
 				default:
 					s[1] = "机动区";
+					flexible++;
 					break;
 				}
 				sortResult[i] = s;
 			}
+			
+			
+			storageInfo.setFlexibleNum(storageInfo.getFlexibleNum()+flexible);
 
 			storageInVO = new StorageInVO(sortResult);
 		}
@@ -346,7 +350,7 @@ public class StorageInfo implements StorageInfoService {
 			while (row < storageInfo.getShelf()) {
 				while (num < storageInfo.getNum()) {
 					if (info[shelf][row][num] == 0) {
-						info[shelf][row][num] = order;//修改storage信息
+				//		info[shelf][row][num] = order;//修改storage信息
 						return order+"-"+ a + "-" + shelf + "-" + row + "-" + num;
 					}
 					num++;
@@ -415,21 +419,57 @@ public class StorageInfo implements StorageInfoService {
 		
 		String[][] position = transferList.orderAndPosition;
 
+		int flexible = 0;
 		for (int i = 0; i < position.length; i++) {
 			if(!position[i][0].equals("")){
 			int index = Integer.parseInt(position[i][1]);
 			int row = Integer.parseInt(position[i][2]);
 			int shelf = Integer.parseInt(position[i][3]);
 			int num = Integer.parseInt(position[i][4]);
+			if(index == 3){
+				flexible++;
+			}
 			long[][][] pos = info.get(index);
 			pos[row][shelf][num] = 0;
 			}
 		}
 		storageInfo.setStorage(info);
+		storageInfo.setFlexibleNum(storageInfo.getFlexibleNum()- flexible);
 		storageData.modify(storageInfo);
 		return ResultMessage.SUCCESS;
 		
 	}
+	
+	
+	public ResultMessage modifyStorageInfo(StorageInVO vo) throws RemoteException{
+		String[][] info = vo.getInfo();
+		for(int i = 0 ; i < info.length;i++){
+			String[] in = info[i];
+			long id = Long.parseLong(in[0]);
+			switch (in[1]) {
+			case "航运区":
+				in[1] = "0";
+				break;
+			case "铁运区":
+				in[1] = "1";
+				break;
+			case "汽运区":
+				in[1] = "2";
+				break;
+			default:
+				in[1] = "3";
+				break;
+			}
+			int area = Integer.parseInt(in[1]);
+			int row = Integer.parseInt(in[2]);
+			int shelf = Integer.parseInt(in[3]);
+			int num = Integer.parseInt(in[4]);
+			long[][][] a = storageInfo.getStorage().get(area);
+			a[row][shelf][num] = id;
+		}
+		
+		return storageData.modify(storageInfo);
+	} 
 
 	public StorageInfo(StorageDataService storageData, long centerID)
 			throws RemoteException {

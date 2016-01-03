@@ -29,8 +29,9 @@ public class StorageList {
 		return null;
 	}
 	
-	public ResultMessage saveStorageInList(StorageInVO vo) throws RemoteException {
+	public ResultMessage saveStorageInList(StorageInVO vo,long center) throws RemoteException {
 		StorageInListPO storageInPO = new StorageInListPO(vo);
+		storageInPO.setSerialNum(center*10000+storageInPO.getSerialNum());
 		return storageData.add(storageInPO);
 	}
 	

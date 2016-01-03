@@ -291,57 +291,67 @@ new FormModel {
 			"location": new java.awt.Point( 5, 875 )
 			"size": new java.awt.Dimension( 915, 385 )
 		} )
-		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:118:p, par l {comp resultSureButton:::p::p, comp label6:::p:63:p}, space ::123:x}}"
-			"$verticalGroup": "par l {seq l {space :p:51:p, comp label6:::p::p, space :p:28:p, comp resultSureButton:::p::p, space ::33:x}}"
-		} ) {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 			name: "resultDialog"
 			"title": "操作结果"
 			"$sizePolicy": 1
 			"$locationPolicy": 1
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label6"
-				"text": "操作成功"
-				"font": #Font1
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "resultSureButton"
-				"text": "确定"
-				"font": #Font1
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "resultSureButtonMouseClicked", true ) )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :p:118:p, par l {comp label6:::p:63:p, comp resultSureButton:::p::p}, space ::123:x}}"
+				"$verticalGroup": "par l {seq t {space ::44:x, comp label6:::p::p, space :25:25:p, comp resultSureButton:::p::p, space :p:43:p}}"
+			} ) {
+				name: "panel2"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label6"
+					"text": "操作成功"
+					"font": #Font1
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "resultSureButton"
+					"text": "确定"
+					"font": #Font1
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "resultSureButtonMouseClicked", true ) )
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 990, 485 )
+			"location": new java.awt.Point( 985, 485 )
 			"size": new java.awt.Dimension( 320, 200 )
 		} )
-		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space ::92:x, par l {seq t {comp label7:::p:89:p, space :p:80:p}, seq t {comp errorSure:::p::p, space :p:111:p}}}}"
-			"$verticalGroup": "par l {seq l {space :p:41:p, comp label7:::p::p, space :p:36:p, comp errorSure:::p::p, space ::35:x}}"
-		} ) {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 			name: "errorDialog"
 			"title": "异常"
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label7"
-				"text": "网络连接中断"
-				"font": #Font1
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "errorSure"
-				"text": "确定"
-				"font": #Font1
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "button1MouseClicked", true ) )
-				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "errorSureMouseClicked", true ) )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :p:81:p, par l {comp label7:::p:89:p, seq {space :15:15:p, comp errorSure:::p::p}}, space ::94:x}}"
+				"$verticalGroup": "par l {seq t {space ::49:x, comp label7:::p::p, space :20:20:p, comp errorSure:::p::p, space :p:43:p}}"
+			} ) {
+				name: "panel4"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label7"
+					"text": "网络连接中断"
+					"font": #Font1
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "errorSure"
+					"text": "确定"
+					"font": #Font1
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "button1MouseClicked", true ) )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "errorSureMouseClicked", true ) )
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 950, 80 )
+			"location": new java.awt.Point( 960, 85 )
 			"size": new java.awt.Dimension( 280, 200 )
 		} )
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 			name: "cancelDialog"
 			"title": "提示"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq t {space :0:74:x, comp label9:::p::p, space :p:87:p}, seq {par l {seq {space :p:55:p, comp label8:::p::p}, seq l {space :p:76:p, comp cancelSureButton:::p::p, space s:::p, comp notCancelButton:::p::p}}, space ::36:x}}"
-				"$verticalGroup": "par l {seq l {space :p:42:p, comp label8:::p:26:p, space :::p, comp label9:::p::p, space :::p, par b {comp cancelSureButton::b:p::p, comp notCancelButton::b:p::p}, space ::32:x}}"
+				"$horizontalGroup": "par l {seq t {space ::51:x, comp label8:::p::p, space :p:40:p}, seq l {space :p:76:p, par t {comp label9:::p::p, seq {comp cancelSureButton:::p::p, space s:::p, comp notCancelButton:::p::p}}, space ::71:x}}"
+				"$verticalGroup": "par l {seq l {space :p:30:p, comp label8:::p:26:p, space :::p, comp label9:::p::p, space :p:18:p, par b {comp cancelSureButton::b:p::p, comp notCancelButton::b:p::p}, space ::32:x}}"
 			} ) {
 				name: "panel"
 				add( new FormComponent( "javax.swing.JLabel" ) {
@@ -367,7 +377,7 @@ new FormModel {
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "notCancelButtonMouseReleased", true ) )
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
-				"value": "Center"
+				"value": "South"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"size": new java.awt.Dimension( 275, 200 )

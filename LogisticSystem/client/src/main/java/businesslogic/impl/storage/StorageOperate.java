@@ -1,6 +1,4 @@
 package businesslogic.impl.storage;
-
-import java.awt.print.Book;
 import java.io.File;
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -9,8 +7,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-
-import utils.Timestamper;
 import jxl.Workbook;
 import jxl.write.Label;
 import jxl.write.WritableSheet;
@@ -24,7 +20,6 @@ import data.po.DataPO;
 import data.po.StorageInListPO;
 import data.po.StorageInfoPO;
 import data.po.StorageOutListPO;
-import data.service.DataService;
 import data.service.StorageDataService;
 import data.vo.StorageInVO;
 import data.vo.StorageInfoVO;
@@ -46,25 +41,24 @@ public class StorageOperate implements StorageOperateService {
 	 */
 	public ArrayList<String> storageAlarm() {
 		// 前提是已经调用过showspace
+		if(storageInfoPO.getFlexibleNum() == 0){
+			storageInfoPO.setEnlargeArea(StorageArea.FLEXIBLE);
+		}
 		ArrayList<String> result = new ArrayList<String>();
 		double planeRate = actualRate[0];
 		double trainRate = actualRate[1];
 		double truckRate = actualRate[2];
-		StorageArea enlargeArea = storageInfoPO.getEnlargeArea();
-		if (planeRate >= storageInfoPO.getAlarmPercent()
-				&& enlargeArea != StorageArea.PLANE)
+		if (planeRate >= storageInfoPO.getAlarmPercent())
 			result.add("航空区库存已超过警戒比例!");
 		else {
 			result.add("航空区库存充足！");
 		}
-		if (trainRate >= storageInfoPO.getAlarmPercent()
-				&& enlargeArea != StorageArea.TRAIN)
+		if (trainRate >= storageInfoPO.getAlarmPercent())
 			result.add("铁运区库存已超过警戒比例！");
 		else {
 			result.add("铁运区库存充足！");
 		}
-		if (truckRate >= storageInfoPO.getAlarmPercent()
-				&& enlargeArea != StorageArea.TRUCK)
+		if (truckRate >= storageInfoPO.getAlarmPercent())
 			result.add("汽运区库存已超过警戒比例！");
 		else {
 			result.add("汽运区库存充足！");
@@ -285,8 +279,9 @@ public class StorageOperate implements StorageOperateService {
 		String[][] in = info.orderAndPostitionArray;
 		for(int i = 0 ; i < in.length;i++){
 			String[] line = in[i];
-			for(int j = 0 ; j <line.length;i++){
+			for(int j = 0 ; j <line.length;j++){
 				Label x = new Label(j,i+1,line[j]);
+				System.out.println("第"+i+1+"行");
 				sheet.addCell(x);
 			}
 		}
