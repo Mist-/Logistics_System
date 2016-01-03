@@ -1899,8 +1899,7 @@ public class companyManage extends JFrame {
                     panelApproveLayout.setHorizontalGroup(
                         panelApproveLayout.createParallelGroup()
                             .addGroup(panelApproveLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(tabbedPaneApprove, GroupLayout.DEFAULT_SIZE, 779, Short.MAX_VALUE)
+                                .addComponent(tabbedPaneApprove, GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(panelApproveLayout.createParallelGroup()
                                     .addGroup(panelApproveLayout.createParallelGroup()
@@ -1914,21 +1913,21 @@ public class companyManage extends JFrame {
                     );
                     panelApproveLayout.setVerticalGroup(
                         panelApproveLayout.createParallelGroup()
-                            .addGroup(GroupLayout.Alignment.TRAILING, panelApproveLayout.createSequentialGroup()
+                            .addGroup(panelApproveLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(panelApproveLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                    .addComponent(tabbedPaneApprove, GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
+                                .addGroup(panelApproveLayout.createParallelGroup()
+                                    .addComponent(tabbedPaneApprove, GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
                                     .addGroup(panelApproveLayout.createSequentialGroup()
                                         .addComponent(buttonApproveData)
                                         .addGap(7, 7, 7)
                                         .addComponent(buttonApproveAll)
                                         .addGap(7, 7, 7)
                                         .addComponent(buttonModifyData)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(buttonModifyData2)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
-                                        .addComponent(buttonExitApprove)))
-                                .addContainerGap())
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
+                                        .addComponent(buttonExitApprove)
+                                        .addContainerGap())))
                     );
                 }
                 panelAll.add(panelApprove, BorderLayout.CENTER);
@@ -2029,7 +2028,7 @@ public class companyManage extends JFrame {
                             .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(panel1Layout.createParallelGroup()
-                                    .addComponent(panelAll, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(panelAll, GroupLayout.DEFAULT_SIZE, 912, Short.MAX_VALUE)
                                     .addGroup(panel1Layout.createSequentialGroup()
                                         .addComponent(buttonSalary, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -2073,7 +2072,7 @@ public class companyManage extends JFrame {
                                     .addComponent(name)
                                     .addComponent(labelCheck))))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panelAll, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelAll, GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
                         .addContainerGap())
             );
         }
