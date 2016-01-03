@@ -1,6 +1,5 @@
 package businesslogic.impl.order;
 
-import com.sun.istack.internal.NotNull;
 import data.enums.*;
 import data.message.LoginMessage;
 import utils.DataServiceFactory;
@@ -163,7 +162,7 @@ public class Order {
      * @param dest 目的地地址信息。格式为[City]-[Block]-[Address]
      * @return 包含路线的ArrayList。最多包含四站。如果网络连接失败，则返回null
      */
-    public ArrayList<Long> getRoutine(@NotNull String depart, @NotNull String dest) {
+    public ArrayList<Long> getRoutine(String depart, String dest) {
         ArrayList<Long> routine = new ArrayList<>();
 
         String[] from = depart.split("[-]");
@@ -222,7 +221,7 @@ public class Order {
      * @param orderVO 需要估计的订单的信息
      * @return 估计出的时间。是估计结果向上取整的整数。如果网络断开或者没有数据，则返回0.
      */
-    public int evaluateTime(@NotNull OrderVO orderVO) {
+    public int evaluateTime(OrderVO orderVO) {
         ArrayList<DataPO> orders = null;
         float time = 0.0f;
         if (!Connection.connected) {
@@ -279,11 +278,27 @@ public class Order {
             e.printStackTrace();
         }
         if (dataPOs == null) return 0;
+        double result = 0;
+        double distance = 0, price = 0;
+        if (orderVO.saddress.split("[-]")[0].equals(orderVO.raddress.split("[-]")[0])) {
+            distance = 30;
+            switch (orderVO.serviceType) {
+                case 经济快递:
+                    price = 10;
+                    break;
+                case 标准快递:
+                    price = 20;
+                    break;
+                case 特快快递:
+                    price = 30;
+                    break;
+            }
+        }
         for (DataPO dataPO: dataPOs) {
             CityTransPO cityTransPO = (CityTransPO) dataPO;
             if (cityTransPO.getFromCity().equals(orderVO.saddress.split("[-]")[0]) &&
                     cityTransPO.getToCity().equals(orderVO.raddress.split("[-]")[0])) {
-                double distance = cityTransPO.getDistance(), price = 0;
+                distance = cityTransPO.getDistance();
                 switch (orderVO.serviceType) {
                     case 经济快递:
                         price = cityTransPO.getTrunkPrice();
@@ -295,10 +310,11 @@ public class Order {
                         price = cityTransPO.getPlanePrice();
                         break;
                 }
-                double result = distance * price * orderVO.weight;
+                result = distance * price * orderVO.weight;
             }
         }
-        return 0;
+        result = 5 + (int)result / 50000;
+        return result;
     }
 
     public ArrayList<String> getBlockByCity(String city) {

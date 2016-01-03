@@ -6,18 +6,23 @@ import data.service.DataService;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 public class IDGenerator {
 
+    static HashMap<POType, Long> tmpMaxSN = new HashMap<>();
+
     protected IDGenerator() { }
 
-    /*public static long getNextID(POType type) {
+    public static long getNextID(POType type) {
+
         // TODO: µÈ´ýÍê³É
         DataService ds = DataServiceFactory.getDataServiceByPO(type);
         if (ds == null) {
             return new Random().nextInt(10000) + 1000000000000L;
         }
+
         ArrayList<DataPO> pos = null;
         try {
             pos = ds.getPOList(type);
@@ -37,16 +42,18 @@ public class IDGenerator {
         if (maxSN == 0) {
             switch (type) {
                 case ORDER:
-                    return 1000000001;
+                    maxSN = 1000000000;
+                    break;
                 case STAFF:
-                    return 10001;
+                    maxSN = 10000;
+                    break;
             }
         }
+        if (tmpMaxSN.containsKey(type) && tmpMaxSN.get(type) > maxSN) {
+            maxSN = tmpMaxSN.get(type);
+        }
+        tmpMaxSN.remove(type);
+        tmpMaxSN.put(type, maxSN + 1);
         return 1 + maxSN;
-    }*/
-
-    public static long getNextID(POType type) {
-        return new Random().nextInt(10000);
     }
-
 }
