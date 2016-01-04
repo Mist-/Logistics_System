@@ -62,7 +62,7 @@ public class Logistic {
         try {
             logisticInfoPO = (LogisticInfoPO) orderDataService.search(POType.LOGISTICINFO, sn);
         } catch (RemoteException e) {
-            System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
+            System.err.println("与服务器(" + Connection.getRmiPrefix() + ")的连接断开 -" + Calendar.getInstance().getTime());
             return ResultMessage.SUCCESS;
         }
         if (logisticInfoPO == null) return ResultMessage.NOTEXIST;
@@ -78,7 +78,7 @@ public class Logistic {
         try {
             orderDataService.modify(logisticInfoPO);
         } catch (RemoteException e) {
-            System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
+            System.err.println("与服务器(" + Connection.getRmiPrefix() + ")的连接断开 -" + Calendar.getInstance().getTime());
             return ResultMessage.FAILED;
         }
         return ResultMessage.SUCCESS;

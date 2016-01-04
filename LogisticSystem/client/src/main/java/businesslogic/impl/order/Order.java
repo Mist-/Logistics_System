@@ -231,7 +231,7 @@ public class Order {
         try {
             orders = orderDataService.searchByLoc(orderVO.saddress + " " + orderVO.raddress);
         } catch (RemoteException e) {
-            System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
+            System.err.println("与服务器(" + Connection.getRmiPrefix() + ")的连接断开 -" + Calendar.getInstance().getTime());
             return 0;
         }
 
@@ -244,7 +244,7 @@ public class Order {
             try {
                 signPO = (SignPO) orderDataService.searchSignInfo(orderPO.getSerialNum());
             } catch (RemoteException e) {
-                System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
+                System.err.println("与服务器(" + Connection.getRmiPrefix() + ")的连接断开 -" + Calendar.getInstance().getTime());
                 return 0;
             }
             if (signPO == null) continue;
@@ -402,7 +402,7 @@ public class Order {
                 OrderPO orderPO = (OrderPO) orderDataService.search(POType.ORDER, ordersn);
                 if (orderPO != null) result.add(orderPO);
             } catch (RemoteException e) {
-                System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
+                System.err.println("与服务器(" + Connection.getRmiPrefix() + ")的连接断开 -" + Calendar.getInstance().getTime());
             }
         }
         return result;

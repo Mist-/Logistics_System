@@ -51,7 +51,7 @@ public class StaffManageBLImpl implements StaffManageBLService {
                 }
             }
         } catch (RemoteException e) {
-            System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
+            System.err.println("与服务器(" + Connection.getRmiPrefix() + ")的连接断开 -" + Calendar.getInstance().getTime());
         }
 
         return vlist;
@@ -62,7 +62,7 @@ public class StaffManageBLImpl implements StaffManageBLService {
         try {
             staffPO = (StaffPO) company.search(POType.STAFF,id);
         } catch (RemoteException e) {
-            System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
+            System.err.println("与服务器(" + Connection.getRmiPrefix() + ")的连接断开 -" + Calendar.getInstance().getTime());
         }
         if(staffPO!=null){
             staffVO = new StaffVO();
@@ -110,7 +110,7 @@ public class StaffManageBLImpl implements StaffManageBLService {
                 return  ResultMessage.EXIST;
             }
         } catch (RemoteException e) {
-            System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
+            System.err.println("与服务器(" + Connection.getRmiPrefix() + ")的连接断开 -" + Calendar.getInstance().getTime());
         }
 
         return ResultMessage.FAILED;
@@ -128,7 +128,7 @@ public class StaffManageBLImpl implements StaffManageBLService {
                 return ResultMessage.NOTEXIST;
             }
         } catch (RemoteException e) {
-            System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
+            System.err.println("与服务器(" + Connection.getRmiPrefix() + ")的连接断开 -" + Calendar.getInstance().getTime());
         }
 
         return ResultMessage.FAILED;
@@ -154,7 +154,7 @@ public class StaffManageBLImpl implements StaffManageBLService {
                 return ResultMessage.SUCCESS;
 
         } catch (RemoteException e) {
-            System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
+            System.err.println("与服务器(" + Connection.getRmiPrefix() + ")的连接断开 -" + Calendar.getInstance().getTime());
         }
         return ResultMessage.NOTCONNECTED;
     }

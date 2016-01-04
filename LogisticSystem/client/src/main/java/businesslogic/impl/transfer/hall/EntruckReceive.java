@@ -138,7 +138,7 @@ public class EntruckReceive implements EntruckReceiveService{
 		}
 		//修改订单信息
 		OrderListService orderList = new OrderList(new LoginMessage(ResultMessage.SUCCESS));
-		orderList.modifyOrder(damageOrder, "订单于"+user.getInstitutionName()+"营业厅丢失");
+		orderList.modifyOrder(damageOrder, "订单于"+user.getInstitutionName()+"营业厅破损");
 		orderList.modifyOrder(roundOrder, "由"+user.getInstitutionName()+"营业厅接收");
 		orderList.modifyOrder(lostOrder, "订单于"+user.getInstitutionName()+"营业厅丢失");
 		//orderList.modifyOrderPosition(roundOrder);

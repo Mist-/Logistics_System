@@ -44,7 +44,7 @@ public class CityManageBLImpl implements CityManageBLService {
                 cityTransVO = null;
             }
         } catch (RemoteException e) {
-            System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
+            System.err.println("与服务器(" + Connection.getRmiPrefix() + ")的连接断开 -" + Calendar.getInstance().getTime());
             cityTransVO = null;
         }
         return cityTransVO;
@@ -62,7 +62,7 @@ public class CityManageBLImpl implements CityManageBLService {
             cityTransPO.setDistance(cityTransVO.getDistance());
             resultMessage = company.modify(cityTransPO);
         } catch (RemoteException e) {
-            System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
+            System.err.println("与服务器(" + Connection.getRmiPrefix() + ")的连接断开 -" + Calendar.getInstance().getTime());
             resultMessage = ResultMessage.NOTCONNECTED;
         }
         return resultMessage;
@@ -80,7 +80,7 @@ public class CityManageBLImpl implements CityManageBLService {
                 resultMessage = company.add(cityTransPO);
             }
         } catch (RemoteException e) {
-            System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
+            System.err.println("与服务器(" + Connection.getRmiPrefix() + ")的连接断开 -" + Calendar.getInstance().getTime());
             resultMessage = ResultMessage.FAILED;
         }
         return resultMessage;

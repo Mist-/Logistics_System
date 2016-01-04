@@ -40,7 +40,7 @@ public class SalaryManageBLImpl implements SalaryManageBLService {
                 vlist.add(new SalaryVO(salaryPO.getInstitution(),salaryPO.getSalary(),salaryPO.getType()));
             }
         } catch (RemoteException e) {
-            System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
+            System.err.println("与服务器(" + Connection.getRmiPrefix() + ")的连接断开 -" + Calendar.getInstance().getTime());
         }
 
         return vlist;
@@ -62,7 +62,7 @@ public class SalaryManageBLImpl implements SalaryManageBLService {
                 salaryPO.setSalary(salary);
                 resultMessage = company.modify(salaryPO);
             } catch (RemoteException e) {
-                System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
+                System.err.println("与服务器(" + Connection.getRmiPrefix() + ")的连接断开 -" + Calendar.getInstance().getTime());
                 resultMessage = ResultMessage.NOTCONNECTED;
             }
         return resultMessage;
@@ -79,7 +79,7 @@ public class SalaryManageBLImpl implements SalaryManageBLService {
                 resultMessage = ResultMessage.EXIST;
             }
         } catch (RemoteException e) {
-            System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
+            System.err.println("与服务器(" + Connection.getRmiPrefix() + ")的连接断开 -" + Calendar.getInstance().getTime());
             resultMessage = ResultMessage.NOTCONNECTED;
         }
         return resultMessage;

@@ -68,7 +68,7 @@ public class StatisticsCheckBLImpl implements StatisticsCheckBLService {
                 }
             }
         } catch (RemoteException e) {
-            System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
+            System.err.println("与服务器(" + Connection.getRmiPrefix() + ")的连接断开 -" + Calendar.getInstance().getTime());
         }
         return receiptList;
     }
@@ -105,7 +105,7 @@ public class StatisticsCheckBLImpl implements StatisticsCheckBLService {
                 }
             }
         } catch (RemoteException e) {
-            System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
+            System.err.println("与服务器(" + Connection.getRmiPrefix() + ")的连接断开 -" + Calendar.getInstance().getTime());
         }
         System.out.println(plist.size());
         return paymentList;
@@ -134,7 +134,7 @@ public class StatisticsCheckBLImpl implements StatisticsCheckBLService {
             costBenefitVO.setAllPay(allOut);
             costBenefitVO.setAllProfit(allProfit);
         } catch (RemoteException e) {
-            System.err.println("与服务器(" + Connection.RMI_PREFIX + ")的连接断开 -" + Calendar.getInstance().getTime());
+            System.err.println("与服务器(" + Connection.getRmiPrefix() + ")的连接断开 -" + Calendar.getInstance().getTime());
         }
         System.out.println(plist.size());
         return costBenefitVO;

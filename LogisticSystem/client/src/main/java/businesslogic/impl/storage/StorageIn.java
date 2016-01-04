@@ -136,7 +136,7 @@ public class StorageIn implements StorageInService{
 		for (int i = 0; i < o.length; i++) {
 			o[i] = orderID.get(i);
 		}
-		orderList.modifyOrder(o,"到达"+user.getInstitutionName()+"中转中心");
+		//orderList.modifyOrder(o,"到达"+user.getInstitutionName()+"中转中心");
 	}
 
 	/**

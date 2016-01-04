@@ -1,5 +1,7 @@
 package utils;
 
+import data.Configuration;
+
 import javax.swing.*;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -14,12 +16,15 @@ import java.util.Calendar;
 public class Connection {
 
     static Thread connectionCheckThread = null;
-    public static String RMI_PREFIX = "rmi://127.0.0.1:32000/";
     public static boolean connected = false;
+
+    public static String getRmiPrefix() {
+        return "rmi://" + Configuration.getInstance().ip + ":" + Configuration.getInstance().regPort + "/";
+    }
 
     public static void checkConnection() {
         try {
-            SayHelloService hello = (SayHelloService) Naming.lookup(RMI_PREFIX + "hello");
+            SayHelloService hello = (SayHelloService) Naming.lookup(getRmiPrefix() + "hello");
             connected = true;
             return;
         } catch (NotBoundException e) {

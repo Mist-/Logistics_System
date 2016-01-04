@@ -24,12 +24,12 @@ public class DataServiceFactory {
             return ds;
 		} catch (MalformedURLException e) {
 			/* 假设这不会发生！ */
-			//e.printStackTrace();
+			e.printStackTrace();
 		} catch (RemoteException e) {
 			// 网络连接问题
             System.err.println("Connection error while fetching " + type.name());
 
-            //e.printStackTrace();
+            e.printStackTrace();
 		} catch (NotBoundException e) {
 			/* 假设这不会发生！ */
 			e.printStackTrace();
