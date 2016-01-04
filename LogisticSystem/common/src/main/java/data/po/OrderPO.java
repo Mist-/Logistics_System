@@ -118,7 +118,9 @@ public class OrderPO extends DataPO {
      * 从路径中删除最旧的机构编号
      */
     public void updateRoutine() {
-        routine.remove(0);
+        if (routine.size() > 0) {
+            routine.remove(0);
+        }
         this.fresh = false;
     }
 

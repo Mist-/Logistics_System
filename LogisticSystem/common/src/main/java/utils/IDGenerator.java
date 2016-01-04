@@ -58,8 +58,14 @@ public class IDGenerator {
             maxSN = tmpMaxSN.get(type);
         }
         switch (type) {
-            case ENTRUCK:
-                maxSN = maxSN % 10000;
+            case ORDER:
+                break;
+            case STAFF:
+                break;
+            case USER:
+                break;
+            default:
+                maxSN %= 10000;
                 break;
         }
 
