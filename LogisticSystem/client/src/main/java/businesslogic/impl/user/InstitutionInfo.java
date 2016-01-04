@@ -82,6 +82,7 @@ public class InstitutionInfo {
 		staff = (StaffPO) companyData.search(POType.STAFF, user);
 		institution = (InstitutionPO) companyData.search(POType.INSTITUTION,
   				staff.getInstitution());
+		System.out.println(staff.getInstitution() + "!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		if(institution.getTargetCenter() == -1){
 			institutionType = true;
 		}

@@ -60,7 +60,7 @@ public class LoginDlg extends JDialog {
     public void getRememberedUsers() {
 
         users = (ArrayList<RememberedUserAccount>) FileIOHelper.getFromFile("user/SAVED.DAT");
-
+        if (users == null) users = new ArrayList<>();
         // 将记住的账号添加到可选的列表中
         for (int i = users.size() - 1; i >= 0; --i) {
             cboxAccount.addItem(users.get(i).getSn());
