@@ -11,7 +11,7 @@ new FormModel {
 			"title": "服务监视器"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 				"$horizontalGroup": "par l {seq {space :::p, par l {comp tabbedPane1::l:::x, seq {comp label4:::p::p, space :0:0:x}, seq l {comp scrollPane1:::::x, space :::p, comp button1:::p::p}}, space :::p}}"
-				"$verticalGroup": "par l {seq l {space :::p, comp tabbedPane1:::p::p, space :::p, comp label4:::p::p, space :::p, par l {comp button1:::p::p, comp scrollPane1:::p:221:p}, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :::p, comp tabbedPane1:::p::p, space :::p, comp label4:::p::p, space :::p, par l {seq {comp button1:::p::p, space :194::x}, seq {comp scrollPane1:::::x, space :::p}}}}"
 			} ) {
 				name: "panel1"
 				add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {

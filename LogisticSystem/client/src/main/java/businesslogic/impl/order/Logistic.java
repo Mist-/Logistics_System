@@ -40,7 +40,7 @@ public class Logistic {
             e.printStackTrace();
         }
 
-        //*********************** test code **********************
+        //*********************** TestCompany code **********************
 
         if (logisticInfoPO == null) {
             return null;

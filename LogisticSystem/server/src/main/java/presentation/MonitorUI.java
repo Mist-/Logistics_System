@@ -319,9 +319,12 @@ public class MonitorUI extends JFrame {
                         .addComponent(label4)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panel1Layout.createParallelGroup()
-                            .addComponent(button1)
-                            .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addComponent(button1)
+                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addComponent(scrollPane1)
+                                .addContainerGap())))
             );
         }
 
