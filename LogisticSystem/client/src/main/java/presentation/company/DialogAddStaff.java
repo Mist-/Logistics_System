@@ -61,8 +61,8 @@ public class DialogAddStaff extends JDialog{
 		labelSerialNum.setBounds(10,50,60,30);
 		serialNum.setBounds(80, 50, 100, 30);
 		labelGender.setBounds(10,90,60,30);
-		man.setBounds(80, 90, 40, 30);
-		woman.setBounds(140, 90, 40, 30);
+		man.setBounds(80, 90, 50, 30);
+		woman.setBounds(140, 90, 50, 30);
 		labelPhoneNum.setBounds(10, 130, 60, 30);
 		phoneNum.setBounds(80, 130, 100, 30);
 		labelIdCardNum.setBounds(10,170,60,30);

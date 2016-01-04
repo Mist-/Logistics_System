@@ -54,9 +54,9 @@ public class DialogAddCity extends JDialog{
 		distances = new JTextField();
 		finish = new JButton("х╥хо");
 		labelFromCity.setBounds(25, 5, 70, 30);
-		boxFromCity.setBounds(105, 5, 60, 30);
+		boxFromCity.setBounds(105, 5, 80, 30);
 		labelToCity.setBounds(205,5,70,30);
-		boxToCity.setBounds(285, 5, 60, 30);
+		boxToCity.setBounds(285, 5, 80, 30);
 		labelTrunk.setBounds(5,45,60,35);
 		trunk.setBounds(70, 50, 35, 30);
 		labelTrain.setBounds(110,45,60,35);
