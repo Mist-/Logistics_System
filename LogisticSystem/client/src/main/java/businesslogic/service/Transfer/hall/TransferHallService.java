@@ -16,7 +16,7 @@ public interface TransferHallService {
 	public EntruckReceiveService startEntruckReceive() throws Exception;
 	public LoadAndSortService startOrderSort();
 	public ReceiveMoneyService startReceive();
-	
+	public String getUserInfo();
 //	public DeliveryListVO getTransferList(long transferListCode);
 //	public ResultMessage saveOrderArrival();
 //	public ArrayList<SendVO> createSend();

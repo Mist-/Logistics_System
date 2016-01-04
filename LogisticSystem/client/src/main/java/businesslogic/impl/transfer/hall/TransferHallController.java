@@ -52,6 +52,10 @@ public class TransferHallController implements TransferHallService {
 	public ReceiveMoneyService startReceive() {
 		return new ReceiveMoney(user);
 	}
+	@Override
+	public String getUserInfo() {
+		return user.getStaffName()+"-"+user.getInstitutionName()+"ÓªÒµÌü";
+	}
 	
 	
 	

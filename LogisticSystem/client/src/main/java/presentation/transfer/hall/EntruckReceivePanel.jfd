@@ -9,8 +9,8 @@ new FormModel {
 				name: "startPane"
 				"font": &Font0 new java.awt.Font( "等线", 0, 14 )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {space :::p, comp selectArrival:::p:112:p, space s:::p, comp refreshButton:::p:118:p, space ::647:x}, comp scrollPane2::l::905:x}"
-					"$verticalGroup": "par l {seq t {space :p:3:p, par l {comp selectArrival::::32:x, comp refreshButton::::0:x}, space :::p, comp scrollPane2:::p:325:p}}"
+					"$horizontalGroup": "par l {seq {space :::p, comp selectArrival:::p:112:p, space s:::p, comp refreshButton:::p:115:p, space ::650:x}, comp scrollPane2::l::905:x}"
+					"$verticalGroup": "par l {seq t {space :p:3:p, par l {comp selectArrival::::32:x, comp refreshButton::::32:x}, space :::p, comp scrollPane2:::p:325:p}}"
 				} ) {
 					name: "arrivalListPanel"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -87,8 +87,8 @@ new FormModel {
 		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 			name: "arrivalVO"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space :p:20:p, par l {seq t {comp label2:::p:70:p, space :::x}, seq l {par l:::p {comp label1::l::80:x, comp label4::l::80:x, comp label3::l::80:x}, space :::p, par l:::p {comp transferID:::::x, comp from:::::x, comp arrivalDate::l:p:70:p}, space :::x, comp label15:::p::p, space u:::p, comp status:::p:117:p, space :::p, comp modifyStatus:::p:105:p, space :p:126:p}}}, seq l {space :::p, comp scrollPane1:::p:783:p, space :::p, par l {comp cancelArrival::::101:x, comp doArrive::::101:x, comp saveArrival::l::101:x}, space :::p}}"
-				"$verticalGroup": "par t {seq l {par b {comp transferID::b:p::p, comp label1::b:p:24:p}, space :::p, par b {comp from::b:p::p, comp label4::b:p:24:p}, space :::p, par l {comp arrivalDate:::p::p, comp label3:::::x}, space :::p, comp label2:::p::p, space :::p, par l {seq {comp saveArrival:::p::p, space :::p, comp doArrive:::p::p, space :::p, comp cancelArrival:::p::p}, comp scrollPane1:::p:273:p}, space :::p}, seq t {space :::p, par t:::p {comp status::t:::x, comp modifyStatus::t:::x, comp label15::t:p:32:p}, space :::x}}"
+				"$horizontalGroup": "par l {seq {space :p:20:p, par l {seq {comp scrollPane1:::p:783:p, space :::p, par l {comp label2:::p:70:p, comp saveArrival::l::91:x, comp doArrive::::91:x, comp cancelArrival::l::91:x}}, seq {par l:::p {comp label1::l::80:x, comp label4::l::80:x}, space :::p, par l:::p {comp transferID::::70:x, comp from:::::x}, par l {seq l {space :p:84:p, comp label3:::p:39:p, space :::p, comp arrivalDate:::p:70:p}, seq l {space :p:322:p, comp label15:::p::p, space :::p, comp status:::p:117:p, space :::p, comp modifyStatus:::p:105:p}}}}, space :::p}}"
+				"$verticalGroup": "par t {seq l {par b {comp transferID::b:p::p, comp label1::b:p:24:p, comp arrivalDate::b:p::p, comp label3::b:::x}, space :::p, par b {comp from::b:p::p, comp label4::b:p:24:p, comp label15::b:p:32:p, comp status::b:::x, comp modifyStatus::b:p::p}, space :::p, par l {seq {comp saveArrival:::p::p, space :p:2:p, comp label2:::p::p, space :::p, comp doArrive:::p::p, space :::p, comp cancelArrival:::p::p}, comp scrollPane1:::p:301:p}}}"
 			} ) {
 				name: "panel1"
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -175,8 +175,8 @@ new FormModel {
 		add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 			name: "entruckVO"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {par l {seq {space :::p, par t {seq {comp label13:::p::p, space s:::p, comp destName:::p:66:p}, seq {par l {seq t {par l {comp label10::l:p::p, comp label11::l:p::p}, space :::p}, seq l {comp label12:::p::p, space :p:16:p}}, par t:::p {comp fromName::::68:x, comp listType::l::68:x, comp listID::l::68:x}}}, space :p:47:p, par l {seq {par l:::p {comp label14:::::x, comp vehicleLabel:::::x, seq {comp label19:::p::p, space :::p, comp staffLabel:::::x}}, space :::p, par l:::p {comp date::::70:x, comp vehicleID::::70:x, comp staff::l::70:x}}, seq {comp transferTypeLabel:::p::p, space :::p, comp transferType:::p:69:p}}, space :p:37:p, comp label18:::p::p, space :p:32:p, comp fee:::p:69:p, space :p:205:p, comp createArrival:::::x}, comp scrollPane3:::p:790:p}, space :::p, comp cancelLoad::::104:x, space :::p}}"
-				"$verticalGroup": "par l {seq {space :::p, par l {seq {par b {comp label10::b:p::p, comp listType::b:p::p, comp label14::b:p::p, comp date::b:p::p}, space :::p, par b {comp label11::b:p::p, comp listID::b:p::p, comp vehicleLabel::b:p::p, comp vehicleID::b:p::p}, space :::p, par b {comp label12::b:p::p, comp fromName::b:p::p, comp staffLabel::b:p::p, comp staff::b:p::p, comp label19::b:p::p}, space :::p, par b {comp label13::b:p::p, comp destName::b:p::p, comp label18::b:p::p, comp fee::b:p::p, comp transferTypeLabel::b:p::p, comp transferType::b:p::p}}, par b:t {comp createArrival::b:p:32:p, comp cancelLoad::b:p::p}}, space :::p, comp scrollPane3::::218:x}}"
+				"$horizontalGroup": "par l {seq {par l {seq {space :::p, par l {seq t {par l {comp label10::l:p::p, comp label11::l:p::p}, space :::p}, seq l {comp label12:::p::p, space :p:16:p}}, par t:::p {comp fromName::::68:x, comp listType::l::68:x, comp listID::l::68:x}, space :p:47:p, par l:::p {comp label14:::::x, comp vehicleLabel:::::x, seq {comp label19:::p::p, space :::p, comp staffLabel:::::x}}, space :::p, par l:::p {comp date::::70:x, comp vehicleID::::70:x, comp staff::l::70:x}, space s:::p, par l {comp transferTypeLabel:::p::p, comp label18:::p::p, comp label13:::p::p}, space s:::p, par l:::p {comp transferType::::69:x, comp fee::::69:x, comp destName::l::69:x}, space :0:424:x}, seq l {comp scrollPane3:::p:790:p, space :::p, par l {comp createArrival::::104:x, comp cancelLoad::::104:x}}}, space :::p}}"
+				"$verticalGroup": "par l {seq {space :::p, par b {comp label10::b:p::p, comp listType::b:p::p, comp label14::b:p::p, comp date::b:p::p, comp fee::b:p::p, comp label18::b:p::p}, space :::p, par b {comp label11::b:p::p, comp listID::b:p::p, comp vehicleLabel::b:p::p, comp vehicleID::b:p::p, comp transferType::b:p::p, comp transferTypeLabel::b:p::p}, space :::p, par b {comp label12::b:p::p, comp fromName::b:p::p, comp staffLabel::b:p::p, comp staff::b:p::p, comp label19::b:p::p, comp label13::b:p::p, comp destName::b:p::p}, space :::p, par l {seq {comp createArrival:::p:32:p, space :::p, comp cancelLoad:::p::p, space ::179:x}, comp scrollPane3::::250:x}}}"
 			} ) {
 				name: "DeliveryListPanel"
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -387,7 +387,7 @@ new FormModel {
 			name: "sendListPane"
 			"font": #Font1
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :::p, comp label16:::p::p, space :::p, comp senderBox:::p:96:p, space s:::p, comp label17:::p::p, space :::p, comp sendData:::p:93:p, space :::p, comp saveSendListButton:::p::p, space ::548:x}, comp scrollPane4::l::910:x}"
+				"$horizontalGroup": "par l {seq l {space :::p, comp label16:::p::p, space :::p, comp senderBox:::p:96:p, space s:::p, comp label17:::p::p, space :::p, comp sendData:::p:93:p, space :::p, comp saveSendListButton:::p::p, space ::530:x}, comp scrollPane4::l::910:x}"
 				"$verticalGroup": "par l {seq t {space :::p, par t:::p {par b {comp senderBox::b:p::p, comp label16::b:p:26:p}, comp label17::l:::x, par b:l {comp sendData::b:::x, comp saveSendListButton::b::0:x}}, space :::p, comp scrollPane4::::304:x}}"
 			} ) {
 				name: "panel3"
@@ -420,6 +420,7 @@ new FormModel {
 					name: "saveSendListButton"
 					"text": "保存"
 					"font": #Font1
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/sign_16x16.png" )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "saveSendListButtonMouseReleased", true ) )
 				} )
 			}, new FormLayoutConstraints( null ) {

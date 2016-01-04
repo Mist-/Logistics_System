@@ -415,12 +415,11 @@ public class LoadAndSortPanel extends JPanel {
 				entruckListPanelLayout.setVerticalGroup(
 					entruckListPanelLayout.createParallelGroup()
 						.addGroup(GroupLayout.Alignment.TRAILING, entruckListPanelLayout.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(entruckListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-								.addComponent(refreshButton, GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
-								.addComponent(selectEntruck, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-							.addComponent(scrollPane3, GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE))
+							.addGroup(entruckListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(selectEntruck, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+								.addComponent(refreshButton, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(scrollPane3, GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE))
 				);
 			}
 			loadAndSortPane.addTab("\u5df2\u5ba1\u6279\u88c5\u8f66\u5355", entruckListPanel);
@@ -480,34 +479,31 @@ public class LoadAndSortPanel extends JPanel {
 				panel1Layout.setHorizontalGroup(
 					panel1Layout.createParallelGroup()
 						.addGroup(panel1Layout.createSequentialGroup()
-							.addContainerGap()
+							.addGap(4, 4, 4)
 							.addComponent(label1, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+							.addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
+							.addComponent(sortButton, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(sortButton, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(removeOrder)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 457, Short.MAX_VALUE)
-							.addComponent(createEntruck, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+							.addComponent(removeOrder, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 464, Short.MAX_VALUE)
+							.addComponent(createEntruck, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
 							.addContainerGap())
 						.addComponent(scrollPane1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 910, Short.MAX_VALUE)
 				);
 				panel1Layout.setVerticalGroup(
 					panel1Layout.createParallelGroup()
 						.addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(panel1Layout.createParallelGroup()
-								.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-									.addComponent(label1)
-									.addComponent(comboBox1, GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
-									.addComponent(sortButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(removeOrder, GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
-								.addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-									.addGap(0, 0, Short.MAX_VALUE)
-									.addComponent(createEntruck, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-							.addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))
+							.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+								.addComponent(removeOrder, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+								.addComponent(label1)
+								.addComponent(sortButton, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+								.addComponent(createEntruck, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 311, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
 				);
 			}
 			loadAndSortPane.addTab("\u5206\u62e3\u88c5\u8f66", panel1);
@@ -714,9 +710,9 @@ public class LoadAndSortPanel extends JPanel {
 								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
 									.addGap(64, 64, 64)
 									.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-										.addComponent(cancelLoad)
 										.addComponent(doEntruck)
-										.addComponent(saveEntruck)))
+										.addComponent(saveEntruck)
+										.addComponent(cancelLoad, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)))
 								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
 									.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
 										.addComponent(truckID)
@@ -763,28 +759,27 @@ public class LoadAndSortPanel extends JPanel {
 				panel2.setLayout(panel2Layout);
 				panel2Layout.setHorizontalGroup(
 					panel2Layout.createParallelGroup()
+						.addGroup(GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
+							.addContainerGap(90, Short.MAX_VALUE)
+							.addComponent(errorSure)
+							.addGap(93, 93, 93))
 						.addGroup(panel2Layout.createSequentialGroup()
-							.addContainerGap(80, Short.MAX_VALUE)
-							.addGroup(panel2Layout.createParallelGroup()
-								.addGroup(GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
-									.addComponent(label2, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
-									.addGap(68, 68, 68))
-								.addGroup(GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
-									.addComponent(errorSure)
-									.addGap(86, 86, 86))))
+							.addGap(74, 74, 74)
+							.addComponent(label2, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap(74, Short.MAX_VALUE))
 				);
 				panel2Layout.setVerticalGroup(
 					panel2Layout.createParallelGroup()
 						.addGroup(panel2Layout.createSequentialGroup()
-							.addGap(47, 47, 47)
+							.addGap(33, 33, 33)
 							.addComponent(label2)
-							.addGap(18, 18, 18)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 							.addComponent(errorSure)
-							.addContainerGap(47, Short.MAX_VALUE))
+							.addContainerGap(34, Short.MAX_VALUE))
 				);
 			}
 			errorDialogContentPane.add(panel2, BorderLayout.CENTER);
-			errorDialog.setSize(260, 200);
+			errorDialog.setSize(260, 165);
 			errorDialog.setLocationRelativeTo(null);
 		}
 
@@ -817,18 +812,18 @@ public class LoadAndSortPanel extends JPanel {
 						.addGroup(panel3Layout.createSequentialGroup()
 							.addGap(89, 89, 89)
 							.addGroup(panel3Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-								.addComponent(resultSure)
-								.addComponent(label3))
+								.addComponent(label3)
+								.addComponent(resultSure))
 							.addContainerGap(94, Short.MAX_VALUE))
 				);
 				panel3Layout.setVerticalGroup(
 					panel3Layout.createParallelGroup()
 						.addGroup(panel3Layout.createSequentialGroup()
-							.addGap(59, 59, 59)
+							.addGap(34, 34, 34)
 							.addComponent(label3)
-							.addGap(26, 26, 26)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 							.addComponent(resultSure)
-							.addContainerGap(27, Short.MAX_VALUE))
+							.addContainerGap(23, Short.MAX_VALUE))
 				);
 			}
 			resultDialogContentPane.add(panel3, BorderLayout.CENTER);

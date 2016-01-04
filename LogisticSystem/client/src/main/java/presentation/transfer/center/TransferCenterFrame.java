@@ -45,11 +45,16 @@ public class TransferCenterFrame extends JFrame {
 		this.addWindowListener(new WindowAdapter() {
 			@Override
             public void windowClosing(java.awt.event.WindowEvent evt) {
-				//closeDialog.setVisible(true);
 				System.exit(DISPOSE_ON_CLOSE);
                }
 		});
-		
+		try {
+			String[] user = transferCenter.getUserInfo().split("-");
+			staff.setText(staff.getText()+user[0]);
+			institution.setText(institution.getText()+user[1]);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		
 		transferReceiveStart();//默认显示中转接收界面
 		this.setVisible(true);
@@ -129,8 +134,11 @@ public class TransferCenterFrame extends JFrame {
 		panel1 = new JPanel();
 		receive = new JButton();
 		load = new JButton();
-		label6 = new JLabel();
-		label7 = new JLabel();
+		label4 = new JLabel();
+		label5 = new JLabel();
+		label2 = new JLabel();
+		institution = new JLabel();
+		staff = new JLabel();
 		emptyPanel = new JPanel();
 		tabbedPane1 = new JTabbedPane();
 		label1 = new JLabel();
@@ -194,46 +202,72 @@ public class TransferCenterFrame extends JFrame {
 				}
 			});
 
-			//---- label6 ----
-			label6.setText("\u4e2d\u8f6c\u63a5\u6536");
-			label6.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+			//---- label4 ----
+			label4.setText("\u4e2d\u8f6c\u88c5\u8fd0");
+			label4.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
 
-			//---- label7 ----
-			label7.setText("\u88c5\u8fd0\u7ba1\u7406");
-			label7.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+			//---- label5 ----
+			label5.setText("\u4e2d\u8f6c\u63a5\u6536");
+			label5.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
+
+			//---- label2 ----
+			label2.setText("text");
+			label2.setIcon(new ImageIcon(getClass().getResource("/icons/Man_72px_1185138_easyicon.net.png")));
+
+			//---- institution ----
+			institution.setText("\u673a\u6784\uff1a");
+			institution.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
+
+			//---- staff ----
+			staff.setText("\u59d3\u540d\uff1a");
+			staff.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
 
 			GroupLayout panel1Layout = new GroupLayout(panel1);
 			panel1.setLayout(panel1Layout);
 			panel1Layout.setHorizontalGroup(
 				panel1Layout.createParallelGroup()
 					.addGroup(panel1Layout.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(panel1Layout.createParallelGroup()
-							.addComponent(receive, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)
-							.addGroup(panel1Layout.createSequentialGroup()
-								.addGap(24, 24, 24)
-								.addComponent(label6, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(panel1Layout.createParallelGroup()
 							.addGroup(panel1Layout.createSequentialGroup()
-								.addGap(18, 18, 18)
-								.addComponent(load))
+								.addContainerGap()
+								.addComponent(receive, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
 							.addGroup(panel1Layout.createSequentialGroup()
-								.addGap(44, 44, 44)
-								.addComponent(label7)))
-						.addContainerGap(662, Short.MAX_VALUE))
+								.addGap(28, 28, 28)
+								.addComponent(label4)))
+						.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+						.addGroup(panel1Layout.createParallelGroup()
+							.addGroup(panel1Layout.createSequentialGroup()
+								.addGap(10, 10, 10)
+								.addComponent(label5)
+								.addContainerGap(733, Short.MAX_VALUE))
+							.addGroup(panel1Layout.createSequentialGroup()
+								.addComponent(load, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 452, Short.MAX_VALUE)
+								.addComponent(label2, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+									.addComponent(institution, GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+									.addComponent(staff, GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
+								.addContainerGap())))
 			);
 			panel1Layout.setVerticalGroup(
 				panel1Layout.createParallelGroup()
 					.addGroup(panel1Layout.createSequentialGroup()
 						.addContainerGap()
-						.addGroup(panel1Layout.createParallelGroup()
-							.addComponent(receive, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(load, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+							.addComponent(load, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+							.addComponent(receive, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+							.addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+								.addGroup(panel1Layout.createSequentialGroup()
+									.addComponent(staff)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(institution))
+								.addComponent(label2)))
 						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 						.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-							.addComponent(label6, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-							.addComponent(label7))
-						.addGap(6, 6, 6))
+							.addComponent(label4)
+							.addComponent(label5))
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 			);
 		}
 		contentPane.add(panel1, BorderLayout.NORTH);
@@ -254,15 +288,11 @@ public class TransferCenterFrame extends JFrame {
 			emptyPanel.setLayout(emptyPanelLayout);
 			emptyPanelLayout.setHorizontalGroup(
 				emptyPanelLayout.createParallelGroup()
-					.addGroup(emptyPanelLayout.createSequentialGroup()
-						.addContainerGap()
-						.addComponent(tabbedPane1, GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE))
+					.addComponent(tabbedPane1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 899, Short.MAX_VALUE)
 			);
 			emptyPanelLayout.setVerticalGroup(
 				emptyPanelLayout.createParallelGroup()
-					.addGroup(GroupLayout.Alignment.TRAILING, emptyPanelLayout.createSequentialGroup()
-						.addContainerGap()
-						.addComponent(tabbedPane1, GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE))
+					.addComponent(tabbedPane1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
 			);
 		}
 		contentPane.add(emptyPanel, BorderLayout.CENTER);
@@ -354,8 +384,11 @@ public class TransferCenterFrame extends JFrame {
 	private JPanel panel1;
 	private JButton receive;
 	private JButton load;
-	private JLabel label6;
-	private JLabel label7;
+	private JLabel label4;
+	private JLabel label5;
+	private JLabel label2;
+	private JLabel institution;
+	private JLabel staff;
 	private JPanel emptyPanel;
 	private JTabbedPane tabbedPane1;
 	private JLabel label1;

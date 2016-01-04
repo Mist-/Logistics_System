@@ -10,7 +10,7 @@ new FormModel {
 				"font": &Font0 new java.awt.Font( "等线", 0, 14 )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 					"$horizontalGroup": "par l {seq l {space :::p, comp selectEntruck:::p:102:p, space u:::p, comp refreshButton:::p:102:p, space ::686:x}, comp scrollPane3::l::910:x}"
-					"$verticalGroup": "par l {seq t {space :::p, par l:::p {comp refreshButton::::0:x, comp selectEntruck:::::x}, space u:::p, comp scrollPane3::::295:x}}"
+					"$verticalGroup": "par l {seq t {par b {comp selectEntruck::b:p:32:p, comp refreshButton::b:p:32:p}, space :::p, comp scrollPane3::::308:x}}"
 				} ) {
 					name: "entruckListPanel"
 					add( new FormComponent( "javax.swing.JButton" ) {
@@ -40,8 +40,8 @@ new FormModel {
 					"title": "已审批装车单"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :::p, comp label1:::p:50:p, space :::p, comp comboBox1:::p:97:p, space :::p, comp sortButton:::p:89:p, space :::p, comp removeOrder:::p::p, space ::457:x, comp createEntruck:::p:96:p, space :::p}, comp scrollPane1::t::910:x}"
-					"$verticalGroup": "par l {seq t {space :::p, par l {par b {comp label1::b:p::p, comp comboBox1::b::41:x, comp sortButton::b:::x, comp removeOrder::b::36:x}, seq t {space :0:0:x, comp createEntruck:::p:37:p}}, space u:::p, comp scrollPane1::::285:x}}"
+					"$horizontalGroup": "par l {seq l {space :p:4:p, comp label1:::p:50:p, space u:::p, comp comboBox1:::p:90:p, space :::p, comp sortButton:::p:90:p, space :::p, comp removeOrder:::p:90:p, space ::464:x, comp createEntruck:::p:90:p, space :::p}, comp scrollPane1::t::910:x}"
+					"$verticalGroup": "par l {seq t {par b {comp removeOrder::b:p:30:p, comp comboBox1::b:p:30:p, comp label1::b:p::p, comp sortButton::b:p:30:p, comp createEntruck::b:p:30:p}, space :::p, comp scrollPane1:::p:311:p, space :::p}}"
 				} ) {
 					name: "panel1"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -92,7 +92,7 @@ new FormModel {
 			"font": &Font1 new java.awt.Font( "等线", 0, 14 )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 				"$horizontalGroup": "par l {seq l {space :::p, par l {comp scrollPane2::::895:x, seq {par l {seq l {comp label6:::p:70:p, space :::p, comp listID:::p:110:p}, seq l {par t:::p {comp label9:::::x, comp label5:::p::p}, space :::p, par l {comp hallName:::p:110:p, comp hallID:::p:110:p}}}, space :::p, par l:::p {comp label4:::::x, comp label8:::::x, comp label7:::p:70:p}, space :::p, par t:::p {comp destName::::94:x, comp destID::::94:x, comp entruckDate::::94:x}, space :::x, par l {seq l {comp label10:::p::p, space :::p, comp truckID:::p:107:p}, seq l {comp label11:::p:56:p, space :::p, comp staffName:::p:107:p}, seq l {comp label12:::p:56:p, space :::p, comp driverName:::p:107:p}}, space :p:40:p, comp saveEntruck::::101:x, space s:::p, comp doEntruck::::100:x, space s:::p, comp cancelLoad:::p::p, space :::p}}}}"
-				"$verticalGroup": "par l {seq t {space :::p, par l {seq {par l {seq l {par b {comp label8::b:p:24:p, comp destID::b:::x}, space :::p, par l {comp label7:::p:24:p, comp destName:::p::p}}, seq l {par l {comp listID:::p::p, comp label6:::p:24:p}, space :::p, par b {comp label5::b:p:24:p, comp hallID::b:p::p}}}, space :::p, par l {par b:l {comp label9::b:p::p, comp hallName::b:p::p}, par b:l {comp label4::b:p::p, comp entruckDate::b:p::p}}}, seq {space :p:64:p, par b {comp cancelLoad::b:p::p, comp doEntruck::b:p::p, comp saveEntruck::b:p::p}}, seq l {par l:::p {comp truckID:::::x, comp label10:::p:24:p}, space :::p, par l:::p {comp staffName:::::x, comp label11:::p:24:p}, space :::p, par l:::p {comp driverName::l:p::p, comp label12:::p:24:p}}}, space :::p, comp scrollPane2:::p:233:p}}"
+				"$verticalGroup": "par l {seq t {space :::p, par l {seq {par l {seq l {par b {comp label8::b:p:24:p, comp destID::b:::x}, space :::p, par l {comp label7:::p:24:p, comp destName:::p::p}}, seq l {par l {comp listID:::p::p, comp label6:::p:24:p}, space :::p, par b {comp label5::b:p:24:p, comp hallID::b:p::p}}}, space :::p, par l {par b:l {comp label9::b:p::p, comp hallName::b:p::p}, par b:l {comp label4::b:p::p, comp entruckDate::b:p::p}}}, seq {space :p:64:p, par b {comp doEntruck::b:p::p, comp saveEntruck::b:p::p, comp cancelLoad::b:p:33:p}}, seq l {par l:::p {comp truckID:::::x, comp label10:::p:24:p}, space :::p, par l:::p {comp staffName:::::x, comp label11:::p:24:p}, space :::p, par l:::p {comp driverName::l:p::p, comp label12:::p:24:p}}}, space :::p, comp scrollPane2:::p:233:p}}"
 			} ) {
 				name: "DeliveryListPanel"
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -218,8 +218,8 @@ new FormModel {
 			"$sizePolicy": 1
 			"title": "网络异常"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space ::80:x, par l {seq t {comp label2:::p:96:p, space :p:68:p}, seq t {comp errorSure:::p::p, space :p:86:p}}}}"
-				"$verticalGroup": "par l {seq l {space :p:47:p, comp label2:::p::p, space s:::p, comp errorSure:::p::p, space ::47:x}}"
+				"$horizontalGroup": "par l {seq t {space ::90:x, comp errorSure:::p::p, space :p:93:p}, seq l {space :p:74:p, comp label2:::p:96:p, space ::74:x}}"
+				"$verticalGroup": "par l {seq l {space :p:33:p, comp label2:::p::p, space u:::p, comp errorSure:::p::p, space ::34:x}}"
 			} ) {
 				name: "panel2"
 				add( new FormComponent( "javax.swing.JLabel" ) {
@@ -238,13 +238,13 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 1035, 55 )
-			"size": new java.awt.Dimension( 260, 200 )
+			"size": new java.awt.Dimension( 260, 165 )
 		} )
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 			name: "resultDialog"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :p:89:p, par t {comp resultSure:::p::p, comp label3:::p::p}, space ::94:x}}"
-				"$verticalGroup": "par l {seq l {space :p:59:p, comp label3:::p::p, space :p:26:p, comp resultSure:::p::p, space ::27:x}}"
+				"$horizontalGroup": "par l {seq l {space :p:89:p, par t {comp label3:::p::p, comp resultSure:::p::p}, space ::94:x}}"
+				"$verticalGroup": "par l {seq l {space :p:34:p, comp label3:::p::p, space u:::p, comp resultSure:::p::p, space ::23:x}}"
 			} ) {
 				name: "panel3"
 				add( new FormComponent( "javax.swing.JLabel" ) {
@@ -262,8 +262,8 @@ new FormModel {
 				"value": "Center"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 1060, 275 )
-			"size": new java.awt.Dimension( 260, 200 )
+			"location": new java.awt.Point( 1035, 230 )
+			"size": new java.awt.Dimension( 260, 155 )
 		} )
 	}
 }
