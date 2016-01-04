@@ -74,20 +74,24 @@ public class StorageOperate implements StorageOperateService {
 		int plane = 0;
 		int train = 0;
 		int truck = 0;
+		int flexible = 0;
 		if (storageInfoPO == null) {
 			return null;
 		}
 		ArrayList<long[][][]> storageInfo = storageInfoPO.getStorage();
 
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 4; i++) {
 			long[][][] info = storageInfo.get(i);
 			int row = 0;
 			if (i == 0)
 				row = storageInfoPO.getPlaneRow();
 			else if (i == 1)
 				row = storageInfoPO.getTrainRow();
-			else
+			else if( i == 2)
 				row = storageInfoPO.getTruckRow();
+			else {
+				row = storageInfoPO.getFlexibleRow();
+			}
 			for (int j = 0; j < row; j++) {
 				for (int k = 0; k < storageInfoPO.getShelf(); k++) {
 					for (int n = 0; n < storageInfoPO.getNum(); n++) {
@@ -97,15 +101,40 @@ public class StorageOperate implements StorageOperateService {
 							train++;
 						else if (i == 2 && info[j][k][n] != 0)
 							truck++;
-						else
+						else if(i== 3&& info[j][k][n]!= 0)
+							flexible ++;
+						else {
 							;
+						}
 					}
 				}
 			}
 		}
-		double planeRate = ((double) plane) / storageInfoPO.getPlane();
-		double trainRate = ((double) train) / storageInfoPO.getTrain();
-		double truckRate = ((double) truck) / storageInfoPO.getTruck();
+		
+		int planeall = storageInfoPO.getPlane();
+		int trainall = storageInfoPO.getTrain();
+		int truckall = storageInfoPO.getTruck();
+		
+		switch (storageInfoPO.getEnlargeArea()) {
+		case PLANE:
+			planeall += storageInfoPO.getFlexible();
+			plane += flexible;
+			break;
+		case TRAIN:
+			trainall += storageInfoPO.getFlexible();
+			train += flexible;
+			break;
+		case TRUCK:
+			trainall += storageInfoPO.getFlexible();
+			train += flexible;
+		default:
+			break;
+		}
+		
+
+		double planeRate = ((double) plane) / planeall;
+		double trainRate = ((double) train) / trainall;
+		double truckRate = ((double) truck) / truckall;
 		double percent = storageInfoPO.getAlarmPercent();
 		double[] result = { planeRate, trainRate, truckRate, percent };
 		actualRate = result;
@@ -330,6 +359,11 @@ public class StorageOperate implements StorageOperateService {
 	@Override
 	public ResultMessage enlarge(StorageArea area) {
 		storageInfoPO.setEnlargeArea(area);
+		try {
+			storageData.modify(storageInfoPO);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return ResultMessage.SUCCESS;
 	}
 

@@ -61,7 +61,7 @@ public class DataInitialization {
         institution[3] = new InstitutionPO(1025004);
         institution[3].setName("秦淮区");
         institution[3].setTargetCenter(1025);
-        institution[4] = new InstitutionPO(10025);
+        institution[4] = new InstitutionPO(1025);
         institution[4].setName("南京市");
 
         // 北京

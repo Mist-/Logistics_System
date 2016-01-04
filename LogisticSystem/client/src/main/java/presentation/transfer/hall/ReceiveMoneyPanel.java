@@ -93,9 +93,11 @@ public class ReceiveMoneyPanel extends JPanel {
 		
 		if(year < 2000 || year > 3000 || month < 1 || month > 12 || day < 1 || day > 31){
 			JOptionPane.showMessageDialog(null, "日期输入有误", "提示", JOptionPane.INFORMATION_MESSAGE);
+			return null;
 		}
 		}catch (NumberFormatException n){
 			JOptionPane.showMessageDialog(null, "日期输入有误", "提示", JOptionPane.INFORMATION_MESSAGE);
+			return null;
 		}
 		y =  new DecimalFormat("0000").format(year);
 		m = new DecimalFormat("00").format(month);

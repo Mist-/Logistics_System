@@ -26,12 +26,12 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label4"
-					"text": "中转装运"
+					"text": "中转接收"
 					"font": new java.awt.Font( "宋体", 0, 14 )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label5"
-					"text": "中转接收"
+					"text": "装运管理"
 					"font": new java.awt.Font( "宋体", 0, 14 )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {

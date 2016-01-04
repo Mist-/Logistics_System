@@ -106,6 +106,8 @@ public class TransferHallFrame extends JFrame {
 			container.remove(truckPanel);
 		if (driverPanel != null)
 			container.remove(driverPanel);
+		if(receiveMoneyPanel != null)
+			container.remove(receiveMoneyPanel);
 		container.add(entruckReceivePanel, BorderLayout.CENTER);
 		container.repaint();
 
@@ -157,6 +159,13 @@ public class TransferHallFrame extends JFrame {
 		if (driverPanel != null) {
 			container.remove(driverPanel);
 		}
+		if(receiveMoneyPanel != null){
+			container.remove(receiveMoneyPanel);
+		}
+		if(loadAndSortPanel != null){
+			container.remove(loadAndSortPanel);
+		}
+		
 		container.add(loadAndSortPanel, BorderLayout.CENTER);
 		container.repaint();
 
@@ -183,6 +192,10 @@ public class TransferHallFrame extends JFrame {
 			remove(truckPanel);
 		if (loadAndSortPanel != null)
 			remove(loadAndSortPanel);
+		if(receiveMoneyPanel != null)
+			remove(receiveMoneyPanel);
+		if(entruckReceivePanel != null)
+			remove(entruckReceivePanel);
 		container.add(driverPanel, BorderLayout.CENTER);
 		container.repaint();
 

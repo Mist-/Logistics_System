@@ -47,7 +47,7 @@ public class StorageInListPO extends StorageListPO {
         	case "航运区":info[i][1] = "0";break;
         	case "铁运区":info[i][1] = "1";break;
         	case "汽运区":info[i][1] = "2";break;
-        	default:info[i][1] = "4";
+        	default:info[i][1] = "3";
         	}
         	storagePosition.add(info[i][1]+"-"+info[i][2]+"-"+info[i][3]+"-"+info[i][4]);
         }

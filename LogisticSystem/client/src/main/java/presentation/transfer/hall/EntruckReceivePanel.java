@@ -564,9 +564,9 @@ public class EntruckReceivePanel extends JPanel {
 						.addGroup(GroupLayout.Alignment.TRAILING, arrivalListPanelLayout.createSequentialGroup()
 							.addGap(3, 3, 3)
 							.addGroup(arrivalListPanelLayout.createParallelGroup()
-								.addComponent(selectArrival, GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-								.addComponent(refreshButton, GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(selectArrival, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+								.addComponent(refreshButton, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
 							.addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 325, GroupLayout.PREFERRED_SIZE))
 				);
 			}

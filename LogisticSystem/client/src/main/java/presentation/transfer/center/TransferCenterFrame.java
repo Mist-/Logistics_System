@@ -203,11 +203,11 @@ public class TransferCenterFrame extends JFrame {
 			});
 
 			//---- label4 ----
-			label4.setText("\u4e2d\u8f6c\u88c5\u8fd0");
+			label4.setText("\u4e2d\u8f6c\u63a5\u6536");
 			label4.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
 
 			//---- label5 ----
-			label5.setText("\u4e2d\u8f6c\u63a5\u6536");
+			label5.setText("\u88c5\u8fd0\u7ba1\u7406");
 			label5.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
 
 			//---- label2 ----

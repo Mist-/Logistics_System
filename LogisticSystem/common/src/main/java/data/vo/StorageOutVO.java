@@ -78,7 +78,7 @@ public class StorageOutVO {
 //			default: area = "»ú¶¯Çø";
 //			}
 			
-			String[] in = {order[i]+"",area,postion[i][1],postion[i][2],postion[i][3]};
+			String[] in = {order[i]+"",postion[i][0],postion[i][1],postion[i][2],postion[i][3]};
 			info[i] = in;
 		}
 		

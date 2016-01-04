@@ -9,8 +9,8 @@ new FormModel {
 				name: "startPane"
 				"font": &Font0 new java.awt.Font( "等线", 0, 14 )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {space :::p, comp selectArrival:::p:112:p, space s:::p, comp refreshButton:::p:115:p, space ::650:x}, comp scrollPane2::l::905:x}"
-					"$verticalGroup": "par l {seq t {space :p:3:p, par l {comp selectArrival::::32:x, comp refreshButton::::32:x}, space :::p, comp scrollPane2:::p:325:p}}"
+					"$horizontalGroup": "par l {seq {space :::p, comp selectArrival:::p:112:p, space :p:18:p, comp refreshButton:::p:115:p, space ::650:x}, comp scrollPane2::l::905:x}"
+					"$verticalGroup": "par l {seq t {space :p:3:p, par l {comp selectArrival:::p:30:p, comp refreshButton:::p:30:p}, space ::8:x, comp scrollPane2:::p:325:p}}"
 				} ) {
 					name: "arrivalListPanel"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {

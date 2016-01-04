@@ -48,6 +48,10 @@ public class DriverInfoPO extends DataPO {
 //    	this.phoneNum = vo.phoneNum;
 //    	this.timeLimit = vo.timeLimit;
 //    }
+    
+    public DriverInfoPO(){
+    	super(POType.DRIVERINFO);
+    }
 
     public DriverInfoPO(DriverInfoVO vo){
     	super(POType.DRIVERINFO);

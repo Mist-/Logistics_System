@@ -25,7 +25,7 @@ public class IDGenerator {
         // TODO: µÈ´ýÍê³É
         DataService ds = DataServiceFactory.getDataServiceByPO(type);
         if (ds == null) {
-            return new Random().nextInt(10000) + 1000000000000L;
+            return new Random().nextInt(10000);
         }
 
         ArrayList<DataPO> pos = null;
