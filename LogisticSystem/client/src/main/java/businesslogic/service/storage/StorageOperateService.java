@@ -2,13 +2,9 @@ package businesslogic.service.storage;
 
 import data.enums.POType;
 import data.enums.StorageArea;
-import data.enums.TransferCenter;
 import data.message.ResultMessage;
-import data.po.StorageInfoPO;
-import data.vo.StorageInVO;
 import data.vo.StorageInfoVO;
 import data.vo.StorageListVO;
-import data.vo.StorageOutVO;
 
 import java.io.IOException;
 import java.rmi.RemoteException;

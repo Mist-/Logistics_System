@@ -3,7 +3,6 @@ package businesslogic.service.Transfer.hall;
 
 
 
-import businesslogic.impl.user.InstitutionInfo;
 /**
  * ¿¼ÂÇÉ¾³ý¸ÃÀà
  * @author xu

@@ -350,8 +350,8 @@ public class StorageInfo implements StorageInfoService {
 			while (row < storageInfo.getShelf()) {
 				while (num < storageInfo.getNum()) {
 					if (info[shelf][row][num] == 0) {
-				//		info[shelf][row][num] = order;//修改storage信息
-						return order+"-"+ a + "-" + shelf + "-" + row + "-" + num;
+						info[shelf][row][num] = order;//修改storage信息
+						return order+"-"+ a + "-" + row + "-" + shelf + "-" + num;
 					}
 					num++;
 				}

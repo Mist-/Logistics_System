@@ -119,6 +119,9 @@ public class ReceiveMoneyPanel extends JPanel {
 					JOptionPane.showMessageDialog(null, "结算完成", "提示", JOptionPane.INFORMATION_MESSAGE);
 					saveButton.setEnabled(false);
 					getOrder.setEnabled(false);
+					year.setText("");
+					month.setText("");
+					day.setText("");
 				}else{
 					JOptionPane.showMessageDialog(null, "操作失败", "提示", JOptionPane.INFORMATION_MESSAGE);
 				}
