@@ -7,6 +7,8 @@ import java.util.Calendar;
 import businesslogic.service.user.UserBLService;
 import data.enums.DataType;
 import data.enums.POType;
+import data.po.StaffPO;
+import data.service.CompanyDataService;
 import utils.DataServiceFactory;
 import data.message.LoginMessage;
 import data.message.ResultMessage;
@@ -111,22 +113,23 @@ public class UserBLImpl implements UserBLService {
 
     @Override
     public ResultMessage register(long staffSN) {
+        CompanyDataService companyDataService = null;
+        if (companyDataService == null) companyDataService = (CompanyDataService) DataServiceFactory.getDataServiceByType(DataType.CompanyDataService);
+        if (companyDataService == null) return ResultMessage.NOTCONNECTED;
 
-        if (userDataService == null) userDataService = (UserDataService) DataServiceFactory.getDataServiceByType(DataType.UserDataService);
-        if (userDataService == null) return ResultMessage.NOTCONNECTED;
-
-        UserPO userPO = null;
+        StaffPO staffPO = null;
         try {
-            userPO = (UserPO) userDataService.search(POType.USER, staffSN);
+            staffPO = (StaffPO) companyDataService.search(POType.USER, staffSN);
         } catch (RemoteException e) {
             System.err.println("无法连接网络，查询员工信息失败 - " + Calendar.getInstance().getTime());
             return ResultMessage.FAILED;
         }
-        if (userPO == null) {
+        if (staffPO == null) {
             return ResultMessage.NOTEXIST;
         }
 
-        UserPO user = new UserPO(userPO.getStaffsn(), userPO.getName(), "123456", userPO.getRole());
+        UserPO user = new UserPO(staffPO.getSerialNum(), staffPO.getName(), "123456", staffPO.getUserRole());
+
         try {
             userDataService.add(user);
         } catch (RemoteException e) {
