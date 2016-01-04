@@ -49,7 +49,6 @@ public class ReceiveMoney implements ReceiveMoneyService{
 		receipt.setAddress("");
 		receipt.setDate(date);
 		receipt.setInstitution(user.getInstitutionName());
-		receipt.setSender(receipt.getSender());
 		receipt.setPeople(receipt.getSender());
 		receipt.setCount(false);
 		receipt.setHallID(user.getInstitutionID());
