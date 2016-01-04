@@ -855,6 +855,7 @@ public class companyManage extends JFrame {
         };
         tableSalary.getTableHeader().setReorderingAllowed(false);
         tableSalary.getTableHeader().setPreferredSize(new Dimension(40,40));
+        tableSalary.setRowHeight(40);
         tableSalary.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scrollPanelSalary.getViewport().add(tableSalary);
     }
@@ -901,6 +902,7 @@ public class companyManage extends JFrame {
         tableCity.getTableHeader().setReorderingAllowed(false);
         tableCity.getTableHeader().setPreferredSize(new Dimension(40,40));
         tableCity.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        tableCity.setRowHeight(40);
         scrollPanelCity.getViewport().add(tableCity);
     }
 
@@ -930,6 +932,7 @@ public class companyManage extends JFrame {
         tableDeliver.getTableHeader().setReorderingAllowed(false);
         tableDeliver.getTableHeader().setPreferredSize(new Dimension(40,40));
         tableDeliver.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        tableDeliver.setRowHeight(40);
         scrollPanelDeliver.getViewport().add(tableDeliver);
     }
 
@@ -958,6 +961,7 @@ public class companyManage extends JFrame {
         };
         tableFinancial.getTableHeader().setReorderingAllowed(false);
         tableFinancial.getTableHeader().setPreferredSize(new Dimension(40,40));
+        tableFinancial.setRowHeight(40);
         tableFinancial.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scrollPanelFinancial.getViewport().add(tableFinancial);
     }
@@ -988,6 +992,7 @@ public class companyManage extends JFrame {
         };
         tableSFinancial.getTableHeader().setReorderingAllowed(false);
         tableSFinancial.getTableHeader().setPreferredSize(new Dimension(40,40));
+        tableSFinancial.setRowHeight(40);
         tableSFinancial.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scrollSFinancial.getViewport().add(tableSFinancial);
     }
@@ -1017,6 +1022,7 @@ public class companyManage extends JFrame {
         };
         tableTrunk.getTableHeader().setReorderingAllowed(false);
         tableTrunk.getTableHeader().setPreferredSize(new Dimension(40,40));
+        tableTrunk.setRowHeight(40);
         tableTrunk.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scrollPanelTrunk.getViewport().add(tableTrunk);
     }
@@ -1050,6 +1056,7 @@ public class companyManage extends JFrame {
         };
         tableCenter.getTableHeader().setReorderingAllowed(false);
         tableCenter.getTableHeader().setPreferredSize(new Dimension(40,30));
+        tableCenter.setRowHeight(40);
         tableCenter.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         //注意这里是Pane不是Panel!!!
         scrollPaneCenter.getViewport().add(tableCenter);
@@ -1082,6 +1089,7 @@ public class companyManage extends JFrame {
         };
         tableBusiness.getTableHeader().setReorderingAllowed(false);
         tableBusiness.getTableHeader().setPreferredSize(new Dimension(40,40));
+        tableBusiness.setRowHeight(40);
         tableBusiness.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //注意这里是Pane不是Panel!!!
         scrollPaneBusiness.getViewport().add(tableBusiness);
@@ -1117,6 +1125,7 @@ public class companyManage extends JFrame {
         };
         tableStorage.getTableHeader().setReorderingAllowed(false);
         tableStorage.getTableHeader().setPreferredSize(new Dimension(40,40));
+        tableStorage.setRowHeight(40);
         tableStorage.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //注意这里是Pane不是Panel!!!
         scrollPaneStorage.getViewport().add(tableStorage);
@@ -1196,6 +1205,7 @@ public class companyManage extends JFrame {
         };
         tableOrder.getTableHeader().setReorderingAllowed(false);
         tableOrder.getTableHeader().setPreferredSize(new Dimension(30,30));
+        tableOrder.setRowHeight(40);
         tableOrder.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scrollPanelOrder.getViewport().add(tableOrder);
     }
@@ -1242,6 +1252,7 @@ public class companyManage extends JFrame {
         };
         tableSend.getTableHeader().setReorderingAllowed(false);
         tableSend.getTableHeader().setPreferredSize(new Dimension(30,30));
+        tableSend.setRowHeight(40);
         tableSend.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scrollPanelSend.getViewport().add(tableSend);
     }
@@ -1299,6 +1310,7 @@ public class companyManage extends JFrame {
         tablePayment.getTableHeader().setReorderingAllowed(false);
         tablePayment.getColumnModel().getColumn(tablePayment.getColumnCount()-1).setPreferredWidth(120);
         tablePayment.getTableHeader().setPreferredSize(new Dimension(30,30));
+        tablePayment.setRowHeight(40);
         tablePayment.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scrollPanelPayment.getViewport().add(tablePayment);
     }
@@ -1349,6 +1361,7 @@ public class companyManage extends JFrame {
         };
         tableReceipt.getTableHeader().setReorderingAllowed(false);
         tableReceipt.getTableHeader().setPreferredSize(new Dimension(30,30));
+        tableReceipt.setRowHeight(40);
         tableReceipt.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scrollPanelReceipt.getViewport().add(tableReceipt);
     }
@@ -1401,6 +1414,7 @@ public class companyManage extends JFrame {
         };
         tableEntruk.getTableHeader().setPreferredSize(new Dimension(30,30));
         tableEntruk.getTableHeader().setReorderingAllowed(false);
+        tableEntruk.setRowHeight(40);
         tableEntruk.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scrollPanelEntruk.getViewport().add(tableEntruk);
     }
@@ -1451,6 +1465,7 @@ public class companyManage extends JFrame {
         };
         tableArrival.getTableHeader().setReorderingAllowed(false);
         tableArrival.getTableHeader().setPreferredSize(new Dimension(30,30));
+        tableArrival.setRowHeight(40);
         tableArrival.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scrollPanelArrival.getViewport().add(tableArrival);
     }
@@ -1499,6 +1514,7 @@ public class companyManage extends JFrame {
         };
         tableStorageIn.getTableHeader().setReorderingAllowed(false);
         tableStorageIn.getTableHeader().setPreferredSize(new Dimension(30,30));
+        tableStorageIn.setRowHeight(40);
         tableStorageIn.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scrollPanelStorageIn.getViewport().add(tableStorageIn);
     }
@@ -1549,6 +1565,7 @@ public class companyManage extends JFrame {
         };
         tableStorageOut.getTableHeader().setReorderingAllowed(false);
         tableStorageOut.getTableHeader().setPreferredSize(new Dimension(30,30));
+        tableStorageOut.setRowHeight(40);
         tableStorageOut.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scrollPanelStorageOut.getViewport().add(tableStorageOut);
     }
@@ -1603,6 +1620,7 @@ public class companyManage extends JFrame {
         };
         tableTransfer.getTableHeader().setReorderingAllowed(false);
         tableTransfer.getTableHeader().setPreferredSize(new Dimension(30,30));
+        tableTransfer.setRowHeight(40);
         tableTransfer.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scrollPanelTransfer.getViewport().add(tableTransfer);
     }
