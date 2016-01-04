@@ -1644,923 +1644,942 @@ public class companyManage extends JFrame {
             JOptionPane.showMessageDialog(null,"ÍøÂç´íÎó...","",JOptionPane.INFORMATION_MESSAGE);
         }
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        menuBar = new JMenuBar();
-        choice = new JMenu();
-        help = new JMenu();
-        panel1 = new JPanel();
-        panelAll = new JPanel();
-        panelApprove = new JPanel();
-        tabbedPaneApprove = new JTabbedPane();
-        scrollPanelEntruk = new JScrollPane();
-        tableEntruk = new JTable();
-        scrollPanelArrival = new JScrollPane();
-        tableArrival = new JTable();
-        scrollPanelReceipt = new JScrollPane();
-        tableReceipt = new JTable();
-        scrollPanelStorageOut = new JScrollPane();
-        tableStorageOut = new JTable();
-        scrollPanelPayment = new JScrollPane();
-        tablePayment = new JTable();
-        scrollPanelSend = new JScrollPane();
-        tableSend = new JTable();
-        scrollPanelTransfer = new JScrollPane();
-        tableTransfer = new JTable();
-        scrollPanelStorageIn = new JScrollPane();
-        tableStorageIn = new JTable();
-        scrollPanelOrder = new JScrollPane();
-        tableOrder = new JTable();
-        buttonApproveData = new JButton();
-        buttonApproveAll = new JButton();
-        buttonModifyData = new JButton();
-        buttonExitApprove = new JButton();
-        buttonModifyData2 = new JButton();
-        name = new JLabel();
-        id = new JLabel();
-        labelCheck = new JLabel();
-        labelApprove = new JLabel();
-        labelCity = new JLabel();
-        labelInstitution = new JLabel();
-        labelSalary = new JLabel();
-        buttonSalary = new JToggleButton();
-        buttonStaff = new JToggleButton();
-        buttonCity = new JToggleButton();
-        buttonApprove = new JToggleButton();
-        buttonCheck = new JToggleButton();
-        panelSalary = new JPanel();
-        scrollPanelSalary = new JScrollPane();
-        tableSalary = new JTable();
-        buttonAddSalary = new JButton();
-        buttonModifySalary = new JButton();
-        buttonExitSalary = new JButton();
-        labelSalarySuccess = new JLabel();
-        panelCity = new JPanel();
-        labelLeaveCity = new JLabel();
-        comboBoxLeaveCity = new JComboBox();
-        labelArrivalCity = new JLabel();
-        comboBoxArrivalCity = new JComboBox();
-        buttonEnsureCity = new JButton();
-        scrollPanelCity = new JScrollPane();
-        tableCity = new JTable();
-        buttonAddCity = new JButton();
-        buttonModifyCity = new JButton();
-        buttonExitCity = new JButton();
-        labelCitySuccess = new JLabel();
-        panelStaff = new JPanel();
-        tabbedPaneStaff = new JTabbedPane();
-        scrollPanelDeliver = new JScrollPane();
-        tableDeliver = new JTable();
-        scrollPanelFinancial = new JScrollPane();
-        tableFinancial = new JTable();
-        scrollSFinancial = new JScrollPane();
-        tableSFinancial = new JTable();
-        scrollPanelTrunk = new JScrollPane();
-        tableTrunk = new JTable();
-        scrollPanelCenter = new JPanel();
-        labelCenter = new JLabel();
-        comboBoxCenter = new JComboBox();
-        buttonEnsureCenter = new JButton();
-        scrollPaneCenter = new JScrollPane();
-        tableCenter = new JTable();
-        scrollPanelBusiness = new JPanel();
-        labelBusiness = new JLabel();
-        comboBoxBusinessCity = new JComboBox();
-        comboBoxBusinessNum = new JComboBox();
-        buttonEnsureBusiness = new JButton();
-        scrollPaneBusiness = new JScrollPane();
-        tableBusiness = new JTable();
-        scrollPanelStorage = new JPanel();
-        labelCenterStorage = new JLabel();
-        comboBoxStorage = new JComboBox();
-        buttonEnsureStorage = new JButton();
-        scrollPaneStorage = new JScrollPane();
-        tableStorage = new JTable();
-        buttonAddStaff = new JButton();
-        buttonMoveStaff = new JButton();
-        buttonDeleteStaff = new JButton();
-        buttonExitStaff = new JButton();
-        labelStaffSuccess = new JLabel();
-
-        //======== this ========
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-                thisWindowOpened(e);
-            }
-        });
-        Container contentPane = getContentPane();
-
-        //======== menuBar ========
-        {
-
-            //======== choice ========
-            {
-                choice.setText("\u9009\u9879(C)");
-                choice.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-            }
-            menuBar.add(choice);
-
-            //======== help ========
-            {
-                help.setText("\u5e2e\u52a9(H)");
-                help.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-            }
-            menuBar.add(help);
-        }
-        setJMenuBar(menuBar);
-
-        //======== panel1 ========
-        {
-
-            //======== panelAll ========
-            {
-                panelAll.setLayout(new BorderLayout());
-
-                //======== panelApprove ========
-                {
-
-                    //======== tabbedPaneApprove ========
-                    {
-                        tabbedPaneApprove.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-                        //======== scrollPanelEntruk ========
-                        {
-
-                            //---- tableEntruk ----
-                            tableEntruk.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-                            scrollPanelEntruk.setViewportView(tableEntruk);
-                        }
-                        tabbedPaneApprove.addTab("\u88c5\u8f66\u5355", scrollPanelEntruk);
-
-                        //======== scrollPanelArrival ========
-                        {
-
-                            //---- tableArrival ----
-                            tableArrival.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-                            scrollPanelArrival.setViewportView(tableArrival);
-                        }
-                        tabbedPaneApprove.addTab("\u5230\u8fbe\u5355", scrollPanelArrival);
-
-                        //======== scrollPanelReceipt ========
-                        {
-
-                            //---- tableReceipt ----
-                            tableReceipt.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-                            scrollPanelReceipt.setViewportView(tableReceipt);
-                        }
-                        tabbedPaneApprove.addTab("\u6536\u6b3e\u5355", scrollPanelReceipt);
-
-                        //======== scrollPanelStorageOut ========
-                        {
-
-                            //---- tableStorageOut ----
-                            tableStorageOut.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-                            scrollPanelStorageOut.setViewportView(tableStorageOut);
-                        }
-                        tabbedPaneApprove.addTab("\u51fa\u5e93\u5355", scrollPanelStorageOut);
-
-                        //======== scrollPanelPayment ========
-                        {
-                            scrollPanelPayment.setViewportView(tablePayment);
-                        }
-                        tabbedPaneApprove.addTab("\u4ed8\u6b3e\u5355", scrollPanelPayment);
-
-                        //======== scrollPanelSend ========
-                        {
-
-                            //---- tableSend ----
-                            tableSend.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-                            scrollPanelSend.setViewportView(tableSend);
-                        }
-                        tabbedPaneApprove.addTab("\u6d3e\u4ef6\u5355", scrollPanelSend);
-
-                        //======== scrollPanelTransfer ========
-                        {
-                            scrollPanelTransfer.setViewportView(tableTransfer);
-                        }
-                        tabbedPaneApprove.addTab("\u4e2d\u8f6c\u5355", scrollPanelTransfer);
-
-                        //======== scrollPanelStorageIn ========
-                        {
-
-                            //---- tableStorageIn ----
-                            tableStorageIn.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-                            scrollPanelStorageIn.setViewportView(tableStorageIn);
-                        }
-                        tabbedPaneApprove.addTab("\u5165\u5e93\u5355", scrollPanelStorageIn);
-
-                        //======== scrollPanelOrder ========
-                        {
-
-                            //---- tableOrder ----
-                            tableOrder.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-                            scrollPanelOrder.setViewportView(tableOrder);
-                        }
-                        tabbedPaneApprove.addTab("\u5bc4\u4ef6\u5355", scrollPanelOrder);
-                    }
-
-                    //---- buttonApproveData ----
-                    buttonApproveData.setText("\u5ba1\u6279\u5355\u636e");
-                    buttonApproveData.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-                    buttonApproveData.addMouseListener(new MouseAdapter() {
-                        @Override
-                        public void mouseClicked(MouseEvent e) {
-                            buttonApproveDataMouseClicked(e);
-                        }
-                    });
-
-                    //---- buttonApproveAll ----
-                    buttonApproveAll.setText("\u5168\u90e8\u5ba1\u6279");
-                    buttonApproveAll.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-                    buttonApproveAll.addMouseListener(new MouseAdapter() {
-                        @Override
-                        public void mouseClicked(MouseEvent e) {
-                            buttonApproveAllMouseClicked(e);
-                        }
-                        @Override
-                        public void mouseReleased(MouseEvent e) {
-                            buttonApproveAllMouseReleased(e);
-                        }
-                    });
-
-                    //---- buttonModifyData ----
-                    buttonModifyData.setText("\u4fee\u6539\u5355\u636e");
-                    buttonModifyData.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-                    buttonModifyData.addMouseListener(new MouseAdapter() {
-                        @Override
-                        public void mouseClicked(MouseEvent e) {
-                            buttonModifyDataMouseClicked(e);
-                        }
-                    });
-
-                    //---- buttonExitApprove ----
-                    buttonExitApprove.setText("\u9000\u51fa\u7cfb\u7edf");
-                    buttonExitApprove.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-                    buttonExitApprove.addMouseListener(new MouseAdapter() {
-                        @Override
-                        public void mouseClicked(MouseEvent e) {
-                            buttonExitApproveMouseClicked(e);
-                        }
-                    });
-
-                    //---- buttonModifyData2 ----
-                    buttonModifyData2.setText("\u5237\u65b0");
-                    buttonModifyData2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-                    buttonModifyData2.addMouseListener(new MouseAdapter() {
-                        @Override
-                        public void mouseReleased(MouseEvent e) {
-                            buttonModifyData2MouseReleased(e);
-                        }
-                    });
-
-                    GroupLayout panelApproveLayout = new GroupLayout(panelApprove);
-                    panelApprove.setLayout(panelApproveLayout);
-                    panelApproveLayout.setHorizontalGroup(
-                        panelApproveLayout.createParallelGroup()
-                            .addGroup(panelApproveLayout.createSequentialGroup()
-                                .addComponent(tabbedPaneApprove, GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(panelApproveLayout.createParallelGroup()
-                                    .addGroup(panelApproveLayout.createParallelGroup()
-                                        .addGroup(GroupLayout.Alignment.TRAILING, panelApproveLayout.createParallelGroup()
-                                            .addComponent(buttonApproveData, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(buttonApproveAll, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(buttonModifyData, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(buttonExitApprove, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(buttonModifyData2, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap())
-                    );
-                    panelApproveLayout.setVerticalGroup(
-                        panelApproveLayout.createParallelGroup()
-                            .addGroup(panelApproveLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(panelApproveLayout.createParallelGroup()
-                                    .addComponent(tabbedPaneApprove, GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
-                                    .addGroup(panelApproveLayout.createSequentialGroup()
-                                        .addComponent(buttonApproveData)
-                                        .addGap(7, 7, 7)
-                                        .addComponent(buttonApproveAll)
-                                        .addGap(7, 7, 7)
-                                        .addComponent(buttonModifyData)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(buttonModifyData2)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
-                                        .addComponent(buttonExitApprove)
-                                        .addContainerGap())))
-                    );
-                }
-                panelAll.add(panelApprove, BorderLayout.CENTER);
-            }
-
-            //---- name ----
-            name.setText("\u59d3\u540d:\u5f69\u7b14");
-            name.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-            //---- id ----
-            id.setText("id:12345");
-            id.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-            //---- labelCheck ----
-            labelCheck.setText("\u67e5\u770b\u62a5\u8868");
-            labelCheck.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-            //---- labelApprove ----
-            labelApprove.setText("\u5ba1\u6279\u5355\u636e");
-            labelApprove.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-            //---- labelCity ----
-            labelCity.setText("\u57ce\u5e02\u7ba1\u7406");
-            labelCity.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-            //---- labelInstitution ----
-            labelInstitution.setText("\u673a\u6784\u7ba1\u7406");
-            labelInstitution.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-            //---- labelSalary ----
-            labelSalary.setText("\u5de5\u8d44\u7ba1\u7406");
-            labelSalary.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-            //---- buttonSalary ----
-            buttonSalary.setIcon(new ImageIcon(getClass().getResource("/icons/salary_72x72.png")));
-            buttonSalary.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    buttonSalaryMouseClicked(e);
-                }
-            });
-
-            //---- buttonStaff ----
-            buttonStaff.setIcon(new ImageIcon(getClass().getResource("/icons/institution_72x72.png")));
-            buttonStaff.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    buttonStaffMouseClicked(e);
-                }
-            });
-
-            //---- buttonCity ----
-            buttonCity.setIcon(new ImageIcon(getClass().getResource("/icons/map_72x72.png")));
-            buttonCity.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    buttonCityMouseClicked(e);
-                }
-            });
-
-            //---- buttonApprove ----
-            buttonApprove.setIcon(new ImageIcon(getClass().getResource("/icons/approval_72x72.png")));
-            buttonApprove.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    buttonApproveMouseClicked(e);
-                }
-            });
-
-            //---- buttonCheck ----
-            buttonCheck.setIcon(new ImageIcon(getClass().getResource("/icons/Sales_report_72x72.png")));
-            buttonCheck.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    buttonCheckMouseClicked(e);
-                }
-            });
-
-            GroupLayout panel1Layout = new GroupLayout(panel1);
-            panel1.setLayout(panel1Layout);
-            panel1Layout.setHorizontalGroup(
-                panel1Layout.createParallelGroup()
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(labelSalary)
-                                .addGap(62, 62, 62)
-                                .addComponent(labelInstitution)
-                                .addGap(47, 47, 47)
-                                .addComponent(labelCity)
-                                .addGap(61, 61, 61)
-                                .addComponent(labelApprove)
-                                .addGap(57, 57, 57)
-                                .addComponent(labelCheck)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(name, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
-                            .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(panel1Layout.createParallelGroup()
-                                    .addComponent(panelAll, GroupLayout.DEFAULT_SIZE, 912, Short.MAX_VALUE)
-                                    .addGroup(panel1Layout.createSequentialGroup()
-                                        .addComponent(buttonSalary, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(buttonStaff, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(buttonCity, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(buttonApprove, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(buttonCheck, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(id, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap())
-            );
-            panel1Layout.setVerticalGroup(
-                panel1Layout.createParallelGroup()
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(panel1Layout.createParallelGroup()
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(buttonSalary, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelSalary))
-                            .addComponent(buttonStaff, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(buttonCity, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(labelCity)
-                                    .addComponent(labelInstitution)))
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(buttonApprove, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelApprove))
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addGroup(panel1Layout.createParallelGroup()
-                                    .addComponent(buttonCheck, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(id))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(panel1Layout.createParallelGroup()
-                                    .addComponent(name)
-                                    .addComponent(labelCheck))))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panelAll, GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
-                        .addContainerGap())
-            );
-        }
-
-        GroupLayout contentPaneLayout = new GroupLayout(contentPane);
-        contentPane.setLayout(contentPaneLayout);
-        contentPaneLayout.setHorizontalGroup(
-            contentPaneLayout.createParallelGroup()
-                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        contentPaneLayout.setVerticalGroup(
-            contentPaneLayout.createParallelGroup()
-                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        pack();
-        setLocationRelativeTo(getOwner());
-
-        //======== panelSalary ========
-        {
-
-            //======== scrollPanelSalary ========
-            {
-
-                //---- tableSalary ----
-                tableSalary.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-                scrollPanelSalary.setViewportView(tableSalary);
-            }
-
-            //---- buttonAddSalary ----
-            buttonAddSalary.setText("\u6dfb\u52a0\u5de5\u8d44");
-            buttonAddSalary.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-            buttonAddSalary.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    buttonAddSalaryMouseClicked(e);
-                }
-            });
-
-            //---- buttonModifySalary ----
-            buttonModifySalary.setText("\u4fdd\u5b58\u4fee\u6539");
-            buttonModifySalary.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-            buttonModifySalary.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    buttonModifySalaryMouseClicked(e);
-                }
-            });
-
-            //---- buttonExitSalary ----
-            buttonExitSalary.setText("\u9000\u51fa\u7cfb\u7edf");
-            buttonExitSalary.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-            buttonExitSalary.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    buttonExitSalaryMouseClicked(e);
-                }
-            });
-
-            GroupLayout panelSalaryLayout = new GroupLayout(panelSalary);
-            panelSalary.setLayout(panelSalaryLayout);
-            panelSalaryLayout.setHorizontalGroup(
-                panelSalaryLayout.createParallelGroup()
-                    .addGroup(panelSalaryLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(scrollPanelSalary, GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelSalaryLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                            .addComponent(buttonModifySalary, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-                            .addComponent(buttonAddSalary, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-                            .addComponent(buttonExitSalary, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-                            .addComponent(labelSalarySuccess, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE))
-                        .addContainerGap())
-            );
-            panelSalaryLayout.setVerticalGroup(
-                panelSalaryLayout.createParallelGroup()
-                    .addGroup(panelSalaryLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(panelSalaryLayout.createParallelGroup()
-                            .addGroup(panelSalaryLayout.createSequentialGroup()
-                                .addComponent(scrollPanelSalary, GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
-                                .addContainerGap())
-                            .addGroup(panelSalaryLayout.createSequentialGroup()
-                                .addComponent(labelSalarySuccess, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonAddSalary)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonModifySalary)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
-                                .addComponent(buttonExitSalary)
-                                .addGap(14, 14, 14))))
-            );
-        }
-
-        //======== panelCity ========
-        {
-
-            //---- labelLeaveCity ----
-            labelLeaveCity.setText("\u51fa\u53d1\u57ce\u5e02:");
-            labelLeaveCity.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-            //---- comboBoxLeaveCity ----
-            comboBoxLeaveCity.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-            //---- labelArrivalCity ----
-            labelArrivalCity.setText("\u5230\u8fbe\u57ce\u5e02");
-            labelArrivalCity.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-            //---- comboBoxArrivalCity ----
-            comboBoxArrivalCity.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-            //---- buttonEnsureCity ----
-            buttonEnsureCity.setText("\u786e\u8ba4");
-            buttonEnsureCity.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-            buttonEnsureCity.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    buttonEnsureCityMouseClicked(e);
-                }
-            });
-
-            //======== scrollPanelCity ========
-            {
-
-                //---- tableCity ----
-                tableCity.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-                scrollPanelCity.setViewportView(tableCity);
-            }
-
-            //---- buttonAddCity ----
-            buttonAddCity.setText("\u6dfb\u52a0\u4fe1\u606f");
-            buttonAddCity.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-            buttonAddCity.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    buttonAddCityMouseClicked(e);
-                }
-            });
-
-            //---- buttonModifyCity ----
-            buttonModifyCity.setText("\u4fdd\u5b58\u4fee\u6539");
-            buttonModifyCity.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-            buttonModifyCity.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    buttonModifyCityMouseClicked(e);
-                }
-            });
-
-            //---- buttonExitCity ----
-            buttonExitCity.setText("\u9000\u51fa\u7cfb\u7edf");
-            buttonExitCity.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-            buttonExitCity.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    buttonExitCityMouseClicked(e);
-                }
-            });
-
-            GroupLayout panelCityLayout = new GroupLayout(panelCity);
-            panelCity.setLayout(panelCityLayout);
-            panelCityLayout.setHorizontalGroup(
-                panelCityLayout.createParallelGroup()
-                    .addGroup(panelCityLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(panelCityLayout.createParallelGroup()
-                            .addGroup(panelCityLayout.createSequentialGroup()
-                                .addComponent(labelLeaveCity)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboBoxLeaveCity, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(labelArrivalCity, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboBoxArrivalCity, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonEnsureCity, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 101, Short.MAX_VALUE))
-                            .addComponent(scrollPanelCity, GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelCityLayout.createParallelGroup()
-                            .addGroup(GroupLayout.Alignment.TRAILING, panelCityLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                .addComponent(labelCitySuccess, GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
-                                .addComponent(buttonAddCity, GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
-                                .addComponent(buttonModifyCity, GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
-                            .addComponent(buttonExitCity, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
-            );
-            panelCityLayout.setVerticalGroup(
-                panelCityLayout.createParallelGroup()
-                    .addGroup(panelCityLayout.createSequentialGroup()
-                        .addGroup(panelCityLayout.createParallelGroup()
-                            .addGroup(panelCityLayout.createSequentialGroup()
-                                .addComponent(labelCitySuccess, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(buttonAddCity)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonModifyCity)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
-                                .addComponent(buttonExitCity))
-                            .addGroup(panelCityLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(panelCityLayout.createParallelGroup()
-                                    .addGroup(panelCityLayout.createParallelGroup(GroupLayout.Alignment.BASELINE, false)
-                                        .addComponent(comboBoxLeaveCity)
-                                        .addComponent(comboBoxArrivalCity)
-                                        .addComponent(labelLeaveCity, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(labelArrivalCity, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(buttonEnsureCity, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(scrollPanelCity, GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)))
-                        .addContainerGap())
-            );
-        }
-
-        //======== panelStaff ========
-        {
-
-            //======== tabbedPaneStaff ========
-            {
-                tabbedPaneStaff.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-
-                //======== scrollPanelDeliver ========
-                {
-                    scrollPanelDeliver.setViewportView(tableDeliver);
-                }
-                tabbedPaneStaff.addTab("\u5feb\u9012\u5458", scrollPanelDeliver);
-
-                //======== scrollPanelFinancial ========
-                {
-
-                    //---- tableFinancial ----
-                    tableFinancial.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-                    scrollPanelFinancial.setViewportView(tableFinancial);
-                }
-                tabbedPaneStaff.addTab("\u666e\u901a\u8d22\u52a1\u4eba\u5458", scrollPanelFinancial);
-
-                //======== scrollSFinancial ========
-                {
-                    scrollSFinancial.setViewportView(tableSFinancial);
-                }
-                tabbedPaneStaff.addTab("\u9ad8\u7ea7\u8d22\u52a1\u4eba\u5458", scrollSFinancial);
-
-                //======== scrollPanelTrunk ========
-                {
-                    scrollPanelTrunk.setViewportView(tableTrunk);
-                }
-                tabbedPaneStaff.addTab("\u8d27\u8f66\u9a7e\u9a76\u5458", scrollPanelTrunk);
-
-                //======== scrollPanelCenter ========
-                {
-
-                    //---- labelCenter ----
-                    labelCenter.setText("\u8bf7\u9009\u62e9\u4e2d\u8f6c\u4e2d\u5fc3:");
-
-                    //---- buttonEnsureCenter ----
-                    buttonEnsureCenter.setText("\u786e\u8ba4");
-                    buttonEnsureCenter.addMouseListener(new MouseAdapter() {
-                        @Override
-                        public void mouseClicked(MouseEvent e) {
-                            buttonEnsureCenterMouseClicked(e);
-                        }
-                    });
-
-                    //======== scrollPaneCenter ========
-                    {
-                        scrollPaneCenter.setViewportView(tableCenter);
-                    }
-
-                    GroupLayout scrollPanelCenterLayout = new GroupLayout(scrollPanelCenter);
-                    scrollPanelCenter.setLayout(scrollPanelCenterLayout);
-                    scrollPanelCenterLayout.setHorizontalGroup(
-                        scrollPanelCenterLayout.createParallelGroup()
-                            .addGroup(scrollPanelCenterLayout.createSequentialGroup()
-                                .addContainerGap(180, Short.MAX_VALUE)
-                                .addComponent(labelCenter)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(comboBoxCenter, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(buttonEnsureCenter)
-                                .addGap(142, 142, 142))
-                            .addComponent(scrollPaneCenter, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
-                    );
-                    scrollPanelCenterLayout.setVerticalGroup(
-                        scrollPanelCenterLayout.createParallelGroup()
-                            .addGroup(scrollPanelCenterLayout.createSequentialGroup()
-                                .addGroup(scrollPanelCenterLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(buttonEnsureCenter)
-                                    .addComponent(labelCenter)
-                                    .addComponent(comboBoxCenter, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(scrollPaneCenter, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE))
-                    );
-                }
-                tabbedPaneStaff.addTab("\u4e2d\u8f6c\u4e2d\u5fc3\u4e1a\u52a1\u5458", scrollPanelCenter);
-
-                //======== scrollPanelBusiness ========
-                {
-
-                    //---- labelBusiness ----
-                    labelBusiness.setText("\u8bf7\u9009\u62e9\u8425\u4e1a\u5385:");
-
-                    //---- buttonEnsureBusiness ----
-                    buttonEnsureBusiness.setText("\u786e\u8ba4");
-                    buttonEnsureBusiness.addMouseListener(new MouseAdapter() {
-                        @Override
-                        public void mouseClicked(MouseEvent e) {
-                            buttonEnsureBusinessMouseClicked(e);
-                        }
-                    });
-
-                    //======== scrollPaneBusiness ========
-                    {
-                        scrollPaneBusiness.setViewportView(tableBusiness);
-                    }
-
-                    GroupLayout scrollPanelBusinessLayout = new GroupLayout(scrollPanelBusiness);
-                    scrollPanelBusiness.setLayout(scrollPanelBusinessLayout);
-                    scrollPanelBusinessLayout.setHorizontalGroup(
-                        scrollPanelBusinessLayout.createParallelGroup()
-                            .addGroup(scrollPanelBusinessLayout.createSequentialGroup()
-                                .addGap(83, 83, 83)
-                                .addComponent(labelBusiness)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboBoxBusinessCity, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboBoxBusinessNum, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(buttonEnsureBusiness)
-                                .addContainerGap(146, Short.MAX_VALUE))
-                            .addComponent(scrollPaneBusiness, GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
-                    );
-                    scrollPanelBusinessLayout.setVerticalGroup(
-                        scrollPanelBusinessLayout.createParallelGroup()
-                            .addGroup(scrollPanelBusinessLayout.createSequentialGroup()
-                                .addGroup(scrollPanelBusinessLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(comboBoxBusinessNum, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(comboBoxBusinessCity, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(buttonEnsureBusiness)
-                                    .addComponent(labelBusiness))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(scrollPaneBusiness, GroupLayout.PREFERRED_SIZE, 242, GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                    );
-                }
-                tabbedPaneStaff.addTab("\u8425\u4e1a\u5385\u4e1a\u52a1\u5458", scrollPanelBusiness);
-
-                //======== scrollPanelStorage ========
-                {
-
-                    //---- labelCenterStorage ----
-                    labelCenterStorage.setText("\u8bf7\u9009\u62e9\u4ed3\u5e93:");
-
-                    //---- buttonEnsureStorage ----
-                    buttonEnsureStorage.setText("\u786e\u8ba4");
-                    buttonEnsureStorage.addMouseListener(new MouseAdapter() {
-                        @Override
-                        public void mouseClicked(MouseEvent e) {
-                            buttonEnsureStorageMouseClicked(e);
-                        }
-                    });
-
-                    //======== scrollPaneStorage ========
-                    {
-                        scrollPaneStorage.setViewportView(tableStorage);
-                    }
-
-                    GroupLayout scrollPanelStorageLayout = new GroupLayout(scrollPanelStorage);
-                    scrollPanelStorage.setLayout(scrollPanelStorageLayout);
-                    scrollPanelStorageLayout.setHorizontalGroup(
-                        scrollPanelStorageLayout.createParallelGroup()
-                            .addGroup(scrollPanelStorageLayout.createSequentialGroup()
-                                .addContainerGap(204, Short.MAX_VALUE)
-                                .addComponent(labelCenterStorage)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(comboBoxStorage, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(buttonEnsureStorage)
-                                .addGap(142, 142, 142))
-                            .addComponent(scrollPaneStorage, GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
-                    );
-                    scrollPanelStorageLayout.setVerticalGroup(
-                        scrollPanelStorageLayout.createParallelGroup()
-                            .addGroup(scrollPanelStorageLayout.createSequentialGroup()
-                                .addGroup(scrollPanelStorageLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(buttonEnsureStorage)
-                                    .addComponent(labelCenterStorage)
-                                    .addComponent(comboBoxStorage, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(scrollPaneStorage, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                    );
-                }
-                tabbedPaneStaff.addTab("\u4ed3\u5e93\u7ba1\u7406\u5458", scrollPanelStorage);
-            }
-
-            //---- buttonAddStaff ----
-            buttonAddStaff.setText("\u6dfb\u52a0\u5458\u5de5");
-            buttonAddStaff.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-            buttonAddStaff.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    buttonAddStaffMouseClicked(e);
-                }
-            });
-
-            //---- buttonMoveStaff ----
-            buttonMoveStaff.setText("\u79fb\u52a8\u5458\u5de5");
-            buttonMoveStaff.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-            buttonMoveStaff.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    buttonMoveStaffMouseClicked(e);
-                }
-            });
-
-            //---- buttonDeleteStaff ----
-            buttonDeleteStaff.setText("\u5220\u9664\u5458\u5de5");
-            buttonDeleteStaff.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-            buttonDeleteStaff.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    buttonDeleteStaffMouseClicked(e);
-                }
-            });
-
-            //---- buttonExitStaff ----
-            buttonExitStaff.setText("\u9000\u51fa\u7cfb\u7edf");
-            buttonExitStaff.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-            buttonExitStaff.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    buttonExitStaffMouseClicked(e);
-                }
-            });
-
-            GroupLayout panelStaffLayout = new GroupLayout(panelStaff);
-            panelStaff.setLayout(panelStaffLayout);
-            panelStaffLayout.setHorizontalGroup(
-                panelStaffLayout.createParallelGroup()
-                    .addGroup(panelStaffLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(tabbedPaneStaff)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelStaffLayout.createParallelGroup()
-                            .addComponent(labelStaffSuccess, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelStaffLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(buttonAddStaff, GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
-                                .addComponent(buttonDeleteStaff, GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
-                                .addComponent(buttonMoveStaff, GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
-                            .addComponent(buttonExitStaff, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
-            );
-            panelStaffLayout.setVerticalGroup(
-                panelStaffLayout.createParallelGroup()
-                    .addGroup(panelStaffLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(panelStaffLayout.createParallelGroup()
-                            .addComponent(tabbedPaneStaff, GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
-                            .addGroup(panelStaffLayout.createSequentialGroup()
-                                .addComponent(labelStaffSuccess, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(buttonAddStaff)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonDeleteStaff)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonMoveStaff)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
-                                .addComponent(buttonExitStaff)))
-                        .addContainerGap())
-            );
-        }
+		menuBar = new JMenuBar();
+		choice = new JMenu();
+		help = new JMenu();
+		panel1 = new JPanel();
+		panelAll = new JPanel();
+		panelApprove = new JPanel();
+		tabbedPaneApprove = new JTabbedPane();
+		scrollPanelEntruk = new JScrollPane();
+		tableEntruk = new JTable();
+		scrollPanelArrival = new JScrollPane();
+		tableArrival = new JTable();
+		scrollPanelReceipt = new JScrollPane();
+		tableReceipt = new JTable();
+		scrollPanelStorageOut = new JScrollPane();
+		tableStorageOut = new JTable();
+		scrollPanelPayment = new JScrollPane();
+		tablePayment = new JTable();
+		scrollPanelSend = new JScrollPane();
+		tableSend = new JTable();
+		scrollPanelTransfer = new JScrollPane();
+		tableTransfer = new JTable();
+		scrollPanelStorageIn = new JScrollPane();
+		tableStorageIn = new JTable();
+		scrollPanelOrder = new JScrollPane();
+		tableOrder = new JTable();
+		buttonApproveData = new JButton();
+		buttonApproveAll = new JButton();
+		buttonModifyData = new JButton();
+		buttonExitApprove = new JButton();
+		buttonModifyData2 = new JButton();
+		name = new JLabel();
+		id = new JLabel();
+		labelCheck = new JLabel();
+		labelApprove = new JLabel();
+		labelCity = new JLabel();
+		labelInstitution = new JLabel();
+		labelSalary = new JLabel();
+		buttonSalary = new JToggleButton();
+		buttonStaff = new JToggleButton();
+		buttonCity = new JToggleButton();
+		buttonApprove = new JToggleButton();
+		buttonCheck = new JToggleButton();
+		label1 = new JLabel();
+		label2 = new JLabel();
+		panelSalary = new JPanel();
+		scrollPanelSalary = new JScrollPane();
+		tableSalary = new JTable();
+		buttonAddSalary = new JButton();
+		buttonModifySalary = new JButton();
+		buttonExitSalary = new JButton();
+		labelSalarySuccess = new JLabel();
+		panelCity = new JPanel();
+		labelLeaveCity = new JLabel();
+		comboBoxLeaveCity = new JComboBox();
+		labelArrivalCity = new JLabel();
+		comboBoxArrivalCity = new JComboBox();
+		buttonEnsureCity = new JButton();
+		scrollPanelCity = new JScrollPane();
+		tableCity = new JTable();
+		buttonAddCity = new JButton();
+		buttonModifyCity = new JButton();
+		buttonExitCity = new JButton();
+		labelCitySuccess = new JLabel();
+		panelStaff = new JPanel();
+		tabbedPaneStaff = new JTabbedPane();
+		scrollPanelDeliver = new JScrollPane();
+		tableDeliver = new JTable();
+		scrollPanelFinancial = new JScrollPane();
+		tableFinancial = new JTable();
+		scrollSFinancial = new JScrollPane();
+		tableSFinancial = new JTable();
+		scrollPanelTrunk = new JScrollPane();
+		tableTrunk = new JTable();
+		scrollPanelCenter = new JPanel();
+		labelCenter = new JLabel();
+		comboBoxCenter = new JComboBox();
+		buttonEnsureCenter = new JButton();
+		scrollPaneCenter = new JScrollPane();
+		tableCenter = new JTable();
+		scrollPanelBusiness = new JPanel();
+		labelBusiness = new JLabel();
+		comboBoxBusinessCity = new JComboBox();
+		comboBoxBusinessNum = new JComboBox();
+		buttonEnsureBusiness = new JButton();
+		scrollPaneBusiness = new JScrollPane();
+		tableBusiness = new JTable();
+		scrollPanelStorage = new JPanel();
+		labelCenterStorage = new JLabel();
+		comboBoxStorage = new JComboBox();
+		buttonEnsureStorage = new JButton();
+		scrollPaneStorage = new JScrollPane();
+		tableStorage = new JTable();
+		buttonAddStaff = new JButton();
+		buttonMoveStaff = new JButton();
+		buttonDeleteStaff = new JButton();
+		buttonExitStaff = new JButton();
+		labelStaffSuccess = new JLabel();
+
+		//======== this ========
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+				thisWindowOpened(e);
+			}
+		});
+		Container contentPane = getContentPane();
+
+		//======== menuBar ========
+		{
+
+			//======== choice ========
+			{
+				choice.setText("\u9009\u9879(C)");
+				choice.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+			}
+			menuBar.add(choice);
+
+			//======== help ========
+			{
+				help.setText("\u5e2e\u52a9(H)");
+				help.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+			}
+			menuBar.add(help);
+		}
+		setJMenuBar(menuBar);
+
+		//======== panel1 ========
+		{
+
+			//======== panelAll ========
+			{
+				panelAll.setLayout(new BorderLayout());
+
+				//======== panelApprove ========
+				{
+
+					//======== tabbedPaneApprove ========
+					{
+						tabbedPaneApprove.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+						//======== scrollPanelEntruk ========
+						{
+
+							//---- tableEntruk ----
+							tableEntruk.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+							scrollPanelEntruk.setViewportView(tableEntruk);
+						}
+						tabbedPaneApprove.addTab("\u88c5\u8f66\u5355", scrollPanelEntruk);
+
+						//======== scrollPanelArrival ========
+						{
+
+							//---- tableArrival ----
+							tableArrival.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+							scrollPanelArrival.setViewportView(tableArrival);
+						}
+						tabbedPaneApprove.addTab("\u5230\u8fbe\u5355", scrollPanelArrival);
+
+						//======== scrollPanelReceipt ========
+						{
+
+							//---- tableReceipt ----
+							tableReceipt.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+							scrollPanelReceipt.setViewportView(tableReceipt);
+						}
+						tabbedPaneApprove.addTab("\u6536\u6b3e\u5355", scrollPanelReceipt);
+
+						//======== scrollPanelStorageOut ========
+						{
+
+							//---- tableStorageOut ----
+							tableStorageOut.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+							scrollPanelStorageOut.setViewportView(tableStorageOut);
+						}
+						tabbedPaneApprove.addTab("\u51fa\u5e93\u5355", scrollPanelStorageOut);
+
+						//======== scrollPanelPayment ========
+						{
+							scrollPanelPayment.setViewportView(tablePayment);
+						}
+						tabbedPaneApprove.addTab("\u4ed8\u6b3e\u5355", scrollPanelPayment);
+
+						//======== scrollPanelSend ========
+						{
+
+							//---- tableSend ----
+							tableSend.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+							scrollPanelSend.setViewportView(tableSend);
+						}
+						tabbedPaneApprove.addTab("\u6d3e\u4ef6\u5355", scrollPanelSend);
+
+						//======== scrollPanelTransfer ========
+						{
+							scrollPanelTransfer.setViewportView(tableTransfer);
+						}
+						tabbedPaneApprove.addTab("\u4e2d\u8f6c\u5355", scrollPanelTransfer);
+
+						//======== scrollPanelStorageIn ========
+						{
+
+							//---- tableStorageIn ----
+							tableStorageIn.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+							scrollPanelStorageIn.setViewportView(tableStorageIn);
+						}
+						tabbedPaneApprove.addTab("\u5165\u5e93\u5355", scrollPanelStorageIn);
+
+						//======== scrollPanelOrder ========
+						{
+
+							//---- tableOrder ----
+							tableOrder.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+							scrollPanelOrder.setViewportView(tableOrder);
+						}
+						tabbedPaneApprove.addTab("\u5bc4\u4ef6\u5355", scrollPanelOrder);
+					}
+
+					//---- buttonApproveData ----
+					buttonApproveData.setText("\u5ba1\u6279\u5355\u636e");
+					buttonApproveData.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+					buttonApproveData.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							buttonApproveDataMouseClicked(e);
+						}
+					});
+
+					//---- buttonApproveAll ----
+					buttonApproveAll.setText("\u5168\u90e8\u5ba1\u6279");
+					buttonApproveAll.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+					buttonApproveAll.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							buttonApproveAllMouseClicked(e);
+						}
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							buttonApproveAllMouseReleased(e);
+						}
+					});
+
+					//---- buttonModifyData ----
+					buttonModifyData.setText("\u4fee\u6539\u5355\u636e");
+					buttonModifyData.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+					buttonModifyData.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							buttonModifyDataMouseClicked(e);
+						}
+					});
+
+					//---- buttonExitApprove ----
+					buttonExitApprove.setText("\u9000\u51fa\u7cfb\u7edf");
+					buttonExitApprove.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+					buttonExitApprove.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							buttonExitApproveMouseClicked(e);
+						}
+					});
+
+					//---- buttonModifyData2 ----
+					buttonModifyData2.setText("\u5237\u65b0");
+					buttonModifyData2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+					buttonModifyData2.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							buttonModifyData2MouseReleased(e);
+						}
+					});
+
+					GroupLayout panelApproveLayout = new GroupLayout(panelApprove);
+					panelApprove.setLayout(panelApproveLayout);
+					panelApproveLayout.setHorizontalGroup(
+						panelApproveLayout.createParallelGroup()
+							.addGroup(panelApproveLayout.createSequentialGroup()
+								.addComponent(tabbedPaneApprove, GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addGroup(panelApproveLayout.createParallelGroup()
+									.addGroup(panelApproveLayout.createParallelGroup()
+										.addGroup(GroupLayout.Alignment.TRAILING, panelApproveLayout.createParallelGroup()
+											.addComponent(buttonApproveData, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+											.addComponent(buttonApproveAll, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+											.addComponent(buttonModifyData, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+										.addComponent(buttonExitApprove, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+									.addComponent(buttonModifyData2, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+								.addContainerGap())
+					);
+					panelApproveLayout.setVerticalGroup(
+						panelApproveLayout.createParallelGroup()
+							.addGroup(panelApproveLayout.createSequentialGroup()
+								.addContainerGap()
+								.addGroup(panelApproveLayout.createParallelGroup()
+									.addComponent(tabbedPaneApprove, GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+									.addGroup(panelApproveLayout.createSequentialGroup()
+										.addComponent(buttonApproveData)
+										.addGap(7, 7, 7)
+										.addComponent(buttonApproveAll)
+										.addGap(7, 7, 7)
+										.addComponent(buttonModifyData)
+										.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+										.addComponent(buttonModifyData2)
+										.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 217, Short.MAX_VALUE)
+										.addComponent(buttonExitApprove)
+										.addContainerGap())))
+					);
+				}
+				panelAll.add(panelApprove, BorderLayout.CENTER);
+			}
+
+			//---- name ----
+			name.setText("\u59d3\u540d:\u738b\u6bc5\u627f");
+			name.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+			//---- id ----
+			id.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+			//---- labelCheck ----
+			labelCheck.setText("\u67e5\u770b\u62a5\u8868");
+			labelCheck.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+			//---- labelApprove ----
+			labelApprove.setText("\u5ba1\u6279\u5355\u636e");
+			labelApprove.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+			//---- labelCity ----
+			labelCity.setText("\u57ce\u5e02\u7ba1\u7406");
+			labelCity.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+			//---- labelInstitution ----
+			labelInstitution.setText("\u673a\u6784\u7ba1\u7406");
+			labelInstitution.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+			//---- labelSalary ----
+			labelSalary.setText("\u5de5\u8d44\u7ba1\u7406");
+			labelSalary.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+			//---- buttonSalary ----
+			buttonSalary.setIcon(new ImageIcon(getClass().getResource("/icons/salary_72x72.png")));
+			buttonSalary.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					buttonSalaryMouseClicked(e);
+				}
+			});
+
+			//---- buttonStaff ----
+			buttonStaff.setIcon(new ImageIcon(getClass().getResource("/icons/institution_72x72.png")));
+			buttonStaff.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					buttonStaffMouseClicked(e);
+				}
+			});
+
+			//---- buttonCity ----
+			buttonCity.setIcon(new ImageIcon(getClass().getResource("/icons/map_72x72.png")));
+			buttonCity.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					buttonCityMouseClicked(e);
+				}
+			});
+
+			//---- buttonApprove ----
+			buttonApprove.setIcon(new ImageIcon(getClass().getResource("/icons/approval_72x72.png")));
+			buttonApprove.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					buttonApproveMouseClicked(e);
+				}
+			});
+
+			//---- buttonCheck ----
+			buttonCheck.setIcon(new ImageIcon(getClass().getResource("/icons/Sales_report_72x72.png")));
+			buttonCheck.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					buttonCheckMouseClicked(e);
+				}
+			});
+
+			//---- label1 ----
+			label1.setText("text");
+			label1.setIcon(new ImageIcon(getClass().getResource("/icons/manager.png")));
+
+			//---- label2 ----
+			label2.setText("ID\uff1a10005");
+			label2.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
+
+			GroupLayout panel1Layout = new GroupLayout(panel1);
+			panel1.setLayout(panel1Layout);
+			panel1Layout.setHorizontalGroup(
+				panel1Layout.createParallelGroup()
+					.addGroup(panel1Layout.createSequentialGroup()
+						.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+							.addGroup(panel1Layout.createSequentialGroup()
+								.addGap(29, 29, 29)
+								.addComponent(labelSalary)
+								.addGap(62, 62, 62)
+								.addComponent(labelInstitution)
+								.addGap(47, 47, 47)
+								.addComponent(labelCity)
+								.addGap(61, 61, 61)
+								.addComponent(labelApprove)
+								.addGap(57, 57, 57)
+								.addComponent(labelCheck)
+								.addGap(0, 0, Short.MAX_VALUE))
+							.addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
+								.addContainerGap()
+								.addGroup(panel1Layout.createParallelGroup()
+									.addComponent(panelAll, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addGroup(panel1Layout.createSequentialGroup()
+										.addComponent(buttonSalary, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+										.addGap(18, 18, 18)
+										.addComponent(buttonStaff, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+										.addGap(18, 18, 18)
+										.addComponent(buttonCity, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+										.addGap(18, 18, 18)
+										.addComponent(buttonApprove, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+										.addGap(18, 18, 18)
+										.addComponent(buttonCheck, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(label1, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+										.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+											.addComponent(name, GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+											.addComponent(id, GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+											.addComponent(label2, GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
+										.addGap(62, 62, 62)))))
+						.addContainerGap())
+			);
+			panel1Layout.setVerticalGroup(
+				panel1Layout.createParallelGroup()
+					.addGroup(panel1Layout.createSequentialGroup()
+						.addContainerGap()
+						.addGroup(panel1Layout.createParallelGroup()
+							.addGroup(panel1Layout.createSequentialGroup()
+								.addComponent(buttonSalary, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(labelSalary))
+							.addComponent(buttonStaff, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+							.addGroup(panel1Layout.createSequentialGroup()
+								.addComponent(buttonCity, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+									.addComponent(labelCity)
+									.addComponent(labelInstitution)))
+							.addGroup(panel1Layout.createSequentialGroup()
+								.addComponent(buttonApprove, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(labelApprove))
+							.addGroup(panel1Layout.createSequentialGroup()
+								.addGroup(panel1Layout.createParallelGroup()
+									.addComponent(buttonCheck, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+									.addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+										.addGroup(panel1Layout.createSequentialGroup()
+											.addComponent(id)
+											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+											.addComponent(label2)
+											.addGap(10, 10, 10)
+											.addComponent(name))
+										.addComponent(label1, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)))
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(labelCheck)))
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						.addComponent(panelAll, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addContainerGap())
+			);
+		}
+
+		GroupLayout contentPaneLayout = new GroupLayout(contentPane);
+		contentPane.setLayout(contentPaneLayout);
+		contentPaneLayout.setHorizontalGroup(
+			contentPaneLayout.createParallelGroup()
+				.addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		);
+		contentPaneLayout.setVerticalGroup(
+			contentPaneLayout.createParallelGroup()
+				.addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		);
+		pack();
+		setLocationRelativeTo(getOwner());
+
+		//======== panelSalary ========
+		{
+
+			//======== scrollPanelSalary ========
+			{
+
+				//---- tableSalary ----
+				tableSalary.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				scrollPanelSalary.setViewportView(tableSalary);
+			}
+
+			//---- buttonAddSalary ----
+			buttonAddSalary.setText("\u6dfb\u52a0\u5de5\u8d44");
+			buttonAddSalary.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+			buttonAddSalary.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					buttonAddSalaryMouseClicked(e);
+				}
+			});
+
+			//---- buttonModifySalary ----
+			buttonModifySalary.setText("\u4fdd\u5b58\u4fee\u6539");
+			buttonModifySalary.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+			buttonModifySalary.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					buttonModifySalaryMouseClicked(e);
+				}
+			});
+
+			//---- buttonExitSalary ----
+			buttonExitSalary.setText("\u9000\u51fa\u7cfb\u7edf");
+			buttonExitSalary.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+			buttonExitSalary.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					buttonExitSalaryMouseClicked(e);
+				}
+			});
+
+			GroupLayout panelSalaryLayout = new GroupLayout(panelSalary);
+			panelSalary.setLayout(panelSalaryLayout);
+			panelSalaryLayout.setHorizontalGroup(
+				panelSalaryLayout.createParallelGroup()
+					.addGroup(panelSalaryLayout.createSequentialGroup()
+						.addContainerGap()
+						.addComponent(scrollPanelSalary, GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						.addGroup(panelSalaryLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+							.addComponent(buttonModifySalary, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+							.addComponent(buttonAddSalary, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+							.addComponent(buttonExitSalary, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+							.addComponent(labelSalarySuccess, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE))
+						.addContainerGap())
+			);
+			panelSalaryLayout.setVerticalGroup(
+				panelSalaryLayout.createParallelGroup()
+					.addGroup(panelSalaryLayout.createSequentialGroup()
+						.addContainerGap()
+						.addGroup(panelSalaryLayout.createParallelGroup()
+							.addGroup(panelSalaryLayout.createSequentialGroup()
+								.addComponent(scrollPanelSalary, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+								.addContainerGap())
+							.addGroup(panelSalaryLayout.createSequentialGroup()
+								.addComponent(labelSalarySuccess, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(buttonAddSalary)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(buttonModifySalary)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
+								.addComponent(buttonExitSalary)
+								.addGap(14, 14, 14))))
+			);
+		}
+
+		//======== panelCity ========
+		{
+
+			//---- labelLeaveCity ----
+			labelLeaveCity.setText("\u51fa\u53d1\u57ce\u5e02:");
+			labelLeaveCity.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+			//---- comboBoxLeaveCity ----
+			comboBoxLeaveCity.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+			//---- labelArrivalCity ----
+			labelArrivalCity.setText("\u5230\u8fbe\u57ce\u5e02");
+			labelArrivalCity.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+			//---- comboBoxArrivalCity ----
+			comboBoxArrivalCity.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+			//---- buttonEnsureCity ----
+			buttonEnsureCity.setText("\u786e\u8ba4");
+			buttonEnsureCity.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+			buttonEnsureCity.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					buttonEnsureCityMouseClicked(e);
+				}
+			});
+
+			//======== scrollPanelCity ========
+			{
+
+				//---- tableCity ----
+				tableCity.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				scrollPanelCity.setViewportView(tableCity);
+			}
+
+			//---- buttonAddCity ----
+			buttonAddCity.setText("\u6dfb\u52a0\u4fe1\u606f");
+			buttonAddCity.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+			buttonAddCity.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					buttonAddCityMouseClicked(e);
+				}
+			});
+
+			//---- buttonModifyCity ----
+			buttonModifyCity.setText("\u4fdd\u5b58\u4fee\u6539");
+			buttonModifyCity.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+			buttonModifyCity.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					buttonModifyCityMouseClicked(e);
+				}
+			});
+
+			//---- buttonExitCity ----
+			buttonExitCity.setText("\u9000\u51fa\u7cfb\u7edf");
+			buttonExitCity.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+			buttonExitCity.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					buttonExitCityMouseClicked(e);
+				}
+			});
+
+			GroupLayout panelCityLayout = new GroupLayout(panelCity);
+			panelCity.setLayout(panelCityLayout);
+			panelCityLayout.setHorizontalGroup(
+				panelCityLayout.createParallelGroup()
+					.addGroup(panelCityLayout.createSequentialGroup()
+						.addContainerGap()
+						.addGroup(panelCityLayout.createParallelGroup()
+							.addGroup(panelCityLayout.createSequentialGroup()
+								.addComponent(labelLeaveCity)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(comboBoxLeaveCity, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
+								.addGap(18, 18, 18)
+								.addComponent(labelArrivalCity, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(comboBoxArrivalCity, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(buttonEnsureCity, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
+								.addGap(0, 104, Short.MAX_VALUE))
+							.addComponent(scrollPanelCity, GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE))
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						.addGroup(panelCityLayout.createParallelGroup()
+							.addGroup(GroupLayout.Alignment.TRAILING, panelCityLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+								.addComponent(labelCitySuccess, GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+								.addComponent(buttonAddCity, GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+								.addComponent(buttonModifyCity, GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
+							.addComponent(buttonExitCity, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
+						.addContainerGap())
+			);
+			panelCityLayout.setVerticalGroup(
+				panelCityLayout.createParallelGroup()
+					.addGroup(panelCityLayout.createSequentialGroup()
+						.addGroup(panelCityLayout.createParallelGroup()
+							.addGroup(panelCityLayout.createSequentialGroup()
+								.addComponent(labelCitySuccess, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+								.addGap(18, 18, 18)
+								.addComponent(buttonAddCity)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(buttonModifyCity)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
+								.addComponent(buttonExitCity))
+							.addGroup(panelCityLayout.createSequentialGroup()
+								.addContainerGap()
+								.addGroup(panelCityLayout.createParallelGroup()
+									.addGroup(panelCityLayout.createParallelGroup(GroupLayout.Alignment.BASELINE, false)
+										.addComponent(comboBoxLeaveCity)
+										.addComponent(comboBoxArrivalCity)
+										.addComponent(labelLeaveCity, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+										.addComponent(labelArrivalCity, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+									.addComponent(buttonEnsureCity, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(scrollPanelCity, GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)))
+						.addContainerGap())
+			);
+		}
+
+		//======== panelStaff ========
+		{
+
+			//======== tabbedPaneStaff ========
+			{
+				tabbedPaneStaff.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+
+				//======== scrollPanelDeliver ========
+				{
+					scrollPanelDeliver.setViewportView(tableDeliver);
+				}
+				tabbedPaneStaff.addTab("\u5feb\u9012\u5458", scrollPanelDeliver);
+
+				//======== scrollPanelFinancial ========
+				{
+
+					//---- tableFinancial ----
+					tableFinancial.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+					scrollPanelFinancial.setViewportView(tableFinancial);
+				}
+				tabbedPaneStaff.addTab("\u666e\u901a\u8d22\u52a1\u4eba\u5458", scrollPanelFinancial);
+
+				//======== scrollSFinancial ========
+				{
+					scrollSFinancial.setViewportView(tableSFinancial);
+				}
+				tabbedPaneStaff.addTab("\u9ad8\u7ea7\u8d22\u52a1\u4eba\u5458", scrollSFinancial);
+
+				//======== scrollPanelTrunk ========
+				{
+					scrollPanelTrunk.setViewportView(tableTrunk);
+				}
+				tabbedPaneStaff.addTab("\u8d27\u8f66\u9a7e\u9a76\u5458", scrollPanelTrunk);
+
+				//======== scrollPanelCenter ========
+				{
+
+					//---- labelCenter ----
+					labelCenter.setText("\u8bf7\u9009\u62e9\u4e2d\u8f6c\u4e2d\u5fc3:");
+
+					//---- buttonEnsureCenter ----
+					buttonEnsureCenter.setText("\u786e\u8ba4");
+					buttonEnsureCenter.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							buttonEnsureCenterMouseClicked(e);
+						}
+					});
+
+					//======== scrollPaneCenter ========
+					{
+						scrollPaneCenter.setViewportView(tableCenter);
+					}
+
+					GroupLayout scrollPanelCenterLayout = new GroupLayout(scrollPanelCenter);
+					scrollPanelCenter.setLayout(scrollPanelCenterLayout);
+					scrollPanelCenterLayout.setHorizontalGroup(
+						scrollPanelCenterLayout.createParallelGroup()
+							.addGroup(scrollPanelCenterLayout.createSequentialGroup()
+								.addContainerGap(165, Short.MAX_VALUE)
+								.addComponent(labelCenter)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+								.addComponent(comboBoxCenter, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+								.addGap(28, 28, 28)
+								.addComponent(buttonEnsureCenter)
+								.addGap(142, 142, 142))
+							.addComponent(scrollPaneCenter, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
+					);
+					scrollPanelCenterLayout.setVerticalGroup(
+						scrollPanelCenterLayout.createParallelGroup()
+							.addGroup(scrollPanelCenterLayout.createSequentialGroup()
+								.addGroup(scrollPanelCenterLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+									.addComponent(buttonEnsureCenter)
+									.addComponent(labelCenter)
+									.addComponent(comboBoxCenter, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(scrollPaneCenter, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE))
+					);
+				}
+				tabbedPaneStaff.addTab("\u4e2d\u8f6c\u4e2d\u5fc3\u4e1a\u52a1\u5458", scrollPanelCenter);
+
+				//======== scrollPanelBusiness ========
+				{
+
+					//---- labelBusiness ----
+					labelBusiness.setText("\u8bf7\u9009\u62e9\u8425\u4e1a\u5385:");
+
+					//---- buttonEnsureBusiness ----
+					buttonEnsureBusiness.setText("\u786e\u8ba4");
+					buttonEnsureBusiness.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							buttonEnsureBusinessMouseClicked(e);
+						}
+					});
+
+					//======== scrollPaneBusiness ========
+					{
+						scrollPaneBusiness.setViewportView(tableBusiness);
+					}
+
+					GroupLayout scrollPanelBusinessLayout = new GroupLayout(scrollPanelBusiness);
+					scrollPanelBusiness.setLayout(scrollPanelBusinessLayout);
+					scrollPanelBusinessLayout.setHorizontalGroup(
+						scrollPanelBusinessLayout.createParallelGroup()
+							.addGroup(scrollPanelBusinessLayout.createSequentialGroup()
+								.addGap(83, 83, 83)
+								.addComponent(labelBusiness)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(comboBoxBusinessCity, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(comboBoxBusinessNum, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)
+								.addGap(18, 18, 18)
+								.addComponent(buttonEnsureBusiness)
+								.addContainerGap(131, Short.MAX_VALUE))
+							.addComponent(scrollPaneBusiness, GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
+					);
+					scrollPanelBusinessLayout.setVerticalGroup(
+						scrollPanelBusinessLayout.createParallelGroup()
+							.addGroup(scrollPanelBusinessLayout.createSequentialGroup()
+								.addGroup(scrollPanelBusinessLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+									.addComponent(comboBoxBusinessNum, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(comboBoxBusinessCity, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(buttonEnsureBusiness)
+									.addComponent(labelBusiness))
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(scrollPaneBusiness, GroupLayout.PREFERRED_SIZE, 242, GroupLayout.PREFERRED_SIZE)
+								.addGap(0, 0, Short.MAX_VALUE))
+					);
+				}
+				tabbedPaneStaff.addTab("\u8425\u4e1a\u5385\u4e1a\u52a1\u5458", scrollPanelBusiness);
+
+				//======== scrollPanelStorage ========
+				{
+
+					//---- labelCenterStorage ----
+					labelCenterStorage.setText("\u8bf7\u9009\u62e9\u4ed3\u5e93:");
+
+					//---- buttonEnsureStorage ----
+					buttonEnsureStorage.setText("\u786e\u8ba4");
+					buttonEnsureStorage.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							buttonEnsureStorageMouseClicked(e);
+						}
+					});
+
+					//======== scrollPaneStorage ========
+					{
+						scrollPaneStorage.setViewportView(tableStorage);
+					}
+
+					GroupLayout scrollPanelStorageLayout = new GroupLayout(scrollPanelStorage);
+					scrollPanelStorage.setLayout(scrollPanelStorageLayout);
+					scrollPanelStorageLayout.setHorizontalGroup(
+						scrollPanelStorageLayout.createParallelGroup()
+							.addGroup(scrollPanelStorageLayout.createSequentialGroup()
+								.addContainerGap(189, Short.MAX_VALUE)
+								.addComponent(labelCenterStorage)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+								.addComponent(comboBoxStorage, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+								.addGap(28, 28, 28)
+								.addComponent(buttonEnsureStorage)
+								.addGap(142, 142, 142))
+							.addComponent(scrollPaneStorage, GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
+					);
+					scrollPanelStorageLayout.setVerticalGroup(
+						scrollPanelStorageLayout.createParallelGroup()
+							.addGroup(scrollPanelStorageLayout.createSequentialGroup()
+								.addGroup(scrollPanelStorageLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+									.addComponent(buttonEnsureStorage)
+									.addComponent(labelCenterStorage)
+									.addComponent(comboBoxStorage, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(scrollPaneStorage, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE)
+								.addGap(0, 0, Short.MAX_VALUE))
+					);
+				}
+				tabbedPaneStaff.addTab("\u4ed3\u5e93\u7ba1\u7406\u5458", scrollPanelStorage);
+			}
+
+			//---- buttonAddStaff ----
+			buttonAddStaff.setText("\u6dfb\u52a0\u5458\u5de5");
+			buttonAddStaff.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+			buttonAddStaff.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					buttonAddStaffMouseClicked(e);
+				}
+			});
+
+			//---- buttonMoveStaff ----
+			buttonMoveStaff.setText("\u79fb\u52a8\u5458\u5de5");
+			buttonMoveStaff.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+			buttonMoveStaff.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					buttonMoveStaffMouseClicked(e);
+				}
+			});
+
+			//---- buttonDeleteStaff ----
+			buttonDeleteStaff.setText("\u5220\u9664\u5458\u5de5");
+			buttonDeleteStaff.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+			buttonDeleteStaff.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					buttonDeleteStaffMouseClicked(e);
+				}
+			});
+
+			//---- buttonExitStaff ----
+			buttonExitStaff.setText("\u9000\u51fa\u7cfb\u7edf");
+			buttonExitStaff.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+			buttonExitStaff.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					buttonExitStaffMouseClicked(e);
+				}
+			});
+
+			GroupLayout panelStaffLayout = new GroupLayout(panelStaff);
+			panelStaff.setLayout(panelStaffLayout);
+			panelStaffLayout.setHorizontalGroup(
+				panelStaffLayout.createParallelGroup()
+					.addGroup(panelStaffLayout.createSequentialGroup()
+						.addContainerGap()
+						.addComponent(tabbedPaneStaff)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						.addGroup(panelStaffLayout.createParallelGroup()
+							.addComponent(labelStaffSuccess, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
+							.addGroup(panelStaffLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+								.addComponent(buttonAddStaff, GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+								.addComponent(buttonDeleteStaff, GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+								.addComponent(buttonMoveStaff, GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
+							.addComponent(buttonExitStaff, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE))
+						.addContainerGap())
+			);
+			panelStaffLayout.setVerticalGroup(
+				panelStaffLayout.createParallelGroup()
+					.addGroup(panelStaffLayout.createSequentialGroup()
+						.addContainerGap()
+						.addGroup(panelStaffLayout.createParallelGroup()
+							.addComponent(tabbedPaneStaff, GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+							.addGroup(panelStaffLayout.createSequentialGroup()
+								.addComponent(labelStaffSuccess, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+								.addComponent(buttonAddStaff)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(buttonDeleteStaff)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(buttonMoveStaff)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
+								.addComponent(buttonExitStaff)))
+						.addContainerGap())
+			);
+		}
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
         tabbedPaneStaff.addChangeListener(new ChangeListener() {
             @Override
@@ -2612,101 +2631,103 @@ public class companyManage extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    private JMenuBar menuBar;
-    private JMenu choice;
-    private JMenu help;
-    private JPanel panel1;
-    private JPanel panelAll;
-    private JPanel panelApprove;
-    private JTabbedPane tabbedPaneApprove;
-    private JScrollPane scrollPanelEntruk;
-    private JTable tableEntruk;
-    private JScrollPane scrollPanelArrival;
-    private JTable tableArrival;
-    private JScrollPane scrollPanelReceipt;
-    private JTable tableReceipt;
-    private JScrollPane scrollPanelStorageOut;
-    private JTable tableStorageOut;
-    private JScrollPane scrollPanelPayment;
-    private JTable tablePayment;
-    private JScrollPane scrollPanelSend;
-    private JTable tableSend;
-    private JScrollPane scrollPanelTransfer;
-    private JTable tableTransfer;
-    private JScrollPane scrollPanelStorageIn;
-    private JTable tableStorageIn;
-    private JScrollPane scrollPanelOrder;
-    private JTable tableOrder;
-    private JButton buttonApproveData;
-    private JButton buttonApproveAll;
-    private JButton buttonModifyData;
-    private JButton buttonExitApprove;
-    private JButton buttonModifyData2;
-    private JLabel name;
-    private JLabel id;
-    private JLabel labelCheck;
-    private JLabel labelApprove;
-    private JLabel labelCity;
-    private JLabel labelInstitution;
-    private JLabel labelSalary;
-    private JToggleButton buttonSalary;
-    private JToggleButton buttonStaff;
-    private JToggleButton buttonCity;
-    private JToggleButton buttonApprove;
-    private JToggleButton buttonCheck;
-    private JPanel panelSalary;
-    private JScrollPane scrollPanelSalary;
-    private JTable tableSalary;
-    private JButton buttonAddSalary;
-    private JButton buttonModifySalary;
-    private JButton buttonExitSalary;
-    private JLabel labelSalarySuccess;
-    private JPanel panelCity;
-    private JLabel labelLeaveCity;
-    private JComboBox comboBoxLeaveCity;
-    private JLabel labelArrivalCity;
-    private JComboBox comboBoxArrivalCity;
-    private JButton buttonEnsureCity;
-    private JScrollPane scrollPanelCity;
-    private JTable tableCity;
-    private JButton buttonAddCity;
-    private JButton buttonModifyCity;
-    private JButton buttonExitCity;
-    private JLabel labelCitySuccess;
-    private JPanel panelStaff;
-    private JTabbedPane tabbedPaneStaff;
-    private JScrollPane scrollPanelDeliver;
-    private JTable tableDeliver;
-    private JScrollPane scrollPanelFinancial;
-    private JTable tableFinancial;
-    private JScrollPane scrollSFinancial;
-    private JTable tableSFinancial;
-    private JScrollPane scrollPanelTrunk;
-    private JTable tableTrunk;
-    private JPanel scrollPanelCenter;
-    private JLabel labelCenter;
-    private JComboBox comboBoxCenter;
-    private JButton buttonEnsureCenter;
-    private JScrollPane scrollPaneCenter;
-    private JTable tableCenter;
-    private JPanel scrollPanelBusiness;
-    private JLabel labelBusiness;
-    private JComboBox comboBoxBusinessCity;
-    private JComboBox comboBoxBusinessNum;
-    private JButton buttonEnsureBusiness;
-    private JScrollPane scrollPaneBusiness;
-    private JTable tableBusiness;
-    private JPanel scrollPanelStorage;
-    private JLabel labelCenterStorage;
-    private JComboBox comboBoxStorage;
-    private JButton buttonEnsureStorage;
-    private JScrollPane scrollPaneStorage;
-    private JTable tableStorage;
-    private JButton buttonAddStaff;
-    private JButton buttonMoveStaff;
-    private JButton buttonDeleteStaff;
-    private JButton buttonExitStaff;
-    private JLabel labelStaffSuccess;
+	private JMenuBar menuBar;
+	private JMenu choice;
+	private JMenu help;
+	private JPanel panel1;
+	private JPanel panelAll;
+	private JPanel panelApprove;
+	private JTabbedPane tabbedPaneApprove;
+	private JScrollPane scrollPanelEntruk;
+	private JTable tableEntruk;
+	private JScrollPane scrollPanelArrival;
+	private JTable tableArrival;
+	private JScrollPane scrollPanelReceipt;
+	private JTable tableReceipt;
+	private JScrollPane scrollPanelStorageOut;
+	private JTable tableStorageOut;
+	private JScrollPane scrollPanelPayment;
+	private JTable tablePayment;
+	private JScrollPane scrollPanelSend;
+	private JTable tableSend;
+	private JScrollPane scrollPanelTransfer;
+	private JTable tableTransfer;
+	private JScrollPane scrollPanelStorageIn;
+	private JTable tableStorageIn;
+	private JScrollPane scrollPanelOrder;
+	private JTable tableOrder;
+	private JButton buttonApproveData;
+	private JButton buttonApproveAll;
+	private JButton buttonModifyData;
+	private JButton buttonExitApprove;
+	private JButton buttonModifyData2;
+	private JLabel name;
+	private JLabel id;
+	private JLabel labelCheck;
+	private JLabel labelApprove;
+	private JLabel labelCity;
+	private JLabel labelInstitution;
+	private JLabel labelSalary;
+	private JToggleButton buttonSalary;
+	private JToggleButton buttonStaff;
+	private JToggleButton buttonCity;
+	private JToggleButton buttonApprove;
+	private JToggleButton buttonCheck;
+	private JLabel label1;
+	private JLabel label2;
+	private JPanel panelSalary;
+	private JScrollPane scrollPanelSalary;
+	private JTable tableSalary;
+	private JButton buttonAddSalary;
+	private JButton buttonModifySalary;
+	private JButton buttonExitSalary;
+	private JLabel labelSalarySuccess;
+	private JPanel panelCity;
+	private JLabel labelLeaveCity;
+	private JComboBox comboBoxLeaveCity;
+	private JLabel labelArrivalCity;
+	private JComboBox comboBoxArrivalCity;
+	private JButton buttonEnsureCity;
+	private JScrollPane scrollPanelCity;
+	private JTable tableCity;
+	private JButton buttonAddCity;
+	private JButton buttonModifyCity;
+	private JButton buttonExitCity;
+	private JLabel labelCitySuccess;
+	private JPanel panelStaff;
+	private JTabbedPane tabbedPaneStaff;
+	private JScrollPane scrollPanelDeliver;
+	private JTable tableDeliver;
+	private JScrollPane scrollPanelFinancial;
+	private JTable tableFinancial;
+	private JScrollPane scrollSFinancial;
+	private JTable tableSFinancial;
+	private JScrollPane scrollPanelTrunk;
+	private JTable tableTrunk;
+	private JPanel scrollPanelCenter;
+	private JLabel labelCenter;
+	private JComboBox comboBoxCenter;
+	private JButton buttonEnsureCenter;
+	private JScrollPane scrollPaneCenter;
+	private JTable tableCenter;
+	private JPanel scrollPanelBusiness;
+	private JLabel labelBusiness;
+	private JComboBox comboBoxBusinessCity;
+	private JComboBox comboBoxBusinessNum;
+	private JButton buttonEnsureBusiness;
+	private JScrollPane scrollPaneBusiness;
+	private JTable tableBusiness;
+	private JPanel scrollPanelStorage;
+	private JLabel labelCenterStorage;
+	private JComboBox comboBoxStorage;
+	private JButton buttonEnsureStorage;
+	private JScrollPane scrollPaneStorage;
+	private JTable tableStorage;
+	private JButton buttonAddStaff;
+	private JButton buttonMoveStaff;
+	private JButton buttonDeleteStaff;
+	private JButton buttonExitStaff;
+	private JLabel labelStaffSuccess;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
     public JLabel getLabelCitySuccess() { return labelCitySuccess; }

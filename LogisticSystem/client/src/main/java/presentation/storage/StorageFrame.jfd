@@ -9,8 +9,8 @@ new FormModel {
 			"defaultCloseOperation": 3
 			"title": "中转中心仓库管理"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :::p, par l {seq l {comp storageIn:::p::p, space :::p, comp storageOut:::p::p, space :::p, comp storageOperete:::p::p}, seq l {space :p:32:p, comp label1:::p::p, space :p:86:p, comp label2:::p::p, space :p:74:p, comp label3:::p::p}}, space ::562:x}}"
-				"$verticalGroup": "par l {seq t {par l {comp storageIn::l:p::p, comp storageOut::l:p::p, comp storageOperete::l:p::p}, space :::x, par l {comp label1::l:p::p, comp label2::l:p::p, comp label3::l:p::p}}}"
+				"$horizontalGroup": "par l {seq l {space :::p, par l {seq l {space :p:32:p, comp label1:::p::p, space :p:86:p, comp label2:::p::p, space :p:62:p, comp label3:::p::p, space :::x}, seq l {comp storageIn:::p::p, space :::p, comp storageOut:::p::p, space :::p, comp storageOperete:::p::p, space ::324:x, comp label6:::p:72:p, space u:::p, par l {comp staff:::p:101:p, comp institution:::p:140:p}, space :p:28:p}}}}"
+				"$verticalGroup": "par l {seq t {par l {par l {comp storageIn::l:p::p, comp storageOut::l:p::p, comp storageOperete::l:p::p, seq t {comp staff:::p::p, space :::p, comp institution:::p::p}}, seq l {space :::p, comp label6:::p:72:p}}, space :::x, par l {comp label1::l:p::p, comp label2::l:p::p, comp label3::l:p::p}}}"
 			} ) {
 				name: "panel2"
 				add( new FormComponent( "javax.swing.JToggleButton" ) {
@@ -46,6 +46,19 @@ new FormModel {
 					"text": "库存操作"
 					"font": #Font0
 				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label6"
+					"text": "text"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/blackman.png" )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "institution"
+					"text": "机构："
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "staff"
+					"text": "姓名："
+				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "North"
 			} )
@@ -55,7 +68,7 @@ new FormModel {
 					name: "tabbedPane1"
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 						"$horizontalGroup": "par l {seq l {space :p:358:p, comp label4:::p:144:p, space ::392:x}}"
-						"$verticalGroup": "par l {seq l {space :p:136:p, comp label4:::p:54:p, space ::203:x}}"
+						"$verticalGroup": "par l {seq l {space :p:136:p, comp label4:::p:54:p, space ::202:x}}"
 					} ) {
 						name: "panel3"
 						add( new FormComponent( "javax.swing.JLabel" ) {

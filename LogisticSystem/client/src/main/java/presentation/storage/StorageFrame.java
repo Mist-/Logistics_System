@@ -58,6 +58,9 @@ public class StorageFrame extends JFrame {
 		});
 		try {
 			storageBusiness = new StorageBusinessController(user);
+			String[] info = storageBusiness.getUserInfo().split("-");
+			staff.setText(staff.getText()+info[0]);
+			institution.setText(institution.getText()+info[1]);
 		} catch (Exception e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "网络连接中断，请稍后再试", "提示",
@@ -230,6 +233,9 @@ public class StorageFrame extends JFrame {
 		label2 = new JLabel();
 		storageOperete = new JToggleButton();
 		label3 = new JLabel();
+		label6 = new JLabel();
+		institution = new JLabel();
+		staff = new JLabel();
 		emptyPanel = new JPanel();
 		tabbedPane1 = new JTabbedPane();
 		panel3 = new JPanel();
@@ -311,6 +317,16 @@ public class StorageFrame extends JFrame {
 			label3.setText("\u5e93\u5b58\u64cd\u4f5c");
 			label3.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
+			//---- label6 ----
+			label6.setText("text");
+			label6.setIcon(new ImageIcon(getClass().getResource("/icons/blackman.png")));
+
+			//---- institution ----
+			institution.setText("\u673a\u6784\uff1a");
+
+			//---- staff ----
+			staff.setText("\u59d3\u540d\uff1a");
+
 			GroupLayout panel2Layout = new GroupLayout(panel2);
 			panel2.setLayout(panel2Layout);
 			panel2Layout.setHorizontalGroup(
@@ -319,27 +335,42 @@ public class StorageFrame extends JFrame {
 						.addContainerGap()
 						.addGroup(panel2Layout.createParallelGroup()
 							.addGroup(panel2Layout.createSequentialGroup()
-								.addComponent(storageIn)
-								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(storageOut)
-								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(storageOperete))
-							.addGroup(panel2Layout.createSequentialGroup()
 								.addGap(32, 32, 32)
 								.addComponent(label1)
 								.addGap(86, 86, 86)
 								.addComponent(label2)
-								.addGap(74, 74, 74)
-								.addComponent(label3)))
-						.addContainerGap(562, Short.MAX_VALUE))
+								.addGap(62, 62, 62)
+								.addComponent(label3)
+								.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addGroup(panel2Layout.createSequentialGroup()
+								.addComponent(storageIn)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(storageOut)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(storageOperete)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 324, Short.MAX_VALUE)
+								.addComponent(label6, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+								.addGroup(panel2Layout.createParallelGroup()
+									.addComponent(staff, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+									.addComponent(institution, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE))
+								.addGap(28, 28, 28))))
 			);
 			panel2Layout.setVerticalGroup(
 				panel2Layout.createParallelGroup()
 					.addGroup(GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
 						.addGroup(panel2Layout.createParallelGroup()
-							.addComponent(storageIn)
-							.addComponent(storageOut)
-							.addComponent(storageOperete))
+							.addGroup(panel2Layout.createParallelGroup()
+								.addComponent(storageIn)
+								.addComponent(storageOut)
+								.addComponent(storageOperete)
+								.addGroup(GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
+									.addComponent(staff)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(institution)))
+							.addGroup(panel2Layout.createSequentialGroup()
+								.addContainerGap()
+								.addComponent(label6, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)))
 						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addGroup(panel2Layout.createParallelGroup()
 							.addComponent(label1)
@@ -376,7 +407,7 @@ public class StorageFrame extends JFrame {
 							.addGroup(panel3Layout.createSequentialGroup()
 								.addGap(136, 136, 136)
 								.addComponent(label4, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
-								.addContainerGap(203, Short.MAX_VALUE))
+								.addContainerGap(202, Short.MAX_VALUE))
 					);
 				}
 				tabbedPane1.addTab("\u63d0\u793a", panel3);
@@ -477,6 +508,9 @@ public class StorageFrame extends JFrame {
 	private JLabel label2;
 	private JToggleButton storageOperete;
 	private JLabel label3;
+	private JLabel label6;
+	private JLabel institution;
+	private JLabel staff;
 	private JPanel emptyPanel;
 	private JTabbedPane tabbedPane1;
 	private JPanel panel3;

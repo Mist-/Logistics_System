@@ -30,7 +30,11 @@ public class TransferCenterController implements TransferCenterService{
 
 	public TransferCenterController(LoginMessage login) throws Exception {
 		center = new InstitutionInfo(login);
-		System.out.println(center.getCenterID());
+	}
+	
+	@Override
+	public String getUserInfo() throws RemoteException {
+		return center.getStaffName()+"-"+center.getCenterName()+"中转中心";
 	}
 
 }

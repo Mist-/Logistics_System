@@ -1,4 +1,6 @@
 package businesslogic.service.Transfer.hall;
+import java.rmi.RemoteException;
+
 import businesslogic.service.Transfer.center.TransferLoadService;
 import businesslogic.service.Transfer.center.TransferReceiveService;
 
@@ -20,6 +22,9 @@ public interface TransferCenterService {
 	 * @return
 	 */
 	public TransferReceiveService startTransferReceiver();
+	
+	
+	public String getUserInfo() throws RemoteException;
 	
 	
 }

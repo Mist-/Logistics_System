@@ -8,8 +8,8 @@ new FormModel {
 			"title": "中转中心"
 			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosed", "thisWindowClosed", true ) )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :::p, par l {comp receive:::p:104:p, seq l {space :p:24:p, comp label6:::p:56:p}}, par l {seq {space s:::p, comp load:::p::p}, seq l {space :p:44:p, comp label7:::p::p}}, space ::662:x}}"
-				"$verticalGroup": "par l {seq l {space :::p, par l {comp receive:::::x, comp load:::::x}, space :::p, par b {comp label6::b:p:17:p, comp label7::b:p::p}, space :p:6:p}}"
+				"$horizontalGroup": "par l {seq {par l {seq l {space :::p, comp receive:::p:80:p}, seq l {space :p:28:p, comp label4:::p::p}}, space u:::p, par l {seq l {space :10:10:p, comp label5:::p::p, space ::733:x}, seq l {comp load:::p:80:p, space ::452:x, comp label2:::p:72:p, space :::p, par l:::p {comp institution::::179:x, comp staff::::179:x}, space :::p}}}}"
+				"$verticalGroup": "par l {seq l {space :::p, par t {comp load:::p:80:p, comp receive:::p:80:p, par t:l {seq {comp staff:::p::p, space :::p, comp institution:::p::p}, comp label2:::p::p}}, space :::p, par b {comp label4::b:p::p, comp label5::b:p::p}, space :::x}}"
 			} ) {
 				name: "panel1"
 				add( new FormComponent( "javax.swing.JButton" ) {
@@ -25,21 +25,36 @@ new FormModel {
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "loadMouseClicked", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label6"
-					"text": "中转接收"
-					"font": #Font0
+					name: "label4"
+					"text": "中转装运"
+					"font": new java.awt.Font( "宋体", 0, 14 )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label7"
-					"text": "装运管理"
-					"font": #Font0
+					name: "label5"
+					"text": "中转接收"
+					"font": new java.awt.Font( "宋体", 0, 14 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "text"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/Man_72px_1185138_easyicon.net.png" )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "institution"
+					"text": "机构："
+					"font": new java.awt.Font( "宋体", 0, 14 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "staff"
+					"text": "姓名："
+					"font": new java.awt.Font( "宋体", 0, 14 )
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "North"
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :::p, comp tabbedPane1::::889:x}}"
-				"$verticalGroup": "par l {seq t {space :::p, comp tabbedPane1::::341:x}}"
+				"$horizontalGroup": "par l {comp tabbedPane1::t::899:x}"
+				"$verticalGroup": "par l {comp tabbedPane1::t::407:x}"
 			} ) {
 				name: "emptyPanel"
 				add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
@@ -69,7 +84,7 @@ new FormModel {
 				} )
 			}
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 0 )
+			"location": new java.awt.Point( 0, 130 )
 			"size": new java.awt.Dimension( 915, 590 )
 		} )
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
@@ -103,7 +118,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"size": new java.awt.Dimension( 285, 190 )
-			"location": new java.awt.Point( 15, 715 )
+			"location": new java.awt.Point( 15, 845 )
 		} )
 	}
 }

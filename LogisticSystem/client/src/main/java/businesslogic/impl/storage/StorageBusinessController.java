@@ -19,6 +19,10 @@ public class StorageBusinessController{
 	InstitutionInfo center;
 	StorageInfo storageInfo;
 	StorageDataService storageData;
+	
+	public String getUserInfo(){
+		return center.getStaffName()+"-"+center.getInstitutionName()+"中转中心";
+	}
 
 	public StorageInService startStorageIn() {
 		if (!isStorageExist()) {
