@@ -61,6 +61,7 @@ public class Sender {
 		for (int i = 0 ; i < sender.size();i++) {
 			StaffPO s = (StaffPO) sender.get(i);
 			if (s.getName().equals(name)) {
+				chosenSender = s;
 				return s.getSerialNum();
 			}
 		}
