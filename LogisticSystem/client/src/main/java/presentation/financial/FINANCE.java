@@ -633,7 +633,6 @@ public class FINANCE extends JFrame {
 		miTJBB = new JMenuItem();
 		miZHGL = new JMenuItem();
 		miQCJZ = new JMenuItem();
-		miChange = new JMenuItem();
 		menu2 = new JMenu();
 		menuItem3 = new JMenuItem();
 		panel2 = new JPanel();
@@ -806,11 +805,6 @@ public class FINANCE extends JFrame {
 					}
 				});
 				menu1.add(miQCJZ);
-
-				//---- miChange ----
-				miChange.setText("\u4fee\u6539\u5bc6\u7801");
-				miChange.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-				menu1.add(miChange);
 			}
 			menuBar1.add(menu1);
 
@@ -949,7 +943,7 @@ public class FINANCE extends JFrame {
 							.addGroup(panel2Layout.createSequentialGroup()
 								.addGap(41, 41, 41)
 								.addComponent(label4)))
-						.addContainerGap(76, Short.MAX_VALUE))
+						.addContainerGap(42, Short.MAX_VALUE))
 					.addComponent(panelMain, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 789, Short.MAX_VALUE)
 			);
 			panel2Layout.setVerticalGroup(
@@ -975,7 +969,7 @@ public class FINANCE extends JFrame {
 								.addComponent(label2)
 								.addComponent(label4)))
 						.addGap(7, 7, 7)
-						.addComponent(panelMain, GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE))
+						.addComponent(panelMain, GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE))
 			);
 		}
 
@@ -1458,7 +1452,7 @@ public class FINANCE extends JFrame {
 							.addComponent(chkStorage)
 							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 							.addComponent(chkAll)
-							.addGap(0, 19, Short.MAX_VALUE))
+							.addGap(0, 55, Short.MAX_VALUE))
 				);
 			}
 
@@ -1491,7 +1485,7 @@ public class FINANCE extends JFrame {
 							.addComponent(panel6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addGroup(pnQCJZLayout.createSequentialGroup()
 								.addComponent(btAccountInit)
-								.addGap(0, 251, Short.MAX_VALUE)))
+								.addGap(0, 255, Short.MAX_VALUE)))
 						.addContainerGap())
 			);
 		}
@@ -1638,8 +1632,8 @@ public class FINANCE extends JFrame {
 								.addComponent(btDelete)
 								.addGap(38, 38, 38)
 								.addComponent(btAExcel)
-								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE))
-							.addComponent(tabbedPane3, GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE))
+								.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE))
+							.addComponent(tabbedPane3, GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE))
 						.addContainerGap())
 			);
 		}
@@ -1922,7 +1916,6 @@ public class FINANCE extends JFrame {
 	private JMenuItem miTJBB;
 	private JMenuItem miZHGL;
 	private JMenuItem miQCJZ;
-	private JMenuItem miChange;
 	private JMenu menu2;
 	private JMenuItem menuItem3;
 	private JPanel panel2;
