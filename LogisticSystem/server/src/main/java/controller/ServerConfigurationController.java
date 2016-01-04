@@ -16,8 +16,6 @@ public class ServerConfigurationController {
     Configuration configuration = null;
 
     public ServerConfigurationController() {
-        readConfig();
-        applyConfig();
     }
 
     // 加载现成的配置

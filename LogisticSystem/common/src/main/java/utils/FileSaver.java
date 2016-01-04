@@ -74,7 +74,9 @@ public class FileSaver implements Runnable {
                 }
             }
             try {
-                Thread.sleep(5000);
+                int freq = Configuration.getInstance().autoSavingFreq;
+                if (freq < 1) freq = 1;
+                Thread.sleep(60000 / freq);
             } catch (InterruptedException e) {
                 System.err.println("服务器被关闭 - " + Calendar.getInstance().getTime());
             }

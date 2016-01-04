@@ -24,7 +24,7 @@ public class CustomSocketFactory extends RMISocketFactory {
     @Override
     public ServerSocket createServerSocket(int port) throws IOException {
         if (port == 0)
-            port = this.port;
+            port = Configuration.getInstance().dataTransPort;
         return new ServerSocket(port);
     }
 }

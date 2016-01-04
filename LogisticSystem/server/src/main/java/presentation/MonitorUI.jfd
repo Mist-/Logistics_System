@@ -10,51 +10,68 @@ new FormModel {
 			name: "this"
 			"title": "服务监视器"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq t {space :::p, par t {comp scrollPane1:::::x, comp tabbedPane1::l:::x, seq l {comp label4:::p::p, space :0:0:x}}, space :::p}}"
-				"$verticalGroup": "par l {seq l {space :::p, comp tabbedPane1:::p:190:p, space u:::p, comp label4:::p::p, space :::p, comp scrollPane1::::139:x, space :::p}}"
+				"$horizontalGroup": "par l {seq {space :::p, par l {comp tabbedPane1::l:::x, seq {comp label4:::p::p, space :0:0:x}, seq l {comp scrollPane1:::::x, space :::p, comp button1:::p::p}}, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :::p, comp tabbedPane1:::p::p, space :::p, comp label4:::p::p, space :::p, par l {comp button1:::p::p, comp scrollPane1:::p:221:p}, space :::p}}"
 			} ) {
 				name: "panel1"
 				add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 					name: "tabbedPane1"
+					"font": &Font0 new java.awt.Font( "微软雅黑", 0, 12 )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq {par l {seq l {par l {seq {space :p:30:p, par t {comp label1::t:p::p, comp label2::t:p::p}}, seq {space :::p, comp label3:::p::p}}, space :::p, par l:::p {comp textTransPort::l:::x, comp textRegPort::l:::x, comp textFileUpdateFreq::l:p:89:p}, space ::246:x, comp button1:::p::p}, seq l {space :::p, comp buttonStartServer:::p::p, space ::347:x, comp buttonStopServer:::p::p}}, space :::p}}"
-						"$verticalGroup": "par l {seq l {space :::p, par l:::p {comp label1::::33:x, comp textRegPort:::p::p}, space :::p, par l:::p {comp label2:::::x, comp textTransPort:::::x}, space :::p, par l:::p {par b {comp textFileUpdateFreq::b:::x, comp button1::b:p::p}, comp label3:::::x}, space ::15:x, par b {comp buttonStartServer::b:p::p, comp buttonStopServer::b:p::p}, space :::p}}"
+						"$horizontalGroup": "par l {seq {space :::p, par l {seq l {comp buttonStartServer:::p::p, space ::557:x, comp buttonStopServer:::p::p}, seq {par l {seq l {par l {seq {space :p:24:p, par l {comp label2:::p::p, comp label1:::p::p}}, comp label3:::p::p}, space :::p, par l:::p {comp textRegPort::l:::x, comp textTransPort::t::89:x, comp textFileUpdateFreq::l::89:x}, space :::p, comp label5:::p::p}, comp btApplyConf::l:p::p}, space :0:491:x}}, space :::p}}"
+						"$verticalGroup": "par l {seq l {space :::p, par l:::p {comp textRegPort:::::x, comp label1:::::x}, space :::p, par b {comp label2::b:::x, comp textTransPort::b:p::p}, space :::p, par l:::p {par b {comp textFileUpdateFreq::b:::x, comp label5::b:p:21:p}, comp label3:::::x}, space :::x, comp btApplyConf:::p::p, space :::p, par b {comp buttonStartServer::b:p::p, comp buttonStopServer::b:p::p}, space :::p}}"
 					} ) {
 						name: "panel2"
+						"font": #Font0
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "label1"
 							"text": "服务端口："
+							"font": #Font0
 						} )
 						add( new FormComponent( "javax.swing.JTextField" ) {
 							name: "textRegPort"
+							"font": #Font0
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "label2"
 							"text": "数据端口："
+							"font": #Font0
 						} )
 						add( new FormComponent( "javax.swing.JTextField" ) {
 							name: "textTransPort"
+							"font": #Font0
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "label3"
 							"text": "文件更新频率："
+							"font": #Font0
 						} )
 						add( new FormComponent( "javax.swing.JTextField" ) {
 							name: "textFileUpdateFreq"
-						} )
-						add( new FormComponent( "javax.swing.JButton" ) {
-							name: "button1"
-							"text": "应用配置"
+							"font": #Font0
 						} )
 						add( new FormComponent( "javax.swing.JButton" ) {
 							name: "buttonStartServer"
 							"text": "启动服务"
+							"font": #Font0
 							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "buttonStartServerMouseReleased", true ) )
 						} )
 						add( new FormComponent( "javax.swing.JButton" ) {
 							name: "buttonStopServer"
 							"text": "停止服务"
+							"font": #Font0
 							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "buttonStopServerMouseReleased", true ) )
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label5"
+							"text": "(次/分)"
+							"font": #Font0
+						} )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "btApplyConf"
+							"text": "应用配置"
+							"font": #Font0
+							addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "btApplyConfMouseReleased", true ) )
 						} )
 					}, new FormLayoutConstraints( null ) {
 						"title": "连接设置"
@@ -63,17 +80,25 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label4"
 					"text": "控制台："
+					"font": #Font0
 				} )
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 					name: "scrollPane1"
+					"font": #Font0
 					add( new FormComponent( "javax.swing.JTextArea" ) {
 						name: "textConsole"
+						"font": #Font0
 					} )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button1"
+					"text": "清空"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "button1MouseReleased", true ) )
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 545, 415 )
+			"size": new java.awt.Dimension( 755, 505 )
 		} )
 	}
 }

@@ -6,6 +6,7 @@ package presentation.user.login;
 
 import businesslogic.impl.user.UserBLImpl;
 import businesslogic.service.user.UserBLService;
+import data.Configuration;
 import data.message.LoginMessage;
 import data.message.ResultMessage;
 import data.properties.RememberedUserAccount;
@@ -186,6 +187,18 @@ public class LoginDlg extends JDialog {
         }
     }
 
+    private void btSettingMouseReleased(MouseEvent e) {
+        String ip = JOptionPane.showInputDialog(this, "请输入服务器端IP：", "LCS物流管理系统", JOptionPane.OK_CANCEL_OPTION);
+        if (ip != null) {
+            if (!ip.matches("(((\\d{1,2})|(1\\d{2})|(2[0-4][0-9])|(25[0-5]))\\.){3}((\\d{1,2})|(1\\d{2})|(2[0-4][0-9])|(25[0-5]))")) {
+                JOptionPane.showMessageDialog(this, "输入的IP无效");
+                return;
+            }
+            Configuration.getInstance().ip = ip;
+        }
+
+    }
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -198,6 +211,7 @@ public class LoginDlg extends JDialog {
         chkRememberAccount = new JCheckBox();
         chkAnotmousLogin = new JCheckBox();
         button1 = new JButton();
+        btSetting = new JButton();
 
         //======== this ========
         setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
@@ -267,13 +281,28 @@ public class LoginDlg extends JDialog {
                 }
             });
 
+            //---- btSetting ----
+            btSetting.setIcon(new ImageIcon(getClass().getResource("/icons/setting_16x16.png")));
+            btSetting.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    btSettingMouseReleased(e);
+                }
+            });
+
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
                 panel1Layout.createParallelGroup()
+                    .addComponent(label3, GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(panel1Layout.createParallelGroup()
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addComponent(button1, GroupLayout.PREFERRED_SIZE, 310, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btSetting, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                     .addComponent(label1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -286,11 +315,7 @@ public class LoginDlg extends JDialog {
                                         .addComponent(chkAnotmousLogin))
                                     .addComponent(cboxAccount, GroupLayout.PREFERRED_SIZE, 301, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(textPassword, GroupLayout.PREFERRED_SIZE, 301, GroupLayout.PREFERRED_SIZE))
-                                .addGap(6, 6, 6))
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(button1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap())))
-                    .addComponent(label3, GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+                                .addGap(6, 6, 6))))
             );
             panel1Layout.setVerticalGroup(
                 panel1Layout.createParallelGroup()
@@ -309,7 +334,9 @@ public class LoginDlg extends JDialog {
                             .addComponent(chkRememberAccount)
                             .addComponent(chkAnotmousLogin))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(button1)
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(btSetting, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(button1))
                         .addContainerGap(8, Short.MAX_VALUE))
             );
         }
@@ -318,7 +345,7 @@ public class LoginDlg extends JDialog {
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
@@ -355,5 +382,6 @@ public class LoginDlg extends JDialog {
     private JCheckBox chkRememberAccount;
     private JCheckBox chkAnotmousLogin;
     private JButton button1;
+    private JButton btSetting;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
