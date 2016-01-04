@@ -137,7 +137,7 @@ public class DataInitialization {
 
         StaffPO staff1 = new StaffPO();
         staff1.setSerialNum(10000);
-        staff1.setName("孙九日");
+        staff1.setName("孙浩");
         staff1.setGender(false);
         staff1.setInstitution(1021001);
         staff1.setUserRole(UserRole.快递员);
@@ -151,14 +151,14 @@ public class DataInitialization {
 
         StaffPO staff8 = new StaffPO();
         staff8.setSerialNum(10001);
-        staff8.setName("孙九日");
+        staff8.setName("孙耗");
         staff8.setGender(false);
         staff8.setInstitution(1021003);
         staff8.setUserRole(UserRole.营业厅业务员);
 
         StaffPO staff9 = new StaffPO();
         staff9.setSerialNum(10008);
-        staff9.setName("孙九日");
+        staff9.setName("孙耗");
         staff9.setGender(false);
         staff9.setInstitution(1025001);
         staff9.setUserRole(UserRole.营业厅业务员);
@@ -173,28 +173,28 @@ public class DataInitialization {
 
         StaffPO staff3 = new StaffPO();
         staff3.setSerialNum(10002);
-        staff3.setName("孙九日");
+        staff3.setName("孙旭");
         staff3.setGender(false);
         staff3.setInstitution(1021);
         staff3.setUserRole(UserRole.中转中心业务员);
 
         StaffPO staff4 = new StaffPO();
         staff4.setSerialNum(10003);
-        staff4.setName("孙九日");
+        staff4.setName("孙大旭");
         staff4.setGender(false);
         staff4.setInstitution(1021);
         staff4.setUserRole(UserRole.仓库管理员);
 
         StaffPO staff5 = new StaffPO();
         staff5.setSerialNum(10004);
-        staff5.setName("孙九日");
+        staff5.setName("王卉");
         staff5.setGender(false);
         staff5.setInstitution(1021);
         staff5.setUserRole(UserRole.普通财务人员);
 
         StaffPO staff6 = new StaffPO();
         staff6.setSerialNum(10005);
-        staff6.setName("孙九日");
+        staff6.setName("王毅承");
         staff6.setGender(false);
         staff6.setInstitution(1021);
         staff6.setUserRole(UserRole.总经理);
@@ -208,14 +208,14 @@ public class DataInitialization {
         
         StaffPO staff10 = new StaffPO();
         staff10.setSerialNum(10010);
-        staff10.setName("基佬");
+        staff10.setName("王二承");
         staff10.setGender(false);
         staff10.setInstitution(1025);
         staff10.setUserRole(UserRole.中转中心业务员);
         
         StaffPO staff11 = new StaffPO();
         staff11.setSerialNum(10011);
-        staff11.setName("ADB");
+        staff11.setName("王三承");
         staff11.setGender(false);
         staff11.setInstitution(1025);
         staff11.setUserRole(UserRole.仓库管理员);
