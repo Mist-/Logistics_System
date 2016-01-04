@@ -42,13 +42,10 @@ public class IDGenerator {
         if (maxSN == 0) {
             switch (type) {
                 case ORDER:
-                    maxSN = 1000;
+                    maxSN = 1000000000;
                     break;
                 case STAFF:
                     maxSN = 10000;
-                    break;
-                default:
-                    maxSN = 1000;
                     break;
             }
         }

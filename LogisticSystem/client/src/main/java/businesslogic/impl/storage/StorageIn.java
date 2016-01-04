@@ -165,7 +165,7 @@ public class StorageIn implements StorageInService{
 	 */
 	public ResultMessage saveStorageInList(StorageInVO vo) throws RemoteException{
 		//modifyArriveListState();
-			//storageInfo.modifyStorageInfo(vo);
+			storageInfo.modifyStorageInfo(vo);
 			storageInfo.saveStorageInfo();
 			return storageInList.saveStorageInList(vo,user.getInstitutionID());
 

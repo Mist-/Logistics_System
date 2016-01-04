@@ -81,16 +81,16 @@ public class DataInitialization {
         institution[9].setName("北京市");
 
         // 上海
-        institution[10] = new InstitutionPO(1021001);
+        institution[10] = new InstitutionPO(10021001);
         institution[10].setName("闵行区");
         institution[10].setTargetCenter(1021);
-        institution[11] = new InstitutionPO(1021002);
+        institution[11] = new InstitutionPO(10021002);
         institution[11].setName("青浦区");
         institution[11].setTargetCenter(1021);
-        institution[12] = new InstitutionPO(1021003);
+        institution[12] = new InstitutionPO(10021003);
         institution[12].setName("黄浦区");
         institution[12].setTargetCenter(1021);
-        institution[13] = new InstitutionPO(1021004);
+        institution[13] = new InstitutionPO(10021004);
         institution[13].setName("嘉定区");
         institution[13].setTargetCenter(1021);
         institution[14] = new InstitutionPO(10021);

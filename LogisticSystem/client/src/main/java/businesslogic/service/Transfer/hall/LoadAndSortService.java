@@ -1,6 +1,8 @@
 package businesslogic.service.Transfer.hall;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+
 import data.message.ResultMessage;
 import data.vo.BriefEntruckListVO;
 import data.vo.BriefOrderVO;

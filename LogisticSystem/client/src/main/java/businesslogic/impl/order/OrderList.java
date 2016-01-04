@@ -176,8 +176,4 @@ public class OrderList implements OrderListService {
 		this.orders = result;
 	}
 
-	public static void main(String[] args) {
-		OrderList orderList = new OrderList(null);
-		orderList.getOrderByCourierAndDate(10000, "2016/01/04");
-	}
 }
