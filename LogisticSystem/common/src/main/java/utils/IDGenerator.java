@@ -15,7 +15,12 @@ public class IDGenerator {
 
     protected IDGenerator() { }
 
+    public static void main(String[] args) {
+        System.out.println(getNextID(POType.ENTRUCK));
+    }
+
     public static long getNextID(POType type) {
+
 
         // TODO: µÈ´ýÍê³É
         DataService ds = DataServiceFactory.getDataServiceByPO(type);
@@ -52,6 +57,12 @@ public class IDGenerator {
         if (tmpMaxSN.containsKey(type) && tmpMaxSN.get(type) > maxSN) {
             maxSN = tmpMaxSN.get(type);
         }
+        switch (type) {
+            case ENTRUCK:
+                maxSN = maxSN % 10000;
+                break;
+        }
+
         tmpMaxSN.remove(type);
         tmpMaxSN.put(type, maxSN + 1);
         return 1 + maxSN;
