@@ -71,12 +71,12 @@ public class StorageOutVO {
 		String[][] info = new String[order.length][5];
 		for(int i = 0 ; i < order.length;i++){
 			String area = "";
-			switch (postion[i][0]){
-			case "0":area = "航运区";break;
-			case "1":area = "铁运区";break;
-			case "2":area = "汽运区";break;
-			default: area = "机动区";
-			}
+//			switch (postion[i][0]){
+//			case "0":area = "航运区";break;
+//			case "1":area = "铁运区";break;
+//			case "2":area = "汽运区";break;
+//			default: area = "机动区";
+//			}
 			
 			String[] in = {order[i]+"",area,postion[i][1],postion[i][2],postion[i][3]};
 			info[i] = in;

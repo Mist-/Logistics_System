@@ -64,7 +64,7 @@ public class OrderList implements OrderListService {
 			// 修改订单物流信息
 			LogisticInfoPO log = (LogisticInfoPO) orderDataService.search(POType.LOGISTICINFO, order.get(i).getSerialNum());
 			System.out.println("物流信息："+log.getSerialNum());
-			log.addInfo(Timestamper.getTimeByDate(), info);
+			log.addInfo(Timestamper.getTimeBySecond(), info);
 			orderDataService.modify(log);
 		}
 	}

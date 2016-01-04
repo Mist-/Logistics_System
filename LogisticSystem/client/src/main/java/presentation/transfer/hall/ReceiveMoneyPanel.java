@@ -122,6 +122,10 @@ public class ReceiveMoneyPanel extends JPanel {
 					year.setText("");
 					month.setText("");
 					day.setText("");
+					fee.setText("");
+					DefaultTableModel model = new DefaultTableModel();
+					table.setModel(model);
+					table.updateUI();
 				}else{
 					JOptionPane.showMessageDialog(null, "²Ù×÷Ê§°Ü", "ÌáÊ¾", JOptionPane.INFORMATION_MESSAGE);
 				}

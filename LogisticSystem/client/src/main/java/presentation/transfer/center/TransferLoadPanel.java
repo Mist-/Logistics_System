@@ -234,426 +234,426 @@ public class TransferLoadPanel extends JPanel {
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY
 		// //GEN-BEGIN:initComponents
-        loadPane = new JTabbedPane();
-        loadPanel = new JPanel();
-        scrollPane1 = new JScrollPane();
-        orderTable = new JTable();
-        label1 = new JLabel();
-        transferTypeBox = new JComboBox();
-        label2 = new JLabel();
-        destBox = new JComboBox();
-        createTransferButton = new JButton();
-        removeOrderButton = new JButton();
-        getOrderButton = new JButton();
-        button1 = new JButton();
-        transferListPane = new JTabbedPane();
-        DeliveryListPanel = new JPanel();
-        scrollPane2 = new JScrollPane();
-        loadTable = new JTable();
-        listID = new JTextField();
-        centerID = new JTextField();
-        centerName = new JTextField();
-        destID = new JTextField();
-        destName = new JTextField();
-        label6 = new JLabel();
-        label5 = new JLabel();
-        label9 = new JLabel();
-        label8 = new JLabel();
-        label7 = new JLabel();
-        date = new JTextField();
-        label4 = new JLabel();
-        vehicleID = new JTextField();
-        label10 = new JLabel();
-        staffName = new JTextField();
-        label11 = new JLabel();
-        fee = new JTextField();
-        label12 = new JLabel();
-        saveList = new JButton();
-        cancelLoad = new JButton();
+		loadPane = new JTabbedPane();
+		loadPanel = new JPanel();
+		scrollPane1 = new JScrollPane();
+		orderTable = new JTable();
+		label1 = new JLabel();
+		transferTypeBox = new JComboBox();
+		label2 = new JLabel();
+		destBox = new JComboBox();
+		createTransferButton = new JButton();
+		removeOrderButton = new JButton();
+		getOrderButton = new JButton();
+		button1 = new JButton();
+		transferListPane = new JTabbedPane();
+		DeliveryListPanel = new JPanel();
+		scrollPane2 = new JScrollPane();
+		loadTable = new JTable();
+		listID = new JTextField();
+		centerID = new JTextField();
+		centerName = new JTextField();
+		destID = new JTextField();
+		destName = new JTextField();
+		label6 = new JLabel();
+		label5 = new JLabel();
+		label9 = new JLabel();
+		label8 = new JLabel();
+		label7 = new JLabel();
+		date = new JTextField();
+		label4 = new JLabel();
+		vehicleID = new JTextField();
+		label10 = new JLabel();
+		staffName = new JTextField();
+		label11 = new JLabel();
+		fee = new JTextField();
+		label12 = new JLabel();
+		saveList = new JButton();
+		cancelLoad = new JButton();
 
-        //======== this ========
-        setLayout(new BorderLayout());
+		//======== this ========
+		setLayout(new BorderLayout());
 
-        //======== loadPane ========
-        {
-            loadPane.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+		//======== loadPane ========
+		{
+			loadPane.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-            //======== loadPanel ========
-            {
+			//======== loadPanel ========
+			{
 
-                //======== scrollPane1 ========
-                {
+				//======== scrollPane1 ========
+				{
 
-                    //---- orderTable ----
-                    orderTable.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-                    scrollPane1.setViewportView(orderTable);
-                }
+					//---- orderTable ----
+					orderTable.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+					scrollPane1.setViewportView(orderTable);
+				}
 
-                //---- label1 ----
-                label1.setText("\u8fd0\u8f93\u7c7b\u578b\uff1a");
-                label1.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- label1 ----
+				label1.setText("\u8fd0\u8f93\u7c7b\u578b\uff1a");
+				label1.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-                //---- transferTypeBox ----
-                transferTypeBox.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- transferTypeBox ----
+				transferTypeBox.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-                //---- label2 ----
-                label2.setText("\u76ee\u7684\u5730\uff1a");
-                label2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- label2 ----
+				label2.setText("\u76ee\u7684\u5730\uff1a");
+				label2.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-                //---- destBox ----
-                destBox.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- destBox ----
+				destBox.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-                //---- createTransferButton ----
-                createTransferButton.setText("\u88c5\u8fd0");
-                createTransferButton.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-                createTransferButton.setIcon(new ImageIcon(getClass().getResource("/icons/new_24x24.png")));
-                createTransferButton.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseReleased(MouseEvent e) {
-                        createTransferButtonMouseReleased(e);
-                    }
-                });
+				//---- createTransferButton ----
+				createTransferButton.setText("\u88c5\u8fd0");
+				createTransferButton.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				createTransferButton.setIcon(new ImageIcon(getClass().getResource("/icons/new_24x24.png")));
+				createTransferButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						createTransferButtonMouseReleased(e);
+					}
+				});
 
-                //---- removeOrderButton ----
-                removeOrderButton.setText("\u79fb\u9664");
-                removeOrderButton.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-                removeOrderButton.setIcon(new ImageIcon(getClass().getResource("/icons/delete_24x24.png")));
-                removeOrderButton.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseReleased(MouseEvent e) {
-                        removeOrderButtonMouseReleased(e);
-                    }
-                });
+				//---- removeOrderButton ----
+				removeOrderButton.setText("\u79fb\u9664");
+				removeOrderButton.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				removeOrderButton.setIcon(new ImageIcon(getClass().getResource("/icons/delete_24x24.png")));
+				removeOrderButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						removeOrderButtonMouseReleased(e);
+					}
+				});
 
-                //---- getOrderButton ----
-                getOrderButton.setText("\u641c\u7d22\u5e93\u5b58");
-                getOrderButton.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-                getOrderButton.setIcon(new ImageIcon(getClass().getResource("/icons/search_16x16.png")));
-                getOrderButton.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseReleased(MouseEvent e) {
-                        getOrderButtonMouseReleased(e);
-                    }
-                });
+				//---- getOrderButton ----
+				getOrderButton.setText("\u641c\u7d22\u5e93\u5b58");
+				getOrderButton.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				getOrderButton.setIcon(new ImageIcon(getClass().getResource("/icons/search_16x16.png")));
+				getOrderButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						getOrderButtonMouseReleased(e);
+					}
+				});
 
-                //---- button1 ----
-                button1.setText("\u5237\u65b0");
-                button1.setIcon(new ImageIcon(getClass().getResource("/icons/refresh.png")));
-                button1.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseReleased(MouseEvent e) {
-                        button1MouseReleased(e);
-                    }
-                });
+				//---- button1 ----
+				button1.setText("\u5237\u65b0");
+				button1.setIcon(new ImageIcon(getClass().getResource("/icons/refresh.png")));
+				button1.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						button1MouseReleased(e);
+					}
+				});
 
-                GroupLayout loadPanelLayout = new GroupLayout(loadPanel);
-                loadPanel.setLayout(loadPanelLayout);
-                loadPanelLayout.setHorizontalGroup(
-                    loadPanelLayout.createParallelGroup()
-                        .addGroup(loadPanelLayout.createSequentialGroup()
-                            .addComponent(label1)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(transferTypeBox, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(label2)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(destBox, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(getOrderButton, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(467, Short.MAX_VALUE))
-                        .addGroup(loadPanelLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(loadPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                .addGroup(loadPanelLayout.createSequentialGroup()
-                                    .addGroup(loadPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(createTransferButton, GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                                        .addComponent(button1, GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
-                                    .addContainerGap())
-                                .addComponent(removeOrderButton, GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)))
-                );
-                loadPanelLayout.setVerticalGroup(
-                    loadPanelLayout.createParallelGroup()
-                        .addGroup(GroupLayout.Alignment.TRAILING, loadPanelLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(loadPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(transferTypeBox)
-                                .addComponent(label1, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(label2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(destBox, GroupLayout.Alignment.LEADING)
-                                .addComponent(getOrderButton, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                            .addGroup(loadPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                .addGroup(loadPanelLayout.createSequentialGroup()
-                                    .addComponent(createTransferButton)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(button1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(163, 163, 163)
-                                    .addComponent(removeOrderButton))
-                                .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 289, GroupLayout.PREFERRED_SIZE))
-                            .addContainerGap())
-                );
-            }
-            loadPane.addTab("\u4e2d\u8f6c\u88c5\u8fd0", loadPanel);
-        }
-        add(loadPane, BorderLayout.CENTER);
+				GroupLayout loadPanelLayout = new GroupLayout(loadPanel);
+				loadPanel.setLayout(loadPanelLayout);
+				loadPanelLayout.setHorizontalGroup(
+					loadPanelLayout.createParallelGroup()
+						.addGroup(loadPanelLayout.createSequentialGroup()
+							.addComponent(label1)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(transferTypeBox, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(label2)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addComponent(destBox, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
+							.addGap(18, 18, 18)
+							.addComponent(getOrderButton, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap(467, Short.MAX_VALUE))
+						.addGroup(loadPanelLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addGroup(loadPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+								.addGroup(loadPanelLayout.createSequentialGroup()
+									.addGroup(loadPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+										.addComponent(createTransferButton, GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+										.addComponent(button1, GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
+									.addContainerGap())
+								.addComponent(removeOrderButton, GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)))
+				);
+				loadPanelLayout.setVerticalGroup(
+					loadPanelLayout.createParallelGroup()
+						.addGroup(GroupLayout.Alignment.TRAILING, loadPanelLayout.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(loadPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+								.addComponent(transferTypeBox)
+								.addComponent(label1, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(label2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(destBox, GroupLayout.Alignment.LEADING)
+								.addComponent(getOrderButton, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+							.addGroup(loadPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+								.addGroup(loadPanelLayout.createSequentialGroup()
+									.addComponent(createTransferButton)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(button1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+									.addGap(163, 163, 163)
+									.addComponent(removeOrderButton))
+								.addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 289, GroupLayout.PREFERRED_SIZE))
+							.addContainerGap())
+				);
+			}
+			loadPane.addTab("\u4e2d\u8f6c\u88c5\u8fd0", loadPanel);
+		}
+		add(loadPane, BorderLayout.CENTER);
 
-        //======== transferListPane ========
-        {
-            transferListPane.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+		//======== transferListPane ========
+		{
+			transferListPane.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-            //======== DeliveryListPanel ========
-            {
+			//======== DeliveryListPanel ========
+			{
 
-                //======== scrollPane2 ========
-                {
+				//======== scrollPane2 ========
+				{
 
-                    //---- loadTable ----
-                    loadTable.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-                    scrollPane2.setViewportView(loadTable);
-                }
+					//---- loadTable ----
+					loadTable.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+					scrollPane2.setViewportView(loadTable);
+				}
 
-                //---- listID ----
-                listID.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- listID ----
+				listID.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-                //---- centerID ----
-                centerID.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- centerID ----
+				centerID.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-                //---- centerName ----
-                centerName.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- centerName ----
+				centerName.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-                //---- destID ----
-                destID.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- destID ----
+				destID.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-                //---- destName ----
-                destName.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- destName ----
+				destName.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-                //---- label6 ----
-                label6.setText("\u4e2d\u8f6c\u5355\u7f16\u53f7");
-                label6.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- label6 ----
+				label6.setText("\u4e2d\u8f6c\u5355\u7f16\u53f7");
+				label6.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-                //---- label5 ----
-                label5.setText("\u4e2d\u8f6c\u4e2d\u5fc3\u7f16\u53f7");
-                label5.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- label5 ----
+				label5.setText("\u4e2d\u8f6c\u4e2d\u5fc3\u7f16\u53f7");
+				label5.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-                //---- label9 ----
-                label9.setText("\u4e2d\u8f6c\u4e2d\u5fc3");
-                label9.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- label9 ----
+				label9.setText("\u4e2d\u8f6c\u4e2d\u5fc3");
+				label9.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-                //---- label8 ----
-                label8.setText("\u76ee\u7684\u5730\u7f16\u53f7");
-                label8.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- label8 ----
+				label8.setText("\u76ee\u7684\u5730\u7f16\u53f7");
+				label8.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-                //---- label7 ----
-                label7.setText("\u76ee\u7684\u5730");
-                label7.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- label7 ----
+				label7.setText("\u76ee\u7684\u5730");
+				label7.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-                //---- date ----
-                date.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- date ----
+				date.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-                //---- label4 ----
-                label4.setText("\u88c5\u8fd0\u65e5\u671f");
-                label4.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- label4 ----
+				label4.setText("\u88c5\u8fd0\u65e5\u671f");
+				label4.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-                //---- vehicleID ----
-                vehicleID.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- vehicleID ----
+				vehicleID.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-                //---- label10 ----
-                label10.setText("\u73ed\u6b21  ");
-                label10.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- label10 ----
+				label10.setText("\u73ed\u6b21  ");
+				label10.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-                //---- staffName ----
-                staffName.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- staffName ----
+				staffName.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-                //---- label11 ----
-                label11.setText("\u76d1\u88c5\u5458");
-                label11.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- label11 ----
+				label11.setText("\u76d1\u88c5\u5458");
+				label11.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-                //---- fee ----
-                fee.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- fee ----
+				fee.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-                //---- label12 ----
-                label12.setText("\u8d39\u7528");
-                label12.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				//---- label12 ----
+				label12.setText("\u8d39\u7528");
+				label12.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
 
-                //---- saveList ----
-                saveList.setText("\u4fdd\u5b58");
-                saveList.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-                saveList.setIcon(new ImageIcon(getClass().getResource("/icons/save_24x24.png")));
-                saveList.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseReleased(MouseEvent e) {
-                        saveListMouseReleased(e);
-                    }
-                });
+				//---- saveList ----
+				saveList.setText("\u4fdd\u5b58");
+				saveList.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				saveList.setIcon(new ImageIcon(getClass().getResource("/icons/save_24x24.png")));
+				saveList.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						saveListMouseReleased(e);
+					}
+				});
 
-                //---- cancelLoad ----
-                cancelLoad.setText("\u53d6\u6d88");
-                cancelLoad.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
-                cancelLoad.setIcon(new ImageIcon(getClass().getResource("/icons/cancel_24x24.png")));
-                cancelLoad.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseReleased(MouseEvent e) {
-                        cancelLoadMouseReleased(e);
-                    }
-                });
+				//---- cancelLoad ----
+				cancelLoad.setText("\u53d6\u6d88");
+				cancelLoad.setFont(new Font("\u7b49\u7ebf", Font.PLAIN, 14));
+				cancelLoad.setIcon(new ImageIcon(getClass().getResource("/icons/cancel_24x24.png")));
+				cancelLoad.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						cancelLoadMouseReleased(e);
+					}
+				});
 
-                GroupLayout DeliveryListPanelLayout = new GroupLayout(DeliveryListPanel);
-                DeliveryListPanel.setLayout(DeliveryListPanelLayout);
-                DeliveryListPanelLayout.setHorizontalGroup(
-                    DeliveryListPanelLayout.createParallelGroup()
-                        .addGroup(DeliveryListPanelLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(DeliveryListPanelLayout.createParallelGroup()
-                                .addGroup(DeliveryListPanelLayout.createSequentialGroup()
-                                    .addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(DeliveryListPanelLayout.createSequentialGroup()
-                                            .addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(label9, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(label5, GroupLayout.Alignment.TRAILING))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(centerID)
-                                                .addComponent(centerName, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)))
-                                        .addGroup(GroupLayout.Alignment.TRAILING, DeliveryListPanelLayout.createSequentialGroup()
-                                            .addComponent(label6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(listID, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(GroupLayout.Alignment.TRAILING, DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(DeliveryListPanelLayout.createSequentialGroup()
-                                                .addComponent(label10, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(vehicleID, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(DeliveryListPanelLayout.createSequentialGroup()
-                                                .addComponent(label4, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(date, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)))
-                                        .addGroup(GroupLayout.Alignment.TRAILING, DeliveryListPanelLayout.createSequentialGroup()
-                                            .addComponent(label11, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(staffName, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(label7, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                                        .addComponent(label8, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                                        .addComponent(label12, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(fee)
-                                        .addComponent(destID)
-                                        .addComponent(destName, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE))
-                                    .addGap(0, 264, Short.MAX_VALUE))
-                                .addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE))
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(DeliveryListPanelLayout.createParallelGroup()
-                                .addComponent(saveList, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cancelLoad, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE))
-                            .addContainerGap())
-                );
-                DeliveryListPanelLayout.setVerticalGroup(
-                    DeliveryListPanelLayout.createParallelGroup()
-                        .addGroup(GroupLayout.Alignment.TRAILING, DeliveryListPanelLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(DeliveryListPanelLayout.createParallelGroup()
-                                .addGroup(DeliveryListPanelLayout.createSequentialGroup()
-                                    .addGroup(DeliveryListPanelLayout.createParallelGroup()
-                                        .addGroup(DeliveryListPanelLayout.createSequentialGroup()
-                                            .addComponent(label6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(DeliveryListPanelLayout.createParallelGroup()
-                                                .addGroup(DeliveryListPanelLayout.createSequentialGroup()
-                                                    .addComponent(centerID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                .addGroup(GroupLayout.Alignment.TRAILING, DeliveryListPanelLayout.createSequentialGroup()
-                                                    .addComponent(label5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)))
-                                            .addGroup(DeliveryListPanelLayout.createParallelGroup()
-                                                .addComponent(label9, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(centerName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                                        .addGroup(DeliveryListPanelLayout.createSequentialGroup()
-                                            .addGroup(DeliveryListPanelLayout.createParallelGroup()
-                                                .addGroup(DeliveryListPanelLayout.createSequentialGroup()
-                                                    .addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(date, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(label4, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(listID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                                        .addGroup(GroupLayout.Alignment.LEADING, DeliveryListPanelLayout.createSequentialGroup()
-                                                            .addComponent(vehicleID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addGap(0, 1, Short.MAX_VALUE))
-                                                        .addComponent(label10, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                                .addGroup(DeliveryListPanelLayout.createSequentialGroup()
-                                                    .addComponent(label8, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addGap(5, 5, 5)
-                                                    .addComponent(label7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(DeliveryListPanelLayout.createParallelGroup()
-                                                .addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(staffName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(label12, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-                                                .addComponent(label11, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))))
-                                    .addGap(5, 5, 5))
-                                .addGroup(DeliveryListPanelLayout.createSequentialGroup()
-                                    .addComponent(destID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(5, 5, 5)
-                                    .addComponent(destName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(fee, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(DeliveryListPanelLayout.createParallelGroup()
-                                .addGroup(DeliveryListPanelLayout.createSequentialGroup()
-                                    .addComponent(saveList)
-                                    .addGap(170, 170, 170)
-                                    .addComponent(cancelLoad))
-                                .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE))
-                            .addContainerGap())
-                );
-            }
-            transferListPane.addTab("\u4e2d\u8f6c\u5355", DeliveryListPanel);
-        }
+				GroupLayout DeliveryListPanelLayout = new GroupLayout(DeliveryListPanel);
+				DeliveryListPanel.setLayout(DeliveryListPanelLayout);
+				DeliveryListPanelLayout.setHorizontalGroup(
+					DeliveryListPanelLayout.createParallelGroup()
+						.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(DeliveryListPanelLayout.createParallelGroup()
+								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+									.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+											.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+												.addComponent(label9, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+												.addComponent(label5, GroupLayout.Alignment.TRAILING))
+											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+											.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+												.addComponent(centerID)
+												.addComponent(centerName, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)))
+										.addGroup(GroupLayout.Alignment.TRAILING, DeliveryListPanelLayout.createSequentialGroup()
+											.addComponent(label6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+											.addComponent(listID, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)))
+									.addGap(18, 18, 18)
+									.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+										.addGroup(GroupLayout.Alignment.TRAILING, DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+											.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+												.addComponent(label10, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+												.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+												.addComponent(vehicleID, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
+											.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+												.addComponent(label4, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+												.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+												.addComponent(date, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)))
+										.addGroup(GroupLayout.Alignment.TRAILING, DeliveryListPanelLayout.createSequentialGroup()
+											.addComponent(label11, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+											.addComponent(staffName, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)))
+									.addGap(18, 18, 18)
+									.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+										.addComponent(label7, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+										.addComponent(label8, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+										.addComponent(label12, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+										.addComponent(fee)
+										.addComponent(destID)
+										.addComponent(destName, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE))
+									.addGap(0, 264, Short.MAX_VALUE))
+								.addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE))
+							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+							.addGroup(DeliveryListPanelLayout.createParallelGroup()
+								.addComponent(saveList, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+								.addComponent(cancelLoad, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE))
+							.addContainerGap())
+				);
+				DeliveryListPanelLayout.setVerticalGroup(
+					DeliveryListPanelLayout.createParallelGroup()
+						.addGroup(GroupLayout.Alignment.TRAILING, DeliveryListPanelLayout.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(DeliveryListPanelLayout.createParallelGroup()
+								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+									.addGroup(DeliveryListPanelLayout.createParallelGroup()
+										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+											.addComponent(label6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+											.addGroup(DeliveryListPanelLayout.createParallelGroup()
+												.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+													.addComponent(centerID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+													.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+												.addGroup(GroupLayout.Alignment.TRAILING, DeliveryListPanelLayout.createSequentialGroup()
+													.addComponent(label5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+													.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)))
+											.addGroup(DeliveryListPanelLayout.createParallelGroup()
+												.addComponent(label9, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+												.addComponent(centerName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+										.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+											.addGroup(DeliveryListPanelLayout.createParallelGroup()
+												.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+													.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+														.addComponent(date, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+														.addComponent(label4, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+														.addComponent(listID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+													.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+													.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+														.addGroup(GroupLayout.Alignment.LEADING, DeliveryListPanelLayout.createSequentialGroup()
+															.addComponent(vehicleID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+															.addGap(0, 1, Short.MAX_VALUE))
+														.addComponent(label10, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+												.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+													.addComponent(label8, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+													.addGap(5, 5, 5)
+													.addComponent(label7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+											.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+											.addGroup(DeliveryListPanelLayout.createParallelGroup()
+												.addGroup(DeliveryListPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+													.addComponent(staffName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+													.addComponent(label12, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+												.addComponent(label11, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))))
+									.addGap(5, 5, 5))
+								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+									.addComponent(destID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addGap(5, 5, 5)
+									.addComponent(destName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+									.addComponent(fee, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addGroup(DeliveryListPanelLayout.createParallelGroup()
+								.addGroup(DeliveryListPanelLayout.createSequentialGroup()
+									.addComponent(saveList)
+									.addGap(170, 170, 170)
+									.addComponent(cancelLoad))
+								.addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE))
+							.addContainerGap())
+				);
+			}
+			transferListPane.addTab("\u4e2d\u8f6c\u5355", DeliveryListPanel);
+		}
 		// //GEN-END:initComponents
 	}
 
 	// JFormDesigner - Variables declaration - DO NOT MODIFY
 	// //GEN-BEGIN:variables
-    private JTabbedPane loadPane;
-    private JPanel loadPanel;
-    private JScrollPane scrollPane1;
-    private JTable orderTable;
-    private JLabel label1;
-    private JComboBox transferTypeBox;
-    private JLabel label2;
-    private JComboBox destBox;
-    private JButton createTransferButton;
-    private JButton removeOrderButton;
-    private JButton getOrderButton;
-    private JButton button1;
-    private JTabbedPane transferListPane;
-    private JPanel DeliveryListPanel;
-    private JScrollPane scrollPane2;
-    private JTable loadTable;
-    private JTextField listID;
-    private JTextField centerID;
-    private JTextField centerName;
-    private JTextField destID;
-    private JTextField destName;
-    private JLabel label6;
-    private JLabel label5;
-    private JLabel label9;
-    private JLabel label8;
-    private JLabel label7;
-    private JTextField date;
-    private JLabel label4;
-    private JTextField vehicleID;
-    private JLabel label10;
-    private JTextField staffName;
-    private JLabel label11;
-    private JTextField fee;
-    private JLabel label12;
-    private JButton saveList;
-    private JButton cancelLoad;
+	private JTabbedPane loadPane;
+	private JPanel loadPanel;
+	private JScrollPane scrollPane1;
+	private JTable orderTable;
+	private JLabel label1;
+	private JComboBox transferTypeBox;
+	private JLabel label2;
+	private JComboBox destBox;
+	private JButton createTransferButton;
+	private JButton removeOrderButton;
+	private JButton getOrderButton;
+	private JButton button1;
+	private JTabbedPane transferListPane;
+	private JPanel DeliveryListPanel;
+	private JScrollPane scrollPane2;
+	private JTable loadTable;
+	private JTextField listID;
+	private JTextField centerID;
+	private JTextField centerName;
+	private JTextField destID;
+	private JTextField destName;
+	private JLabel label6;
+	private JLabel label5;
+	private JLabel label9;
+	private JLabel label8;
+	private JLabel label7;
+	private JTextField date;
+	private JLabel label4;
+	private JTextField vehicleID;
+	private JLabel label10;
+	private JTextField staffName;
+	private JLabel label11;
+	private JTextField fee;
+	private JLabel label12;
+	private JButton saveList;
+	private JButton cancelLoad;
 	// JFormDesigner - End of variables declaration //GEN-END:variables
 }
