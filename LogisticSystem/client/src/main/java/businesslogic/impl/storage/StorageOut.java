@@ -68,6 +68,7 @@ public class StorageOut implements StorageOutService{
 	 */
 	public ResultMessage saveStroageOut(StorageOutVO vo){
 		StorageOutListPO storageOut = new StorageOutListPO(vo);
+		storageOut.setSerialNum(user.getInstitutionID()*10000+storageOut.getSerialNum());
 		try {
 			//modifyStorageInfo(storageOut);在中转中心装车时完成
 			return storageData.add(storageOut);

@@ -147,11 +147,10 @@ public class ArrivalList {
 		return vo;
 	}
 
-	public ResultMessage saveArrival(ArrivalVO vo) throws RemoteException {
+	public ResultMessage saveArrival(ArrivalVO vo,long institutionID) throws RemoteException {
 		ArrivalPO arrivalPO = new ArrivalPO();
-		System.out.println("Ä¿µÄµØ2£º" + vo.getDestID());
+		arrivalPO.setSerialNum(institutionID*10000+arrivalPO.getSerialNum());
 		arrivalPO.setDestID(Long.parseLong(vo.getDestID()));
-		System.out.println("long:" + arrivalPO.getDestID());
 		arrivalPO.setDate(vo.getDate());
 		arrivalPO.setFrom(Long.parseLong(vo.getFromNum()));
 		arrivalPO.setFromName(vo.getFromName());

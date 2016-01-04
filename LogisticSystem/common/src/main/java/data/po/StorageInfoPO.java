@@ -36,34 +36,35 @@ public class StorageInfoPO extends DataPO {
 
 	long transferCenterNum;
 
-
+//机动区数量
+	private int flexibleNum;
 	
 	ArrayList<long[][][]> storage;
 
 	
+	public int getFlexibleNum() {
+		return flexibleNum;
+	}
+
+	public void setFlexibleNum(int flexibleNum) {
+		this.flexibleNum = flexibleNum;
+	}
+
 	public int getArea() {
 		return area;
 	}
-
-
 
 	public void setArea(int area) {
 		this.area = area;
 	}
 
-
-
 	public int getPlaneRow() {
 		return planeRow;
 	}
 
-
-
 	public int getTrainRow() {
 		return trainRow;
 	}
-
-
 
 	public int getTruckRow() {
 		return truckRow;
@@ -200,7 +201,7 @@ public class StorageInfoPO extends DataPO {
 		this.row = planeR+trainR+truckR+flexibleR;
 		this.alarmPercent = percent;
 		this.enlargeArea = StorageArea.FLEXIBLE;
-	
+		this.flexibleNum = 0;
 		storage = new ArrayList<>();
 		long[][][] plane = new long[planeR][shelf][num];
 		long[][][] train = new long[trainR][shelf][num];

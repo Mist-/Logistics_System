@@ -124,6 +124,13 @@ public class TransferLoad implements TransferLoadService {
 		OrderList o = new OrderList(new LoginMessage(ResultMessage.SUCCESS));
 		weight = o.getWeight(id);
 		counter = o.getNum();
+		
+		try {//设置价格
+			transferFee = city.getTransferFee(targetInstitutionName,
+					transferType) * weight;
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 
 		// 检查个数
 		if (transferType == StorageArea.PLANE)
@@ -168,13 +175,7 @@ public class TransferLoad implements TransferLoadService {
 	 * @return
 	 */
 	public  TransferListVO createTransferList(TransferLoadVO load) {
-		try {
-			transferFee = city.getTransferFee(targetInstitutionName,
-					transferType);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return null;
-		}
+
 		
 		if(checkCapacity(load)){
 		TransferListVO t =  transferList.createTransferList(load, transferType);
@@ -207,6 +208,7 @@ public class TransferLoad implements TransferLoadService {
 		}
 		System.out.println("修改订单位置信息 数量："+id.length);
 		order.modifyOrderPosition(id);//第二次，第三次修改位置信息
+		order.modifyOrder(id, "从"+center.getCenterName()+"中转中心发出");
 		return transferList.saveTransferList(vo,center.getCenterID());
 	}
 

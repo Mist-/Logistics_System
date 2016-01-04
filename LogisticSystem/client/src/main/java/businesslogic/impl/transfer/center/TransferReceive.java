@@ -111,7 +111,7 @@ public class TransferReceive implements TransferReceiveService {
 	 */
 	public ResultMessage saveArriveList(ArrivalVO arrival) {
 		try {
-			return arrivalList.saveArrival(arrival);
+			return arrivalList.saveArrival(arrival,center.getInstitutionID());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return ResultMessage.FAILED;
