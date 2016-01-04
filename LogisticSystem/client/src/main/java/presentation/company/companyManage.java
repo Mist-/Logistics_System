@@ -1487,6 +1487,7 @@ public class companyManage extends JFrame {
         for(int i=0;i<storageInListPOs.size();i++){
             StorageInListPO storageInListPO = storageInListPOs.get(i);
             storageInVO = new Vector<>();
+            storageInVO.add(storageInListPO.getSerialNum()+"");
             storageInVO.add(storageInListPO.getTransferNum()+"");
             storageInVO.add(storageInListPO.getDate());
             storageInData.add(storageInVO);
