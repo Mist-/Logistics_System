@@ -71,7 +71,11 @@ public class MonitorUI extends JFrame {
         } catch (NoSuchObjectException e1) {
             e1.printStackTrace();
         }
+        for (Thread tobeintr: autos) {
+            tobeintr.interrupt();
+        }
         reg = null;
+        autos.clear();
     }
 
     private void btApplyConfMouseReleased(MouseEvent e) {
@@ -106,7 +110,7 @@ public class MonitorUI extends JFrame {
             int resultMsg = JOptionPane.showConfirmDialog(this, "重启服务后配置才能生效。是否立即重启服务？", "LCS物流管理系统", JOptionPane.YES_NO_OPTION);
             if (resultMsg == JOptionPane.YES_OPTION) {
                 Log.log("正在重启服务……");
-                buttonStartServerMouseReleased(null);
+                buttonStopServerMouseReleased(null);
                 buttonStartServerMouseReleased(null);
             }
         }
@@ -321,10 +325,9 @@ public class MonitorUI extends JFrame {
                         .addGroup(panel1Layout.createParallelGroup()
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addComponent(button1)
-                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(scrollPane1)
-                                .addContainerGap())))
+                                .addGap(0, 253, Short.MAX_VALUE))
+                            .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE))
+                        .addContainerGap())
             );
         }
 
@@ -408,9 +411,8 @@ public class MonitorUI extends JFrame {
         }
 
         // 创建一个自动保存的线程
-        if (fileAutoSaver == null) {
-            fileAutoSaver = new Thread(fileSaver);
-        }
+        fileAutoSaver = new Thread(fileSaver);
+
         autos.add(fileAutoSaver);
         fileAutoSaver.start();
         System.out.println("开启自动保存功能");
